@@ -1,4 +1,4 @@
--- $Id: Config.atl 3141 2006-01-13 13:26:43Z dwagelaa $
+-- $Id$
 library Config;
 
 -- adapt the following helper to reflect your file path
@@ -19,7 +19,8 @@ helper context ECORE!EClass def : inclusionCondition() : Boolean =
 		self.name = 'EPackage' or
 		self.name = 'EParameter' or
 		self.name = 'EReference' or
-		self.name = 'EStringToStringMapEntry'
+		self.name = 'Profile' or
+		self.name = 'Stereotype'
 	);
 
 -- select whether or not to use fully qualified meta-class names (<package>::<class>)

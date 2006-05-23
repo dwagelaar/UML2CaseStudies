@@ -1,0 +1,103 @@
+-- $Id$
+query EModelCopyGenerator = ECORE!EClass.allInstances()->iterate(e; acc : String = 
+	'module EModelCopy;\n\n' +
+	'create OUT : OUTMODEL from IN : INMODEL;\n\n'|
+	acc + e.toRuleString()).
+	writeTo('EModelCopy.atl'.path());
+
+uses Config;
+
+helper def : references : Set(ECORE!EReference) =
+	ECORE!EReference.allInstances()->
+		select(r|not (r.container or r."derived" or r.unsettable));
+
+helper def : attributes : Set(ECORE!EAttribute) =
+	ECORE!EAttribute.allInstances()->
+		select(a|not (a."derived" or a.unsettable));
+
+helper context ECORE!ENamedElement def : qName() : String =
+	self.name;
+
+helper context ECORE!EClassifier def : qName() : String =
+	if self.ePackage.oclIsUndefined() then
+		self.name
+	else
+		self.ePackage.qName() + '::' + self.name
+	endif;
+
+helper context ECORE!EPackage def : qName() : String =
+	if self.eSuperPackage.oclIsUndefined() then
+		self.name
+	else
+		self.eSuperPackage.qName() + '::' + self.name
+	endif;
+
+helper context ECORE!ENamedElement def : cname() : String =
+	if self.useQualifiedName() then
+		self.qName()
+	else
+		self.name
+	endif;
+
+helper context ECORE!EClass def : toRuleString() : String =
+	if not self."abstract" and self.inclusionCondition() then
+		'rule ' + self.name + ' {\n' +
+		'    from s : INMODEL!' + self.cname() + self.inputConstraint() + '\n' +
+		'    to t : OUTMODEL!' + self.cname() + ' mapsTo s (' +
+		self.contentsToString() + ')\n' +
+		'}\n\n'
+	else
+		''
+	endif;
+
+helper context ECORE!EClass def : inputConstraint() : String =
+	if self.hasConcreteSubclasses() then
+		' (s.oclIsTypeOf(INMODEL!' + self.cname() + '))'
+	else
+		''
+	endif;
+
+helper context ECORE!EClass def : hasConcreteSubclasses() : Boolean =
+	not ECORE!EClass.allInstances()->select(e|
+		e.eSuperTypes->includes(self) and not e."abstract")->isEmpty();
+
+helper context ECORE!EClass def : contentsToString() : String =
+	self.referencesToString(self.attributesToString(''));
+
+helper context ECORE!EClass def : attributesToString(head : String) : String =
+	self.featuresToString(head, thisModule.attributes);
+
+helper context ECORE!EClass def : referencesToString(head : String) : String =
+	self.featuresToString(head, thisModule.references);
+
+helper context ECORE!EClass def : featuresToString(head : String, feature : Sequence(ECORE!EStructuralFeature)) : String =
+	feature->select(f|self.includesMember(f))->iterate(e; acc : String = head |
+		if acc.size() = 0 then
+			'\n' + e.toString()
+		else
+			acc + ',\n' + e.toString()
+		endif);
+
+helper context ECORE!EClass def : includesMember(member : ECORE!EStructuralFeature) : Boolean =
+	self.eStructuralFeatures->includes(member) or
+	not self.eSuperTypes->select(s|s.includesMember(member))->isEmpty();
+
+helper context ECORE!ENamedElement def : toAssignString() : String =
+	if self.name.isKeyword() then
+		'        "' + self.name + '" <- s."' + self.name + '"'
+	else
+		'        ' + self.name + ' <- s.' + self.name
+	endif;
+
+helper context ECORE!EAttribute def : toString() : String =
+	self.toAssignString();
+
+helper context ECORE!EReference def : toString() : String =
+	self.toAssignString();
+
+helper context String def : isKeyword() : Boolean =
+	Set{'module', 'create', 'from', 'rule', 'to', 'using', 'helper', 'context',
+		'def', 'and', 'or', 'not', 'if', 'then', 'else', 'endif', 'query',
+		'library', 'mapsTo', 'String', 'Boolean', 'Integer', 'Real', 'Bag',
+		'Set', 'OrderedSet', 'Sequence', 'abstract', 'derived', 'refining',
+		'foreach', 'distinct', 'in', 'do', 'uses', 'let'}->includes(self);

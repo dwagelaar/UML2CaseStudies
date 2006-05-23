@@ -1,0 +1,801 @@
+-- $Id$
+-- Introduces accessor operations for all public properties
+module UML2Accessors; -- Module Template
+
+create OUT : UML2 from IN : UML2, ACCESSORS : UML2;
+
+uses Strings;
+uses UML2;
+uses Mappings;
+
+-- ======================================================================
+-- model-specific helpers begin
+-- ======================================================================
+
+helper def : inElements : Set(UML2!Element) = UML2!Element.allInstancesFrom('IN');
+helper def : profile : UML2!Profile = 'Accessors'.profile();
+helper def : accessor : Set(UML2!Stereotype) = 'accessor'.stereotype();
+helper def : oclInteger : UML2!PrimitiveType = 'Integer'.primitiveType();
+
+helper context UML2!Property def : setter() : String =
+	if self.hasAssociatedProperty() then
+		self.dualSetter()
+	else
+		self.name.setterBody()
+	endif;
+
+helper context UML2!Property def : dualSetter() : String =
+	if self.associatedProperty().isSingle() then
+		self.name.dualSetterBody(self.associatedProperty().name.firstToUpper())
+	else
+		self.name.addRemoveSetterBody(self.associatedProperty().name.firstToUpper())
+	endif;
+	
+helper context UML2!Property def : adder() : String =
+	if self.hasAssociatedProperty() then
+		self.dualAdder()
+	else
+		self.name.adderBody()
+	endif;
+
+helper context UML2!Property def : dualAdder() : String =
+	if self.associatedProperty().isSingle() then
+		self.name.setterAdderBody(self.associatedProperty().name.firstToUpper())
+	else
+		self.name.dualAdderBody(self.associatedProperty().name.firstToUpper())
+	endif;
+	
+helper context UML2!Property def : insert() : String =
+	if self.hasAssociatedProperty() then
+		self.dualInsert()
+	else
+		self.name.insertBody()
+	endif;
+
+helper context UML2!Property def : dualInsert() : String =
+	if self.associatedProperty().isSingle() then
+		self.name.setterInsertBody(self.associatedProperty().name.firstToUpper())
+	else
+		self.name.dualInsertBody(self.associatedProperty().name.firstToUpper())
+	endif;
+	
+helper context UML2!Property def : remover() : String =
+	if self.hasAssociatedProperty() then
+		self.dualRemover()
+	else
+		self.name.removerBody()
+	endif;
+
+helper context UML2!Property def : dualRemover() : String =
+	if self.associatedProperty().isSingle() then
+		self.name.setterRemoverBody(self.associatedProperty().name.firstToUpper())
+	else
+		self.name.dualRemoverBody(self.associatedProperty().name.firstToUpper())
+	endif;
+
+-- ======================================================================
+-- model-specific helpers end
+-- ======================================================================
+	
+-- ======================================================================
+-- transformation rules begin
+-- ======================================================================
+
+rule ModelProfileApplication {
+	from s : UML2!Model (
+		if thisModule.inElements->includes(s) then
+			not s.includesProfile(thisModule.profile)
+		else false endif)
+    to t : UML2!Model mapsTo s (
+		eAnnotations <- s.eAnnotations,
+        viewpoint <- s.viewpoint,
+        name <- s.name,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        visibility <- s.visibility,
+        nameExpression <- s.nameExpression,
+        clientDependency <- s.clientDependency,
+        packageExtension <- s.packageExtension,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        packageMerge <- s.packageMerge,
+        ownedComment <- s.ownedComment,
+        templateParameter <- s.templateParameter,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedMember <- s.ownedMember,
+        ownedRule <- s.ownedRule,
+        appliedProfile <- s.appliedProfile),
+	   pa : UML2!ProfileApplication (
+        visibility <- #public,
+        importedProfile <- thisModule.profile,
+        importedPackage <- thisModule.profile,
+        ownedComment <- s.ownedComment),
+	   attributes : UML2!EAnnotation (
+	   	eModelElement <- pa,
+	   	source <- 'attributes',
+		details <- Sequence{version}),
+	   version : UML2!EStringToStringMapEntry (
+	   	key <- 'version',
+		value <- thisModule.profile.version())
+}
+
+--rule External {
+--	from s : UML2!EObject (not thisModule.inElements->includes(s))
+--	-- prevent deep copy of external model elements
+--}
+
+rule NonPublicProperty {
+    from s : UML2!Property (
+		if thisModule.inElements->includes(s) then
+    		s.oclIsTypeOf(UML2!Property) and
+	    	not ((s.visibility = #public) and
+		          s.isNavigable())
+		else false endif)
+    to t : UML2!Property mapsTo s (
+		eAnnotations <- s.eAnnotations,
+		isLeaf <- s.isLeaf,
+        name <- s.name,
+        isDerivedUnion <- s.isDerivedUnion,
+        isStatic <- s.isStatic,
+        visibility <- s.visibility,
+        isDerived <- s.isDerived,
+        aggregation <- s.aggregation,
+        isReadOnly <- s.isReadOnly,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        type <- s.type,
+        nameExpression <- s.nameExpression,
+        defaultValue <- s.defaultValue,
+        clientDependency <- s.clientDependency,
+        deployment <- s.deployment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        qualifier <- s.qualifier,
+        redefinedProperty <- s.redefinedProperty,
+        end <- s.end,
+        ownedComment <- s.ownedComment,
+        templateParameter <- s.templateParameter,
+        subsettedProperty <- s.subsettedProperty,
+        featuringClassifier <- s.featuringClassifier,
+        lowerValue <- s.lowerValue,
+        upperValue <- s.upperValue,
+        association <- s.association)
+}
+
+--abstract rule PublicProperty {
+--	from s : UML2!Property (
+--		if thisModule.inElements->includes(s) then
+--			s.oclIsTypeOf(UML2!Property) and
+--			(s.visibility = #public) and
+--			s.isNavigable()
+--		else false endif)
+--	using { vis : UML2!VisibilityKind =
+--				if s.visibility = #public then #private else s.visibility endif;
+--			baseNameS : String = s.accessorBaseNameS(); }
+--	to t : UML2!Property mapsTo s (
+--		eAnnotations <- s.eAnnotations,
+--        isLeaf <- s.isLeaf,
+--        name <- s.name,
+--        isDerivedUnion <- s.isDerivedUnion,
+--        isStatic <- s.isStatic,
+--        visibility <- vis,
+--        isDerived <- s.isDerived,
+--        aggregation <- s.aggregation,
+--        isReadOnly <- s.isReadOnly,
+--        isOrdered <- s.isOrdered,
+--        isUnique <- s.isUnique,
+--        type <- s.type,
+--        nameExpression <- s.nameExpression,
+--        defaultValue <- s.defaultValue,
+--        clientDependency <- s.clientDependency,
+--        deployment <- s.deployment,
+--        templateBinding <- s.templateBinding,
+--        ownedTemplateSignature <- s.ownedTemplateSignature,
+--        qualifier <- s.qualifier,
+--        redefinedProperty <- s.redefinedProperty,
+--        end <- s.end,
+--        ownedComment <- s.ownedComment,
+--        templateParameter <- s.templateParameter,
+--        subsettedProperty <- s.subsettedProperty,
+--        featuringClassifier <- s.featuringClassifier,
+--        lowerValue <- s.lowerValue,
+--        upperValue <- s.upperValue,
+--        association <- s.association),
+--	-- Get --
+--		getOp : UML2!Operation (
+--	   	name <- 'get' + baseNameS,
+--		featuringClassifier <- s.featuringClassifier,
+--		visibility <- s.visibility,
+--		isStatic <- s.isStatic,
+--		isAbstract <- false,
+--		concurrency <- #sequential),
+--	   getPar : UML2!Parameter (
+--	   	name <- 'return',
+--		operation <- getOp,
+--        lowerValue <- getParLow,
+--        upperValue <- getParUp,
+--		type <- s.type,
+--		kind <- #return),
+--	   getParLow : UML2!LiteralInteger (
+--	   	value <- s.lowerValue.value),
+--	   getParUp : UML2!LiteralUnlimitedNatural (
+--	   	value <- s.upperValue.value),
+--	   getBehavior : UML2!Activity (
+--	   	"context" <- s.class_,
+--	   	specification <- getOp,
+--	   	language <- 'language'.value(),
+--		body <- s.name.javaGetter()),
+--	   getDep : UML2!Dependency (
+--	   	name <- 'accessor ' + 'get' + baseNameS + '()',
+--		owner <- s.class_.owner,
+--		client <- getOp,
+--		supplier <- s),
+--	   getDepStereotype : UML2!EAnnotation (
+--	   	eModelElement <- getDep,
+--	   	source <- 'appliedStereotypes',
+--		details <- thisModule.accessor)
+--}
+
+rule PublicPropertySingle {
+	from s : UML2!Property (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!Property) and
+			(s.visibility = #public) and 
+			s.isNavigable() and
+			s.isSingle()
+		else false endif)
+	using { vis : UML2!VisibilityKind =
+				if s.visibility = #public then #private else s.visibility endif;
+			baseNameS : String = s.accessorBaseNameS(); }
+	to t : UML2!Property mapsTo s (
+		eAnnotations <- s.eAnnotations,
+        isLeaf <- s.isLeaf,
+        name <- s.name,
+        isDerivedUnion <- s.isDerivedUnion,
+        isStatic <- s.isStatic,
+        visibility <- vis,
+        isDerived <- s.isDerived,
+        aggregation <- s.aggregation,
+        isReadOnly <- s.isReadOnly,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        type <- s.type,
+        nameExpression <- s.nameExpression,
+        defaultValue <- s.defaultValue,
+        clientDependency <- s.clientDependency,
+        deployment <- s.deployment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        qualifier <- s.qualifier,
+        redefinedProperty <- s.redefinedProperty,
+        end <- s.end,
+        ownedComment <- s.ownedComment,
+        templateParameter <- s.templateParameter,
+        subsettedProperty <- s.subsettedProperty,
+        featuringClassifier <- s.featuringClassifier,
+        lowerValue <- s.lowerValue,
+        upperValue <- s.upperValue,
+        association <- s.association),
+	-- Get --
+		getOp : UML2!Operation (
+	   	name <- 'get' + baseNameS,
+		featuringClassifier <- s.featuringClassifier,
+		visibility <- s.visibility,
+		isStatic <- s.isStatic,
+		isAbstract <- false,
+		concurrency <- #sequential),
+	   getPar : UML2!Parameter (
+	   	name <- 'return',
+		operation <- getOp,
+        lowerValue <- getParLow,
+        upperValue <- getParUp,
+		type <- s.type,
+		kind <- #return),
+	   getParLow : UML2!LiteralInteger (
+	   	value <- s.lowerValue.value),
+	   getParUp : UML2!LiteralUnlimitedNatural (
+	   	value <- s.upperValue.value),
+	   getBehavior : UML2!Activity (
+	   	"context" <- s.class_,
+	   	specification <- getOp,
+	   	language <- 'language'.value(),
+		body <- s.name.javaGetter()),
+	   getDep : UML2!Dependency (
+	   	name <- 'accessor ' + 'get' + baseNameS + '()',
+		owner <- s.class_.owner,
+		client <- getOp,
+		supplier <- s),
+	   getDepStereotype : UML2!EAnnotation (
+	   	eModelElement <- getDep,
+	   	source <- 'appliedStereotypes',
+		details <- thisModule.accessor),
+	-- Set --
+	   setOp : UML2!Operation (
+	   	name <- 'set' + baseNameS,
+		featuringClassifier <- s.featuringClassifier,
+		visibility <- s.visibility,
+		isStatic <- s.isStatic,
+		isAbstract <- false,
+		concurrency <- #sequential),
+	   setPar : UML2!Parameter (
+	   	name <- s.name,
+		operation <- setOp,
+        lowerValue <- setParLow,
+        upperValue <- setParUp,
+		type <- s.type,
+		direction <- #"in"),
+	   setParLow : UML2!LiteralInteger (
+	   	value <- s.lowerValue.value),
+	   setParUp : UML2!LiteralUnlimitedNatural (
+	   	value <- s.upperValue.value),
+	   setBehavior : UML2!Activity (
+	   	"context" <- s.class_,
+	   	specification <- setOp,
+	   	language <- 'language'.value(),
+		body <- s.setter()),
+	   setDep : UML2!Dependency (
+	   	name <- 'accessor ' + 'set' + baseNameS + '()',
+		owner <- s.class_.owner,
+		client <- setOp,
+		supplier <- s),
+	   setDepStereotype : UML2!EAnnotation (
+	   	eModelElement <- setDep,
+	   	source <- 'appliedStereotypes',
+		details <- thisModule.accessor)
+}
+
+--abstract rule PublicPropertyMultiple extends PublicProperty {
+--	from s : UML2!Property (
+--		if thisModule.inElements->includes(s) then
+--			s.oclIsTypeOf(UML2!Property) and
+--			(s.visibility = #public) and 
+--			s.isNavigable() and
+--			not s.isSingle()
+--		else false endif)
+--	using { baseName : String = s.accessorBaseName(); }
+--	to 
+--	-- Add --
+--	   addOp : UML2!Operation (
+--	   	name <- 'add' + baseName,
+--		featuringClassifier <- s.featuringClassifier,
+--		visibility <- s.visibility,
+--		isStatic <- s.isStatic,
+--		isAbstract <- false,
+--		concurrency <- #sequential),
+--	   addPar : UML2!Parameter (
+--	   	name <- s.name,
+--		operation <- addOp,
+--        lowerValue <- addParLow,
+--        upperValue <- addParUp,
+--		type <- s.type,
+--		direction <- #"in"),
+--	   addParLow : UML2!LiteralInteger (
+--	   	value <- 1),
+--	   addParUp : UML2!LiteralUnlimitedNatural (
+--	   	value <- (0-1)),
+--	   addBehavior : UML2!Activity (
+--	   	"context" <- s.class_,
+--	   	specification <- addOp,
+--	   	language <- 'language'.value(),
+--		body <- s.adder()),
+--	   addDep : UML2!Dependency (
+--	   	name <- 'accessor ' + 'add' + baseName + '()',
+--		owner <- s.class_.owner,
+--		client <- addOp,
+--		supplier <- s),
+--	   setDepStereotype : UML2!EAnnotation (
+--	   	eModelElement <- addDep,
+--	   	source <- 'appliedStereotypes',
+--		details <- thisModule.accessor),
+--	-- Remove --
+--	   removeOp : UML2!Operation (
+--	   	name <- 'remove' + baseName,
+--		featuringClassifier <- s.featuringClassifier,
+--		visibility <- s.visibility,
+--		isStatic <- s.isStatic,
+--		isAbstract <- false,
+--		concurrency <- #sequential),
+--	   removePar : UML2!Parameter (
+--	   	name <- s.name,
+--		operation <- removeOp,
+--        lowerValue <- removeParLow,
+--        upperValue <- removeParUp,
+--		type <- s.type,
+--		direction <- #"in"),
+--	   removeParLow : UML2!LiteralInteger (
+--	   	value <- 1),
+--	   removeParUp : UML2!LiteralUnlimitedNatural (
+--	   	value <- (0-1)),
+--	   removeBehavior : UML2!Activity (
+--	   	"context" <- s.class_,
+--	   	specification <- removeOp,
+--	   	language <- 'language'.value(),
+--		body <- s.remover()),
+--	   removeDep : UML2!Dependency (
+--	   	name <- 'accessor ' + 'remove' + baseName + '()',
+--		owner <- s.class_.owner,
+--		client <- removeOp,
+--		supplier <- s),
+--	   removeDepStereotype : UML2!EAnnotation (
+--	   	eModelElement <- removeDep,
+--	   	source <- 'appliedStereotypes',
+--		details <- thisModule.accessor)
+--}
+
+rule PublicPropertyCollection {
+	from s : UML2!Property (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!Property) and
+			(s.visibility = #public) and 
+			s.isNavigable() and
+			not s.isSingle() and 
+			not s.isOrdered
+		else false endif)
+	using { vis : UML2!VisibilityKind =
+				if s.visibility = #public then #private else s.visibility endif;
+			baseNameS : String = s.accessorBaseNameS();
+			baseName : String = s.accessorBaseName(); }
+	to t : UML2!Property mapsTo s (
+		eAnnotations <- s.eAnnotations,
+        isLeaf <- s.isLeaf,
+        name <- s.name,
+        isDerivedUnion <- s.isDerivedUnion,
+        isStatic <- s.isStatic,
+        visibility <- vis,
+        isDerived <- s.isDerived,
+        aggregation <- s.aggregation,
+        isReadOnly <- s.isReadOnly,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        type <- s.type,
+        nameExpression <- s.nameExpression,
+        defaultValue <- s.defaultValue,
+        clientDependency <- s.clientDependency,
+        deployment <- s.deployment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        qualifier <- s.qualifier,
+        redefinedProperty <- s.redefinedProperty,
+        end <- s.end,
+        ownedComment <- s.ownedComment,
+        templateParameter <- s.templateParameter,
+        subsettedProperty <- s.subsettedProperty,
+        featuringClassifier <- s.featuringClassifier,
+        lowerValue <- s.lowerValue,
+        upperValue <- s.upperValue,
+        association <- s.association),
+	-- Get --
+		getOp : UML2!Operation (
+	   	name <- 'get' + baseNameS,
+		featuringClassifier <- s.featuringClassifier,
+		visibility <- s.visibility,
+		isStatic <- s.isStatic,
+		isAbstract <- false,
+		concurrency <- #sequential),
+	   getPar : UML2!Parameter (
+	   	name <- 'return',
+		operation <- getOp,
+        lowerValue <- getParLow,
+        upperValue <- getParUp,
+		type <- s.type,
+		kind <- #return),
+	   getParLow : UML2!LiteralInteger (
+	   	value <- s.lowerValue.value),
+	   getParUp : UML2!LiteralUnlimitedNatural (
+	   	value <- s.upperValue.value),
+	   getBehavior : UML2!Activity (
+	   	"context" <- s.class_,
+	   	specification <- getOp,
+	   	language <- 'language'.value(),
+		body <- s.name.javaGetter()),
+	   getDep : UML2!Dependency (
+	   	name <- 'accessor ' + 'get' + baseNameS + '()',
+		owner <- s.class_.owner,
+		client <- getOp,
+		supplier <- s),
+	   getDepStereotype : UML2!EAnnotation (
+	   	eModelElement <- getDep,
+	   	source <- 'appliedStereotypes',
+		details <- thisModule.accessor),
+	-- Add --
+	   addOp : UML2!Operation (
+	   	name <- 'add' + baseName,
+		featuringClassifier <- s.featuringClassifier,
+		visibility <- s.visibility,
+		isStatic <- s.isStatic,
+		isAbstract <- false,
+		concurrency <- #sequential),
+	   addPar : UML2!Parameter (
+	   	name <- s.name,
+		operation <- addOp,
+        lowerValue <- addParLow,
+        upperValue <- addParUp,
+		type <- s.type,
+		direction <- #"in"),
+	   addParLow : UML2!LiteralInteger (
+	   	value <- 1),
+	   addParUp : UML2!LiteralUnlimitedNatural (
+	   	value <- (0-1)),
+	   addBehavior : UML2!Activity (
+	   	"context" <- s.class_,
+	   	specification <- addOp,
+	   	language <- 'language'.value(),
+		body <- s.adder()),
+	   addDep : UML2!Dependency (
+	   	name <- 'accessor ' + 'add' + baseName + '()',
+		owner <- s.class_.owner,
+		client <- addOp,
+		supplier <- s),
+	   setDepStereotype : UML2!EAnnotation (
+	   	eModelElement <- addDep,
+	   	source <- 'appliedStereotypes',
+		details <- thisModule.accessor),
+	-- Remove --
+	   removeOp : UML2!Operation (
+	   	name <- 'remove' + baseName,
+		featuringClassifier <- s.featuringClassifier,
+		visibility <- s.visibility,
+		isStatic <- s.isStatic,
+		isAbstract <- false,
+		concurrency <- #sequential),
+	   removePar : UML2!Parameter (
+	   	name <- s.name,
+		operation <- removeOp,
+        lowerValue <- removeParLow,
+        upperValue <- removeParUp,
+		type <- s.type,
+		direction <- #"in"),
+	   removeParLow : UML2!LiteralInteger (
+	   	value <- 1),
+	   removeParUp : UML2!LiteralUnlimitedNatural (
+	   	value <- (0-1)),
+	   removeBehavior : UML2!Activity (
+	   	"context" <- s.class_,
+	   	specification <- removeOp,
+	   	language <- 'language'.value(),
+		body <- s.remover()),
+	   removeDep : UML2!Dependency (
+	   	name <- 'accessor ' + 'remove' + baseName + '()',
+		owner <- s.class_.owner,
+		client <- removeOp,
+		supplier <- s),
+	   removeDepStereotype : UML2!EAnnotation (
+	   	eModelElement <- removeDep,
+	   	source <- 'appliedStereotypes',
+		details <- thisModule.accessor)
+}
+
+rule PublicPropertySequence {
+	from s : UML2!Property (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!Property) and
+			(s.visibility = #public) and 
+			s.isNavigable() and
+			not s.isSingle() and 
+			s.isOrdered
+		else false endif)
+	using { vis : UML2!VisibilityKind =
+				if s.visibility = #public then #private else s.visibility endif;
+			baseNameS : String = s.accessorBaseNameS();
+			baseName : String = s.accessorBaseName(); }
+	to t : UML2!Property mapsTo s (
+		eAnnotations <- s.eAnnotations,
+        isLeaf <- s.isLeaf,
+        name <- s.name,
+        isDerivedUnion <- s.isDerivedUnion,
+        isStatic <- s.isStatic,
+        visibility <- vis,
+        isDerived <- s.isDerived,
+        aggregation <- s.aggregation,
+        isReadOnly <- s.isReadOnly,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        type <- s.type,
+        nameExpression <- s.nameExpression,
+        defaultValue <- s.defaultValue,
+        clientDependency <- s.clientDependency,
+        deployment <- s.deployment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        qualifier <- s.qualifier,
+        redefinedProperty <- s.redefinedProperty,
+        end <- s.end,
+        ownedComment <- s.ownedComment,
+        templateParameter <- s.templateParameter,
+        subsettedProperty <- s.subsettedProperty,
+        featuringClassifier <- s.featuringClassifier,
+        lowerValue <- s.lowerValue,
+        upperValue <- s.upperValue,
+        association <- s.association),
+	-- Get --
+		getOp : UML2!Operation (
+	   	name <- 'get' + baseNameS,
+		featuringClassifier <- s.featuringClassifier,
+		visibility <- s.visibility,
+		isStatic <- s.isStatic,
+		isAbstract <- false,
+		concurrency <- #sequential),
+	   getPar : UML2!Parameter (
+	   	name <- 'return',
+		operation <- getOp,
+        lowerValue <- getParLow,
+        upperValue <- getParUp,
+		type <- s.type,
+		kind <- #return),
+	   getParLow : UML2!LiteralInteger (
+	   	value <- s.lowerValue.value),
+	   getParUp : UML2!LiteralUnlimitedNatural (
+	   	value <- s.upperValue.value),
+	   getBehavior : UML2!Activity (
+	   	"context" <- s.class_,
+	   	specification <- getOp,
+	   	language <- 'language'.value(),
+		body <- s.name.javaGetter()),
+	   getDep : UML2!Dependency (
+	   	name <- 'accessor ' + 'get' + baseNameS + '()',
+		owner <- s.class_.owner,
+		client <- getOp,
+		supplier <- s),
+	   getDepStereotype : UML2!EAnnotation (
+	   	eModelElement <- getDep,
+	   	source <- 'appliedStereotypes',
+		details <- thisModule.accessor),
+	-- Add --
+	   addOp : UML2!Operation (
+	   	name <- 'add' + baseName,
+		featuringClassifier <- s.featuringClassifier,
+		visibility <- s.visibility,
+		isStatic <- s.isStatic,
+		isAbstract <- false,
+		concurrency <- #sequential),
+	   addPar : UML2!Parameter (
+	   	name <- s.name,
+		operation <- addOp,
+        lowerValue <- addParLow,
+        upperValue <- addParUp,
+		type <- s.type,
+		direction <- #"in"),
+	   addParLow : UML2!LiteralInteger (
+	   	value <- 1),
+	   addParUp : UML2!LiteralUnlimitedNatural (
+	   	value <- (0-1)),
+	   addBehavior : UML2!Activity (
+	   	"context" <- s.class_,
+	   	specification <- addOp,
+	   	language <- 'language'.value(),
+		body <- s.adder()),
+	   addDep : UML2!Dependency (
+	   	name <- 'accessor ' + 'add' + baseName + '()',
+		owner <- s.class_.owner,
+		client <- addOp,
+		supplier <- s),
+	   setDepStereotype : UML2!EAnnotation (
+	   	eModelElement <- addDep,
+	   	source <- 'appliedStereotypes',
+		details <- thisModule.accessor),
+	-- Remove --
+	   removeOp : UML2!Operation (
+	   	name <- 'remove' + baseName,
+		featuringClassifier <- s.featuringClassifier,
+		visibility <- s.visibility,
+		isStatic <- s.isStatic,
+		isAbstract <- false,
+		concurrency <- #sequential),
+	   removePar : UML2!Parameter (
+	   	name <- s.name,
+		operation <- removeOp,
+        lowerValue <- removeParLow,
+        upperValue <- removeParUp,
+		type <- s.type,
+		direction <- #"in"),
+	   removeParLow : UML2!LiteralInteger (
+	   	value <- 1),
+	   removeParUp : UML2!LiteralUnlimitedNatural (
+	   	value <- (0-1)),
+	   removeBehavior : UML2!Activity (
+	   	"context" <- s.class_,
+	   	specification <- removeOp,
+	   	language <- 'language'.value(),
+		body <- s.remover()),
+	   removeDep : UML2!Dependency (
+	   	name <- 'accessor ' + 'remove' + baseName + '()',
+		owner <- s.class_.owner,
+		client <- removeOp,
+		supplier <- s),
+	   removeDepStereotype : UML2!EAnnotation (
+	   	eModelElement <- removeDep,
+	   	source <- 'appliedStereotypes',
+		details <- thisModule.accessor),
+	-- GetAt --
+	   getAtOp : UML2!Operation (
+	   	name <- 'get' + baseName + 'At',
+		featuringClassifier <- s.featuringClassifier,
+		visibility <- s.visibility,
+		isStatic <- s.isStatic,
+		isAbstract <- false,
+		concurrency <- #sequential),
+	   getAtPar1 : UML2!Parameter (
+	   	name <- 'index',
+		operation <- getAtOp,
+        lowerValue <- getAtPar1Low,
+        upperValue <- getAtPar1Up,
+		type <- thisModule.oclInteger,
+		direction <- #"in"),
+	   getAtPar1Low : UML2!LiteralInteger (
+	   	value <- 1),
+	   getAtPar1Up : UML2!LiteralUnlimitedNumeral (
+	   	value <- (0-1)),
+	   getAtPar2 : UML2!Parameter (
+	   	name <- 'return',
+		operation <- getAtOp,
+        lowerValue <- getAtPar2Low,
+        upperValue <- getAtPar2Up,
+		type <- s.type,
+		direction <- #"return"),
+	   getAtPar2Low : UML2!LiteralInteger (
+	   	value <- 1),
+	   getAtPar2Up : UML2!LiteralUnlimitedNumeral (
+	   	value <- (0-1)),
+	   getAtBehavior : UML2!Activity (
+	   	"context" <- s.class_,
+	   	specification <- getAtOp,
+	   	language <- 'language'.value(),
+		body <- s.name.javaGetAt(s.type.qName())),
+	   getAtDep : UML2!Dependency (
+	   	name <- 'accessor ' + 'get' + baseName + 'At()',
+		owner <- s.class_.owner,
+		client <- getAtOp,
+		supplier <- s),
+	   getAtDepStereotype : UML2!EAnnotation (
+	   	eModelElement <- getAtDep,
+	   	source <- 'appliedStereotypes',
+		details <- thisModule.accessor),
+	-- Insert --
+	   insertOp : UML2!Operation (
+	   	name <- 'insert' + baseName,
+		featuringClassifier <- s.featuringClassifier,
+		visibility <- s.visibility,
+		isStatic <- s.isStatic,
+		isAbstract <- false,
+		concurrency <- #sequential),
+	   insertPar1 : UML2!Parameter (
+	   	name <- s.name,
+		operation <- getAtOp,
+        lowerValue <- insertPar1Low,
+        upperValue <- insertPar1Up,
+		type <- s.type,
+		direction <- #"in"),
+	   insertPar1Low : UML2!LiteralInteger (
+	   	value <- 1),
+	   insertPar1Up : UML2!LiteralUnlimitedNumeral (
+	   	value <- (0-1)),
+	   insertPar2 : UML2!Parameter (
+	   	name <- 'index',
+		operation <- insertOp,
+        lowerValue <- insertPar2Low,
+        upperValue <- insertPar2Up,
+		type <- thisModule.oclInteger,
+		direction <- #"in"),
+	   insertPar2Low : UML2!LiteralInteger (
+	   	value <- 1),
+	   insertPar2Up : UML2!LiteralUnlimitedNumeral (
+	   	value <- -1),
+	   insertActivity : UML2!Activity (
+	   	"context" <- s.class_,
+	   	specification <- insertOp,
+	   	language <- 'language'.value(),
+		body <- s.insert()),
+	   insertDep : UML2!Dependency (
+	   	name <- 'accessor ' + 'insert' + baseName + '()',
+		owner <- s.class_.owner,
+		client <- insertOp,
+		supplier <- s),
+	   insertDepStereotype : UML2!EAnnotation (
+	   	eModelElement <- insertDep,
+	   	source <- 'appliedStereotypes',
+		details <- thisModule.accessor)
+}
+
+-- ======================================================================
+-- transformation rules end
+-- ======================================================================

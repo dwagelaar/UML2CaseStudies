@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" xmi:id="_02pEgOc5EdqWbZ4NdHyPMQ" name="Accessors" metaclassReference="_jU6oQOc7EdqWbZ4NdHyPMQ">
+  <eAnnotations xmi:id="_jVDyMOc7EdqWbZ4NdHyPMQ" source="attributes">
+    <details xmi:id="_jVFnYOc7EdqWbZ4NdHyPMQ" key="version" value="0"/>
+  </eAnnotations>
+  <eAnnotations xmi:id="_jVHckOc7EdqWbZ4NdHyPMQ" source="ePackages">
+    <contents xmi:type="ecore:EPackage" xmi:id="_jVSbsOc7EdqWbZ4NdHyPMQ" name="Accessors_0" nsURI="http:///Accessors_0_jVR0oOc7EdqWbZ4NdHyPMQ.profile.uml2" nsPrefix="Accessors_0">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_jVSbsec7EdqWbZ4NdHyPMQ" name="Accessors__accessor">
+        <eAnnotations xmi:id="_jVSbsuc7EdqWbZ4NdHyPMQ" source="stereotype" references="_4U-MkOc5EdqWbZ4NdHyPMQ"/>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_jU6oQOc7EdqWbZ4NdHyPMQ" visibility="private">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML2_METAMODELS/UML2.metamodel.uml2#_m9C2JK86EdiEh75YJ_3n8g"/>
+  </elementImport>
+  <ownedMember xmi:type="uml:Stereotype" xmi:id="_4U-MkOc5EdqWbZ4NdHyPMQ" name="accessor">
+    <ownedAttribute xmi:id="_jVB9AOc7EdqWbZ4NdHyPMQ" name="base$Dependency" association="_jU-SoOc7EdqWbZ4NdHyPMQ">
+      <type xmi:type="uml:Class" href="pathmap://UML2_METAMODELS/UML2.metamodel.uml2#_m9C2JK86EdiEh75YJ_3n8g"/>
+    </ownedAttribute>
+  </ownedMember>
+  <ownedMember xmi:type="uml:Extension" xmi:id="_jU-SoOc7EdqWbZ4NdHyPMQ" name="Dependency_accessor" memberEnd="_jVAH0Oc7EdqWbZ4NdHyPMQ _jVB9AOc7EdqWbZ4NdHyPMQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_jVAH0Oc7EdqWbZ4NdHyPMQ" name="extension$accessor" type="_4U-MkOc5EdqWbZ4NdHyPMQ" association="_jU-SoOc7EdqWbZ4NdHyPMQ" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jVBV8Oc7EdqWbZ4NdHyPMQ"/>
+    </ownedEnd>
+  </ownedMember>
+</uml:Profile>

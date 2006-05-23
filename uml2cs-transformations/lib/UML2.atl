@@ -1,0 +1,85 @@
+-- $Id$
+-- UML2 helper methods
+library UML2;
+
+uses Strings;
+
+------------------------------- General helpers -----------------------------------
+
+helper context String def : primitiveType() : UML2!PrimitiveType =
+	UML2!PrimitiveType.allInstances()->select(s|s.name=self)->first();
+
+helper context String def : profile() : UML2!Profile =
+	UML2!Profile.allInstances()->select(p|p.name=self)->first();
+
+helper context String def : stereotype() : Sequence(UML2!Stereotype) =
+	UML2!Stereotype.allInstances()->select(s|s.name=self);
+
+helper context String def : dataType() : UML2!DataType =
+	UML2!DataType.allInstances()->select(c|c.umlQualifiedName()=self)->first();
+
+------------------------------- LiteralInteger -----------------------------------
+
+helper context UML2!LiteralInteger def : isSingle() : Boolean =
+	self.value >= 0 and self.value <= 1;
+
+------------------------------- LiteralUnlimitedNatural -----------------------------------
+
+helper context UML2!LiteralUnlimitedNatural def : isSingle() : Boolean =
+	self.value >= 0 and self.value <= 1;
+
+------------------------------- MultiplicityElement -----------------------------------
+
+helper context UML2!MultiplicityElement def : accessorBaseName() : String =
+	self.name.firstToUpper();
+
+helper context UML2!MultiplicityElement def : accessorBaseNameS() : String =
+	self.accessorBaseName() + if self.isSingle() then '' else 's' endif;
+
+helper context UML2!MultiplicityElement def : isSingle() : Boolean =
+	if self.upperValue.oclIsUndefined() then
+		true
+	else
+		self.upperValue.isSingle()
+	endif;
+
+------------------------------- NamedElement -----------------------------------
+
+helper context UML2!NamedElement def : umlQualifiedName() : String =
+	self.umlQualifiedName('::');
+
+helper context UML2!NamedElement def : umlQualifiedName(separator : String) : String =
+	if self.owner.oclIsTypeOf(UML2!Package) then
+		self.owner.umlQualifiedName(separator) + separator + self.name
+	else
+		self.name
+	endif;
+
+------------------------------- Package -----------------------------------
+
+helper context UML2!Package def : includesProfile(p : UML2!Profile) : Boolean =
+	self.appliedProfile->select(a|a.importedProfile=p)->notEmpty();
+
+------------------------------- Profile -----------------------------------
+
+helper context UML2!Profile def : version() : String =
+	self.eAnnotations->select(a|
+		a.source='attributes')->first().details->select(d|
+			d.key='version')->first().value;
+
+------------------------------- Property -----------------------------------
+
+helper context UML2!Property def : isNavigable() : Boolean =
+	self.owningAssociation.oclIsUndefined();
+
+helper context UML2!Property def : hasAssociatedProperty() : Boolean =
+	if self.association.oclIsUndefined() then
+		false
+	else
+		self.association.memberEnd->select(p|
+			p<>self and p.isNavigable())->notEmpty()
+	endif;
+
+helper context UML2!Property def : associatedProperty() : UML2!Property =
+	self.association.memberEnd->select(p|
+		p<>self and p.isNavigable())->first();

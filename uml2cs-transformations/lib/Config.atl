@@ -1,0 +1,27 @@
+-- $Id: Config.atl 3141 2006-01-13 13:26:43Z dwagelaa $
+library Config;
+
+-- adapt the following helper to reflect your file path
+helper context String def : path() : String =
+	'/home/dwagelaa/UML2CaseStudies/uml2cs-transformations/' + self;
+
+-- adapt the following inclusion condition for your specific model
+helper context ECORE!EClass def : inclusionCondition() : Boolean =
+	not (
+    	self.name = 'EAttribute' or
+	    self.name = 'EClass' or
+		self.name = 'EDataType' or
+		self.name = 'EEnum' or
+		self.name = 'EEnumLiteral' or
+		self.name = 'EFactory' or
+		self.name = 'EObject' or
+		self.name = 'EOperation' or
+		self.name = 'EPackage' or
+		self.name = 'EParameter' or
+		self.name = 'EReference' or
+		self.name = 'EStringToStringMapEntry'
+	);
+
+-- select whether or not to use fully qualified meta-class names (<package>::<class>)
+helper context ECORE!ENamedElement def : useQualifiedName() : Boolean =
+	false;

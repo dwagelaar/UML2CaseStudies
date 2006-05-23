@@ -1,0 +1,88 @@
+-- $Id$
+-- Java all versions code generation helpers
+library JavaMappings;
+
+uses Java; -- Java1 or Java2
+
+------------------------------- General -----------------------------------
+
+helper context String def : value() : String =
+	if self = 'language' then 'java'
+	else '' endif;
+
+------------------------------- Accessors -----------------------------------
+
+helper context String def : setterBody() : String =
+	'this.' + self + ' = ' + self + ';';
+
+helper context String def : dualSetterBody(otherEnd : String) : String =
+	'if (this.' + self + ' != ' + self + ') {\n' +
+	'    this.' + self + ' = ' + self + ';\n' +
+	'    ' + self + '.set' + otherEnd + '(this);\n' +
+	'}';
+
+helper context String def : addRemoveSetterBody(otherEnd : String) : String =
+	if otherEnd <> '' then
+		'if (this.' + self + ' != ' + self + ') {\n' +
+        '    if (this.' + self + ' != null) this.' + self + '.remove' + otherEnd + '(this);\n' +
+		'    this.' + self + ' = ' + self + ';\n' +
+        '    if (' + self + ' != null) ' + self + '.add' + otherEnd + '(this);\n' +
+		'}'
+	else
+		'this.' + self + ' = ' + self + ';'
+	endif;
+
+helper context String def : getterBody() : String =
+	'return ' + self + ';';
+
+helper context String def : getAtBody(type : String) : String =
+	self.javaGetAt(type);
+
+helper context String def : javaNotContainsCheck(body : String) : String =
+	'if (! this.' + self + '.contains(' + self + ')) {\n' +
+	body + '\n}';
+
+helper context String def : javaContainsCheck(body : String) : String =
+	'if (this.' + self + '.contains(' + self + ')) {\n' +
+	body + '\n}';
+
+helper context String def : javaOtherEndSetter(otherEnd : String) : String =
+	self + '.set' + otherEnd + '(this);';
+
+helper context String def : adderBody() : String =
+	self.javaAdder();
+
+helper context String def : javaOtherEndAdder(otherEnd : String) : String =
+	self + '.add' + otherEnd + '(this);';
+
+helper context String def : javaOtherEndResetter(otherEnd : String) : String =
+	self + '.set' + otherEnd + '(null);';
+
+helper context String def : javaOtherEndRemover(otherEnd : String) : String =
+	self + '.remove' + otherEnd + '(this);';
+
+helper context String def : setterAdderBody(otherEnd : String) : String =
+	self.javaNotContainsCheck(
+	'    ' + self.javaAdder() + '\n' +
+	'    ' + self.javaOtherEndSetter(otherEnd));
+	
+helper context String def : insertBody() : String =
+	self.javaInsert();
+
+helper context String def : setterInsertBody(otherEnd : String) : String =
+	self.javaNotContainsCheck(
+	'    ' + self.javaInsert() + '\n' +
+	'    ' + self.javaOtherEndSetter(otherEnd));
+
+helper context String def : removerBody() : String =
+	self.javaRemover();
+
+helper context String def : setterRemoverBody(otherEnd : String) : String =
+	self.javaContainsCheck(
+	'    ' + self.javaRemover() + '\n' +
+	'    ' + self.javaOtherEndResetter(otherEnd));
+
+helper context String def : dualRemoverBody(otherEnd : String) : String =
+	self.javaContainsCheck(
+	'    ' + self.javaRemover() + '\n' +
+	'    ' + self.javaOtherEndRemover(otherEnd));

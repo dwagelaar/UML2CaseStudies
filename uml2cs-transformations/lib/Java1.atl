@@ -1,0 +1,25 @@
+-- $Id$
+-- Java >= 1.0 code generation helpers
+library Java1;
+
+------------------------------- Accessors -----------------------------------
+
+helper context String def : javaGetAt(type : String) : String =
+	'try {\n' +
+	'    return (' + type + ') ' + self + '.elementAt(index);\n' +
+	'} catch (ArrayIndexOutOfBoundsException e) {\n' +
+	'    return null;\n' +
+	'}';
+	
+helper context String def : javaAdder() : String =
+	'this.' + self + '.addElement(' + self + ');';
+	
+helper context String def : javaInsert() : String =
+	'try {\n' +
+	'    this.' + self + '.insertElementAt(' + self + ', index);' +
+	'} catch (ArrayIndexOutOfBoundsException e) {\n' +
+	'    ' + self.javaAdder() + '\n' +
+	'};';
+
+helper context String def : javaRemover() : String =
+	'this.' + self + '.removeElement(' + self + ');';

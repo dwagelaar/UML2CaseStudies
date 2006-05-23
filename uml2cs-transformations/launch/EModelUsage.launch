@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
+<mapAttribute key="Model Handler">
+<mapEntry key="INMODEL" value="EMF"/>
+<mapEntry key="IN" value=""/>
+</mapAttribute>
+<stringAttribute key="ATL File Name" value=""/>
+<mapAttribute key="Libs"/>
+<booleanAttribute key="Mode Debug" value="false"/>
+<mapAttribute key="ModelType">
+<mapEntry key="INMODEL" value="METAMODELINPUT"/>
+<mapEntry key="IN" value="MODELINPUT"/>
+</mapAttribute>
+<mapAttribute key="Path">
+<mapEntry key="INMODEL" value="/uml2cs-transformations/metamodels/UML2Ecore.ecore"/>
+<mapEntry key="IN" value="/uml2cs-transformations/models/test.uml2"/>
+</mapAttribute>
+<stringAttribute key="Project Name" value="uml2cs-transformations"/>
+<mapAttribute key="Output"/>
+<mapAttribute key="Input">
+<mapEntry key="IN" value="INMODEL"/>
+</mapAttribute>
+<booleanAttribute key="AllowInterModelReferences" value="false"/>
+</launchConfiguration>

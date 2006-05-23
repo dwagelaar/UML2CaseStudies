@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
+<mapAttribute key="Model Handler">
+<mapEntry key="ECORE" value="EMF"/>
+<mapEntry key="IN" value=""/>
+</mapAttribute>
+<stringAttribute key="ATL File Name" value="/uml2cs-transformations/EModelCopyGenerator.atl"/>
+<mapAttribute key="Libs">
+<mapEntry key="Config" value="/uml2cs-transformations/lib/Config.asm"/>
+</mapAttribute>
+<booleanAttribute key="Mode Debug" value="false"/>
+<mapAttribute key="ModelType">
+<mapEntry key="ECORE" value="METAMODELINPUT"/>
+<mapEntry key="IN" value="MODELINPUT"/>
+</mapAttribute>
+<mapAttribute key="Path">
+<mapEntry key="ECORE" value="#EMF"/>
+<mapEntry key="IN" value="/uml2cs-transformations/metamodels/UML2.ecore"/>
+</mapAttribute>
+<stringAttribute key="Project Name" value="uml2cs-transformations"/>
+<mapAttribute key="Output"/>
+<mapAttribute key="Input">
+<mapEntry key="IN" value="ECORE"/>
+</mapAttribute>
+<booleanAttribute key="AllowInterModelReferences" value="true"/>
+</launchConfiguration>

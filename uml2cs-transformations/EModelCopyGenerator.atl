@@ -11,11 +11,12 @@ uses Config;
 
 helper def : references : Set(ECORE!EReference) =
 	ECORE!EReference.allInstances()->
-		select(r|not (r.container or r."derived" or r.unsettable));
+		select(r|not (r."derived" or r.unsettable) and r.changeable and
+			(r.eOpposite.oclIsUndefined() or r.containment));
 
 helper def : attributes : Set(ECORE!EAttribute) =
 	ECORE!EAttribute.allInstances()->
-		select(a|not (a."derived" or a.unsettable));
+		select(a|not (a."derived" or a.unsettable) and a.changeable);
 
 helper context ECORE!ENamedElement def : qName() : String =
 	self.name;

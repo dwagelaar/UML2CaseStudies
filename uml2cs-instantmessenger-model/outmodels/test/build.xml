@@ -4,8 +4,8 @@
 	<property name="profile.accessors.path" value="/uml2cs-transformations/profiles/Accessors.profile.uml2"/>
 
 	<property name="model.in.path" value="/uml2cs-instantmessenger-model/models/InstantMessengerModel.uml2"/>
-	<property name="model.copy.path" value="/uml2cs-instantmessenger-model/outmodels/default/im-copy.uml2"/>
-	<property name="model.accessors.path" value="/uml2cs-instantmessenger-model/outmodels/default/im-accessors.uml2"/>
+	<property name="model.copy.path" value="/uml2cs-instantmessenger-model/outmodels/test/im-copy.uml2"/>
+	<property name="model.accessors.path" value="/uml2cs-instantmessenger-model/outmodels/test/im-accessors.uml2"/>
 
 	<property name="trans.path" value="/uml2cs-transformations"/>
 	<property name="trans.uml2copy.path" value="${trans.path}/UML2Copy.atl"/>

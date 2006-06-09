@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uml2cs-transformations-test" default="all">
+	<property name="metamodel.uml2.nsURI" value="http://www.eclipse.org/uml2/1.0.0/UML"/>
+	<property name="profile.accessors.path" value="/uml2cs-transformations/profiles/Accessors.profile.uml2"/>
+
+	<property name="model.in.path" value="/uml2cs-instantmessenger-model/models/InstantMessengerModel.uml2"/>
+	<property name="model.copy.path" value="/uml2cs-instantmessenger-model/outmodels/default/im-copy.uml2"/>
+	<property name="model.accessors.path" value="/uml2cs-instantmessenger-model/outmodels/default/im-accessors.uml2"/>
+
+	<property name="trans.path" value="/uml2cs-transformations"/>
+	<property name="trans.uml2copy.path" value="${trans.path}/UML2Copy.atl"/>
+	<property name="trans.uml2accessors.path" value="${trans.path}/UML2Accessors.atl"/>
+
+	<property name="lib.path" value="/uml2cs-transformations/lib"/>
+	<property name="lib.java1.path" value="${lib.path}/Java1.asm"/>
+	<property name="lib.javamappings.path" value="${lib.path}/JavaMappings.asm"/>
+	<property name="lib.strings.path" value="${lib.path}/Strings.asm"/>
+	<property name="lib.uml2.path" value="${lib.path}/UML2.asm"/>
+
+	<target name="loadModels">
+		<am3.loadModel modelHandler="EMF" name="UML2" metamodel="MOF" nsURI="${metamodel.uml2.nsURI}"/>
+		<am3.loadModel modelHandler="EMF" name="Accessors" metamodel="UML2" path="${profile.accessors.path}"/>
+		<am3.loadModel modelHandler="EMF" name="inModel" metamodel="UML2" path="${model.in.path}"/>
+	</target>
+
+	<target name="transform" depends="loadModels">
+		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+			<inmodel name="UML2" model="UML2"/>
+			<inmodel name="IN" model="inModel"/>
+			<outmodel name="OUT" model="im-copy" metamodel="UML2" path="${model.copy.path}"/>
+		</am3.atl>
+		<am3.saveModel model="im-copy" path="${model.copy.path}"/>
+		<am3.atl path="${trans.uml2accessors.path}" allowInterModelReferences="true">
+			<inmodel name="UML2" model="UML2"/>
+			<inmodel name="ACCESSORS" model="Accessors"/>
+			<inmodel name="IN" model="im-copy"/>
+			<outmodel name="OUT" model="im-accessors" metamodel="UML2" path="${model.accessors.path}"/>
+			<library name="Strings" path="${lib.strings.path}"/>
+			<library name="UML2" path="${lib.uml2.path}"/>
+			<library name="Java" path="${lib.java1.path}"/>
+			<library name="Mappings" path="${lib.javamappings.path}"/>
+		</am3.atl>
+		<am3.saveModel model="im-accessors" path="${model.accessors.path}"/>
+	</target>
+
+    <target name="all" depends="transform"/>
+</project>

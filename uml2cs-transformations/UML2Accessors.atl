@@ -144,6 +144,7 @@ rule PublicPropertySingle {
         lowerValue <- getParLow,
         upperValue <- getParUp,
 		type <- s.type,
+		effect <- #read,
 		direction <- #return),
 	   getParLow : UML2!LiteralInteger (
 	   	value <- s.lower()),
@@ -172,6 +173,7 @@ rule PublicPropertySingle {
         lowerValue <- setParLow,
         upperValue <- setParUp,
 		type <- s.type,
+		effect <- #update,
 		direction <- #"in"),
 	   setParLow : UML2!LiteralInteger (
 	   	value <- s.lower()),
@@ -222,6 +224,7 @@ rule PublicPropertyCollection {
         lowerValue <- getParLow,
         upperValue <- getParUp,
 		type <- s.type,
+		effect <- #read,
 		direction <- #return),
 	   getParLow : UML2!LiteralInteger (
 	   	value <- s.lower()),
@@ -250,6 +253,7 @@ rule PublicPropertyCollection {
         lowerValue <- addParLow,
         upperValue <- addParUp,
 		type <- s.type,
+		effect <- #update,
 		direction <- #"in"),
 	   addParLow : UML2!LiteralInteger (
 	   	value <- 1),
@@ -278,6 +282,7 @@ rule PublicPropertyCollection {
         lowerValue <- removeParLow,
         upperValue <- removeParUp,
 		type <- s.type,
+		effect <- #update,
 		direction <- #"in"),
 	   removeParLow : UML2!LiteralInteger (
 	   	value <- 1),
@@ -329,6 +334,7 @@ rule PublicPropertySequence {
         lowerValue <- getParLow,
         upperValue <- getParUp,
 		type <- s.type,
+		effect <- #read,
 		kind <- #return),
 	   getParLow : UML2!LiteralInteger (
 	   	value <- s.lower()),
@@ -357,6 +363,7 @@ rule PublicPropertySequence {
         lowerValue <- addParLow,
         upperValue <- addParUp,
 		type <- s.type,
+		effect <- #update,
 		direction <- #"in"),
 	   addParLow : UML2!LiteralInteger (
 	   	value <- 1),
@@ -385,6 +392,7 @@ rule PublicPropertySequence {
         lowerValue <- removeParLow,
         upperValue <- removeParUp,
 		type <- s.type,
+		effect <- #update,
 		direction <- #"in"),
 	   removeParLow : UML2!LiteralInteger (
 	   	value <- 1),
@@ -413,6 +421,7 @@ rule PublicPropertySequence {
         lowerValue <- getAtPar1Low,
         upperValue <- getAtPar1Up,
 		type <- thisModule.oclInteger,
+		effect <- #read,
 		direction <- #"in"),
 	   getAtPar1Low : UML2!LiteralInteger (
 	   	value <- 1),
@@ -424,6 +433,7 @@ rule PublicPropertySequence {
         lowerValue <- getAtPar2Low,
         upperValue <- getAtPar2Up,
 		type <- s.type,
+		effect <- #read,
 		direction <- #"return"),
 	   getAtPar2Low : UML2!LiteralInteger (
 	   	value <- 1),
@@ -452,6 +462,7 @@ rule PublicPropertySequence {
         lowerValue <- insertPar1Low,
         upperValue <- insertPar1Up,
 		type <- s.type,
+		effect <- #update,
 		direction <- #"in"),
 	   insertPar1Low : UML2!LiteralInteger (
 	   	value <- 1),
@@ -463,6 +474,7 @@ rule PublicPropertySequence {
         lowerValue <- insertPar2Low,
         upperValue <- insertPar2Up,
 		type <- thisModule.oclInteger,
+		effect <- #read,
 		direction <- #"in"),
 	   insertPar2Low : UML2!LiteralInteger (
 	   	value <- 1),

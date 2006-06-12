@@ -28,58 +28,58 @@ helper def : oclInteger : UML2!PrimitiveType = 'Integer'->primitiveType();
 
 helper context UML2!Property def : setter() : String =
 	if self.hasAssociatedProperty() then
-		self.dualSetter()
+		self->dualSetter()
 	else
-		self.name.setterBody()
+		self.name->setterBody()
 	endif;
 
 helper context UML2!Property def : dualSetter() : String =
 	if self.associatedProperty().isSingle() then
-		self.name.dualSetterBody(self.associatedProperty().name.firstToUpper())
+		self.name->dualSetterBody(self->associatedProperty().name->firstToUpper())
 	else
-		self.name.addRemoveSetterBody(self.associatedProperty().name.firstToUpper())
+		self.name->addRemoveSetterBody(self->associatedProperty().name->firstToUpper())
 	endif;
 	
 helper context UML2!Property def : adder() : String =
-	if self.hasAssociatedProperty() then
-		self.dualAdder()
+	if self->hasAssociatedProperty() then
+		self->dualAdder()
 	else
-		self.name.adderBody()
+		self.name->adderBody()
 	endif;
 
 helper context UML2!Property def : dualAdder() : String =
-	if self.associatedProperty().isSingle() then
-		self.name.setterAdderBody(self.associatedProperty().name.firstToUpper())
+	if self->associatedProperty()->isSingle() then
+		self.name->setterAdderBody(self->associatedProperty().name->firstToUpper())
 	else
-		self.name.dualAdderBody(self.associatedProperty().name.firstToUpper())
+		self.name->dualAdderBody(self->associatedProperty().name->firstToUpper())
 	endif;
 	
 helper context UML2!Property def : insert() : String =
-	if self.hasAssociatedProperty() then
-		self.dualInsert()
+	if self->hasAssociatedProperty() then
+		self->dualInsert()
 	else
-		self.name.insertBody()
+		self.name->insertBody()
 	endif;
 
 helper context UML2!Property def : dualInsert() : String =
-	if self.associatedProperty().isSingle() then
-		self.name.setterInsertBody(self.associatedProperty().name.firstToUpper())
+	if self->associatedProperty()->isSingle() then
+		self.name->setterInsertBody(self->associatedProperty().name->firstToUpper())
 	else
-		self.name.dualInsertBody(self.associatedProperty().name.firstToUpper())
+		self.name->dualInsertBody(self->associatedProperty().name->firstToUpper())
 	endif;
 	
 helper context UML2!Property def : remover() : String =
-	if self.hasAssociatedProperty() then
-		self.dualRemover()
+	if self->hasAssociatedProperty() then
+		self->dualRemover()
 	else
-		self.name.removerBody()
+		self.name->removerBody()
 	endif;
 
 helper context UML2!Property def : dualRemover() : String =
-	if self.associatedProperty().isSingle() then
-		self.name.setterRemoverBody(self.associatedProperty().name.firstToUpper())
+	if self->associatedProperty().isSingle() then
+		self.name->setterRemoverBody(self->associatedProperty().name->firstToUpper())
 	else
-		self.name.dualRemoverBody(self.associatedProperty().name.firstToUpper())
+		self.name->dualRemoverBody(self->associatedProperty().name->firstToUpper())
 	endif;
 
 -- ======================================================================
@@ -120,14 +120,14 @@ rule ModelProfileApplication {
 rule PublicPropertySingle {
 	from s : UML2!Property (
 		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!Property) and
+			s->oclIsTypeOf(UML2!Property) and
 			(s.visibility = #public) and 
-			s.isNavigable() and
-			s.isSingle()
+			s->isNavigable() and
+			s->isSingle()
 		else false endif)
 	using { vis : UML2!VisibilityKind =
 				if s.visibility = #public then #private else s.visibility endif;
-			baseNameS : String = s.accessorBaseNameS();
+			baseNameS : String = s->accessorBaseNameS();
 			p : UML2!Package = s.class_->owningPackage(); }
 	to
 	-- Get --
@@ -147,14 +147,14 @@ rule PublicPropertySingle {
 		effect <- #read,
 		direction <- #return),
 	   getParLow : UML2!LiteralInteger (
-	   	value <- s.lower()),
+	   	value <- s->lower()),
 	   getParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- s.upper()),
+	   	value <- s->upper()),
 	   getBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- getOp,
-	   	language <- 'language'.value(),
-		body <- s.name.getterBody()),
+	   	language <- 'language'->value(),
+		body <- s.name->getterBody()),
 	   getDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
 		client <- getOp,
@@ -176,19 +176,20 @@ rule PublicPropertySingle {
 		effect <- #update,
 		direction <- #"in"),
 	   setParLow : UML2!LiteralInteger (
-	   	value <- s.lower()),
+	   	value <- s->lower()),
 	   setParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- s.upper()),
+	   	value <- s->upper()),
 	   setBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- setOp,
-	   	language <- 'language'.value(),
-		body <- s.setter()),
+	   	language <- 'language'->value(),
+		body <- s->setter()),
 	   setDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'set' + baseNameS + '()',
 		client <- setOp,
 		supplier <- s)
 	do {
+		s.visibility <- #private;
 		p.ownedMember <- p.ownedMember->union(Set{getDep, setDep});
 		getDep.apply(thisModule.accessor);
 		setDep.apply(thisModule.accessor);
@@ -198,16 +199,16 @@ rule PublicPropertySingle {
 rule PublicPropertyCollection {
 	from s : UML2!Property (
 		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!Property) and
+			s->oclIsTypeOf(UML2!Property) and
 			(s.visibility = #public) and 
-			s.isNavigable() and
-			not s.isSingle() and 
+			s->isNavigable() and
+			not s->isSingle() and 
 			not s.isOrdered
 		else false endif)
 	using { vis : UML2!VisibilityKind =
 				if s.visibility = #public then #private else s.visibility endif;
-			baseNameS : String = s.accessorBaseNameS();
-			baseName : String = s.accessorBaseName();
+			baseNameS : String = s->accessorBaseNameS();
+			baseName : String = s->accessorBaseName();
 			p : UML2!Package = s.class_->owningPackage(); }
 	to 
 	-- Get --
@@ -227,14 +228,14 @@ rule PublicPropertyCollection {
 		effect <- #read,
 		direction <- #return),
 	   getParLow : UML2!LiteralInteger (
-	   	value <- s.lower()),
+	   	value <- s->lower()),
 	   getParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- s.upper()),
+	   	value <- s->upper()),
 	   getBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- getOp,
-	   	language <- 'language'.value(),
-		body <- s.name.getterBody()),
+	   	language <- 'language'->value(),
+		body <- s.name->getterBody()),
 	   getDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
 		client <- getOp,
@@ -258,12 +259,12 @@ rule PublicPropertyCollection {
 	   addParLow : UML2!LiteralInteger (
 	   	value <- 1),
 	   addParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- (0-1)),
+	   	value <- 1),
 	   addBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- addOp,
-	   	language <- 'language'.value(),
-		body <- s.adder()),
+	   	language <- 'language'->value(),
+		body <- s->adder()),
 	   addDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'add' + baseName + '()',
 		client <- addOp,
@@ -287,17 +288,18 @@ rule PublicPropertyCollection {
 	   removeParLow : UML2!LiteralInteger (
 	   	value <- 1),
 	   removeParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- (0-1)),
+	   	value <- 1),
 	   removeBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- removeOp,
-	   	language <- 'language'.value(),
-		body <- s.remover()),
+	   	language <- 'language'->value(),
+		body <- s->remover()),
 	   removeDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'remove' + baseName + '()',
 		client <- removeOp,
 		supplier <- s)
 	do {
+		s.visibility <- #private;
 		p.ownedMember <- p.ownedMember->union(Set{getDep, addDep, removeDep});
 		getDep->apply(thisModule.accessor);		
 		addDep->apply(thisModule.accessor);		
@@ -308,16 +310,16 @@ rule PublicPropertyCollection {
 rule PublicPropertySequence {
 	from s : UML2!Property (
 		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!Property) and
+			s->oclIsTypeOf(UML2!Property) and
 			(s.visibility = #public) and 
-			s.isNavigable() and
-			not s.isSingle() and 
+			s->isNavigable() and
+			not s->isSingle() and 
 			s.isOrdered
 		else false endif)
 	using { vis : UML2!VisibilityKind =
 				if s.visibility = #public then #private else s.visibility endif;
-			baseNameS : String = s.accessorBaseNameS();
-			baseName : String = s.accessorBaseName();
+			baseNameS : String = s->accessorBaseNameS();
+			baseName : String = s->accessorBaseName();
 			p : UML2!Package = s.class_->owningPackage(); }
 	to 
 	-- Get --
@@ -337,14 +339,14 @@ rule PublicPropertySequence {
 		effect <- #read,
 		kind <- #return),
 	   getParLow : UML2!LiteralInteger (
-	   	value <- s.lower()),
+	   	value <- s->lower()),
 	   getParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- s.upper()),
+	   	value <- s->upper()),
 	   getBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- getOp,
-	   	language <- 'language'.value(),
-		body <- s.name.getterBody()),
+	   	language <- 'language'->value(),
+		body <- s.name->getterBody()),
 	   getDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
 		client <- getOp,
@@ -368,12 +370,12 @@ rule PublicPropertySequence {
 	   addParLow : UML2!LiteralInteger (
 	   	value <- 1),
 	   addParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- (0-1)),
+	   	value <- 1),
 	   addBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- addOp,
-	   	language <- 'language'.value(),
-		body <- s.adder()),
+	   	language <- 'language'->value(),
+		body <- s->adder()),
 	   addDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'add' + baseName + '()',
 		client <- addOp,
@@ -397,12 +399,12 @@ rule PublicPropertySequence {
 	   removeParLow : UML2!LiteralInteger (
 	   	value <- 1),
 	   removeParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- (0-1)),
+	   	value <- 1),
 	   removeBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- removeOp,
-	   	language <- 'language'.value(),
-		body <- s.remover()),
+	   	language <- 'language'->value(),
+		body <- s->remover()),
 	   removeDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'remove' + baseName + '()',
 		client <- removeOp,
@@ -438,12 +440,12 @@ rule PublicPropertySequence {
 	   getAtPar2Low : UML2!LiteralInteger (
 	   	value <- 1),
 	   getAtPar2Up : UML2!LiteralUnlimitedNumeral (
-	   	value <- (0-1)),
+	   	value <- 1),
 	   getAtBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- getAtOp,
-	   	language <- 'language'.value(),
-		body <- s.name.javaGetAt(s.type.qName())),
+	   	language <- 'language'->value(),
+		body <- s.name->getAtBody(s.type->qName())),
 	   getAtDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'get' + baseName + 'At()',
 		client <- getAtOp,
@@ -483,13 +485,14 @@ rule PublicPropertySequence {
 	   insertActivity : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- insertOp,
-	   	language <- 'language'.value(),
-		body <- s.insert()),
+	   	language <- 'language'->value(),
+		body <- s->insert()),
 	   insertDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'insert' + baseName + '()',
 		client <- insertOp,
 		supplier <- s)
 	do {
+		s.visibility <- #private;
 		p.ownedMember <- p.ownedMember->union(Set{getDep, addDep, removeDep, getAtDep, insertDep});
 		getDep->apply(thisModule.accessor);		
 		addDep->apply(thisModule.accessor);		

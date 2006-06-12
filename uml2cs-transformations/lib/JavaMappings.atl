@@ -36,7 +36,7 @@ helper context String def : getterBody() : String =
 	'return ' + self + ';';
 
 helper context String def : getAtBody(type : String) : String =
-	self.javaGetAt(type);
+	self->javaGetAt(type);
 
 helper context String def : javaNotContainsCheck(body : String) : String =
 	'if (! this.' + self + '.contains(' + self + ')) {\n' +
@@ -50,7 +50,7 @@ helper context String def : javaOtherEndSetter(otherEnd : String) : String =
 	self + '.set' + otherEnd + '(this);';
 
 helper context String def : adderBody() : String =
-	self.javaAdder();
+	self->javaAdder();
 
 helper context String def : javaOtherEndAdder(otherEnd : String) : String =
 	self + '.add' + otherEnd + '(this);';
@@ -62,27 +62,27 @@ helper context String def : javaOtherEndRemover(otherEnd : String) : String =
 	self + '.remove' + otherEnd + '(this);';
 
 helper context String def : setterAdderBody(otherEnd : String) : String =
-	self.javaNotContainsCheck(
-	'    ' + self.javaAdder() + '\n' +
-	'    ' + self.javaOtherEndSetter(otherEnd));
+	self->javaNotContainsCheck(
+	'    ' + self->javaAdder() + '\n' +
+	'    ' + self->javaOtherEndSetter(otherEnd));
 	
 helper context String def : insertBody() : String =
-	self.javaInsert();
+	self->javaInsert();
 
 helper context String def : setterInsertBody(otherEnd : String) : String =
-	self.javaNotContainsCheck(
-	'    ' + self.javaInsert() + '\n' +
-	'    ' + self.javaOtherEndSetter(otherEnd));
+	self->javaNotContainsCheck(
+	'    ' + self->javaInsert() + '\n' +
+	'    ' + self->javaOtherEndSetter(otherEnd));
 
 helper context String def : removerBody() : String =
-	self.javaRemover();
+	self->javaRemover();
 
 helper context String def : setterRemoverBody(otherEnd : String) : String =
-	self.javaContainsCheck(
-	'    ' + self.javaRemover() + '\n' +
-	'    ' + self.javaOtherEndResetter(otherEnd));
+	self->javaContainsCheck(
+	'    ' + self->javaRemover() + '\n' +
+	'    ' + self->javaOtherEndResetter(otherEnd));
 
 helper context String def : dualRemoverBody(otherEnd : String) : String =
-	self.javaContainsCheck(
-	'    ' + self.javaRemover() + '\n' +
-	'    ' + self.javaOtherEndRemover(otherEnd));
+	self->javaContainsCheck(
+	'    ' + self->javaRemover() + '\n' +
+	'    ' + self->javaOtherEndRemover(otherEnd));

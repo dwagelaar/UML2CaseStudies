@@ -71,7 +71,10 @@ helper context UML2!Package def : includesProfile(p : UML2!Profile) : Boolean =
 ------------------------------- PackageableElement -----------------------------------
 
 helper context UML2!PackageableElement def : owningPackage() : UML2!Package =
-	UML2!Package->allInstances()->select(p|p.ownedMember->includes(self))->first();
+	if self.owner.oclIsKindOf(UML2!Package) then self.owner
+	else OclUndefined endif;
+--	self.owner->select(o|o.oclIsKindOf(UML2!Package))->first();
+--	UML2!Package->allInstances()->select(p|p.ownedMember->includes(self))->first();
 
 ------------------------------- Property -----------------------------------
 

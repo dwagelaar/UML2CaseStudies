@@ -18,7 +18,7 @@ helper context String def : javaInsert() : String =
 	'try {\n' +
 	'    this.' + self + '.insertElementAt(' + self + ', index);' +
 	'} catch (ArrayIndexOutOfBoundsException e) {\n' +
-	'    ' + self.javaAdder() + '\n' +
+	'    ' + self->javaAdder() + '\n' +
 	'};';
 
 helper context String def : javaRemover() : String =

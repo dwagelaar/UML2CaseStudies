@@ -29,7 +29,7 @@ helper context String def : javaImplTypeName() : String =
 	if self = 'Set' then 'java::util::Vector' else
 	if self = 'Sequence' then 'java::util::Vector' else
 	if self = 'Bag' then 'java::util::Vector' else
-		'java.lang.void'
+		'java::lang::void'
 	endif endif endif endif;
 
 helper context String def : javaDefaultValueBody() : String =

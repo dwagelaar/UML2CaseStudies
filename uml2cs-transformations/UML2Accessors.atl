@@ -94,22 +94,24 @@ rule ModelProfileApplication {
 	from s : UML2!Model (
 		thisModule.inElements->includes(s))
     to t : UML2!Model mapsTo s (
-        visibility <- s.visibility,
         name <- s.name,
-        viewpoint <- s.viewpoint,
+        visibility <- s.visibility,
         packageableElement_visibility <- s.packageableElement_visibility,
+        viewpoint <- s.viewpoint,
         eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
         templateBinding <- s.templateBinding,
         ownedTemplateSignature <- s.ownedTemplateSignature,
-        ownedMember <- s.ownedMember,
-        appliedProfile <- s.appliedProfile,
-        packageExtension <- s.packageExtension,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
         ownedRule <- s.ownedRule,
-        packageMerge <- s.packageMerge,
         elementImport <- s.elementImport,
-        ownedComment <- s.ownedComment,
         packageImport <- s.packageImport,
-        nameExpression <- s.nameExpression)
+        templateParameter <- s.templateParameter,
+        ownedMember <- s.ownedMember,
+        packageMerge <- s.packageMerge,
+        appliedProfile <- s.appliedProfile,
+        packageExtension <- s.packageExtension)
 	do {
 		if not s.includesProfile(thisModule.accessorsProfile) then
 			t.apply(thisModule.accessorsProfile)

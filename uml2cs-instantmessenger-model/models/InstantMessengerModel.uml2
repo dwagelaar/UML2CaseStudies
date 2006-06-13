@@ -54,8 +54,7 @@
         <eAnnotations xmi:id="_7EEa4OQqEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
           <details xmi:id="_7EEa4eQqEdqD2ZNp93yIAQ" key="uuid" value="114770839643030"/>
         </eAnnotations>
-        <details xmi:id="_ZQv7AOdDEdqWbZ4NdHyPMQ" key="appletInfo" value="Title: InstantMessagingClient\n(C) 2005, Dennis Wagelaar, System and Software Engineering Lab, Vrije Universiteit Brussel\nA simple instant messaging client generated from a PIM"/>
-        <contents xmi:type="Applet_0:Applet__Applet" xmi:id="_3EcjoOQqEdqD2ZNp93yIAQ"/>
+        <contents xmi:type="Applet_0:Applet__Applet" xmi:id="_3EcjoOQqEdqD2ZNp93yIAQ" appletInfo="Title: InstantMessagingClient\n(C) 2005, Dennis Wagelaar, System and Software Engineering Lab, Vrije Universiteit Brussel\nA simple instant messaging client generated from a PIM"/>
         <contents xmi:type="Observer_0:Observer__Observer" xmi:id="_3EdKsOQqEdqD2ZNp93yIAQ"/>
         <contents xmi:type="Singleton_0:Singleton__Singleton" xmi:id="_3EdKseQqEdqD2ZNp93yIAQ"/>
       </eAnnotations>
@@ -64,7 +63,7 @@
           <details xmi:id="_Oq2voecdEdqQTtzfbcEKGw" key="uuid" value="114803236853836"/>
         </eAnnotations>
       </ownedBehavior>
-      <ownedBehavior xmi:type="uml:Activity" xmi:id="_d4geMOcgEdqQTtzfbcEKGw" name="initActivity" specification="_ZdrRoOcgEdqQTtzfbcEKGw" body="        try {&#xA;            // ViewFactory&#xA;            setViewFactory(im.view.ViewFactory.getDefault());&#xA;            // Network&#xA;            im.networking.Network[] networks = im.networking.Network.getDefault();&#xA;            for (int i = 0; i &lt; networks.length; i++) {&#xA;                addNetwork(networks[i]);&#xA;            }&#xA;            // Create and register edit/view&#xA;            new im.edit.ContactListEdit(contactList);&#xA;        } catch (Exception e) {&#xA;            e.printStackTrace();&#xA;        }&#xA;" language="java">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_d4geMOcgEdqQTtzfbcEKGw" name="initActivity" specification="_ZdrRoOcgEdqQTtzfbcEKGw" body="        try {&#xA;            // ViewFactory&#xA;            setViewFactory(im.view.ViewFactory.getDefault());&#xA;            // Network&#xA;            im.networking.Network.discoverNetworks();&#xA;            // Create and register edit/view&#xA;            new im.edit.ContactListEdit(contactList);&#xA;        } catch (Exception e) {&#xA;            e.printStackTrace();&#xA;        }&#xA;" language="java">
         <eAnnotations xmi:id="_CUnO4OchEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">
           <details xmi:id="_CUnO4echEdqQTtzfbcEKGw" key="uuid" value="114803400366243"/>
         </eAnnotations>
@@ -313,7 +312,7 @@
         <eAnnotations xmi:id="_EgCUIOQtEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
           <details xmi:id="_EgCUIeQtEdqD2ZNp93yIAQ" key="uuid" value="114770931875472"/>
         </eAnnotations>
-        <ownedBehavior xmi:type="uml:Activity" xmi:id="__wdoYOcmEdqQTtzfbcEKGw" name="getDefaultActivity" specification="_OHD3UOcjEdqQTtzfbcEKGw" body="        String[] options = {&#xA;            &quot;im.networking.jabber.mejabber.MEJabber&quot;,&#xA;            &quot;im.networking.jabber.defaultjabber.DefaultJabber&quot;,&#xA;            &quot;im.networking.sms.SMS&quot;,&#xA;            &quot;im.networking.local.Local&quot;&#xA;        };&#xA;        java.util.Vector networks = new java.util.Vector();&#xA;        for (int i = 0; i &lt; options.length; i++) {&#xA;            try {&#xA;                networks.addElement(Class.forName(options[i]).newInstance());&#xA;            } catch (Exception e) {&#xA;            }&#xA;        }&#xA;        Network[] nwArray = new Network[networks.size()];&#xA;        networks.copyInto(nwArray);&#xA;        return nwArray;&#xA;" language="java">
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="__wdoYOcmEdqQTtzfbcEKGw" name="discoverNetworksActivity" specification="_OHD3UOcjEdqQTtzfbcEKGw" body="        String[] options = {&#xA;            &quot;im.networking.jabber.mejabber.MEJabber&quot;,&#xA;            &quot;im.networking.jabber.defaultjabber.DefaultJabber&quot;,&#xA;            &quot;im.networking.sms.SMS&quot;,&#xA;            &quot;im.networking.local.Local&quot;&#xA;        };&#xA;        for (int i = 0; i &lt; options.length; i++) {&#xA;            try {&#xA;                getClient().addNetwork(Class.forName(options[i]).newInstance());&#xA;            } catch (Exception e) {&#xA;            }&#xA;        }&#xA;" language="java">
           <eAnnotations xmi:id="_NEfqQOcnEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">
             <details xmi:id="_NEfqQecnEdqQTtzfbcEKGw" key="uuid" value="1148036652771154"/>
           </eAnnotations>
@@ -421,25 +420,10 @@
             </eAnnotations>
           </ownedParameter>
         </ownedOperation>
-        <ownedOperation xmi:id="_OHD3UOcjEdqQTtzfbcEKGw" name="getDefault" isStatic="true" method="__wdoYOcmEdqQTtzfbcEKGw" type="_49VF8OQsEdqD2ZNp93yIAQ" isUnique="false">
+        <ownedOperation xmi:id="_OHD3UOcjEdqQTtzfbcEKGw" name="discoverNetworks" isStatic="true" method="__wdoYOcmEdqQTtzfbcEKGw">
           <eAnnotations xmi:id="_P2cKQOcjEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">
             <details xmi:id="_P2cKQecjEdqQTtzfbcEKGw" key="uuid" value="1148034953443184"/>
           </eAnnotations>
-          <returnResult xmi:id="_WbImUOcjEdqQTtzfbcEKGw" name="return" type="_49VF8OQsEdqD2ZNp93yIAQ" isUnique="false" direction="return">
-            <eAnnotations xmi:id="_Y4-sUOckEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">
-              <details xmi:id="_Y4-sUeckEdqQTtzfbcEKGw" key="uuid" value="1148035443605193"/>
-            </eAnnotations>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_V37WIOckEdqQTtzfbcEKGw" value="-1">
-              <eAnnotations xmi:id="_Y4_TYOckEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">
-                <details xmi:id="_Y4_TYeckEdqQTtzfbcEKGw" key="uuid" value="1148035443606194"/>
-              </eAnnotations>
-            </upperValue>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TsVoUOckEdqQTtzfbcEKGw">
-              <eAnnotations xmi:id="_Y4_6cOckEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">
-                <details xmi:id="_Y4_6ceckEdqQTtzfbcEKGw" key="uuid" value="1148035443607195"/>
-              </eAnnotations>
-            </lowerValue>
-          </returnResult>
         </ownedOperation>
       </ownedMember>
       <ownedMember xmi:type="uml:Association" xmi:id="_gbGr4OciEdqQTtzfbcEKGw" name="A_network_recvContact" memberEnd="_gbMygOciEdqQTtzfbcEKGw _gbOnsOciEdqQTtzfbcEKGw">

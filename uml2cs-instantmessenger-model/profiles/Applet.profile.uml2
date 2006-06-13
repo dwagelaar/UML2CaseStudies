@@ -7,6 +7,12 @@
     <contents xmi:type="ecore:EPackage" xmi:id="_J9dGcOQqEdqD2ZNp93yIAQ" name="Applet_0" nsURI="http:///Applet_0_J9Q5MOQqEdqD2ZNp93yIAQ.profile.uml2" nsPrefix="Applet_0">
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_J9dGceQqEdqD2ZNp93yIAQ" name="Applet__Applet">
         <eAnnotations xmi:id="_J9dGcuQqEdqD2ZNp93yIAQ" source="stereotype" references="_OtlqEOQpEdqD2ZNp93yIAQ"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_PlvH4PrDEdqXK6c4NbDn4w" name="appletInfo">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_aeRXsPrDEdqXK6c4NbDn4w" name="parameterInfo" upperBound="-1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
       </eClassifiers>
     </contents>
   </eAnnotations>

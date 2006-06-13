@@ -23,3 +23,16 @@ helper context String def : javaInsert() : String =
 
 helper context String def : javaRemover() : String =
 	'this.' + self + '.removeElement(' + self + ');';
+
+helper context String def : javaImplTypeName() : String =
+	if self = 'OrderedSet' then 'java::util::Vector' else
+	if self = 'Set' then 'java::util::Vector' else
+	if self = 'Sequence' then 'java::util::Vector' else
+	if self = 'Bag' then 'java::util::Vector' else
+		'java.lang.void'
+	endif endif endif endif;
+
+helper context String def : javaDefaultValueBody() : String =
+	if self = 'java::util::Vector' then 'new java.util.Vector()' else
+		'null'
+	endif;

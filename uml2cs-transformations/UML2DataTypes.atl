@@ -1,0 +1,3622 @@
+-- $Id: UML2Accessors.atl 4877 2006-06-09 19:25:23Z dwagelaa $
+-- Transforms all UML2-specific data types to programming language types.
+module UML2DataTypes;
+
+create OUT : UML2 from IN : UML2, JAVATYPES : UML2;
+
+uses Strings;
+uses UML2;
+uses Mappings;
+
+-- ======================================================================
+-- model-specific helpers begin
+-- ======================================================================
+
+helper def : inElements : Set(UML2!Element) = UML2!Element->allInstancesFrom('IN');
+helper def : oclInteger : UML2!PrimitiveType = 'Integer'->primitiveType();
+
+helper context UML2!PrimitiveType def : implType() : UML2!Type =
+	self.name->implTypeName()->type();
+
+helper context UML2!Type def : implType() : UML2!Type =
+	self;
+
+helper context UML2!TypedElement def : implType() : UML2!Type =
+	self.type->implType();
+
+helper context UML2!StructuralFeature def : implType() : UML2!Type =
+	if self->isSingle() then
+		self.type->implType()
+	else
+		self->implCollectionType()
+	endif;
+
+helper context UML2!Parameter def : implType() : UML2!Type =
+	if self->isSingle() then
+		self.type->implType()
+	else
+		self->implCollectionType()
+	endif;
+
+helper context UML2!MultiplicityElement def : implCollectionType() : UML2!Type =
+	if self.isOrdered then
+		if self.isUnique then
+			'OrderedSet'->implTypeName()->type()
+		else
+			'Sequence'->implTypeName()->type()
+		endif
+	else
+		if self.isUnique then
+			'Set'->implTypeName()->type()
+		else
+			'Bag'->implTypeName()->type()
+		endif
+	endif;
+
+helper context UML2!TypedElement def : defaultValueBody() : String =
+	self.type->defaultValueBody();
+
+helper context UML2!StructuralFeature def : defaultValueBody() : String =
+	if self->isSingle() then
+		self->implType()->defaultValueBody()
+	else
+		self->implCollectionType()->defaultValueBody()
+	endif;
+
+helper context UML2!Type def : defaultValueBody() : String =
+	self->umlQualifiedName()->defaultValueBody();
+
+-- ======================================================================
+-- model-specific helpers end
+-- ======================================================================
+	
+-- ======================================================================
+-- transformation rules begin
+-- ======================================================================
+
+rule PropertyWithoutDefaultValue {
+    from s : UML2!Property (
+    	if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!Property) and
+			s.defaultValue->oclIsUndefined()
+		else false endif)
+    to t : UML2!Property mapsTo s (
+        isStatic <- s.isStatic,
+        isDerivedUnion <- s.isDerivedUnion,
+        isReadOnly <- s.isReadOnly,
+        isOrdered <- s.isOrdered,
+        visibility <- s.visibility,
+        isUnique <- s.isUnique,
+        name <- s.name,
+        isLeaf <- s.isLeaf,
+        isDerived <- s.isDerived,
+        aggregation <- s.aggregation,
+        eAnnotations <- s.eAnnotations,
+        subsettedProperty <- s.subsettedProperty,
+        defaultValue <- defVal,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        upperValue <- s.upperValue,
+        redefinedProperty <- s.redefinedProperty,
+        deployment <- s.deployment,
+        qualifier <- s.qualifier,
+        lowerValue <- s.lowerValue,
+        type <- s->implType(),
+        ownedComment <- s.ownedComment,
+        nameExpression <- s.nameExpression),
+	   defVal : UML2!OpaqueExpression (
+	   	language <- 'language'->value(),
+		body <- s->defaultValueBody())
+}
+
+rule PropertyWithDefaultValue {
+    from s : UML2!Property (
+    	if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!Property) and
+			not s.defaultValue->oclIsUndefined()
+		else false endif)
+    to t : UML2!Property mapsTo s (
+        isStatic <- s.isStatic,
+        isDerivedUnion <- s.isDerivedUnion,
+        isReadOnly <- s.isReadOnly,
+        isOrdered <- s.isOrdered,
+        visibility <- s.visibility,
+        isUnique <- s.isUnique,
+        name <- s.name,
+        isLeaf <- s.isLeaf,
+        isDerived <- s.isDerived,
+        aggregation <- s.aggregation,
+        eAnnotations <- s.eAnnotations,
+        subsettedProperty <- s.subsettedProperty,
+        defaultValue <- s.defaultValue,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        upperValue <- s.upperValue,
+        redefinedProperty <- s.redefinedProperty,
+        deployment <- s.deployment,
+        qualifier <- s.qualifier,
+        lowerValue <- s.lowerValue,
+        type <- s->implType(),
+        ownedComment <- s.ownedComment,
+        nameExpression <- s.nameExpression)
+}
+
+rule Parameter {
+    from s : UML2!Parameter
+    to t : UML2!Parameter mapsTo s (
+        effect <- s.effect,
+        isStream <- s.isStream,
+        direction <- s.direction,
+        isException <- s.isException,
+        isOrdered <- s.isOrdered,
+        visibility <- s.visibility,
+        isUnique <- s.isUnique,
+        name <- s.name,
+        eAnnotations <- s.eAnnotations,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        upperValue <- s.upperValue,
+        defaultValue <- s.defaultValue,
+        lowerValue <- s.lowerValue,
+        type <- s->implType(),
+        ownedComment <- s.ownedComment,
+        nameExpression <- s.nameExpression)
+}
+
+-- ======================================================================
+-- transformation rules end
+-- ======================================================================
+
+-- ======================================================================
+-- copying rules begin
+-- ======================================================================
+-- Generated by: EModelCopyGenerator.atl 4908 2006-06-13 09:50:38Z dwagelaa
+
+rule TemplateParameter {
+    from s : UML2!TemplateParameter (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!TemplateParameter)
+		else false endif)
+    to t : UML2!TemplateParameter mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        ownedParameteredElement <- s.ownedParameteredElement,
+        default <- s.default,
+        ownedDefault <- s.ownedDefault)
+}
+
+rule Slot {
+    from s : UML2!Slot (thisModule.inElements->includes(s))
+    to t : UML2!Slot mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        value <- s.value,
+        definingFeature <- s.definingFeature)
+}
+
+rule Package {
+    from s : UML2!Package (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Package)
+		else false endif)
+    to t : UML2!Package mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedMember <- s.ownedMember,
+        packageMerge <- s.packageMerge,
+        appliedProfile <- s.appliedProfile,
+        packageExtension <- s.packageExtension)
+}
+
+rule ConditionalNode {
+    from s : UML2!ConditionalNode (thisModule.inElements->includes(s))
+    to t : UML2!ConditionalNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        mustIsolate <- s.mustIsolate,
+        isDeterminate <- s.isDeterminate,
+        isAssured <- s.isAssured,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        variable <- s.variable,
+        containedNode <- s.containedNode,
+        containedEdge <- s.containedEdge,
+        clause <- s.clause,
+        result <- s.result)
+}
+
+rule Extension {
+    from s : UML2!Extension (thisModule.inElements->includes(s))
+    to t : UML2!Extension mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isDerived <- s.isDerived,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedEnd <- s.ownedEnd)
+}
+
+rule DurationObservationAction {
+    from s : UML2!DurationObservationAction (thisModule.inElements->includes(s))
+    to t : UML2!DurationObservationAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        structuralFeature <- s.structuralFeature,
+        object <- s.object,
+        value <- s.value,
+        duration <- s.duration)
+}
+
+rule TemplateParameterSubstitution {
+    from s : UML2!TemplateParameterSubstitution (thisModule.inElements->includes(s))
+    to t : UML2!TemplateParameterSubstitution mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        formal <- s.formal,
+        actual <- s.actual,
+        ownedActual <- s.ownedActual)
+}
+
+rule DecisionNode {
+    from s : UML2!DecisionNode (thisModule.inElements->includes(s))
+    to t : UML2!DecisionNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        decisionInput <- s.decisionInput)
+}
+
+rule GeneralOrdering {
+    from s : UML2!GeneralOrdering (thisModule.inElements->includes(s))
+    to t : UML2!GeneralOrdering mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression)
+}
+
+rule ReadStructuralFeatureAction {
+    from s : UML2!ReadStructuralFeatureAction (thisModule.inElements->includes(s))
+    to t : UML2!ReadStructuralFeatureAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        structuralFeature <- s.structuralFeature,
+        object <- s.object,
+        result <- s.result)
+}
+
+rule Continuation {
+    from s : UML2!Continuation (thisModule.inElements->includes(s))
+    to t : UML2!Continuation mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        setting <- s.setting,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        generalOrdering <- s.generalOrdering)
+}
+
+rule AssociationClass {
+    from s : UML2!AssociationClass (thisModule.inElements->includes(s))
+    to t : UML2!AssociationClass mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isDerived <- s.isDerived,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        ownedEnd <- s.ownedEnd)
+}
+
+rule ExceptionHandler {
+    from s : UML2!ExceptionHandler (thisModule.inElements->includes(s))
+    to t : UML2!ExceptionHandler mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        handlerBody <- s.handlerBody,
+        exceptionInput <- s.exceptionInput,
+        exceptionType <- s.exceptionType)
+}
+
+rule CreateLinkAction {
+    from s : UML2!CreateLinkAction (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!CreateLinkAction)
+		else false endif)
+    to t : UML2!CreateLinkAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        endData <- s.endData)
+}
+
+rule Variable {
+    from s : UML2!Variable (thisModule.inElements->includes(s))
+    to t : UML2!Variable mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue)
+}
+
+rule Interface {
+    from s : UML2!Interface (thisModule.inElements->includes(s))
+    to t : UML2!Interface mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedAttribute <- s.ownedAttribute,
+        ownedOperation <- s.ownedOperation,
+        redefinedInterface <- s.redefinedInterface,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        protocol <- s.protocol)
+}
+
+rule AddStructuralFeatureValueAction {
+    from s : UML2!AddStructuralFeatureValueAction (thisModule.inElements->includes(s))
+    to t : UML2!AddStructuralFeatureValueAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        isReplaceAll <- s.isReplaceAll,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        structuralFeature <- s.structuralFeature,
+        object <- s.object,
+        value <- s.value,
+        insertAt <- s.insertAt)
+}
+
+rule DurationConstraint {
+    from s : UML2!DurationConstraint (thisModule.inElements->includes(s))
+    to t : UML2!DurationConstraint mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        specification <- s.specification,
+        constrainedElement <- s.constrainedElement)
+}
+
+rule Artifact {
+    from s : UML2!Artifact (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Artifact)
+		else false endif)
+    to t : UML2!Artifact mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        fileName <- s.fileName,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        nestedArtifact <- s.nestedArtifact,
+        manifestation <- s.manifestation,
+        ownedOperation <- s.ownedOperation,
+        ownedAttribute <- s.ownedAttribute)
+}
+
+rule ExecutionEnvironment {
+    from s : UML2!ExecutionEnvironment (thisModule.inElements->includes(s))
+    to t : UML2!ExecutionEnvironment mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        deployment <- s.deployment,
+        nestedNode <- s.nestedNode)
+}
+
+rule Stop {
+    from s : UML2!Stop (thisModule.inElements->includes(s))
+    to t : UML2!Stop mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        generalOrdering <- s.generalOrdering)
+}
+
+rule Transition {
+    from s : UML2!Transition (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Transition)
+		else false endif)
+    to t : UML2!Transition mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        kind <- s.kind,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedTransition <- s.redefinedTransition,
+        trigger <- s.trigger,
+        guard <- s.guard,
+        effect <- s.effect)
+}
+
+rule InstanceValue {
+    from s : UML2!InstanceValue (thisModule.inElements->includes(s))
+    to t : UML2!InstanceValue mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        instance <- s.instance)
+}
+
+rule BroadcastSignalAction {
+    from s : UML2!BroadcastSignalAction (thisModule.inElements->includes(s))
+    to t : UML2!BroadcastSignalAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        argument <- s.argument,
+        onPort <- s.onPort,
+        signal <- s.signal)
+}
+
+rule Manifestation {
+    from s : UML2!Manifestation (thisModule.inElements->includes(s))
+    to t : UML2!Manifestation mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        supplier <- s.supplier,
+        mapping <- s.mapping,
+        utilizedElement <- s.utilizedElement)
+}
+
+rule CombinedFragment {
+    from s : UML2!CombinedFragment (thisModule.inElements->includes(s))
+    to t : UML2!CombinedFragment mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        interactionOperator <- s.interactionOperator,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        generalOrdering <- s.generalOrdering,
+        operand <- s.operand,
+        cfragmentGate <- s.cfragmentGate)
+}
+
+rule Activity {
+    from s : UML2!Activity (thisModule.inElements->includes(s))
+    to t : UML2!Activity mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        body <- s.body,
+        language <- s.language,
+        isSingleExecution <- s.isSingleExecution,
+        isReadOnly <- s.isReadOnly,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        parameter <- s.parameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        ownedParameterSet <- s.ownedParameterSet,
+        edge <- s.edge,
+        group <- s.group,
+        node <- s.node,
+        action <- s.action)
+}
+
+rule UseCase {
+    from s : UML2!UseCase (thisModule.inElements->includes(s))
+    to t : UML2!UseCase mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        include <- s.include,
+        extend <- s.extend,
+        extensionPoint <- s.extensionPoint)
+}
+
+rule LinkEndCreationData {
+    from s : UML2!LinkEndCreationData (thisModule.inElements->includes(s))
+    to t : UML2!LinkEndCreationData mapsTo s (
+        isReplaceAll <- s.isReplaceAll,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        value <- s.value,
+        end <- s.end,
+        qualifier <- s.qualifier,
+        insertAt <- s.insertAt)
+}
+
+rule ElementImport {
+    from s : UML2!ElementImport (thisModule.inElements->includes(s))
+    to t : UML2!ElementImport mapsTo s (
+        visibility <- s.visibility,
+        alias <- s.alias,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        importedElement <- s.importedElement)
+}
+
+rule Include {
+    from s : UML2!Include (thisModule.inElements->includes(s))
+    to t : UML2!Include mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        addition <- s.addition)
+}
+
+rule Action {
+    from s : UML2!Action (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Action)
+		else false endif)
+    to t : UML2!Action mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition)
+}
+
+rule Abstraction {
+    from s : UML2!Abstraction (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Abstraction)
+		else false endif)
+    to t : UML2!Abstraction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        supplier <- s.supplier,
+        mapping <- s.mapping)
+}
+
+rule IntervalConstraint {
+    from s : UML2!IntervalConstraint (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!IntervalConstraint)
+		else false endif)
+    to t : UML2!IntervalConstraint mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        specification <- s.specification,
+        constrainedElement <- s.constrainedElement)
+}
+
+rule Gate {
+    from s : UML2!Gate (thisModule.inElements->includes(s))
+    to t : UML2!Gate mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression)
+}
+
+rule OutputPin {
+    from s : UML2!OutputPin (thisModule.inElements->includes(s))
+    to t : UML2!OutputPin mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        ordering <- s.ordering,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        type <- s.type,
+        upperBound <- s.upperBound,
+        inState <- s.inState,
+        selection <- s.selection,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue)
+}
+
+rule FlowFinalNode {
+    from s : UML2!FlowFinalNode (thisModule.inElements->includes(s))
+    to t : UML2!FlowFinalNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement)
+}
+
+rule SignalTrigger {
+    from s : UML2!SignalTrigger (thisModule.inElements->includes(s))
+    to t : UML2!SignalTrigger mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        port <- s.port,
+        signal <- s.signal)
+}
+
+rule Enumeration {
+    from s : UML2!Enumeration (thisModule.inElements->includes(s))
+    to t : UML2!Enumeration mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedAttribute <- s.ownedAttribute,
+        ownedOperation <- s.ownedOperation,
+        ownedLiteral <- s.ownedLiteral)
+}
+
+rule Usage {
+    from s : UML2!Usage (thisModule.inElements->includes(s))
+    to t : UML2!Usage mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        supplier <- s.supplier)
+}
+
+rule Class {
+    from s : UML2!Class (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Class)
+		else false endif)
+    to t : UML2!Class mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception)
+}
+
+rule TemplateBinding {
+    from s : UML2!TemplateBinding (thisModule.inElements->includes(s))
+    to t : UML2!TemplateBinding mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        signature <- s.signature,
+        parameterSubstitution <- s.parameterSubstitution)
+}
+
+rule ControlFlow {
+    from s : UML2!ControlFlow (thisModule.inElements->includes(s))
+    to t : UML2!ControlFlow mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        guard <- s.guard,
+        redefinedElement <- s.redefinedElement,
+        weight <- s.weight)
+}
+
+rule InformationItem {
+    from s : UML2!InformationItem (thisModule.inElements->includes(s))
+    to t : UML2!InformationItem mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        represented <- s.represented)
+}
+
+rule LoopNode {
+    from s : UML2!LoopNode (thisModule.inElements->includes(s))
+    to t : UML2!LoopNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        mustIsolate <- s.mustIsolate,
+        isTestedFirst <- s.isTestedFirst,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        variable <- s.variable,
+        containedNode <- s.containedNode,
+        containedEdge <- s.containedEdge,
+        bodyPart <- s.bodyPart,
+        setupPart <- s.setupPart,
+        decider <- s.decider,
+        test <- s.test,
+        result <- s.result,
+        loopVariable <- s.loopVariable,
+        bodyOutput <- s.bodyOutput,
+        loopVariableInput <- s.loopVariableInput)
+}
+
+rule QualifierValue {
+    from s : UML2!QualifierValue (thisModule.inElements->includes(s))
+    to t : UML2!QualifierValue mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        qualifier <- s.qualifier,
+        value <- s.value)
+}
+
+rule CallOperationAction {
+    from s : UML2!CallOperationAction (thisModule.inElements->includes(s))
+    to t : UML2!CallOperationAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        isSynchronous <- s.isSynchronous,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        argument <- s.argument,
+        onPort <- s.onPort,
+        result <- s.result,
+        operation <- s.operation,
+        target <- s.target)
+}
+
+rule ReadIsClassifiedObjectAction {
+    from s : UML2!ReadIsClassifiedObjectAction (thisModule.inElements->includes(s))
+    to t : UML2!ReadIsClassifiedObjectAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        isDirect <- s.isDirect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        classifier <- s.classifier,
+        result <- s.result,
+        object <- s.object)
+}
+
+rule GeneralizationSet {
+    from s : UML2!GeneralizationSet (thisModule.inElements->includes(s))
+    to t : UML2!GeneralizationSet mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isCovering <- s.isCovering,
+        isDisjoint <- s.isDisjoint,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression)
+}
+
+rule Device {
+    from s : UML2!Device (thisModule.inElements->includes(s))
+    to t : UML2!Device mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        deployment <- s.deployment,
+        nestedNode <- s.nestedNode)
+}
+
+rule ObjectFlow {
+    from s : UML2!ObjectFlow (thisModule.inElements->includes(s))
+    to t : UML2!ObjectFlow mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isMulticast <- s.isMulticast,
+        isMultireceive <- s.isMultireceive,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        guard <- s.guard,
+        redefinedElement <- s.redefinedElement,
+        weight <- s.weight,
+        transformation <- s.transformation,
+        selection <- s.selection)
+}
+
+rule EAnnotation {
+    from s : UML2!EAnnotation (thisModule.inElements->includes(s))
+    to t : UML2!EAnnotation mapsTo s (
+        source <- s.source,
+        eAnnotations <- s.eAnnotations,
+        details <- s.details,
+        contents <- s.contents,
+        references <- s.references)
+}
+
+rule Signal {
+    from s : UML2!Signal (thisModule.inElements->includes(s))
+    to t : UML2!Signal mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedAttribute <- s.ownedAttribute)
+}
+
+rule ProtocolStateMachine {
+    from s : UML2!ProtocolStateMachine (thisModule.inElements->includes(s))
+    to t : UML2!ProtocolStateMachine mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        parameter <- s.parameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        ownedParameterSet <- s.ownedParameterSet,
+        region <- s.region,
+        connectionPoint <- s.connectionPoint,
+        extendedStateMachine <- s.extendedStateMachine,
+        conformance <- s.conformance)
+}
+
+rule ReadLinkAction {
+    from s : UML2!ReadLinkAction (thisModule.inElements->includes(s))
+    to t : UML2!ReadLinkAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        endData <- s.endData,
+        result <- s.result)
+}
+
+rule InitialNode {
+    from s : UML2!InitialNode (thisModule.inElements->includes(s))
+    to t : UML2!InitialNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement)
+}
+
+rule Node {
+    from s : UML2!Node (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Node)
+		else false endif)
+    to t : UML2!Node mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        deployment <- s.deployment,
+        nestedNode <- s.nestedNode)
+}
+
+rule TestIdentityAction {
+    from s : UML2!TestIdentityAction (thisModule.inElements->includes(s))
+    to t : UML2!TestIdentityAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        first <- s.first,
+        second <- s.second,
+        result <- s.result)
+}
+
+rule ReadVariableAction {
+    from s : UML2!ReadVariableAction (thisModule.inElements->includes(s))
+    to t : UML2!ReadVariableAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        variable <- s.variable,
+        result <- s.result)
+}
+
+rule DestroyLinkAction {
+    from s : UML2!DestroyLinkAction (thisModule.inElements->includes(s))
+    to t : UML2!DestroyLinkAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        endData <- s.endData)
+}
+
+rule ExecutionOccurrence {
+    from s : UML2!ExecutionOccurrence (thisModule.inElements->includes(s))
+    to t : UML2!ExecutionOccurrence mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        generalOrdering <- s.generalOrdering,
+        behavior <- s.behavior)
+}
+
+rule CollaborationOccurrence {
+    from s : UML2!CollaborationOccurrence (thisModule.inElements->includes(s))
+    to t : UML2!CollaborationOccurrence mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        roleBinding <- s.roleBinding)
+}
+
+rule StateInvariant {
+    from s : UML2!StateInvariant (thisModule.inElements->includes(s))
+    to t : UML2!StateInvariant mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        generalOrdering <- s.generalOrdering,
+        invariant <- s.invariant)
+}
+
+rule FinalState {
+    from s : UML2!FinalState (thisModule.inElements->includes(s))
+    to t : UML2!FinalState mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        submachine <- s.submachine,
+        connection <- s.connection,
+        redefinedState <- s.redefinedState,
+        deferrableTrigger <- s.deferrableTrigger,
+        region <- s.region,
+        entry <- s.entry,
+        exit <- s.exit,
+        doActivity <- s.doActivity,
+        stateInvariant <- s.stateInvariant)
+}
+
+rule Component {
+    from s : UML2!Component (thisModule.inElements->includes(s))
+    to t : UML2!Component mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isIndirectlyInstantiated <- s.isIndirectlyInstantiated,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        realization <- s.realization,
+        ownedMember <- s.ownedMember)
+}
+
+rule InputPin {
+    from s : UML2!InputPin (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!InputPin)
+		else false endif)
+    to t : UML2!InputPin mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        ordering <- s.ordering,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        type <- s.type,
+        upperBound <- s.upperBound,
+        inState <- s.inState,
+        selection <- s.selection,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue)
+}
+
+rule RemoveStructuralFeatureValueAction {
+    from s : UML2!RemoveStructuralFeatureValueAction (thisModule.inElements->includes(s))
+    to t : UML2!RemoveStructuralFeatureValueAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        structuralFeature <- s.structuralFeature,
+        object <- s.object,
+        value <- s.value)
+}
+
+rule InstanceSpecification {
+    from s : UML2!InstanceSpecification (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!InstanceSpecification)
+		else false endif)
+    to t : UML2!InstanceSpecification mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        deployment <- s.deployment,
+        slot <- s.slot,
+        classifier <- s.classifier,
+        specification <- s.specification)
+}
+
+rule DataStoreNode {
+    from s : UML2!DataStoreNode (thisModule.inElements->includes(s))
+    to t : UML2!DataStoreNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        ordering <- s.ordering,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        type <- s.type,
+        upperBound <- s.upperBound,
+        inState <- s.inState,
+        selection <- s.selection)
+}
+
+rule CommunicationPath {
+    from s : UML2!CommunicationPath (thisModule.inElements->includes(s))
+    to t : UML2!CommunicationPath mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isDerived <- s.isDerived,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedEnd <- s.ownedEnd)
+}
+
+rule ExtensionPoint {
+    from s : UML2!ExtensionPoint (thisModule.inElements->includes(s))
+    to t : UML2!ExtensionPoint mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression)
+}
+
+rule LiteralNull {
+    from s : UML2!LiteralNull (thisModule.inElements->includes(s))
+    to t : UML2!LiteralNull mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type)
+}
+
+rule Model {
+    from s : UML2!Model (thisModule.inElements->includes(s))
+    to t : UML2!Model mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        viewpoint <- s.viewpoint,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedMember <- s.ownedMember,
+        packageMerge <- s.packageMerge,
+        appliedProfile <- s.appliedProfile,
+        packageExtension <- s.packageExtension)
+}
+
+rule LiteralInteger {
+    from s : UML2!LiteralInteger (thisModule.inElements->includes(s))
+    to t : UML2!LiteralInteger mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        value <- s.value,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type)
+}
+
+rule AcceptCallAction {
+    from s : UML2!AcceptCallAction (thisModule.inElements->includes(s))
+    to t : UML2!AcceptCallAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        trigger <- s.trigger,
+        result <- s.result,
+        returnInformation <- s.returnInformation)
+}
+
+rule Association {
+    from s : UML2!Association (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Association)
+		else false endif)
+    to t : UML2!Association mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isDerived <- s.isDerived,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedEnd <- s.ownedEnd)
+}
+
+rule RedefinableTemplateSignature {
+    from s : UML2!RedefinableTemplateSignature (thisModule.inElements->includes(s))
+    to t : UML2!RedefinableTemplateSignature mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        parameter <- s.parameter,
+        ownedParameter <- s.ownedParameter)
+}
+
+rule ExpansionRegion {
+    from s : UML2!ExpansionRegion (thisModule.inElements->includes(s))
+    to t : UML2!ExpansionRegion mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        mustIsolate <- s.mustIsolate,
+        mode <- s.mode,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        variable <- s.variable,
+        containedNode <- s.containedNode,
+        containedEdge <- s.containedEdge)
+}
+
+rule DeploymentSpecification {
+    from s : UML2!DeploymentSpecification (thisModule.inElements->includes(s))
+    to t : UML2!DeploymentSpecification mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        fileName <- s.fileName,
+        deploymentLocation <- s.deploymentLocation,
+        executionLocation <- s.executionLocation,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        nestedArtifact <- s.nestedArtifact,
+        manifestation <- s.manifestation,
+        ownedOperation <- s.ownedOperation,
+        ownedAttribute <- s.ownedAttribute)
+}
+
+rule ActivityFinalNode {
+    from s : UML2!ActivityFinalNode (thisModule.inElements->includes(s))
+    to t : UML2!ActivityFinalNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement)
+}
+
+rule Operation {
+    from s : UML2!Operation (thisModule.inElements->includes(s))
+    to t : UML2!Operation mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isStatic <- s.isStatic,
+        isAbstract <- s.isAbstract,
+        concurrency <- s.concurrency,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        isQuery <- s.isQuery,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        formalParameter <- s.formalParameter,
+        returnResult <- s.returnResult,
+        raisedException <- s.raisedException,
+        type <- s.type,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue,
+        ownedParameter <- s.ownedParameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        redefinedOperation <- s.redefinedOperation,
+        bodyCondition <- s.bodyCondition)
+}
+
+rule LiteralString {
+    from s : UML2!LiteralString (thisModule.inElements->includes(s))
+    to t : UML2!LiteralString mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        value <- s.value,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type)
+}
+
+rule ReclassifyObjectAction {
+    from s : UML2!ReclassifyObjectAction (thisModule.inElements->includes(s))
+    to t : UML2!ReclassifyObjectAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        isReplaceAll <- s.isReplaceAll,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        oldClassifier <- s.oldClassifier,
+        newClassifier <- s.newClassifier,
+        object <- s.object)
+}
+
+rule CentralBufferNode {
+    from s : UML2!CentralBufferNode (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!CentralBufferNode)
+		else false endif)
+    to t : UML2!CentralBufferNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        ordering <- s.ordering,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        type <- s.type,
+        upperBound <- s.upperBound,
+        inState <- s.inState,
+        selection <- s.selection)
+}
+
+rule TemplateSignature {
+    from s : UML2!TemplateSignature (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!TemplateSignature)
+		else false endif)
+    to t : UML2!TemplateSignature mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        parameter <- s.parameter,
+        ownedParameter <- s.ownedParameter)
+}
+
+rule InformationFlow {
+    from s : UML2!InformationFlow (thisModule.inElements->includes(s))
+    to t : UML2!InformationFlow mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        realization <- s.realization,
+        conveyed <- s.conveyed)
+}
+
+rule Realization {
+    from s : UML2!Realization (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Realization)
+		else false endif)
+    to t : UML2!Realization mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        supplier <- s.supplier,
+        mapping <- s.mapping,
+        realizingClassifier <- s.realizingClassifier)
+}
+
+rule PrimitiveFunction {
+    from s : UML2!PrimitiveFunction (thisModule.inElements->includes(s))
+    to t : UML2!PrimitiveFunction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        body <- s.body,
+        language <- s.language,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression)
+}
+
+rule TimeConstraint {
+    from s : UML2!TimeConstraint (thisModule.inElements->includes(s))
+    to t : UML2!TimeConstraint mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        specification <- s.specification,
+        constrainedElement <- s.constrainedElement)
+}
+
+rule CallBehaviorAction {
+    from s : UML2!CallBehaviorAction (thisModule.inElements->includes(s))
+    to t : UML2!CallBehaviorAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        isSynchronous <- s.isSynchronous,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        argument <- s.argument,
+        onPort <- s.onPort,
+        result <- s.result,
+        behavior <- s.behavior)
+}
+
+rule MergeNode {
+    from s : UML2!MergeNode (thisModule.inElements->includes(s))
+    to t : UML2!MergeNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement)
+}
+
+rule OpaqueExpression {
+    from s : UML2!OpaqueExpression (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!OpaqueExpression)
+		else false endif)
+    to t : UML2!OpaqueExpression mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        body <- s.body,
+        language <- s.language,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        behavior <- s.behavior)
+}
+
+rule Permission {
+    from s : UML2!Permission (thisModule.inElements->includes(s))
+    to t : UML2!Permission mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        supplier <- s.supplier)
+}
+
+rule Deployment {
+    from s : UML2!Deployment (thisModule.inElements->includes(s))
+    to t : UML2!Deployment mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        supplier <- s.supplier,
+        deployedArtifact <- s.deployedArtifact,
+        configuration <- s.configuration)
+}
+
+rule InteractionOccurrence {
+    from s : UML2!InteractionOccurrence (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!InteractionOccurrence)
+		else false endif)
+    to t : UML2!InteractionOccurrence mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        generalOrdering <- s.generalOrdering,
+        refersTo <- s.refersTo,
+        actualGate <- s.actualGate,
+        argument <- s.argument)
+}
+
+rule Implementation {
+    from s : UML2!Implementation (thisModule.inElements->includes(s))
+    to t : UML2!Implementation mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        supplier <- s.supplier,
+        mapping <- s.mapping,
+        realizingClassifier <- s.realizingClassifier,
+        contract <- s.contract)
+}
+
+rule ClassifierTemplateParameter {
+    from s : UML2!ClassifierTemplateParameter (thisModule.inElements->includes(s))
+    to t : UML2!ClassifierTemplateParameter mapsTo s (
+        allowSubstitutable <- s.allowSubstitutable,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        ownedParameteredElement <- s.ownedParameteredElement,
+        default <- s.default,
+        ownedDefault <- s.ownedDefault)
+}
+
+rule ReadSelfAction {
+    from s : UML2!ReadSelfAction (thisModule.inElements->includes(s))
+    to t : UML2!ReadSelfAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        result <- s.result)
+}
+
+rule ConnectableElementTemplateParameter {
+    from s : UML2!ConnectableElementTemplateParameter (thisModule.inElements->includes(s))
+    to t : UML2!ConnectableElementTemplateParameter mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        ownedParameteredElement <- s.ownedParameteredElement,
+        default <- s.default,
+        ownedDefault <- s.ownedDefault)
+}
+
+rule StartOwnedBehaviorAction {
+    from s : UML2!StartOwnedBehaviorAction (thisModule.inElements->includes(s))
+    to t : UML2!StartOwnedBehaviorAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        object <- s.object)
+}
+
+rule CreateObjectAction {
+    from s : UML2!CreateObjectAction (thisModule.inElements->includes(s))
+    to t : UML2!CreateObjectAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        classifier <- s.classifier,
+        result <- s.result)
+}
+
+rule Clause {
+    from s : UML2!Clause (thisModule.inElements->includes(s))
+    to t : UML2!Clause mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        test <- s.test,
+        body <- s.body,
+        decider <- s.decider,
+        bodyOutput <- s.bodyOutput)
+}
+
+rule DestroyObjectAction {
+    from s : UML2!DestroyObjectAction (thisModule.inElements->includes(s))
+    to t : UML2!DestroyObjectAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        isDestroyLinks <- s.isDestroyLinks,
+        isDestroyOwnedObjects <- s.isDestroyOwnedObjects,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        target <- s.target)
+}
+
+rule ExtensionEnd {
+    from s : UML2!ExtensionEnd (thisModule.inElements->includes(s))
+    to t : UML2!ExtensionEnd mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isStatic <- s.isStatic,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        isReadOnly <- s.isReadOnly,
+        isDerived <- s.isDerived,
+        isDerivedUnion <- s.isDerivedUnion,
+        aggregation <- s.aggregation,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue,
+        deployment <- s.deployment,
+        redefinedProperty <- s.redefinedProperty,
+        subsettedProperty <- s.subsettedProperty,
+        defaultValue <- s.defaultValue,
+        qualifier <- s.qualifier)
+}
+
+rule AnyTrigger {
+    from s : UML2!AnyTrigger (thisModule.inElements->includes(s))
+    to t : UML2!AnyTrigger mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        port <- s.port)
+}
+
+rule Interaction {
+    from s : UML2!Interaction (thisModule.inElements->includes(s))
+    to t : UML2!Interaction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        parameter <- s.parameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        ownedParameterSet <- s.ownedParameterSet,
+        generalOrdering <- s.generalOrdering,
+        lifeline <- s.lifeline,
+        message <- s.message,
+        fragment <- s.fragment,
+        formalGate <- s.formalGate)
+}
+
+rule ActivityPartition {
+    from s : UML2!ActivityPartition (thisModule.inElements->includes(s))
+    to t : UML2!ActivityPartition mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isDimension <- s.isDimension,
+        isExternal <- s.isExternal,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        subgroup <- s.subgroup,
+        represents <- s.represents)
+}
+
+rule Actor {
+    from s : UML2!Actor (thisModule.inElements->includes(s))
+    to t : UML2!Actor mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence)
+}
+
+rule TimeObservationAction {
+    from s : UML2!TimeObservationAction (thisModule.inElements->includes(s))
+    to t : UML2!TimeObservationAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        structuralFeature <- s.structuralFeature,
+        object <- s.object,
+        value <- s.value,
+        now <- s.now)
+}
+
+rule TimeExpression {
+    from s : UML2!TimeExpression (thisModule.inElements->includes(s))
+    to t : UML2!TimeExpression mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        firstTime <- s.firstTime,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        event <- s.event)
+}
+
+rule SendSignalAction {
+    from s : UML2!SendSignalAction (thisModule.inElements->includes(s))
+    to t : UML2!SendSignalAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        argument <- s.argument,
+        onPort <- s.onPort,
+        target <- s.target,
+        signal <- s.signal)
+}
+
+rule EventOccurrence {
+    from s : UML2!EventOccurrence (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!EventOccurrence)
+		else false endif)
+    to t : UML2!EventOccurrence mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        generalOrdering <- s.generalOrdering)
+}
+
+rule Port {
+    from s : UML2!Port (thisModule.inElements->includes(s))
+    to t : UML2!Port mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isStatic <- s.isStatic,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        isReadOnly <- s.isReadOnly,
+        isDerived <- s.isDerived,
+        isDerivedUnion <- s.isDerivedUnion,
+        aggregation <- s.aggregation,
+        isBehavior <- s.isBehavior,
+        isService <- s.isService,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue,
+        deployment <- s.deployment,
+        redefinedProperty <- s.redefinedProperty,
+        subsettedProperty <- s.subsettedProperty,
+        defaultValue <- s.defaultValue,
+        qualifier <- s.qualifier,
+        redefinedPort <- s.redefinedPort,
+        protocol <- s.protocol)
+}
+
+rule ValuePin {
+    from s : UML2!ValuePin (thisModule.inElements->includes(s))
+    to t : UML2!ValuePin mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        ordering <- s.ordering,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        type <- s.type,
+        upperBound <- s.upperBound,
+        inState <- s.inState,
+        selection <- s.selection,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue,
+        value <- s.value)
+}
+
+rule StructuredActivityNode {
+    from s : UML2!StructuredActivityNode (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!StructuredActivityNode)
+		else false endif)
+    to t : UML2!StructuredActivityNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        mustIsolate <- s.mustIsolate,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        variable <- s.variable,
+        containedNode <- s.containedNode,
+        containedEdge <- s.containedEdge)
+}
+
+rule Extend {
+    from s : UML2!Extend (thisModule.inElements->includes(s))
+    to t : UML2!Extend mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        extendedCase <- s.extendedCase,
+        condition <- s.condition,
+        extensionLocation <- s.extensionLocation)
+}
+
+rule EStringToStringMapEntry {
+    from s : UML2!EStringToStringMapEntry (thisModule.inElements->includes(s))
+    to t : UML2!EStringToStringMapEntry mapsTo s (
+        key <- s.key,
+        value <- s.value)
+}
+
+rule EnumerationLiteral {
+    from s : UML2!EnumerationLiteral (thisModule.inElements->includes(s))
+    to t : UML2!EnumerationLiteral mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        deployment <- s.deployment,
+        slot <- s.slot,
+        classifier <- s.classifier,
+        specification <- s.specification)
+}
+
+rule TimeInterval {
+    from s : UML2!TimeInterval (thisModule.inElements->includes(s))
+    to t : UML2!TimeInterval mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        min <- s.min,
+        max <- s.max)
+}
+
+rule RaiseExceptionAction {
+    from s : UML2!RaiseExceptionAction (thisModule.inElements->includes(s))
+    to t : UML2!RaiseExceptionAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        exception <- s.exception)
+}
+
+rule ReadLinkObjectEndQualifierAction {
+    from s : UML2!ReadLinkObjectEndQualifierAction (thisModule.inElements->includes(s))
+    to t : UML2!ReadLinkObjectEndQualifierAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        object <- s.object,
+        result <- s.result,
+        qualifier <- s.qualifier)
+}
+
+rule CallTrigger {
+    from s : UML2!CallTrigger (thisModule.inElements->includes(s))
+    to t : UML2!CallTrigger mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        port <- s.port,
+        operation <- s.operation)
+}
+
+rule ReadExtentAction {
+    from s : UML2!ReadExtentAction (thisModule.inElements->includes(s))
+    to t : UML2!ReadExtentAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        result <- s.result,
+        classifier <- s.classifier)
+}
+
+rule Region {
+    from s : UML2!Region (thisModule.inElements->includes(s))
+    to t : UML2!Region mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        subvertex <- s.subvertex,
+        transition <- s.transition,
+        extendedRegion <- s.extendedRegion)
+}
+
+rule InteractionOperand {
+    from s : UML2!InteractionOperand (thisModule.inElements->includes(s))
+    to t : UML2!InteractionOperand mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalOrdering <- s.generalOrdering,
+        guard <- s.guard,
+        fragment <- s.fragment)
+}
+
+rule StringExpression {
+    from s : UML2!StringExpression (thisModule.inElements->includes(s))
+    to t : UML2!StringExpression mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        subExpression <- s.subExpression)
+}
+
+rule PrimitiveType {
+    from s : UML2!PrimitiveType (thisModule.inElements->includes(s))
+    to t : UML2!PrimitiveType mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedAttribute <- s.ownedAttribute,
+        ownedOperation <- s.ownedOperation)
+}
+
+rule LiteralBoolean {
+    from s : UML2!LiteralBoolean (thisModule.inElements->includes(s))
+    to t : UML2!LiteralBoolean mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        value <- s.value,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type)
+}
+
+rule Expression {
+    from s : UML2!Expression (thisModule.inElements->includes(s))
+    to t : UML2!Expression mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        body <- s.body,
+        language <- s.language,
+        symbol <- s.symbol,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        behavior <- s.behavior,
+        operand <- s.operand)
+}
+
+rule Interval {
+    from s : UML2!Interval (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Interval)
+		else false endif)
+    to t : UML2!Interval mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        min <- s.min,
+        max <- s.max)
+}
+
+rule ParameterSet {
+    from s : UML2!ParameterSet (thisModule.inElements->includes(s))
+    to t : UML2!ParameterSet mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        condition <- s.condition)
+}
+
+rule ReplyAction {
+    from s : UML2!ReplyAction (thisModule.inElements->includes(s))
+    to t : UML2!ReplyAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        replyToCall <- s.replyToCall,
+        replyValue <- s.replyValue,
+        returnInformation <- s.returnInformation)
+}
+
+rule Message {
+    from s : UML2!Message (thisModule.inElements->includes(s))
+    to t : UML2!Message mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        messageSort <- s.messageSort,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        connector <- s.connector,
+        signature <- s.signature,
+        argument <- s.argument)
+}
+
+rule ProtocolConformance {
+    from s : UML2!ProtocolConformance (thisModule.inElements->includes(s))
+    to t : UML2!ProtocolConformance mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        generalMachine <- s.generalMachine)
+}
+
+rule AddVariableValueAction {
+    from s : UML2!AddVariableValueAction (thisModule.inElements->includes(s))
+    to t : UML2!AddVariableValueAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        isReplaceAll <- s.isReplaceAll,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        variable <- s.variable,
+        value <- s.value,
+        insertAt <- s.insertAt)
+}
+
+rule LinkEndData {
+    from s : UML2!LinkEndData (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!LinkEndData)
+		else false endif)
+    to t : UML2!LinkEndData mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        value <- s.value,
+        end <- s.end,
+        qualifier <- s.qualifier)
+}
+
+rule Dependency {
+    from s : UML2!Dependency (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Dependency)
+		else false endif)
+    to t : UML2!Dependency mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        supplier <- s.supplier)
+}
+
+rule Lifeline {
+    from s : UML2!Lifeline (thisModule.inElements->includes(s))
+    to t : UML2!Lifeline mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        represents <- s.represents,
+        selector <- s.selector,
+        decomposedAs <- s.decomposedAs)
+}
+
+rule Comment {
+    from s : UML2!Comment (thisModule.inElements->includes(s))
+    to t : UML2!Comment mapsTo s (
+        body <- s.body,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        annotatedElement <- s.annotatedElement,
+        bodyExpression <- s.bodyExpression)
+}
+
+rule ForkNode {
+    from s : UML2!ForkNode (thisModule.inElements->includes(s))
+    to t : UML2!ForkNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement)
+}
+
+rule PartDecomposition {
+    from s : UML2!PartDecomposition (thisModule.inElements->includes(s))
+    to t : UML2!PartDecomposition mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        generalOrdering <- s.generalOrdering,
+        refersTo <- s.refersTo,
+        actualGate <- s.actualGate,
+        argument <- s.argument)
+}
+
+rule ReadLinkObjectEndAction {
+    from s : UML2!ReadLinkObjectEndAction (thisModule.inElements->includes(s))
+    to t : UML2!ReadLinkObjectEndAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        object <- s.object,
+        end <- s.end,
+        result <- s.result)
+}
+
+rule Pseudostate {
+    from s : UML2!Pseudostate (thisModule.inElements->includes(s))
+    to t : UML2!Pseudostate mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        kind <- s.kind,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression)
+}
+
+rule State {
+    from s : UML2!State (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!State)
+		else false endif)
+    to t : UML2!State mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        submachine <- s.submachine,
+        connection <- s.connection,
+        redefinedState <- s.redefinedState,
+        deferrableTrigger <- s.deferrableTrigger,
+        region <- s.region,
+        entry <- s.entry,
+        exit <- s.exit,
+        doActivity <- s.doActivity,
+        stateInvariant <- s.stateInvariant)
+}
+
+rule ConnectorEnd {
+    from s : UML2!ConnectorEnd (thisModule.inElements->includes(s))
+    to t : UML2!ConnectorEnd mapsTo s (
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue,
+        partWithPort <- s.partWithPort)
+}
+
+rule SendObjectAction {
+    from s : UML2!SendObjectAction (thisModule.inElements->includes(s))
+    to t : UML2!SendObjectAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        argument <- s.argument,
+        onPort <- s.onPort,
+        target <- s.target,
+        request <- s.request)
+}
+
+rule Reception {
+    from s : UML2!Reception (thisModule.inElements->includes(s))
+    to t : UML2!Reception mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isStatic <- s.isStatic,
+        isAbstract <- s.isAbstract,
+        concurrency <- s.concurrency,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        formalParameter <- s.formalParameter,
+        returnResult <- s.returnResult,
+        raisedException <- s.raisedException,
+        signal <- s.signal)
+}
+
+rule DurationInterval {
+    from s : UML2!DurationInterval (thisModule.inElements->includes(s))
+    to t : UML2!DurationInterval mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        min <- s.min,
+        max <- s.max)
+}
+
+rule Constraint {
+    from s : UML2!Constraint (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Constraint)
+		else false endif)
+    to t : UML2!Constraint mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        specification <- s.specification,
+        constrainedElement <- s.constrainedElement)
+}
+
+rule InterruptibleActivityRegion {
+    from s : UML2!InterruptibleActivityRegion (thisModule.inElements->includes(s))
+    to t : UML2!InterruptibleActivityRegion mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment)
+}
+
+rule StateMachine {
+    from s : UML2!StateMachine (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!StateMachine)
+		else false endif)
+    to t : UML2!StateMachine mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        parameter <- s.parameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        ownedParameterSet <- s.ownedParameterSet,
+        region <- s.region,
+        connectionPoint <- s.connectionPoint,
+        extendedStateMachine <- s.extendedStateMachine)
+}
+
+rule CreateLinkObjectAction {
+    from s : UML2!CreateLinkObjectAction (thisModule.inElements->includes(s))
+    to t : UML2!CreateLinkObjectAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        endData <- s.endData,
+        result <- s.result)
+}
+
+rule ActivityParameterNode {
+    from s : UML2!ActivityParameterNode (thisModule.inElements->includes(s))
+    to t : UML2!ActivityParameterNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        ordering <- s.ordering,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        type <- s.type,
+        upperBound <- s.upperBound,
+        inState <- s.inState,
+        selection <- s.selection,
+        parameter <- s.parameter)
+}
+
+rule ChangeTrigger {
+    from s : UML2!ChangeTrigger (thisModule.inElements->includes(s))
+    to t : UML2!ChangeTrigger mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        port <- s.port,
+        changeExpression <- s.changeExpression)
+}
+
+rule DataType {
+    from s : UML2!DataType (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!DataType)
+		else false endif)
+    to t : UML2!DataType mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedAttribute <- s.ownedAttribute,
+        ownedOperation <- s.ownedOperation)
+}
+
+rule InteractionConstraint {
+    from s : UML2!InteractionConstraint (thisModule.inElements->includes(s))
+    to t : UML2!InteractionConstraint mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        specification <- s.specification,
+        constrainedElement <- s.constrainedElement,
+        minint <- s.minint,
+        maxint <- s.maxint)
+}
+
+rule ExpansionNode {
+    from s : UML2!ExpansionNode (thisModule.inElements->includes(s))
+    to t : UML2!ExpansionNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        ordering <- s.ordering,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        type <- s.type,
+        upperBound <- s.upperBound,
+        inState <- s.inState,
+        selection <- s.selection)
+}
+
+rule RemoveVariableValueAction {
+    from s : UML2!RemoveVariableValueAction (thisModule.inElements->includes(s))
+    to t : UML2!RemoveVariableValueAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        variable <- s.variable,
+        value <- s.value)
+}
+
+rule ApplyFunctionAction {
+    from s : UML2!ApplyFunctionAction (thisModule.inElements->includes(s))
+    to t : UML2!ApplyFunctionAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        function <- s.function,
+        argument <- s.argument,
+        result <- s.result)
+}
+
+rule OperationTemplateParameter {
+    from s : UML2!OperationTemplateParameter (thisModule.inElements->includes(s))
+    to t : UML2!OperationTemplateParameter mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        ownedParameteredElement <- s.ownedParameteredElement,
+        default <- s.default,
+        ownedDefault <- s.ownedDefault)
+}
+
+rule AcceptEventAction {
+    from s : UML2!AcceptEventAction (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!AcceptEventAction)
+		else false endif)
+    to t : UML2!AcceptEventAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        trigger <- s.trigger,
+        result <- s.result)
+}
+
+rule ClearVariableAction {
+    from s : UML2!ClearVariableAction (thisModule.inElements->includes(s))
+    to t : UML2!ClearVariableAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        variable <- s.variable)
+}
+
+rule PackageImport {
+    from s : UML2!PackageImport (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!PackageImport)
+		else false endif)
+    to t : UML2!PackageImport mapsTo s (
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        importedPackage <- s.importedPackage)
+}
+
+rule Collaboration {
+    from s : UML2!Collaboration (thisModule.inElements->includes(s))
+    to t : UML2!Collaboration mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        ownedUseCase <- s.ownedUseCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        collaborationRole <- s.collaborationRole)
+}
+
+rule JoinNode {
+    from s : UML2!JoinNode (thisModule.inElements->includes(s))
+    to t : UML2!JoinNode mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isCombineDuplicate <- s.isCombineDuplicate,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        joinSpec <- s.joinSpec)
+}
+
+rule LiteralUnlimitedNatural {
+    from s : UML2!LiteralUnlimitedNatural (thisModule.inElements->includes(s))
+    to t : UML2!LiteralUnlimitedNatural mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        value <- s.value,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type)
+}
+
+rule Generalization {
+    from s : UML2!Generalization (thisModule.inElements->includes(s))
+    to t : UML2!Generalization mapsTo s (
+        isSubstitutable <- s.isSubstitutable,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        general <- s.general)
+}
+
+rule ProfileApplication {
+    from s : UML2!ProfileApplication (thisModule.inElements->includes(s))
+    to t : UML2!ProfileApplication mapsTo s (
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        importedPackage <- s.importedPackage,
+        importedProfile <- s.importedProfile)
+}
+
+rule ConnectionPointReference {
+    from s : UML2!ConnectionPointReference (thisModule.inElements->includes(s))
+    to t : UML2!ConnectionPointReference mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        entry <- s.entry,
+        exit <- s.exit)
+}
+
+rule PackageMerge {
+    from s : UML2!PackageMerge (thisModule.inElements->includes(s))
+    to t : UML2!PackageMerge mapsTo s (
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        mergedPackage <- s.mergedPackage)
+}
+
+rule Duration {
+    from s : UML2!Duration (thisModule.inElements->includes(s))
+    to t : UML2!Duration mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        firstTime <- s.firstTime,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        event <- s.event)
+}
+
+rule ClearStructuralFeatureAction {
+    from s : UML2!ClearStructuralFeatureAction (thisModule.inElements->includes(s))
+    to t : UML2!ClearStructuralFeatureAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        structuralFeature <- s.structuralFeature,
+        object <- s.object)
+}
+
+rule ProtocolTransition {
+    from s : UML2!ProtocolTransition (thisModule.inElements->includes(s))
+    to t : UML2!ProtocolTransition mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        kind <- s.kind,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedTransition <- s.redefinedTransition,
+        trigger <- s.trigger,
+        guard <- s.guard,
+        effect <- s.effect,
+        postCondition <- s.postCondition,
+        preCondition <- s.preCondition)
+}
+
+rule Connector {
+    from s : UML2!Connector (thisModule.inElements->includes(s))
+    to t : UML2!Connector mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isStatic <- s.isStatic,
+        kind <- s.kind,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        redefinedConnector <- s.redefinedConnector,
+        end <- s.end,
+        contract <- s.contract)
+}
+
+rule TimeTrigger {
+    from s : UML2!TimeTrigger (thisModule.inElements->includes(s))
+    to t : UML2!TimeTrigger mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isRelative <- s.isRelative,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        port <- s.port,
+        when <- s.when)
+}
+
+rule ClearAssociationAction {
+    from s : UML2!ClearAssociationAction (thisModule.inElements->includes(s))
+    to t : UML2!ClearAssociationAction mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        redefinedElement <- s.redefinedElement,
+        handler <- s.handler,
+        localPrecondition <- s.localPrecondition,
+        localPostcondition <- s.localPostcondition,
+        object <- s.object,
+        association <- s.association)
+}
+
+rule Substitution {
+    from s : UML2!Substitution (thisModule.inElements->includes(s))
+    to t : UML2!Substitution mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        nameExpression <- s.nameExpression,
+        supplier <- s.supplier,
+        mapping <- s.mapping,
+        realizingClassifier <- s.realizingClassifier,
+        contract <- s.contract)
+}
+
+-- ======================================================================
+-- copying rules end
+-- ======================================================================

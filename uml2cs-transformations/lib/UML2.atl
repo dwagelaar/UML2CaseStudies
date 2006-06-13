@@ -18,6 +18,9 @@ helper context String def : stereotype() : UML2!Stereotype =
 helper context String def : dataType() : UML2!DataType =
 	UML2!DataType->allInstances()->select(c|c->umlQualifiedName()=self)->first();
 
+helper context String def : type() : UML2!Type =
+	UML2!Type->allInstances()->select(c|c->umlQualifiedName()=self)->first();
+
 ------------------------------- LiteralInteger -----------------------------------
 
 helper context UML2!LiteralInteger def : isSingle() : Boolean =
@@ -54,11 +57,11 @@ helper context UML2!MultiplicityElement def : upper() : Integer =
 ------------------------------- NamedElement -----------------------------------
 
 helper context UML2!NamedElement def : umlQualifiedName() : String =
-	self->umlQualifiedName('::');
+	self->qualifiedName('::');
 
-helper context UML2!NamedElement def : umlQualifiedName(separator : String) : String =
+helper context UML2!NamedElement def : qualifiedName(separator : String) : String =
 	if self.owner->oclIsTypeOf(UML2!Package) then
-		self.owner->umlQualifiedName(separator) + separator + self.name
+		self.owner->qualifiedName(separator) + separator + self.name
 	else
 		self.name
 	endif;
@@ -73,8 +76,6 @@ helper context UML2!Package def : includesProfile(p : UML2!Profile) : Boolean =
 helper context UML2!PackageableElement def : owningPackage() : UML2!Package =
 	if self.owner.oclIsKindOf(UML2!Package) then self.owner
 	else OclUndefined endif;
---	self.owner->select(o|o.oclIsKindOf(UML2!Package))->first();
---	UML2!Package->allInstances()->select(p|p.ownedMember->includes(self))->first();
 
 ------------------------------- Property -----------------------------------
 

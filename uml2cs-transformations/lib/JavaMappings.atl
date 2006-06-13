@@ -86,3 +86,20 @@ helper context String def : dualRemoverBody(otherEnd : String) : String =
 	self->javaContainsCheck(
 	'    ' + self->javaRemover() + '\n' +
 	'    ' + self->javaOtherEndRemover(otherEnd));
+
+helper context String def : implTypeName() : String =
+	if self = 'Integer' then 'java::lang::int' else
+	if self = 'UnlimitedNatural' then 'java::lang::int' else
+	if self = 'Real' then 'java::lang::double' else
+	if self = 'Boolean' then 'java::lang::boolean' else
+	if self = 'String' then 'java::lang::String' else
+	if self = 'OclAny' then 'java::lang::Object' else
+	self->javaImplTypeName()
+	endif endif endif endif endif endif;
+
+helper context String def : defaultValueBody() : String =
+	if self = 'java::lang::int' then '0' else
+	if self = 'java::lang::double' then '0.0' else
+	if self = 'java::lang::boolean' then 'false' else
+	self->javaDefaultValueBody()
+	endif endif endif;

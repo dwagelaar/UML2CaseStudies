@@ -153,6 +153,7 @@ rule PublicPropertySingle {
 	   getBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- getOp,
+		name <- getOp.name + 'Activity',
 	   	language <- 'language'->value(),
 		body <- s.name->getterBody()),
 	   getDep : UML2!Dependency (
@@ -182,7 +183,8 @@ rule PublicPropertySingle {
 	   setBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- setOp,
-	   	language <- 'language'->value(),
+		name <- setOp.name + 'Activity',
+		language <- 'language'->value(),
 		body <- s->setter()),
 	   setDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'set' + baseNameS + '()',
@@ -234,7 +236,8 @@ rule PublicPropertyCollection {
 	   getBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- getOp,
-	   	language <- 'language'->value(),
+		name <- getOp.name + 'Activity',
+		language <- 'language'->value(),
 		body <- s.name->getterBody()),
 	   getDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
@@ -263,7 +266,8 @@ rule PublicPropertyCollection {
 	   addBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- addOp,
-	   	language <- 'language'->value(),
+		name <- addOp.name + 'Activity',
+		language <- 'language'->value(),
 		body <- s->adder()),
 	   addDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'add' + baseName + '()',
@@ -292,7 +296,8 @@ rule PublicPropertyCollection {
 	   removeBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- removeOp,
-	   	language <- 'language'->value(),
+		name <- removeOp.name + 'Activity',
+		language <- 'language'->value(),
 		body <- s->remover()),
 	   removeDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'remove' + baseName + '()',
@@ -345,7 +350,8 @@ rule PublicPropertySequence {
 	   getBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- getOp,
-	   	language <- 'language'->value(),
+		name <- getOp.name + 'Activity',
+		language <- 'language'->value(),
 		body <- s.name->getterBody()),
 	   getDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
@@ -374,7 +380,8 @@ rule PublicPropertySequence {
 	   addBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- addOp,
-	   	language <- 'language'->value(),
+		name <- addOp.name + 'Activity',
+		language <- 'language'->value(),
 		body <- s->adder()),
 	   addDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'add' + baseName + '()',
@@ -403,7 +410,8 @@ rule PublicPropertySequence {
 	   removeBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- removeOp,
-	   	language <- 'language'->value(),
+		name <- removeOp.name + 'Activity',
+		language <- 'language'->value(),
 		body <- s->remover()),
 	   removeDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'remove' + baseName + '()',
@@ -444,7 +452,8 @@ rule PublicPropertySequence {
 	   getAtBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- getAtOp,
-	   	language <- 'language'->value(),
+		name <- getAtOp.name + 'Activity',
+		language <- 'language'->value(),
 		body <- s.name->getAtBody(s.type->qName())),
 	   getAtDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'get' + baseName + 'At()',
@@ -485,7 +494,8 @@ rule PublicPropertySequence {
 	   insertActivity : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- insertOp,
-	   	language <- 'language'->value(),
+		name <- insertOp.name + 'Activity',
+		language <- 'language'->value(),
 		body <- s->insert()),
 	   insertDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'insert' + baseName + '()',

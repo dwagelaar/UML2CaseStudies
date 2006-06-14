@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" xmi:id="_tPOCIaLHEdqkGMDvm75SlQ" name="InstantMessengerModel" appliedProfile="_GAq0oPrPEdq0MPWKkoLgDQ _GAw7QPrPEdq0MPWKkoLgDQ _GA9IgPrPEdq0MPWKkoLgDQ">
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Applet_0="http:///Applet_0_J9Q5MOQqEdqD2ZNp93yIAQ.profile.uml2" xmlns:Observer_0="http:///Observer_0_lwOxwI8jEdq-Os5Rz1ENIw.profile.uml2" xmlns:Singleton_0="http:///Singleton_0_6FpoMI8iEdq-Os5Rz1ENIw.profile.uml2" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" xsi:schemaLocation="http:///Applet_0_J9Q5MOQqEdqD2ZNp93yIAQ.profile.uml2 ../../uml2cs-transformations/profiles/Applet.profile.uml2#_J9dGcOQqEdqD2ZNp93yIAQ http:///Observer_0_lwOxwI8jEdq-Os5Rz1ENIw.profile.uml2 ../../uml2cs-transformations/profiles/Observer.profile.uml2#_lwPY0I8jEdq-Os5Rz1ENIw http:///Singleton_0_6FpoMI8iEdq-Os5Rz1ENIw.profile.uml2 ../../uml2cs-transformations/profiles/Singleton.profile.uml2#_6FpoMY8iEdq-Os5Rz1ENIw" xmi:id="_tPOCIaLHEdqkGMDvm75SlQ" name="InstantMessengerModel" appliedProfile="_GAq0oPrPEdq0MPWKkoLgDQ _GAw7QPrPEdq0MPWKkoLgDQ _GA9IgPrPEdq0MPWKkoLgDQ">
   <eAnnotations xmi:id="_eswR8eQoEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
     <details xmi:id="_esw5AOQoEdqD2ZNp93yIAQ" key="uuid" value="11477073470800"/>
   </eAnnotations>
@@ -13,8 +13,8 @@
     <eAnnotations xmi:id="_HSBu0PrPEdq0MPWKkoLgDQ" source="http://www.topcased.org/uuid">
       <details xmi:id="_HSBu0frPEdq0MPWKkoLgDQ" key="uuid" value="11501978414693"/>
     </eAnnotations>
-    <importedPackage xmi:type="uml:Profile" href="../profiles/Singleton.profile.uml2#_HwwcYI8aEdq-Os5Rz1ENIw"/>
-    <importedProfile href="../profiles/Singleton.profile.uml2#_HwwcYI8aEdq-Os5Rz1ENIw"/>
+    <importedPackage xmi:type="uml:Profile" href="../../uml2cs-transformations/profiles/Singleton.profile.uml2#_HwwcYI8aEdq-Os5Rz1ENIw"/>
+    <importedProfile href="../../uml2cs-transformations/profiles/Singleton.profile.uml2#_HwwcYI8aEdq-Os5Rz1ENIw"/>
   </packageImport>
   <packageImport xmi:type="uml:ProfileApplication" xmi:id="_GAw7QPrPEdq0MPWKkoLgDQ">
     <eAnnotations xmi:id="_GA1zwPrPEdq0MPWKkoLgDQ" source="attributes">
@@ -26,8 +26,8 @@
     <eAnnotations xmi:id="_HSCV4vrPEdq0MPWKkoLgDQ" source="http://www.topcased.org/uuid">
       <details xmi:id="_HSCV4_rPEdq0MPWKkoLgDQ" key="uuid" value="11501978414706"/>
     </eAnnotations>
-    <importedPackage xmi:type="uml:Profile" href="../profiles/Observer.profile.uml2#_jn7CcI8YEdq-Os5Rz1ENIw"/>
-    <importedProfile href="../profiles/Observer.profile.uml2#_jn7CcI8YEdq-Os5Rz1ENIw"/>
+    <importedPackage xmi:type="uml:Profile" href="../../uml2cs-transformations/profiles/Observer.profile.uml2#_jn7CcI8YEdq-Os5Rz1ENIw"/>
+    <importedProfile href="../../uml2cs-transformations/profiles/Observer.profile.uml2#_jn7CcI8YEdq-Os5Rz1ENIw"/>
   </packageImport>
   <packageImport xmi:type="uml:ProfileApplication" xmi:id="_GA9IgPrPEdq0MPWKkoLgDQ">
     <eAnnotations xmi:id="_GBFrYPrPEdq0MPWKkoLgDQ" source="attributes">
@@ -39,8 +39,8 @@
     <eAnnotations xmi:id="_HSCV5vrPEdq0MPWKkoLgDQ" source="http://www.topcased.org/uuid">
       <details xmi:id="_HSCV5_rPEdq0MPWKkoLgDQ" key="uuid" value="11501978414709"/>
     </eAnnotations>
-    <importedPackage xmi:type="uml:Profile" href="../profiles/Applet.profile.uml2#_8186IOQoEdqD2ZNp93yIAQ"/>
-    <importedProfile href="../profiles/Applet.profile.uml2#_8186IOQoEdqD2ZNp93yIAQ"/>
+    <importedPackage xmi:type="uml:Profile" href="../../uml2cs-transformations/profiles/Applet.profile.uml2#_8186IOQoEdqD2ZNp93yIAQ"/>
+    <importedProfile href="../../uml2cs-transformations/profiles/Applet.profile.uml2#_8186IOQoEdqD2ZNp93yIAQ"/>
   </packageImport>
   <ownedMember xmi:type="uml:Package" xmi:id="_tPOCIqLHEdqkGMDvm75SlQ" name="im">
     <eAnnotations xmi:id="_esyuMOQoEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
@@ -49,6 +49,14 @@
     <ownedMember xmi:type="uml:Class" xmi:id="_gOtz8OQoEdqD2ZNp93yIAQ" name="InstantMessagingClient" clientDependency="_gpvbsOQrEdqD2ZNp93yIAQ">
       <eAnnotations xmi:id="_sJzs9uQoEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
         <details xmi:id="_sJzs9-QoEdqD2ZNp93yIAQ" key="uuid" value="114770743737512"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_C9KssPumEdqPS9oJcuwDkA" source="appliedStereotypes">
+        <eAnnotations xmi:id="_IPm2sPumEdqPS9oJcuwDkA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_IPm2sfumEdqPS9oJcuwDkA" key="uuid" value="115029018972330"/>
+        </eAnnotations>
+        <contents xmi:type="Applet_0:Applet__Applet" xmi:id="_C9dAkPumEdqPS9oJcuwDkA" appletInfo="Title: InstantMessagingClient\n(C) 2005, Dennis Wagelaar, System and Software Engineering Lab, Vrije Universiteit Brussel\nA simple instant messaging client generated from a PIM"/>
+        <contents xmi:type="Observer_0:Observer__Observer" xmi:id="_C9e1wPumEdqPS9oJcuwDkA"/>
+        <contents xmi:type="Singleton_0:Singleton__Singleton" xmi:id="_C9fc0PumEdqPS9oJcuwDkA"/>
       </eAnnotations>
       <ownedBehavior xmi:type="uml:Activity" xmi:id="_-oVuQOccEdqQTtzfbcEKGw" name="reportActivity" specification="_NLLp4OQuEdqD2ZNp93yIAQ" body="        for (int i = 0; i &lt; getNetworks().size(); i++) {&#xA;            if (getNetworkAt(i) instanceof ExceptionReporter) {&#xA;                ((ExceptionReporter) getNetworkAt(i)).report(e);&#xA;                return;&#xA;            }&#xA;        }&#xA;        System.err.println(e.getMessage());&#xA;        e.printStackTrace();" language="java">
         <eAnnotations xmi:id="_Oq2voOcdEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">
@@ -303,6 +311,12 @@
       <ownedMember xmi:type="uml:Class" xmi:id="_49VF8OQsEdqD2ZNp93yIAQ" name="Network" isAbstract="true">
         <eAnnotations xmi:id="_EgCUIOQtEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
           <details xmi:id="_EgCUIeQtEdqD2ZNp93yIAQ" key="uuid" value="114770931875472"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_G1Q_oPumEdqPS9oJcuwDkA" source="appliedStereotypes">
+          <eAnnotations xmi:id="_IPndwPumEdqPS9oJcuwDkA" source="http://www.topcased.org/uuid">
+            <details xmi:id="_IPndwfumEdqPS9oJcuwDkA" key="uuid" value="1150290189724187"/>
+          </eAnnotations>
+          <contents xmi:type="Observer_0:Observer__Observable" xmi:id="_G2CbsPumEdqPS9oJcuwDkA"/>
         </eAnnotations>
         <ownedBehavior xmi:type="uml:Activity" xmi:id="__wdoYOcmEdqQTtzfbcEKGw" name="discoverNetworksActivity" specification="_OHD3UOcjEdqQTtzfbcEKGw" body="        String[] options = {&#xA;            &quot;im.networking.jabber.mejabber.MEJabber&quot;,&#xA;            &quot;im.networking.jabber.defaultjabber.DefaultJabber&quot;,&#xA;            &quot;im.networking.sms.SMS&quot;,&#xA;            &quot;im.networking.local.Local&quot;&#xA;        };&#xA;        for (int i = 0; i &lt; options.length; i++) {&#xA;            try {&#xA;                getClient().addNetwork(Class.forName(options[i]).newInstance());&#xA;            } catch (Exception e) {&#xA;            }&#xA;        }&#xA;" language="java">
           <eAnnotations xmi:id="_NEfqQOcnEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">

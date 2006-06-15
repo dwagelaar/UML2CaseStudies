@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Basic_0="http:///Basic_0.profile.uml2" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" xsi:schemaLocation="http:///Basic_0.profile.uml2 pathmap://UML2_PROFILES/Basic.profile.uml2#__LeIQK86Edih9-GG5afQ0g" xmi:id="_tPOCIaLHEdqkGMDvm75SlQ" name="IteratorEnumerationAdapter" appliedProfile="_CrtTkPxGEdqPCPYQWc94YQ">
+  <eAnnotations xmi:id="_3KB5APupEdqPS9oJcuwDkA" source="http://www.topcased.org/uuid">
+    <details xmi:id="_3KB5AfupEdqPS9oJcuwDkA" key="uuid" value="11502917930400"/>
+  </eAnnotations>
+  <packageImport xmi:type="uml:ProfileApplication" xmi:id="_CrtTkPxGEdqPCPYQWc94YQ">
+    <eAnnotations xmi:id="_Cr6u8PxGEdqPCPYQWc94YQ" source="attributes">
+      <eAnnotations xmi:id="_JvrFkvxGEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+        <details xmi:id="_JvrFk_xGEdqPCPYQWc94YQ" key="uuid" value="11503589192734"/>
+      </eAnnotations>
+      <details xmi:id="_Cr7WAPxGEdqPCPYQWc94YQ" key="version" value="0"/>
+    </eAnnotations>
+    <eAnnotations xmi:id="_JvrFkPxGEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+      <details xmi:id="_JvrFkfxGEdqPCPYQWc94YQ" key="uuid" value="11503589192733"/>
+    </eAnnotations>
+    <importedPackage xmi:type="uml:Profile" href="pathmap://UML2_PROFILES/Basic.profile.uml2#_6mFRgK86Edih9-GG5afQ0g"/>
+    <importedProfile href="pathmap://UML2_PROFILES/Basic.profile.uml2#_6mFRgK86Edih9-GG5afQ0g"/>
+  </packageImport>
+  <ownedMember xmi:type="uml:Package" xmi:id="_tPOCIqLHEdqkGMDvm75SlQ" name="be">
+    <eAnnotations xmi:id="_3KDHIPupEdqPS9oJcuwDkA" source="http://www.topcased.org/uuid">
+      <details xmi:id="_3KDHIfupEdqPS9oJcuwDkA" key="uuid" value="11502917930421"/>
+    </eAnnotations>
+    <ownedMember xmi:type="uml:Package" xmi:id="_Ej_ZMPupEdqPS9oJcuwDkA" name="ac">
+      <eAnnotations xmi:id="_3KDuMPupEdqPS9oJcuwDkA" source="http://www.topcased.org/uuid">
+        <details xmi:id="_3KDuMfupEdqPS9oJcuwDkA" key="uuid" value="11502917930432"/>
+      </eAnnotations>
+      <ownedMember xmi:type="uml:Package" xmi:id="_FtG9YPupEdqPS9oJcuwDkA" name="vub">
+        <eAnnotations xmi:id="_3KE8UPupEdqPS9oJcuwDkA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_3KE8UfupEdqPS9oJcuwDkA" key="uuid" value="11502917930453"/>
+        </eAnnotations>
+        <ownedMember xmi:type="uml:Package" xmi:id="_HnPHwPupEdqPS9oJcuwDkA" name="util">
+          <eAnnotations xmi:id="_3KFjYPupEdqPS9oJcuwDkA" source="http://www.topcased.org/uuid">
+            <details xmi:id="_3KFjYfupEdqPS9oJcuwDkA" key="uuid" value="11502917930464"/>
+          </eAnnotations>
+          <ownedMember xmi:type="uml:Class" xmi:id="_IrQwkPupEdqPS9oJcuwDkA" name="IteratorEnumerationAdapter" clientDependency="_cKrdwPxFEdqPCPYQWc94YQ">
+            <eAnnotations xmi:id="_3KGKcPupEdqPS9oJcuwDkA" source="http://www.topcased.org/uuid">
+              <details xmi:id="_3KGKcfupEdqPS9oJcuwDkA" key="uuid" value="11502917930475"/>
+            </eAnnotations>
+            <ownedBehavior xmi:type="uml:Activity" xmi:id="_Z_zsMPxGEdqPCPYQWc94YQ" name="IteratorEnumerationAdapterActivity" specification="_eLAWwPxFEdqPCPYQWc94YQ" body="this.iterator = iterator;" language="java">
+              <eAnnotations xmi:id="_pP81cPxGEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                <details xmi:id="_pP81cfxGEdqPCPYQWc94YQ" key="uuid" value="115035913069525"/>
+              </eAnnotations>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:Activity" xmi:id="_Jv_ZMPxHEdqPCPYQWc94YQ" name="hasMoreElementsActivity" specification="_yDgyQPxFEdqPCPYQWc94YQ" body="return iterator.hasNext();" language="java">
+              <eAnnotations xmi:id="_1rGSEPxHEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                <details xmi:id="_1rGSEfxHEdqPCPYQWc94YQ" key="uuid" value="115035964356928"/>
+              </eAnnotations>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:Activity" xmi:id="_qqC_cPxHEdqPCPYQWc94YQ" name="nextElementActivity" specification="_1BS8kPxGEdqPCPYQWc94YQ" body="return iterator.next();" language="java">
+              <eAnnotations xmi:id="_1rG5IPxHEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                <details xmi:id="_1rG5IfxHEdqPCPYQWc94YQ" key="uuid" value="115035964357029"/>
+              </eAnnotations>
+            </ownedBehavior>
+            <implementation xmi:id="_cKrdwPxFEdqPCPYQWc94YQ" name="Implementation1" client="_IrQwkPupEdqPS9oJcuwDkA">
+              <eAnnotations xmi:id="_uLibIPxFEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                <details xmi:id="_uLibIfxFEdqPCPYQWc94YQ" key="uuid" value="115035873429018"/>
+              </eAnnotations>
+              <supplier xmi:type="uml:Interface" href="JavaTypes.uml2#_OB3wAPxFEdqPCPYQWc94YQ"/>
+              <contract href="JavaTypes.uml2#_OB3wAPxFEdqPCPYQWc94YQ"/>
+            </implementation>
+            <ownedAttribute xmi:id="_ffx74PxGEdqPCPYQWc94YQ" name="iterator" visibility="private">
+              <eAnnotations xmi:id="_pP9cgPxGEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                <details xmi:id="_pP9cgfxGEdqPCPYQWc94YQ" key="uuid" value="115035913069629"/>
+              </eAnnotations>
+              <type xmi:type="uml:Interface" href="JavaTypes.uml2#_PDpWEPxFEdqPCPYQWc94YQ"/>
+            </ownedAttribute>
+            <ownedOperation xmi:id="_eLAWwPxFEdqPCPYQWc94YQ" name="IteratorEnumerationAdapter" method="_Z_zsMPxGEdqPCPYQWc94YQ" type="_IrQwkPupEdqPS9oJcuwDkA">
+              <eAnnotations xmi:id="_uLjpQPxFEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                <details xmi:id="_uLjpQfxFEdqPCPYQWc94YQ" key="uuid" value="115035873429219"/>
+              </eAnnotations>
+              <eAnnotations xmi:id="_HzGEIPxGEdqPCPYQWc94YQ" source="appliedStereotypes">
+                <eAnnotations xmi:id="_JvrsoPxGEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_JvrsofxGEdqPCPYQWc94YQ" key="uuid" value="115035891927427"/>
+                </eAnnotations>
+                <contents xmi:type="Basic_0:Basic__Create" xmi:id="_Hzu9UPxGEdqPCPYQWc94YQ"/>
+              </eAnnotations>
+              <returnResult xmi:id="_htRjoPxFEdqPCPYQWc94YQ" name="return" type="_IrQwkPupEdqPS9oJcuwDkA" direction="return">
+                <eAnnotations xmi:id="_uLk3YPxFEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_uLk3YfxFEdqPCPYQWc94YQ" key="uuid" value="115035873429420"/>
+                </eAnnotations>
+              </returnResult>
+              <ownedParameter xmi:id="_ln8CYPxFEdqPCPYQWc94YQ" name="iterator" effect="read">
+                <eAnnotations xmi:id="_uLlecPxFEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_uLlecfxFEdqPCPYQWc94YQ" key="uuid" value="115035873429521"/>
+                </eAnnotations>
+                <type xmi:type="uml:Interface" href="JavaTypes.uml2#_PDpWEPxFEdqPCPYQWc94YQ"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_yDgyQPxFEdqPCPYQWc94YQ" name="hasMoreElements" method="_Jv_ZMPxHEdqPCPYQWc94YQ">
+              <eAnnotations xmi:id="_JvrsovxGEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                <details xmi:id="_Jvrso_xGEdqPCPYQWc94YQ" key="uuid" value="115035891927435"/>
+              </eAnnotations>
+              <returnResult xmi:id="_4I-7sPxFEdqPCPYQWc94YQ" name="return" direction="return">
+                <eAnnotations xmi:id="_JvsTsPxGEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_JvsTsfxGEdqPCPYQWc94YQ" key="uuid" value="115035891927536"/>
+                </eAnnotations>
+                <type xmi:type="uml:DataType" href="JavaTypes.uml2#_OO4ysPfvEdqaqL9wEVL3aA"/>
+              </returnResult>
+              <type xmi:type="uml:DataType" href="JavaTypes.uml2#_OO4ysPfvEdqaqL9wEVL3aA"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_1BS8kPxGEdqPCPYQWc94YQ" name="nextElement" method="_qqC_cPxHEdqPCPYQWc94YQ">
+              <eAnnotations xmi:id="_BdleIPxHEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                <details xmi:id="_BdleIfxHEdqPCPYQWc94YQ" key="uuid" value="115035929318653"/>
+              </eAnnotations>
+              <returnResult xmi:id="_6_PhsPxGEdqPCPYQWc94YQ" name="return" direction="return">
+                <eAnnotations xmi:id="_BdmFMPxHEdqPCPYQWc94YQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_BdmFMfxHEdqPCPYQWc94YQ" key="uuid" value="115035929318754"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="JavaTypes.uml2#_bjrpkPfvEdqaqL9wEVL3aA"/>
+              </returnResult>
+              <type xmi:type="uml:Class" href="JavaTypes.uml2#_bjrpkPfvEdqaqL9wEVL3aA"/>
+            </ownedOperation>
+          </ownedMember>
+        </ownedMember>
+      </ownedMember>
+    </ownedMember>
+  </ownedMember>
+</uml:Model>

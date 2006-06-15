@@ -192,7 +192,7 @@
       </contained>
     </contained>
   </diagrams>
-  <diagrams position="0,0" size="100,100" name="java.util" viewport="80,140">
+  <diagrams position="0,0" size="100,100" name="java.util" viewport="80,0">
     <property key="pageFormatName" value="A4"/>
     <property key="diagramWidth" value="840"/>
     <property key="diagramHeight" value="1188"/>
@@ -503,6 +503,42 @@
       <semanticModel xsi:type="di:EMFSemanticModelBridge">
         <element href="JavaTypes.uml2#_fFcOMPfxEdqaqL9wEVL3aA"/>
       </semanticModel>
+    </contained>
+    <contained xsi:type="di:GraphNode" position="430,24" size="100,-1">
+      <property key="backgroundColor" value="255,255,255"/>
+      <semanticModel xsi:type="di:EMFSemanticModelBridge">
+        <element href="JavaTypes.uml2#_OB3wAPxFEdqPCPYQWc94YQ"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode">
+        <property key="eStructuralFeatureID" value="35"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge">
+          <element href="JavaTypes.uml2#_OB3wAPxFEdqPCPYQWc94YQ"/>
+        </semanticModel>
+      </contained>
+      <contained xsi:type="di:GraphNode">
+        <property key="eStructuralFeatureID" value="36"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge">
+          <element href="JavaTypes.uml2#_OB3wAPxFEdqPCPYQWc94YQ"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" position="550,24" size="100,-1">
+      <property key="backgroundColor" value="255,255,255"/>
+      <semanticModel xsi:type="di:EMFSemanticModelBridge">
+        <element href="JavaTypes.uml2#_PDpWEPxFEdqPCPYQWc94YQ"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode">
+        <property key="eStructuralFeatureID" value="35"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge">
+          <element href="JavaTypes.uml2#_PDpWEPxFEdqPCPYQWc94YQ"/>
+        </semanticModel>
+      </contained>
+      <contained xsi:type="di:GraphNode">
+        <property key="eStructuralFeatureID" value="36"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge">
+          <element href="JavaTypes.uml2#_PDpWEPxFEdqPCPYQWc94YQ"/>
+        </semanticModel>
+      </contained>
     </contained>
   </diagrams>
   <diagrams position="0,0" size="100,100" name="JavaTypes" viewport="0,0">

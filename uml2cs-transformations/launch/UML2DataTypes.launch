@@ -2,27 +2,36 @@
 <launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
 <mapAttribute key="Model Handler">
 <mapEntry key="OUT" value=""/>
+<mapEntry key="JAVATYPES" value=""/>
 <mapEntry key="UML2" value="EMF"/>
 <mapEntry key="IN" value=""/>
 </mapAttribute>
-<stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Copy.atl"/>
-<mapAttribute key="Libs"/>
+<stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2DataTypes.atl"/>
+<mapAttribute key="Libs">
+<mapEntry key="Java" value="/uml2cs-transformations/lib/Java1.asm"/>
+<mapEntry key="UML2" value="/uml2cs-transformations/lib/UML2.asm"/>
+<mapEntry key="Mappings" value="/uml2cs-transformations/lib/JavaMappings.asm"/>
+<mapEntry key="Strings" value="/uml2cs-transformations/lib/Strings.asm"/>
+</mapAttribute>
 <booleanAttribute key="Mode Debug" value="false"/>
 <mapAttribute key="ModelType">
 <mapEntry key="OUT" value="MODELOUTPUT"/>
+<mapEntry key="JAVATYPES" value="MODELINPUT"/>
 <mapEntry key="UML2" value="METAMODELINPUT"/>
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/im-copy.uml2"/>
+<mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/im-datatypes.uml2"/>
+<mapEntry key="JAVATYPES" value="/uml2cs-transformations/models/JavaTypes.uml2"/>
 <mapEntry key="UML2" value="uri:http://www.eclipse.org/uml2/1.0.0/UML"/>
-<mapEntry key="IN" value="/uml2cs-instantmessenger-model/models/InstantMessengerModel.uml2"/>
+<mapEntry key="IN" value="/uml2cs-instantmessenger-model/outmodels/test/im-accessors.uml2"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <mapAttribute key="Output">
 <mapEntry key="OUT" value="UML2"/>
 </mapAttribute>
 <mapAttribute key="Input">
+<mapEntry key="JAVATYPES" value="UML2"/>
 <mapEntry key="IN" value="UML2"/>
 </mapAttribute>
 <booleanAttribute key="AllowInterModelReferences" value="true"/>

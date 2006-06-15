@@ -11,7 +11,7 @@
 --
 module UML2Accessors;
 
-create OUT : UML2 from IN : UML2, ACCESSORS : UML2;
+create OUT : UML2 from IN : UML2, ACCESSORS : UML2, UML2TYPES : UML2;
 
 uses Strings;
 uses UML2;
@@ -21,6 +21,9 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
+helper def: stereotypesToApply : Sequence(TupleType(
+	s : UML2!Stereotype, t : UML2!Element)) = Sequence {};
+	
 helper def : inElements : Set(UML2!Element) = UML2!Element->allInstancesFrom('IN');
 helper def : accessorsProfile : UML2!Profile = 'Accessors'->profile();
 helper def : accessor : UML2!Stereotype = 'accessor'->stereotype();
@@ -100,6 +103,21 @@ helper context UML2!Property def : getter() : String =
 -- transformation rules begin
 -- ======================================================================
 
+rule ApplyStereotype(t : UML2!Element, s : UML2!Stereotype) {
+	do { -- remember this for later application
+		thisModule.stereotypesToApply <- thisModule.stereotypesToApply->append(
+			Tuple {s = s, t = t});
+	}
+}
+
+endpoint rule ApplyStereotypes() {
+	do {
+		for (tuple in thisModule.stereotypesToApply) {
+			tuple.t->apply(tuple.s);
+		}
+	}
+}
+
 rule ModelProfileApplication {
 	from s : UML2!Model (
 		thisModule.inElements->includes(s))
@@ -137,11 +155,9 @@ rule PublicPropertySingle {
 			s->isNavigable() and
 			s->isSingle()
 		else false endif)
-	using { vis : UML2!VisibilityKind =
-				if s.visibility = #public then #private else s.visibility endif;
-			baseNameS : String = s->accessorBaseNameS();
+	using { baseNameS : String = s->accessorBaseNameS();
 			p : UML2!Package = s.class_->owningPackage(); }
-	to
+    to
 	-- Get --
 		getOp : UML2!Operation (
 	   	name <- 'get' + baseNameS,
@@ -205,8 +221,10 @@ rule PublicPropertySingle {
 	do {
 		s.visibility <- #private;
 		p.ownedMember <- p.ownedMember->union(Set{getDep, setDep});
-		getDep.apply(thisModule.accessor);
-		setDep.apply(thisModule.accessor);
+		getDep->apply(thisModule.accessor);		
+		setDep->apply(thisModule.accessor);		
+--		thisModule.ApplyStereotype(getDep, thisModule.accessor);
+--		thisModule.ApplyStereotype(setDep, thisModule.accessor);
 	}
 }
 
@@ -219,12 +237,10 @@ rule PublicPropertyCollection {
 			not s->isSingle() and 
 			not s.isOrdered
 		else false endif)
-	using { vis : UML2!VisibilityKind =
-				if s.visibility = #public then #private else s.visibility endif;
-			baseNameS : String = s->accessorBaseNameS();
+	using { baseNameS : String = s->accessorBaseNameS();
 			baseName : String = s->accessorBaseName();
 			p : UML2!Package = s.class_->owningPackage(); }
-	to 
+    to
 	-- Get --
 		getOp : UML2!Operation (
 	   	name <- 'get' + baseNameS,
@@ -333,12 +349,10 @@ rule PublicPropertySequence {
 			not s->isSingle() and 
 			s.isOrdered
 		else false endif)
-	using { vis : UML2!VisibilityKind =
-				if s.visibility = #public then #private else s.visibility endif;
-			baseNameS : String = s->accessorBaseNameS();
+	using { baseNameS : String = s->accessorBaseNameS();
 			baseName : String = s->accessorBaseName();
 			p : UML2!Package = s.class_->owningPackage(); }
-	to 
+    to
 	-- Get --
 		getOp : UML2!Operation (
 	   	name <- 'get' + baseNameS,
@@ -354,7 +368,7 @@ rule PublicPropertySequence {
         upperValue <- getParUp,
 		type <- s.type,
 		effect <- #read,
-		kind <- #return),
+		direction <- #return),
 	   getParLow : UML2!LiteralInteger (
 	   	value <- s->lower()),
 	   getParUp : UML2!LiteralUnlimitedNatural (
@@ -447,7 +461,7 @@ rule PublicPropertySequence {
 		direction <- #"in"),
 	   getAtPar1Low : UML2!LiteralInteger (
 	   	value <- 1),
-	   getAtPar1Up : UML2!LiteralUnlimitedNumeral (
+	   getAtPar1Up : UML2!LiteralUnlimitedNatural (
 	   	value <- 1),
 	   getAtPar2 : UML2!Parameter (
 	   	name <- 'return',
@@ -459,14 +473,14 @@ rule PublicPropertySequence {
 		direction <- #"return"),
 	   getAtPar2Low : UML2!LiteralInteger (
 	   	value <- 1),
-	   getAtPar2Up : UML2!LiteralUnlimitedNumeral (
+	   getAtPar2Up : UML2!LiteralUnlimitedNatural (
 	   	value <- 1),
 	   getAtBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- getAtOp,
 		name <- getAtOp.name + 'Activity',
 		language <- 'language'->value(),
-		body <- s.name->getAtBody(s.type->qName())),
+		body <- s.name->getAtBody(s.type->umlQualifiedName())),
 	   getAtDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'get' + baseName + 'At()',
 		client <- getAtOp,
@@ -489,7 +503,7 @@ rule PublicPropertySequence {
 		direction <- #"in"),
 	   insertPar1Low : UML2!LiteralInteger (
 	   	value <- 1),
-	   insertPar1Up : UML2!LiteralUnlimitedNumeral (
+	   insertPar1Up : UML2!LiteralUnlimitedNatural (
 	   	value <- 1),
 	   insertPar2 : UML2!Parameter (
 	   	name <- 'index',
@@ -501,7 +515,7 @@ rule PublicPropertySequence {
 		direction <- #"in"),
 	   insertPar2Low : UML2!LiteralInteger (
 	   	value <- 1),
-	   insertPar2Up : UML2!LiteralUnlimitedNumeral (
+	   insertPar2Up : UML2!LiteralUnlimitedNatural (
 	   	value <- 1),
 	   insertActivity : UML2!Activity (
 	   	"context" <- s.class_,

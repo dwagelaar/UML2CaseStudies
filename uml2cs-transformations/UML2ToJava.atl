@@ -33,7 +33,7 @@ helper context UML2!DataType def : typeName() : String =
 	self.name;
 
 helper context UML2!NamedElement def : fileName() : String =
-	self.qualifiedName('/');
+	self->qualifiedName('/');
 
 helper context UML2!NamedElement def : pathName() : String =
 	self->fileName()->path() + '.java';
@@ -79,31 +79,35 @@ helper context UML2!BehavioralFeature def : isConstructor() : Boolean =
 -- ======================================================================
 
 helper context UML2!Classifier def : toFileString() : String =
-	self.packageDecl() + self.importDecl() + '\n' +
-	self.toString();
+	self->packageDecl() + self->importDecl() + '\n' +
+	self->toString();
 
 helper context UML2!Classifier def : packageDecl() : String =
-	if self.isInPackage() then 'package ' + self.owner->qualifiedName('.') + ';\n\n'
+	if self->isInPackage() then 'package ' + self.owner->qualifiedName('.') + ';\n\n'
 	else '' endif;
 
 helper context UML2!Classifier def : importDecl() : String =
-	self.clientDependency->select(e |
-		e->oclIsTypeOf(UML2!Dependency))->iterate(e; acc : String = '' |
-			acc + 'import ' + e.supplier->first()->importName() + ';\n');
+	self.clientDependency->select(c |
+		c->oclIsTypeOf(UML2!Dependency))->collect(d|d.supplier)->
+			flatten()->iterate(e; acc : String = '' |
+				acc + e->importLine());
+
+helper context UML2!NamedElement def : importLine() : String =
+	'import ' + self->importName() + ';\n';
 
 helper context UML2!NamedElement def : importName() : String =
-	self.qualifiedName('.');
+	self->qualifiedName('.');
 
 helper context UML2!Package def : importName() : String =
-	self.qualifiedName('.') + '.*';
+	self->qualifiedName('.') + '.*';
 
 helper context UML2!Class def : toString() : String =
-	self.visibility() + self.isAbstract() + 'class ' + self.name +
-	self.extendsClause() + self.implementsClause() +
+	self->visibility() + self->isAbstract() + 'class ' + self.name +
+	self->extendsClause() + self->implementsClause() +
 	' {\n' +
-	self.nestedClassifier->iterate(e; acc : String = '' | acc + e.toString()) +
-	self.ownedAttribute->iterate(e; acc : String = '' | acc + e.toString()) +
-	self.ownedOperation->iterate(e; acc : String = '' | acc + e.toString()) +
+	self.nestedClassifier->iterate(e; acc : String = '' | acc + e->toString()) +
+	self.ownedAttribute->iterate(e; acc : String = '' | acc + e->toString()) +
+	self.ownedOperation->iterate(e; acc : String = '' | acc + e->toString()) +
 	'}\n\n';
 
 helper context UML2!Class def : extendsClause() : String =
@@ -132,8 +136,8 @@ helper context UML2!Property def : toString() : String =
 helper context UML2!Operation def : toString() : String =
 	self->visibility() + self->isStatic() + self->isAbstract() +
 	self->returnParameter() + self.name + '(' + self->parameters() + ')' +
-	self.throwsClause() +
-	if self.isAbstract or self.owner.oclIsKindOf(UML2!Interface)
+	self->throwsClause() +
+	if self.isAbstract or self.owner->oclIsKindOf(UML2!Interface)
 	then ';\n\n'
 	else ' {\n' + self->body() + '\n}\n\n'
 	endif;
@@ -142,10 +146,10 @@ helper context UML2!Operation def : throwsClause() : String =
 	self.raisedException->iterate(e; acc : String = '' |
 		acc +
 		if acc = '' then ' throws ' else ', ' endif +
-		e.qualifiedName('.'));
+		e->qualifiedName('.'));
 
 helper context UML2!Operation def : body() : String =
-	self.method->select(b|b.oclIsKindOf(UML2!Activity))->select(a|
+	self.method->select(b|b->oclIsKindOf(UML2!Activity))->select(a|
 		a.language = 'java')->iterate(e; acc : String = ''|acc + e.body);
 
 helper context UML2!BehavioralFeature def : returnParameter() : String =
@@ -164,13 +168,13 @@ helper context UML2!Interface def : toString() : String =
 	self->visibility() + self->isAbstract() + 'interface ' + self.name +
 	self->extendsClause() +
 	' {\n' +
-	self.nestedClassifier->iterate(e; acc : String = '' | acc + e.toString()) +
-	self.ownedOperation->iterate(e; acc : String = '' | acc + e.toString()) +
+	self.nestedClassifier->iterate(e; acc : String = '' | acc + e->toString()) +
+	self.ownedOperation->iterate(e; acc : String = '' | acc + e->toString()) +
 	'}\n\n';
 
 helper context UML2!Interface def : extendsClause() : String =
 	self.clientDependency->select(e |
-		e.oclIsTypeOf(UML2!Implementation))->iterate(e; acc : String = '' |
+		e->oclIsTypeOf(UML2!Implementation))->iterate(e; acc : String = '' |
 			acc + 
 			if acc = '' then ' extends ' + e.contract->qualifiedName('.')
 			else ', ' + e.contract->qualifiedName('.')

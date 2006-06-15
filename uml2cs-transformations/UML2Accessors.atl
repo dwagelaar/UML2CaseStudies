@@ -21,9 +21,6 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def: stereotypesToApply : Sequence(TupleType(
-	s : UML2!Stereotype, t : UML2!Element)) = Sequence {};
-	
 helper def : inElements : Set(UML2!Element) = UML2!Element->allInstancesFrom('IN');
 helper def : accessorsProfile : UML2!Profile = 'Accessors'->profile();
 helper def : accessor : UML2!Stereotype = 'accessor'->stereotype();
@@ -102,21 +99,6 @@ helper context UML2!Property def : getter() : String =
 -- ======================================================================
 -- transformation rules begin
 -- ======================================================================
-
-rule ApplyStereotype(t : UML2!Element, s : UML2!Stereotype) {
-	do { -- remember this for later application
-		thisModule.stereotypesToApply <- thisModule.stereotypesToApply->append(
-			Tuple {s = s, t = t});
-	}
-}
-
-endpoint rule ApplyStereotypes() {
-	do {
-		for (tuple in thisModule.stereotypesToApply) {
-			tuple.t->apply(tuple.s);
-		}
-	}
-}
 
 rule ModelProfileApplication {
 	from s : UML2!Model (
@@ -223,8 +205,6 @@ rule PublicPropertySingle {
 		p.ownedMember <- p.ownedMember->union(Set{getDep, setDep});
 		getDep->apply(thisModule.accessor);		
 		setDep->apply(thisModule.accessor);		
---		thisModule.ApplyStereotype(getDep, thisModule.accessor);
---		thisModule.ApplyStereotype(setDep, thisModule.accessor);
 	}
 }
 
@@ -495,7 +475,7 @@ rule PublicPropertySequence {
 		concurrency <- #sequential),
 	   insertPar1 : UML2!Parameter (
 	   	name <- s.name,
-		operation <- getAtOp,
+		operation <- insertOp,
         lowerValue <- insertPar1Low,
         upperValue <- insertPar1Up,
 		type <- s.type,

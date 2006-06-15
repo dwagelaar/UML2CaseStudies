@@ -35,6 +35,9 @@ helper context String def : addRemoveSetterBody(otherEnd : String) : String =
 helper context String def : getterBody() : String =
 	'return ' + self + ';';
 
+helper context String def : multiGetterBody() : String =
+	self->javaMultiGetterBody();
+	
 helper context String def : getAtBody(type : String) : String =
 	self->javaGetAt(type);
 
@@ -49,8 +52,9 @@ helper context String def : javaContainsCheck(body : String) : String =
 helper context String def : javaOtherEndSetter(otherEnd : String) : String =
 	self + '.set' + otherEnd + '(this);';
 
-helper context String def : adderBody() : String =
-	self->javaAdder();
+helper context String def : adderBody(isUnique : Boolean) : String =
+	if isUnique then self->javaNotContainsCheck('    ' + self->javaAdder())
+	else self->javaAdder() endif;
 
 helper context String def : javaOtherEndAdder(otherEnd : String) : String =
 	self + '.add' + otherEnd + '(this);';
@@ -66,8 +70,9 @@ helper context String def : setterAdderBody(otherEnd : String) : String =
 	'    ' + self->javaAdder() + '\n' +
 	'    ' + self->javaOtherEndSetter(otherEnd));
 	
-helper context String def : insertBody() : String =
-	self->javaInsert();
+helper context String def : insertBody(isUnique : Boolean) : String =
+	if isUnique then self->javaNotContainsCheck('    ' + self->javaInsert())
+	else self->javaInsert() endif;
 
 helper context String def : setterInsertBody(otherEnd : String) : String =
 	self->javaNotContainsCheck(
@@ -96,6 +101,9 @@ helper context String def : implTypeName() : String =
 	if self = 'OclAny' then 'java::lang::Object' else
 	self->javaImplTypeName()
 	endif endif endif endif endif endif;
+
+helper context String def : implCollectionReturnTypeName() : String =
+	'java::util::Enumeration';
 
 helper context String def : defaultValueBody() : String =
 	if self = 'java::lang::int' then '0' else

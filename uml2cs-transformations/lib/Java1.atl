@@ -4,6 +4,9 @@ library Java1;
 
 ------------------------------- Accessors -----------------------------------
 
+helper context String def : javaMultiGetterBody() : String =
+	'return ' + self + '.elements();';
+
 helper context String def : javaGetAt(type : String) : String =
 	'try {\n' +
 	'    return (' + type + ') ' + self + '.elementAt(index);\n' +

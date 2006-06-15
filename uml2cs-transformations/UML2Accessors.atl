@@ -35,37 +35,43 @@ helper context UML2!Property def : setter() : String =
 
 helper context UML2!Property def : dualSetter() : String =
 	if self.associatedProperty().isSingle() then
-		self.name->dualSetterBody(self->associatedProperty().name->firstToUpper())
+		self.name->dualSetterBody(
+			self->associatedProperty().name->firstToUpper())
 	else
-		self.name->addRemoveSetterBody(self->associatedProperty().name->firstToUpper())
+		self.name->addRemoveSetterBody(
+			self->associatedProperty().name->firstToUpper())
 	endif;
 	
 helper context UML2!Property def : adder() : String =
 	if self->hasAssociatedProperty() then
 		self->dualAdder()
 	else
-		self.name->adderBody()
+		self.name->adderBody(self.isUnique)
 	endif;
 
 helper context UML2!Property def : dualAdder() : String =
 	if self->associatedProperty()->isSingle() then
-		self.name->setterAdderBody(self->associatedProperty().name->firstToUpper())
+		self.name->setterAdderBody(
+			self->associatedProperty().name->firstToUpper())
 	else
-		self.name->dualAdderBody(self->associatedProperty().name->firstToUpper())
+		self.name->dualAdderBody(
+			self->associatedProperty().name->firstToUpper())
 	endif;
 	
 helper context UML2!Property def : insert() : String =
 	if self->hasAssociatedProperty() then
 		self->dualInsert()
 	else
-		self.name->insertBody()
+		self.name->insertBody(self.isUnique)
 	endif;
 
 helper context UML2!Property def : dualInsert() : String =
 	if self->associatedProperty()->isSingle() then
-		self.name->setterInsertBody(self->associatedProperty().name->firstToUpper())
+		self.name->setterInsertBody(
+			self->associatedProperty().name->firstToUpper())
 	else
-		self.name->dualInsertBody(self->associatedProperty().name->firstToUpper())
+		self.name->dualInsertBody(
+			self->associatedProperty().name->firstToUpper())
 	endif;
 	
 helper context UML2!Property def : remover() : String =
@@ -81,6 +87,10 @@ helper context UML2!Property def : dualRemover() : String =
 	else
 		self.name->dualRemoverBody(self->associatedProperty().name->firstToUpper())
 	endif;
+
+helper context UML2!Property def : getter() : String =
+	if self->isSingle() then self.name->getterBody()
+	else self.name->multiGetterBody() endif;
 
 -- ======================================================================
 -- model-specific helpers end
@@ -157,7 +167,7 @@ rule PublicPropertySingle {
 	   	specification <- getOp,
 		name <- getOp.name + 'Activity',
 	   	language <- 'language'->value(),
-		body <- s.name->getterBody()),
+		body <- s->getter()),
 	   getDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
 		client <- getOp,
@@ -240,7 +250,7 @@ rule PublicPropertyCollection {
 	   	specification <- getOp,
 		name <- getOp.name + 'Activity',
 		language <- 'language'->value(),
-		body <- s.name->getterBody()),
+		body <- s->getter()),
 	   getDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
 		client <- getOp,
@@ -354,7 +364,7 @@ rule PublicPropertySequence {
 	   	specification <- getOp,
 		name <- getOp.name + 'Activity',
 		language <- 'language'->value(),
-		body <- s.name->getterBody()),
+		body <- s->getter()),
 	   getDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
 		client <- getOp,

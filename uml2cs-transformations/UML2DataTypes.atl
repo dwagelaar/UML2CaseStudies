@@ -33,9 +33,11 @@ helper context UML2!StructuralFeature def : implType() : UML2!Type =
 helper context UML2!Parameter def : implType() : UML2!Type =
 	if self->isSingle() then
 		self.type->implType()
+	else if self.direction = #return then
+		self.type.name->implCollectionReturnTypeName()->type()
 	else
 		self->implCollectionType()
-	endif;
+	endif endif;
 
 helper context UML2!MultiplicityElement def : implCollectionType() : UML2!Type =
 	if self.isOrdered then

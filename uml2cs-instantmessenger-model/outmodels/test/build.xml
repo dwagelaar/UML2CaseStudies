@@ -2,6 +2,7 @@
 <project name="uml2cs-instantmessenger-model" default="all">
 	<property name="project.path" value="/${ant.project.name}"/>
 	<property name="current.path" value="${project.path}/outmodels/test"/>
+	<property name="target.path" value="../../../uml2cs-instantmessenger-default/src"/>
 	
 	<property name="metamodel.uml2.nsURI" value="http://www.eclipse.org/uml2/1.0.0/UML"/>
 	<property name="profile.accessors.path" value="/uml2cs-transformations/profiles/Accessors.profile.uml2"/>
@@ -71,6 +72,9 @@
 	</target>
 
 	<target name="generate" depends="im-datatypes">
+        <delete>
+            <fileset dir="${target.path}"/>
+        </delete>
 		<am3.atl path="${trans.uml2tojava.path}" allowInterModelReferences="true">
 			<inmodel name="UML2" model="UML2"/>
 			<inmodel name="IN" model="im-datatypes"/>

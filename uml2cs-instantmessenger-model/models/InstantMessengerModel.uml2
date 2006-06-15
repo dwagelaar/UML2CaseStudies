@@ -58,7 +58,7 @@
         <contents xmi:type="Observer_0:Observer__Observer" xmi:id="_C9e1wPumEdqPS9oJcuwDkA"/>
         <contents xmi:type="Singleton_0:Singleton__Singleton" xmi:id="_C9fc0PumEdqPS9oJcuwDkA"/>
       </eAnnotations>
-      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-oVuQOccEdqQTtzfbcEKGw" name="reportActivity" specification="_NLLp4OQuEdqD2ZNp93yIAQ" body="        for (int i = 0; i &lt; getNetworks().size(); i++) {&#xA;            if (getNetworkAt(i) instanceof ExceptionReporter) {&#xA;                ((ExceptionReporter) getNetworkAt(i)).report(e);&#xA;                return;&#xA;            }&#xA;        }&#xA;        System.err.println(e.getMessage());&#xA;        e.printStackTrace();" language="java">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-oVuQOccEdqQTtzfbcEKGw" name="reportActivity" specification="_NLLp4OQuEdqD2ZNp93yIAQ" body="        for (java.util.Enumeration ns = getNetworks(); ns.hasMoreElements();) {&#xA;            Object n = ns.nextElement();&#xA;            if (n instanceof ExceptionReporter) {&#xA;                ((ExceptionReporter) n).report(e);&#xA;                return;&#xA;            }&#xA;        }&#xA;        System.err.println(e.getMessage());&#xA;        e.printStackTrace();" language="java">
         <eAnnotations xmi:id="_Oq2voOcdEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">
           <details xmi:id="_Oq2voecdEdqQTtzfbcEKGw" key="uuid" value="114803236853836"/>
         </eAnnotations>

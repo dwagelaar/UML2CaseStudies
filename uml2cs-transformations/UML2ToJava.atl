@@ -11,9 +11,6 @@ uses UML2;
 -- plumbing helpers begin
 -- ======================================================================
 
-helper def : final : UML2!Stereotype = 'final'->stereotype();
-helper def : Create : UML2!Stereotype = 'Create'->stereotype();
-
 helper context UML2!Classifier def : ignore() : Boolean =
 	true;
 
@@ -59,16 +56,14 @@ helper context UML2!StructuralFeature def : final() : String =
 	else '' endif;
 
 helper context UML2!Parameter def : isFinal() : Boolean =
-	if thisModule.final->oclIsUndefined() then false
-	else self->isApplied(thisModule.final) endif;
+	self->getAppliedStereotypes()->select(s|s.name='final')->notEmpty();
 	
 helper context UML2!Parameter def : final() : String =
 	if self->isFinal() then 'final '
 	else '' endif;
 
 helper context UML2!BehavioralFeature def : isConstructor() : Boolean =
-	if thisModule.Create->oclIsUndefined() then false
-	else self->isApplied(thisModule.Create) endif;
+	self->getAppliedStereotypes()->select(s|s.name='Create')->notEmpty();
 
 -- ======================================================================
 -- plumbing helpers end

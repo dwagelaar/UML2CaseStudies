@@ -8,7 +8,8 @@ uses Java; -- Java1 or Java2
 
 helper context String def : value() : String =
 	if self = 'language' then 'java'
-	else '' endif;
+	else if self = 'separator' then '.'
+	else '' endif endif;
 
 ------------------------------- Accessors -----------------------------------
 
@@ -40,6 +41,9 @@ helper context String def : multiGetterBody() : String =
 	
 helper context String def : getAtBody(type : String) : String =
 	self->javaGetAt(type);
+
+helper context String def : indexOfBody() : String =
+	'return this.' + self + '.indexOf(' + self + ');';
 
 helper context String def : javaNotContainsCheck(body : String) : String =
 	'if (! this.' + self + '.contains(' + self + ')) {\n' +

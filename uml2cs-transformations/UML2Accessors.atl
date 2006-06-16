@@ -88,6 +88,9 @@ helper context UML2!Property def : getter() : String =
 	if self->isSingle() then self.name->getterBody()
 	else self.name->multiGetterBody() endif;
 
+helper context UML2!Property def : getAt() : String =
+	self.name->getAtBody(self.type->qualifiedName('separator'->value()));
+
 -- ======================================================================
 -- model-specific helpers end
 -- ======================================================================
@@ -181,15 +184,9 @@ rule PublicPropertySingle {
 	   getPar : UML2!Parameter (
 	   	name <- 'return',
 		operation <- getOp,
-        lowerValue <- getParLow,
-        upperValue <- getParUp,
 		type <- s.type,
 		effect <- #read,
 		direction <- #return),
-	   getParLow : UML2!LiteralInteger (
-	   	value <- s->lower()),
-	   getParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- s->upper()),
 	   getBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- getOp,
@@ -211,15 +208,9 @@ rule PublicPropertySingle {
 	   setPar : UML2!Parameter (
 	   	name <- s.name,
 		operation <- setOp,
-        lowerValue <- setParLow,
-        upperValue <- setParUp,
 		type <- s.type,
 		effect <- #update,
 		direction <- #"in"),
-	   setParLow : UML2!LiteralInteger (
-	   	value <- s->lower()),
-	   setParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- s->upper()),
 	   setBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- setOp,
@@ -231,7 +222,6 @@ rule PublicPropertySingle {
 		client <- setOp,
 		supplier <- s)
 	do {
---		s.visibility <- #private;
 		p.ownedMember <- p.ownedMember->union(Set{getDep, setDep});
 		getDep->apply(thisModule.accessor);
 		setDep->apply(thisModule.accessor);
@@ -319,15 +309,9 @@ rule PublicPropertyCollection {
 	   addPar : UML2!Parameter (
 	   	name <- s.name,
 		operation <- addOp,
-        lowerValue <- addParLow,
-        upperValue <- addParUp,
 		type <- s.type,
 		effect <- #update,
 		direction <- #"in"),
-	   addParLow : UML2!LiteralInteger (
-	   	value <- 1),
-	   addParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- 1),
 	   addBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- addOp,
@@ -349,15 +333,9 @@ rule PublicPropertyCollection {
 	   removePar : UML2!Parameter (
 	   	name <- s.name,
 		operation <- removeOp,
-        lowerValue <- removeParLow,
-        upperValue <- removeParUp,
 		type <- s.type,
 		effect <- #update,
 		direction <- #"in"),
-	   removeParLow : UML2!LiteralInteger (
-	   	value <- 1),
-	   removeParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- 1),
 	   removeBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- removeOp,
@@ -369,7 +347,6 @@ rule PublicPropertyCollection {
 		client <- removeOp,
 		supplier <- s)
 	do {
---		s.visibility <- #private;
 		p.ownedMember <- p.ownedMember->union(Set{getDep, addDep, removeDep});
 		getDep->apply(thisModule.accessor);
 		addDep->apply(thisModule.accessor);
@@ -458,15 +435,9 @@ rule PublicPropertySequence {
 	   addPar : UML2!Parameter (
 	   	name <- s.name,
 		operation <- addOp,
-        lowerValue <- addParLow,
-        upperValue <- addParUp,
 		type <- s.type,
 		effect <- #update,
 		direction <- #"in"),
-	   addParLow : UML2!LiteralInteger (
-	   	value <- 1),
-	   addParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- 1),
 	   addBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- addOp,
@@ -488,15 +459,9 @@ rule PublicPropertySequence {
 	   removePar : UML2!Parameter (
 	   	name <- s.name,
 		operation <- removeOp,
-        lowerValue <- removeParLow,
-        upperValue <- removeParUp,
 		type <- s.type,
 		effect <- #update,
 		direction <- #"in"),
-	   removeParLow : UML2!LiteralInteger (
-	   	value <- 1),
-	   removeParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- 1),
 	   removeBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- removeOp,
@@ -518,36 +483,54 @@ rule PublicPropertySequence {
 	   getAtPar1 : UML2!Parameter (
 	   	name <- 'index',
 		operation <- getAtOp,
-        lowerValue <- getAtPar1Low,
-        upperValue <- getAtPar1Up,
 		type <- thisModule.oclInteger,
 		effect <- #read,
 		direction <- #"in"),
-	   getAtPar1Low : UML2!LiteralInteger (
-	   	value <- 1),
-	   getAtPar1Up : UML2!LiteralUnlimitedNatural (
-	   	value <- 1),
 	   getAtPar2 : UML2!Parameter (
 	   	name <- 'return',
 		operation <- getAtOp,
-        lowerValue <- getAtPar2Low,
-        upperValue <- getAtPar2Up,
 		type <- s.type,
 		effect <- #read,
 		direction <- #"return"),
-	   getAtPar2Low : UML2!LiteralInteger (
-	   	value <- 1),
-	   getAtPar2Up : UML2!LiteralUnlimitedNatural (
-	   	value <- 1),
 	   getAtBehavior : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- getAtOp,
 		name <- getAtOp.name + 'Activity',
 		language <- 'language'->value(),
-		body <- s.name->getAtBody(s.type->umlQualifiedName())),
+		body <- s->getAt()),
 	   getAtDep : UML2!Dependency (
 	   	name <- 'accessor ' + 'get' + baseName + 'At()',
 		client <- getAtOp,
+		supplier <- s),
+	-- IndexOf --
+	   indexOfOp : UML2!Operation (
+	   	name <- 'getIndexOf' + baseName,
+		class_ <- s.class_,
+		visibility <- s.visibility,
+		isStatic <- s.isStatic,
+		isAbstract <- false,
+		concurrency <- #sequential),
+	   indexOfPar1 : UML2!Parameter (
+	   	name <- s.name,
+		operation <- indexOfOp,
+		type <- s.type,
+		effect <- #read,
+		direction <- #"in"),
+	   indexOfPar2 : UML2!Parameter (
+	   	name <- 'return',
+		operation <- indexOfOp,
+		type <- thisModule.oclInteger,
+		effect <- #read,
+		direction <- #"return"),
+	   indexOfBehavior : UML2!Activity (
+	   	"context" <- s.class_,
+	   	specification <- indexOfOp,
+		name <- indexOfOp.name + 'Activity',
+		language <- 'language'->value(),
+		body <- s.name->indexOfBody()),
+	   indexOfDep : UML2!Dependency (
+	   	name <- 'accessor ' + 'getIndexOf' + baseName + '()',
+		client <- indexOfOp,
 		supplier <- s),
 	-- Insert --
 	   insertOp : UML2!Operation (
@@ -560,27 +543,15 @@ rule PublicPropertySequence {
 	   insertPar1 : UML2!Parameter (
 	   	name <- s.name,
 		operation <- insertOp,
-        lowerValue <- insertPar1Low,
-        upperValue <- insertPar1Up,
 		type <- s.type,
 		effect <- #update,
 		direction <- #"in"),
-	   insertPar1Low : UML2!LiteralInteger (
-	   	value <- 1),
-	   insertPar1Up : UML2!LiteralUnlimitedNatural (
-	   	value <- 1),
 	   insertPar2 : UML2!Parameter (
 	   	name <- 'index',
 		operation <- insertOp,
-        lowerValue <- insertPar2Low,
-        upperValue <- insertPar2Up,
 		type <- thisModule.oclInteger,
 		effect <- #read,
 		direction <- #"in"),
-	   insertPar2Low : UML2!LiteralInteger (
-	   	value <- 1),
-	   insertPar2Up : UML2!LiteralUnlimitedNatural (
-	   	value <- 1),
 	   insertActivity : UML2!Activity (
 	   	"context" <- s.class_,
 	   	specification <- insertOp,
@@ -592,7 +563,6 @@ rule PublicPropertySequence {
 		client <- insertOp,
 		supplier <- s)
 	do {
---		s.visibility <- #private;
 		p.ownedMember <- p.ownedMember->union(Set{getDep, addDep, removeDep, getAtDep, insertDep});
 		getDep->apply(thisModule.accessor);
 		addDep->apply(thisModule.accessor);

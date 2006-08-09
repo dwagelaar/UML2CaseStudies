@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" xmi:id="_8186IOQoEdqD2ZNp93yIAQ" name="Applet" metaclassReference="_J8dA4OQqEdqD2ZNp93yIAQ">
+  <eAnnotations xmi:id="_J80NQOQqEdqD2ZNp93yIAQ" source="attributes">
+    <details xmi:id="_J9NO0OQqEdqD2ZNp93yIAQ" key="version" value="0"/>
+  </eAnnotations>
+  <eAnnotations xmi:id="_J9PEAOQqEdqD2ZNp93yIAQ" source="ePackages">
+    <contents xmi:type="ecore:EPackage" xmi:id="_J9dGcOQqEdqD2ZNp93yIAQ" name="Applet_0" nsURI="http:///Applet_0_J9Q5MOQqEdqD2ZNp93yIAQ.profile.uml2" nsPrefix="Applet_0">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_J9dGceQqEdqD2ZNp93yIAQ" name="Applet__Applet">
+        <eAnnotations xmi:id="_J9dGcuQqEdqD2ZNp93yIAQ" source="stereotype" references="_OtlqEOQpEdqD2ZNp93yIAQ"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_PlvH4PrDEdqXK6c4NbDn4w" name="appletInfo">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_aeRXsPrDEdqXK6c4NbDn4w" name="parameterInfo" upperBound="-1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_J8dA4OQqEdqD2ZNp93yIAQ" visibility="private">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML2_METAMODELS/UML2.metamodel.uml2#_m88uxq86EdiEh75YJ_3n8g"/>
+  </elementImport>
+  <ownedMember xmi:type="uml:Stereotype" xmi:id="_OtlqEOQpEdqD2ZNp93yIAQ" name="Applet">
+    <ownedAttribute xmi:id="_J8yYEOQqEdqD2ZNp93yIAQ" name="base$Classifier" association="_J8kVoOQqEdqD2ZNp93yIAQ">
+      <type xmi:type="uml:Class" href="pathmap://UML2_METAMODELS/UML2.metamodel.uml2#_m88vAa86EdiEh75YJ_3n8g"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="__hwNEOcdEdqQTtzfbcEKGw" name="appletInfo">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML2_LIBRARIES/UML2PrimitiveTypes.library.uml2#_IXlH8a86EdieaYgxtVWN8Q"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_XJxnQOceEdqQTtzfbcEKGw" name="parameterInfo">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML2_LIBRARIES/UML2PrimitiveTypes.library.uml2#_IXlH8a86EdieaYgxtVWN8Q"/>
+    </ownedAttribute>
+  </ownedMember>
+  <ownedMember xmi:type="uml:Extension" xmi:id="_J8kVoOQqEdqD2ZNp93yIAQ" name="Classifier_Applet" memberEnd="_J8xJ8OQqEdqD2ZNp93yIAQ _J8yYEOQqEdqD2ZNp93yIAQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_J8xJ8OQqEdqD2ZNp93yIAQ" name="extension$Applet" type="_OtlqEOQpEdqD2ZNp93yIAQ" association="_J8kVoOQqEdqD2ZNp93yIAQ" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J8xxAOQqEdqD2ZNp93yIAQ"/>
+    </ownedEnd>
+  </ownedMember>
+</uml:Profile>

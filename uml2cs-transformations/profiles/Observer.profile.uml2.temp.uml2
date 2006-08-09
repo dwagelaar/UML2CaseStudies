@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/1.0.0/UML" xmi:id="_jn7CcI8YEdq-Os5Rz1ENIw" name="Observer" metaclassReference="_rY2AEI8jEdq-Os5Rz1ENIw _rY8twI8jEdq-Os5Rz1ENIw">
+  <eAnnotations xmi:id="_lwDyoI8jEdq-Os5Rz1ENIw" source="attributes">
+    <details xmi:id="_lwJSMI8jEdq-Os5Rz1ENIw" key="version" value="0"/>
+  </eAnnotations>
+  <eAnnotations xmi:id="_lwMVgI8jEdq-Os5Rz1ENIw" source="ePackages">
+    <contents xmi:type="ecore:EPackage" xmi:id="_lwPY0I8jEdq-Os5Rz1ENIw" name="Observer_0" nsURI="http:///Observer_0_lwOxwI8jEdq-Os5Rz1ENIw.profile.uml2" nsPrefix="Observer_0">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_lwPY0Y8jEdq-Os5Rz1ENIw" name="Observer__Observer">
+        <eAnnotations xmi:id="_lwPY0o8jEdq-Os5Rz1ENIw" source="stereotype" references="_qfv14I8YEdq-Os5Rz1ENIw"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_lwPY048jEdq-Os5Rz1ENIw" name="Observer__Observable">
+        <eAnnotations xmi:id="_lwPY1I8jEdq-Os5Rz1ENIw" source="stereotype" references="_wcycEI8YEdq-Os5Rz1ENIw"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_lwPY1Y8jEdq-Os5Rz1ENIw" name="Observer__subscribe">
+        <eAnnotations xmi:id="_lwPY1o8jEdq-Os5Rz1ENIw" source="stereotype" references="_yHlJ8I8YEdq-Os5Rz1ENIw"/>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_rY2AEI8jEdq-Os5Rz1ENIw" visibility="private">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML2_METAMODELS/UML2.metamodel.uml2#_m9VJSq86EdiEh75YJ_3n8g"/>
+  </elementImport>
+  <elementImport xmi:id="_rY8twI8jEdq-Os5Rz1ENIw" visibility="private">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML2_METAMODELS/UML2.metamodel.uml2#_m88vAa86EdiEh75YJ_3n8g"/>
+  </elementImport>
+  <ownedMember xmi:type="uml:Stereotype" xmi:id="_qfv14I8YEdq-Os5Rz1ENIw" name="Observer">
+    <ownedAttribute xmi:id="_tGo-oI8jEdq-Os5Rz1ENIw" name="base$Classifier" association="_tGPWAI8jEdq-Os5Rz1ENIw">
+      <type xmi:type="uml:Class" href="pathmap://UML2_METAMODELS/UML2.metamodel.uml2#_m88vAa86EdiEh75YJ_3n8g"/>
+    </ownedAttribute>
+  </ownedMember>
+  <ownedMember xmi:type="uml:Stereotype" xmi:id="_wcycEI8YEdq-Os5Rz1ENIw" name="Observable">
+    <ownedAttribute xmi:id="_ulgJUI8jEdq-Os5Rz1ENIw" name="base$Classifier" association="_ulXmcI8jEdq-Os5Rz1ENIw">
+      <type xmi:type="uml:Class" href="pathmap://UML2_METAMODELS/UML2.metamodel.uml2#_m88vAa86EdiEh75YJ_3n8g"/>
+    </ownedAttribute>
+  </ownedMember>
+  <ownedMember xmi:type="uml:Stereotype" xmi:id="_yHlJ8I8YEdq-Os5Rz1ENIw" name="subscribe">
+    <ownedAttribute xmi:id="_v4YtgI8jEdq-Os5Rz1ENIw" name="base$Association" association="_v4PjkI8jEdq-Os5Rz1ENIw">
+      <type xmi:type="uml:Class" href="pathmap://UML2_METAMODELS/UML2.metamodel.uml2#_m9VJSq86EdiEh75YJ_3n8g"/>
+    </ownedAttribute>
+  </ownedMember>
+  <ownedMember xmi:type="uml:Extension" xmi:id="_tGPWAI8jEdq-Os5Rz1ENIw" name="Classifier_Observer" memberEnd="_tGl7UI8jEdq-Os5Rz1ENIw _tGo-oI8jEdq-Os5Rz1ENIw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_tGl7UI8jEdq-Os5Rz1ENIw" name="extension$Observer" type="_qfv14I8YEdq-Os5Rz1ENIw" association="_tGPWAI8jEdq-Os5Rz1ENIw" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tGnwgI8jEdq-Os5Rz1ENIw"/>
+    </ownedEnd>
+  </ownedMember>
+  <ownedMember xmi:type="uml:Extension" xmi:id="_ulXmcI8jEdq-Os5Rz1ENIw" name="Classifier_Observable" memberEnd="_ulce8I8jEdq-Os5Rz1ENIw _ulgJUI8jEdq-Os5Rz1ENIw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_ulce8I8jEdq-Os5Rz1ENIw" name="extension$Observable" type="_wcycEI8YEdq-Os5Rz1ENIw" association="_ulXmcI8jEdq-Os5Rz1ENIw" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uleUII8jEdq-Os5Rz1ENIw"/>
+    </ownedEnd>
+  </ownedMember>
+  <ownedMember xmi:type="uml:Extension" xmi:id="_v4PjkI8jEdq-Os5Rz1ENIw" name="Association_subscribe" memberEnd="_v4VDII8jEdq-Os5Rz1ENIw _v4YtgI8jEdq-Os5Rz1ENIw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_v4VDII8jEdq-Os5Rz1ENIw" name="extension$subscribe" type="_yHlJ8I8YEdq-Os5Rz1ENIw" association="_v4PjkI8jEdq-Os5Rz1ENIw" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_v4W4UI8jEdq-Os5Rz1ENIw"/>
+    </ownedEnd>
+  </ownedMember>
+</uml:Profile>

@@ -96,6 +96,8 @@ helper context String def : dualRemoverBody(otherEnd : String) : String =
 	'    ' + self->javaRemover() + '\n' +
 	'    ' + self->javaOtherEndRemover(otherEnd));
 
+------------------------------- DataTypes -----------------------------------
+
 helper context String def : implTypeName() : String =
 	if self = 'Integer' then 'java::lang::int' else
 	if self = 'UnlimitedNatural' then 'java::lang::int' else
@@ -115,3 +117,119 @@ helper context String def : defaultValueBody() : String =
 	if self = 'java::lang::boolean' then 'false' else
 	self->javaDefaultValueBody()
 	endif endif endif;
+
+------------------------------- Observer -----------------------------------
+
+helper context String def : javaBoxedType() : String =
+	if self = 'OclAny' then
+		'Object'
+	else if self = 'Real' then
+		'Double'
+	else 
+		self
+	endif endif;
+
+helper context String def : javaBoxing(type : String) : String =
+	if type = 'Boolean' then
+		'new Boolean(' + self + ')'
+	else if type = 'Integer' then
+		'new Integer(' + self + ')'
+	else if type = 'Real' then
+		'new Double(' + self + ')'
+	else
+		self
+	endif endif endif;
+
+helper context String def : javaUnboxing(type : String) : String =
+	if type = 'Boolean' then
+		'(' + self + ').booleanValue()'
+	else if type = 'Integer' then
+		'(' + self + ').intValue()'
+	else if type = 'Real' then
+		'(' + self + ').doubleValue()'
+	else
+		self
+	endif endif endif;
+
+helper context String def : javaTypedValue(type : String) : String =
+	'(' + type->javaBoxedType() + ') ' + self;
+
+helper context String def : javaUnboxValue(type : String) : String =
+	self->javaTypedValue(type)->javaUnboxing(type);
+
+helper context String def : notifyObserversBody() : String =
+	'for (java.util.Enumeration os = getObservers(); os.hasMoreElements();) {\n' +
+	'    ((' + self + ') os.nextElement()).update(name, value);\n' +
+	'}';
+
+helper context String def : updateBody(propertyName : String, parTypeName : String) : String =
+	'\nif (name.equals("' + propertyName + '")) {\n' +
+	'    ' + self + '(' + 'value'->javaUnboxValue(parTypeName) + ');\n' +
+	'}';
+
+helper context String def : setterNotifyBody(type : String, body : String) : String =
+	'// Begin Observable stanza\n' +
+	'if (this.' + self + ' != ' + self + ') {\n' +
+	'    // Begin original body\n' +
+	body +
+	'\n    // End original body\n' +
+	self->notifyStanza(type) +
+	'}\n' +
+	'// End Observable stanza';
+	
+helper context String def : adderNotifyBody(type : String, body : String) : String =
+	'// Begin Observable stanza\n' +
+	'if (! this.' + self + '.contains(' + self + ')) {\n' +
+	'    // Begin original body\n' +
+	body +
+	'\n    // End original body\n' +
+	self->notifyStanza(type) +
+	'}\n' +
+	'// End Observable stanza';
+	
+helper context String def : removerNotifyBody(type : String, body : String) : String =
+	'// Begin Observable stanza\n' +
+	'if (this.' + self + '.contains(' + self + ')) {\n' +
+	'    // Begin original body\n' +
+	body +
+	'\n    // End original body\n' +
+	self->notifyStanza(type) +
+	'}\n' +
+	'// End Observable stanza';
+
+helper context String def : notifyStanza(type : String) : String =
+	'    notifyObservers("' + self->firstToUpper() + '", ' + self.javaBoxing(type) + ');\n';
+
+helper context String def : setterSubscribeBody(body : String) : String =
+	'// Begin subscribe stanza\n' +
+    self->unsubscribeStanza() +
+	'// Begin original body\n' +
+	body +
+	'\n// End original body\n' +
+    self->subscribeStanza() +
+	'// End subscribe stanza';
+	
+helper context String def : adderSubscribeBody(body : String) : String =
+	'// Begin subscribe stanza\n' +
+	'// Begin original body\n' +
+	body +
+	'\n// End original body\n' +
+    self->subscribeStanza() +
+	'// End subscribe stanza';
+	
+helper context String def : removerSubscribeBody(body : String) : String =
+	'// Begin subscribe stanza\n' +
+    self->removeUnsubscribeStanza() +
+	'// Begin original body\n' +
+	body +
+	'\n// End original body\n' +
+	'// End subscribe stanza';
+
+helper context String def : subscribeStanza() : String =
+    'if (' + self + ' != null) ' + self + '.addObserver(this);\n';
+
+helper context String def : unsubscribeStanza() : String =
+    'if (this.' + self + ' != null) this.' + self + '.removeObserver(this);\n';
+
+helper context String def : javaRemoveUnsubscribeStanza() : String =
+    'if (' + self + ' != null) ' + self + '.removeObserver(this);\n';

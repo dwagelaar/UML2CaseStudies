@@ -21,6 +21,14 @@ helper context String def : dataType() : UML2!DataType =
 helper context String def : type() : UML2!Type =
 	UML2!Type->allInstances()->select(c|c->umlQualifiedName()=self)->first();
 
+helper context String def : interface() : UML2!Interface =
+	UML2!Interface->allInstances()->select(c|c->umlQualifiedName()=self)->first();
+
+------------------------------- Element -----------------------------------
+
+helper context UML2!Element def : isStereotyped(stereotype : String) : Boolean =
+	self->getAppliedStereotypes()->select(s|s.name = stereotype)->notEmpty();
+
 ------------------------------- LiteralInteger -----------------------------------
 
 helper context UML2!LiteralInteger def : isSingle() : Boolean =

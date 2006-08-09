@@ -1,8 +1,14 @@
 -- $Id$
--- Transforms all UML2-specific data types to programming language types.
-module UML2DataTypes;
+-- Implements the Observer profile.
+--
+-- Known issues:
+-- * Current UML2 standard does not allow PackageableElements
+--   to set their package. Only Package can set its ownedMembers.
+--   This issue is solved using a small imperative "do" block.
+--
+module UML2Observer;
 
-create OUT : UML2 from IN : UML2, IMPLTYPES : UML2;
+create OUT : UML2 from IN : UML2, OBSERVER : UML2, UML2TYPES : UML2;
 
 uses Strings;
 uses UML2;
@@ -13,184 +19,177 @@ uses Mappings;
 -- ======================================================================
 
 helper def : inElements : Set(UML2!Element) = UML2!Element->allInstancesFrom('IN');
+helper def : Observer : UML2!Interface = 'observer::Observer'->interface();
+helper def : oclString : UML2!PrimitiveType = 'String'->primitiveType();
+helper def : oclAny : UML2!PrimitiveType = 'OclAny'->primitiveType();
 
-helper context UML2!PrimitiveType def : implType() : UML2!Type =
-	self.name->implTypeName()->type();
+helper context UML2!Property def : notifyObservers() : String =
+	self.type.qualifiedName('separator'->value())->notifyObserversBody();
 
-helper context UML2!Type def : implType() : UML2!Type =
-	self;
+helper context UML2!Class def : update() : String =
+	self->handlers()->iterate(o; acc : String = ''|acc + o->update());
 
-helper context UML2!TypedElement def : implType() : UML2!Type =
-	self.type->implType();
+helper context UML2!Class def : handlers() : Sequence(UML2!Operation) =
+	self.ownedOperation->select(o|
+		o.name->startsWith('on') and 
+		o.name->endsWith('Change') and 
+		o.name->size() > 8);
 
-helper context UML2!StructuralFeature def : implType() : UML2!Type =
-	if self->isSingle() then
-		self.type->implType()
-	else
-		self->implCollectionType()
-	endif;
+helper context UML2!Operation def : update() : String =
+	self.name->updateBody(self->propertyName(), self->parTypeName());
 
-helper context UML2!Parameter def : implType() : UML2!Type =
-	if self->isSingle() then
-		self.type->implType()
-	else if self.direction = #return then
-		self.type.name->implCollectionReturnTypeName()->type()
-	else
-		self->implCollectionType()
-	endif endif;
+helper context UML2!Operation def : propertyName() : String =
+	self.name->substring(3, self.name->size() - 6); -- onPropertyChange -> Property
 
-helper context UML2!MultiplicityElement def : implCollectionType() : UML2!Type =
-	if self.isOrdered then
-		if self.isUnique then
-			'OrderedSet'->implTypeName()->type()
+helper context UML2!Operation def : parTypeName() : String =
+	self.ownedParameter->first().type->qualifiedName('separator'->value());
+
+helper context UML2!Activity def : isPlainMethod() : Boolean =
+	if self.specification->isAccessor() then
+		if self.owner->isObservableKind() then
+			false
+		else if self.owner->isObserverKind() and self.specification->isSubscriber() then
+			false
 		else
-			'Sequence'->implTypeName()->type()
-		endif
+			true
+		endif endif
 	else
-		if self.isUnique then
-			'Set'->implTypeName()->type()
+		true
+	endif;
+
+helper context UML2!Activity def : isNotifyMethod() : Boolean =
+	if self.specification->isAccessor() then
+		if not self.owner->isObservableKind() then
+			false
+		else if self.owner->isObserverKind() and self.specification->isSubscriber() then
+			false
 		else
-			'Bag'->implTypeName()->type()
-		endif
-	endif;
-
-helper context UML2!TypedElement def : defaultValueBody() : String =
-	self.type->defaultValueBody();
-
-helper context UML2!StructuralFeature def : defaultValueBody() : String =
-	if self->isSingle() then
-		self->implType()->defaultValueBody()
+			true
+		endif endif
 	else
-		self->implCollectionType()->defaultValueBody()
+		false
+	endif;
+	
+helper context UML2!Activity def : isNotifySubscribeMethod() : Boolean =
+	if self.specification->isAccessor() then
+		if not self.owner->isObservableKind() then
+			false
+		else if self.owner->isObserverKind() and self.specification->isSubscriber() then
+			true
+		else
+			false
+		endif endif
+	else
+		false
+	endif;
+	
+helper context UML2!Activity def : isSubscribeMethod() : Boolean =
+	if self.specification->isAccessor() then
+		if self.owner->isObservableKind() then
+			false
+		else if self.owner->isObserverKind() and self.specification->isSubscriber() then
+			true
+		else
+			false
+		endif endif
+	else
+		false
 	endif;
 
-helper context UML2!Type def : defaultValueBody() : String =
-	self->umlQualifiedName()->defaultValueBody();
+helper context UML2!Operation def : isAccessor() : Boolean =
+	self.clientDependency->select(d|d->isStereotyped('accessor'))->notEmpty();
+
+helper context UML2!Classifier def : isObservableKind() : Boolean =
+	if self->isStereotyped('Observable') then
+		true
+	else
+		not self.generalization->select(g|g.general->isObservableKind())->isEmpty()
+	endif;
+
+helper context UML2!Classifier def : isObserverKind() : Boolean =
+	if self->isStereotyped('Observer') then
+		true
+	else
+		not self.generalization->select(g|g.general->isObserverKind())->isEmpty()
+	endif;
+
+helper context UML2!Operation def : isSubscriber() : Boolean =
+	if self->isAccessor() then
+		self->accessorFor()->hasSubscribesAssociation()
+	else
+		false
+	endif;
+
+helper context UML2!Operation def : accessorFor() : UML2!Property =
+	self->accessorDependency().supplier->select(p|
+		p.oclIsKindOf(UML2!Property))->first();
+
+helper context UML2!Operation def : accessorDependency() : UML2!Dependency =
+	self.clientDependency->select(d|d->isStereotyped('accessor'))->first();
+
+helper context UML2!Property def : hasSubscribesAssociation() : Boolean =
+	if self.association->oclIsUndefined() then
+		false
+	else
+		self.association->isStereotyped('subscribe')
+	endif;
+
+helper context UML2!Operation def : notify(body : String) : String =
+	if self.name->startsWith('remove') then
+		self->accessorFor()->removerNotify(body)
+	else if self.name->startsWith('add') or self.name->startsWith('insert') then
+		self->accessorFor()->adderNotify(body)
+	else if self.name->startsWith('set') then
+		self->accessorFor()->setterNotify(body)
+	else
+		body
+	endif endif endif;
+
+helper context UML2!Property def : setterNotify(body : String) : String =
+	self.name->setterNotifyBody(
+		self.type->qualifiedName('separator'->value()), body);
+	
+helper context UML2!Property def : adderNotify(body : String) : String =
+	self.name->adderNotifyBody(
+		self.type->qualifiedName('separator'->value()), body);
+	
+helper context UML2!Property def : removerNotify(body : String) : String =
+	self.name->removerNotifyBody(
+		self.type->qualifiedName('separator'->value()), body);
+
+helper context UML2!Operation def : subscribe(body : String) : String =
+	if self.name->startsWith('remove') then
+		self->accessorFor().name->removerSubscribeBody(body)
+	else if self.name->startsWith('add') or self.name->startsWith('insert') then
+		self->accessorFor().name->adderSubscribeBody(body)
+	else if self.name->startsWith('set') then
+		self->accessorFor().name->setterSubscribeBody(body)
+	else
+		body
+	endif endif endif;
 
 -- ======================================================================
 -- model-specific helpers end
 -- ======================================================================
-	
+
 -- ======================================================================
 -- transformation rules begin
 -- ======================================================================
 
-rule NoDefValProperty {
-    from s : UML2!Property (
+rule Class {
+    from s : UML2!Class (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!Property) and
-			s.defaultValue->oclIsUndefined()
+			s->oclIsTypeOf(UML2!Class) and
+			not s->isStereotyped('Observable') and
+			not s->isStereotyped('Observer')
 		else false endif)
-    to t : UML2!Property mapsTo s (
+    to t : UML2!Class mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
         isLeaf <- s.isLeaf,
-        isStatic <- s.isStatic,
-        isOrdered <- s.isOrdered,
-        isUnique <- s.isUnique,
-        isReadOnly <- s.isReadOnly,
-        isDerived <- s.isDerived,
-        isDerivedUnion <- s.isDerivedUnion,
-        aggregation <- s.aggregation,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        type <- s->implType(),
-        upperValue <- s.upperValue,
-        lowerValue <- s.lowerValue,
-        templateParameter <- s.templateParameter,
-        end <- s.end,
-        deployment <- s.deployment,
-        redefinedProperty <- s.redefinedProperty,
-        subsettedProperty <- s.subsettedProperty,
-        association <- s.association,
-        defaultValue <- defVal,
-        qualifier <- s.qualifier),
-	   defVal : UML2!OpaqueExpression (
-		language <- 'language'->value(),
-		body <- s->defaultValueBody())
-}
-
-rule DefValProperty {
-    from s : UML2!Property (
-		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!Property) and
-			not s.defaultValue->oclIsUndefined()
-		else false endif)
-    to t : UML2!Property mapsTo s (
-        name <- s.name,
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isStatic <- s.isStatic,
-        isOrdered <- s.isOrdered,
-        isUnique <- s.isUnique,
-        isReadOnly <- s.isReadOnly,
-        isDerived <- s.isDerived,
-        isDerivedUnion <- s.isDerivedUnion,
-        aggregation <- s.aggregation,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        type <- s->implType(),
-        upperValue <- s.upperValue,
-        lowerValue <- s.lowerValue,
-        templateParameter <- s.templateParameter,
-        end <- s.end,
-        deployment <- s.deployment,
-        redefinedProperty <- s.redefinedProperty,
-        subsettedProperty <- s.subsettedProperty,
-        association <- s.association,
-        defaultValue <- s.defaultValue,
-        qualifier <- s.qualifier)
-}
-
-rule Parameter {
-    from s : UML2!Parameter (thisModule.inElements->includes(s))
-    to t : UML2!Parameter mapsTo s (
-        name <- s.name,
-        visibility <- s.visibility,
-        isOrdered <- s.isOrdered,
-        isUnique <- s.isUnique,
-        direction <- s.direction,
-        isException <- s.isException,
-        isStream <- s.isStream,
-        effect <- s.effect,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        templateParameter <- s.templateParameter,
-        end <- s.end,
-        type <- s->implType(),
-        upperValue <- s.upperValue,
-        lowerValue <- s.lowerValue,
-        defaultValue <- s.defaultValue,
-        parameterSet <- s.parameterSet)
-}
-
-rule VoidOperation {
-    from s : UML2!Operation (
-    	if thisModule.inElements->includes(s) then
-			s.parameter->select(p|p.direction = #return)->isEmpty()
-		else false endif)
-    to t : UML2!Operation mapsTo s (
-        name <- s.name,
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isStatic <- s.isStatic,
         isAbstract <- s.isAbstract,
-        concurrency <- s.concurrency,
-        isOrdered <- s.isOrdered,
-        isUnique <- s.isUnique,
-        isQuery <- s.isQuery,
+        isActive <- s.isActive,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         templateBinding <- s.templateBinding,
@@ -200,48 +199,184 @@ rule VoidOperation {
         ownedRule <- s.ownedRule,
         elementImport <- s.elementImport,
         packageImport <- s.packageImport,
-        formalParameter <- s.formalParameter,
-        returnResult <- s.returnResult,
-        raisedException <- s.raisedException,
-        method <- s.method,
-        type <- s.type,
-        upperValue <- s.upperValue,
-        lowerValue <- s.lowerValue,
         templateParameter <- s.templateParameter,
-        ownedParameter <- s.ownedParameter,
-        precondition <- s.precondition,
-        postcondition <- s.postcondition,
-        redefinedOperation <- s.redefinedOperation,
-        bodyCondition <- s.bodyCondition),
-	   retPar : UML2!Parameter (
-	   	operation <- s,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        powertypeExtent <- s.powertypeExtent,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception)
+}
+	
+rule ObservableClass {
+    from s : UML2!Class (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Class) and
+			s->isStereotyped('Observable') and
+			not s->isStereotyped('Observer')
+		else false endif)
+    to t : UML2!Class mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        templateParameter <- s.templateParameter,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        powertypeExtent <- s.powertypeExtent,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute->union(Set{observers}),
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception),
+	-- Observable functionality --
+	   observers : UML2!Property (
+	   	name <- 'observers',
+		type <- thisModule.Observer,
+		visibility <- #private,
+		isUnique <- true,
+		isOrdered <- true,
+		upperValue <- observersUpper,
+		lowerValue <- observersLower),
+	   observersUpper : UML2!LiteralUnlimitedNatural (
+	   	value <- -1),
+	   observersLower : UML2!LiteralInteger (
+	   	value <- 0),
+	-- Get --
+		getOp : UML2!Operation (
+	   	name <- 'getObservers',
+		class_ <- s,
+		visibility <- #public,
+		concurrency <- #sequential),
+	   getPar : UML2!Parameter (
 	   	name <- 'return',
-        lowerValue <- retParLow,
-        upperValue <- retParUp,
-		type <- 'OclVoid'->implTypeName()->type(),
+		operation <- getOp,
+        lowerValue <- getParLow,
+        upperValue <- getParUp,
+		type <- s.type,
 		effect <- #read,
 		direction <- #return),
-	   retParLow : UML2!LiteralInteger (
-	   	value <- 1),
-	   retParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- 1)
+	   getParLow : UML2!LiteralInteger (
+	   	value <- 0),
+	   getParUp : UML2!LiteralUnlimitedNatural (
+	   	value <- -1),
+	   getBehavior : UML2!Activity (
+	   	"context" <- s,
+	   	specification <- getOp,
+		name <- getOp.name + 'Activity',
+		language <- 'language'->value(),
+		body <- observers.name->multiGetterBody()),
+	-- Add --
+	   addOp : UML2!Operation (
+	   	name <- 'addObserver',
+		class_ <- s,
+		visiblity <- #public,
+		concurrency <- #sequential),
+	   addPar : UML2!Parameter (
+	   	name <- s.name,
+		operation <- addOp,
+		type <- observers.type,
+		effect <- #update,
+		direction <- #"in"),
+	   addBehavior : UML2!Activity (
+	   	"context" <- s,
+	   	specification <- addOp,
+		name <- addOp.name + 'Activity',
+		language <- 'language'->value(),
+		body <- observers.name->adderBody(observers.isUnique)),
+	-- Remove --
+	   removeOp : UML2!Operation (
+	   	name <- 'removeObserver',
+		class_ <- s,
+		visibility <- #public,
+		concurrency <- #sequential),
+	   removePar : UML2!Parameter (
+	   	name <- s.name,
+		operation <- removeOp,
+		type <- observers.type,
+		effect <- #update,
+		direction <- #"in"),
+	   removeBehavior : UML2!Activity (
+	   	"context" <- s,
+	   	specification <- removeOp,
+		name <- removeOp.name + 'Activity',
+		language <- 'language'->value(),
+		body <- observers.name->removerBody()),
+	-- Notify --
+	   notifyOp : UML2!Operation (
+	   	name <- 'notifyObservers',
+		class_ <- s,
+		visibility <- #public,
+		concurrency <- #sequential),
+	   notifyPar1 : UML2!Parameter (
+	   	name <- 'name',
+		operation <- notifyOp,
+		type <- thisModule.oclString,
+		effect <- #read,
+		direction <- #"in"),
+	   notifyPar2 : UML2!Parameter (
+	   	name <- 'value',
+		operation <- notifyOp,
+		type <- thisModule.oclAny,
+		effect <- #update,
+		direction <- #"in"),
+	   notifyBehavior : UML2!Activity (
+	   	"context" <- s,
+		specification <- notifyOp,
+		name <- notifyOp.name + 'Activity',
+		language <- 'language'->value(),
+		body <- observers->notifyObservers())
 }
 
-rule FunctionOperation {
-    from s : UML2!Operation (
-    	if thisModule.inElements->includes(s) then
-			s.parameter->select(p|p.direction = #return)->notEmpty()
+rule ObserverClass {
+    from s : UML2!Class (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Class) and
+			not s->isStereotyped('Observable') and
+			s->isStereotyped('Observer')
 		else false endif)
-    to t : UML2!Operation mapsTo s (
+	to t : UML2!Class mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
         isLeaf <- s.isLeaf,
-        isStatic <- s.isStatic,
         isAbstract <- s.isAbstract,
-        concurrency <- s.concurrency,
-        isOrdered <- s.isOrdered,
-        isUnique <- s.isUnique,
-        isQuery <- s.isQuery,
+        isActive <- s.isActive,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         templateBinding <- s.templateBinding,
@@ -251,19 +386,458 @@ rule FunctionOperation {
         ownedRule <- s.ownedRule,
         elementImport <- s.elementImport,
         packageImport <- s.packageImport,
-        formalParameter <- s.formalParameter,
-        returnResult <- s.returnResult,
-        raisedException <- s.raisedException,
-        method <- s.method,
-        type <- s.type,
-        upperValue <- s.upperValue,
-        lowerValue <- s.lowerValue,
         templateParameter <- s.templateParameter,
-        ownedParameter <- s.ownedParameter,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        powertypeExtent <- s.powertypeExtent,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- impl,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception),
+	-- Observer functionality --
+	   impl : UML2!Implementation (
+	   	contract <- thisModule.Observer,
+		realizingClassifier <- thisModule.Observer, -- UML2 bug
+		client <- Set{s}),
+	-- Update --
+	   updateOp : UML2!Operation (
+	   	name <- 'update',
+		class_ <- s,
+		visibility <- #public,
+		concurrency <- #sequential),
+	   updatePar1 : UML2!Parameter (
+	   	name <- 'name',
+		operation <- updateOp,
+		type <- thisModule.oclString,
+		effect <- #read,
+		direction <- #"in"),
+	   updatePar2 : UML2!Parameter (
+	   	name <- 'value',
+		operation <- updateOp,
+		type <- thisModule.oclAny,
+		effect <- #update,
+		direction <- #"in"),
+	   updateBehavior : UML2!Activity (
+	   	"context" <- s,
+		specification <- updateOp,
+		name <- updateOp.name + 'Activity',
+		language <- 'language'->value(),
+		body <- s->update())
+}
+
+rule ObservableObserverClass {
+    from s : UML2!Class (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Class) and
+			s->isStereotyped('Observable') and
+			s->isStereotyped('Observer')
+		else false endif)
+    to t : UML2!Class mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        templateParameter <- s.templateParameter,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        powertypeExtent <- s.powertypeExtent,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- impl,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute->union(Set{observers}),
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception),
+	-- Observable functionality --
+	   observers : UML2!Property (
+	   	name <- 'observers',
+		type <- thisModule.Observer,
+		visibility <- #private,
+		isUnique <- true,
+		isOrdered <- true,
+		upperValue <- observersUpper,
+		lowerValue <- observersLower),
+	   observersUpper : UML2!LiteralUnlimitedNatural (
+	   	value <- -1),
+	   observersLower : UML2!LiteralInteger (
+	   	value <- 0),
+	-- Get --
+		getOp : UML2!Operation (
+	   	name <- 'getObservers',
+		class_ <- s,
+		visibility <- #public,
+		concurrency <- #sequential),
+	   getPar : UML2!Parameter (
+	   	name <- 'return',
+		operation <- getOp,
+        lowerValue <- getParLow,
+        upperValue <- getParUp,
+		type <- s.type,
+		effect <- #read,
+		direction <- #return),
+	   getParLow : UML2!LiteralInteger (
+	   	value <- 0),
+	   getParUp : UML2!LiteralUnlimitedNatural (
+	   	value <- -1),
+	   getBehavior : UML2!Activity (
+	   	"context" <- s,
+	   	specification <- getOp,
+		name <- getOp.name + 'Activity',
+		language <- 'language'->value(),
+		body <- observers.name->multiGetterBody()),
+	-- Add --
+	   addOp : UML2!Operation (
+	   	name <- 'addObserver',
+		class_ <- s,
+		visiblity <- #public,
+		concurrency <- #sequential),
+	   addPar : UML2!Parameter (
+	   	name <- s.name,
+		operation <- addOp,
+		type <- observers.type,
+		effect <- #update,
+		direction <- #"in"),
+	   addBehavior : UML2!Activity (
+	   	"context" <- s,
+	   	specification <- addOp,
+		name <- addOp.name + 'Activity',
+		language <- 'language'->value(),
+		body <- observers.name->adderBody(observers.isUnique)),
+	-- Remove --
+	   removeOp : UML2!Operation (
+	   	name <- 'removeObserver',
+		class_ <- s,
+		visibility <- #public,
+		concurrency <- #sequential),
+	   removePar : UML2!Parameter (
+	   	name <- s.name,
+		operation <- removeOp,
+		type <- observers.type,
+		effect <- #update,
+		direction <- #"in"),
+	   removeBehavior : UML2!Activity (
+	   	"context" <- s,
+	   	specification <- removeOp,
+		name <- removeOp.name + 'Activity',
+		language <- 'language'->value(),
+		body <- observers.name->removerBody()),
+	-- Notify --
+	   notifyOp : UML2!Operation (
+	   	name <- 'notifyObservers',
+		class_ <- s,
+		visibility <- #public,
+		concurrency <- #sequential),
+	   notifyPar1 : UML2!Parameter (
+	   	name <- 'name',
+		operation <- notifyOp,
+		type <- thisModule.oclString,
+		effect <- #read,
+		direction <- #"in"),
+	   notifyPar2 : UML2!Parameter (
+	   	name <- 'value',
+		operation <- notifyOp,
+		type <- thisModule.oclAny,
+		effect <- #update,
+		direction <- #"in"),
+	   notifyBehavior : UML2!Activity (
+	   	"context" <- s,
+		specification <- notifyOp,
+		name <- notifyOp.name + 'Activity',
+		language <- 'language'->value(),
+		body <- observers->notifyObservers()),
+	-- Observer functionality --
+	   impl : UML2!Implementation (
+	   	contract <- thisModule.Observer,
+		realizingClassifier <- thisModule.Observer, -- UML2 bug
+		client <- Set{s}),
+	-- Update --
+	   updateOp : UML2!Operation (
+	   	name <- 'update',
+		class_ <- s,
+		visibility <- #public,
+		concurrency <- #sequential),
+	   updatePar1 : UML2!Parameter (
+	   	name <- 'name',
+		operation <- updateOp,
+		type <- thisModule.oclString,
+		effect <- #read,
+		direction <- #"in"),
+	   updatePar2 : UML2!Parameter (
+	   	name <- 'value',
+		operation <- updateOp,
+		type <- thisModule.oclAny,
+		effect <- #update,
+		direction <- #"in"),
+	   updateBehavior : UML2!Activity (
+	   	"context" <- s,
+		specification <- updateOp,
+		name <- updateOp.name + 'Activity',
+		language <- 'language'->value(),
+		body <- s->update())
+}
+
+rule Activity {
+    from s : UML2!Activity (
+    	if thisModule.inElements->includes(s) then
+			s->isPlainMethod()
+		else false endif)
+    to t : UML2!Activity mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        body <- s.body,
+        language <- s.language,
+        isSingleExecution <- s.isSingleExecution,
+        isReadOnly <- s.isReadOnly,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        templateParameter <- s.templateParameter,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        powertypeExtent <- s.powertypeExtent,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        specification <- s.specification,
+        parameter <- s.parameter,
         precondition <- s.precondition,
         postcondition <- s.postcondition,
-        redefinedOperation <- s.redefinedOperation,
-        bodyCondition <- s.bodyCondition)
+        ownedParameterSet <- s.ownedParameterSet,
+        edge <- s.edge,
+        group <- s.group,
+        node <- s.node,
+        action <- s.action)
+}
+
+rule NotifyActivity {
+    from s : UML2!Activity (
+    	if thisModule.inElements->includes(s) then
+			s->isNotifyMethod()
+		else false endif)
+    to t : UML2!Activity mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        body <- s.specification->notify(s.body),
+        language <- s.language,
+        isSingleExecution <- s.isSingleExecution,
+        isReadOnly <- s.isReadOnly,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        templateParameter <- s.templateParameter,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        powertypeExtent <- s.powertypeExtent,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        specification <- s.specification,
+        parameter <- s.parameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        ownedParameterSet <- s.ownedParameterSet,
+        edge <- s.edge,
+        group <- s.group,
+        node <- s.node,
+        action <- s.action)
+}
+
+rule SubscribeActivity {
+    from s : UML2!Activity (
+    	if thisModule.inElements->includes(s) then
+			s->isSubscribeMethod()
+		else false endif)
+    to t : UML2!Activity mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        body <- s.specification->subscribe(s.body),
+        language <- s.language,
+        isSingleExecution <- s.isSingleExecution,
+        isReadOnly <- s.isReadOnly,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        templateParameter <- s.templateParameter,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        powertypeExtent <- s.powertypeExtent,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        specification <- s.specification,
+        parameter <- s.parameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        ownedParameterSet <- s.ownedParameterSet,
+        edge <- s.edge,
+        group <- s.group,
+        node <- s.node,
+        action <- s.action)
+}
+
+rule NotifySubscribeActivity {
+    from s : UML2!Activity (
+    	if thisModule.inElements->includes(s) then
+			s->isNotifySubscribeMethod()
+		else false endif)
+    to t : UML2!Activity mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        packageableElement_visibility <- s.packageableElement_visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        body <- s.specification->notify(s.specification->subscribe(s.body)),
+        language <- s.language,
+        isSingleExecution <- s.isSingleExecution,
+        isReadOnly <- s.isReadOnly,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        templateParameter <- s.templateParameter,
+        generalization <- s.generalization,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        powertypeExtent <- s.powertypeExtent,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        representation <- s.representation,
+        occurrence <- s.occurrence,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        implementation <- s.implementation,
+        ownedTrigger <- s.ownedTrigger,
+        ownedStateMachine <- s.ownedStateMachine,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedPort <- s.ownedPort,
+        ownedOperation <- s.ownedOperation,
+        nestedClassifier <- s.nestedClassifier,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        specification <- s.specification,
+        parameter <- s.parameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        ownedParameterSet <- s.ownedParameterSet,
+        edge <- s.edge,
+        group <- s.group,
+        node <- s.node,
+        action <- s.action)
 }
 
 -- ======================================================================
@@ -414,6 +988,42 @@ rule UseCase {
         subject <- s.subject)
 }
 
+rule Operation {
+    from s : UML2!Operation (thisModule.inElements->includes(s))
+    to t : UML2!Operation mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isStatic <- s.isStatic,
+        isAbstract <- s.isAbstract,
+        concurrency <- s.concurrency,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        isQuery <- s.isQuery,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        ownedRule <- s.ownedRule,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        formalParameter <- s.formalParameter,
+        returnResult <- s.returnResult,
+        raisedException <- s.raisedException,
+        method <- s.method,
+        type <- s.type,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue,
+        templateParameter <- s.templateParameter,
+        ownedParameter <- s.ownedParameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        redefinedOperation <- s.redefinedOperation,
+        bodyCondition <- s.bodyCondition)
+}
+
 rule Extend {
     from s : UML2!Extend (thisModule.inElements->includes(s))
     to t : UML2!Extend mapsTo s (
@@ -531,61 +1141,6 @@ rule TimeExpression {
         type <- s.type,
         templateParameter <- s.templateParameter,
         event <- s.event)
-}
-
-rule Activity {
-    from s : UML2!Activity (thisModule.inElements->includes(s))
-    to t : UML2!Activity mapsTo s (
-        name <- s.name,
-        visibility <- s.visibility,
-        packageableElement_visibility <- s.packageableElement_visibility,
-        isLeaf <- s.isLeaf,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        isReentrant <- s.isReentrant,
-        body <- s.body,
-        language <- s.language,
-        isSingleExecution <- s.isSingleExecution,
-        isReadOnly <- s.isReadOnly,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        ownedRule <- s.ownedRule,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        templateParameter <- s.templateParameter,
-        generalization <- s.generalization,
-        redefinedClassifier <- s.redefinedClassifier,
-        substitution <- s.substitution,
-        powertypeExtent <- s.powertypeExtent,
-        ownedUseCase <- s.ownedUseCase,
-        useCase <- s.useCase,
-        representation <- s.representation,
-        occurrence <- s.occurrence,
-        ownedBehavior <- s.ownedBehavior,
-        classifierBehavior <- s.classifierBehavior,
-        implementation <- s.implementation,
-        ownedTrigger <- s.ownedTrigger,
-        ownedStateMachine <- s.ownedStateMachine,
-        ownedAttribute <- s.ownedAttribute,
-        ownedConnector <- s.ownedConnector,
-        ownedPort <- s.ownedPort,
-        ownedOperation <- s.ownedOperation,
-        nestedClassifier <- s.nestedClassifier,
-        ownedReception <- s.ownedReception,
-        redefinedBehavior <- s.redefinedBehavior,
-        specification <- s.specification,
-        parameter <- s.parameter,
-        precondition <- s.precondition,
-        postcondition <- s.postcondition,
-        ownedParameterSet <- s.ownedParameterSet,
-        edge <- s.edge,
-        group <- s.group,
-        node <- s.node,
-        action <- s.action)
 }
 
 rule StringExpression {
@@ -1941,6 +2496,32 @@ rule CreateLinkAction {
         localPrecondition <- s.localPrecondition,
         localPostcondition <- s.localPostcondition,
         endData <- s.endData)
+}
+
+rule Parameter {
+    from s : UML2!Parameter (thisModule.inElements->includes(s))
+    to t : UML2!Parameter mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        direction <- s.direction,
+        isException <- s.isException,
+        isStream <- s.isStream,
+        effect <- s.effect,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        templateParameter <- s.templateParameter,
+        end <- s.end,
+        type <- s.type,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue,
+        defaultValue <- s.defaultValue,
+        parameterSet <- s.parameterSet)
 }
 
 rule CommunicationPath {
@@ -3616,49 +4197,6 @@ rule Generalization {
         generalizationSet <- s.generalizationSet)
 }
 
-rule Class {
-    from s : UML2!Class (
-		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!Class)
-		else false endif)
-    to t : UML2!Class mapsTo s (
-        name <- s.name,
-        visibility <- s.visibility,
-        packageableElement_visibility <- s.packageableElement_visibility,
-        isLeaf <- s.isLeaf,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        ownedRule <- s.ownedRule,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        templateParameter <- s.templateParameter,
-        generalization <- s.generalization,
-        redefinedClassifier <- s.redefinedClassifier,
-        substitution <- s.substitution,
-        powertypeExtent <- s.powertypeExtent,
-        ownedUseCase <- s.ownedUseCase,
-        useCase <- s.useCase,
-        representation <- s.representation,
-        occurrence <- s.occurrence,
-        ownedBehavior <- s.ownedBehavior,
-        classifierBehavior <- s.classifierBehavior,
-        implementation <- s.implementation,
-        ownedTrigger <- s.ownedTrigger,
-        ownedStateMachine <- s.ownedStateMachine,
-        ownedAttribute <- s.ownedAttribute,
-        ownedConnector <- s.ownedConnector,
-        ownedPort <- s.ownedPort,
-        ownedOperation <- s.ownedOperation,
-        nestedClassifier <- s.nestedClassifier,
-        ownedReception <- s.ownedReception)
-}
-
 rule ClearStructuralFeatureAction {
     from s : UML2!ClearStructuralFeatureAction (thisModule.inElements->includes(s))
     to t : UML2!ClearStructuralFeatureAction mapsTo s (
@@ -3773,6 +4311,41 @@ rule Region {
         subvertex <- s.subvertex,
         transition <- s.transition,
         extendedRegion <- s.extendedRegion)
+}
+
+rule Property {
+    from s : UML2!Property (
+		if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!Property)
+		else false endif)
+    to t : UML2!Property mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isStatic <- s.isStatic,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        isReadOnly <- s.isReadOnly,
+        isDerived <- s.isDerived,
+        isDerivedUnion <- s.isDerivedUnion,
+        aggregation <- s.aggregation,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue,
+        templateParameter <- s.templateParameter,
+        end <- s.end,
+        deployment <- s.deployment,
+        redefinedProperty <- s.redefinedProperty,
+        subsettedProperty <- s.subsettedProperty,
+        association <- s.association,
+        defaultValue <- s.defaultValue,
+        qualifier <- s.qualifier)
 }
 
 rule Dependency {

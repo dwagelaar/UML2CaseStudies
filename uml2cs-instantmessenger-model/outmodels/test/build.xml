@@ -8,15 +8,19 @@
 	<property name="profile.accessors.path" value="/uml2cs-transformations/profiles/Accessors.profile.uml2"/>
 	<property name="model.uml2types.path" value="/uml2cs-transformations/models/PrimitiveTypes.uml2"/>
 	<property name="model.javatypes.path" value="/uml2cs-transformations/models/JavaTypes.uml2"/>
+	<property name="model.obstypes.path" value="/uml2cs-transformations/models/Observer.uml2"/>
 
 	<property name="model.in.path" value="${project.path}/models/InstantMessengerModel.uml2"/>
 	<property name="model.profiles.path" value="${current.path}/im-profiles.uml2"/>
 	<property name="model.accessors.path" value="${current.path}/im-accessors.uml2"/>
+	<property name="model.observer.path" value="${current.path}/im-observer.uml2"/>
 	<property name="model.datatypes.path" value="${current.path}/im-datatypes.uml2"/>
+	<property name="model.obsdatatypes.path" value="${current.path}/obs-datatypes.uml2"/>
 
 	<property name="trans.path" value="/uml2cs-transformations"/>
 	<property name="trans.uml2profiles.path" value="${trans.path}/UML2Profiles.atl"/>
 	<property name="trans.uml2accessors.path" value="${trans.path}/UML2Accessors.atl"/>
+	<property name="trans.uml2observer.path" value="${trans.path}/UML2Observer.atl"/>
 	<property name="trans.uml2datatypes.path" value="${trans.path}/UML2DataTypes.atl"/>
 	<property name="trans.uml2tojava.path" value="${trans.path}/UML2ToJava.atl"/>
 
@@ -33,6 +37,7 @@
 		<am3.loadModel modelHandler="EMF" name="Accessors" metamodel="UML2" path="${profile.accessors.path}"/>
 		<am3.loadModel modelHandler="EMF" name="PrimitiveTypes" metamodel="UML2" path="${model.uml2types.path}"/>
 		<am3.loadModel modelHandler="EMF" name="JavaTypes" metamodel="UML2" path="${model.javatypes.path}"/>
+		<am3.loadModel modelHandler="EMF" name="Observer" metamodel="UML2" path="${model.obstypes.path}"/>
 		<am3.loadModel modelHandler="EMF" name="inModel" metamodel="UML2" path="${model.in.path}"/>
 	</target>
 
@@ -62,11 +67,26 @@
 		<am3.saveModel model="im-accessors" path="${model.accessors.path}"/>
 	</target>
 
-	<target name="im-datatypes" depends="im-accessors">
+	<target name="im-observer" depends="im-accessors">
+		<am3.atl path="${trans.uml2observer.path}" allowInterModelReferences="true">
+			<inmodel name="UML2" model="UML2"/>
+			<inmodel name="OBSERVER" model="Observer"/>
+			<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
+			<inmodel name="IN" model="im-accessors"/>
+			<outmodel name="OUT" model="im-observer" metamodel="UML2" path="${model.observer.path}"/>
+			<library name="Strings" path="${lib.strings.path}"/>
+			<library name="UML2" path="${lib.uml2.path}"/>
+			<library name="Java" path="${lib.java1.path}"/>
+			<library name="Mappings" path="${lib.javamappings.path}"/>
+		</am3.atl>
+		<am3.saveModel model="im-observer" path="${model.observer.path}"/>
+	</target>
+
+	<target name="im-datatypes" depends="im-observer">
 		<am3.atl path="${trans.uml2datatypes.path}" allowInterModelReferences="true">
 			<inmodel name="UML2" model="UML2"/>
 			<inmodel name="IMPLTYPES" model="JavaTypes"/>
-			<inmodel name="IN" model="im-accessors"/>
+			<inmodel name="IN" model="im-observer"/>
 			<outmodel name="OUT" model="im-datatypes" metamodel="UML2" path="${model.datatypes.path}"/>
 			<library name="Strings" path="${lib.strings.path}"/>
 			<library name="UML2" path="${lib.uml2.path}"/>
@@ -76,10 +96,36 @@
 		<am3.saveModel model="im-datatypes" path="${model.datatypes.path}"/>
 	</target>
 
-	<target name="generate" depends="im-datatypes">
+	<target name="Observer-datatypes">
+		<am3.atl path="${trans.uml2datatypes.path}" allowInterModelReferences="true">
+			<inmodel name="UML2" model="UML2"/>
+			<inmodel name="IMPLTYPES" model="JavaTypes"/>
+			<inmodel name="IN" model="Observer"/>
+			<outmodel name="OUT" model="obs-datatypes" metamodel="UML2" path="${model.obsdatatypes.path}"/>
+			<library name="Strings" path="${lib.strings.path}"/>
+			<library name="UML2" path="${lib.uml2.path}"/>
+			<library name="Java" path="${lib.java1.path}"/>
+			<library name="Mappings" path="${lib.javamappings.path}"/>
+		</am3.atl>
+		<am3.saveModel model="obs-datatypes" path="${model.obsdatatypes.path}"/>
+	</target>
+
+	<target name="cleanGeneratedCode" depends="im-datatypes">
         <delete>
             <fileset dir="${target.path}"/>
         </delete>
+	</target>
+
+	<target name="generateObserver" depends="cleanGeneratedCode,Observer-datatypes">
+		<am3.atl path="${trans.uml2tojava.path}" allowInterModelReferences="true">
+			<inmodel name="UML2" model="UML2"/>
+			<inmodel name="IN" model="obs-datatypes"/>
+			<library name="config" path="${lib.config.path}"/>
+			<library name="UML2" path="${lib.uml2.path}"/>
+		</am3.atl>
+	</target>
+
+	<target name="generate" depends="cleanGeneratedCode,im-datatypes">
 		<am3.atl path="${trans.uml2tojava.path}" allowInterModelReferences="true">
 			<inmodel name="UML2" model="UML2"/>
 			<inmodel name="IN" model="im-datatypes"/>
@@ -88,5 +134,5 @@
 		</am3.atl>
 	</target>
 
-    <target name="all" depends="generate"/>
+    <target name="all" depends="generateObserver,generate"/>
 </project>

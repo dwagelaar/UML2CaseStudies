@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" activeDiagram="//@diagrams.0">
+<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" activeDiagram="//@diagrams.2">
   <model href="InstantMessengerModel.uml2#_tPOCIaLHEdqkGMDvm75SlQ"/>
-  <diagrams position="0,0" size="100,100" name="InstantMessengerModel" viewport="0,139">
+  <diagrams position="0,0" size="100,100" name="InstantMessengerModel" viewport="219,140">
     <property key="org.topcased.modeler.di.typeName" value="Class Diagram"/>
     <property key="pageFormatName" value="A4"/>
     <property key="diagramWidth" value="840"/>
@@ -189,7 +189,7 @@
       <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
+      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject" offset="-3,-10"/>
     </contained>
     <contained xsi:type="di:GraphNode" position="310,450" size="235,105">
       <property key="backgroundColor" value="255,255,255"/>
@@ -233,7 +233,7 @@
       <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
+      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject" offset="-39,7"/>
     </contained>
     <contained xsi:type="di:GraphNode" position="427,348" size="102,75">
       <property key="backgroundColor" value="255,255,255"/>
@@ -267,7 +267,7 @@
       <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
+      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject" offset="24,-14"/>
     </contained>
     <contained xsi:type="di:GraphNode" position="4,450" size="291,126">
       <property key="backgroundColor" value="255,255,255"/>
@@ -319,7 +319,7 @@
       <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
     </contained>
   </diagrams>
-  <diagrams position="0,0" size="100,100" name="model" viewport="167,140">
+  <diagrams position="0,0" size="100,100" name="model" viewport="219,0">
     <property key="pageFormatName" value="A4"/>
     <property key="diagramWidth" value="840"/>
     <property key="diagramHeight" value="1188"/>
@@ -750,7 +750,7 @@
       <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
     </contained>
   </diagrams>
-  <diagrams position="0,0" size="100,100" name="edit" viewport="0,0">
+  <diagrams position="0,0" size="100,100" name="edit" viewport="0,80">
     <property key="pageFormatName" value="A4"/>
     <property key="diagramWidth" value="840"/>
     <property key="diagramHeight" value="1188"/>
@@ -763,7 +763,7 @@
     <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="org.topcased.modeler.uml2.classdiagram">
       <element href="InstantMessengerModel.uml2#_GI6L4OQsEdqD2ZNp93yIAQ"/>
     </semanticModel>
-    <contained xsi:type="di:GraphNode" position="117,191" size="372,-1">
+    <contained xsi:type="di:GraphNode" position="117,191" size="445,-1">
       <property key="backgroundColor" value="255,255,255"/>
       <anchorage graphEdge="//@diagrams.3/@contained.7 //@diagrams.3/@contained.12 //@diagrams.3/@contained.14 //@diagrams.3/@contained.17 //@diagrams.3/@contained.19"/>
       <semanticModel xsi:type="di:EMFSemanticModelBridge">
@@ -861,7 +861,7 @@
         </contained>
       </contained>
     </contained>
-    <contained xsi:type="di:GraphNode" position="602,240" size="112,-1">
+    <contained xsi:type="di:GraphNode" position="369,962" size="402,-1">
       <property key="backgroundColor" value="255,255,255"/>
       <anchorage graphEdge="//@diagrams.3/@contained.8 //@diagrams.3/@contained.13 //@diagrams.3/@contained.18"/>
       <semanticModel xsi:type="di:EMFSemanticModelBridge">
@@ -878,6 +878,36 @@
         <semanticModel xsi:type="di:EMFSemanticModelBridge">
           <element href="InstantMessengerModel.uml2#_d5rVkPyaEdqjP_ILe4Jwkg"/>
         </semanticModel>
+        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge">
+            <element href="InstantMessengerModel.uml2#_NG8vsDKGEdukjIB5UbodVA"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge">
+            <element href="InstantMessengerModel.uml2#_eSR90DKHEdukjIB5UbodVA"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge">
+            <element href="InstantMessengerModel.uml2#_gbDBIDKHEdukjIB5UbodVA"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge">
+            <element href="InstantMessengerModel.uml2#_mGxN0DKHEdukjIB5UbodVA"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge">
+            <element href="InstantMessengerModel.uml2#_nwVzsDKHEdukjIB5UbodVA"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge">
+            <element href="InstantMessengerModel.uml2#_ozGRMDKHEdukjIB5UbodVA"/>
+          </semanticModel>
+        </contained>
       </contained>
     </contained>
     <contained xsi:type="di:GraphNode" position="526,745" size="101,107">
@@ -948,7 +978,7 @@
         </contained>
       </contained>
     </contained>
-    <contained xsi:type="di:GraphNode" position="466,430" size="102,75">
+    <contained xsi:type="di:GraphNode" position="20,1029" size="102,75">
       <property key="backgroundColor" value="255,255,255"/>
       <anchorage graphEdge="//@diagrams.3/@contained.8"/>
       <semanticModel xsi:type="di:EMFSemanticModelBridge">
@@ -985,7 +1015,7 @@
       <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
+      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject" offset="2,-12"/>
     </contained>
     <contained xsi:type="di:GraphEdge" anchor="//@diagrams.3/@contained.0/@anchorage.0 //@diagrams.3/@contained.4/@anchorage.0">
       <semanticModel xsi:type="di:EMFSemanticModelBridge">
@@ -995,7 +1025,7 @@
       <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="8" vDistance="9"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject" offset="-42,-58"/>
+      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject" offset="22,-46"/>
       <waypoints>[0, 92, 143, -89]</waypoints>
       <waypoints>[0, 181, 143, 0]</waypoints>
       <waypoints>[-25, 181, 118, 0]</waypoints>
@@ -1004,14 +1034,13 @@
       <semanticModel xsi:type="di:EMFSemanticModelBridge">
         <element href="InstantMessengerModel.uml2#_0cy9MPyaEdqjP_ILe4Jwkg"/>
       </semanticModel>
-      <contained xsi:type="di:EdgeObjectUV" id="srcNameEdgeObject" uDistance="34"/>
+      <contained xsi:type="di:EdgeObjectUV" id="srcNameEdgeObject" uDistance="4" vDistance="9"/>
       <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject" offset="-46,-64"/>
-      <waypoints>[-34, 29, 107, -169]</waypoints>
-      <waypoints>[-141, 125, 0, -73]</waypoints>
-      <waypoints>[-141, 160, 0, -38]</waypoints>
+      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject" offset="-6,-12"/>
+      <waypoints>[21, -35, -87, 149]</waypoints>
+      <waypoints>[85, -146, -23, 38]</waypoints>
     </contained>
     <contained xsi:type="di:GraphNode" position="93,42" size="155,124">
       <property key="backgroundColor" value="255,255,255"/>
@@ -1047,7 +1076,7 @@
         </contained>
       </contained>
     </contained>
-    <contained xsi:type="di:GraphNode" position="594,41" size="167,105">
+    <contained xsi:type="di:GraphNode" position="20,896" size="167,105">
       <property key="backgroundColor" value="255,255,255"/>
       <anchorage graphEdge="//@diagrams.3/@contained.13"/>
       <semanticModel xsi:type="di:EMFSemanticModelBridge">
@@ -1076,7 +1105,7 @@
         </contained>
       </contained>
     </contained>
-    <contained xsi:type="di:GraphNode" position="262,42" size="181,86">
+    <contained xsi:type="di:GraphNode" position="262,42" size="456,86">
       <property key="backgroundColor" value="255,255,255"/>
       <anchorage graphEdge="//@diagrams.3/@contained.12"/>
       <semanticModel xsi:type="di:EMFSemanticModelBridge">
@@ -1211,7 +1240,7 @@
       <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject" offset="68,-9"/>
+      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject" offset="8,34"/>
       <waypoints>[58, 92, -27, -236]</waypoints>
       <waypoints>[85, 135, 0, -193]</waypoints>
       <waypoints>[85, 246, 0, -82]</waypoints>
@@ -1225,6 +1254,9 @@
       <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
       <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
+      <waypoints>[43, -83, -40, 351]</waypoints>
+      <waypoints>[83, -158, 0, 276]</waypoints>
+      <waypoints>[83, -353, 0, 81]</waypoints>
     </contained>
     <contained xsi:type="di:GraphEdge" anchor="//@diagrams.3/@contained.0/@anchorage.0 //@diagrams.3/@contained.1/@anchorage.0">
       <semanticModel xsi:type="di:EMFSemanticModelBridge">
@@ -1235,13 +1267,13 @@
       <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
       <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
-      <waypoints>[-187, 0, -58, -516]</waypoints>
-      <waypoints>[-277, 0, -148, -516]</waypoints>
-      <waypoints>[-277, 380, -148, -136]</waypoints>
-      <waypoints>[-208, 443, -79, -73]</waypoints>
+      <waypoints>[-223, 0, -58, -516]</waypoints>
+      <waypoints>[-329, 0, -164, -516]</waypoints>
+      <waypoints>[-329, 378, -164, -138]</waypoints>
+      <waypoints>[-252, 443, -87, -73]</waypoints>
     </contained>
   </diagrams>
-  <diagrams position="0,0" size="100,100" name="view" viewport="218,0">
+  <diagrams position="0,0" size="100,100" name="view" viewport="0,0">
     <property key="pageFormatName" value="A4"/>
     <property key="diagramWidth" value="840"/>
     <property key="diagramHeight" value="1188"/>

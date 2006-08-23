@@ -563,11 +563,12 @@ rule PublicPropertySequence {
 		client <- insertOp,
 		supplier <- s)
 	do {
-		p.ownedMember <- p.ownedMember->union(Set{getDep, addDep, removeDep, getAtDep, insertDep});
+		p.ownedMember <- p.ownedMember->union(Set{getDep, addDep, removeDep, getAtDep, indexOfDep, insertDep});
 		getDep->apply(thisModule.accessor);
 		addDep->apply(thisModule.accessor);
 		removeDep->apply(thisModule.accessor);
 		getAtDep->apply(thisModule.accessor);
+		indexOfDep->apply(thisModule.accessor);
 		insertDep->apply(thisModule.accessor);
 	}
 }

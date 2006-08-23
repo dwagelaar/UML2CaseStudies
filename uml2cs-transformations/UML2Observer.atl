@@ -282,10 +282,10 @@ rule ObservableClass {
 	   	name <- 'getObservers',
 		class_ <- s,
 		visibility <- #public,
+		returnResult <- Sequence{getPar},
 		concurrency <- #sequential),
 	   getPar : UML2!Parameter (
 	   	name <- 'return',
-		operation <- getOp,
         lowerValue <- getParLow,
         upperValue <- getParUp,
 		type <- observers.type,
@@ -498,10 +498,10 @@ rule ObservableObserverClass {
 	   	name <- 'getObservers',
 		class_ <- s,
 		visibility <- #public,
+		returnResult <- Sequence{getPar},
 		concurrency <- #sequential),
 	   getPar : UML2!Parameter (
 	   	name <- 'return',
-		operation <- getOp,
         lowerValue <- getParLow,
         upperValue <- getParUp,
 		type <- observers.type,

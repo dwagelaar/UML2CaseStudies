@@ -179,7 +179,7 @@ rule Parameter {
 rule VoidOperation {
     from s : UML2!Operation (
     	if thisModule.inElements->includes(s) then
-			s.parameter->select(p|p.direction = #return)->isEmpty()
+			s.returnResult->isEmpty()
 		else false endif)
     to t : UML2!Operation mapsTo s (
         name <- s.name,
@@ -201,10 +201,10 @@ rule VoidOperation {
         elementImport <- s.elementImport,
         packageImport <- s.packageImport,
         formalParameter <- s.formalParameter,
-        returnResult <- s.returnResult,
+        returnResult <- Sequence{retPar},
         raisedException <- s.raisedException,
         method <- s.method,
-        type <- s.type,
+        type <- 'OclVoid'->implTypeName()->type(),
         upperValue <- s.upperValue,
         lowerValue <- s.lowerValue,
         templateParameter <- s.templateParameter,
@@ -214,7 +214,6 @@ rule VoidOperation {
         redefinedOperation <- s.redefinedOperation,
         bodyCondition <- s.bodyCondition),
 	   retPar : UML2!Parameter (
-	   	operation <- s,
 	   	name <- 'return',
         lowerValue <- retParLow,
         upperValue <- retParUp,
@@ -230,7 +229,7 @@ rule VoidOperation {
 rule FunctionOperation {
     from s : UML2!Operation (
     	if thisModule.inElements->includes(s) then
-			s.parameter->select(p|p.direction = #return)->notEmpty()
+			s.returnResult->notEmpty()
 		else false endif)
     to t : UML2!Operation mapsTo s (
         name <- s.name,
@@ -255,7 +254,7 @@ rule FunctionOperation {
         returnResult <- s.returnResult,
         raisedException <- s.raisedException,
         method <- s.method,
-        type <- s.type,
+        type <- s.returnResult->first()->implType(),
         upperValue <- s.upperValue,
         lowerValue <- s.lowerValue,
         templateParameter <- s.templateParameter,

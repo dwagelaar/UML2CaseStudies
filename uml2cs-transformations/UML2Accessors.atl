@@ -180,10 +180,10 @@ rule PublicPropertySingle {
 		visibility <- s.visibility,
 		isStatic <- s.isStatic,
 		isAbstract <- false,
+		returnResult <- Sequence{getPar},
 		concurrency <- #sequential),
 	   getPar : UML2!Parameter (
 	   	name <- 'return',
-		operation <- getOp,
 		type <- s.type,
 		effect <- #read,
 		direction <- #return),
@@ -275,10 +275,10 @@ rule PublicPropertyCollection {
 		visibility <- s.visibility,
 		isStatic <- s.isStatic,
 		isAbstract <- false,
+		returnResult <- Sequence{getPar},
 		concurrency <- #sequential),
 	   getPar : UML2!Parameter (
 	   	name <- 'return',
-		operation <- getOp,
         lowerValue <- getParLow,
         upperValue <- getParUp,
 		type <- s.type,
@@ -401,10 +401,10 @@ rule PublicPropertySequence {
 		visibility <- s.visibility,
 		isStatic <- s.isStatic,
 		isAbstract <- false,
+		returnResult <- Sequence{getPar},
 		concurrency <- #sequential),
 	   getPar : UML2!Parameter (
 	   	name <- 'return',
-		operation <- getOp,
         lowerValue <- getParLow,
         upperValue <- getParUp,
 		type <- s.type,
@@ -479,6 +479,7 @@ rule PublicPropertySequence {
 		visibility <- s.visibility,
 		isStatic <- s.isStatic,
 		isAbstract <- false,
+		returnResult <- Sequence{getAtPar2},
 		concurrency <- #sequential),
 	   getAtPar1 : UML2!Parameter (
 	   	name <- 'index',
@@ -488,7 +489,6 @@ rule PublicPropertySequence {
 		direction <- #"in"),
 	   getAtPar2 : UML2!Parameter (
 	   	name <- 'return',
-		operation <- getAtOp,
 		type <- s.type,
 		effect <- #read,
 		direction <- #"return"),
@@ -509,6 +509,7 @@ rule PublicPropertySequence {
 		visibility <- s.visibility,
 		isStatic <- s.isStatic,
 		isAbstract <- false,
+		returnResult <- Sequence{indexOfPar2},
 		concurrency <- #sequential),
 	   indexOfPar1 : UML2!Parameter (
 	   	name <- s.name,
@@ -518,7 +519,6 @@ rule PublicPropertySequence {
 		direction <- #"in"),
 	   indexOfPar2 : UML2!Parameter (
 	   	name <- 'return',
-		operation <- indexOfOp,
 		type <- thisModule.oclInteger,
 		effect <- #read,
 		direction <- #"return"),

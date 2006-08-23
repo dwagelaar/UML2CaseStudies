@@ -24,7 +24,7 @@ helper def : oclString : UML2!PrimitiveType = 'String'->primitiveType();
 helper def : oclAny : UML2!PrimitiveType = 'OclAny'->primitiveType();
 
 helper context UML2!Property def : notifyObservers() : String =
-	self.type.qualifiedName('separator'->value())->notifyObserversBody();
+	self.type->qualifiedName('separator'->value())->notifyObserversBody();
 
 helper context UML2!Class def : update() : String =
 	self->handlers()->iterate(o; acc : String = ''|acc + o->update());
@@ -274,7 +274,7 @@ rule ObservableClass {
 		upperValue <- observersUpper,
 		lowerValue <- observersLower),
 	   observersUpper : UML2!LiteralUnlimitedNatural (
-	   	value <- -1),
+	   	value <- 0-1),
 	   observersLower : UML2!LiteralInteger (
 	   	value <- 0),
 	-- Get --
@@ -288,13 +288,13 @@ rule ObservableClass {
 		operation <- getOp,
         lowerValue <- getParLow,
         upperValue <- getParUp,
-		type <- s.type,
+		type <- observers.type,
 		effect <- #read,
 		direction <- #return),
 	   getParLow : UML2!LiteralInteger (
 	   	value <- 0),
 	   getParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- -1),
+	   	value <- 0-1),
 	   getBehavior : UML2!Activity (
 	   	"context" <- s,
 	   	specification <- getOp,
@@ -305,7 +305,7 @@ rule ObservableClass {
 	   addOp : UML2!Operation (
 	   	name <- 'addObserver',
 		class_ <- s,
-		visiblity <- #public,
+		visibility <- #public,
 		concurrency <- #sequential),
 	   addPar : UML2!Parameter (
 	   	name <- s.name,
@@ -397,7 +397,7 @@ rule ObserverClass {
         occurrence <- s.occurrence,
         ownedBehavior <- s.ownedBehavior,
         classifierBehavior <- s.classifierBehavior,
-        implementation <- impl,
+        implementation <- s.implementation->union(Set{impl}),
         ownedTrigger <- s.ownedTrigger,
         ownedStateMachine <- s.ownedStateMachine,
         ownedAttribute <- s.ownedAttribute,
@@ -490,7 +490,7 @@ rule ObservableObserverClass {
 		upperValue <- observersUpper,
 		lowerValue <- observersLower),
 	   observersUpper : UML2!LiteralUnlimitedNatural (
-	   	value <- -1),
+	   	value <- 0-1),
 	   observersLower : UML2!LiteralInteger (
 	   	value <- 0),
 	-- Get --
@@ -504,13 +504,13 @@ rule ObservableObserverClass {
 		operation <- getOp,
         lowerValue <- getParLow,
         upperValue <- getParUp,
-		type <- s.type,
+		type <- observers.type,
 		effect <- #read,
 		direction <- #return),
 	   getParLow : UML2!LiteralInteger (
 	   	value <- 0),
 	   getParUp : UML2!LiteralUnlimitedNatural (
-	   	value <- -1),
+	   	value <- 0-1),
 	   getBehavior : UML2!Activity (
 	   	"context" <- s,
 	   	specification <- getOp,
@@ -521,7 +521,7 @@ rule ObservableObserverClass {
 	   addOp : UML2!Operation (
 	   	name <- 'addObserver',
 		class_ <- s,
-		visiblity <- #public,
+		visibility <- #public,
 		concurrency <- #sequential),
 	   addPar : UML2!Parameter (
 	   	name <- s.name,

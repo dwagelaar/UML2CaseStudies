@@ -2,7 +2,7 @@
 <launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
 <mapAttribute key="Model Handler">
 <mapEntry key="OUT" value=""/>
-<mapEntry key="JAVATYPES" value=""/>
+<mapEntry key="IMPLTYPES" value=""/>
 <mapEntry key="UML2" value="EMF"/>
 <mapEntry key="IN" value=""/>
 </mapAttribute>
@@ -16,7 +16,7 @@
 <booleanAttribute key="Mode Debug" value="false"/>
 <mapAttribute key="ModelType">
 <mapEntry key="OUT" value="MODELOUTPUT"/>
-<mapEntry key="JAVATYPES" value="MODELINPUT"/>
+<mapEntry key="IMPLTYPES" value="MODELINPUT"/>
 <mapEntry key="UML2" value="METAMODELINPUT"/>
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
@@ -24,14 +24,14 @@
 <mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/im-datatypes.uml2"/>
 <mapEntry key="IMPLTYPES" value="/uml2cs-transformations/models/JavaTypes.uml2"/>
 <mapEntry key="UML2" value="uri:http://www.eclipse.org/uml2/1.0.0/UML"/>
-<mapEntry key="IN" value="/uml2cs-instantmessenger-model/outmodels/test/im-accessors.uml2"/>
+<mapEntry key="IN" value="/uml2cs-instantmessenger-model/outmodels/test/im-observer.uml2"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <mapAttribute key="Output">
 <mapEntry key="OUT" value="UML2"/>
 </mapAttribute>
 <mapAttribute key="Input">
-<mapEntry key="JAVATYPES" value="UML2"/>
+<mapEntry key="IMPLTYPES" value="UML2"/>
 <mapEntry key="IN" value="UML2"/>
 </mapAttribute>
 <booleanAttribute key="AllowInterModelReferences" value="true"/>

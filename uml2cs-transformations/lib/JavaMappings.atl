@@ -231,5 +231,5 @@ helper context String def : subscribeStanza() : String =
 helper context String def : unsubscribeStanza() : String =
     'if (this.' + self + ' != null) this.' + self + '.removeObserver(this);\n';
 
-helper context String def : javaRemoveUnsubscribeStanza() : String =
+helper context String def : removeUnsubscribeStanza() : String =
     'if (' + self + ' != null) ' + self + '.removeObserver(this);\n';

@@ -233,3 +233,11 @@ helper context String def : unsubscribeStanza() : String =
 
 helper context String def : removeUnsubscribeStanza() : String =
     'if (' + self + ' != null) ' + self + '.removeObserver(this);\n';
+
+------------------------------- Singleton -----------------------------------
+
+helper context String def : singletonBody() : String =
+	'if (instance == null) {\n' +
+	'    instance = new ' + self + '();\n' +
+	'}\n' +
+	'return instance;';

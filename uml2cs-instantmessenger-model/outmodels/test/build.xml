@@ -14,6 +14,7 @@
 	<property name="model.profiles.path" value="${current.path}/im-profiles.uml2"/>
 	<property name="model.accessors.path" value="${current.path}/im-accessors.uml2"/>
 	<property name="model.observer.path" value="${current.path}/im-observer.uml2"/>
+	<property name="model.singleton.path" value="${current.path}/im-singleton.uml2"/>
 	<property name="model.datatypes.path" value="${current.path}/im-datatypes.uml2"/>
 	<property name="model.obsdatatypes.path" value="${current.path}/obs-datatypes.uml2"/>
 
@@ -21,6 +22,7 @@
 	<property name="trans.uml2profiles.path" value="${trans.path}/UML2Profiles.atl"/>
 	<property name="trans.uml2accessors.path" value="${trans.path}/UML2Accessors.atl"/>
 	<property name="trans.uml2observer.path" value="${trans.path}/UML2Observer.atl"/>
+	<property name="trans.uml2singleton.path" value="${trans.path}/UML2Singleton.atl"/>
 	<property name="trans.uml2datatypes.path" value="${trans.path}/UML2DataTypes.atl"/>
 	<property name="trans.uml2tojava.path" value="${trans.path}/UML2ToJava.atl"/>
 
@@ -82,11 +84,23 @@
 		<am3.saveModel model="im-observer" path="${model.observer.path}"/>
 	</target>
 
-	<target name="im-datatypes" depends="im-observer">
+	<target name="im-singleton" depends="im-observer">
+		<am3.atl path="${trans.uml2singleton.path}" allowInterModelReferences="true">
+			<inmodel name="UML2" model="UML2"/>
+			<inmodel name="IN" model="im-observer"/>
+			<outmodel name="OUT" model="im-singleton" metamodel="UML2" path="${model.singleton.path}"/>
+			<library name="UML2" path="${lib.uml2.path}"/>
+			<library name="Java" path="${lib.java1.path}"/>
+			<library name="Mappings" path="${lib.javamappings.path}"/>
+		</am3.atl>
+		<am3.saveModel model="im-singleton" path="${model.singleton.path}"/>
+	</target>
+
+	<target name="im-datatypes" depends="im-singleton">
 		<am3.atl path="${trans.uml2datatypes.path}" allowInterModelReferences="true">
 			<inmodel name="UML2" model="UML2"/>
 			<inmodel name="IMPLTYPES" model="JavaTypes"/>
-			<inmodel name="IN" model="im-observer"/>
+			<inmodel name="IN" model="im-singleton"/>
 			<outmodel name="OUT" model="im-datatypes" metamodel="UML2" path="${model.datatypes.path}"/>
 			<library name="Strings" path="${lib.strings.path}"/>
 			<library name="UML2" path="${lib.uml2.path}"/>
@@ -96,7 +110,7 @@
 		<am3.saveModel model="im-datatypes" path="${model.datatypes.path}"/>
 	</target>
 
-	<target name="Observer-datatypes">
+	<target name="Observer-datatypes" depends="loadModels">
 		<am3.atl path="${trans.uml2datatypes.path}" allowInterModelReferences="true">
 			<inmodel name="UML2" model="UML2"/>
 			<inmodel name="IMPLTYPES" model="JavaTypes"/>
@@ -110,7 +124,7 @@
 		<am3.saveModel model="obs-datatypes" path="${model.obsdatatypes.path}"/>
 	</target>
 
-	<target name="cleanGeneratedCode" depends="im-datatypes">
+	<target name="cleanGeneratedCode">
         <delete>
             <fileset dir="${target.path}"/>
         </delete>

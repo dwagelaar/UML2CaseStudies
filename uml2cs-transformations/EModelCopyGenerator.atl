@@ -11,11 +11,11 @@ query EModelCopyGenerator = ECORE!EClass->allInstancesFrom('IN')->iterate(e; acc
 uses Config;
 
 helper context ECORE!EReference def : assignable() : Boolean =
-	not (self."derived" or self.unsettable or self.container)
+	not (self."derived" or self.container)
 	and self.changeable;
 
 helper context ECORE!EAttribute def : assignable() : Boolean =
-	not (self."derived" or self.unsettable) and self.changeable;
+	not (self."derived") and self.changeable;
 
 helper context ECORE!ENamedElement def : qName() : String =
 	self.name;

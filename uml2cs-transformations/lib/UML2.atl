@@ -24,21 +24,6 @@ helper context String def : type() : UML2!Type =
 helper context String def : interface() : UML2!Interface =
 	UML2!Interface->allInstances()->select(c|c->umlQualifiedName()=self)->first();
 
-------------------------------- Element -----------------------------------
-
-helper context UML2!Element def : isStereotyped(stereotype : String) : Boolean =
-	self->getAppliedStereotypes()->select(s|s.name = stereotype)->notEmpty();
-
-------------------------------- LiteralInteger -----------------------------------
-
-helper context UML2!LiteralInteger def : isSingle() : Boolean =
-	self.value >= 0 and self.value <= 1;
-
-------------------------------- LiteralUnlimitedNatural -----------------------------------
-
-helper context UML2!LiteralUnlimitedNatural def : isSingle() : Boolean =
-	self.value >= 0 and self.value <= 1;
-
 ------------------------------- MultiplicityElement -----------------------------------
 
 helper context UML2!MultiplicityElement def : accessorBaseName() : String =
@@ -48,11 +33,7 @@ helper context UML2!MultiplicityElement def : accessorBaseNameS() : String =
 	self->accessorBaseName() + if self->isSingle() then '' else 's' endif;
 
 helper context UML2!MultiplicityElement def : isSingle() : Boolean =
-	if self.upperValue->oclIsUndefined() then
-		true
-	else
-		self.upperValue->isSingle()
-	endif;
+	self->upper() = 1;
 
 helper context UML2!MultiplicityElement def : lower() : Integer =
 	if self.lowerValue->oclIsUndefined() then 1
@@ -77,7 +58,10 @@ helper context UML2!NamedElement def : qualifiedName(separator : String) : Strin
 ------------------------------- Package -----------------------------------
 
 helper context UML2!Package def : includesProfile(p : UML2!Profile) : Boolean =
-	self.appliedProfile->select(a|a.importedProfile=p)->notEmpty();
+	self.profileApplication->select(a|a.appliedProfile=p)->notEmpty();
+
+helper context UML2!Package def : includesProfileName(p : String) : Boolean =
+	self.profileApplication->select(a|a.appliedProfile.name=p)->notEmpty();
 
 ------------------------------- PackageableElement -----------------------------------
 

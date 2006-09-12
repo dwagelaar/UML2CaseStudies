@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_eb5C0PrOEdq0MPWKkoLgDQ" name="Final" metaclassReference="_4Img8DntEduHCOb_wCU8nA">
+  <eAnnotations xmi:id="_yGC5QPrOEdq0MPWKkoLgDQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_4InvEDntEduHCOb_wCU8nA" name="Final" nsURI="http:///schemas/Final/1" nsPrefix="Final">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_4InvETntEduHCOb_wCU8nA" name="final">
+        <eAnnotations xmi:id="_4InvEjntEduHCOb_wCU8nA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_hmbsMPrOEdq0MPWKkoLgDQ"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_4InvEzntEduHCOb_wCU8nA" name="base_Parameter" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Parameter"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_yHYWAPrOEdq0MPWKkoLgDQ" name="Final_0" nsURI="http:///Final_0_yHXu8PrOEdq0MPWKkoLgDQ.profile.uml2" nsPrefix="Final_0">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_yHYWAfrOEdq0MPWKkoLgDQ" name="Final__final">
+        <eAnnotations xmi:id="_yHYWAvrOEdq0MPWKkoLgDQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_hmbsMPrOEdq0MPWKkoLgDQ"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_2Jr9MDntEduHCOb_wCU8nA" name="base_Parameter">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Parameter"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_4Img8DntEduHCOb_wCU8nA">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Parameter"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_hmbsMPrOEdq0MPWKkoLgDQ" name="final">
+    <ownedAttribute xmi:id="_4InIATntEduHCOb_wCU8nA" name="base_Parameter" association="_4Img8TntEduHCOb_wCU8nA">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Parameter"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_4Img8TntEduHCOb_wCU8nA" name="Parameter_final" memberEnd="_4InIADntEduHCOb_wCU8nA _4InIATntEduHCOb_wCU8nA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_4InIADntEduHCOb_wCU8nA" name="extension_final" type="_hmbsMPrOEdq0MPWKkoLgDQ" aggregation="composite" association="_4Img8TntEduHCOb_wCU8nA"/>
+  </packagedElement>
+</uml:Profile>

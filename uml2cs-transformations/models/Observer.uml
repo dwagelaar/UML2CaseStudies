@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_tPOCIaLHEdqkGMDvm75SlQ" name="Observer">
+  <eAnnotations xmi:id="_t0_bIP08EdqkR-EGbzG-NA" source="http://www.topcased.org/uuid">
+    <details xmi:id="_t0_bIf08EdqkR-EGbzG-NA" key="uuid" value="11504648176160"/>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Package" xmi:id="_tPOCIqLHEdqkGMDvm75SlQ" name="observer">
+    <eAnnotations xmi:id="_t1ApQP08EdqkR-EGbzG-NA" source="http://www.topcased.org/uuid">
+      <details xmi:id="_t1ApQf08EdqkR-EGbzG-NA" key="uuid" value="11504648176201"/>
+    </eAnnotations>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_YvpZEP08EdqkR-EGbzG-NA" name="Observer">
+      <eAnnotations xmi:id="_t1B3YP08EdqkR-EGbzG-NA" source="http://www.topcased.org/uuid">
+        <details xmi:id="_t1B3Yf08EdqkR-EGbzG-NA" key="uuid" value="11504648176222"/>
+      </eAnnotations>
+      <ownedOperation xmi:id="_bu70sP08EdqkR-EGbzG-NA" name="update">
+        <eAnnotations xmi:id="_t1CecP08EdqkR-EGbzG-NA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_t1Cecf08EdqkR-EGbzG-NA" key="uuid" value="11504648176233"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_ed7KgP08EdqkR-EGbzG-NA" name="name" effect="read">
+          <eAnnotations xmi:id="_t1DFgP08EdqkR-EGbzG-NA" source="http://www.topcased.org/uuid">
+            <details xmi:id="_t1DFgf08EdqkR-EGbzG-NA" key="uuid" value="11504648176244"/>
+          </eAnnotations>
+          <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_ed7Kgf08EdqkR-EGbzG-NA" name="value" effect="update">
+          <eAnnotations xmi:id="_t1DskP08EdqkR-EGbzG-NA" source="http://www.topcased.org/uuid">
+            <details xmi:id="_t1Dskf08EdqkR-EGbzG-NA" key="uuid" value="11504648176255"/>
+          </eAnnotations>
+          <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_xPo38PyKEdqlTr7ZXrCGhQ"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

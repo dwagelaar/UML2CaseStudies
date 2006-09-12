@@ -7,7 +7,7 @@
 <mapEntry key="UML2TYPES" value=""/>
 <mapEntry key="IN" value=""/>
 </mapAttribute>
-<stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Accessors.atl"/>
+<stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Copy.atl"/>
 <mapAttribute key="Libs">
 <mapEntry key="Java" value="/uml2cs-transformations/lib/Java1.asm"/>
 <mapEntry key="UML2" value="/uml2cs-transformations/lib/UML2.asm"/>
@@ -23,11 +23,11 @@
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/im-accessors.uml2"/>
-<mapEntry key="UML2" value="uri:http://www.eclipse.org/uml2/1.0.0/UML"/>
-<mapEntry key="ACCESSORS" value="/uml2cs-transformations/profiles/Accessors.profile.uml2"/>
-<mapEntry key="UML2TYPES" value="/uml2cs-transformations/models/PrimitiveTypes.uml2"/>
-<mapEntry key="IN" value="/uml2cs-instantmessenger-model/outmodels/test/im-profiles.uml2"/>
+<mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/im-accessors.uml"/>
+<mapEntry key="UML2" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
+<mapEntry key="ACCESSORS" value="/uml2cs-transformations/profiles/Accessors.profile.uml"/>
+<mapEntry key="UML2TYPES" value="/uml2cs-transformations/models/PrimitiveTypes.uml"/>
+<mapEntry key="IN" value="/uml2cs-instantmessenger-model/outmodels/test/im-profiles.uml"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <mapAttribute key="Output">
@@ -39,4 +39,8 @@
 <mapEntry key="IN" value="UML2"/>
 </mapAttribute>
 <booleanAttribute key="AllowInterModelReferences" value="true"/>
+<listAttribute key="Superimpose">
+<listEntry value="/uml2cs-transformations/UML2Accessors.asm"/>
+<listEntry value="/uml2cs-transformations/UML2ProfileCopy.asm"/>
+</listAttribute>
 </launchConfiguration>

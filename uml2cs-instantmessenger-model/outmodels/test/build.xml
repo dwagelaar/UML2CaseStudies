@@ -10,14 +10,8 @@
 	<property name="model.uml2types.path" value="/uml2cs-transformations/models/PrimitiveTypes.uml"/>
 	<property name="model.javatypes.path" value="/uml2cs-transformations/models/JavaTypes.uml"/>
 	<property name="model.obstypes.path" value="/uml2cs-transformations/models/Observer.uml"/>
-
 	<property name="model.in.path" value="${project.path}/models/InstantMessengerModel.uml"/>
-	<property name="model.profiles.path" value="${current.path}/im-profiles.uml"/>
-	<property name="model.accessors.path" value="${current.path}/im-accessors.uml"/>
-	<property name="model.observer.path" value="${current.path}/im-observer.uml"/>
-	<property name="model.singleton.path" value="${current.path}/im-singleton.uml"/>
-	<property name="model.datatypes.path" value="${current.path}/im-datatypes.uml"/>
-	<property name="model.obsdatatypes.path" value="${current.path}/obs-datatypes.uml"/>
+	<property name="model.local.path" value="${project.path}/models/InstantMessengerLocal.uml"/>
 
 	<property name="trans.path" value="/uml2cs-transformations"/>
 	<property name="trans.uml2copy.path" value="${trans.path}/UML2Copy.atl"/>
@@ -37,6 +31,12 @@
 
 	<property name="lib.config.path" value="${current.path}/config.asm"/>
 
+	<target name="clean">
+        <delete>
+            <fileset dir="${target.path}"/>
+        </delete>
+	</target>
+
 	<target name="loadModels">
 		<am3.loadModel modelHandler="EMF" name="UML2" metamodel="MOF" path="${metamodel.uml2.path}"/>
 		<am3.loadModel modelHandler="EMF" name="Accessors" metamodel="UML2" path="${profile.accessors.path}"/>
@@ -44,124 +44,168 @@
 		<am3.loadModel modelHandler="EMF" name="JavaTypes" metamodel="UML2" path="${model.javatypes.path}"/>
 		<am3.loadModel modelHandler="EMF" name="Observer" metamodel="UML2" path="${model.obstypes.path}"/>
 		<am3.loadModel modelHandler="EMF" name="inModel" metamodel="UML2" path="${model.in.path}"/>
+		<am3.loadModel modelHandler="EMF" name="Local" metamodel="UML2" path="${model.local.path}"/>
 	</target>
 
-	<target name="im-profiles" depends="loadModels">
-		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
-			<inmodel name="UML2" model="UML2"/>
-			<inmodel name="IN" model="inModel"/>
-			<inmodel name="ACCESSORS" model="Accessors"/>
-			<outmodel name="OUT" model="im-profiles" metamodel="UML2" path="${model.profiles.path}"/>
-			<library name="UML2" path="${lib.uml2.path}"/>
-			<superimpose path="${trans.uml2profiles.path}"/>
-			<superimpose path="${trans.uml2profilecopy.path}"/>
-		</am3.atl>
-		<am3.saveModel model="im-profiles" path="${model.profiles.path}"/>
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: profiles          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="profiles">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<inmodel name="ACCESSORS" model="Accessors"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<superimpose path="${trans.uml2profiles.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+    		<am3.saveModel model="@{out}" path="@{path}"/>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: accessors          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="accessors">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="ACCESSORS" model="Accessors"/>
+    			<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="Strings" path="${lib.strings.path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<library name="Java" path="${lib.java1.path}"/>
+    			<library name="Mappings" path="${lib.javamappings.path}"/>
+    			<superimpose path="${trans.uml2accessors.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+    		<am3.saveModel model="@{out}" path="@{path}"/>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: observer          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="observer">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="OBSERVER" model="Observer"/>
+    			<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="Strings" path="${lib.strings.path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<library name="Java" path="${lib.java1.path}"/>
+    			<library name="Mappings" path="${lib.javamappings.path}"/>
+    			<superimpose path="${trans.uml2observer.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+    		<am3.saveModel model="@{out}" path="@{path}"/>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: singleton          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="singleton">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<library name="Java" path="${lib.java1.path}"/>
+    			<library name="Mappings" path="${lib.javamappings.path}"/>
+    			<superimpose path="${trans.uml2singleton.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+    		<am3.saveModel model="@{out}" path="@{path}"/>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: datatypes          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="datatypes">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IMPLTYPES" model="JavaTypes"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="Strings" path="${lib.strings.path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<library name="Java" path="${lib.java1.path}"/>
+    			<library name="Mappings" path="${lib.javamappings.path}"/>
+    			<superimpose path="${trans.uml2datatypes.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+    		<am3.saveModel model="@{out}" path="@{path}"/>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: generate          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="generate">
+        <attribute name="in" default="MODEL.IN" />
+        <sequential>
+    		<am3.atl path="${trans.uml2tojava.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<library name="config" path="${lib.config.path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    		</am3.atl>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: transform          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="transform">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="prefix" default="MODEL.OUT.PREFIX" />
+        <sequential>
+    		<profiles in="@{in}" out="@{prefix}-profiles" path="${current.path}/@{prefix}-profiles.uml"/>
+    		<accessors in="@{prefix}-profiles" out="@{prefix}-accessors" path="${current.path}/@{prefix}-accessors.uml"/>
+    		<observer in="@{prefix}-accessors" out="@{prefix}-observer" path="${current.path}/@{prefix}-observer.uml"/>
+    		<singleton in="@{prefix}-observer" out="@{prefix}-singleton" path="${current.path}/@{prefix}-singleton.uml"/>
+    		<datatypes in="@{prefix}-singleton" out="@{prefix}-datatypes" path="${current.path}/@{prefix}-datatypes.uml"/>
+    		<generate in="@{prefix}-datatypes"/>
+        </sequential>
+    </macrodef>
+
+	<target name="Observer" depends="clean, loadModels">
+		<transform in="Observer" prefix="obs"/>
 	</target>
 
-	<target name="im-accessors" depends="im-profiles">
-		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
-			<inmodel name="UML2" model="UML2"/>
-			<inmodel name="ACCESSORS" model="Accessors"/>
-			<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
-			<inmodel name="IN" model="im-profiles"/>
-			<outmodel name="OUT" model="im-accessors" metamodel="UML2" path="${model.accessors.path}"/>
-			<library name="Strings" path="${lib.strings.path}"/>
-			<library name="UML2" path="${lib.uml2.path}"/>
-			<library name="Java" path="${lib.java1.path}"/>
-			<library name="Mappings" path="${lib.javamappings.path}"/>
-			<superimpose path="${trans.uml2accessors.path}"/>
-			<superimpose path="${trans.uml2profilecopy.path}"/>
-		</am3.atl>
-		<am3.saveModel model="im-accessors" path="${model.accessors.path}"/>
+	<target name="InstantMessengerModel" depends="clean, loadModels">
+		<transform in="inModel" prefix="im"/>
 	</target>
 
-	<target name="im-observer" depends="im-accessors">
-		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
-			<inmodel name="UML2" model="UML2"/>
-			<inmodel name="OBSERVER" model="Observer"/>
-			<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
-			<inmodel name="IN" model="im-accessors"/>
-			<outmodel name="OUT" model="im-observer" metamodel="UML2" path="${model.observer.path}"/>
-			<library name="Strings" path="${lib.strings.path}"/>
-			<library name="UML2" path="${lib.uml2.path}"/>
-			<library name="Java" path="${lib.java1.path}"/>
-			<library name="Mappings" path="${lib.javamappings.path}"/>
-			<superimpose path="${trans.uml2observer.path}"/>
-			<superimpose path="${trans.uml2profilecopy.path}"/>
-		</am3.atl>
-		<am3.saveModel model="im-observer" path="${model.observer.path}"/>
+	<target name="InstantMessengerLocal" depends="clean, loadModels">
+		<transform in="Local" prefix="local"/>
 	</target>
 
-	<target name="im-singleton" depends="im-observer">
-		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
-			<inmodel name="UML2" model="UML2"/>
-			<inmodel name="IN" model="im-observer"/>
-			<outmodel name="OUT" model="im-singleton" metamodel="UML2" path="${model.singleton.path}"/>
-			<library name="UML2" path="${lib.uml2.path}"/>
-			<library name="Java" path="${lib.java1.path}"/>
-			<library name="Mappings" path="${lib.javamappings.path}"/>
-			<superimpose path="${trans.uml2singleton.path}"/>
-			<superimpose path="${trans.uml2profilecopy.path}"/>
-		</am3.atl>
-		<am3.saveModel model="im-singleton" path="${model.singleton.path}"/>
-	</target>
-
-	<target name="im-datatypes" depends="im-singleton">
-		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
-			<inmodel name="UML2" model="UML2"/>
-			<inmodel name="IMPLTYPES" model="JavaTypes"/>
-			<inmodel name="IN" model="im-singleton"/>
-			<outmodel name="OUT" model="im-datatypes" metamodel="UML2" path="${model.datatypes.path}"/>
-			<library name="Strings" path="${lib.strings.path}"/>
-			<library name="UML2" path="${lib.uml2.path}"/>
-			<library name="Java" path="${lib.java1.path}"/>
-			<library name="Mappings" path="${lib.javamappings.path}"/>
-			<superimpose path="${trans.uml2datatypes.path}"/>
-			<superimpose path="${trans.uml2profilecopy.path}"/>
-		</am3.atl>
-		<am3.saveModel model="im-datatypes" path="${model.datatypes.path}"/>
-	</target>
-
-	<target name="Observer-datatypes" depends="loadModels">
-		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
-			<inmodel name="UML2" model="UML2"/>
-			<inmodel name="IMPLTYPES" model="JavaTypes"/>
-			<inmodel name="IN" model="Observer"/>
-			<outmodel name="OUT" model="obs-datatypes" metamodel="UML2" path="${model.obsdatatypes.path}"/>
-			<library name="Strings" path="${lib.strings.path}"/>
-			<library name="UML2" path="${lib.uml2.path}"/>
-			<library name="Java" path="${lib.java1.path}"/>
-			<library name="Mappings" path="${lib.javamappings.path}"/>
-			<superimpose path="${trans.uml2datatypes.path}"/>
-			<superimpose path="${trans.uml2profilecopy.path}"/>
-		</am3.atl>
-		<am3.saveModel model="obs-datatypes" path="${model.obsdatatypes.path}"/>
-	</target>
-
-	<target name="cleanGeneratedCode">
-        <delete>
-            <fileset dir="${target.path}"/>
-        </delete>
-	</target>
-
-	<target name="generateObserver" depends="cleanGeneratedCode,Observer-datatypes">
-		<am3.atl path="${trans.uml2tojava.path}" allowInterModelReferences="true">
-			<inmodel name="UML2" model="UML2"/>
-			<inmodel name="IN" model="obs-datatypes"/>
-			<library name="config" path="${lib.config.path}"/>
-			<library name="UML2" path="${lib.uml2.path}"/>
-		</am3.atl>
-	</target>
-
-	<target name="generate" depends="cleanGeneratedCode,im-datatypes">
-		<am3.atl path="${trans.uml2tojava.path}" allowInterModelReferences="true">
-			<inmodel name="UML2" model="UML2"/>
-			<inmodel name="IN" model="im-datatypes"/>
-			<library name="config" path="${lib.config.path}"/>
-			<library name="UML2" path="${lib.uml2.path}"/>
-		</am3.atl>
-	</target>
-
-    <target name="all" depends="generateObserver,generate"/>
+    <target name="all" depends="Observer, InstantMessengerModel, InstantMessengerLocal"/>
 </project>

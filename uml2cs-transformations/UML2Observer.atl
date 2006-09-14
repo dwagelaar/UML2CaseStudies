@@ -1,6 +1,6 @@
 -- $Id$
 -- Implements the Observer profile.
-module UML2Observer;
+module UML2Observer; --extends UML2Copy
 
 create OUT : UML2 from IN : UML2, OBSERVER : UML2, UML2TYPES : UML2;
 
@@ -297,8 +297,8 @@ rule ObservableClass {
 	   getBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
-		language <- 'language'->value(),
-		body <- observers.name->multiGetterBody()),
+		language <- Sequence{'language'->value()},
+		body <- Sequence{observers.name->multiGetterBody()}),
 	-- Add --
 	   addOp : UML2!uml::Operation (
 	   	name <- 'addObserver',
@@ -314,8 +314,8 @@ rule ObservableClass {
 	   addBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- addOp,
 		name <- addOp.name + 'Behavior',
-		language <- 'language'->value(),
-		body <- observers.name->adderBody(observers.isUnique)),
+		language <- Sequence{'language'->value()},
+		body <- Sequence{observers.name->adderBody(observers.isUnique)}),
 	-- Remove --
 	   removeOp : UML2!uml::Operation (
 	   	name <- 'removeObserver',
@@ -331,8 +331,8 @@ rule ObservableClass {
 	   removeBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- removeOp,
 		name <- removeOp.name + 'Behavior',
-		language <- 'language'->value(),
-		body <- observers.name->removerBody()),
+		language <- Sequence{'language'->value()},
+		body <- Sequence{observers.name->removerBody()}),
 	-- Notify --
 	   notifyOp : UML2!uml::Operation (
 	   	name <- 'notifyObservers',
@@ -353,8 +353,8 @@ rule ObservableClass {
 	   notifyBehavior : UML2!uml::OpaqueBehavior (
 		specification <- notifyOp,
 		name <- notifyOp.name + 'Behavior',
-		language <- 'language'->value(),
-		body <- observers->notifyObservers())
+		language <- Sequence{'language'->value()},
+		body <- Sequence{observers->notifyObservers()})
 }
 
 rule ObserverClass {
@@ -422,8 +422,8 @@ rule ObserverClass {
 	   updateBehavior : UML2!uml::OpaqueBehavior (
 		specification <- updateOp,
 		name <- updateOp.name + 'Behavior',
-		language <- 'language'->value(),
-		body <- s->update())
+		language <- Sequence{'language'->value()},
+		body <- Sequence{s->update()})
 }
 
 rule ObservableObserverClass {
@@ -500,8 +500,8 @@ rule ObservableObserverClass {
 	   getBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
-		language <- 'language'->value(),
-		body <- observers.name->multiGetterBody()),
+		language <- Sequence{'language'->value()},
+		body <- Sequence{observers.name->multiGetterBody()}),
 	-- Add --
 	   addOp : UML2!uml::Operation (
 	   	name <- 'addObserver',
@@ -517,8 +517,8 @@ rule ObservableObserverClass {
 	   addBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- addOp,
 		name <- addOp.name + 'Behavior',
-		language <- 'language'->value(),
-		body <- observers.name->adderBody(observers.isUnique)),
+		language <- Sequence{'language'->value()},
+		body <- Sequence{observers.name->adderBody(observers.isUnique)}),
 	-- Remove --
 	   removeOp : UML2!uml::Operation (
 	   	name <- 'removeObserver',
@@ -534,8 +534,8 @@ rule ObservableObserverClass {
 	   removeBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- removeOp,
 		name <- removeOp.name + 'Behavior',
-		language <- 'language'->value(),
-		body <- observers.name->removerBody()),
+		language <- Sequence{'language'->value()},
+		body <- Sequence{observers.name->removerBody()}),
 	-- Notify --
 	   notifyOp : UML2!uml::Operation (
 	   	name <- 'notifyObservers',
@@ -556,8 +556,8 @@ rule ObservableObserverClass {
 	   notifyBehavior : UML2!uml::OpaqueBehavior (
 		specification <- notifyOp,
 		name <- notifyOp.name + 'Behavior',
-		language <- 'language'->value(),
-		body <- observers->notifyObservers()),
+		language <- Sequence{'language'->value()},
+		body <- Sequence{observers->notifyObservers()}),
 	-- Observer functionality --
 	   real : UML2!uml::InterfaceRealization (
 	   	contract <- thisModule.Observer,
@@ -583,8 +583,8 @@ rule ObservableObserverClass {
 	   updateBehavior : UML2!uml::OpaqueBehavior (
 		specification <- updateOp,
 		name <- updateOp.name + 'Behavior',
-		language <- 'language'->value(),
-		body <- s->update())
+		language <- Sequence{'language'->value()},
+		body <- Sequence{s->update()})
 }
 
 rule OpaqueBehavior {
@@ -650,7 +650,7 @@ rule NotifyOpaqueBehavior {
         isAbstract <- s.isAbstract,
         isActive <- s.isActive,
         isReentrant <- s.isReentrant,
-        body <- Sequence{s.specification->notify(s.body->first())},
+        body <- s.body->collect(b|s.specification->notify(b)),  --Sequence{s.specification->notify(s.body->first())},
         language <- s.language,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
@@ -700,7 +700,7 @@ rule SubscribeOpaqueBehavior {
         isAbstract <- s.isAbstract,
         isActive <- s.isActive,
         isReentrant <- s.isReentrant,
-        body <- Sequence{s.specification->subscribe(s.body->first())},
+        body <- s.body->collect(b|s.specification->subscribe(b)),  --Sequence{s.specification->subscribe(s.body->first())},
         language <- s.language,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
@@ -750,8 +750,9 @@ rule NotifySubscribeOpaqueBehavior {
         isAbstract <- s.isAbstract,
         isActive <- s.isActive,
         isReentrant <- s.isReentrant,
-        body <- Sequence{s.specification->notify(
-        	s.specification->subscribe(s.body->first()))},
+        body <- s.body->collect(b|s.specification->notify(
+        	s.specification->subscribe(b))),  --Sequence{s.specification->notify(
+        	--s.specification->subscribe(s.body->first()))},
         language <- s.language,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,

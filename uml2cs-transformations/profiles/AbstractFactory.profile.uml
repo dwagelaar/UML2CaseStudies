@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_j8ZN4EPTEdusb52s3APTjA" name="AbstractFactory" metaclassReference="_-agrcEPTEdusb52s3APTjA _-ajHsUPTEdusb52s3APTjA _-akV0EPTEdusb52s3APTjA">
+  <eAnnotations xmi:id="_-a-lgEPTEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_-a-lgUPTEdusb52s3APTjA" name="AbstractFactory" nsURI="http:///schemas/AbstractFactory/0" nsPrefix="AbstractFactory">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-a-lgkPTEdusb52s3APTjA" name="AbstractFactory">
+        <eAnnotations xmi:id="_-a-lg0PTEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_o1ayUEPTEdusb52s3APTjA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_-a-lhEPTEdusb52s3APTjA" name="base_Classifier" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Classifier"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-a-lhUPTEdusb52s3APTjA" name="ConcreteFactory">
+        <eAnnotations xmi:id="_-a-lhkPTEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ub55sEPTEdusb52s3APTjA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_-a-lh0PTEdusb52s3APTjA" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_-a-liEPTEdusb52s3APTjA" name="product">
+        <eAnnotations xmi:id="_-a-liUPTEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_xIqa4EPTEdusb52s3APTjA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_-a-likPTEdusb52s3APTjA" name="base_Dependency" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Dependency"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_-agrcEPTEdusb52s3APTjA">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+  </elementImport>
+  <elementImport xmi:id="_-ajHsUPTEdusb52s3APTjA">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Dependency"/>
+  </elementImport>
+  <elementImport xmi:id="_-akV0EPTEdusb52s3APTjA">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_o1ayUEPTEdusb52s3APTjA" name="AbstractFactory">
+    <ownedAttribute xmi:id="_-ajHsEPTEdusb52s3APTjA" name="base_Classifier" association="_-ah5kEPTEdusb52s3APTjA">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_ub55sEPTEdusb52s3APTjA" name="ConcreteFactory">
+    <ownedAttribute xmi:id="_-ak84kPTEdusb52s3APTjA" name="base_Class" association="_-ak84EPTEdusb52s3APTjA">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_xIqa4EPTEdusb52s3APTjA" name="product">
+    <ownedAttribute xmi:id="_-ajuwkPTEdusb52s3APTjA" name="base_Dependency" association="_-ajuwEPTEdusb52s3APTjA">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Dependency"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_-ah5kEPTEdusb52s3APTjA" name="Classifier_AbstractFactory" memberEnd="_-aigoEPTEdusb52s3APTjA _-ajHsEPTEdusb52s3APTjA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_-aigoEPTEdusb52s3APTjA" name="extension_AbstractFactory" type="_o1ayUEPTEdusb52s3APTjA" aggregation="composite" association="_-ah5kEPTEdusb52s3APTjA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_-ajuwEPTEdusb52s3APTjA" name="Dependency_product" memberEnd="_-ajuwUPTEdusb52s3APTjA _-ajuwkPTEdusb52s3APTjA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_-ajuwUPTEdusb52s3APTjA" name="extension_product" type="_xIqa4EPTEdusb52s3APTjA" aggregation="composite" association="_-ajuwEPTEdusb52s3APTjA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_-ak84EPTEdusb52s3APTjA" name="Class_ConcreteFactory" memberEnd="_-ak84UPTEdusb52s3APTjA _-ak84kPTEdusb52s3APTjA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_-ak84UPTEdusb52s3APTjA" name="extension_ConcreteFactory" type="_ub55sEPTEdusb52s3APTjA" aggregation="composite" association="_-ak84EPTEdusb52s3APTjA"/>
+  </packagedElement>
+</uml:Profile>

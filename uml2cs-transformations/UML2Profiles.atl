@@ -1,6 +1,6 @@
 -- $Id$
 -- Applies all necessary profiles.
-module UML2Profiles;
+module UML2Profiles; --extends UML2Copy
 
 create OUT : UML2 from IN : UML2, ACCESSORS : UML2;
 

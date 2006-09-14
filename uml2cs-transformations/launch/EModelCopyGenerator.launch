@@ -15,7 +15,7 @@
 </mapAttribute>
 <mapAttribute key="Path">
 <mapEntry key="ECORE" value="#EMF"/>
-<mapEntry key="IN" value="/uml2cs-transformations/profiles/Singleton.profile.uml"/>
+<mapEntry key="IN" value="/uml2cs-transformations/profiles/AbstractFactory.profile.uml"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <mapAttribute key="Output"/>
@@ -23,4 +23,5 @@
 <mapEntry key="IN" value="ECORE"/>
 </mapAttribute>
 <booleanAttribute key="AllowInterModelReferences" value="true"/>
+<listAttribute key="Superimpose"/>
 </launchConfiguration>

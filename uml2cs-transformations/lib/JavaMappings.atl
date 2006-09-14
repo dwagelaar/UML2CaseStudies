@@ -241,3 +241,31 @@ helper context String def : singletonBody() : String =
 	'    instance = new ' + self + '();\n' +
 	'}\n' +
 	'return instance;';
+
+------------------------------- Applet -----------------------------------
+
+helper context Boolean def : appletInitBody() : String =
+	if self then
+		'instance = this;\n' +
+		'setLayout(new java.awt.BorderLayout());'
+	else
+		'setLayout(new java.awt.BorderLayout());'
+	endif;
+
+helper context Boolean def : midletInitBody() : String =
+	if self then
+		'instance = this;'
+	else
+		''
+	endif;
+
+helper context String def : appletInfoBody() : String =
+	'return "' + self + '";';
+
+helper context String def : parameterInfoBody() : String =
+	'String pinfo[][] = ' + self + ';\nreturn pinfo;';
+
+------------------------------- AbstractFactory -----------------------------------
+
+helper context String def : createBody() : String =
+	'return new ' + self + '();';

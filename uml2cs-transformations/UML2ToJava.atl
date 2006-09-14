@@ -138,9 +138,12 @@ helper context UML2!uml::Operation def : toString() : String =
 	endif;
 	
 helper context UML2!uml::Operation def : throwsClause() : String =
+	-- exception types must reside in the same model, or we get
+	-- very strange behaviour.
 	self.raisedException->iterate(e; acc : String = '' |
 		acc +
-		if acc = '' then ' throws ' else ', ' endif +
+		if acc = '' then ' throws '
+		else ', ' endif +
 		e->qualifiedName('.'));
 
 helper context UML2!uml::Operation def : body() : String =

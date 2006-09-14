@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Applet="http:///schemas/Applet/1" xmlns:Observer="http:///schemas/Observer/1" xmlns:Singleton="http:///schemas/Singleton/1" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http:///schemas/Applet/1 ../../uml2cs-transformations/profiles/Applet.profile.uml#_i8fxgDgqEduNII1tDKqNvA http:///schemas/Observer/1 ../../uml2cs-transformations/profiles/Observer.profile.uml#_g6Z98DgqEduNII1tDKqNvA http:///schemas/Singleton/1 ../../uml2cs-transformations/profiles/Singleton.profile.uml#_eMWcQDgqEduNII1tDKqNvA http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AbstractFactory="http:///schemas/AbstractFactory/0" xmlns:Applet="http:///schemas/Applet/1" xmlns:Observer="http:///schemas/Observer/1" xmlns:Singleton="http:///schemas/Singleton/1" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http:///schemas/AbstractFactory/0 ../../uml2cs-transformations/profiles/AbstractFactory.profile.uml#_-a-lgUPTEdusb52s3APTjA http:///schemas/Applet/1 ../../uml2cs-transformations/profiles/Applet.profile.uml#_i8fxgDgqEduNII1tDKqNvA http:///schemas/Observer/1 ../../uml2cs-transformations/profiles/Observer.profile.uml#_g6Z98DgqEduNII1tDKqNvA http:///schemas/Singleton/1 ../../uml2cs-transformations/profiles/Singleton.profile.uml#_eMWcQDgqEduNII1tDKqNvA http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
   <uml:Model xmi:id="_tPOCIaLHEdqkGMDvm75SlQ" name="InstantMessengerModel">
     <eAnnotations xmi:id="_eswR8eQoEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
       <details xmi:id="_esw5AOQoEdqD2ZNp93yIAQ" key="uuid" value="11477073470800"/>
@@ -1428,7 +1428,7 @@
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_zDWokPybEdqjP_ILe4Jwkg" name="ViewFactory" isAbstract="true">
+        <packagedElement xmi:type="uml:Class" xmi:id="_zDWokPybEdqjP_ILe4Jwkg" name="ViewFactory" clientDependency="_HyOzUEPVEdusb52s3APTjA _JG8jgEPVEdusb52s3APTjA _JjumIEPVEdusb52s3APTjA" isAbstract="true">
           <eAnnotations xmi:id="_CJN0cPycEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
             <details xmi:id="_CJN0cfycEdqjP_ILe4Jwkg" key="uuid" value="1150395804983503"/>
           </eAnnotations>
@@ -1439,36 +1439,6 @@
             <language>java</language>
             <body>    String[] options = {&#xA;            &quot;im.view.swing.SwingViewFactory&quot;,&#xA;            &quot;im.view.awt.AWTViewFactory&quot;,&#xA;            &quot;im.view.lcdui.LCDUIViewFactory&quot;&#xA;    };&#xA;    ViewFactory factory = null;&#xA;    for (int i = 0; i &lt; options.length &amp;&amp; factory == null; i++) {&#xA;        try {&#xA;            factory = (ViewFactory) Class.forName(options[i]).newInstance();&#xA;        } catch (Exception e) {&#xA;        }&#xA;    }&#xA;    return factory;</body>
           </ownedBehavior>
-          <ownedOperation xmi:id="_WfuakPycEdqjP_ILe4Jwkg" name="createContactListView" isAbstract="true">
-            <eAnnotations xmi:id="_9S9asPycEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
-              <details xmi:id="_9S9asfycEdqjP_ILe4Jwkg" key="uuid" value="1150396201947519"/>
-            </eAnnotations>
-            <ownedParameter xmi:id="_dCI-sPycEdqjP_ILe4Jwkg" name="return" type="_muqj0PybEdqjP_ILe4Jwkg" direction="return">
-              <eAnnotations xmi:id="_9S-BwPycEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
-                <details xmi:id="_9S-BwfycEdqjP_ILe4Jwkg" key="uuid" value="1150396201948520"/>
-              </eAnnotations>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:id="_Xy-yMPycEdqjP_ILe4Jwkg" name="createConversationView" isAbstract="true">
-            <eAnnotations xmi:id="_9S-o0PycEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
-              <details xmi:id="_9S-o0fycEdqjP_ILe4Jwkg" key="uuid" value="1150396201949521"/>
-            </eAnnotations>
-            <ownedParameter xmi:id="_e6SMEPycEdqjP_ILe4Jwkg" name="return" type="_nj90IPybEdqjP_ILe4Jwkg" direction="return">
-              <eAnnotations xmi:id="_9S_P4PycEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
-                <details xmi:id="_9S_P4fycEdqjP_ILe4Jwkg" key="uuid" value="1150396201950522"/>
-              </eAnnotations>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:id="_Y7FCsPycEdqjP_ILe4Jwkg" name="createNewContactDialog" isAbstract="true">
-            <eAnnotations xmi:id="_9S_28PycEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
-              <details xmi:id="_9S_28fycEdqjP_ILe4Jwkg" key="uuid" value="1150396201951523"/>
-            </eAnnotations>
-            <ownedParameter xmi:id="_gPtt8PycEdqjP_ILe4Jwkg" name="return" type="_p04G0PybEdqjP_ILe4Jwkg" direction="return">
-              <eAnnotations xmi:id="_9TAeAPycEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
-                <details xmi:id="_9TAeAfycEdqjP_ILe4Jwkg" key="uuid" value="1150396201952524"/>
-              </eAnnotations>
-            </ownedParameter>
-          </ownedOperation>
           <ownedOperation xmi:id="_kzfbIPycEdqjP_ILe4Jwkg" name="getDefault" isStatic="true" method="_ojEeUEM0EduvwfpPI_uz7A">
             <eAnnotations xmi:id="_9TBFEPycEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
               <details xmi:id="_9TBFEfycEdqjP_ILe4Jwkg" key="uuid" value="1150396201953525"/>
@@ -1479,6 +1449,21 @@
               </eAnnotations>
             </ownedParameter>
           </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_HyOzUEPVEdusb52s3APTjA" name="Dependency1" supplier="_muqj0PybEdqjP_ILe4Jwkg" client="_zDWokPybEdqjP_ILe4Jwkg">
+          <eAnnotations xmi:id="_jgV5IEPVEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+            <details xmi:id="_jgV5IUPVEdusb52s3APTjA" key="uuid" value="1158227042738819"/>
+          </eAnnotations>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_JG8jgEPVEdusb52s3APTjA" name="Dependency2" supplier="_nj90IPybEdqjP_ILe4Jwkg" client="_zDWokPybEdqjP_ILe4Jwkg">
+          <eAnnotations xmi:id="_jgV5IkPVEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+            <details xmi:id="_jgV5I0PVEdusb52s3APTjA" key="uuid" value="1158227042738820"/>
+          </eAnnotations>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_JjumIEPVEdusb52s3APTjA" name="Dependency3" supplier="_p04G0PybEdqjP_ILe4Jwkg" client="_zDWokPybEdqjP_ILe4Jwkg">
+          <eAnnotations xmi:id="_jgV5JEPVEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+            <details xmi:id="_jgV5JUPVEdusb52s3APTjA" key="uuid" value="1158227042738821"/>
+          </eAnnotations>
         </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_yPa8sOcPEdqhor9CwI893A" name="A_client_network" memberEnd="_yPoYEOcPEdqhor9CwI893A _yPqNQOcPEdqhor9CwI893A">
@@ -1582,83 +1567,86 @@
         <details xmi:id="_dcFM4eQrEdqD2ZNp93yIAQ" key="uuid" value="114770862711843"/>
       </eAnnotations>
     </packagedElement>
-    <profileApplication xmi:id="_lXud0DgqEduNII1tDKqNvA">
-      <eAnnotations xmi:id="_lXud0TgqEduNII1tDKqNvA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <eAnnotations xmi:id="_-nb8ojgsEduNII1tDKqNvA" source="http://www.topcased.org/uuid">
-          <details xmi:id="_-nb8ozgsEduNII1tDKqNvA" key="uuid" value="1156945176938901"/>
+    <profileApplication xmi:id="_fpc8kEPUEdusb52s3APTjA">
+      <eAnnotations xmi:id="_fpc8kUPUEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <eAnnotations xmi:id="_gThNQkPUEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_gThNQ0PUEdusb52s3APTjA" key="uuid" value="1158226591764898"/>
         </eAnnotations>
         <references xmi:type="ecore:EPackage" href="../../uml2cs-transformations/profiles/Singleton.profile.uml#_eMWcQDgqEduNII1tDKqNvA"/>
       </eAnnotations>
-      <eAnnotations xmi:id="_-nb8oDgsEduNII1tDKqNvA" source="http://www.topcased.org/uuid">
-        <details xmi:id="_-nb8oTgsEduNII1tDKqNvA" key="uuid" value="1156945176938900"/>
+      <eAnnotations xmi:id="_gThNQEPUEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+        <details xmi:id="_gThNQUPUEdusb52s3APTjA" key="uuid" value="1158226591764897"/>
       </eAnnotations>
       <appliedProfile href="../../uml2cs-transformations/profiles/Singleton.profile.uml#_HwwcYI8aEdq-Os5Rz1ENIw"/>
     </profileApplication>
-    <profileApplication xmi:id="_lYCm4DgqEduNII1tDKqNvA">
-      <eAnnotations xmi:id="_lYCm4TgqEduNII1tDKqNvA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <eAnnotations xmi:id="_-ncjsTgsEduNII1tDKqNvA" source="http://www.topcased.org/uuid">
-          <details xmi:id="_-ncjsjgsEduNII1tDKqNvA" key="uuid" value="1156945176939903"/>
+    <profileApplication xmi:id="_fpjDMEPUEdusb52s3APTjA">
+      <eAnnotations xmi:id="_fpjDMUPUEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <eAnnotations xmi:id="_gThNRkPUEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_gThNR0PUEdusb52s3APTjA" key="uuid" value="1158226591764900"/>
         </eAnnotations>
         <references xmi:type="ecore:EPackage" href="../../uml2cs-transformations/profiles/Observer.profile.uml#_g6Z98DgqEduNII1tDKqNvA"/>
       </eAnnotations>
-      <eAnnotations xmi:id="_-nb8pDgsEduNII1tDKqNvA" source="http://www.topcased.org/uuid">
-        <details xmi:id="_-ncjsDgsEduNII1tDKqNvA" key="uuid" value="1156945176938902"/>
+      <eAnnotations xmi:id="_gThNREPUEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+        <details xmi:id="_gThNRUPUEdusb52s3APTjA" key="uuid" value="1158226591764899"/>
       </eAnnotations>
       <appliedProfile href="../../uml2cs-transformations/profiles/Observer.profile.uml#_jn7CcI8YEdq-Os5Rz1ENIw"/>
     </profileApplication>
-    <profileApplication xmi:id="_lYTsoDgqEduNII1tDKqNvA">
-      <eAnnotations xmi:id="_lYTsoTgqEduNII1tDKqNvA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <eAnnotations xmi:id="_-ncjtTgsEduNII1tDKqNvA" source="http://www.topcased.org/uuid">
-          <details xmi:id="_-ncjtjgsEduNII1tDKqNvA" key="uuid" value="1156945176939905"/>
+    <profileApplication xmi:id="_fppw4EPUEdusb52s3APTjA">
+      <eAnnotations xmi:id="_fppw4UPUEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <eAnnotations xmi:id="_gThNSkPUEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_gTh0UEPUEdusb52s3APTjA" key="uuid" value="1158226591764902"/>
         </eAnnotations>
         <references xmi:type="ecore:EPackage" href="../../uml2cs-transformations/profiles/Applet.profile.uml#_i8fxgDgqEduNII1tDKqNvA"/>
       </eAnnotations>
-      <eAnnotations xmi:id="_-ncjszgsEduNII1tDKqNvA" source="http://www.topcased.org/uuid">
-        <details xmi:id="_-ncjtDgsEduNII1tDKqNvA" key="uuid" value="1156945176939904"/>
+      <eAnnotations xmi:id="_gThNSEPUEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+        <details xmi:id="_gThNSUPUEdusb52s3APTjA" key="uuid" value="1158226591764901"/>
       </eAnnotations>
       <appliedProfile href="../../uml2cs-transformations/profiles/Applet.profile.uml#_8186IOQoEdqD2ZNp93yIAQ"/>
     </profileApplication>
-    <profileApplication xmi:id="_lYaaUDgqEduNII1tDKqNvA">
-      <eAnnotations xmi:id="_lYaaUTgqEduNII1tDKqNvA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <eAnnotations xmi:id="_-ncjuTgsEduNII1tDKqNvA" source="http://www.topcased.org/uuid">
-          <details xmi:id="_-ncjujgsEduNII1tDKqNvA" key="uuid" value="1156945176939907"/>
+    <profileApplication xmi:id="_fpv3gEPUEdusb52s3APTjA">
+      <eAnnotations xmi:id="_fpv3gUPUEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <eAnnotations xmi:id="_gTh0U0PUEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_gTh0VEPUEdusb52s3APTjA" key="uuid" value="1158226591765904"/>
         </eAnnotations>
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
       </eAnnotations>
-      <eAnnotations xmi:id="_-ncjtzgsEduNII1tDKqNvA" source="http://www.topcased.org/uuid">
-        <details xmi:id="_-ncjuDgsEduNII1tDKqNvA" key="uuid" value="1156945176939906"/>
+      <eAnnotations xmi:id="_gTh0UUPUEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+        <details xmi:id="_gTh0UkPUEdusb52s3APTjA" key="uuid" value="1158226591765903"/>
       </eAnnotations>
       <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
     </profileApplication>
-    <profileApplication xmi:id="_lYhIADgqEduNII1tDKqNvA">
-      <eAnnotations xmi:id="_lYhvEDgqEduNII1tDKqNvA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <eAnnotations xmi:id="_-ncjvTgsEduNII1tDKqNvA" source="http://www.topcased.org/uuid">
-          <details xmi:id="_-ncjvjgsEduNII1tDKqNvA" key="uuid" value="1156945176939909"/>
+    <profileApplication xmi:id="_fp3zUEPUEdusb52s3APTjA">
+      <eAnnotations xmi:id="_fp3zUUPUEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <eAnnotations xmi:id="_gTh0V0PUEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_gTh0WEPUEdusb52s3APTjA" key="uuid" value="1158226591765906"/>
         </eAnnotations>
-        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/UML2.profile.uml#_dhEUENSUEdqN9tnr0j3PAQ"/>
+        <references xmi:type="ecore:EPackage" href="../../uml2cs-transformations/profiles/AbstractFactory.profile.uml#_-a-lgUPTEdusb52s3APTjA"/>
       </eAnnotations>
-      <eAnnotations xmi:id="_-ncjuzgsEduNII1tDKqNvA" source="http://www.topcased.org/uuid">
-        <details xmi:id="_-ncjvDgsEduNII1tDKqNvA" key="uuid" value="1156945176939908"/>
+      <eAnnotations xmi:id="_gTh0VUPUEdusb52s3APTjA" source="http://www.topcased.org/uuid">
+        <details xmi:id="_gTh0VkPUEdusb52s3APTjA" key="uuid" value="1158226591765905"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://UML_PROFILES/UML2.profile.uml#_0"/>
+      <appliedProfile href="../../uml2cs-transformations/profiles/AbstractFactory.profile.uml#_j8ZN4EPTEdusb52s3APTjA"/>
     </profileApplication>
   </uml:Model>
-  <Observer:subscribe xmi:id="_88DRgDgvEduNII1tDKqNvA" base_Association="_yPa8sOcPEdqhor9CwI893A"/>
-  <Observer:Observable xmi:id="_-R6RMDgvEduNII1tDKqNvA" base_Classifier="_49VF8OQsEdqD2ZNp93yIAQ"/>
-  <Observer:Observable xmi:id="_Ggs3kDgwEduNII1tDKqNvA" base_Classifier="_eDJ-gOQsEdqD2ZNp93yIAQ"/>
-  <Observer:Observable xmi:id="_I2-ycDgwEduNII1tDKqNvA" base_Classifier="_aWdDQOQsEdqD2ZNp93yIAQ"/>
-  <Observer:Observable xmi:id="_Km_XgDgwEduNII1tDKqNvA" base_Classifier="_Yji7MOQsEdqD2ZNp93yIAQ"/>
-  <Observer:Observer xmi:id="_OFPAADgwEduNII1tDKqNvA" base_Classifier="_WbRqUPyaEdqjP_ILe4Jwkg"/>
-  <Observer:Observer xmi:id="_QIMWQDgwEduNII1tDKqNvA" base_Classifier="_aEMRwPyaEdqjP_ILe4Jwkg"/>
-  <Observer:Observable xmi:id="_RTE1ADgwEduNII1tDKqNvA" base_Classifier="_Xxa6sOQsEdqD2ZNp93yIAQ"/>
-  <Observer:subscribe xmi:id="_Smj2IDgwEduNII1tDKqNvA" base_Association="_0BHt0PyaEdqjP_ILe4Jwkg"/>
-  <Observer:subscribe xmi:id="_UDP2kDgwEduNII1tDKqNvA" base_Association="_0Otd4PyaEdqjP_ILe4Jwkg"/>
-  <Observer:Observer xmi:id="_WBIfkDgwEduNII1tDKqNvA" base_Classifier="_d5rVkPyaEdqjP_ILe4Jwkg"/>
-  <Observer:subscribe xmi:id="_XOwwUDgwEduNII1tDKqNvA" base_Association="_0cy9MPyaEdqjP_ILe4Jwkg"/>
-  <Observer:Observer xmi:id="_aj-YkD3WEdung59-_ngc4Q" base_Classifier="_gOtz8OQoEdqD2ZNp93yIAQ"/>
-  <Singleton:Singleton xmi:id="_aj-YkT3WEdung59-_ngc4Q" base_Classifier="_gOtz8OQoEdqD2ZNp93yIAQ"/>
-  <Applet:Applet xmi:id="_aj-_oD3WEdung59-_ngc4Q" base_Classifier="_gOtz8OQoEdqD2ZNp93yIAQ"/>
-  <Standard:Create xmi:id="_6koUcEJyEdu9oKgdcDOzVA" base_BehavioralFeature="_LkG9YPyjEdqjP_ILe4Jwkg"/>
-  <Standard:Create xmi:id="__TDLYEJyEdu9oKgdcDOzVA" base_BehavioralFeature="_dvK_oPyjEdqjP_ILe4Jwkg"/>
-  <Standard:Create xmi:id="_ES1fIEJzEdu9oKgdcDOzVA" base_BehavioralFeature="_NG8vsDKGEdukjIB5UbodVA"/>
+  <Standard:Create xmi:id="_lLPxMEPUEdusb52s3APTjA" base_BehavioralFeature="_NG8vsDKGEdukjIB5UbodVA"/>
+  <Standard:Create xmi:id="_qneJUEPUEdusb52s3APTjA" base_BehavioralFeature="_LkG9YPyjEdqjP_ILe4Jwkg"/>
+  <Standard:Create xmi:id="_uUnJcEPUEdusb52s3APTjA" base_BehavioralFeature="_dvK_oPyjEdqjP_ILe4Jwkg"/>
+  <AbstractFactory:AbstractFactory xmi:id="_Fm3vAEPVEdusb52s3APTjA" base_Classifier="_zDWokPybEdqjP_ILe4Jwkg"/>
+  <AbstractFactory:product xmi:id="_g1XgoEPVEdusb52s3APTjA" base_Dependency="_HyOzUEPVEdusb52s3APTjA"/>
+  <AbstractFactory:product xmi:id="_h7HAsEPVEdusb52s3APTjA" base_Dependency="_JjumIEPVEdusb52s3APTjA"/>
+  <AbstractFactory:product xmi:id="_i9x-oEPVEdusb52s3APTjA" base_Dependency="_JG8jgEPVEdusb52s3APTjA"/>
+  <Observer:Observer xmi:id="_h40sQEPWEdusb52s3APTjA" base_Classifier="_WbRqUPyaEdqjP_ILe4Jwkg"/>
+  <Observer:Observer xmi:id="_jvhIIEPWEdusb52s3APTjA" base_Classifier="_aEMRwPyaEdqjP_ILe4Jwkg"/>
+  <Observer:Observer xmi:id="_k4PqwEPWEdusb52s3APTjA" base_Classifier="_d5rVkPyaEdqjP_ILe4Jwkg"/>
+  <Observer:subscribe xmi:id="_mH6i4EPWEdusb52s3APTjA" base_Association="_0BHt0PyaEdqjP_ILe4Jwkg"/>
+  <Observer:subscribe xmi:id="_odKjAEPWEdusb52s3APTjA" base_Association="_0cy9MPyaEdqjP_ILe4Jwkg"/>
+  <Observer:subscribe xmi:id="_qKY50EPWEdusb52s3APTjA" base_Association="_0Otd4PyaEdqjP_ILe4Jwkg"/>
+  <Applet:Applet xmi:id="_t7udcEPWEdusb52s3APTjA" appletInfo="Title: InstantMessagingClient\n(C) 2005, Dennis Wagelaar, System and Software Engineering Lab, Vrije Universiteit Brussel\nA simple instant messaging client generated from a PIM" base_Classifier="_gOtz8OQoEdqD2ZNp93yIAQ"/>
+  <Observer:Observer xmi:id="_t7vEgEPWEdusb52s3APTjA" base_Classifier="_gOtz8OQoEdqD2ZNp93yIAQ"/>
+  <Singleton:Singleton xmi:id="_t7vEgUPWEdusb52s3APTjA" base_Classifier="_gOtz8OQoEdqD2ZNp93yIAQ"/>
+  <Observer:subscribe xmi:id="_vSJd0EPWEdusb52s3APTjA" base_Association="_yPa8sOcPEdqhor9CwI893A"/>
+  <Observer:Observable xmi:id="_w1xzwEPWEdusb52s3APTjA" base_Classifier="_49VF8OQsEdqD2ZNp93yIAQ"/>
+  <Observer:Observable xmi:id="_1qL98EPWEdusb52s3APTjA" base_Classifier="_eDJ-gOQsEdqD2ZNp93yIAQ"/>
+  <Observer:Observable xmi:id="_21JVMEPWEdusb52s3APTjA" base_Classifier="_Yji7MOQsEdqD2ZNp93yIAQ"/>
+  <Observer:Observable xmi:id="_4FXm8EPWEdusb52s3APTjA" base_Classifier="_aWdDQOQsEdqD2ZNp93yIAQ"/>
 </xmi:XMI>

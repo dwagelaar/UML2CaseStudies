@@ -3,6 +3,7 @@
 	<property name="project.path" value="/${ant.project.name}"/>
 	<property name="current.path" value="${project.path}/outmodels/test"/>
 	<property name="target.path" value="../../../uml2cs-instantmessenger-default/src"/>
+	<property name="saveModels" value="true"/>
 	
 	<property name="metamodel.uml2.nsURI" value="http://www.eclipse.org/uml2/2.0.0/UML"/>
 	<property name="metamodel.uml2.path" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
@@ -69,7 +70,6 @@
     			<superimpose path="${trans.uml2profiles.path}"/>
     			<superimpose path="${trans.uml2profilecopy.path}"/>
     		</am3.atl>
-    		<am3.saveModel model="@{out}" path="@{path}"/>
         </sequential>
     </macrodef>
 
@@ -94,7 +94,6 @@
     			<superimpose path="${trans.uml2accessors.path}"/>
     			<superimpose path="${trans.uml2profilecopy.path}"/>
     		</am3.atl>
-    		<am3.saveModel model="@{out}" path="@{path}"/>
         </sequential>
     </macrodef>
 
@@ -119,7 +118,6 @@
     			<superimpose path="${trans.uml2observer.path}"/>
     			<superimpose path="${trans.uml2profilecopy.path}"/>
     		</am3.atl>
-    		<am3.saveModel model="@{out}" path="@{path}"/>
         </sequential>
     </macrodef>
 
@@ -140,7 +138,6 @@
     			<superimpose path="${trans.uml2abstractfactory.path}"/>
     			<superimpose path="${trans.uml2profilecopy.path}"/>
     		</am3.atl>
-    		<am3.saveModel model="@{out}" path="@{path}"/>
         </sequential>
     </macrodef>
 	
@@ -162,7 +159,6 @@
     			<superimpose path="${trans.uml2singleton.path}"/>
     			<superimpose path="${trans.uml2profilecopy.path}"/>
     		</am3.atl>
-    		<am3.saveModel model="@{out}" path="@{path}"/>
         </sequential>
     </macrodef>
 	
@@ -185,7 +181,6 @@
     			<superimpose path="${trans.uml2applet.path}"/>
     			<superimpose path="${trans.uml2profilecopy.path}"/>
     		</am3.atl>
-    		<am3.saveModel model="@{out}" path="@{path}"/>
         </sequential>
     </macrodef>
 
@@ -205,7 +200,6 @@
     			<superimpose path="${trans.uml2asyncmethods.path}"/>
     			<superimpose path="${trans.uml2profilecopy.path}"/>
     		</am3.atl>
-    		<am3.saveModel model="@{out}" path="@{path}"/>
         </sequential>
     </macrodef>
 
@@ -229,7 +223,6 @@
     			<superimpose path="${trans.uml2datatypes.path}"/>
     			<superimpose path="${trans.uml2profilecopy.path}"/>
     		</am3.atl>
-    		<am3.saveModel model="@{out}" path="@{path}"/>
         </sequential>
     </macrodef>
 
@@ -248,25 +241,58 @@
         </sequential>
     </macrodef>
 
+    <target name="transformSave" if="saveModels">
+    	<!-- params: ${in} = input model, ${prefix} = file prefix -->
+  		<profiles in="${in}" out="${prefix}-profiles" path="${current.path}/${prefix}-profiles.uml"/>
+   		<am3.saveModel model="${prefix}-profiles" path="${current.path}/${prefix}-profiles.uml"/>
+   		<accessors in="${prefix}-profiles" out="${prefix}-accessors" path="${current.path}/${prefix}-accessors.uml"/>
+   		<am3.saveModel model="${prefix}-accessors" path="${current.path}/${prefix}-accessors.uml"/>
+   		<observer in="${prefix}-accessors" out="${prefix}-observer" path="${current.path}/${prefix}-observer.uml"/>
+   		<am3.saveModel model="${prefix}-observer" path="${current.path}/${prefix}-observer.uml"/>
+   		<abstractfactory in="${prefix}-observer" out="${prefix}-abstractfactory" path="${current.path}/${prefix}-abstractfactory.uml"/>
+   		<am3.saveModel model="${prefix}-abstractfactory" path="${current.path}/${prefix}-abstractfactory.uml"/>
+   		<singleton in="${prefix}-abstractfactory" out="${prefix}-singleton" path="${current.path}/${prefix}-singleton.uml"/>
+   		<am3.saveModel model="${prefix}-singleton" path="${current.path}/${prefix}-singleton.uml"/>
+   		<applet in="${prefix}-singleton" out="${prefix}-applet" path="${current.path}/${prefix}-applet.uml"/>
+   		<am3.saveModel model="${prefix}-applet" path="${current.path}/${prefix}-applet.uml"/>
+   		<asyncmethods in="${prefix}-applet" out="${prefix}-asyncmethods" path="${current.path}/${prefix}-asyncmethods.uml"/>
+   		<am3.saveModel model="${prefix}-asyncmethods" path="${current.path}/${prefix}-asyncmethods.uml"/>
+   		<datatypes in="${prefix}-asyncmethods" out="${prefix}-datatypes" path="${current.path}/${prefix}-datatypes.uml"/>
+   		<am3.saveModel model="${prefix}-datatypes" path="${current.path}/${prefix}-datatypes.uml"/>
+   		<generate in="${prefix}-datatypes"/>
+    </target>
+
+    <target name="transform" unless="saveModels">
+    	<!-- params: ${in} = input model, ${prefix} = file prefix -->
+  		<profiles in="${in}" out="${prefix}-profiles" path="${current.path}/${prefix}-profiles.uml"/>
+   		<accessors in="${prefix}-profiles" out="${prefix}-accessors" path="${current.path}/${prefix}-accessors.uml"/>
+   		<observer in="${prefix}-accessors" out="${prefix}-observer" path="${current.path}/${prefix}-observer.uml"/>
+   		<abstractfactory in="${prefix}-observer" out="${prefix}-abstractfactory" path="${current.path}/${prefix}-abstractfactory.uml"/>
+   		<singleton in="${prefix}-abstractfactory" out="${prefix}-singleton" path="${current.path}/${prefix}-singleton.uml"/>
+   		<applet in="${prefix}-singleton" out="${prefix}-applet" path="${current.path}/${prefix}-applet.uml"/>
+   		<asyncmethods in="${prefix}-applet" out="${prefix}-asyncmethods" path="${current.path}/${prefix}-asyncmethods.uml"/>
+   		<datatypes in="${prefix}-asyncmethods" out="${prefix}-datatypes" path="${current.path}/${prefix}-datatypes.uml"/>
+   		<generate in="${prefix}-datatypes"/>
+    </target>
+
 	<!-- = = = = = = = = = = = = = = = = =
-          macrodef: transform          
+          macrodef: transform
          = = = = = = = = = = = = = = = = = -->
     <macrodef name="transform">
         <attribute name="in" default="MODEL.IN" />
         <attribute name="prefix" default="MODEL.OUT.PREFIX" />
         <sequential>
-    		<profiles in="@{in}" out="@{prefix}-profiles" path="${current.path}/@{prefix}-profiles.uml"/>
-    		<accessors in="@{prefix}-profiles" out="@{prefix}-accessors" path="${current.path}/@{prefix}-accessors.uml"/>
-    		<observer in="@{prefix}-accessors" out="@{prefix}-observer" path="${current.path}/@{prefix}-observer.uml"/>
-    		<abstractfactory in="@{prefix}-observer" out="@{prefix}-abstractfactory" path="${current.path}/@{prefix}-abstractfactory.uml"/>
-    		<singleton in="@{prefix}-abstractfactory" out="@{prefix}-singleton" path="${current.path}/@{prefix}-singleton.uml"/>
-    		<applet in="@{prefix}-singleton" out="@{prefix}-applet" path="${current.path}/@{prefix}-applet.uml"/>
-    		<asyncmethods in="@{prefix}-applet" out="@{prefix}-asyncmethods" path="${current.path}/@{prefix}-asyncmethods.uml"/>
-    		<datatypes in="@{prefix}-asyncmethods" out="@{prefix}-datatypes" path="${current.path}/@{prefix}-datatypes.uml"/>
-    		<generate in="@{prefix}-datatypes"/>
+        	<antcall target="transform" inheritRefs="true">
+        		<param name="in" value="@{in}"/>
+        		<param name="prefix" value="@{prefix}"/>
+        	</antcall>
+        	<antcall target="transformSave" inheritRefs="true">
+        		<param name="in" value="@{in}"/>
+        		<param name="prefix" value="@{prefix}"/>
+        	</antcall>
         </sequential>
     </macrodef>
-
+	
 	<target name="Observer" depends="loadModels">
 		<transform in="Observer" prefix="obs"/>
 	</target>
@@ -284,4 +310,13 @@
 	</target>
 
     <target name="all" depends="clean, Observer, InstantMessengerModel, InstantMessengerLocal, InstantMessengerAWT"/>
+	
+	<target name="allParallel" depends="clean, loadModels">
+		<parallel threadCount="4">
+			<antcall target="Observer" inheritRefs="true"/>
+			<antcall target="InstantMessengerModel" inheritRefs="true"/>
+			<antcall target="InstantMessengerLocal" inheritRefs="true"/>
+			<antcall target="InstantMessengerAWT" inheritRefs="true"/>
+		</parallel>
+	</target>
 </project>

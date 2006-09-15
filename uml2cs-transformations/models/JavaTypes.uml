@@ -66,6 +66,16 @@
           <details xmi:id="_5eMMcUTFEdutoZk0i5ZyXw" key="uuid" value="115833026936737"/>
         </eAnnotations>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_OnuCwET5Edu8hscEjMiyKA" name="ClassNotFoundException">
+        <eAnnotations xmi:id="_ZfLfEET6Edu8hscEjMiyKA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_ZfLfEUT6Edu8hscEjMiyKA" key="uuid" value="115835281804842"/>
+        </eAnnotations>
+        <generalization xmi:id="_auLeQET5Edu8hscEjMiyKA" general="_vYhkAETFEdutoZk0i5ZyXw">
+          <eAnnotations xmi:id="_ZfMtMET6Edu8hscEjMiyKA" source="http://www.topcased.org/uuid">
+            <details xmi:id="_ZfMtMUT6Edu8hscEjMiyKA" key="uuid" value="115835281805043"/>
+          </eAnnotations>
+        </generalization>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_6Kkv0PfuEdqaqL9wEVL3aA" name="util">
       <eAnnotations xmi:id="_cMOQQPfvEdqaqL9wEVL3aA" source="http://www.topcased.org/uuid">
@@ -270,6 +280,11 @@
         <eAnnotations xmi:id="_tGPYUkTFEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
           <details xmi:id="_tGPYU0TFEdutoZk0i5ZyXw" key="uuid" value="1158330186325151"/>
         </eAnnotations>
+        <generalization xmi:id="_nVIXsET5Edu8hscEjMiyKA" general="_vYhkAETFEdutoZk0i5ZyXw">
+          <eAnnotations xmi:id="_ZfNUQET6Edu8hscEjMiyKA" source="http://www.topcased.org/uuid">
+            <details xmi:id="_ZfNUQUT6Edu8hscEjMiyKA" key="uuid" value="1158352818052167"/>
+          </eAnnotations>
+        </generalization>
       </packagedElement>
     </packagedElement>
   </packagedElement>
@@ -290,6 +305,61 @@
             <details xmi:id="_kA0toffyEdqaqL9wEVL3aA" key="uuid" value="1149883213178115"/>
           </eAnnotations>
         </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_-GCaIETtEdum9Mv7WaUBHw" name="swing">
+      <eAnnotations xmi:id="_CvgfoETuEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
+        <details xmi:id="_CvhGsETuEdum9Mv7WaUBHw" key="uuid" value="1158347511449177"/>
+      </eAnnotations>
+      <packagedElement xmi:type="uml:Class" xmi:id="_C-Cq4ETuEdum9Mv7WaUBHw" name="JPanel">
+        <eAnnotations xmi:id="_hj72IETuEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_hj72IUTuEdum9Mv7WaUBHw" key="uuid" value="1158347718274180"/>
+        </eAnnotations>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_FF8LgETuEdum9Mv7WaUBHw" name="JButton">
+        <eAnnotations xmi:id="_hj8dMETuEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_hj8dMUTuEdum9Mv7WaUBHw" key="uuid" value="1158347718275181"/>
+        </eAnnotations>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_HBEbcETuEdum9Mv7WaUBHw" name="JScrollPane">
+        <eAnnotations xmi:id="_hj8dMkTuEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_hj8dM0TuEdum9Mv7WaUBHw" key="uuid" value="1158347718275182"/>
+        </eAnnotations>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_JlmNsETuEdum9Mv7WaUBHw" name="JList">
+        <eAnnotations xmi:id="_hj9EQETuEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_hj9EQUTuEdum9Mv7WaUBHw" key="uuid" value="1158347718275183"/>
+        </eAnnotations>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_N1xCYETuEdum9Mv7WaUBHw" name="JFrame">
+        <eAnnotations xmi:id="_hj9EQkTuEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_hj9EQ0TuEdum9Mv7WaUBHw" key="uuid" value="1158347718276184"/>
+        </eAnnotations>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_P7QIMETuEdum9Mv7WaUBHw" name="JTextField">
+        <eAnnotations xmi:id="_hj9ERETuEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_hj9ERUTuEdum9Mv7WaUBHw" key="uuid" value="1158347718276185"/>
+        </eAnnotations>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Sq2iAETuEdum9Mv7WaUBHw" name="JTextPane">
+        <eAnnotations xmi:id="_hj9rUETuEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_hj9rUUTuEdum9Mv7WaUBHw" key="uuid" value="1158347718277186"/>
+        </eAnnotations>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Z7rrUETuEdum9Mv7WaUBHw" name="JLabel">
+        <eAnnotations xmi:id="_hj9rUkTuEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_hj9rU0TuEdum9Mv7WaUBHw" key="uuid" value="1158347718277187"/>
+        </eAnnotations>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_a2V8wETuEdum9Mv7WaUBHw" name="JPasswordField">
+        <eAnnotations xmi:id="_hj-SYETuEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_hj-SYUTuEdum9Mv7WaUBHw" key="uuid" value="1158347718278188"/>
+        </eAnnotations>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_dYS8IETuEdum9Mv7WaUBHw" name="JComboBox">
+        <eAnnotations xmi:id="_hj-5cETuEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_hj-5cUTuEdum9Mv7WaUBHw" key="uuid" value="1158347718278189"/>
+        </eAnnotations>
       </packagedElement>
     </packagedElement>
   </packagedElement>

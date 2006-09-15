@@ -14,6 +14,8 @@
 	<property name="model.in.path" value="${project.path}/models/InstantMessengerModel.uml"/>
 	<property name="model.local.path" value="${project.path}/models/InstantMessengerLocal.uml"/>
 	<property name="model.awt.path" value="${project.path}/models/InstantMessengerAWT.uml"/>
+	<property name="model.jabber.path" value="${project.path}/models/InstantMessengerJabber.uml"/>
+	<property name="model.defaultjabber.path" value="${project.path}/models/InstantMessengerDefaultJabber.uml"/>
 
 	<property name="trans.path" value="/uml2cs-transformations"/>
 	<property name="trans.uml2copy.path" value="${trans.path}/UML2Copy.atl"/>
@@ -51,6 +53,8 @@
 		<am3.loadModel modelHandler="EMF" name="inModel" metamodel="UML2" path="${model.in.path}"/>
 		<am3.loadModel modelHandler="EMF" name="Local" metamodel="UML2" path="${model.local.path}"/>
 		<am3.loadModel modelHandler="EMF" name="AWT" metamodel="UML2" path="${model.awt.path}"/>
+		<am3.loadModel modelHandler="EMF" name="Jabber" metamodel="UML2" path="${model.jabber.path}"/>
+		<am3.loadModel modelHandler="EMF" name="DefaultJabber" metamodel="UML2" path="${model.defaultjabber.path}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
@@ -309,7 +313,22 @@
 		<transform in="AWT" prefix="awt"/>
 	</target>
 
-    <target name="all" depends="clean, Observer, InstantMessengerModel, InstantMessengerLocal, InstantMessengerAWT"/>
+	<target name="InstantMessengerJabber" depends="loadModels">
+		<transform in="Jabber" prefix="jabber"/>
+	</target>
+
+	<target name="InstantMessengerDefaultJabber" depends="loadModels">
+		<transform in="DefaultJabber" prefix="defaultjabber"/>
+	</target>
+
+    <target name="all" depends="
+    	clean, 
+    	Observer, 
+    	InstantMessengerModel, 
+    	InstantMessengerLocal, 
+    	InstantMessengerAWT,
+    	InstantMessengerJabber,
+    	InstantMessengerDefaultJabber"/>
 	
 	<target name="allParallel" depends="clean, loadModels">
 		<parallel threadCount="4">
@@ -317,6 +336,8 @@
 			<antcall target="InstantMessengerModel" inheritRefs="true"/>
 			<antcall target="InstantMessengerLocal" inheritRefs="true"/>
 			<antcall target="InstantMessengerAWT" inheritRefs="true"/>
+			<antcall target="InstantMessengerJabber" inheritRefs="true"/>
+			<antcall target="InstantMessengerDefaultJabber" inheritRefs="true"/>
 		</parallel>
 	</target>
 </project>

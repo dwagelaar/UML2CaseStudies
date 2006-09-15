@@ -1,8 +1,8 @@
 -- $Id$
 -- Implements the Observer profile.
-module UML2Observer; --extends UML2Copy
+module UML2JavaObserver; --extends UML2Copy
 
-create OUT : UML2 from IN : UML2, OBSERVER : UML2, UML2TYPES : UML2;
+create OUT : UML2 from IN : UML2, IMPLTYPES : UML2, UML2TYPES : UML2;
 
 uses Strings;
 uses UML2;
@@ -12,7 +12,8 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : Observer : UML2!uml::Interface = 'observer::Observer'->interface();
+helper def : Observer : UML2!uml::Interface = 'java::util::Observer'->interface();
+helper def : Observable : UML2!uml::Class = 'java::util::Observable'->class();
 helper def : ObserverName : String = thisModule.Observer->qualifiedName('separator'->value());
 helper def : oclString : UML2!uml::PrimitiveType = 'String'->primitiveType();
 helper def : oclAny : UML2!uml::PrimitiveType = 'OclAny'->primitiveType();
@@ -28,24 +29,6 @@ helper context UML2!uml::Association def : isSubscribe() : Boolean =
 
 helper context UML2!uml::Dependency def : isAccessor() : Boolean =
 	UML2!Accessors::accessor->allInstances()->select(a|a.base_Dependency=self)->notEmpty();
-
-helper context UML2!uml::Class def : update() : String =
-	self->handlers()->iterate(o; acc : String = ''|acc + o->update());
-
-helper context UML2!uml::Class def : handlers() : Sequence(UML2!uml::Operation) =
-	self.ownedOperation->select(o|
-		o.name->startsWith('on') and 
-		o.name->endsWith('Change') and 
-		o.name->size() > 8);
-
-helper context UML2!uml::Operation def : update() : String =
-	self.name->updateBody(self->propertyName(), self->parTypeName());
-
-helper context UML2!uml::Operation def : propertyName() : String =
-	self.name->substring(3, self.name->size() - 6); -- onPropertyChange -> Property
-
-helper context UML2!uml::Operation def : parTypeName() : String =
-	self.ownedParameter->first().type->qualifiedName('separator'->value());
 
 helper context UML2!uml::Behavior def : isNotifyMethod() : Boolean =
 	if self.specification->isAccessor() then
@@ -116,23 +99,23 @@ helper context UML2!uml::Operation def : notify(body : String) : String =
 
 helper context UML2!uml::Property def : setterNotify(body : String) : String =
 	self.name->setterNotifyBody(
-		self.type->qualifiedName('separator'->value()), body, false);
+		self.type->qualifiedName('separator'->value()), body, true);
 	
 helper context UML2!uml::Property def : adderNotify(body : String) : String =
 	self.name->adderNotifyBody(
-		self.type->qualifiedName('separator'->value()), body, self.isUnique, false);
+		self.type->qualifiedName('separator'->value()), body, self.isUnique, true);
 	
 helper context UML2!uml::Property def : removerNotify(body : String) : String =
 	self.name->removerNotifyBody(
-		self.type->qualifiedName('separator'->value()), body, false);
+		self.type->qualifiedName('separator'->value()), body, true);
 
 helper context UML2!uml::Operation def : subscribe(body : String) : String =
 	if self.name->startsWith('remove') then
-		self->accessorFor().name->removerSubscribeBody(body, false)
+		self->accessorFor().name->removerSubscribeBody(body, true)
 	else if self.name->startsWith('add') or self.name->startsWith('insert') then
 		self->accessorFor().name->adderSubscribeBody(body)
 	else if self.name->startsWith('set') then
-		self->accessorFor().name->setterSubscribeBody(body, false)
+		self->accessorFor().name->setterSubscribeBody(body, true)
 	else
 		body
 	endif endif endif;
@@ -217,10 +200,9 @@ rule ObservableClass {
         collaborationUse <- s.collaborationUse,
         ownedUseCase <- s.ownedUseCase,
         useCase <- s.useCase,
-        ownedAttribute <- s.ownedAttribute->union(Set{observers}),
+        ownedAttribute <- s.ownedAttribute,
         ownedConnector <- s.ownedConnector,
         ownedBehavior <- s.ownedBehavior
-			->union(Set{getBehavior, addBehavior, removeBehavior, notifyBehavior})
 			->union(if s->isObserver() then Set{thisModule->ObserverClass(s)} else Set{} endif),
         classifierBehavior <- s.classifierBehavior,
         interfaceRealization <- s.interfaceRealization,
@@ -229,97 +211,9 @@ rule ObservableClass {
         ownedOperation <- s.ownedOperation,
         ownedReception <- s.ownedReception),
 	-- Observable functionality --
-	   observers : UML2!uml::Property (
-	   	name <- 'observer',
-		type <- thisModule.Observer,
-		visibility <- #private,
-		isUnique <- true,
-		isOrdered <- true,
-		upperValue <- observersUpper,
-		lowerValue <- observersLower),
-	   observersUpper : UML2!uml::LiteralUnlimitedNatural (
-	   	value <- 0-1),
-	   observersLower : UML2!uml::LiteralInteger (
-	   	value <- 0),
-	-- Get --
-		getOp : UML2!uml::Operation (
-	   	name <- 'getObservers',
-		class <- s,
-		visibility <- #public,
-		ownedParameter <- Sequence{getPar},
-		concurrency <- #sequential),
-	   getPar : UML2!uml::Parameter (
-	   	name <- 'return',
-        lowerValue <- getParLow,
-        upperValue <- getParUp,
-		type <- observers.type,
-		effect <- #read,
-		direction <- #return),
-	   getParLow : UML2!uml::LiteralInteger (
-	   	value <- 0),
-	   getParUp : UML2!uml::LiteralUnlimitedNatural (
-	   	value <- 0-1),
-	   getBehavior : UML2!uml::OpaqueBehavior (
-	   	specification <- getOp,
-		name <- getOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
-		body <- Sequence{observers.name->multiGetterBody()}),
-	-- Add --
-	   addOp : UML2!uml::Operation (
-	   	name <- 'addObserver',
-		class <- s,
-		visibility <- #public,
-		ownedParameter <- Sequence{addPar},
-		concurrency <- #sequential),
-	   addPar : UML2!uml::Parameter (
-	   	name <- observers.name,
-		type <- observers.type,
-		effect <- #update,
-		direction <- #"in"),
-	   addBehavior : UML2!uml::OpaqueBehavior (
-	   	specification <- addOp,
-		name <- addOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
-		body <- Sequence{observers.name->adderBody(observers.isUnique)}),
-	-- Remove --
-	   removeOp : UML2!uml::Operation (
-	   	name <- 'removeObserver',
-		class <- s,
-		visibility <- #public,
-		ownedParameter <- Sequence{removePar},
-		concurrency <- #sequential),
-	   removePar : UML2!uml::Parameter (
-	   	name <- observers.name,
-		type <- observers.type,
-		effect <- #update,
-		direction <- #"in"),
-	   removeBehavior : UML2!uml::OpaqueBehavior (
-	   	specification <- removeOp,
-		name <- removeOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
-		body <- Sequence{observers.name->removerBody()}),
-	-- Notify --
-	   notifyOp : UML2!uml::Operation (
-	   	name <- 'notifyObservers',
-		class <- s,
-		visibility <- #public,
-		ownedParameter <- Sequence{notifyPar1, notifyPar2},
-		concurrency <- #sequential),
-	   notifyPar1 : UML2!uml::Parameter (
-	   	name <- 'name',
-		type <- thisModule.oclString,
-		effect <- #read,
-		direction <- #"in"),
-	   notifyPar2 : UML2!uml::Parameter (
-	   	name <- 'value',
-		type <- thisModule.oclAny,
-		effect <- #update,
-		direction <- #"in"),
-	   notifyBehavior : UML2!uml::OpaqueBehavior (
-		specification <- notifyOp,
-		name <- notifyOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
-		body <- Sequence{thisModule.ObserverName->notifyObserversBody()})
+	   gen : UML2!uml::Generalization (
+	   	general <- thisModule.Observable,
+		specific <- s)
 }
 
 rule ObserverClass(s : UML2!uml::Class) {
@@ -334,12 +228,12 @@ rule ObserverClass(s : UML2!uml::Class) {
 		ownedParameter <- Sequence{updatePar1, updatePar2},
 		concurrency <- #sequential),
 	   updatePar1 : UML2!uml::Parameter (
-	   	name <- 'name',
-		type <- thisModule.oclString,
+	   	name <- 'o',
+		type <- thisModule.Observable,
 		effect <- #read,
 		direction <- #"in"),
 	   updatePar2 : UML2!uml::Parameter (
-	   	name <- 'value',
+	   	name <- 'arg',
 		type <- thisModule.oclAny,
 		effect <- #update,
 		direction <- #"in"),
@@ -347,7 +241,7 @@ rule ObserverClass(s : UML2!uml::Class) {
 		specification <- updateOp,
 		name <- updateOp.name + 'Behavior',
 		language <- Sequence{'language'->value()},
-		body <- Sequence{s->update()})
+		body <- Sequence{'arg'->reflectiveUpdateBody()})
 	do {
 		updateBehavior;
 	}

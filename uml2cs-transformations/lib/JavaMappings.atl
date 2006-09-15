@@ -3,6 +3,7 @@
 library JavaMappings;
 
 uses Java; -- Java1 or Java2
+uses Strings;
 
 ------------------------------- General -----------------------------------
 
@@ -167,72 +168,115 @@ helper context String def : updateBody(propertyName : String, parTypeName : Stri
 	'    ' + self + '(' + 'value'->javaUnboxValue(parTypeName) + ');\n' +
 	'}';
 
-helper context String def : setterNotifyBody(type : String, body : String) : String =
-	'// Begin Observable stanza\n' +
+helper context String def : setterNotifyBody(type : String, body : String, reflective : Boolean) : String =
 	'if (this.' + self + ' != ' + self + ') {\n' +
-	'    // Begin original body\n' +
-	body +
-	'\n    // End original body\n' +
-	self->notifyStanza(type) +
-	'}\n' +
-	'// End Observable stanza';
+	body + '\n' +
+	if reflective then
+		self->reflectiveNotifyStanza(type)
+	else
+		self->notifyStanza(type)
+	endif + '\n' +
+	'}';
 	
-helper context String def : adderNotifyBody(type : String, body : String) : String =
-	'// Begin Observable stanza\n' +
-	'if (! this.' + self + '.contains(' + self + ')) {\n' +
-	'    // Begin original body\n' +
-	body +
-	'\n    // End original body\n' +
-	self->notifyStanza(type) +
-	'}\n' +
-	'// End Observable stanza';
+helper context String def : adderNotifyBody(type : String, body : String, isUnique : Boolean, reflective : Boolean) : String =
+	if isUnique then 
+		self->javaNotContainsCheck(self->javaAdderNotifyBody(type, body, reflective))
+	else
+		self->javaAdderNotifyBody(type, body, reflective)
+	endif;
 	
-helper context String def : removerNotifyBody(type : String, body : String) : String =
-	'// Begin Observable stanza\n' +
-	'if (this.' + self + '.contains(' + self + ')) {\n' +
-	'    // Begin original body\n' +
-	body +
-	'\n    // End original body\n' +
-	self->notifyStanza(type) +
-	'}\n' +
-	'// End Observable stanza';
+helper context String def : javaAdderNotifyBody(type : String, body : String, reflective : Boolean) : String =
+	body + '\n' +
+	if reflective then
+		self->reflectiveNotifyStanza(type)
+	else
+		self->notifyStanza(type)
+	endif;
+	
+helper context String def : removerNotifyBody(type : String, body : String, reflective : Boolean) : String =
+	self->javaContainsCheck(self->javaRemoverNotifyBody(type, body, reflective));
+
+helper context String def : javaRemoverNotifyBody(type : String, body : String, reflective : Boolean) : String =
+	body + '\n' +
+	if reflective then
+		self->reflectiveNotifyStanza(type)
+	else
+		self->notifyStanza(type)
+	endif;
 
 helper context String def : notifyStanza(type : String) : String =
 	'    notifyObservers("' + self->firstToUpper() + '", ' + self.javaBoxing(type) + ');\n';
 
-helper context String def : setterSubscribeBody(body : String) : String =
-	'// Begin subscribe stanza\n' +
-    self->unsubscribeStanza() +
-	'// Begin original body\n' +
-	body +
-	'\n// End original body\n' +
-    self->subscribeStanza() +
-	'// End subscribe stanza';
+helper context String def : setterSubscribeBody(body : String, reflective : Boolean) : String =
+	if reflective then
+	    self->reflectiveUnsubscribeStanza()
+	else
+	    self->unsubscribeStanza()
+	endif + '\n' +
+	body + '\n' +
+    self->subscribeStanza();
 	
 helper context String def : adderSubscribeBody(body : String) : String =
-	'// Begin subscribe stanza\n' +
-	'// Begin original body\n' +
-	body +
-	'\n// End original body\n' +
-    self->subscribeStanza() +
-	'// End subscribe stanza';
+	body + '\n' +
+    self->subscribeStanza();
 	
-helper context String def : removerSubscribeBody(body : String) : String =
-	'// Begin subscribe stanza\n' +
-    self->removeUnsubscribeStanza() +
-	'// Begin original body\n' +
-	body +
-	'\n// End original body\n' +
-	'// End subscribe stanza';
+helper context String def : removerSubscribeBody(body : String, reflective : Boolean) : String =
+	if reflective then
+	    self->reflectiveRemoveUnsubscribeStanza()
+	else
+		self->removeUnsubscribeStanza()
+	endif + '\n' +
+	body;
 
 helper context String def : subscribeStanza() : String =
-    'if (' + self + ' != null) ' + self + '.addObserver(this);\n';
+    'if (' + self + ' != null) ' + self + '.addObserver(this);';
 
 helper context String def : unsubscribeStanza() : String =
-    'if (this.' + self + ' != null) this.' + self + '.removeObserver(this);\n';
+    'if (this.' + self + ' != null) this.' + self + '.removeObserver(this);';
 
 helper context String def : removeUnsubscribeStanza() : String =
-    'if (' + self + ' != null) ' + self + '.removeObserver(this);\n';
+    'if (' + self + ' != null) ' + self + '.removeObserver(this);';
+
+------------------------------- Observer -----------------------------------
+
+helper context String def : reflectiveUpdateBody() : String =
+	'if (' + self + ' instanceof java.util.Hashtable) {\n' +
+    '    java.util.Hashtable e = (java.util.Hashtable) ' + self + ';\n' +
+    '    String mName = "on" + ((String) e.get("name")) + "Change";\n' +
+    '    Class[] parmTypes = { (Class) e.get("class") };\n' +
+    '    try {\n' +
+    '        java.lang.reflect.Method m = getClass().getDeclaredMethod(mName, parmTypes);\n' +
+    '        Object[] args = { e.get("value") };\n' +
+    '        m.invoke(this, args);\n' +
+    '    } catch (NoSuchMethodException nex) {\n' +
+    '        // no handler\n' +
+    '    } catch (Exception ex) {\n' +
+    '        // wrong handler configuration\n' +
+    '        ex.printStackTrace();\n' +
+    '    }\n' +
+    '}';
+
+    helper context String def : reflectiveNotifyStanza(type : String) : String =
+	'    setChanged();\n' +
+	'    java.util.Hashtable e = new java.util.Hashtable();\n' +
+	if self = self->javaBoxing(type) then
+		'    e.put("name", "' + self->firstToUpper() + '");\n' +
+		'    e.put("class", ' + type->javaBoxedType() + '.class);\n' +
+		'    if (' + self + ' != null) {\n' +
+		'        e.put("value", ' + self + ');\n' +
+		'    }\n'
+	else
+		'    e.put("name", "' + self.firstToUpper() + '");\n' +
+		'    e.put("class", ' + type->javaBoxedType() + '.class);\n' +
+		'    e.put("value", ' + self->javaBoxing(type) + ');\n'
+	endif
+	+ '    notifyObservers(e);';
+
+helper context String def : reflectiveUnsubscribeStanza() : String =
+    'if (this.' + self + ' != null) this.' + self + '.deleteObserver(this);';
+
+helper context String def : reflectiveRemoveUnsubscribeStanza() : String =
+    'if (' + self + ' != null) ' + self + '.deleteObserver(this);';
 
 ------------------------------- Singleton -----------------------------------
 

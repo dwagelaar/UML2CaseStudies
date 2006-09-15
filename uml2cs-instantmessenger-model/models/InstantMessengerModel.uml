@@ -852,9 +852,16 @@
             <language>java</language>
             <body>    setModel(c);</body>
           </ownedBehavior>
-          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_nt5OAEMtEduvwfpPI_uz7A" name="ContactEdit_onAnyChangeBehavior" specification="_g45JoPyjEdqjP_ILe4Jwkg">
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_nt5OAEMtEduvwfpPI_uz7A" name="ContactEdit_onStatusChangeBehavior" specification="_g45JoPyjEdqjP_ILe4Jwkg">
             <eAnnotations xmi:id="_3j5dYEMtEduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
               <details xmi:id="_3j5dYUMtEduvwfpPI_uz7A" key="uuid" value="1158155021878495"/>
+            </eAnnotations>
+            <language>java</language>
+            <body>    onChange();</body>
+          </ownedBehavior>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_wwpfoEToEduzVNzOlUI_dw" name="ContactEdit_onNameChangeBehavior" specification="_gG2osPyjEdqjP_ILe4Jwkg">
+            <eAnnotations xmi:id="_-kEMMEToEduzVNzOlUI_dw" source="http://www.topcased.org/uuid">
+              <details xmi:id="_-kEMMUToEduzVNzOlUI_dw" key="uuid" value="1158345335922486"/>
             </eAnnotations>
             <language>java</language>
             <body>    onChange();</body>
@@ -888,7 +895,7 @@
               </eAnnotations>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:id="_gG2osPyjEdqjP_ILe4Jwkg" name="onNameChange">
+          <ownedOperation xmi:id="_gG2osPyjEdqjP_ILe4Jwkg" name="onNameChange" method="_wwpfoEToEduzVNzOlUI_dw">
             <eAnnotations xmi:id="_zmLIIPyjEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
               <details xmi:id="_zmLIIfyjEdqjP_ILe4Jwkg" key="uuid" value="1150399143330491"/>
             </eAnnotations>

@@ -51,6 +51,21 @@
           <details xmi:id="_Hjy60UQ6EduQTNyvbzaFJA" key="uuid" value="115827023436528"/>
         </eAnnotations>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_vYhkAETFEdutoZk0i5ZyXw" name="Exception" clientDependency="_3_1YEETFEdutoZk0i5ZyXw">
+        <eAnnotations xmi:id="_xcauYETFEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_xcauYUTFEdutoZk0i5ZyXw" key="uuid" value="115833021549433"/>
+        </eAnnotations>
+        <interfaceRealization xmi:id="_3_1YEETFEdutoZk0i5ZyXw" name="InterfaceRealization1" supplier="_zqsj0ETFEdutoZk0i5ZyXw" client="_vYhkAETFEdutoZk0i5ZyXw" contract="_zqsj0ETFEdutoZk0i5ZyXw">
+          <eAnnotations xmi:id="_5eLlYETFEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
+            <details xmi:id="_5eLlYUTFEdutoZk0i5ZyXw" key="uuid" value="115833026936636"/>
+          </eAnnotations>
+        </interfaceRealization>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_zqsj0ETFEdutoZk0i5ZyXw" name="Throwable">
+        <eAnnotations xmi:id="_5eMMcETFEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_5eMMcUTFEdutoZk0i5ZyXw" key="uuid" value="115833026936737"/>
+        </eAnnotations>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_6Kkv0PfuEdqaqL9wEVL3aA" name="util">
       <eAnnotations xmi:id="_cMOQQPfvEdqaqL9wEVL3aA" source="http://www.topcased.org/uuid">
@@ -234,6 +249,26 @@
       <packagedElement xmi:type="uml:Package" xmi:id="_yIdwYEPmEdug19jXgM5cew" name="event">
         <eAnnotations xmi:id="_1h_4AEPmEdug19jXgM5cew" source="http://www.topcased.org/uuid">
           <details xmi:id="_1h_4AUPmEdug19jXgM5cew" key="uuid" value="1158234465151141"/>
+        </eAnnotations>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_bUmisETFEdutoZk0i5ZyXw" name="net">
+      <eAnnotations xmi:id="_j9UsAETFEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
+        <details xmi:id="_j9UsAUTFEdutoZk0i5ZyXw" key="uuid" value="1158330124992144"/>
+      </eAnnotations>
+      <packagedElement xmi:type="uml:Class" xmi:id="_iB1PsETFEdutoZk0i5ZyXw" name="Socket">
+        <eAnnotations xmi:id="_j9UsAkTFEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_j9UsA0TFEdutoZk0i5ZyXw" key="uuid" value="1158330124992145"/>
+        </eAnnotations>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_luZBAETFEdutoZk0i5ZyXw" name="io">
+      <eAnnotations xmi:id="_tGPYUETFEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
+        <details xmi:id="_tGPYUUTFEdutoZk0i5ZyXw" key="uuid" value="1158330186325150"/>
+      </eAnnotations>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qxYZwETFEdutoZk0i5ZyXw" name="IOException">
+        <eAnnotations xmi:id="_tGPYUkTFEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
+          <details xmi:id="_tGPYU0TFEdutoZk0i5ZyXw" key="uuid" value="1158330186325151"/>
         </eAnnotations>
       </packagedElement>
     </packagedElement>

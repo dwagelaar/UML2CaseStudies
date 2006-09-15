@@ -23,6 +23,7 @@
 	<property name="trans.uml2abstractfactory.path" value="${trans.path}/UML2AbstractFactory.asm"/>
 	<property name="trans.uml2singleton.path" value="${trans.path}/UML2Singleton.asm"/>
 	<property name="trans.uml2applet.path" value="${trans.path}/UML2Applet.asm"/>
+	<property name="trans.uml2asyncmethods.path" value="${trans.path}/UML2AsyncMethods.asm"/>
 	<property name="trans.uml2datatypes.path" value="${trans.path}/UML2DataTypes.asm"/>
 	<property name="trans.uml2tojava.path" value="${trans.path}/UML2ToJava.atl"/>
 
@@ -189,6 +190,26 @@
     </macrodef>
 
 	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: asyncmethods          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="asyncmethods">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="Mappings" path="${lib.javamappings.path}"/>
+    			<superimpose path="${trans.uml2asyncmethods.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+    		<am3.saveModel model="@{out}" path="@{path}"/>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
           macrodef: datatypes          
          = = = = = = = = = = = = = = = = = -->
     <macrodef name="datatypes">
@@ -240,7 +261,8 @@
     		<abstractfactory in="@{prefix}-observer" out="@{prefix}-abstractfactory" path="${current.path}/@{prefix}-abstractfactory.uml"/>
     		<singleton in="@{prefix}-abstractfactory" out="@{prefix}-singleton" path="${current.path}/@{prefix}-singleton.uml"/>
     		<applet in="@{prefix}-singleton" out="@{prefix}-applet" path="${current.path}/@{prefix}-applet.uml"/>
-    		<datatypes in="@{prefix}-applet" out="@{prefix}-datatypes" path="${current.path}/@{prefix}-datatypes.uml"/>
+    		<asyncmethods in="@{prefix}-applet" out="@{prefix}-asyncmethods" path="${current.path}/@{prefix}-asyncmethods.uml"/>
+    		<datatypes in="@{prefix}-asyncmethods" out="@{prefix}-datatypes" path="${current.path}/@{prefix}-datatypes.uml"/>
     		<generate in="@{prefix}-datatypes"/>
         </sequential>
     </macrodef>

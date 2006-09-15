@@ -1,8 +1,8 @@
 -- $Id$
--- Implements the Applet profile using a Java AWT Applet
-module UML2Applet; --extends UML2Copy
+-- Implements the Applet profile using a Java MIDP MIDlet
+module UML2MIDlet; --extends UML2Copy
 
-create OUT : UML2 from IN : UML2, IMPLTYPES : UML2;
+create OUT : UML2 from IN : UML2, MIDLET : UML2;
 
 uses UML2;
 uses Mappings;
@@ -11,18 +11,13 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : Applet : UML2!uml::Class = 'java::applet::Applet'->class();
-helper def : implString : UML2!uml::Class = ('String'->implTypeName())->class();
-helper def : implStringAA : UML2!uml::Class = ('String'->implTypeName() + '[][]')->class();
+helper def : AppletMIDlet : UML2!uml::Class = 'midlet::AppletMIDlet'->class();
 
 helper context UML2!uml::Classifier def : isApplet() : Boolean =
 	UML2!Applet::Applet->allInstances()->select(o|o.base_Classifier=self)->notEmpty();
 
 helper context UML2!uml::Classifier def : isSingleton() : Boolean =
 	UML2!Singleton::Singleton->allInstances()->select(o|o.base_Classifier=self)->notEmpty();
-
-helper context UML2!uml::Classifier def : getApplet() : UML2!Applet::Applet =
-	UML2!Applet::Applet->allInstances()->select(o|o.base_Classifier=self)->first();
 
 -- ======================================================================
 -- model-specific helpers end
@@ -79,8 +74,7 @@ rule AppletClass {
 			s->oclIsTypeOf(UML2!uml::Class) and
 			s->isApplet()
 		else false endif)
-	using { hasInit : Boolean = s.ownedOperation->select(o|o.name='init')->notEmpty();
-			applet : UML2!Applet::Applet = s->getApplet(); }
+	using { hasInit : Boolean = s.ownedOperation->select(o|o.name='init')->notEmpty(); }
     to t : UML2!uml::Class mapsTo s (
         name <- s.name->debug('AppletClass'),
         visibility <- s.visibility,
@@ -110,22 +104,16 @@ rule AppletClass {
         ownedBehavior <- s.ownedBehavior
 			->union(
         		if hasInit then Set{}
-        		else Set{thisModule->AppletInitOperation(s)} endif)
-			->union(
-				if (applet.appletInfo->oclIsUndefined()) then Set{}
-				else Set{thisModule->AppletInfoOperation(s, applet)} endif)
-			->union(
-				if (applet.parameterInfo->oclIsUndefined()) then Set{}
-				else Set{thisModule->ParameterInfoOperation(s, applet)} endif),
+        		else Set{thisModule->AppletInitOperation(s)} endif),
 		classifierBehavior <- s.classifierBehavior,
         interfaceRealization <- s.interfaceRealization,
         ownedTrigger <- s.ownedTrigger,
         nestedClassifier <- s.nestedClassifier,
         ownedOperation <- s.ownedOperation,
         ownedReception <- s.ownedReception),
-	-- Applet functionality --
+	-- MIDlet functionality --
 	   g : UML2!uml::Generalization (
-	   	general <- thisModule.Applet,
+	   	general <- thisModule.AppletMIDlet,
 		specific <- s)
 }
 
@@ -139,53 +127,9 @@ rule AppletInitOperation(s : UML2!uml::Class) {
 	   	specification <- initOp,
 		name <- initOp.name + 'Behavior',
 		language <- Sequence{'language'->value()},
-		body <- Sequence{s->isSingleton()->appletInitBody()})
+		body <- Sequence{s->isSingleton()->midletInitBody()})
 	do {
 		initBehavior;
-	}
-}
-
-rule AppletInfoOperation(s : UML2!uml::Class, a : UML2!Applet::Applet) {
-	to infoOp : UML2!uml::Operation (
-	   	name <- 'getAppletInfo',
-		class <- s->debug('AppletInfoOperation'),
-		visibility <- #public,
-		ownedParameter <- Sequence{infoPar},
-		concurrency <- #sequential),
-	   infoPar : UML2!uml::Parameter (
-	   	name <- 'return',
-		type <- thisModule.implString,
-		effect <- #read,
-		direction <- #return),
-	   infoBehavior : UML2!uml::OpaqueBehavior (
-	   	specification <- infoOp,
-		name <- infoOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
-		body <- Sequence{a.appletInfo->appletInfoBody()})
-	do {
-		infoBehavior;
-	}
-}
-
-rule ParameterInfoOperation(s : UML2!uml::Class, a : UML2!Applet::Applet) {
-	to infoOp : UML2!uml::Operation (
-	   	name <- 'getParameterInfo',
-		class <- s->debug('ParameterInfoOperation'),
-		visibility <- #public,
-		ownedParameter <- Sequence{infoPar},
-		concurrency <- #sequential),
-	   infoPar : UML2!uml::Parameter (
-	   	name <- 'return',
-		type <- thisModule.implStringAA,
-		effect <- #read,
-		direction <- #return),
-	   infoBehavior : UML2!uml::OpaqueBehavior (
-	   	specification <- infoOp,
-		name <- infoOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
-		body <- Sequence{a.parameterInfo->parameterInfoBody()})
-	do {
-		infoBehavior;
 	}
 }
 
@@ -208,7 +152,7 @@ rule OpaqueBehavior {
         body <-
 			if isAppletInit then
 				s.body->collect(b|s.specification.class
-					->isSingleton()->appletInitBody() + '\n' + b)
+					->isSingleton()->midletInitBody() + '\n' + b)
 			else
 				s.body
 			endif,

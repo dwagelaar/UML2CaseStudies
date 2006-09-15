@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="MIDlet">
+  <eAnnotations xmi:id="_6znM0ET9Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+    <details xmi:id="_6znM0UT9Edu4IL8_POARHA" key="uuid" value="11583543301400"/>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="midlet">
+    <eAnnotations xmi:id="_6znM0kT9Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+      <details xmi:id="_6znM00T9Edu4IL8_POARHA" key="uuid" value="11583543301411"/>
+    </eAnnotations>
+    <packagedElement xmi:type="uml:Class" xmi:id="_xT04oET9Edu4IL8_POARHA" name="AppletMIDlet">
+      <eAnnotations xmi:id="_6znM1ET9Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+        <details xmi:id="_6znM1UT9Edu4IL8_POARHA" key="uuid" value="11583543301412"/>
+      </eAnnotations>
+      <generalization xmi:id="_45UDUET9Edu4IL8_POARHA">
+        <eAnnotations xmi:id="_6znz4ET9Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_6znz4UT9Edu4IL8_POARHA" key="uuid" value="11583543301423"/>
+        </eAnnotations>
+        <general xmi:type="uml:Class" href="JavaTypes.uml#_iyggYPfyEdqaqL9wEVL3aA"/>
+      </generalization>
+      <ownedAttribute xmi:id="_DwMGQET-Edu4IL8_POARHA" name="initialized">
+        <eAnnotations xmi:id="_F1Zp0ET_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_F1Zp0UT_Edu4IL8_POARHA" key="uuid" value="115835483364512"/>
+        </eAnnotations>
+        <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_--NgwPyKEdqlTr7ZXrCGhQ"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_c60tQET_Edu4IL8_POARHA" name="AppletMIDlet_startAppBehavior">
+        <eAnnotations xmi:id="_wCkaMET_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_wCkaMUT_Edu4IL8_POARHA" key="uuid" value="115835511688315"/>
+        </eAnnotations>
+        <language>java</language>
+        <body>    if (!initialized) {&#xA;        init();&#xA;        initialized = true;&#xA;    }&#xA;    start();</body>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_h7IlcET_Edu4IL8_POARHA" name="AppletMIDlet_pauseAppBehavior">
+        <eAnnotations xmi:id="_wCkaMkT_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_wCkaM0T_Edu4IL8_POARHA" key="uuid" value="115835511688316"/>
+        </eAnnotations>
+        <language>java</language>
+        <body>    stop();</body>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_lI3swET_Edu4IL8_POARHA" name="AppletMIDlet_destroyAppBehavior">
+        <eAnnotations xmi:id="_wCkaNET_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_wCkaNUT_Edu4IL8_POARHA" key="uuid" value="115835511688317"/>
+        </eAnnotations>
+        <language>java</language>
+        <body>    stop();&#xA;    destroy();</body>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_VDO7YET-Edu4IL8_POARHA" name="startApp">
+        <eAnnotations xmi:id="_F1Zp0kT_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_F1Zp00T_Edu4IL8_POARHA" key="uuid" value="115835483364513"/>
+        </eAnnotations>
+      </ownedOperation>
+      <ownedOperation xmi:id="_6jJScET-Edu4IL8_POARHA" name="pauseApp">
+        <eAnnotations xmi:id="_F1Zp1ET_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_F1Zp1UT_Edu4IL8_POARHA" key="uuid" value="115835483364514"/>
+        </eAnnotations>
+      </ownedOperation>
+      <ownedOperation xmi:id="_7x-dEET-Edu4IL8_POARHA" name="destroyApp">
+        <eAnnotations xmi:id="_F1Zp1kT_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_F1Zp10T_Edu4IL8_POARHA" key="uuid" value="115835483364515"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_ANzvMET_Edu4IL8_POARHA" name="unconditional">
+          <eAnnotations xmi:id="_F1aQ4ET_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+            <details xmi:id="_F1aQ4UT_Edu4IL8_POARHA" key="uuid" value="115835483364616"/>
+          </eAnnotations>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_RaNw0ET_Edu4IL8_POARHA" name="init">
+        <eAnnotations xmi:id="_wClBQET_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_wClBQUT_Edu4IL8_POARHA" key="uuid" value="115835511688430"/>
+        </eAnnotations>
+      </ownedOperation>
+      <ownedOperation xmi:id="_S8jtUET_Edu4IL8_POARHA" name="destroy">
+        <eAnnotations xmi:id="_wClBQkT_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_wClBQ0T_Edu4IL8_POARHA" key="uuid" value="115835511688431"/>
+        </eAnnotations>
+      </ownedOperation>
+      <ownedOperation xmi:id="_UdKkcET_Edu4IL8_POARHA" name="start">
+        <eAnnotations xmi:id="_wClBRET_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_wClBRUT_Edu4IL8_POARHA" key="uuid" value="115835511688432"/>
+        </eAnnotations>
+      </ownedOperation>
+      <ownedOperation xmi:id="_VxG4kET_Edu4IL8_POARHA" name="stop">
+        <eAnnotations xmi:id="_wClBRkT_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_wClBR0T_Edu4IL8_POARHA" key="uuid" value="115835511688433"/>
+        </eAnnotations>
+      </ownedOperation>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

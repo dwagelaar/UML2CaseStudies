@@ -13,6 +13,7 @@ uses Mappings;
 -- ======================================================================
 
 helper def : Observer : UML2!uml::Interface = 'observer::Observer'->interface();
+helper def : ObserverName : String = thisModule.Observer->qualifiedName('separator'->value());
 helper def : oclString : UML2!uml::PrimitiveType = 'String'->primitiveType();
 helper def : oclAny : UML2!uml::PrimitiveType = 'OclAny'->primitiveType();
 
@@ -27,9 +28,6 @@ helper context UML2!uml::Association def : isSubscribe() : Boolean =
 
 helper context UML2!uml::Dependency def : isAccessor() : Boolean =
 	UML2!Accessors::accessor->allInstances()->select(a|a.base_Dependency=self)->notEmpty();
-
-helper context UML2!uml::Property def : notifyObservers() : String =
-	self.type->qualifiedName('separator'->value())->notifyObserversBody();
 
 helper context UML2!uml::Class def : update() : String =
 	self->handlers()->iterate(o; acc : String = ''|acc + o->update());
@@ -49,54 +47,46 @@ helper context UML2!uml::Operation def : propertyName() : String =
 helper context UML2!uml::Operation def : parTypeName() : String =
 	self.ownedParameter->first().type->qualifiedName('separator'->value());
 
-helper context UML2!uml::Behavior def : isPlainMethod() : Boolean =
-	if self.specification->isAccessor() then
-		if self.owner->isObservableKind() then
-			false
-		else if self.owner->isObserverKind() and self.specification->isSubscriber() then
-			false
-		else
-			true
-		endif endif
-	else
-		true
-	endif;
+--helper context UML2!uml::Behavior def : isPlainMethod() : Boolean =
+--	if self.specification->isAccessor() then
+--		if self.owner->isObservableKind() then
+--			false
+--		else if self.owner->isObserverKind() and self.specification->isSubscriber() then
+--			false
+--		else
+--			true
+--		endif endif
+--	else
+--		true
+--	endif;
 
 helper context UML2!uml::Behavior def : isNotifyMethod() : Boolean =
 	if self.specification->isAccessor() then
-		if not self.owner->isObservableKind() then
-			false
-		else if self.owner->isObserverKind() and self.specification->isSubscriber() then
-			false
-		else
-			true
-		endif endif
+		self.owner->isObservableKind()
 	else
 		false
 	endif;
 	
-helper context UML2!uml::Behavior def : isNotifySubscribeMethod() : Boolean =
-	if self.specification->isAccessor() then
-		if not self.owner->isObservableKind() then
-			false
-		else if self.owner->isObserverKind() and self.specification->isSubscriber() then
-			true
-		else
-			false
-		endif endif
-	else
-		false
-	endif;
+--helper context UML2!uml::Behavior def : isNotifySubscribeMethod() : Boolean =
+--	if self.specification->isAccessor() then
+--		if not self.owner->isObservableKind() then
+--			false
+--		else if self.owner->isObserverKind() and self.specification->isSubscriber() then
+--			true
+--		else
+--			false
+--		endif endif
+--	else
+--		false
+--	endif;
 	
 helper context UML2!uml::Behavior def : isSubscribeMethod() : Boolean =
 	if self.specification->isAccessor() then
-		if self.owner->isObservableKind() then
-			false
-		else if self.owner->isObserverKind() and self.specification->isSubscriber() then
-			true
+		if self.owner->isObserverKind() then
+			self.specification->isSubscriber()
 		else
 			false
-		endif endif
+		endif
 	else
 		false
 	endif;
@@ -108,14 +98,14 @@ helper context UML2!uml::Classifier def : isObservableKind() : Boolean =
 	if self->isObservable() then
 		true
 	else
-		not self.generalization->select(g|g.general->isObservableKind())->isEmpty()
+		self.generalization->select(g|g.general->isObservableKind())->notEmpty()
 	endif;
 
 helper context UML2!uml::Classifier def : isObserverKind() : Boolean =
 	if self->isObserver() then
 		true
 	else
-		not self.generalization->select(g|g.general->isObserverKind())->isEmpty()
+		self.generalization->select(g|g.general->isObserverKind())->notEmpty()
 	endif;
 
 helper context UML2!uml::Operation def : isSubscriber() : Boolean =
@@ -185,8 +175,7 @@ rule Class {
     from s : UML2!uml::Class (
 		if thisModule.inElements->includes(s) then
 			s->oclIsTypeOf(UML2!uml::Class) and
-			not s->isObservable() and
-			not s->isObserver()
+			not s->isObservable()
 		else false endif)
     to t : UML2!uml::Class mapsTo s (
         name <- s.name,
@@ -214,7 +203,8 @@ rule Class {
         useCase <- s.useCase,
         ownedAttribute <- s.ownedAttribute,
         ownedConnector <- s.ownedConnector,
-        ownedBehavior <- s.ownedBehavior,
+        ownedBehavior <- s.ownedBehavior
+			->union(if s->isObserver() then Set{thisModule->ObserverClass(s)} else Set{} endif),
         classifierBehavior <- s.classifierBehavior,
         interfaceRealization <- s.interfaceRealization,
         ownedTrigger <- s.ownedTrigger,
@@ -222,13 +212,127 @@ rule Class {
         ownedOperation <- s.ownedOperation,
         ownedReception <- s.ownedReception)
 }
-	
+
+--rule ObservableProperty(s : UML2!uml::Class) {
+--    to observers : UML2!uml::Property (
+--	   	name <- 'observer'->debug('ObservableProperty : ' + s.name),
+--		type <- thisModule.Observer,
+--		visibility <- #private,
+--		isUnique <- true,
+--		isOrdered <- true,
+--		upperValue <- observersUpper,
+--		lowerValue <- observersLower),
+--	   observersUpper : UML2!uml::LiteralUnlimitedNatural (
+--	   	value <- 0-1),
+--	   observersLower : UML2!uml::LiteralInteger (
+--	   	value <- 0)
+--	do {
+--		observers;
+--	}
+--}
+
+--rule ObservableOperations(s : UML2!uml::Class) {
+--    to observers : UML2!uml::Property (
+--	   	name <- 'observer',
+--		type <- thisModule.Observer,
+--		visibility <- #private,
+--		isUnique <- true,
+--		isOrdered <- true,
+--		upperValue <- observersUpper,
+--		lowerValue <- observersLower),
+--	   observersUpper : UML2!uml::LiteralUnlimitedNatural (
+--	   	value <- 0-1),
+--	   observersLower : UML2!uml::LiteralInteger (
+--	   	value <- 0),
+--	-- Get --
+--		getOp : UML2!uml::Operation (
+--	   	name <- 'getObservers',
+--		class <- s,
+--		visibility <- #public,
+--		ownedParameter <- Sequence{getPar},
+--		concurrency <- #sequential),
+--	   getPar : UML2!uml::Parameter (
+--	   	name <- 'return',
+--        lowerValue <- getParLow,
+--        upperValue <- getParUp,
+--		type <- thisModule.Observer,
+--		effect <- #read,
+--		direction <- #return),
+--	   getParLow : UML2!uml::LiteralInteger (
+--	   	value <- 0),
+--	   getParUp : UML2!uml::LiteralUnlimitedNatural (
+--	   	value <- 0-1),
+--	   getBehavior : UML2!uml::OpaqueBehavior (
+--	   	specification <- getOp,
+--		name <- getOp.name + 'Behavior',
+--		language <- Sequence{'language'->value()},
+--		body <- Sequence{'observer'->multiGetterBody()}),
+--	-- Add --
+--	   addOp : UML2!uml::Operation (
+--	   	name <- 'addObserver',
+--		class <- s,
+--		visibility <- #public,
+--		ownedParameter <- Sequence{addPar},
+--		concurrency <- #sequential),
+--	   addPar : UML2!uml::Parameter (
+--	   	name <- 'observer',
+--		type <- thisModule.Observer,
+--		effect <- #update,
+--		direction <- #"in"),
+--	   addBehavior : UML2!uml::OpaqueBehavior (
+--	   	specification <- addOp,
+--		name <- addOp.name + 'Behavior',
+--		language <- Sequence{'language'->value()},
+--		body <- Sequence{'observer'->adderBody(true)}),
+--	-- Remove --
+--	   removeOp : UML2!uml::Operation (
+--	   	name <- 'removeObserver',
+--		class <- s,
+--		visibility <- #public,
+--		ownedParameter <- Sequence{removePar},
+--		concurrency <- #sequential),
+--	   removePar : UML2!uml::Parameter (
+--	   	name <- 'observer',
+--		type <- thisModule.Observer,
+--		effect <- #update,
+--		direction <- #"in"),
+--	   removeBehavior : UML2!uml::OpaqueBehavior (
+--	   	specification <- removeOp,
+--		name <- removeOp.name + 'Behavior',
+--		language <- Sequence{'language'->value()},
+--		body <- Sequence{'observer'->removerBody()}),
+--	-- Notify --
+--	   notifyOp : UML2!uml::Operation (
+--	   	name <- 'notifyObservers',
+--		class <- s,
+--		visibility <- #public,
+--		ownedParameter <- Sequence{notifyPar1, notifyPar2},
+--		concurrency <- #sequential),
+--	   notifyPar1 : UML2!uml::Parameter (
+--	   	name <- 'name',
+--		type <- thisModule.oclString,
+--		effect <- #read,
+--		direction <- #"in"),
+--	   notifyPar2 : UML2!uml::Parameter (
+--	   	name <- 'value',
+--		type <- thisModule.oclAny,
+--		effect <- #update,
+--		direction <- #"in"),
+--	   notifyBehavior : UML2!uml::OpaqueBehavior (
+--		specification <- notifyOp,
+--		name <- notifyOp.name + 'Behavior',
+--		language <- Sequence{'language'->value()},
+--		body <- Sequence{thisModule.ObserverName->notifyObserversBody()})
+--	do {
+--		Set{getBehavior, addBehavior, removeBehavior, notifyBehavior};
+--	}
+--}
+
 rule ObservableClass {
     from s : UML2!uml::Class (
 		if thisModule.inElements->includes(s) then
 			s->oclIsTypeOf(UML2!uml::Class) and
-			s->isObservable() and
-			not s->isObserver()
+			s->isObservable()
 		else false endif)
     to t : UML2!uml::Class mapsTo s (
         name <- s.name->debug('ObservableClass'),
@@ -256,7 +360,9 @@ rule ObservableClass {
         useCase <- s.useCase,
         ownedAttribute <- s.ownedAttribute->union(Set{observers}),
         ownedConnector <- s.ownedConnector,
-        ownedBehavior <- s.ownedBehavior->union(Set{getBehavior, addBehavior, removeBehavior, notifyBehavior}),
+        ownedBehavior <- s.ownedBehavior
+			->union(Set{getBehavior, addBehavior, removeBehavior, notifyBehavior})
+			->union(if s->isObserver() then Set{thisModule->ObserverClass(s)} else Set{} endif),
         classifierBehavior <- s.classifierBehavior,
         interfaceRealization <- s.interfaceRealization,
         ownedTrigger <- s.ownedTrigger,
@@ -354,57 +460,85 @@ rule ObservableClass {
 		specification <- notifyOp,
 		name <- notifyOp.name + 'Behavior',
 		language <- Sequence{'language'->value()},
-		body <- Sequence{observers->notifyObservers()})
+		body <- Sequence{thisModule.ObserverName->notifyObserversBody()})
 }
 
-rule ObserverClass {
-    from s : UML2!uml::Class (
-		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Class) and
-			not s->isObservable() and
-			s->isObserver()
-		else false endif)
-	to t : UML2!uml::Class mapsTo s (
-        name <- s.name->debug('ObserverClass'),
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        ownedRule <- s.ownedRule,
-        templateParameter <- s.templateParameter,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        generalization <- s.generalization,
-        powertypeExtent <- s.powertypeExtent,
-        redefinedClassifier <- s.redefinedClassifier,
-        substitution <- s.substitution,
-        representation <- s.representation,
-        collaborationUse <- s.collaborationUse,
-        ownedUseCase <- s.ownedUseCase,
-        useCase <- s.useCase,
-        ownedAttribute <- s.ownedAttribute,
-        ownedConnector <- s.ownedConnector,
-        ownedBehavior <- s.ownedBehavior->union(Set{updateBehavior}),
-        classifierBehavior <- s.classifierBehavior,
-        interfaceRealization <- s.interfaceRealization->union(Set{real}),
-		ownedTrigger <- s.ownedTrigger,
-        nestedClassifier <- s.nestedClassifier,
-        ownedOperation <- s.ownedOperation,
-        ownedReception <- s.ownedReception),
-	-- Observer functionality --
-	   real : UML2!uml::InterfaceRealization (
+--rule ObserverClass {
+--    from s : UML2!uml::Class (
+--		if thisModule.inElements->includes(s) then
+--			s->oclIsTypeOf(UML2!uml::Class) and
+--			not s->isObservable() and
+--			s->isObserver()
+--		else false endif)
+--	to t : UML2!uml::Class mapsTo s (
+--        name <- s.name->debug('ObserverClass'),
+--        visibility <- s.visibility,
+--        isLeaf <- s.isLeaf,
+--        isAbstract <- s.isAbstract,
+--        isActive <- s.isActive,
+--        eAnnotations <- s.eAnnotations,
+--        ownedComment <- s.ownedComment,
+--        clientDependency <- s.clientDependency,
+--        nameExpression <- s.nameExpression,
+--        elementImport <- s.elementImport,
+--        packageImport <- s.packageImport,
+--        ownedRule <- s.ownedRule,
+--        templateParameter <- s.templateParameter,
+--        templateBinding <- s.templateBinding,
+--        ownedTemplateSignature <- s.ownedTemplateSignature,
+--        generalization <- s.generalization,
+--        powertypeExtent <- s.powertypeExtent,
+--        redefinedClassifier <- s.redefinedClassifier,
+--        substitution <- s.substitution,
+--        representation <- s.representation,
+--        collaborationUse <- s.collaborationUse,
+--        ownedUseCase <- s.ownedUseCase,
+--        useCase <- s.useCase,
+--        ownedAttribute <- s.ownedAttribute,
+--        ownedConnector <- s.ownedConnector,
+--        ownedBehavior <- s.ownedBehavior->union(Set{updateBehavior}),
+--        classifierBehavior <- s.classifierBehavior,
+--        interfaceRealization <- s.interfaceRealization->union(Set{real}),
+--		ownedTrigger <- s.ownedTrigger,
+--        nestedClassifier <- s.nestedClassifier,
+--        ownedOperation <- s.ownedOperation,
+--        ownedReception <- s.ownedReception),
+--	-- Observer functionality --
+--	   real : UML2!uml::InterfaceRealization (
+--	   	contract <- thisModule.Observer,
+--		implementingClassifier <- s,
+--		client <- Set{s}),
+--	-- Update --
+--	   updateOp : UML2!uml::Operation (
+--	   	name <- 'update',
+--		class <- s,
+--		visibility <- #public,
+--		ownedParameter <- Sequence{updatePar1, updatePar2},
+--		concurrency <- #sequential),
+--	   updatePar1 : UML2!uml::Parameter (
+--	   	name <- 'name',
+--		type <- thisModule.oclString,
+--		effect <- #read,
+--		direction <- #"in"),
+--	   updatePar2 : UML2!uml::Parameter (
+--	   	name <- 'value',
+--		type <- thisModule.oclAny,
+--		effect <- #update,
+--		direction <- #"in"),
+--	   updateBehavior : UML2!uml::OpaqueBehavior (
+--		specification <- updateOp,
+--		name <- updateOp.name + 'Behavior',
+--		language <- Sequence{'language'->value()},
+--		body <- Sequence{s->update()})
+--}
+
+rule ObserverClass(s : UML2!uml::Class) {
+	to real : UML2!uml::InterfaceRealization (
 	   	contract <- thisModule.Observer,
-		implementingClassifier <- s,
-		client <- Set{s}),
+		implementingClassifier <- s),
 	-- Update --
 	   updateOp : UML2!uml::Operation (
-	   	name <- 'update',
+	   	name <- 'update'->debug('ObserverClass : ' + s.name),
 		class <- s,
 		visibility <- #public,
 		ownedParameter <- Sequence{updatePar1, updatePar2},
@@ -424,174 +558,176 @@ rule ObserverClass {
 		name <- updateOp.name + 'Behavior',
 		language <- Sequence{'language'->value()},
 		body <- Sequence{s->update()})
+	do {
+		updateBehavior;
+	}
 }
 
-rule ObservableObserverClass {
-    from s : UML2!uml::Class (
-		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Class) and
-			s->isObservable() and
-			s->isObserver()
-		else false endif)
-    to t : UML2!uml::Class mapsTo s (
-        name <- s.name->debug('ObservableObserverClass'),
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        ownedRule <- s.ownedRule,
-        templateParameter <- s.templateParameter,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        generalization <- s.generalization,
-        powertypeExtent <- s.powertypeExtent,
-        redefinedClassifier <- s.redefinedClassifier,
-        substitution <- s.substitution,
-        representation <- s.representation,
-        collaborationUse <- s.collaborationUse,
-        ownedUseCase <- s.ownedUseCase,
-        useCase <- s.useCase,
-        ownedAttribute <- s.ownedAttribute->union(Set{observers}),
-        ownedConnector <- s.ownedConnector,
-        ownedBehavior <- s.ownedBehavior->union(Set{getBehavior, addBehavior, removeBehavior, notifyBehavior, updateBehavior}),
-        classifierBehavior <- s.classifierBehavior,
-        interfaceRealization <- s.interfaceRealization->union(Set{real}),
-        ownedTrigger <- s.ownedTrigger,
-        nestedClassifier <- s.nestedClassifier,
-        ownedOperation <- s.ownedOperation,
-        ownedReception <- s.ownedReception),
-	-- Observable functionality --
-	   observers : UML2!uml::Property (
-	   	name <- 'observers',
-		type <- thisModule.Observer,
-		visibility <- #private,
-		isUnique <- true,
-		isOrdered <- true,
-		upperValue <- observersUpper,
-		lowerValue <- observersLower),
-	   observersUpper : UML2!uml::LiteralUnlimitedNatural (
-	   	value <- 0-1),
-	   observersLower : UML2!uml::LiteralInteger (
-	   	value <- 0),
-	-- Get --
-		getOp : UML2!uml::Operation (
-	   	name <- 'getObservers',
-		class <- s,
-		visibility <- #public,
-		ownedParameter <- Sequence{getPar},
-		concurrency <- #sequential),
-	   getPar : UML2!uml::Parameter (
-	   	name <- 'return',
-        lowerValue <- getParLow,
-        upperValue <- getParUp,
-		type <- observers.type,
-		effect <- #read,
-		direction <- #return),
-	   getParLow : UML2!uml::LiteralInteger (
-	   	value <- 0),
-	   getParUp : UML2!uml::LiteralUnlimitedNatural (
-	   	value <- 0-1),
-	   getBehavior : UML2!uml::OpaqueBehavior (
-	   	specification <- getOp,
-		name <- getOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
-		body <- Sequence{observers.name->multiGetterBody()}),
-	-- Add --
-	   addOp : UML2!uml::Operation (
-	   	name <- 'addObserver',
-		class <- s,
-		visibility <- #public,
-		ownedParameter <- Sequence{addPar},
-		concurrency <- #sequential),
-	   addPar : UML2!uml::Parameter (
-	   	name <- s.name,
-		type <- observers.type,
-		effect <- #update,
-		direction <- #"in"),
-	   addBehavior : UML2!uml::OpaqueBehavior (
-	   	specification <- addOp,
-		name <- addOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
-		body <- Sequence{observers.name->adderBody(observers.isUnique)}),
-	-- Remove --
-	   removeOp : UML2!uml::Operation (
-	   	name <- 'removeObserver',
-		class <- s,
-		visibility <- #public,
-		ownedParameter <- Sequence{removePar},
-		concurrency <- #sequential),
-	   removePar : UML2!uml::Parameter (
-	   	name <- s.name,
-		type <- observers.type,
-		effect <- #update,
-		direction <- #"in"),
-	   removeBehavior : UML2!uml::OpaqueBehavior (
-	   	specification <- removeOp,
-		name <- removeOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
-		body <- Sequence{observers.name->removerBody()}),
-	-- Notify --
-	   notifyOp : UML2!uml::Operation (
-	   	name <- 'notifyObservers',
-		class <- s,
-		visibility <- #public,
-		ownedParameter <- Sequence{notifyPar1, notifyPar2},
-		concurrency <- #sequential),
-	   notifyPar1 : UML2!uml::Parameter (
-	   	name <- 'name',
-		type <- thisModule.oclString,
-		effect <- #read,
-		direction <- #"in"),
-	   notifyPar2 : UML2!uml::Parameter (
-	   	name <- 'value',
-		type <- thisModule.oclAny,
-		effect <- #update,
-		direction <- #"in"),
-	   notifyBehavior : UML2!uml::OpaqueBehavior (
-		specification <- notifyOp,
-		name <- notifyOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
-		body <- Sequence{observers->notifyObservers()}),
-	-- Observer functionality --
-	   real : UML2!uml::InterfaceRealization (
-	   	contract <- thisModule.Observer,
-		implementingClassifier <- s,
-		client <- Set{s}),
-	-- Update --
-	   updateOp : UML2!uml::Operation (
-	   	name <- 'update',
-		class <- s,
-		visibility <- #public,
-		ownedParameter <- Sequence{updatePar1, updatePar2},
-		concurrency <- #sequential),
-	   updatePar1 : UML2!uml::Parameter (
-	   	name <- 'name',
-		type <- thisModule.oclString,
-		effect <- #read,
-		direction <- #"in"),
-	   updatePar2 : UML2!uml::Parameter (
-	   	name <- 'value',
-		type <- thisModule.oclAny,
-		effect <- #update,
-		direction <- #"in"),
-	   updateBehavior : UML2!uml::OpaqueBehavior (
-		specification <- updateOp,
-		name <- updateOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
-		body <- Sequence{s->update()})
-}
+--rule ObservableObserverClass {
+--    from s : UML2!uml::Class (
+--		if thisModule.inElements->includes(s) then
+--			s->oclIsTypeOf(UML2!uml::Class) and
+--			s->isObservable() and
+--			s->isObserver()
+--		else false endif)
+--    to t : UML2!uml::Class mapsTo s (
+--        name <- s.name->debug('ObservableObserverClass'),
+--        visibility <- s.visibility,
+--        isLeaf <- s.isLeaf,
+--        isAbstract <- s.isAbstract,
+--        isActive <- s.isActive,
+--        eAnnotations <- s.eAnnotations,
+--        ownedComment <- s.ownedComment,
+--        clientDependency <- s.clientDependency,
+--        nameExpression <- s.nameExpression,
+--        elementImport <- s.elementImport,
+--        packageImport <- s.packageImport,
+--        ownedRule <- s.ownedRule,
+--        templateParameter <- s.templateParameter,
+--        templateBinding <- s.templateBinding,
+--        ownedTemplateSignature <- s.ownedTemplateSignature,
+--        generalization <- s.generalization,
+--        powertypeExtent <- s.powertypeExtent,
+--        redefinedClassifier <- s.redefinedClassifier,
+--        substitution <- s.substitution,
+--        representation <- s.representation,
+--        collaborationUse <- s.collaborationUse,
+--        ownedUseCase <- s.ownedUseCase,
+--        useCase <- s.useCase,
+--        ownedAttribute <- s.ownedAttribute->union(Set{observers}),
+--        ownedConnector <- s.ownedConnector,
+--        ownedBehavior <- s.ownedBehavior->union(Set{getBehavior, addBehavior, removeBehavior, notifyBehavior, updateBehavior}),
+--        classifierBehavior <- s.classifierBehavior,
+--        interfaceRealization <- s.interfaceRealization->union(Set{real}),
+--        ownedTrigger <- s.ownedTrigger,
+--        nestedClassifier <- s.nestedClassifier,
+--        ownedOperation <- s.ownedOperation,
+--        ownedReception <- s.ownedReception),
+--	-- Observable functionality --
+--	   observers : UML2!uml::Property (
+--	   	name <- 'observers',
+--		type <- thisModule.Observer,
+--		visibility <- #private,
+--		isUnique <- true,
+--		isOrdered <- true,
+--		upperValue <- observersUpper,
+--		lowerValue <- observersLower),
+--	   observersUpper : UML2!uml::LiteralUnlimitedNatural (
+--	   	value <- 0-1),
+--	   observersLower : UML2!uml::LiteralInteger (
+--	   	value <- 0),
+--	-- Get --
+--		getOp : UML2!uml::Operation (
+--	   	name <- 'getObservers',
+--		class <- s,
+--		visibility <- #public,
+--		ownedParameter <- Sequence{getPar},
+--		concurrency <- #sequential),
+--	   getPar : UML2!uml::Parameter (
+--	   	name <- 'return',
+--        lowerValue <- getParLow,
+--        upperValue <- getParUp,
+--		type <- observers.type,
+--		effect <- #read,
+--		direction <- #return),
+--	   getParLow : UML2!uml::LiteralInteger (
+--	   	value <- 0),
+--	   getParUp : UML2!uml::LiteralUnlimitedNatural (
+--	   	value <- 0-1),
+--	   getBehavior : UML2!uml::OpaqueBehavior (
+--	   	specification <- getOp,
+--		name <- getOp.name + 'Behavior',
+--		language <- Sequence{'language'->value()},
+--		body <- Sequence{observers.name->multiGetterBody()}),
+--	-- Add --
+--	   addOp : UML2!uml::Operation (
+--	   	name <- 'addObserver',
+--		class <- s,
+--		visibility <- #public,
+--		ownedParameter <- Sequence{addPar},
+--		concurrency <- #sequential),
+--	   addPar : UML2!uml::Parameter (
+--	   	name <- s.name,
+--		type <- observers.type,
+--		effect <- #update,
+--		direction <- #"in"),
+--	   addBehavior : UML2!uml::OpaqueBehavior (
+--	   	specification <- addOp,
+--		name <- addOp.name + 'Behavior',
+--		language <- Sequence{'language'->value()},
+--		body <- Sequence{observers.name->adderBody(observers.isUnique)}),
+--	-- Remove --
+--	   removeOp : UML2!uml::Operation (
+--	   	name <- 'removeObserver',
+--		class <- s,
+--		visibility <- #public,
+--		ownedParameter <- Sequence{removePar},
+--		concurrency <- #sequential),
+--	   removePar : UML2!uml::Parameter (
+--	   	name <- s.name,
+--		type <- observers.type,
+--		effect <- #update,
+--		direction <- #"in"),
+--	   removeBehavior : UML2!uml::OpaqueBehavior (
+--	   	specification <- removeOp,
+--		name <- removeOp.name + 'Behavior',
+--		language <- Sequence{'language'->value()},
+--		body <- Sequence{observers.name->removerBody()}),
+--	-- Notify --
+--	   notifyOp : UML2!uml::Operation (
+--	   	name <- 'notifyObservers',
+--		class <- s,
+--		visibility <- #public,
+--		ownedParameter <- Sequence{notifyPar1, notifyPar2},
+--		concurrency <- #sequential),
+--	   notifyPar1 : UML2!uml::Parameter (
+--	   	name <- 'name',
+--		type <- thisModule.oclString,
+--		effect <- #read,
+--		direction <- #"in"),
+--	   notifyPar2 : UML2!uml::Parameter (
+--	   	name <- 'value',
+--		type <- thisModule.oclAny,
+--		effect <- #update,
+--		direction <- #"in"),
+--	   notifyBehavior : UML2!uml::OpaqueBehavior (
+--		specification <- notifyOp,
+--		name <- notifyOp.name + 'Behavior',
+--		language <- Sequence{'language'->value()},
+--		body <- Sequence{observers->notifyObservers()}),
+--	-- Observer functionality --
+--	   real : UML2!uml::InterfaceRealization (
+--	   	contract <- thisModule.Observer,
+--		implementingClassifier <- s,
+--		client <- Set{s}),
+--	-- Update --
+--	   updateOp : UML2!uml::Operation (
+--	   	name <- 'update',
+--		class <- s,
+--		visibility <- #public,
+--		ownedParameter <- Sequence{updatePar1, updatePar2},
+--		concurrency <- #sequential),
+--	   updatePar1 : UML2!uml::Parameter (
+--	   	name <- 'name',
+--		type <- thisModule.oclString,
+--		effect <- #read,
+--		direction <- #"in"),
+--	   updatePar2 : UML2!uml::Parameter (
+--	   	name <- 'value',
+--		type <- thisModule.oclAny,
+--		effect <- #update,
+--		direction <- #"in"),
+--	   updateBehavior : UML2!uml::OpaqueBehavior (
+--		specification <- updateOp,
+--		name <- updateOp.name + 'Behavior',
+--		language <- Sequence{'language'->value()},
+--		body <- Sequence{s->update()})
+--}
 
 rule OpaqueBehavior {
     from s : UML2!uml::OpaqueBehavior (
     	if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::OpaqueBehavior) and
-			s->isPlainMethod()
+			s->oclIsTypeOf(UML2!uml::OpaqueBehavior)
 		else false endif)
     to t : UML2!uml::OpaqueBehavior mapsTo s (
         name <- s.name,
@@ -600,159 +736,20 @@ rule OpaqueBehavior {
         isAbstract <- s.isAbstract,
         isActive <- s.isActive,
         isReentrant <- s.isReentrant,
-        body <- s.body,
-        language <- s.language,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        ownedRule <- s.ownedRule,
-        templateParameter <- s.templateParameter,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        generalization <- s.generalization,
-        powertypeExtent <- s.powertypeExtent,
-        redefinedClassifier <- s.redefinedClassifier,
-        substitution <- s.substitution,
-        representation <- s.representation,
-        collaborationUse <- s.collaborationUse,
-        ownedUseCase <- s.ownedUseCase,
-        useCase <- s.useCase,
-        ownedAttribute <- s.ownedAttribute,
-        ownedConnector <- s.ownedConnector,
-        ownedBehavior <- s.ownedBehavior,
-        classifierBehavior <- s.classifierBehavior,
-        interfaceRealization <- s.interfaceRealization,
-        ownedTrigger <- s.ownedTrigger,
-        nestedClassifier <- s.nestedClassifier,
-        ownedOperation <- s.ownedOperation,
-        ownedReception <- s.ownedReception,
-        redefinedBehavior <- s.redefinedBehavior,
-        ownedParameter <- s.ownedParameter,
-        precondition <- s.precondition,
-        postcondition <- s.postcondition,
-        ownedParameterSet <- s.ownedParameterSet,
-        specification <- s.specification)
-}
-
-rule NotifyOpaqueBehavior {
-    from s : UML2!uml::OpaqueBehavior (
-    	if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::OpaqueBehavior) and
-			s->isNotifyMethod()
-		else false endif)
-    to t : UML2!uml::OpaqueBehavior mapsTo s (
-        name <- s.name,
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        isReentrant <- s.isReentrant,
-        body <- s.body->collect(b|s.specification->notify(b)),  --Sequence{s.specification->notify(s.body->first())},
-        language <- s.language,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        ownedRule <- s.ownedRule,
-        templateParameter <- s.templateParameter,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        generalization <- s.generalization,
-        powertypeExtent <- s.powertypeExtent,
-        redefinedClassifier <- s.redefinedClassifier,
-        substitution <- s.substitution,
-        representation <- s.representation,
-        collaborationUse <- s.collaborationUse,
-        ownedUseCase <- s.ownedUseCase,
-        useCase <- s.useCase,
-        ownedAttribute <- s.ownedAttribute,
-        ownedConnector <- s.ownedConnector,
-        ownedBehavior <- s.ownedBehavior,
-        classifierBehavior <- s.classifierBehavior,
-        interfaceRealization <- s.interfaceRealization,
-        ownedTrigger <- s.ownedTrigger,
-        nestedClassifier <- s.nestedClassifier,
-        ownedOperation <- s.ownedOperation,
-        ownedReception <- s.ownedReception,
-        redefinedBehavior <- s.redefinedBehavior,
-        ownedParameter <- s.ownedParameter,
-        precondition <- s.precondition,
-        postcondition <- s.postcondition,
-        ownedParameterSet <- s.ownedParameterSet,
-        specification <- s.specification)
-}
-
-rule SubscribeOpaqueBehavior {
-    from s : UML2!uml::OpaqueBehavior (
-    	if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::OpaqueBehavior) and
-			s->isSubscribeMethod()
-		else false endif)
-    to t : UML2!uml::OpaqueBehavior mapsTo s (
-        name <- s.name,
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        isReentrant <- s.isReentrant,
-        body <- s.body->collect(b|s.specification->subscribe(b)),  --Sequence{s.specification->subscribe(s.body->first())},
-        language <- s.language,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        ownedRule <- s.ownedRule,
-        templateParameter <- s.templateParameter,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        generalization <- s.generalization,
-        powertypeExtent <- s.powertypeExtent,
-        redefinedClassifier <- s.redefinedClassifier,
-        substitution <- s.substitution,
-        representation <- s.representation,
-        collaborationUse <- s.collaborationUse,
-        ownedUseCase <- s.ownedUseCase,
-        useCase <- s.useCase,
-        ownedAttribute <- s.ownedAttribute,
-        ownedConnector <- s.ownedConnector,
-        ownedBehavior <- s.ownedBehavior,
-        classifierBehavior <- s.classifierBehavior,
-        interfaceRealization <- s.interfaceRealization,
-        ownedTrigger <- s.ownedTrigger,
-        nestedClassifier <- s.nestedClassifier,
-        ownedOperation <- s.ownedOperation,
-        ownedReception <- s.ownedReception,
-        redefinedBehavior <- s.redefinedBehavior,
-        ownedParameter <- s.ownedParameter,
-        precondition <- s.precondition,
-        postcondition <- s.postcondition,
-        ownedParameterSet <- s.ownedParameterSet,
-        specification <- s.specification)
-}
-
-rule NotifySubscribeOpaqueBehavior {
-    from s : UML2!uml::OpaqueBehavior (
-    	if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::OpaqueBehavior) and
-			s->isNotifySubscribeMethod()
-		else false endif)
-    to t : UML2!uml::OpaqueBehavior mapsTo s (
-        name <- s.name,
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        isReentrant <- s.isReentrant,
-        body <- s.body->collect(b|s.specification->notify(
-        	s.specification->subscribe(b))),  --Sequence{s.specification->notify(
-        	--s.specification->subscribe(s.body->first()))},
+        body <- 
+			if s->isNotifyMethod() then
+				if s->isSubscribeMethod() then
+					s.body->collect(b|s.specification->notify(s.specification->subscribe(b)))
+				else
+					s.body->collect(b|s.specification->notify(b))
+				endif
+			else
+				if s->isSubscribeMethod() then
+					s.body->collect(b|s.specification->subscribe(b))
+				else
+					s.body
+				endif
+			endif,
         language <- s.language,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,

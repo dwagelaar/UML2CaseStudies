@@ -75,50 +75,10 @@ helper context UML2!uml::Type def : defaultValueBody() : String =
 -- transformation rules begin
 -- ======================================================================
 
-rule NoDefValProperty {
-    from s : UML2!uml::Property (
-		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Property) and
-			s.defaultValue->oclIsUndefined()
-		else false endif)
-    to t : UML2!uml::Property mapsTo s (
-        name <- s.name,
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isStatic <- s.isStatic,
-        isOrdered <- s.isOrdered,
-        isUnique <- s.isUnique,
-        isReadOnly <- s.isReadOnly,
-        isDerived <- s.isDerived,
-        isDerivedUnion <- s.isDerivedUnion,
-        aggregation <- s.aggregation,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        type <- s->implType()->debug('NoDefValProperty : ' + s.name),
-        upperValue <- s.upperValue,
-        lowerValue <- s.lowerValue,
-        templateParameter <- s.templateParameter,
-        end <- s.end,
-        deployment <- s.deployment,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        redefinedProperty <- s.redefinedProperty,
-        defaultValue <- defVal,
-        subsettedProperty <- s.subsettedProperty,
-        association <- s.association,
-        qualifier <- s.qualifier),
-	   defVal : UML2!uml::OpaqueExpression (
-		language <- Sequence{'language'->value()},
-		body <- Sequence{s->defaultValueBody()})
-}
-
 rule Property {
     from s : UML2!uml::Property (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Property) and
-			not s.defaultValue->oclIsUndefined()
+			s->oclIsTypeOf(UML2!uml::Property)
 		else false endif)
     to t : UML2!uml::Property mapsTo s (
         name <- s.name,
@@ -135,7 +95,7 @@ rule Property {
         ownedComment <- s.ownedComment,
         clientDependency <- s.clientDependency,
         nameExpression <- s.nameExpression,
-        type <- s->implType(),
+        type <- s->implType()->debug('Property'),
         upperValue <- s.upperValue,
         lowerValue <- s.lowerValue,
         templateParameter <- s.templateParameter,
@@ -144,10 +104,20 @@ rule Property {
         templateBinding <- s.templateBinding,
         ownedTemplateSignature <- s.ownedTemplateSignature,
         redefinedProperty <- s.redefinedProperty,
-        defaultValue <- s.defaultValue,
+        defaultValue <- if s.defaultValue->oclIsUndefined() then
+			thisModule->DefVal(s) else s.defaultValue endif,
         subsettedProperty <- s.subsettedProperty,
         association <- s.association,
         qualifier <- s.qualifier)
+}
+
+rule DefVal(s : UML2!uml::Property) {
+    to defVal : UML2!uml::OpaqueExpression (
+		language <- Sequence{'language'->value()},
+		body <- Sequence{s->defaultValueBody()})
+	do {
+		defVal;
+	}
 }
 
 rule Parameter {
@@ -174,49 +144,8 @@ rule Parameter {
         defaultValue <- s.defaultValue)
 }
 
-rule VoidOperation {
-    from s : UML2!uml::Operation (
-    	if thisModule.inElements->includes(s) then
-			s.ownedParameter->select(p|p.direction=#return)->isEmpty()
-		else false endif)
-    to t : UML2!uml::Operation mapsTo s (
-        name <- s.name,
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isStatic <- s.isStatic,
-        isAbstract <- s.isAbstract,
-        concurrency <- s.concurrency,
-        isQuery <- s.isQuery,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        ownedRule <- s.ownedRule,
-        ownedParameter <- s.ownedParameter->union(Sequence{retPar}),
-        method <- s.method,
-        raisedException <- s.raisedException,
-        ownedParameterSet <- s.ownedParameterSet,
-        templateParameter <- s.templateParameter,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        precondition <- s.precondition,
-        postcondition <- s.postcondition,
-        redefinedOperation <- s.redefinedOperation,
-        bodyCondition <- s.bodyCondition),
-	   retPar : UML2!uml::Parameter (
-	   	name <- 'return',
-		type <- thisModule.voidType,
-		effect <- #read,
-		direction <- #return)
-}
-
 rule Operation {
-    from s : UML2!uml::Operation (
-    	if thisModule.inElements->includes(s) then
-			s.ownedParameter->select(p|p.direction=#return)->notEmpty()
-		else false endif)
+    from s : UML2!uml::Operation (thisModule.inElements->includes(s))
     to t : UML2!uml::Operation mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
@@ -232,7 +161,9 @@ rule Operation {
         elementImport <- s.elementImport,
         packageImport <- s.packageImport,
         ownedRule <- s.ownedRule,
-        ownedParameter <- s.ownedParameter,
+        ownedParameter <- s.ownedParameter
+			->union(if s.ownedParameter->select(p|p.direction=#return)->isEmpty() then
+				Sequence{thisModule.VoidParameter()} else Sequence{} endif),
         method <- s.method,
         raisedException <- s.raisedException,
         ownedParameterSet <- s.ownedParameterSet,
@@ -243,6 +174,17 @@ rule Operation {
         postcondition <- s.postcondition,
         redefinedOperation <- s.redefinedOperation,
         bodyCondition <- s.bodyCondition)
+}
+
+rule VoidParameter() {
+    to retPar : UML2!uml::Parameter (
+	   	name <- 'return',
+		type <- thisModule.voidType,
+		effect <- #read,
+		direction <- #return)
+	do {
+		retPar;
+	}
 }
 
 -- ======================================================================

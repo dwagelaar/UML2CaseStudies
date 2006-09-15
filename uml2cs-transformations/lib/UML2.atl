@@ -46,7 +46,8 @@ helper context UML2!uml::MultiplicityElement def : accessorBaseNameS() : String 
 	self->accessorBaseName() + if self->isSingle() then '' else 's' endif;
 
 helper context UML2!uml::MultiplicityElement def : isSingle() : Boolean =
-	self->upper() = 1;
+	if self.upperValue->oclIsUndefined() then true
+	else self.upperValue.value = 1 endif;
 
 helper context UML2!uml::MultiplicityElement def : lower() : Integer =
 	if self.lowerValue->oclIsUndefined() then 1

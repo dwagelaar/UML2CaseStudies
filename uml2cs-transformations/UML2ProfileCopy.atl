@@ -84,6 +84,12 @@ rule AbstractFactory::product {
         base_Dependency <- s.base_Dependency)
 }
 
+rule Async::asynchronous {
+    from s : UML2!Async::asynchronous (thisModule.inElements->includes(s))
+    to t : UML2!Async::asynchronous mapsTo s (
+        base_Operation <- s.base_Operation)
+}
+
 -- ======================================================================
 -- Stereotype copying rules end
 -- ======================================================================

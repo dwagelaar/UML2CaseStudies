@@ -269,3 +269,12 @@ helper context String def : parameterInfoBody() : String =
 
 helper context String def : createBody() : String =
 	'return new ' + self + '();';
+
+------------------------------- AsyncMethods -----------------------------------
+
+helper context String def : asynchronousBody() : String =
+	'new Thread() {\n' +
+	'    public void run() {\n' +
+	self + '\n' +
+	'    }\n' +
+	'}.start();';

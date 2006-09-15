@@ -1,0 +1,126 @@
+-- $Id$
+-- Implements the Async profile
+module UML2AsyncMethods; --extends UML2Copy
+
+create OUT : UML2 from IN : UML2;
+
+uses Mappings;
+
+-- ======================================================================
+-- model-specific helpers begin
+-- ======================================================================
+
+helper context UML2!uml::Operation def : isAsynchronous() : Boolean =
+	UML2!Async::asynchronous->allInstances()->select(a|a.base_Operation=self)->notEmpty();
+
+-- ======================================================================
+-- model-specific helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- transformation rules begin
+-- ======================================================================
+
+rule OpaqueBehavior {
+    from s : UML2!uml::OpaqueBehavior (
+    	if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!uml::OpaqueBehavior) and
+			not s.specification->isAsynchronous()
+		else false endif)
+    to t : UML2!uml::OpaqueBehavior mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        body <- s.body,
+        language <- s.language,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedRule <- s.ownedRule,
+        templateParameter <- s.templateParameter,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        generalization <- s.generalization,
+        powertypeExtent <- s.powertypeExtent,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        representation <- s.representation,
+        collaborationUse <- s.collaborationUse,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        interfaceRealization <- s.interfaceRealization,
+        ownedTrigger <- s.ownedTrigger,
+        nestedClassifier <- s.nestedClassifier,
+        ownedOperation <- s.ownedOperation,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        ownedParameter <- s.ownedParameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        ownedParameterSet <- s.ownedParameterSet,
+        specification <- s.specification)
+}
+
+rule AsyncOpaqueBehavior {
+    from s : UML2!uml::OpaqueBehavior (
+    	if thisModule.inElements->includes(s) then
+			s->oclIsTypeOf(UML2!uml::OpaqueBehavior) and
+			s.specification->isAsynchronous()
+		else false endif)
+    to t : UML2!uml::OpaqueBehavior mapsTo s (
+        name <- s.name->debug('AsyncOpaqueBehavior'),
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        body <- s.body->collect(b|b->asynchronousBody()),
+        language <- s.language,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedRule <- s.ownedRule,
+        templateParameter <- s.templateParameter,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        generalization <- s.generalization,
+        powertypeExtent <- s.powertypeExtent,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        representation <- s.representation,
+        collaborationUse <- s.collaborationUse,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        interfaceRealization <- s.interfaceRealization,
+        ownedTrigger <- s.ownedTrigger,
+        nestedClassifier <- s.nestedClassifier,
+        ownedOperation <- s.ownedOperation,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        ownedParameter <- s.ownedParameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        ownedParameterSet <- s.ownedParameterSet,
+        specification <- s.specification)
+}
+
+-- ======================================================================
+-- transformation rules end
+-- ======================================================================

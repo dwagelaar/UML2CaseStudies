@@ -1,0 +1,43 @@
+-- $Id: Java1.atl 5535 2006-09-15 15:29:20Z dwagelaa $
+-- Java >= 1.2 code generation helpers
+library Java2;
+
+------------------------------- Accessors -----------------------------------
+
+helper context String def : javaMultiGetterBody() : String =
+	'return new be.ac.vub.util.IteratorEnumerationAdapter(' + self + '.iterator());';
+
+helper context String def : javaGetAt(type : String) : String =
+	'try {\n' +
+	'    return (' + type + ') ' + self + '.get(index);\n' +
+	'} catch (IndexOutOfBoundsException e) {\n' +
+	'    return null;\n' +
+	'}';
+	
+helper context String def : javaAdder() : String =
+	'this.' + self + '.add(' + self + ');';
+	
+helper context String def : javaInsert() : String =
+	'try {\n' +
+	'    this.' + self + '.add(index, ' + self + ');' +
+	'} catch (IndexOutOfBoundsException e) {\n' +
+	'    ' + self->javaAdder() + '\n' +
+	'};';
+
+helper context String def : javaRemover() : String =
+	'this.' + self + '.remove(' + self + ');';
+
+helper context String def : javaImplTypeName() : String =
+	if self = 'OrderedSet' then 'java::util::List' else
+	if self = 'Set' then 'java::util::Set' else
+	if self = 'Sequence' then 'java::util::List' else
+	if self = 'Bag' then 'java::util::Collection' else
+		'java::lang::void'
+	endif endif endif endif;
+
+helper context String def : javaDefaultValueBody() : String =
+	if self = 'java::util::List' then 'new java.util.ArrayList()' else
+	if self = 'java::util::Set' then 'new java.util.HashSet()' else
+	if self = 'java::util::Collection' then 'new java.util.ArrayList()' else
+		'null'
+	endif endif endif;

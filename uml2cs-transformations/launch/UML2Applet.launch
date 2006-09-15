@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
+<mapAttribute key="Model Handler">
+<mapEntry key="OUT" value=""/>
+<mapEntry key="IMPLTYPES" value=""/>
+<mapEntry key="UML2" value="EMF"/>
+<mapEntry key="IN" value=""/>
+</mapAttribute>
+<stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Copy.atl"/>
+<mapAttribute key="Libs">
+<mapEntry key="UML2" value="/uml2cs-transformations/lib/UML2.asm"/>
+<mapEntry key="Mappings" value="/uml2cs-transformations/lib/JavaMappings.asm"/>
+</mapAttribute>
+<booleanAttribute key="Mode Debug" value="false"/>
+<mapAttribute key="ModelType">
+<mapEntry key="OUT" value="MODELOUTPUT"/>
+<mapEntry key="IMPLTYPES" value="MODELINPUT"/>
+<mapEntry key="UML2" value="METAMODELINPUT"/>
+<mapEntry key="IN" value="MODELINPUT"/>
+</mapAttribute>
+<mapAttribute key="Path">
+<mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/im-applet.uml"/>
+<mapEntry key="IMPLTYPES" value="/uml2cs-transformations/models/JavaTypes.uml"/>
+<mapEntry key="UML2" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
+<mapEntry key="IN" value="/uml2cs-instantmessenger-model/outmodels/test/im-singleton.uml"/>
+</mapAttribute>
+<stringAttribute key="Project Name" value="uml2cs-transformations"/>
+<mapAttribute key="Output">
+<mapEntry key="OUT" value="UML2"/>
+</mapAttribute>
+<mapAttribute key="Input">
+<mapEntry key="IMPLTYPES" value="UML2"/>
+<mapEntry key="IN" value="UML2"/>
+</mapAttribute>
+<booleanAttribute key="AllowInterModelReferences" value="true"/>
+<listAttribute key="Superimpose">
+<listEntry value="/uml2cs-transformations/UML2Applet.asm"/>
+<listEntry value="/uml2cs-transformations/UML2ProfileCopy.asm"/>
+</listAttribute>
+</launchConfiguration>

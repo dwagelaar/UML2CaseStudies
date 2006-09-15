@@ -536,7 +536,7 @@
                 <type xmi:type="uml:Class" href="JabberWookie.uml#_ijH5gESyEduo0qgZQXhZYA"/>
               </ownedParameter>
             </ownedOperation>
-            <ownedOperation xmi:id="_Ad1xEETEEdutoZk0i5ZyXw" name="connect" visibility="protected" isAbstract="true" raisedException="_Oh6IwETEEdutoZk0i5ZyXw">
+            <ownedOperation xmi:id="_Ad1xEETEEdutoZk0i5ZyXw" name="connect" visibility="protected" isAbstract="true">
               <eAnnotations xmi:id="_bPufMETEEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
                 <details xmi:id="_bPufMUTEEdutoZk0i5ZyXw" key="uuid" value="1158329637026270"/>
               </eAnnotations>
@@ -546,6 +546,7 @@
                 </eAnnotations>
                 <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
               </ownedParameter>
+              <raisedException xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_qxYZwETFEdutoZk0i5ZyXw"/>
             </ownedOperation>
           </packagedElement>
           <packagedElement xmi:type="uml:Association" xmi:id="_C-PrkES0Eduo0qgZQXhZYA" name="A_jabber_state" memberEnd="_C-RgwES0Eduo0qgZQXhZYA _C-SH0ES0Eduo0qgZQXhZYA">
@@ -608,11 +609,6 @@
           </packagedElement>
         </packagedElement>
       </packagedElement>
-    </packagedElement>
-    <packagedElement xmi:type="uml:DataType" xmi:id="_Oh6IwETEEdutoZk0i5ZyXw" name="java.io.IOException">
-      <eAnnotations xmi:id="_bPvtUUTEEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
-        <details xmi:id="_bPvtUkTEEdutoZk0i5ZyXw" key="uuid" value="1158329637029305"/>
-      </eAnnotations>
     </packagedElement>
     <profileApplication xmi:id="_Dgr4AES5Eduo0qgZQXhZYA">
       <eAnnotations xmi:id="_DhAoIES5Eduo0qgZQXhZYA" source="http://www.eclipse.org/uml2/2.0.0/UML">

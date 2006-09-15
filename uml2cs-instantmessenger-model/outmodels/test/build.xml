@@ -15,6 +15,7 @@
 	<property name="model.in.path" value="${project.path}/models/InstantMessengerModel.uml"/>
 	<property name="model.local.path" value="${project.path}/models/InstantMessengerLocal.uml"/>
 	<property name="model.awt.path" value="${project.path}/models/InstantMessengerAWT.uml"/>
+	<property name="model.swing.path" value="${project.path}/models/InstantMessengerSwing.uml"/>
 	<property name="model.jabber.path" value="${project.path}/models/InstantMessengerJabber.uml"/>
 	<property name="model.defaultjabber.path" value="${project.path}/models/InstantMessengerDefaultJabber.uml"/>
 
@@ -64,6 +65,7 @@
 		<am3.loadModel modelHandler="EMF" name="inModel" metamodel="UML2" path="${model.in.path}"/>
 		<am3.loadModel modelHandler="EMF" name="Local" metamodel="UML2" path="${model.local.path}"/>
 		<am3.loadModel modelHandler="EMF" name="AWT" metamodel="UML2" path="${model.awt.path}"/>
+		<am3.loadModel modelHandler="EMF" name="Swing" metamodel="UML2" path="${model.swing.path}"/>
 		<am3.loadModel modelHandler="EMF" name="Jabber" metamodel="UML2" path="${model.jabber.path}"/>
 		<am3.loadModel modelHandler="EMF" name="DefaultJabber" metamodel="UML2" path="${model.defaultjabber.path}"/>
 	</target>
@@ -359,6 +361,10 @@
 		<transform in="AWT" prefix="awt"/>
 	</target>
 
+	<target name="InstantMessengerSwing" depends="loadModels">
+		<transform in="Swing" prefix="swing"/>
+	</target>
+
 	<target name="InstantMessengerJabber" depends="loadModels">
 		<transform in="Jabber" prefix="jabber"/>
 	</target>
@@ -374,6 +380,7 @@
     	InstantMessengerModel, 
     	InstantMessengerLocal, 
     	InstantMessengerAWT,
+    	InstantMessengerSwing,
     	InstantMessengerJabber,
     	InstantMessengerDefaultJabber"/>
 	
@@ -384,6 +391,7 @@
 			<antcall target="InstantMessengerModel" inheritRefs="true"/>
 			<antcall target="InstantMessengerLocal" inheritRefs="true"/>
 			<antcall target="InstantMessengerAWT" inheritRefs="true"/>
+			<antcall target="InstantMessengerSwing" inheritRefs="true"/>
 			<antcall target="InstantMessengerJabber" inheritRefs="true"/>
 			<antcall target="InstantMessengerDefaultJabber" inheritRefs="true"/>
 		</parallel>

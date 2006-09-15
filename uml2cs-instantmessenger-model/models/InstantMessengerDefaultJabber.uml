@@ -75,7 +75,7 @@
                 </eAnnotations>
                 <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
               </ownedParameter>
-              <raisedException xmi:type="uml:DataType" href="InstantMessengerJabber.uml#_Oh6IwETEEdutoZk0i5ZyXw"/>
+              <raisedException xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_qxYZwETFEdutoZk0i5ZyXw"/>
             </ownedOperation>
             <ownedOperation xmi:id="_83NhQETGEdutoZk0i5ZyXw" name="connect" visibility="private" method="_aIMIAETHEdutoZk0i5ZyXw">
               <eAnnotations xmi:id="_UBk5qETIEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
@@ -99,7 +99,7 @@
                 </eAnnotations>
                 <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_iB1PsETFEdutoZk0i5ZyXw"/>
               </ownedParameter>
-              <raisedException xmi:type="uml:DataType" href="InstantMessengerJabber.uml#_Oh6IwETEEdutoZk0i5ZyXw"/>
+              <raisedException xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_qxYZwETFEdutoZk0i5ZyXw"/>
             </ownedOperation>
           </packagedElement>
           <packagedElement xmi:type="uml:Association" xmi:id="_OXwKYETIEdutoZk0i5ZyXw" name="A_defaultJabber_socket" memberEnd="_OXwKYUTIEdutoZk0i5ZyXw _OXwxcETIEdutoZk0i5ZyXw">

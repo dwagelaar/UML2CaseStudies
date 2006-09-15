@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MicroJabberWookie" default="all">
+    <target name="clean">
+        <delete>
+        	<fileset dir=".">
+	       		<include name="MicroJabberWookie.jar"/>
+        	</fileset>
+        </delete>
+    </target>
+
+    <target name="jar" depends="clean">
+        <jar destfile="MicroJabberWookie.jar" basedir="../bin">
+        	<include name="**"/>
+        </jar>
+    </target>
+	
+	<target name="all" depends="jar"/>
+</project>

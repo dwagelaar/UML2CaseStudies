@@ -3,7 +3,7 @@ library Config;
 
 -- adapt the following helper to reflect your file path
 helper context String def : path() : String =
-	'/home/dwagelaa/UML2CaseStudies/uml2cs-transformations/' + self;
+	'uml2cs-transformations/' + self;
 
 -- adapt the following inclusion condition for your specific model
 helper context ECORE!EClass def : inclusionCondition() : Boolean =

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DeployInstantMessenger" default="all">
+	<property name="deploy.path" value="/srv/www/lighttpd/cddtoolkit/instantmessenger/midp"/>
+
+	<target name="deploy">
+		<copy todir="${deploy.path}">
+			<fileset dir="../../">
+				<include name="instantmessenger.jad"/>
+				<include name="instantmessenger.jar"/>
+				<include name="instantmessenger.png"/>
+				<include name="icon_1.png"/>
+				<include name="index.html"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="all" depends="deploy"/>
+</project>

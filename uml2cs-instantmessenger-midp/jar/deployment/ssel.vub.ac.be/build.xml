@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DeployInstantMessenger" default="all">
+	<property name="deploy.host" value="dwagelaa@ssel.vub.ac.be"/>
+	<property name="deploy.path" value="/var/www/html/cddtoolkit/instantmessenger/midp"/>
+
+	<target name="deploy">
+		<exec dir="../../" executable="rsync" logError="true">
+			<arg line="-lvuzC"/>
+			<arg line="instantmessenger.jad"/>
+			<arg line="instantmessenger.jar"/>
+			<arg line="instantmessenger.png"/>
+			<arg line="icon_1.png"/>
+			<arg line="index.html"/>
+			<arg line="${deploy.host}:${deploy.path}/"/>
+		</exec>
+	</target>
+	
+	<target name="fixFiles" depends="deploy">
+		<exec dir="." executable="ssh" logError="true">
+			<arg line="${deploy.host}"/>
+			<arg line="chown -R :ssel ${deploy.path};"/>
+			<arg line="find ${deploy.path} -type d | xargs chmod 775;"/>
+			<arg line="find ${deploy.path} -type f | xargs chmod 664"/>
+		</exec>
+	</target>
+	
+	<target name="all" depends="fixFiles"/>
+</project>

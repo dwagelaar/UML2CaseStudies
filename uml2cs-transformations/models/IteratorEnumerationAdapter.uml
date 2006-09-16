@@ -34,6 +34,10 @@
                 <eAnnotations xmi:id="_eis1YETQEdufqYn5Bpo1pQ" source="http://www.topcased.org/uuid">
                   <details xmi:id="_eis1YUTQEdufqYn5Bpo1pQ" key="uuid" value="115833481310921"/>
                 </eAnnotations>
+                <ownedParameter xmi:id="_Gd89UEVcEdu1R4x2hFmiHQ" name="return" type="_IrQwkPupEdqPS9oJcuwDkA" direction="return"/>
+                <ownedParameter xmi:id="_Gd89U0VcEdu1R4x2hFmiHQ" name="iterator" effect="read">
+                  <type xmi:type="uml:Interface" href="JavaTypes.uml#_PDpWEPxFEdqPCPYQWc94YQ"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>    this.iterator = iterator;</body>
               </ownedBehavior>
@@ -41,6 +45,9 @@
                 <eAnnotations xmi:id="_eis1YkTQEdufqYn5Bpo1pQ" source="http://www.topcased.org/uuid">
                   <details xmi:id="_eis1Y0TQEdufqYn5Bpo1pQ" key="uuid" value="115833481311022"/>
                 </eAnnotations>
+                <ownedParameter xmi:id="_JXPeoEVcEdu1R4x2hFmiHQ" name="return" direction="return">
+                  <type xmi:type="uml:DataType" href="JavaTypes.uml#_OO4ysPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>    return iterator.hasNext();</body>
               </ownedBehavior>
@@ -48,6 +55,9 @@
                 <eAnnotations xmi:id="_eis1ZETQEdufqYn5Bpo1pQ" source="http://www.topcased.org/uuid">
                   <details xmi:id="_eis1ZUTQEdufqYn5Bpo1pQ" key="uuid" value="115833481311023"/>
                 </eAnnotations>
+                <ownedParameter xmi:id="_K4X6MEVcEdu1R4x2hFmiHQ" name="return" direction="return">
+                  <type xmi:type="uml:Class" href="JavaTypes.uml#_bjrpkPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>    return iterator.next();</body>
               </ownedBehavior>

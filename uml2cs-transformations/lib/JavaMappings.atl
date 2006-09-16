@@ -106,8 +106,9 @@ helper context String def : implTypeName() : String =
 	if self = 'Boolean' then 'java::lang::boolean' else
 	if self = 'String' then 'java::lang::String' else
 	if self = 'OclAny' then 'java::lang::Object' else
+	if self = 'Exception' then 'java::lang::Exception' else
 	self->javaImplTypeName()
-	endif endif endif endif endif endif;
+	endif endif endif endif endif endif endif;
 
 helper context String def : implCollectionReturnTypeName() : String =
 	'java::util::Enumeration';

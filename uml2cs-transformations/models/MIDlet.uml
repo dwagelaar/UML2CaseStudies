@@ -17,44 +17,50 @@
         </eAnnotations>
         <general xmi:type="uml:Class" href="JavaTypes.uml#_iyggYPfyEdqaqL9wEVL3aA"/>
       </generalization>
-      <ownedAttribute xmi:id="_DwMGQET-Edu4IL8_POARHA" name="initialized">
+      <ownedAttribute xmi:id="_DwMGQET-Edu4IL8_POARHA" name="initialized" visibility="private">
         <eAnnotations xmi:id="_F1Zp0ET_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
           <details xmi:id="_F1Zp0UT_Edu4IL8_POARHA" key="uuid" value="115835483364512"/>
         </eAnnotations>
         <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_--NgwPyKEdqlTr7ZXrCGhQ"/>
       </ownedAttribute>
-      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_c60tQET_Edu4IL8_POARHA" name="AppletMIDlet_startAppBehavior">
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_c60tQET_Edu4IL8_POARHA" name="AppletMIDlet_startAppBehavior" specification="_VDO7YET-Edu4IL8_POARHA">
         <eAnnotations xmi:id="_wCkaMET_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
           <details xmi:id="_wCkaMUT_Edu4IL8_POARHA" key="uuid" value="115835511688315"/>
         </eAnnotations>
         <language>java</language>
         <body>    if (!initialized) {&#xA;        init();&#xA;        initialized = true;&#xA;    }&#xA;    start();</body>
       </ownedBehavior>
-      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_h7IlcET_Edu4IL8_POARHA" name="AppletMIDlet_pauseAppBehavior">
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_h7IlcET_Edu4IL8_POARHA" name="AppletMIDlet_pauseAppBehavior" specification="_6jJScET-Edu4IL8_POARHA">
         <eAnnotations xmi:id="_wCkaMkT_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
           <details xmi:id="_wCkaM0T_Edu4IL8_POARHA" key="uuid" value="115835511688316"/>
         </eAnnotations>
         <language>java</language>
         <body>    stop();</body>
       </ownedBehavior>
-      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_lI3swET_Edu4IL8_POARHA" name="AppletMIDlet_destroyAppBehavior">
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_lI3swET_Edu4IL8_POARHA" name="AppletMIDlet_destroyAppBehavior" specification="_7x-dEET-Edu4IL8_POARHA">
         <eAnnotations xmi:id="_wCkaNET_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
           <details xmi:id="_wCkaNUT_Edu4IL8_POARHA" key="uuid" value="115835511688317"/>
         </eAnnotations>
+        <ownedParameter xmi:id="_UBsPIEVcEdu1R4x2hFmiHQ" name="unconditional">
+          <eAnnotations xmi:id="_TGhQoEW6EduR0_rh5xO56g" source="http://www.topcased.org/uuid">
+            <details xmi:id="_TGhQoUW6EduR0_rh5xO56g" key="uuid" value="115843523856924"/>
+          </eAnnotations>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
         <language>java</language>
         <body>    stop();&#xA;    destroy();</body>
       </ownedBehavior>
-      <ownedOperation xmi:id="_VDO7YET-Edu4IL8_POARHA" name="startApp">
+      <ownedOperation xmi:id="_VDO7YET-Edu4IL8_POARHA" name="startApp" method="_c60tQET_Edu4IL8_POARHA">
         <eAnnotations xmi:id="_F1Zp0kT_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
           <details xmi:id="_F1Zp00T_Edu4IL8_POARHA" key="uuid" value="115835483364513"/>
         </eAnnotations>
       </ownedOperation>
-      <ownedOperation xmi:id="_6jJScET-Edu4IL8_POARHA" name="pauseApp">
+      <ownedOperation xmi:id="_6jJScET-Edu4IL8_POARHA" name="pauseApp" method="_h7IlcET_Edu4IL8_POARHA">
         <eAnnotations xmi:id="_F1Zp1ET_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
           <details xmi:id="_F1Zp1UT_Edu4IL8_POARHA" key="uuid" value="115835483364514"/>
         </eAnnotations>
       </ownedOperation>
-      <ownedOperation xmi:id="_7x-dEET-Edu4IL8_POARHA" name="destroyApp">
+      <ownedOperation xmi:id="_7x-dEET-Edu4IL8_POARHA" name="destroyApp" method="_lI3swET_Edu4IL8_POARHA">
         <eAnnotations xmi:id="_F1Zp1kT_Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
           <details xmi:id="_F1Zp10T_Edu4IL8_POARHA" key="uuid" value="115835483364515"/>
         </eAnnotations>

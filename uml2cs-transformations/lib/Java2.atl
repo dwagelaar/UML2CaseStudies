@@ -19,10 +19,10 @@ helper context String def : javaAdder() : String =
 	
 helper context String def : javaInsert() : String =
 	'try {\n' +
-	'    this.' + self + '.add(index, ' + self + ');' +
+	'    this.' + self + '.add(index, ' + self + ');\n' +
 	'} catch (IndexOutOfBoundsException e) {\n' +
 	'    ' + self->javaAdder() + '\n' +
-	'};';
+	'}';
 
 helper context String def : javaRemover() : String =
 	'this.' + self + '.remove(' + self + ');';

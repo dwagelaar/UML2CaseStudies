@@ -19,6 +19,7 @@
 	<property name="wtk.lib.midp10" value="${wtk.lib}/midpapi10.jar"/>
 	<property name="wtk.bin.preverify" value="${wtk.bin}/preverify"/>
 	<property name="wtk.bin.mekeytool" value="${wtk.bin}/mekeytool"/>
+	<property name="wtk.bin.emulator" value="${wtk.bin}/emulator"/>
 	
 	<target name="clean">
         <delete dir="${src.dir}"/>
@@ -31,7 +32,7 @@
 	      	<fileset dir="../src">
 	      		<include name="**"/>
 	    	</fileset>
-	      	<fileset dir="../../uml1cs-microjabberwookie/src">
+	      	<fileset dir="../../uml2cs-microjabberwookie/src">
 	      		<include name="**"/>
 	    	</fileset>
 	    </copy>
@@ -87,6 +88,12 @@ MIDlet-Version: ${midlet.version}
 MicroEdition-Configuration: ${midlet.configuration}
 MicroEdition-Profile: ${midlet.profile}
 </echo>
+	</target>
+	
+	<target name="run">
+		<exec dir="." executable="${wtk.bin.emulator}" logError="true">
+			<arg value="-Xdescriptor:${midlet.jad}"/>
+		</exec>
 	</target>
 
 	<target name="all" depends="jad"/>

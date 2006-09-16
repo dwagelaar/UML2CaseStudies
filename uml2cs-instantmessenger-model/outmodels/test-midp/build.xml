@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="uml2cs-instantmessenger-model" default="all">
 	<property name="project.path" value="/${ant.project.name}"/>
-	<property name="current.path" value="${project.path}/outmodels/test"/>
-	<property name="target.path" value="../../../uml2cs-instantmessenger-default/src"/>
+	<property name="current.path" value="${project.path}/outmodels/test-midp"/>
+	<property name="target.path" value="../../../uml2cs-instantmessenger-midp/src"/>
 	<!--property name="saveModels" value="true"/-->
 	<property name="saveLastModel" value="true"/>
 
     <import file="../common/build.xml"/>
 
-	<property name="lib.java.path" value="${lib.path}/Java2.asm"/>
+	<property name="lib.java.path" value="${lib.path}/Java1.asm"/>
 
 	<!-- = = = = = = = = = = = = = = = = =
           macrodef: transform
@@ -19,10 +19,10 @@
         <sequential>
       		<profiles in="@{in}" out="@{prefix}-profiles" path="${current.path}/@{prefix}-profiles.uml"/>
        		<accessors in="@{prefix}-profiles" out="@{prefix}-accessors" path="${current.path}/@{prefix}-accessors.uml"/>
-       		<javaobserver in="@{prefix}-accessors" out="@{prefix}-observer" path="${current.path}/@{prefix}-observer.uml"/>
+       		<observer in="@{prefix}-accessors" out="@{prefix}-observer" path="${current.path}/@{prefix}-observer.uml"/>
        		<abstractfactory in="@{prefix}-observer" out="@{prefix}-abstractfactory" path="${current.path}/@{prefix}-abstractfactory.uml"/>
        		<singleton in="@{prefix}-abstractfactory" out="@{prefix}-singleton" path="${current.path}/@{prefix}-singleton.uml"/>
-       		<applet in="@{prefix}-singleton" out="@{prefix}-applet" path="${current.path}/@{prefix}-applet.uml"/>
+       		<midlet in="@{prefix}-singleton" out="@{prefix}-applet" path="${current.path}/@{prefix}-applet.uml"/>
        		<asyncmethods in="@{prefix}-applet" out="@{prefix}-asyncmethods" path="${current.path}/@{prefix}-asyncmethods.uml"/>
        		<datatypes in="@{prefix}-asyncmethods" out="@{prefix}-datatypes" path="${current.path}/@{prefix}-datatypes.uml"/>
        		<generate in="@{prefix}-datatypes"/>
@@ -34,17 +34,21 @@
 		<am3.loadModel modelHandler="EMF" name="Accessors" metamodel="UML2" path="${profile.accessors.path}"/>
 		<am3.loadModel modelHandler="EMF" name="PrimitiveTypes" metamodel="UML2" path="${model.uml2types.path}"/>
 		<am3.loadModel modelHandler="EMF" name="JavaTypes" metamodel="UML2" path="${model.javatypes.path}"/>
-		<am3.loadModel modelHandler="EMF" name="IteratorEnumerationAdapter" metamodel="UML2" path="${model.itenumadapter.path}"/>
+		<am3.loadModel modelHandler="EMF" name="Observer" metamodel="UML2" path="${model.obstypes.path}"/>
+		<am3.loadModel modelHandler="EMF" name="MIDlet" metamodel="UML2" path="${model.midlet.path}"/>
 		<am3.loadModel modelHandler="EMF" name="inModel" metamodel="UML2" path="${model.in.path}"/>
 		<am3.loadModel modelHandler="EMF" name="Local" metamodel="UML2" path="${model.local.path}"/>
-		<am3.loadModel modelHandler="EMF" name="AWT" metamodel="UML2" path="${model.awt.path}"/>
-		<am3.loadModel modelHandler="EMF" name="Swing" metamodel="UML2" path="${model.swing.path}"/>
+		<am3.loadModel modelHandler="EMF" name="LCDUI" metamodel="UML2" path="${model.lcdui.path}"/>
 		<am3.loadModel modelHandler="EMF" name="Jabber" metamodel="UML2" path="${model.jabber.path}"/>
-		<am3.loadModel modelHandler="EMF" name="DefaultJabber" metamodel="UML2" path="${model.defaultjabber.path}"/>
+		<am3.loadModel modelHandler="EMF" name="MEJabber" metamodel="UML2" path="${model.mejabber.path}"/>
 	</target>
 	
-	<target name="IteratorEnumerationAdapter" depends="loadModels">
-		<transform in="IteratorEnumerationAdapter" prefix="enum"/>
+	<target name="Observer" depends="loadModels">
+		<transform in="Observer" prefix="obs"/>
+	</target>
+
+	<target name="MIDlet" depends="loadModels">
+		<transform in="MIDlet" prefix="midlet"/>
 	</target>
 
 	<target name="InstantMessengerModel" depends="loadModels">
@@ -55,41 +59,37 @@
 		<transform in="Local" prefix="local"/>
 	</target>
 
-	<target name="InstantMessengerAWT" depends="loadModels">
-		<transform in="AWT" prefix="awt"/>
-	</target>
-
-	<target name="InstantMessengerSwing" depends="loadModels">
-		<transform in="Swing" prefix="swing"/>
+	<target name="InstantMessengerLCDUI" depends="loadModels">
+		<transform in="LCDUI" prefix="lcdui"/>
 	</target>
 
 	<target name="InstantMessengerJabber" depends="loadModels">
 		<transform in="Jabber" prefix="jabber"/>
 	</target>
 
-	<target name="InstantMessengerDefaultJabber" depends="loadModels">
-		<transform in="DefaultJabber" prefix="defaultjabber"/>
+	<target name="InstantMessengerMEJabber" depends="loadModels">
+		<transform in="MEJabber" prefix="mejabber"/>
 	</target>
 
     <target name="all" depends="
     	clean, 
-    	IteratorEnumerationAdapter,
+    	Observer, 
+    	MIDlet, 
     	InstantMessengerModel, 
     	InstantMessengerLocal, 
-    	InstantMessengerAWT,
-    	InstantMessengerSwing,
+    	InstantMessengerLCDUI,
     	InstantMessengerJabber,
-    	InstantMessengerDefaultJabber"/>
+    	InstantMessengerMEJabber"/>
 	
 	<target name="allParallel" depends="clean, loadModels">
 		<parallel threadCount="4">
-			<antcall target="IteratorEnumerationAdapter" inheritRefs="true"/>
+			<antcall target="Observer" inheritRefs="true"/>
+			<antcall target="MIDlet" inheritRefs="true"/>
 			<antcall target="InstantMessengerModel" inheritRefs="true"/>
 			<antcall target="InstantMessengerLocal" inheritRefs="true"/>
-			<antcall target="InstantMessengerAWT" inheritRefs="true"/>
-			<antcall target="InstantMessengerSwing" inheritRefs="true"/>
+			<antcall target="InstantMessengerLCDUI" inheritRefs="true"/>
 			<antcall target="InstantMessengerJabber" inheritRefs="true"/>
-			<antcall target="InstantMessengerDefaultJabber" inheritRefs="true"/>
+			<antcall target="InstantMessengerMEJabber" inheritRefs="true"/>
 		</parallel>
 	</target>
 </project>

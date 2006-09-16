@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="InstantMessengerDefaultJabber">
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="InstantMessengerMEJabber">
   <eAnnotations xmi:id="_JEBR0ETGEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
     <details xmi:id="_JEBR0UTGEdutoZk0i5ZyXw" key="uuid" value="11583303739960"/>
   </eAnnotations>
@@ -15,11 +15,11 @@
         <eAnnotations xmi:id="_JEBR1kTGEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
           <details xmi:id="_JEBR10TGEdutoZk0i5ZyXw" key="uuid" value="11583303739973"/>
         </eAnnotations>
-        <packagedElement xmi:type="uml:Package" xmi:id="_EWFjEETGEdutoZk0i5ZyXw" name="defaultjabber">
+        <packagedElement xmi:type="uml:Package" xmi:id="_EWFjEETGEdutoZk0i5ZyXw" name="mejabber">
           <eAnnotations xmi:id="_JEBR2ETGEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
             <details xmi:id="_JEBR2UTGEdutoZk0i5ZyXw" key="uuid" value="11583303739974"/>
           </eAnnotations>
-          <packagedElement xmi:type="uml:Class" xmi:id="_H1r2cETGEdutoZk0i5ZyXw" name="DefaultJabber" clientDependency="_-mqd8ETMEdufqYn5Bpo1pQ">
+          <packagedElement xmi:type="uml:Class" xmi:id="_H1r2cETGEdutoZk0i5ZyXw" name="MEJabber" clientDependency="_NTQY4EW3EdumfbPIzYgV4Q">
             <eAnnotations xmi:id="_JEB44ETGEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
               <details xmi:id="_JEB44UTGEdutoZk0i5ZyXw" key="uuid" value="11583303739985"/>
             </eAnnotations>
@@ -35,23 +35,23 @@
               </eAnnotations>
               <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
             </ownedAttribute>
-            <ownedAttribute xmi:id="_OXwxcETIEdutoZk0i5ZyXw" name="socket" association="_OXwKYETIEdutoZk0i5ZyXw">
-              <eAnnotations xmi:id="_UBlgtkTIEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
-                <details xmi:id="_UBlgt0TIEdutoZk0i5ZyXw" key="uuid" value="115833130655533"/>
+            <ownedAttribute xmi:id="_Qe3ZQUW3EdumfbPIzYgV4Q" name="socket" association="_Qe2yMEW3EdumfbPIzYgV4Q">
+              <eAnnotations xmi:id="_YR-JMkW3EdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
+                <details xmi:id="_YR-JM0W3EdumfbPIzYgV4Q" key="uuid" value="115843398483567"/>
               </eAnnotations>
-              <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_iB1PsETFEdutoZk0i5ZyXw"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OXxYgkTIEdutoZk0i5ZyXw" value="1">
-                <eAnnotations xmi:id="_UBlguETIEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
-                  <details xmi:id="_UBlguUTIEdutoZk0i5ZyXw" key="uuid" value="115833130655534"/>
+              <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VttEYEWxEdumfbPIzYgV4Q"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Qe4AUkW3EdumfbPIzYgV4Q" value="1">
+                <eAnnotations xmi:id="_YR-JNEW3EdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_YR-JNUW3EdumfbPIzYgV4Q" key="uuid" value="115843398483568"/>
                 </eAnnotations>
               </upperValue>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OXxYgUTIEdutoZk0i5ZyXw" value="1">
-                <eAnnotations xmi:id="_UBlgukTIEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
-                  <details xmi:id="_UBlgu0TIEdutoZk0i5ZyXw" key="uuid" value="115833130655535"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Qe4AUUW3EdumfbPIzYgV4Q" value="1">
+                <eAnnotations xmi:id="_YR-JNkW3EdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_YR-JN0W3EdumfbPIzYgV4Q" key="uuid" value="115843398483569"/>
                 </eAnnotations>
               </lowerValue>
             </ownedAttribute>
-            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_U0ZTIETHEdutoZk0i5ZyXw" name="DefaultJabber_connectBehavior" specification="_5pK38ETGEdutoZk0i5ZyXw">
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_U0ZTIETHEdutoZk0i5ZyXw" name="MEJabber_connectBehavior" specification="_5pK38ETGEdutoZk0i5ZyXw">
               <eAnnotations xmi:id="_UBk5oETIEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
                 <details xmi:id="_UBk5oUTIEdutoZk0i5ZyXw" key="uuid" value="115833130655321"/>
               </eAnnotations>
@@ -62,9 +62,9 @@
                 <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
               </ownedParameter>
               <language>java</language>
-              <body>    setSocket(connect(host, 5222));&#xA;    if (getSocket() == null) {&#xA;        throw new java.io.IOException(connectError);&#xA;    }&#xA;    setConnection(new com.jabberwookie.Client2Server(&#xA;            getSocket().getInputStream(), getSocket().getOutputStream()));&#xA;    if (!getConnection().open(host, 60000)) {&#xA;        throw new java.io.IOException(&quot;Could not establish stream to &quot; + host + &quot;:5222 after 60 seconds&quot;);&#xA;    }</body>
+              <body>    setSocket(connect(host, 5222));&#xA;    if (getSocket() == null) {&#xA;        throw new java.io.IOException(connectError);&#xA;    }&#xA;    setConnection(new com.jabberwookie.Client2Server(&#xA;            getSocket().openInputStream(), getSocket().openOutputStream()));&#xA;    if (!getConnection().open(host, 60000)) {&#xA;        throw new java.io.IOException(&quot;Could not establish stream to &quot; + host + &quot;:5222 after 60 seconds&quot;);&#xA;    }</body>
             </ownedBehavior>
-            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_aIMIAETHEdutoZk0i5ZyXw" name="DefaultJabber_connectBehavior-private" specification="_83NhQETGEdutoZk0i5ZyXw">
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_aIMIAETHEdutoZk0i5ZyXw" name="MEJabber_connectBehavior-private" specification="_83NhQETGEdutoZk0i5ZyXw">
               <eAnnotations xmi:id="_UBk5okTIEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
                 <details xmi:id="_UBk5o0TIEdutoZk0i5ZyXw" key="uuid" value="115833130655422"/>
               </eAnnotations>
@@ -84,10 +84,10 @@
                 <eAnnotations xmi:id="_Fw4ptkVhEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
                   <details xmi:id="_Fw4pt0VhEdu1R4x2hFmiHQ" key="uuid" value="115839692385142"/>
                 </eAnnotations>
-                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_iB1PsETFEdutoZk0i5ZyXw"/>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VttEYEWxEdumfbPIzYgV4Q"/>
               </ownedParameter>
               <language>java</language>
-              <body>    Socket s = null;&#xA;    try {&#xA;        InetAddress[] hosts = InetAddress.getAllByName(host);&#xA;        java.util.Stack exceptions = new java.util.Stack();&#xA;        for (int i = 0; i &lt; hosts.length; i++) {&#xA;            try {&#xA;                s = new Socket(hosts[i], port);&#xA;                break;&#xA;            } catch (Exception e) {&#xA;                exceptions.push(e);&#xA;            }&#xA;        }&#xA;        StringBuffer sb = new StringBuffer();&#xA;        while (!exceptions.empty()) {&#xA;            sb.append(((Exception) exceptions.pop()).getMessage());&#xA;        }&#xA;        connectError = sb.toString();&#xA;    } catch (Exception e) {&#xA;        connectError = e.getMessage() + &quot; at DefaultJabber.connect(&quot; + host + &quot;, &quot; + port + &quot;)&quot;;&#xA;    }&#xA;    return s;</body>
+              <body>    StreamConnection s = null;&#xA;    try {&#xA;        s = (StreamConnection) Connector.open(&quot;socket://&quot; + host + &quot;:&quot; + port);&#xA;    } catch (Exception e) {&#xA;        connectError = e.getMessage() + &quot; at MEJabber.connect(&quot; + host + &quot;, &quot; + port + &quot;)&quot;;&#xA;    }&#xA;    return s;</body>
             </ownedBehavior>
             <ownedOperation xmi:id="_5pK38ETGEdutoZk0i5ZyXw" name="connect" visibility="protected" method="_U0ZTIETHEdutoZk0i5ZyXw">
               <eAnnotations xmi:id="_UBk5pETIEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
@@ -121,36 +121,36 @@
                 <eAnnotations xmi:id="_UBk5rkTIEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
                   <details xmi:id="_UBk5r0TIEdutoZk0i5ZyXw" key="uuid" value="115833130655428"/>
                 </eAnnotations>
-                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_iB1PsETFEdutoZk0i5ZyXw"/>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VttEYEWxEdumfbPIzYgV4Q"/>
               </ownedParameter>
               <raisedException xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_qxYZwETFEdutoZk0i5ZyXw"/>
             </ownedOperation>
           </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_OXwKYETIEdutoZk0i5ZyXw" name="A_defaultJabber_socket" memberEnd="_OXwKYUTIEdutoZk0i5ZyXw _OXwxcETIEdutoZk0i5ZyXw">
-            <eAnnotations xmi:id="_UBk5sETIEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
-              <details xmi:id="_UBk5sUTIEdutoZk0i5ZyXw" key="uuid" value="115833130655429"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_NTQY4EW3EdumfbPIzYgV4Q" name="Dependency1" client="_H1r2cETGEdutoZk0i5ZyXw">
+            <eAnnotations xmi:id="_PNfQ8EW3EdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
+              <details xmi:id="_PNfQ8UW3EdumfbPIzYgV4Q" key="uuid" value="115843392396760"/>
             </eAnnotations>
-            <ownedEnd xmi:id="_OXwKYUTIEdutoZk0i5ZyXw" name="defaultJabber" type="_H1r2cETGEdutoZk0i5ZyXw" aggregation="shared" association="_OXwKYETIEdutoZk0i5ZyXw">
-              <eAnnotations xmi:id="_UBlgsETIEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
-                <details xmi:id="_UBlgsUTIEdutoZk0i5ZyXw" key="uuid" value="115833130655530"/>
+            <supplier xmi:type="uml:Package" href="../../uml2cs-transformations/models/JavaTypes.uml#_PkY8wEWxEdumfbPIzYgV4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_Qe2yMEW3EdumfbPIzYgV4Q" name="A_meJabber_socket" memberEnd="_Qe3ZQEW3EdumfbPIzYgV4Q _Qe3ZQUW3EdumfbPIzYgV4Q">
+            <eAnnotations xmi:id="_YR9iIEW3EdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
+              <details xmi:id="_YR9iIUW3EdumfbPIzYgV4Q" key="uuid" value="115843398483463"/>
+            </eAnnotations>
+            <ownedEnd xmi:id="_Qe3ZQEW3EdumfbPIzYgV4Q" name="meJabber" type="_H1r2cETGEdutoZk0i5ZyXw" aggregation="shared" association="_Qe2yMEW3EdumfbPIzYgV4Q">
+              <eAnnotations xmi:id="_YR9iIkW3EdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
+                <details xmi:id="_YR9iI0W3EdumfbPIzYgV4Q" key="uuid" value="115843398483464"/>
               </eAnnotations>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OXxYgETIEdutoZk0i5ZyXw" value="1">
-                <eAnnotations xmi:id="_UBlgskTIEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
-                  <details xmi:id="_UBlgs0TIEdutoZk0i5ZyXw" key="uuid" value="115833130655531"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Qe4AUEW3EdumfbPIzYgV4Q" value="1">
+                <eAnnotations xmi:id="_YR9iJEW3EdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_YR9iJUW3EdumfbPIzYgV4Q" key="uuid" value="115843398483465"/>
                 </eAnnotations>
               </upperValue>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OXwxcUTIEdutoZk0i5ZyXw" value="1">
-                <eAnnotations xmi:id="_UBlgtETIEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
-                  <details xmi:id="_UBlgtUTIEdutoZk0i5ZyXw" key="uuid" value="115833130655532"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Qe3ZQkW3EdumfbPIzYgV4Q" value="1">
+                <eAnnotations xmi:id="_YR-JMEW3EdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_YR-JMUW3EdumfbPIzYgV4Q" key="uuid" value="115843398483466"/>
                 </eAnnotations>
               </lowerValue>
             </ownedEnd>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Dependency" xmi:id="_-mqd8ETMEdufqYn5Bpo1pQ" name="Dependency1" client="_H1r2cETGEdutoZk0i5ZyXw">
-            <eAnnotations xmi:id="_AbU5gETNEdufqYn5Bpo1pQ" source="http://www.topcased.org/uuid">
-              <details xmi:id="_AbVgkETNEdufqYn5Bpo1pQ" key="uuid" value="115833332251969"/>
-            </eAnnotations>
-            <supplier xmi:type="uml:Package" href="../../uml2cs-transformations/models/JavaTypes.uml#_bUmisETFEdutoZk0i5ZyXw"/>
           </packagedElement>
         </packagedElement>
       </packagedElement>

@@ -80,6 +80,11 @@
               <eAnnotations xmi:id="_7LcO4ES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_7LcO4US5Eduo0qgZQXhZYA" key="uuid" value="115832512686230"/>
               </eAnnotations>
+              <ownedParameter xmi:id="_DgnFoEVgEdu1R4x2hFmiHQ" name="return" type="_Ax4-MESzEduo0qgZQXhZYA" direction="return">
+                <eAnnotations xmi:id="_w5s_cEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5s_cUVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384748"/>
+                </eAnnotations>
+              </ownedParameter>
               <language>java</language>
               <body>    setName(&quot;Jabber&quot;);</body>
             </ownedBehavior>
@@ -87,6 +92,18 @@
               <eAnnotations xmi:id="_7Lc18ES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_7Lc18US5Eduo0qgZQXhZYA" key="uuid" value="115832512686331"/>
               </eAnnotations>
+              <ownedParameter xmi:id="_FA5zsEVgEdu1R4x2hFmiHQ" name="uid">
+                <eAnnotations xmi:id="_w5s_ckVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5s_c0VgEdu1R4x2hFmiHQ" key="uuid" value="115839678384752"/>
+                </eAnnotations>
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_FA5zs0VgEdu1R4x2hFmiHQ" name="pwd">
+                <eAnnotations xmi:id="_w5s_dEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmgEVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384753"/>
+                </eAnnotations>
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
               <language>java</language>
               <body>    this.uid = uid;&#xA;    state.login(uid, pwd);</body>
             </ownedBehavior>
@@ -101,6 +118,12 @@
               <eAnnotations xmi:id="_7Lc19ES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_7Lc19US5Eduo0qgZQXhZYA" key="uuid" value="115832512686333"/>
               </eAnnotations>
+              <ownedParameter xmi:id="_HGUBAEVgEdu1R4x2hFmiHQ" name="c">
+                <eAnnotations xmi:id="_w5tmgUVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmgkVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384860"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+              </ownedParameter>
               <language>java</language>
               <body>    state.addContact(c);</body>
             </ownedBehavior>
@@ -108,6 +131,12 @@
               <eAnnotations xmi:id="_7Lc19kS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_7Lc190S5Eduo0qgZQXhZYA" key="uuid" value="115832512686334"/>
               </eAnnotations>
+              <ownedParameter xmi:id="_IpRBgEVgEdu1R4x2hFmiHQ" name="c">
+                <eAnnotations xmi:id="_w5tmg0VgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmhEVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384864"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+              </ownedParameter>
               <language>java</language>
               <body>    state.removeContact(c);</body>
             </ownedBehavior>
@@ -115,6 +144,12 @@
               <eAnnotations xmi:id="_7Lc1-ES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_7Lc1-US5Eduo0qgZQXhZYA" key="uuid" value="115832512686335"/>
               </eAnnotations>
+              <ownedParameter xmi:id="_KckyMEVgEdu1R4x2hFmiHQ" name="msg">
+                <eAnnotations xmi:id="_w5tmhUVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmhkVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384868"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_c0hoMOQsEdqD2ZNp93yIAQ"/>
+              </ownedParameter>
               <language>java</language>
               <body>    state.send(msg);</body>
             </ownedBehavior>
@@ -122,6 +157,24 @@
               <eAnnotations xmi:id="_3JW8skS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_3JW8s0S9Eduo0qgZQXhZYA" key="uuid" value="115832681778749"/>
               </eAnnotations>
+              <ownedParameter xmi:id="_Mf-0YEVgEdu1R4x2hFmiHQ" name="user">
+                <eAnnotations xmi:id="_w5tmh0VgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmiEVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384872"/>
+                </eAnnotations>
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Mf-0Y0VgEdu1R4x2hFmiHQ" name="pwd">
+                <eAnnotations xmi:id="_w5tmiUVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmikVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384873"/>
+                </eAnnotations>
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Mf_bcEVgEdu1R4x2hFmiHQ" name="return" direction="return">
+                <eAnnotations xmi:id="_w5tmi0VgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmjEVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384874"/>
+                </eAnnotations>
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_--NgwPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
               <language>java</language>
               <body>    System.out.println(&quot;Registering &quot; + user + &quot; at &quot;&#xA;            + getConnection().getServerName());&#xA;    try {&#xA;        java.util.Hashtable info = IQRegister&#xA;                .getRequiredRegInfo(getConnection());&#xA;        String key;&#xA;        for (java.util.Enumeration e = info.keys(); e.hasMoreElements();) {&#xA;            key = (String) e.nextElement();&#xA;            if (key.equals(Const.USERNAME))&#xA;                info.put(key, user);&#xA;            else if (key.equals(Const.PASSWORD))&#xA;                info.put(key, pwd);&#xA;            else if (key.equals(Const.EMAIL))&#xA;                info.put(key, user + &quot;@&quot; + getConnection().getServerName());&#xA;            else if (key.equals(Const.INSTRUCTIONS))&#xA;                ;&#xA;            else&#xA;                System.err&#xA;                        .println(&quot;Unknown registration parameter: &quot; + key);&#xA;        }&#xA;        Chunk chunk = getConnection().send(&#xA;                IQRegister.createSetRequest(&#xA;                        getConnection().getServerName(), info), 30000);&#xA;        return (chunk != null &amp;&amp; chunk.getType().equals(Const.RESULT));&#xA;    } catch (java.io.IOException e) {&#xA;        im.InstantMessagingClient.getInstance().report(e);&#xA;    }&#xA;    return false;</body>
             </ownedBehavior>
@@ -129,6 +182,18 @@
               <eAnnotations xmi:id="_3JXjwES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_3JXjwUS9Eduo0qgZQXhZYA" key="uuid" value="115832681778750"/>
               </eAnnotations>
+              <ownedParameter xmi:id="_OpNxwEVgEdu1R4x2hFmiHQ" name="jid" effect="read">
+                <eAnnotations xmi:id="_w5tmjUVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmjkVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384878"/>
+                </eAnnotations>
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_OpNxw0VgEdu1R4x2hFmiHQ" name="return" direction="return" effect="update">
+                <eAnnotations xmi:id="_w5tmj0VgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmkEVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384879"/>
+                </eAnnotations>
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
               <language>java</language>
               <body>    if (uid.equals(jid)) {&#xA;        return jid;&#xA;    } else { // strip resource bit if remote user&#xA;        java.util.Vector strip = com.ssttr.util.Strings.tokenize(jid, '/');&#xA;        return (String) strip.elementAt(0);&#xA;    }</body>
             </ownedBehavior>
@@ -136,6 +201,12 @@
               <eAnnotations xmi:id="_3JXjwkS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_3JXjw0S9Eduo0qgZQXhZYA" key="uuid" value="115832681778851"/>
               </eAnnotations>
+              <ownedParameter xmi:id="_QrEUwEVgEdu1R4x2hFmiHQ" name="iq" effect="read">
+                <eAnnotations xmi:id="_w5uNkEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5uNkUVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384883"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="JabberWookie.uml#_k0ll0ESyEduo0qgZQXhZYA"/>
+              </ownedParameter>
               <language>java</language>
               <body>    java.util.Enumeration children = iq.getChildren().elements();&#xA;    while (children.hasMoreElements()) {&#xA;        com.ssttr.xml.XMLElement el = (com.ssttr.xml.XMLElement) children&#xA;                .nextElement();&#xA;        if (el instanceof IQRoster) {&#xA;            for (java.util.Enumeration items = el.enumerateChildren(); items&#xA;                    .hasMoreElements();) {&#xA;                IQRoster.Item item = (IQRoster.Item) items.nextElement();&#xA;                System.out.println(&quot;Roster Item: &quot; + item);&#xA;                im.model.Contact c = new im.model.Contact();&#xA;                c.setNetwork(this);&#xA;                c.setUserId(item.getJID());&#xA;                c.setName(item.getItemName());&#xA;                setRecvContact(c);&#xA;                if (item.getSubscription().equals(Const.NONE)&#xA;                        &amp;&amp; (item.getAsk() == null)) {&#xA;                    addContact(c);&#xA;                }&#xA;            }&#xA;        } else {&#xA;            System.out.println(&quot;Unknown iq element: &quot; + el);&#xA;        }&#xA;    }</body>
             </ownedBehavior>
@@ -143,6 +214,12 @@
               <eAnnotations xmi:id="_3JXjxES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_3JXjxUS9Eduo0qgZQXhZYA" key="uuid" value="115832681778852"/>
               </eAnnotations>
+              <ownedParameter xmi:id="_SfNy8EVgEdu1R4x2hFmiHQ" name="message" effect="read">
+                <eAnnotations xmi:id="_w5uNkkVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5uNk0VgEdu1R4x2hFmiHQ" key="uuid" value="115839678384987"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="JabberWookie.uml#_j_iNIESyEduo0qgZQXhZYA"/>
+              </ownedParameter>
               <language>java</language>
               <body>   System.out.println(&quot;Message: &quot; + message);&#xA;    im.model.Message msg = new im.model.Message();&#xA;    msg.setSender(stripResource(message.getFrom()));&#xA;    msg.setRecipient(message.getTo());&#xA;    msg.setContent(message.getBody());&#xA;    setRecvMsg(msg);</body>
             </ownedBehavior>
@@ -150,6 +227,12 @@
               <eAnnotations xmi:id="_3JXjxkS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_3JXjx0S9Eduo0qgZQXhZYA" key="uuid" value="115832681778853"/>
               </eAnnotations>
+              <ownedParameter xmi:id="_UP6UgEVgEdu1R4x2hFmiHQ" name="presence" effect="read">
+                <eAnnotations xmi:id="_w5uNlEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5uNlUVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384991"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="JabberWookie.uml#_ijH5gESyEduo0qgZQXhZYA"/>
+              </ownedParameter>
               <language>java</language>
               <body>    String type = presence.getType();&#xA;    if (type == null)&#xA;        type = &quot;&quot;;&#xA;    if (type.equals(Const.SUBSCRIBE)) {&#xA;        // someone wants to subscribe to our presence&#xA;        // so we slightly re-write the packet to send back&#xA;        presence.setType(Const.SUBSCRIBED);&#xA;        System.out.println(presence.getFrom()&#xA;                + &quot; wants to subscribe to your presence, allowing.&quot;);&#xA;    } else if (type.equals(Const.UNSUBSCRIBE)) {&#xA;        // someone wants to unsubscribe from our presence&#xA;        // so we slightly re-write the packet to send back&#xA;        presence.setType(Const.UNSUBSCRIBED);&#xA;        System.out.println(presence.getFrom()&#xA;                + &quot; wants to unsubscribe from your presence, allowing.&quot;);&#xA;    } else if (type.equals(Const.SUBSCRIBED)) {&#xA;        System.out.println(&quot;Subscribed to: &quot; + presence);&#xA;    } else if (type.equals(Const.UNSUBSCRIBED)) {&#xA;        System.out.println(&quot;Unsubscribed from: &quot; + presence);&#xA;    } else if (type.equals(Const.UNAVAILABLE)) {&#xA;        im.model.Contact c = new im.model.Contact();&#xA;        c.setNetwork(this);&#xA;        c.setUserId(stripResource(presence.getFrom()));&#xA;        c.setStatus(&quot;offline&quot;);&#xA;        setRecvContact(c);&#xA;        return;&#xA;    } else {&#xA;        System.out.println(&quot;Received presence: &quot; + presence);&#xA;        im.model.Contact c = new im.model.Contact();&#xA;        c.setNetwork(this);&#xA;        c.setUserId(stripResource(presence.getFrom()));&#xA;        if (presence.getShow() != null)&#xA;            c.setStatus(presence.getShow());&#xA;        else&#xA;            c.setStatus(Const.AVAILABLE);&#xA;        setRecvContact(c);&#xA;        return;&#xA;    }&#xA;    // make sure to return it to the sender and not ourselves&#xA;    String from = presence.getTo();&#xA;    presence.setTo(presence.getFrom());&#xA;    presence.setFrom(from);&#xA;    try {&#xA;        getConnection().send(presence);&#xA;    } catch (java.io.IOException e) {&#xA;        im.InstantMessagingClient.getInstance().report(e);&#xA;    }</body>
             </ownedBehavior>
@@ -254,6 +337,12 @@
                 <eAnnotations xmi:id="_7LeEF0S5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                   <details xmi:id="_7LeEGES5Eduo0qgZQXhZYA" key="uuid" value="115832512686556"/>
                 </eAnnotations>
+                <ownedParameter xmi:id="_YOrQIEVgEdu1R4x2hFmiHQ" name="c">
+                  <eAnnotations xmi:id="_w5uNlkVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5uNl0VgEdu1R4x2hFmiHQ" key="uuid" value="1158396783849146"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>    if (!getConnection().isConnected()) {&#xA;        Jabber.this.state = new DisconnectedState();&#xA;        return;&#xA;    }&#xA;    addContactAsync(c);</body>
               </ownedBehavior>
@@ -261,6 +350,12 @@
                 <eAnnotations xmi:id="_7LeEGUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                   <details xmi:id="_7LeEGkS5Eduo0qgZQXhZYA" key="uuid" value="115832512686557"/>
                 </eAnnotations>
+                <ownedParameter xmi:id="_ZS-lwEVgEdu1R4x2hFmiHQ" name="c">
+                  <eAnnotations xmi:id="_w5uNmEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5uNmUVgEdu1R4x2hFmiHQ" key="uuid" value="1158396783849150"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>    if (!getConnection().isConnected()) {&#xA;        Jabber.this.state = new DisconnectedState();&#xA;        return;&#xA;    }&#xA;    removeContactAsync(c);</body>
               </ownedBehavior>
@@ -268,6 +363,12 @@
                 <eAnnotations xmi:id="_7LeEG0S5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                   <details xmi:id="_7LeEHES5Eduo0qgZQXhZYA" key="uuid" value="115832512686558"/>
                 </eAnnotations>
+                <ownedParameter xmi:id="_ag80wEVgEdu1R4x2hFmiHQ" name="msg">
+                  <eAnnotations xmi:id="_w5uNmkVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5uNm0VgEdu1R4x2hFmiHQ" key="uuid" value="1158396783849154"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_c0hoMOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>    if (!getConnection().isConnected()) {&#xA;        Jabber.this.state = new DisconnectedState();&#xA;        return;&#xA;    }&#xA;    sendAsync(msg);</body>
               </ownedBehavior>
@@ -275,6 +376,12 @@
                 <eAnnotations xmi:id="_3JXjyES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                   <details xmi:id="_3JXjyUS9Eduo0qgZQXhZYA" key="uuid" value="1158326817788105"/>
                 </eAnnotations>
+                <ownedParameter xmi:id="_b2CYYEVgEdu1R4x2hFmiHQ" name="c">
+                  <eAnnotations xmi:id="_w5uNnEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5uNnUVgEdu1R4x2hFmiHQ" key="uuid" value="1158396783849158"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>    try {&#xA;        Presence presence = new Presence(c.getUserId(),&#xA;                Const.SUBSCRIBE);&#xA;        System.out.println(&quot;Adding contact &quot; + presence);&#xA;        getConnection().send(presence);&#xA;        IQRoster roster = new IQRoster();&#xA;        roster.addItem(c.getUserId(), c.getName());&#xA;        IQ iq = new IQ(Const.SET);&#xA;        iq.addChild(roster);&#xA;        getConnection().send(iq);&#xA;    } catch (java.io.IOException e) {&#xA;        im.InstantMessagingClient.getInstance().report(e);&#xA;    }</body>
               </ownedBehavior>
@@ -282,6 +389,12 @@
                 <eAnnotations xmi:id="_3JXjykS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                   <details xmi:id="_3JYK0ES9Eduo0qgZQXhZYA" key="uuid" value="1158326817788106"/>
                 </eAnnotations>
+                <ownedParameter xmi:id="_eA9X0EVgEdu1R4x2hFmiHQ" name="c">
+                  <eAnnotations xmi:id="_w5u0oEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5u0oUVgEdu1R4x2hFmiHQ" key="uuid" value="1158396783850162"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>    try {&#xA;        IQRoster roster = new IQRoster();&#xA;        roster.addItem(c.getUserId());&#xA;        ((IQRoster.Item) roster.getChild(0))&#xA;                .setSubscription(Const.REMOVE);&#xA;        IQ iq = new IQ(Const.SET);&#xA;        iq.addChild(roster);&#xA;        getConnection().send(iq);&#xA;        Presence presence = new Presence(c.getUserId(),&#xA;                Const.UNSUBSCRIBE);&#xA;        System.out.println(&quot;Removing contact &quot; + presence);&#xA;        getConnection().send(presence);&#xA;    } catch (java.io.IOException e) {&#xA;        im.InstantMessagingClient.getInstance().report(e);&#xA;    }</body>
               </ownedBehavior>
@@ -289,6 +402,12 @@
                 <eAnnotations xmi:id="_3JYK0US9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                   <details xmi:id="_3JYK0kS9Eduo0qgZQXhZYA" key="uuid" value="1158326817789107"/>
                 </eAnnotations>
+                <ownedParameter xmi:id="_gRUQ4EVgEdu1R4x2hFmiHQ" name="msg">
+                  <eAnnotations xmi:id="_w5u0okVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5u0o0VgEdu1R4x2hFmiHQ" key="uuid" value="1158396783850166"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_c0hoMOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>    try {&#xA;        Message message = new Message();&#xA;        message.setTo(msg.getRecipient());&#xA;        message.setFrom(msg.getSender());&#xA;        message.setBody(msg.getContent().toString());&#xA;        System.out.println(&quot;Sending &quot; + msg + &quot;: &quot; + message);&#xA;        getConnection().send(message);&#xA;    } catch (java.io.IOException e) {&#xA;        im.InstantMessagingClient.getInstance().report(e);&#xA;    }</body>
               </ownedBehavior>
@@ -377,6 +496,18 @@
                 <eAnnotations xmi:id="_3JYK00S9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                   <details xmi:id="_3JYK1ES9Eduo0qgZQXhZYA" key="uuid" value="1158326817789153"/>
                 </eAnnotations>
+                <ownedParameter xmi:id="_n7XLcEVgEdu1R4x2hFmiHQ" name="uid">
+                  <eAnnotations xmi:id="_w5u0pEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5u0pUVgEdu1R4x2hFmiHQ" key="uuid" value="1158396783850215"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_n7XLc0VgEdu1R4x2hFmiHQ" name="pwd">
+                  <eAnnotations xmi:id="_w5u0pkVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5u0p0VgEdu1R4x2hFmiHQ" key="uuid" value="1158396783850216"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>    try {&#xA;        java.util.Vector address = com.ssttr.util.Strings&#xA;                .tokenize(uid, '@');&#xA;        String user = (String) address.elementAt(0);&#xA;        String server = (String) address.elementAt(1);&#xA;        address = com.ssttr.util.Strings.tokenize(server, '/');&#xA;        server = (String) address.elementAt(0);&#xA;        String resource = (String) address.elementAt(1);&#xA;        connect(server);&#xA;        getConnection().setMessageListener(Jabber.this);&#xA;        getConnection().setIQListener(Jabber.this);&#xA;        getConnection().setPresenceListener(Jabber.this);&#xA;        boolean try_again;&#xA;        do {&#xA;            try_again = false;&#xA;            System.out.println(&quot;Logging in &quot; + uid);&#xA;            switch (getConnection().loginAny(user, resource,&#xA;                    pwd, 30000)) {&#xA;            case Client2Server.LOGIN_BAD_PASS:&#xA;                throw new java.io.IOException(&#xA;                        &quot;Bad password for &quot; + uid);&#xA;            case Client2Server.LOGIN_BAD_UID:&#xA;                if (!registerUser(user, pwd))&#xA;                    throw new java.io.IOException(&#xA;                            &quot;Could not register user for &quot;&#xA;                                    + uid);&#xA;                else&#xA;                    try_again = true;&#xA;                break;&#xA;            case Client2Server.LOGIN_FAILED:&#xA;                throw new java.io.IOException(&#xA;                        &quot;Login failed: unknown: &quot; + uid);&#xA;            case Client2Server.LOGIN_PASS_EXP:&#xA;                System.out&#xA;                        .println(&quot;Your password has expired for &quot;&#xA;                                + uid);&#xA;                break;&#xA;            case Client2Server.LOGIN_OK:&#xA;                break;&#xA;            }&#xA;        } while (try_again);&#xA;        Presence pres = new Presence(Const.AVAILABLE,&#xA;                &quot;Available&quot;, 1);&#xA;        pres.setFrom(uid);&#xA;        getConnection().send(pres);&#xA;        incomingPresence(pres);&#xA;        getConnection().send(IQRoster.createGetRequest());&#xA;        synchronized (Jabber.this) {&#xA;            Jabber.this.state = new ConnectedState();&#xA;        }&#xA;    } catch (Exception e) {&#xA;        im.InstantMessagingClient.getInstance().report(e);&#xA;    }</body>
               </ownedBehavior>
@@ -573,7 +704,7 @@
             <eAnnotations xmi:id="_gGGNsETDEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
               <details xmi:id="_gGGNsUTDEduo0qgZQXhZYA" key="uuid" value="1158329240075280"/>
             </eAnnotations>
-            <ownedEnd xmi:id="_nWMMoETCEduo0qgZQXhZYA" name="jabber" type="_Ax4-MESzEduo0qgZQXhZYA" aggregation="composite" association="_nWLlkETCEduo0qgZQXhZYA">
+            <ownedEnd xmi:id="_nWMMoETCEduo0qgZQXhZYA" name="jabber" type="_Ax4-MESzEduo0qgZQXhZYA" aggregation="shared" association="_nWLlkETCEduo0qgZQXhZYA">
               <eAnnotations xmi:id="_gGG0wETDEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_gGG0wUTDEduo0qgZQXhZYA" key="uuid" value="1158329240076281"/>
               </eAnnotations>
@@ -658,4 +789,9 @@
   <Final:final xmi:id="_RlTCQES5Eduo0qgZQXhZYA" base_Parameter="_aJxFEUS2Eduo0qgZQXhZYA"/>
   <Final:final xmi:id="_Sg2EgES5Eduo0qgZQXhZYA" base_Parameter="_aJxFEkS2Eduo0qgZQXhZYA"/>
   <Standard:Create xmi:id="_e2OyMETMEdufqYn5Bpo1pQ" base_BehavioralFeature="_xGSWEES0Eduo0qgZQXhZYA"/>
+  <Final:final xmi:id="_dEFf4EVgEdu1R4x2hFmiHQ" base_Parameter="_b2CYYEVgEdu1R4x2hFmiHQ"/>
+  <Final:final xmi:id="_fRXPwEVgEdu1R4x2hFmiHQ" base_Parameter="_eA9X0EVgEdu1R4x2hFmiHQ"/>
+  <Final:final xmi:id="_hjIeEEVgEdu1R4x2hFmiHQ" base_Parameter="_gRUQ4EVgEdu1R4x2hFmiHQ"/>
+  <Final:final xmi:id="_pktH0EVgEdu1R4x2hFmiHQ" base_Parameter="_n7XLcEVgEdu1R4x2hFmiHQ"/>
+  <Final:final xmi:id="_qS64sEVgEdu1R4x2hFmiHQ" base_Parameter="_n7XLc0VgEdu1R4x2hFmiHQ"/>
 </xmi:XMI>

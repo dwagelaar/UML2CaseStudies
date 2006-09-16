@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uml2cs-instantmessenger-model-common">
+	<property name="metamodel.uml2.nsURI" value="http://www.eclipse.org/uml2/2.0.0/UML"/>
+	<property name="metamodel.uml2.path" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
+	<property name="profile.accessors.path" value="/uml2cs-transformations/profiles/Accessors.profile.uml"/>
+	<property name="model.uml2types.path" value="/uml2cs-transformations/models/PrimitiveTypes.uml"/>
+	<property name="model.javatypes.path" value="/uml2cs-transformations/models/JavaTypes.uml"/>
+	<property name="model.obstypes.path" value="/uml2cs-transformations/models/Observer.uml"/>
+	<property name="model.itenumadapter.path" value="/uml2cs-transformations/models/IteratorEnumerationAdapter.uml"/>
+	<property name="model.midlet.path" value="/uml2cs-transformations/models/MIDlet.uml"/>
+	<property name="model.in.path" value="${project.path}/models/InstantMessengerModel.uml"/>
+	<property name="model.local.path" value="${project.path}/models/InstantMessengerLocal.uml"/>
+	<property name="model.awt.path" value="${project.path}/models/InstantMessengerAWT.uml"/>
+	<property name="model.swing.path" value="${project.path}/models/InstantMessengerSwing.uml"/>
+	<property name="model.lcdui.path" value="${project.path}/models/InstantMessengerLCDUI.uml"/>
+	<property name="model.jabber.path" value="${project.path}/models/InstantMessengerJabber.uml"/>
+	<property name="model.defaultjabber.path" value="${project.path}/models/InstantMessengerDefaultJabber.uml"/>
+	<property name="model.mejabber.path" value="${project.path}/models/InstantMessengerMEJabber.uml"/>
+
+	<property name="trans.path" value="/uml2cs-transformations"/>
+	<property name="trans.uml2copy.path" value="${trans.path}/UML2Copy.atl"/>
+	<property name="trans.uml2profilecopy.path" value="${trans.path}/UML2ProfileCopy.asm"/>
+	<property name="trans.uml2profiles.path" value="${trans.path}/UML2Profiles.asm"/>
+	<property name="trans.uml2accessors.path" value="${trans.path}/UML2Accessors.asm"/>
+	<property name="trans.uml2observer.path" value="${trans.path}/UML2Observer.asm"/>
+	<property name="trans.uml2javaobserver.path" value="${trans.path}/UML2JavaObserver.asm"/>
+	<property name="trans.uml2abstractfactory.path" value="${trans.path}/UML2AbstractFactory.asm"/>
+	<property name="trans.uml2singleton.path" value="${trans.path}/UML2Singleton.asm"/>
+	<property name="trans.uml2applet.path" value="${trans.path}/UML2Applet.asm"/>
+	<property name="trans.uml2midlet.path" value="${trans.path}/UML2MIDlet.asm"/>
+	<property name="trans.uml2asyncmethods.path" value="${trans.path}/UML2AsyncMethods.asm"/>
+	<property name="trans.uml2datatypes.path" value="${trans.path}/UML2DataTypes.asm"/>
+	<property name="trans.uml2tojava.path" value="${trans.path}/UML2ToJava.atl"/>
+
+	<property name="lib.path" value="${trans.path}/lib"/>
+	<property name="lib.mappings.path" value="${lib.path}/JavaMappings.asm"/>
+	<property name="lib.strings.path" value="${lib.path}/Strings.asm"/>
+	<property name="lib.uml2.path" value="${lib.path}/UML2.asm"/>
+
+	<property name="lib.config.path" value="${current.path}/config.asm"/>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: profiles          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="profiles">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<inmodel name="ACCESSORS" model="Accessors"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<superimpose path="${trans.uml2profiles.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+        	<antcall target="saveModel" inheritRefs="true">
+        		<param name="model" value="@{out}"/>
+        		<param name="path" value="@{path}"/>
+        	</antcall>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: accessors          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="accessors">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="ACCESSORS" model="Accessors"/>
+    			<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="Strings" path="${lib.strings.path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<library name="Java" path="${lib.java.path}"/>
+    			<library name="Mappings" path="${lib.mappings.path}"/>
+    			<superimpose path="${trans.uml2accessors.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+        	<antcall target="saveModel" inheritRefs="true">
+        		<param name="model" value="@{out}"/>
+        		<param name="path" value="@{path}"/>
+        	</antcall>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: observer          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="observer">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="OBSERVER" model="Observer"/>
+    			<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="Strings" path="${lib.strings.path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<library name="Mappings" path="${lib.mappings.path}"/>
+    			<library name="Java" path="${lib.java.path}"/>
+    			<superimpose path="${trans.uml2observer.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+        	<antcall target="saveModel" inheritRefs="true">
+        		<param name="model" value="@{out}"/>
+        		<param name="path" value="@{path}"/>
+        	</antcall>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: javaobserver          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="javaobserver">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IMPLTYPES" model="JavaTypes"/>
+    			<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="Strings" path="${lib.strings.path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<library name="Mappings" path="${lib.mappings.path}"/>
+    			<superimpose path="${trans.uml2javaobserver.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+        	<antcall target="saveModel" inheritRefs="true">
+        		<param name="model" value="@{out}"/>
+        		<param name="path" value="@{path}"/>
+        	</antcall>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: abstractfactory          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="abstractfactory">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<library name="Mappings" path="${lib.mappings.path}"/>
+    			<superimpose path="${trans.uml2abstractfactory.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+        	<antcall target="saveModel" inheritRefs="true">
+        		<param name="model" value="@{out}"/>
+        		<param name="path" value="@{path}"/>
+        	</antcall>
+        </sequential>
+    </macrodef>
+	
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: singleton          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="singleton">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<library name="Java" path="${lib.java.path}"/>
+    			<library name="Mappings" path="${lib.mappings.path}"/>
+    			<superimpose path="${trans.uml2singleton.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+        	<antcall target="saveModel" inheritRefs="true">
+        		<param name="model" value="@{out}"/>
+        		<param name="path" value="@{path}"/>
+        	</antcall>
+        </sequential>
+    </macrodef>
+	
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: applet          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="applet">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<inmodel name="IMPLTYPES" model="JavaTypes"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<library name="Java" path="${lib.java.path}"/>
+    			<library name="Mappings" path="${lib.mappings.path}"/>
+    			<superimpose path="${trans.uml2applet.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+        	<antcall target="saveModel" inheritRefs="true">
+        		<param name="model" value="@{out}"/>
+        		<param name="path" value="@{path}"/>
+        	</antcall>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: midlet          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="midlet">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<inmodel name="MIDLET" model="MIDlet"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<library name="Mappings" path="${lib.mappings.path}"/>
+    			<superimpose path="${trans.uml2midlet.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+        	<antcall target="saveModel" inheritRefs="true">
+        		<param name="model" value="@{out}"/>
+        		<param name="path" value="@{path}"/>
+        	</antcall>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: asyncmethods          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="asyncmethods">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="Mappings" path="${lib.mappings.path}"/>
+    			<superimpose path="${trans.uml2asyncmethods.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+        	<antcall target="saveModel" inheritRefs="true">
+        		<param name="model" value="@{out}"/>
+        		<param name="path" value="@{path}"/>
+        	</antcall>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: datatypes          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="datatypes">
+        <attribute name="in" default="MODEL.IN" />
+        <attribute name="out" default="MODEL.OUT" />
+        <attribute name="path" default="MODEL.OUT.PATH" />
+        <sequential>
+    		<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IMPLTYPES" model="JavaTypes"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+    			<library name="Strings" path="${lib.strings.path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    			<library name="Java" path="${lib.java.path}"/>
+    			<library name="Mappings" path="${lib.mappings.path}"/>
+    			<superimpose path="${trans.uml2datatypes.path}"/>
+    			<superimpose path="${trans.uml2profilecopy.path}"/>
+    		</am3.atl>
+        	<antcall target="saveModel" inheritRefs="true">
+        		<param name="model" value="@{out}"/>
+        		<param name="path" value="@{path}"/>
+        	</antcall>
+        	<antcall target="saveLastModel" inheritRefs="true">
+        		<param name="model" value="@{out}"/>
+        		<param name="path" value="@{path}"/>
+        	</antcall>
+        </sequential>
+    </macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: generate          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="generate">
+        <attribute name="in" default="MODEL.IN" />
+        <sequential>
+    		<am3.atl path="${trans.uml2tojava.path}" allowInterModelReferences="true">
+    			<inmodel name="UML2" model="UML2"/>
+    			<inmodel name="IN" model="@{in}"/>
+    			<library name="config" path="${lib.config.path}"/>
+    			<library name="UML2" path="${lib.uml2.path}"/>
+    		</am3.atl>
+        </sequential>
+    </macrodef>
+
+	<target name="clean" if="target.path">
+        <delete includeemptydirs="true">
+            <fileset dir="${target.path}"/>
+        </delete>
+	</target>
+
+	<target name="cleanModels">
+        <delete>
+            <fileset dir=".">
+            	<include name="*.uml"/>
+        	</fileset>
+        </delete>
+	</target>
+
+	<target name="saveModel" if="saveModels">
+	<!-- params: ${model}, ${path} -->
+   		<am3.saveModel model="${model}" path="${path}"/>
+	</target>
+
+	<target name="saveLastModel" if="saveLastModel">
+	<!-- params: ${model}, ${path} -->
+   		<am3.saveModel model="${model}" path="${path}"/>
+	</target>
+</project>

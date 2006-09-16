@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
-<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" activeDiagram="//@diagrams.3">
+<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" activeDiagram="//@diagrams.1">
   <model href="InstantMessengerModel.uml#_tPOCIaLHEdqkGMDvm75SlQ"/>
-  <diagrams position="0,0" size="100,100" name="InstantMessengerModel" viewport="0,0">
+  <diagrams position="0,0" size="100,100" name="InstantMessengerModel" viewport="29,0">
     <property key="pageFormatName" value="A4"/>
     <property key="diagramWidth" value="840"/>
     <property key="diagramHeight" value="1188"/>
@@ -388,7 +388,7 @@
         </contained>
       </contained>
     </contained>
-    <contained xsi:type="di:GraphNode" position="420,89" size="102,-1">
+    <contained xsi:type="di:GraphNode" position="420,97" size="102,-1">
       <property key="backgroundColor" value="255,255,255"/>
       <anchorage graphEdge="//@diagrams.1/@contained.2"/>
       <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -482,7 +482,7 @@
       <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
     </contained>
   </diagrams>
-  <diagrams position="0,0" size="100,100" name="model" viewport="80,0">
+  <diagrams position="0,0" size="100,100" name="model" viewport="0,0">
     <property key="pageFormatName" value="A4"/>
     <property key="diagramWidth" value="840"/>
     <property key="diagramHeight" value="1188"/>
@@ -529,7 +529,7 @@
         </semanticModel>
       </contained>
     </contained>
-    <contained xsi:type="di:GraphNode" position="13,272" size="235,-1">
+    <contained xsi:type="di:GraphNode" position="13,264" size="235,-1">
       <property key="backgroundColor" value="255,255,255"/>
       <anchorage graphEdge="//@diagrams.2/@contained.2"/>
       <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -611,11 +611,11 @@
       <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
       <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
       <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
-      <waypoints>[-44, 0, 169, 177]</waypoints>
-      <waypoints>[-96, 0, 117, 177]</waypoints>
-      <waypoints>[-183, -132, 30, 45]</waypoints>
+      <waypoints>[-52, 0, 170, 186]</waypoints>
+      <waypoints>[-102, 0, 120, 186]</waypoints>
+      <waypoints>[-193, -141, 29, 45]</waypoints>
     </contained>
-    <contained xsi:type="di:GraphNode" position="407,460" size="117,-1">
+    <contained xsi:type="di:GraphNode" position="407,468" size="117,-1">
       <property key="backgroundColor" value="255,255,255"/>
       <anchorage graphEdge="//@diagrams.2/@contained.6"/>
       <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -803,7 +803,7 @@
       <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
     </contained>
   </diagrams>
-  <diagrams position="0,0" size="100,100" name="edit" viewport="252,5">
+  <diagrams position="0,0" size="100,100" name="edit" viewport="20,469">
     <property key="pageFormatName" value="A4"/>
     <property key="diagramWidth" value="840"/>
     <property key="diagramHeight" value="1188"/>
@@ -1355,7 +1355,7 @@
       </semanticModel>
     </contained>
   </diagrams>
-  <diagrams position="0,0" size="100,100" name="view" viewport="0,0">
+  <diagrams position="0,0" size="100,100" name="view" viewport="276,0">
     <property key="pageFormatName" value="A4"/>
     <property key="diagramWidth" value="840"/>
     <property key="diagramHeight" value="1188"/>

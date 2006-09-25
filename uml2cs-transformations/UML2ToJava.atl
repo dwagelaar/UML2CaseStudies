@@ -4,21 +4,34 @@ query UML2toJava = UML2!uml::Classifier->allInstances()->collect(e |
 	else e->toFileString()->writeTo(e->pathName())
 	endif);
 
-uses config;
 uses UML2;
 
 -- ======================================================================
 -- plumbing helpers begin
 -- ======================================================================
 
+helper context String def : parameterValue() : String =
+	XML!XML::Element.allInstancesFrom('parameters')->select(e |
+		e.name = 'param'
+	)->select(e |
+		e->getAttrVal('name') = self
+	)->first()->getAttrVal('value');
+
+helper context XML!XML::Element def : getAttrVal(name : String) : String =
+	self.children->select(n |
+		n->oclIsKindOf(XML!XML::Attribute)
+	)->select(a |
+		a.name = name
+	)->first().value;
+
 helper context UML2!uml::Classifier def : ignore() : Boolean =
 	true;
 
 helper context UML2!uml::Class def : ignore() : Boolean =
-	self.owner->oclIsKindOf(UML2!uml::Classifier) or self->umlQualifiedName()->ignore();
+	self.owner->oclIsKindOf(UML2!uml::Classifier);
 
 helper context UML2!uml::Interface def : ignore() : Boolean =
-	self.owner->oclIsKindOf(UML2!uml::Classifier) or self->umlQualifiedName()->ignore();
+	self.owner->oclIsKindOf(UML2!uml::Classifier);
 
 helper context UML2!uml::Element def : isInPackage() : Boolean =
 	self.owner->oclIsTypeOf(UML2!uml::Package);
@@ -33,7 +46,7 @@ helper context UML2!uml::NamedElement def : fileName() : String =
 	self->qualifiedName('/');
 
 helper context UML2!uml::NamedElement def : pathName() : String =
-	self->fileName()->path() + '.java';
+	'path'->parameterValue() + '/' + self->fileName() + '.java';
 
 helper context UML2!uml::NamedElement def : visibility() : String =
 	if self.visibility = #private then 'private '

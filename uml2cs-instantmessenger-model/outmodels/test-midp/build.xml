@@ -41,6 +41,10 @@
 		<am3.loadModel modelHandler="EMF" name="LCDUI" metamodel="UML2" path="${model.lcdui.path}"/>
 		<am3.loadModel modelHandler="EMF" name="Jabber" metamodel="UML2" path="${model.jabber.path}"/>
 		<am3.loadModel modelHandler="EMF" name="MEJabber" metamodel="UML2" path="${model.mejabber.path}"/>
+		<am3.loadModel modelHandler="EMF" name="XML" metamodel="MOF" path="${metamodel.xml.path}"/>
+		<am3.loadModel modelHandler="EMF" name="Parameters" metamodel="XML" path="${model.parameters.path}">
+			<injector name="xml"/>
+		</am3.loadModel>
 	</target>
 	
 	<target name="Observer" depends="loadModels">

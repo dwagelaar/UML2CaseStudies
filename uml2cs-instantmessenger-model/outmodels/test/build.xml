@@ -41,6 +41,14 @@
 		<am3.loadModel modelHandler="EMF" name="Swing" metamodel="UML2" path="${model.swing.path}"/>
 		<am3.loadModel modelHandler="EMF" name="Jabber" metamodel="UML2" path="${model.jabber.path}"/>
 		<am3.loadModel modelHandler="EMF" name="DefaultJabber" metamodel="UML2" path="${model.defaultjabber.path}"/>
+		<am3.loadModel modelHandler="EMF" name="XML" metamodel="MOF" path="${metamodel.xml.path}"/>
+		<am3.loadModel modelHandler="EMF" name="Parameters" metamodel="XML" path="${model.parameters.path}">
+			<injector name="xml"/>
+		</am3.loadModel>
+	</target>
+	
+	<target name="injectParameters" depends="loadModels">
+		<am3.saveModel model="Parameters" path="${model.parameters.path}.ecore"/>
 	</target>
 	
 	<target name="IteratorEnumerationAdapter" depends="loadModels">

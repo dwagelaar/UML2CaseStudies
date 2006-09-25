@@ -1,8 +1,0 @@
--- code generation configuration
-library config;
-
-helper context String def : path() : String =
-	'uml2cs-instantmessenger-default/src/' + self;
-
-helper context String def : ignore() : Boolean =
-    false;

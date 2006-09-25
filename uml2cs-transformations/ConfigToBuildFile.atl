@@ -1,0 +1,911 @@
+-- $Id$
+-- Generates a build.xml file from a Transformations.ecore config file
+module ConfigToBuildFile;
+
+create OUT : XML from IN : CFG;
+
+-- ======================================================================
+-- helper attributes begin
+-- ======================================================================
+
+helper def : TransPath : String = '/uml2cs-transformations';
+helper def : LibPath : String = thisModule.TransPath + '/lib';
+helper def : MetamodelPath : String = thisModule.TransPath + '/metamodels';
+helper def : ModelLibPath : String = thisModule.TransPath + '/models';
+helper def : ProfilePath : String = thisModule.TransPath + '/profiles';
+
+-- ======================================================================
+-- helper attributes end
+-- ======================================================================
+
+-- ======================================================================
+-- helper methods begin
+-- ======================================================================
+
+helper context CFG!transformations::JavaMapping def : mappingLibraries() : Sequence(XML!XML::Node) =
+	Sequence{thisModule->Library('Mappings', thisModule.LibPath + '/JavaMappings.asm')}->
+	append(self.dataTypes->mappingLibrary());
+
+helper context CFG!transformations::Java1DataTypes def : mappingLibrary() : XML!XML::Node =
+	thisModule->Library('Java', thisModule.LibPath + '/Java1.asm');
+
+helper context CFG!transformations::Java2DataTypes def : mappingLibrary() : XML!XML::Node =
+	thisModule->Library('Java', thisModule.LibPath + '/Java2.asm');
+
+helper context CFG!transformations::JavaMapping def : implTypes() : String =
+	'JavaTypes';
+
+helper context CFG!transformations::JavaMapping def : generator() : String =
+	thisModule.TransPath + '/UML2ToJava.atl';
+
+helper context CFG!transformations::UML2JavaObserver def : observer() : XML!XML::Node =
+	thisModule->UML2JavaObserver(self.config);
+
+helper context CFG!transformations::UML2Observer def : observer() : XML!XML::Node =
+	thisModule->UML2Observer(self.config);
+
+helper context CFG!transformations::UML2MIDlet def : applet() : XML!XML::Node =
+	thisModule->UML2MIDlet(self.config);
+
+helper context CFG!transformations::UML2Applet def : applet() : XML!XML::Node =
+	thisModule->UML2Applet(self.config);
+
+helper context CFG!transformations::UML2JavaObserver def : observerInvocation("in" : String) : XML!XML::Node =
+	thisModule->TransformationMacroInvocation('javaobserver', "in", 'observer');
+
+helper context CFG!transformations::UML2Observer def : observerInvocation("in" : String) : XML!XML::Node =
+	thisModule->TransformationMacroInvocation('observer', "in", 'observer');
+
+helper context CFG!transformations::UML2MIDlet def : appletInvocation("in" : String) : XML!XML::Node =
+	thisModule->TransformationMacroInvocation('midlet', "in", 'applet');
+
+helper context CFG!transformations::UML2Applet def : appletInvocation("in" : String) : XML!XML::Node =
+	thisModule->TransformationMacroInvocation('applet', "in", 'applet');
+
+helper context CFG!transformations::JavaMapping def : mappingModels() : Sequence(XML!XML::Node) =
+	Sequence{thisModule->LoadModel('JavaTypes', 'UML2', thisModule.ModelLibPath + '/JavaTypes.uml')}->
+	union(self.dataTypes->mappingModels());
+
+helper context CFG!transformations::Java1DataTypes def : mappingModels() : Sequence(XML!XML::Node) =
+	Sequence{};
+
+helper context CFG!transformations::Java2DataTypes def : mappingModels() : Sequence(XML!XML::Node) =
+	Sequence{thisModule->LoadModel('IteratorEnumerationAdapter', 'UML2', 
+		thisModule.ModelLibPath + '/IteratorEnumerationAdapter.uml')};
+
+helper context CFG!transformations::UML2JavaObserver def : observerModels() : Sequence(XML!XML::Node) =
+	Sequence{};
+
+helper context CFG!transformations::UML2Observer def : observerModels() : Sequence(XML!XML::Node) =
+	Sequence{thisModule->LoadModel('Observer', 'UML2', 
+		thisModule.ModelLibPath + '/Observer.uml')};
+
+helper context CFG!transformations::UML2MIDlet def : appletModels() : Sequence(XML!XML::Node) =
+	Sequence{thisModule->LoadModel('MIDlet', 'UML2', 
+		thisModule.ModelLibPath + '/MIDlet.uml')};
+
+helper context CFG!transformations::UML2Applet def : appletModels() : Sequence(XML!XML::Node) =
+	Sequence{};
+
+helper context CFG!transformations::TransformationConfig def : contents() : Sequence(XML!XML::Node) =
+	Sequence{
+		thisModule->UML2Profiles(self),
+		thisModule->UML2Accessors(self),
+		self.observer->observer(),
+		thisModule->UML2AbstractFactory(self),
+		thisModule->UML2Singleton(self),
+		self.applet->applet(),
+		thisModule->UML2AsyncMethods(self),
+		thisModule->UML2DataTypes(self),
+		thisModule->Generate(self),
+		thisModule->Transform(self),
+		thisModule->LoadBaseModels(self),
+		thisModule->AllBase(self)
+	};
+
+-- ======================================================================
+-- helper methods end
+-- ======================================================================
+
+-- ======================================================================
+-- transformation rules begin
+-- ======================================================================
+
+rule ConfigRoot {
+	from s : CFG!transformations::TransformationConfig
+	-- <project name="s.buildPath">
+	to root : XML!XML::Root mapsTo s (
+		name <- 'project',
+		children <- s->contents()),
+	   name : XML!XML::Attribute (
+	   	parent <- root,
+	   	name <- 'name',
+		value <- s.buildPath)
+}
+
+rule UML2Observer {
+	from s : CFG!transformations::UML2Observer (
+		s->oclIsTypeOf(CFG!transformations::UML2Observer))
+	-- <target name="Observer" depends="loadBaseModels">
+	to target : XML!XML::Element mapsTo s (
+		name <- 'target',
+		parent <- s.config,
+		children <- Sequence{
+			thisModule->TransformInvocation('Observer', 'observer')
+		}),
+	   targetName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'Observer',
+		parent <- target),
+	   targetDepends : XML!XML::Attribute (
+	   	name <- 'depends',
+		value <- 'loadBaseModels',
+		parent <- target)
+}
+
+rule UML2MIDlet {
+	from s : CFG!transformations::UML2MIDlet
+	-- <target name="MIDlet" depends="loadBaseModels">
+	to target : XML!XML::Element mapsTo s (
+		name <- 'target',
+		parent <- s.config,
+		children <- Sequence{
+			thisModule->TransformInvocation('MIDlet', 'midlet')
+		}),
+	   targetName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'MIDlet',
+		parent <- target),
+	   targetDepends : XML!XML::Attribute (
+	   	name <- 'depends',
+		value <- 'loadBaseModels',
+		parent <- target)
+}
+
+rule TransformInvocation("in" : String, prefix : String) {
+	-- <transform in="in" prefix="prefix"/>
+	to macroInv : XML!XML::Element (
+		name <- 'transform'),
+	   macroInvIn : XML!XML::Attribute (
+	   	name <- 'in',
+		value <- "in",
+		parent <- macroInv),
+	   macroInvPrefix : XML!XML::Attribute (
+	   	name <- 'prefix',
+		value <- prefix,
+		parent <- macroInv)
+	do {
+		macroInv;
+	}
+}
+
+rule MacrodefAttribute(name : String, default : String) {
+	-- <attribute name="name" default="default" />
+	to att : XML!XML::Element (
+	   	name <- 'attribute'),
+	   attName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- name,
+		parent <- att),
+	   attDefault : XML!XML::Attribute (
+	   	name <- 'default',
+		value <- default,
+		parent <- att)
+	do {
+		att;
+	}
+}
+
+rule TransformationMacroInvocation(macro : String, "in" : String, out : String) {
+	-- <macro in="in" out="@{prefix}-out" path="/${ant.project.name}/@{prefix}-out.uml"/>
+	to macroInv : XML!XML::Element (
+		name <- macro->debug('TransformationMacroInvocation')),
+	   macroInvIn : XML!XML::Attribute (
+	   	name <- 'in',
+		value <- "in",
+		parent <- macroInv),
+	   macroInvOut : XML!XML::Attribute (
+	   	name <- 'out',
+		value <- '@{prefix}-' + out,
+		parent <- macroInv),
+	   macroInvPath : XML!XML::Attribute (
+	   	name <- 'path',
+		value <- '/${ant.project.name}/@{prefix}-' + out + '.uml',
+		parent <- macroInv)
+	do {
+		macroInv;
+	}
+}
+
+rule GenerateMacroInvocation("in" : String) {
+	-- <generate in="in"/>
+	to macroInv : XML!XML::Element (
+		name <- 'generate'),
+	   macroInvIn : XML!XML::Attribute (
+	   	name <- 'in',
+		value <- "in",
+		parent <- macroInv)
+	do {
+		macroInv;
+	}
+}
+
+rule Atl(path : String, allowInterModelReferences : Boolean, children : Sequence(XML!XML::Node)) {
+	-- <am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+	to atl : XML!XML::Element (
+		name <- 'am3.atl',
+		children <- children),
+	   atlPath : XML!XML::Attribute (
+	   	name <- 'path',
+		value <- path,
+		parent <- atl),
+	   atlAIMR : XML!XML::Attribute (
+	   	name <- 'allowInterModelReferences',
+		value <- if allowInterModelReferences then 'true' else 'false' endif,
+		parent <- atl)
+	do {
+		atl;
+	}
+}
+
+rule Inmodel(name : String, model : String) {
+	-- <inmodel name="name" model="model"/>
+	to inmodel : XML!XML::Element (
+	   	name <- 'inmodel'),
+	   inmodelName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- name,
+		parent <- inmodel),
+	   inmodelModel : XML!XML::Attribute (
+	   	name <- 'model',
+		value <- model,
+		parent <- inmodel)
+	do {
+		inmodel;
+	}
+}
+
+rule Outmodel(name : String, model : String, metamodel : String, path : String) {
+	-- <outmodel name="name" model="model" metamodel="metamodel" path="path"/>
+	to outmodel : XML!XML::Element (
+	   	name <- 'outmodel'),
+	   outmodelName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- name,
+		parent <- outmodel),
+	   outmodelModel : XML!XML::Attribute (
+	   	name <- 'model',
+		value <- model,
+		parent <- outmodel),
+	   outmodelMetamodel : XML!XML::Attribute (
+	   	name <- 'metamodel',
+		value <- metamodel,
+		parent <- outmodel),
+	   outmodelPath : XML!XML::Attribute (
+	   	name <- 'path',
+		value <- path,
+		parent <- outmodel)
+	do {
+		outmodel;
+	}
+}
+
+rule Library(name : String, path : String) {
+	-- <library name="name" path="path"/>
+	to lib : XML!XML::Element (
+	   	name <- 'library'),
+	   libName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- name,
+		parent <- lib),
+	   libPath : XML!XML::Attribute (
+	   	name <- 'path',
+		value <- path,
+		parent <- lib)
+	do {
+		lib;
+	}
+}
+
+rule Superimpose(path : String) {
+	-- <superimpose path="path"/>
+	to sup : XML!XML::Element (
+	   	name <- 'superimpose'),
+	   supPath : XML!XML::Attribute (
+	   	name <- 'path',
+		value <- path,
+		parent <- sup)
+	do {
+		sup;
+	}
+}
+
+rule SaveModel() {
+	-- <am3.saveModel model="@{out}" path="@{path}"/>
+	to saveModel : XML!XML::Element (
+	   	name <- 'am3.saveModel'),
+	   saveModelModel : XML!XML::Attribute (
+	   	name <- 'model',
+		value <- '@{out}',
+		parent <- saveModel),
+	   saveModelPath : XML!XML::Attribute (
+	   	name <- 'path',
+		value <- '@{path}',
+		parent <- saveModel)
+	do {
+		saveModel;
+	}
+}
+
+rule UML2Profiles(c : CFG!transformations::TransformationConfig) {
+	-- <macrodef name="profiles">
+	to macrodef : XML!XML::Element (
+		name <- 'macrodef',
+		children <- Sequence{
+			thisModule->MacrodefAttribute('in', 'MODEL.IN'),
+			thisModule->MacrodefAttribute('out', 'MODEL.OUT'),
+			thisModule->MacrodefAttribute('path', 'MODEL.OUT.PATH'),
+			seq
+		}),
+	   macrodefName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'profiles',
+		parent <- macrodef),
+	-- <sequential>
+	   seq : XML!XML::Element (
+	   	name <- 'sequential',
+		children <- Sequence{
+			thisModule->Atl(thisModule.TransPath + '/UML2Copy.atl', true, Sequence{
+		   		thisModule->Inmodel('UML2', 'UML2'),
+				thisModule->Inmodel('IN', '@{in}'),
+				thisModule->Inmodel('ACCESSORS', 'Accessors'),
+				thisModule->Outmodel('OUT', '@{out}', 'UML2', '@{path}'),
+				thisModule->Library('UML2', thisModule.LibPath + '/UML2.asm'),
+				thisModule->Superimpose(thisModule.TransPath + '/UML2Profiles.asm'),
+				thisModule->Superimpose(thisModule.TransPath + '/UML2ProfileCopy.asm')
+   			})
+		}->union(
+			if c.saveModels = #all then 
+				Sequence{thisModule->SaveModel()}
+			else Sequence{} endif))
+	-- </sequential>
+	-- </macrodef>
+	do {
+		macrodef->debug('UML2Profiles');
+	}
+}
+
+rule UML2Accessors(c : CFG!transformations::TransformationConfig) {
+	-- <macrodef name="accessors">
+	to macrodef : XML!XML::Element (
+		name <- 'macrodef',
+		children <- Sequence{
+			thisModule->MacrodefAttribute('in', 'MODEL.IN'),
+			thisModule->MacrodefAttribute('out', 'MODEL.OUT'),
+			thisModule->MacrodefAttribute('path', 'MODEL.OUT.PATH'),
+			seq
+		}),
+	   macrodefName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'accessors',
+		parent <- macrodef),
+	-- <sequential>
+	   seq : XML!XML::Element (
+	   	name <- 'sequential',
+		children <- Sequence{
+			thisModule->Atl(thisModule.TransPath + '/UML2Copy.atl', true, Sequence{
+		   		thisModule->Inmodel('UML2', 'UML2'),
+				thisModule->Inmodel('IN', '@{in}'),
+				thisModule->Inmodel('ACCESSORS', 'Accessors'),
+				thisModule->Inmodel('UML2TYPES', 'PrimitiveTypes'),
+				thisModule->Outmodel('OUT', '@{out}', 'UML2', '@{path}'),
+				thisModule->Library('Strings', thisModule.LibPath + '/Strings.asm'),
+				thisModule->Library('UML2', thisModule.LibPath + '/UML2.asm')
+			}->union(c.mapping->mappingLibraries())
+			->union(Sequence{
+				thisModule->Superimpose(thisModule.TransPath + '/UML2Accessors.asm'),
+				thisModule->Superimpose(thisModule.TransPath + '/UML2ProfileCopy.asm')
+   			}))
+		}->union(
+			if c.saveModels = #all then 
+				Sequence{thisModule->SaveModel()}
+			else Sequence{} endif))
+	-- </sequential>
+	-- </macrodef>
+	do {
+		macrodef->debug('UML2Accessors');
+	}
+}
+
+rule UML2Observer(c : CFG!transformations::TransformationConfig) {
+	-- <macrodef name="observer">
+	to macrodef : XML!XML::Element (
+		name <- 'macrodef',
+		children <- Sequence{
+			thisModule->MacrodefAttribute('in', 'MODEL.IN'),
+			thisModule->MacrodefAttribute('out', 'MODEL.OUT'),
+			thisModule->MacrodefAttribute('path', 'MODEL.OUT.PATH'),
+			seq
+		}),
+	   macrodefName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'observer',
+		parent <- macrodef),
+	-- <sequential>
+	   seq : XML!XML::Element (
+	   	name <- 'sequential',
+		children <- Sequence{
+			thisModule->Atl(thisModule.TransPath + '/UML2Copy.atl', true, Sequence{
+		   		thisModule->Inmodel('UML2', 'UML2'),
+				thisModule->Inmodel('IN', '@{in}'),
+				thisModule->Inmodel('OBSERVER', 'Observer'),
+				thisModule->Inmodel('UML2TYPES', 'PrimitiveTypes'),
+				thisModule->Outmodel('OUT', '@{out}', 'UML2', '@{path}'),
+				thisModule->Library('Strings', thisModule.LibPath + '/Strings.asm'),
+				thisModule->Library('UML2', thisModule.LibPath + '/UML2.asm')
+			}->union(c.mapping->mappingLibraries())
+			->union(Sequence{
+				thisModule->Superimpose(thisModule.TransPath + '/UML2Observer.asm'),
+				thisModule->Superimpose(thisModule.TransPath + '/UML2ProfileCopy.asm')
+   			}))
+		}->union(
+			if c.saveModels = #all then 
+				Sequence{thisModule->SaveModel()}
+			else Sequence{} endif))
+	-- </sequential>
+	-- </macrodef>
+	do {
+		macrodef->debug('UML2Observer');
+	}
+}
+
+rule UML2JavaObserver(c : CFG!transformations::TransformationConfig) {
+	-- <macrodef name="javaobserver">
+	to macrodef : XML!XML::Element (
+		name <- 'macrodef',
+		children <- Sequence{
+			thisModule->MacrodefAttribute('in', 'MODEL.IN'),
+			thisModule->MacrodefAttribute('out', 'MODEL.OUT'),
+			thisModule->MacrodefAttribute('path', 'MODEL.OUT.PATH'),
+			seq
+		}),
+	   macrodefName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'javaobserver',
+		parent <- macrodef),
+	-- <sequential>
+	   seq : XML!XML::Element (
+	   	name <- 'sequential',
+		children <- Sequence{
+			thisModule->Atl(thisModule.TransPath + '/UML2Copy.atl', true, Sequence{
+		   		thisModule->Inmodel('UML2', 'UML2'),
+				thisModule->Inmodel('IN', '@{in}'),
+				thisModule->Inmodel('IMPLTYPES', c.mapping->implTypes()),
+				thisModule->Inmodel('UML2TYPES', 'PrimitiveTypes'),
+				thisModule->Outmodel('OUT', '@{out}', 'UML2', '@{path}'),
+				thisModule->Library('Strings', thisModule.LibPath + '/Strings.asm'),
+				thisModule->Library('UML2', thisModule.LibPath + '/UML2.asm')
+			}->union(c.mapping->mappingLibraries())
+			->union(Sequence{
+				thisModule->Superimpose(thisModule.TransPath + '/UML2JavaObserver.asm'),
+				thisModule->Superimpose(thisModule.TransPath + '/UML2ProfileCopy.asm')
+   			}))
+		}->union(
+			if c.saveModels = #all then 
+				Sequence{thisModule->SaveModel()}
+			else Sequence{} endif))
+	-- </sequential>
+	-- </macrodef>
+	do {
+		macrodef->debug('UML2JavaObserver');
+	}
+}
+
+rule UML2AbstractFactory(c : CFG!transformations::TransformationConfig) {
+	-- <macrodef name="abstractfactory">
+	to macrodef : XML!XML::Element (
+		name <- 'macrodef',
+		children <- Sequence{
+			thisModule->MacrodefAttribute('in', 'MODEL.IN'),
+			thisModule->MacrodefAttribute('out', 'MODEL.OUT'),
+			thisModule->MacrodefAttribute('path', 'MODEL.OUT.PATH'),
+			seq
+		}),
+	   macrodefName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'abstractfactory',
+		parent <- macrodef),
+	-- <sequential>
+	   seq : XML!XML::Element (
+	   	name <- 'sequential',
+		children <- Sequence{
+			thisModule->Atl(thisModule.TransPath + '/UML2Copy.atl', true, Sequence{
+		   		thisModule->Inmodel('UML2', 'UML2'),
+				thisModule->Inmodel('IN', '@{in}'),
+				thisModule->Outmodel('OUT', '@{out}', 'UML2', '@{path}'),
+				thisModule->Library('UML2', thisModule.LibPath + '/UML2.asm')
+			}->union(c.mapping->mappingLibraries())
+			->union(Sequence{
+				thisModule->Superimpose(thisModule.TransPath + '/UML2AbstractFactory.asm'),
+				thisModule->Superimpose(thisModule.TransPath + '/UML2ProfileCopy.asm')
+   			}))
+		}->union(
+			if c.saveModels = #all then 
+				Sequence{thisModule->SaveModel()}
+			else Sequence{} endif))
+	-- </sequential>
+	-- </macrodef>
+	do {
+		macrodef->debug('UML2AbstractFactory');
+	}
+}
+
+rule UML2Singleton(c : CFG!transformations::TransformationConfig) {
+	-- <macrodef name="singleton">
+	to macrodef : XML!XML::Element (
+		name <- 'macrodef',
+		children <- Sequence{
+			thisModule->MacrodefAttribute('in', 'MODEL.IN'),
+			thisModule->MacrodefAttribute('out', 'MODEL.OUT'),
+			thisModule->MacrodefAttribute('path', 'MODEL.OUT.PATH'),
+			seq
+		}),
+	   macrodefName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'singleton',
+		parent <- macrodef),
+	-- <sequential>
+	   seq : XML!XML::Element (
+	   	name <- 'sequential',
+		children <- Sequence{
+			thisModule->Atl(thisModule.TransPath + '/UML2Copy.atl', true, Sequence{
+		   		thisModule->Inmodel('UML2', 'UML2'),
+				thisModule->Inmodel('IN', '@{in}'),
+				thisModule->Outmodel('OUT', '@{out}', 'UML2', '@{path}'),
+				thisModule->Library('UML2', thisModule.LibPath + '/UML2.asm')
+			}->union(c.mapping->mappingLibraries())
+			->union(Sequence{
+				thisModule->Superimpose(thisModule.TransPath + '/UML2Singleton.asm'),
+				thisModule->Superimpose(thisModule.TransPath + '/UML2ProfileCopy.asm')
+   			}))
+		}->union(
+			if c.saveModels = #all then 
+				Sequence{thisModule->SaveModel()}
+			else Sequence{} endif))
+	-- </sequential>
+	-- </macrodef>
+	do {
+		macrodef->debug('UML2Singleton');
+	}
+}
+
+rule UML2Applet(c : CFG!transformations::TransformationConfig) {
+	-- <macrodef name="applet">
+	to macrodef : XML!XML::Element (
+		name <- 'macrodef',
+		children <- Sequence{
+			thisModule->MacrodefAttribute('in', 'MODEL.IN'),
+			thisModule->MacrodefAttribute('out', 'MODEL.OUT'),
+			thisModule->MacrodefAttribute('path', 'MODEL.OUT.PATH'),
+			seq
+		}),
+	   macrodefName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'applet',
+		parent <- macrodef),
+	-- <sequential>
+	   seq : XML!XML::Element (
+	   	name <- 'sequential',
+		children <- Sequence{
+			thisModule->Atl(thisModule.TransPath + '/UML2Copy.atl', true, Sequence{
+		   		thisModule->Inmodel('UML2', 'UML2'),
+				thisModule->Inmodel('IN', '@{in}'),
+				thisModule->Inmodel('IMPLTYPES', c.mapping->implTypes()),
+				thisModule->Outmodel('OUT', '@{out}', 'UML2', '@{path}'),
+				thisModule->Library('UML2', thisModule.LibPath + '/UML2.asm')
+			}->union(c.mapping->mappingLibraries())
+			->union(Sequence{
+				thisModule->Superimpose(thisModule.TransPath + '/UML2Applet.asm'),
+				thisModule->Superimpose(thisModule.TransPath + '/UML2ProfileCopy.asm')
+   			}))
+		}->union(
+			if c.saveModels = #all then 
+				Sequence{thisModule->SaveModel()}
+			else Sequence{} endif))
+	-- </sequential>
+	-- </macrodef>
+	do {
+		macrodef->debug('UML2Applet');
+	}
+}
+
+rule UML2MIDlet(c : CFG!transformations::TransformationConfig) {
+	-- <macrodef name="midlet">
+	to macrodef : XML!XML::Element (
+		name <- 'macrodef',
+		children <- Sequence{
+			thisModule->MacrodefAttribute('in', 'MODEL.IN'),
+			thisModule->MacrodefAttribute('out', 'MODEL.OUT'),
+			thisModule->MacrodefAttribute('path', 'MODEL.OUT.PATH'),
+			seq
+		}),
+	   macrodefName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'midlet',
+		parent <- macrodef),
+	-- <sequential>
+	   seq : XML!XML::Element (
+	   	name <- 'sequential',
+		children <- Sequence{
+			thisModule->Atl(thisModule.TransPath + '/UML2Copy.atl', true, Sequence{
+		   		thisModule->Inmodel('UML2', 'UML2'),
+				thisModule->Inmodel('IN', '@{in}'),
+				thisModule->Inmodel('MIDLET', 'MIDlet'),
+				thisModule->Outmodel('OUT', '@{out}', 'UML2', '@{path}'),
+				thisModule->Library('UML2', thisModule.LibPath + '/UML2.asm')
+			}->union(c.mapping->mappingLibraries())
+			->union(Sequence{
+				thisModule->Superimpose(thisModule.TransPath + '/UML2MIDlet.asm'),
+				thisModule->Superimpose(thisModule.TransPath + '/UML2ProfileCopy.asm')
+   			}))
+		}->union(
+			if c.saveModels = #all then 
+				Sequence{thisModule->SaveModel()}
+			else Sequence{} endif))
+	-- </sequential>
+	-- </macrodef>
+	do {
+		macrodef->debug('UML2MIDlet');
+	}
+}
+
+rule UML2AsyncMethods(c : CFG!transformations::TransformationConfig) {
+	-- <macrodef name="asyncmethods">
+	to macrodef : XML!XML::Element (
+		name <- 'macrodef',
+		children <- Sequence{
+			thisModule->MacrodefAttribute('in', 'MODEL.IN'),
+			thisModule->MacrodefAttribute('out', 'MODEL.OUT'),
+			thisModule->MacrodefAttribute('path', 'MODEL.OUT.PATH'),
+			seq
+		}),
+	   macrodefName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'asyncmethods',
+		parent <- macrodef),
+	-- <sequential>
+	   seq : XML!XML::Element (
+	   	name <- 'sequential',
+		children <- Sequence{
+			thisModule->Atl(thisModule.TransPath + '/UML2Copy.atl', true, Sequence{
+		   		thisModule->Inmodel('UML2', 'UML2'),
+				thisModule->Inmodel('IN', '@{in}'),
+				thisModule->Outmodel('OUT', '@{out}', 'UML2', '@{path}')
+			}->union(c.mapping->mappingLibraries())
+			->union(Sequence{
+				thisModule->Superimpose(thisModule.TransPath + '/UML2AsyncMethods.asm'),
+				thisModule->Superimpose(thisModule.TransPath + '/UML2ProfileCopy.asm')
+   			}))
+		}->union(
+			if c.saveModels = #all then 
+				Sequence{thisModule->SaveModel()}
+			else Sequence{} endif))
+	-- </sequential>
+	-- </macrodef>
+	do {
+		macrodef->debug('UML2AsyncMethods');
+	}
+}
+
+rule UML2DataTypes(c : CFG!transformations::TransformationConfig) {
+	-- <macrodef name="datatypes">
+	to macrodef : XML!XML::Element (
+		name <- 'macrodef',
+		children <- Sequence{
+			thisModule->MacrodefAttribute('in', 'MODEL.IN'),
+			thisModule->MacrodefAttribute('out', 'MODEL.OUT'),
+			thisModule->MacrodefAttribute('path', 'MODEL.OUT.PATH'),
+			seq
+		}),
+	   macrodefName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'datatypes',
+		parent <- macrodef),
+	-- <sequential>
+	   seq : XML!XML::Element (
+	   	name <- 'sequential',
+		children <- Sequence{
+			thisModule->Atl(thisModule.TransPath + '/UML2Copy.atl', true, Sequence{
+		   		thisModule->Inmodel('UML2', 'UML2'),
+				thisModule->Inmodel('IN', '@{in}'),
+				thisModule->Inmodel('IMPLTYPES', c.mapping->implTypes()),
+				thisModule->Outmodel('OUT', '@{out}', 'UML2', '@{path}'),
+				thisModule->Library('Strings', thisModule.LibPath + '/Strings.asm'),
+				thisModule->Library('UML2', thisModule.LibPath + '/UML2.asm')
+			}->union(c.mapping->mappingLibraries())
+			->union(Sequence{
+				thisModule->Superimpose(thisModule.TransPath + '/UML2DataTypes.asm'),
+				thisModule->Superimpose(thisModule.TransPath + '/UML2ProfileCopy.asm')
+   			}))
+		}->union(
+			if c.saveModels <> #none then 
+				Sequence{thisModule->SaveModel()}
+			else Sequence{} endif))
+	-- </sequential>
+	-- </macrodef>
+	do {
+		macrodef->debug('UML2DataTypes');
+	}
+}
+
+rule Generate(c : CFG!transformations::TransformationConfig) {
+	-- <macrodef name="generate">
+	to macrodef : XML!XML::Element (
+		name <- 'macrodef',
+		children <- Sequence{
+			thisModule->MacrodefAttribute('in', 'MODEL.IN'),
+			seq
+		}),
+	   macrodefName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'generate',
+		parent <- macrodef),
+	-- <sequential>
+	   seq : XML!XML::Element (
+	   	name <- 'sequential',
+		children <- Sequence{
+			thisModule->Atl(c.mapping->generator(), true, Sequence{
+		   		thisModule->Inmodel('UML2', 'UML2'),
+				thisModule->Inmodel('IN', '@{in}'),
+		   		thisModule->Inmodel('XML', 'XML'),
+				thisModule->Inmodel('parameters', 'Parameters'),
+				thisModule->Library('UML2', thisModule.LibPath + '/UML2.asm')
+			})
+		})
+	-- </sequential>
+	-- </macrodef>
+	do {
+		macrodef->debug('Generate');
+	}
+}
+
+rule Transform(c : CFG!transformations::TransformationConfig) {
+	-- <macrodef name="transform">
+	to macrodef : XML!XML::Element (
+		name <- 'macrodef',
+		children <- Sequence{
+			thisModule->MacrodefAttribute('in', 'MODEL.IN'),
+			thisModule->MacrodefAttribute('prefix', 'MODEL.OUT.PREFIX'),
+			seq
+		}),
+	   macrodefName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'transform',
+		parent <- macrodef),
+	-- <sequential>
+	   seq : XML!XML::Element (
+	   	name <- 'sequential',
+		children <- Sequence{
+			thisModule->TransformationMacroInvocation('profiles', '@{in}', 'profiles'),
+			thisModule->TransformationMacroInvocation('accessors', '@{prefix}-profiles', 'accessors'),
+			c.observer->observerInvocation('@{prefix}-accessors'),
+			thisModule->TransformationMacroInvocation('abstractfactory', '@{prefix}-observer', 'abstractfactory'),
+			thisModule->TransformationMacroInvocation('singleton', '@{prefix}-abstractfactory', 'singleton'),
+			c.applet->appletInvocation('@{prefix}-singleton'),
+			thisModule->TransformationMacroInvocation('asyncmethods', '@{prefix}-applet', 'asyncmethods'),
+			thisModule->TransformationMacroInvocation('datatypes', '@{prefix}-asyncmethods', 'datatypes'),
+			thisModule->GenerateMacroInvocation('@{prefix}-datatypes')
+	   	})
+	do {
+		macrodef;
+	}
+}
+
+rule LoadBaseModels(c : CFG!transformations::TransformationConfig) {
+	-- <target name="loadBaseModels">
+	to target : XML!XML::Element (
+		name <- 'target',
+		children <- Sequence{
+			thisModule->LoadModel('XML', 'MOF', thisModule.MetamodelPath + '/XML.ecore'),
+			thisModule->LoadXMLModel('Parameters', 'XML', '/${ant.project.name}/parameters.xml'),
+			thisModule->LoadModel('UML2', 'MOF', thisModule.MetamodelPath + '/UML2Profiles.ecore'),
+			thisModule->LoadModel('Accessors', 'UML2', thisModule.ProfilePath + '/Accessors.profile.uml'),
+			thisModule->LoadModel('PrimitiveTypes', 'UML2', thisModule.ModelLibPath + '/PrimitiveTypes.uml')
+		}->union(c.mapping->mappingModels())
+		->union(c.observer->observerModels())
+		->union(c.applet->appletModels())),
+	   targetName : XML!XML::Attribute(
+	   	name <- 'name',
+		value <- 'loadBaseModels',
+		parent <- target)
+	-- </target>
+	do {
+		target;
+	}
+}
+
+rule LoadModel(name : String, metamodel : String, path : String) {
+	-- <am3.loadModel modelHandler="EMF" name="name" metamodel="metamodel" path="path"/>
+	to loadModel : XML!XML::Element (
+	   	name <- 'am3.loadModel'),
+	   loadModelHandler : XML!XML::Attribute (
+	   	name <- 'modelHandler',
+		value <- 'EMF',
+		parent <- loadModel),
+	   loadModelName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- name->debug('LoadModel'),
+		parent <- loadModel),
+	   loadModelMM : XML!XML::Attribute (
+	   	name <- 'metamodel',
+		value <- metamodel,
+		parent <- loadModel),
+	   loadModelPath : XML!XML::Attribute (
+	   	name <- 'path',
+		value <- path,
+		parent <- loadModel)
+	do {
+		loadModel;
+	}
+}
+
+rule LoadXMLModel(name : String, metamodel : String, path : String) {
+	-- <am3.loadModel modelHandler="EMF" name="name" metamodel="metamodel" path="path">
+	to loadModel : XML!XML::Element (
+	   	name <- 'am3.loadModel'),
+	   loadModelHandler : XML!XML::Attribute (
+	   	name <- 'modelHandler',
+		value <- 'EMF',
+		parent <- loadModel),
+	   loadModelName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- name->debug('LoadXMLModel'),
+		parent <- loadModel),
+	   loadModelMM : XML!XML::Attribute (
+	   	name <- 'metamodel',
+		value <- metamodel,
+		parent <- loadModel),
+	   loadModelPath : XML!XML::Attribute (
+	   	name <- 'path',
+		value <- path,
+		parent <- loadModel),
+	-- <injector name="xml"/>
+	   injector : XML!XML::Element (
+	   	name <- 'injector',
+		parent <- loadModel),
+	   injectorName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'xml',
+		parent <- injector)
+	-- </am3.loadModel>
+	do {
+		loadModel;
+	}
+}
+
+rule AllBase(c : CFG!transformations::TransformationConfig) {
+	-- <target name="allBase" depends="..."/>
+	to target : XML!XML::Element (
+		name <- 'target'),
+	   targetName : XML!XML::Attribute(
+	   	name <- 'name',
+		value <- 'allBase',
+		parent <- target),
+	   targetDepends : XML!XML::Attribute(
+	   	name <- 'depends',
+		value <- if c.observer->oclIsTypeOf(CFG!transformations::UML2Observer) 
+			then Sequence{'Observer'} else Sequence{} endif
+			->union(if c.applet->oclIsKindOf(CFG!transformations::UML2MIDlet)
+			then Sequence{'MIDlet'} else Sequence{} endif)
+			->iterate(e; acc : String = '' | acc +
+				if acc = '' then e
+				else ', ' + e endif)->debug('AllBase'),
+		parent <- target)
+	do {
+		target;
+	}
+}
+
+-- ======================================================================
+-- transformation rules end
+-- ======================================================================

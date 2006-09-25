@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
 <mapAttribute key="Model Handler">
+<mapEntry key="parameters" value=""/>
 <mapEntry key="UML2" value="EMF"/>
+<mapEntry key="XML" value="EMF"/>
 <mapEntry key="IN" value=""/>
 </mapAttribute>
 <stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2ToJava.atl"/>
 <mapAttribute key="Libs">
-<mapEntry key="config" value="/uml2cs-instantmessenger-model/outmodels/test/config.asm"/>
 <mapEntry key="UML2" value="/uml2cs-transformations/lib/UML2.asm"/>
 </mapAttribute>
 <booleanAttribute key="Mode Debug" value="false"/>
 <mapAttribute key="ModelType">
+<mapEntry key="parameters" value="MODELINPUT"/>
 <mapEntry key="UML2" value="METAMODELINPUT"/>
+<mapEntry key="XML" value="METAMODELINPUT"/>
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
+<mapEntry key="parameters" value="/uml2cs-instantmessenger-model/outmodels/test/parameters.xml.ecore"/>
 <mapEntry key="UML2" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
+<mapEntry key="XML" value="uri:XML"/>
 <mapEntry key="IN" value="/uml2cs-instantmessenger-model/outmodels/test/im-datatypes.uml"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <mapAttribute key="Output"/>
 <mapAttribute key="Input">
+<mapEntry key="parameters" value="XML"/>
 <mapEntry key="IN" value="UML2"/>
 </mapAttribute>
 <booleanAttribute key="AllowInterModelReferences" value="true"/>

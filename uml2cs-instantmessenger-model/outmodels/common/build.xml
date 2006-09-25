@@ -2,6 +2,7 @@
 <project name="uml2cs-instantmessenger-model-common">
 	<property name="metamodel.uml2.nsURI" value="http://www.eclipse.org/uml2/2.0.0/UML"/>
 	<property name="metamodel.uml2.path" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
+	<property name="metamodel.xml.path" value="/uml2cs-transformations/metamodels/XML.ecore"/>
 	<property name="profile.accessors.path" value="/uml2cs-transformations/profiles/Accessors.profile.uml"/>
 	<property name="model.uml2types.path" value="/uml2cs-transformations/models/PrimitiveTypes.uml"/>
 	<property name="model.javatypes.path" value="/uml2cs-transformations/models/JavaTypes.uml"/>
@@ -37,7 +38,7 @@
 	<property name="lib.strings.path" value="${lib.path}/Strings.asm"/>
 	<property name="lib.uml2.path" value="${lib.path}/UML2.asm"/>
 
-	<property name="lib.config.path" value="${current.path}/config.asm"/>
+	<property name="model.parameters.path" value="${current.path}/parameters.xml"/>
 
 	<!-- = = = = = = = = = = = = = = = = =
           macrodef: profiles          
@@ -309,7 +310,8 @@
     		<am3.atl path="${trans.uml2tojava.path}" allowInterModelReferences="true">
     			<inmodel name="UML2" model="UML2"/>
     			<inmodel name="IN" model="@{in}"/>
-    			<library name="config" path="${lib.config.path}"/>
+    			<inmodel name="XML" model="XML"/>
+    			<inmodel name="parameters" model="Parameters"/>
     			<library name="UML2" path="${lib.uml2.path}"/>
     		</am3.atl>
         </sequential>

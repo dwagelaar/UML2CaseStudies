@@ -8,7 +8,7 @@
 	</target>
 	
 	<target name="loadModels">
-		<am3.loadModel modelHandler="EMF" name="ConfigMM" metamodel="MOF" path="uml2cs-instantmessenger-model/metamodels/Configuration.ecore"/>
+		<am3.loadModel modelHandler="EMF" name="ConfigMM" metamodel="MOF" path="uml2cs-instantmessenger-model/configuration/InstantMessenger.ecore"/>
 		<am3.loadModel modelHandler="EMF" name="Config" metamodel="ConfigMM" path="${ant.project.name}/config.ecore"/>
 		<am3.loadModel modelHandler="EMF" name="XML" metamodel="MOF" path="uml2cs-transformations/metamodels/XML.ecore"/>
 	</target>

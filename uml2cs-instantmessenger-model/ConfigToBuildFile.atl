@@ -262,7 +262,7 @@ rule All(c : CFG!transformations::TransformationConfig) {
 		parent <- target),
 	   targetDepends : XML!XML::Attribute(
 	   	name <- 'depends',
-		value <- Sequence{'allBase'}
+		value <- Sequence{'allBase', 'InstantMessengerModel'}
 	   		->union(c->localNetworkDepends())
 			->union(c->jabberNetworkDepends())
 			->union(c->userInterfaceDepends())

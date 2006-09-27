@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uml2cs-instantmessenger-java2/packaging/ipkg" default="all">
+	<property name="deployment.target" value="java2/ipkg"/>
+	<property name="jabberwookie.path" value="../../../uml2cs-microjabberwookie/jar"/>
+	<property name="deployment.path" value="../../../uml2cs-instantmessenger-model/deployment/data"/>
+	<property name="bin.path" value="../../bin"/>
+	<property name="certificate.path" value="${user.home}/certificate"/>
+
+	<property name="ipk.name" value="instantmessenger-j2me-pp"/>
+	<property name="ipk.version" value="1.1-0"/>
+	<property name="ipk.arch" value="noarch"/>
+	<property name="ipk.depends" value="personal-profile-for-zaurus"/>
+	<property name="ipk.maintainer" value="Dennis Wagelaar &lt;dennis.wagelaar@vub.ac.be&gt;"/>
+	<property name="ipk.priority" value="optional"/>
+	<property name="ipk.section" value="extras"/>
+	<property name="ipk.cardinst" value="enabled"/>
+	<property name="ipk.description" value="Instant Messenger case study for Model-Driven Development.&#010; Supports the Jabber protocol for now."/>
+	<property name="ipk.tabname" value="Java"/>
+
+	<import file="../../../uml2cs-instantmessenger-model/packaging/ipkg/build.xml"/>
+</project>

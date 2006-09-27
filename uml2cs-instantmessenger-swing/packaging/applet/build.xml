@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uml2cs-instantmessenger-swing/packaging/applet" default="all">
+	<property name="deployment.target" value="swing/applet"/>
+	<property name="jabberwookie.path" value="../../../uml2cs-microjabberwookie/jar"/>
+	<property name="deployment.path" value="../../../uml2cs-instantmessenger-model/deployment/data"/>
+	<property name="bin.path" value="../../bin"/>
+	<property name="certificate.path" value="${user.home}/certificate"/>
+
+	<property file="${certificate.path}/certificate.properties"/>
+	
+	<import file="../../../uml2cs-instantmessenger-model/packaging/applet/build.xml"/>
+</project>

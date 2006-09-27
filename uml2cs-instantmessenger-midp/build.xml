@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="uml2cs-instantmessenger-default" default="all">
+<project name="uml2cs-instantmessenger-midp" default="all">
 	<target name="clean">
 		<mkdir dir="build"/>
         <delete includeemptydirs="true">
@@ -40,7 +40,6 @@
 		<am3.saveModel model="Parameters" path="${ant.project.name}/build/parameters.xml">
 			<extractor name="xml"/>
 		</am3.saveModel>
-		<eclipse.refreshLocal resource="${ant.project.name}"/>
 	</target>
 	
 	<target name="all" depends="clean, saveModels"/>

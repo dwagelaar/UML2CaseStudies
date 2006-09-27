@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cddconfig:ConstraintSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cddconfig="http://ssel.vub.ac.be/cddtoolkit/cddconfig">
+  <ontology>InstantMessenger.owl</ontology>
+  <ontology>../../uml2cs-transformations/configuration/Transformations.owl</ontology>
+  <options target="instantmessenger::InstantMessengerConfiguration">
+    <constraint resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+  </options>
+  <options target="instantmessenger::LocalNetwork">
+    <constraint resource="http://local/InstantMessenger.owl#LocalPlatform"/>
+  </options>
+  <options target="instantmessenger::JabberNetwork">
+    <constraint resource="http://local/InstantMessenger.owl#JabberPlatform"/>
+  </options>
+  <options target="instantmessenger::DefaultJabberTransport">
+    <constraint resource="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+  </options>
+  <options target="instantmessenger::MEJabberTransport">
+    <constraint resource="http://local/InstantMessenger.owl#MEJabberPlatform"/>
+  </options>
+  <options target="instantmessenger::AWTUserInterface">
+    <constraint resource="http://local/InstantMessenger.owl#AWTPlatform"/>
+  </options>
+  <options target="instantmessenger::SwingUserInterface">
+    <constraint resource="http://local/InstantMessenger.owl#SwingPlatform"/>
+  </options>
+  <options target="instantmessenger::LCDUIUserInterface">
+    <constraint resource="http://local/InstantMessenger.owl#LCDUIPlatform"/>
+  </options>
+  <options target="instantmessenger::WebAppletPackaging">
+    <constraint resource="http://local/InstantMessenger.owl#WebAppletPlatform"/>
+  </options>
+  <options target="instantmessenger::IpkgAppletPackaging">
+    <constraint resource="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
+  </options>
+  <options target="instantmessenger::MIDletPackaging">
+    <constraint resource="http://local/InstantMessenger.owl#MIDletPlatform"/>
+  </options>
+  <options target="transformations::JavaMapping">
+    <constraint resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+  </options>
+  <options target="transformations::Java1DataTypes">
+    <constraint resource="http://local/Transformations.owl#Java1Platform"/>
+  </options>
+  <options target="transformations::Java2DataTypes">
+    <constraint resource="http://local/Transformations.owl#Java2Platform"/>
+  </options>
+  <options target="transformations::UML2JavaObserver">
+    <constraint resource="http://local/Transformations.owl#JavaObserverPlatform"/>
+  </options>
+  <options target="transformations::UML2Applet">
+    <constraint resource="http://local/Transformations.owl#AppletPlatform"/>
+  </options>
+  <options target="transformations::UML2MIDlet">
+    <constraint resource="http://local/Transformations.owl#MIDletPlatform"/>
+  </options>
+</cddconfig:ConstraintSpace>

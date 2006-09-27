@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:instantmessenger="platform:/resource/uml2cs-instantmessenger-model/configuration/InstantMessenger.ecore"
     xmlns:transformations="platform:/resource/uml2cs-transformations/configuration/Transformations.ecore" buildPath="uml2cs-instantmessenger-default/build"
-    targetPath="uml2cs-instantmessenger-default/src" saveModels="last" deploymentTarget="default/applet/">
+    targetPath="uml2cs-instantmessenger-default/src" saveModels="last" deploymentTarget="default/ipkg/instantmessenger-jeode_1.1-0_noarch.ipk">
   <mapping xsi:type="transformations:JavaMapping">
     <dataTypes xsi:type="transformations:Java1DataTypes"/>
   </mapping>
@@ -14,5 +14,5 @@
     <jabberTransport xsi:type="instantmessenger:DefaultJabberTransport"/>
   </jabberNetwork>
   <userInterface xsi:type="instantmessenger:AWTUserInterface"/>
-  <packaging xsi:type="instantmessenger:WebAppletPackaging"/>
+  <packaging xsi:type="instantmessenger:IpkgAppletPackaging"/>
 </instantmessenger:InstantMessengerConfiguration>

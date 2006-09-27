@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="MIDPInstantMessenger" default="all">
+<project name="uml2cs-instantmessenger-model/packaging/midp">
 	<property name="src.dir" value="build/src"/>
 	<property name="bin.dir" value="build/bin"/>
-	<property name="midlet.name" value="instantmessenger"/>
-	<property name="midlet.icon" value="${midlet.name}.png"/>
-	<property name="midlet.class" value="im.InstantMessagingClient"/>
-	<property name="midlet.permissions" value="javax.microedition.io.Connector.socket"/>
-	<property name="midlet.vendor" value="Vrije Universiteit Brussel"/>
-	<property name="midlet.version" value="1.0"/>
-	<property name="midlet.configuration" value="CLDC-1.0"/>
-	<property name="midlet.profile" value="MIDP-1.0"/>
-	<property name="midlet.jar" value="${midlet.name}.jar"/>
-	<property name="midlet.jad" value="${midlet.name}.jad"/>
-	<property name="wtk.path" value="/home/dwagelaa/WTK2.2"/>
 	<property name="wtk.lib" value="${wtk.path}/lib"/>
 	<property name="wtk.bin" value="${wtk.path}/bin"/>
 	<property name="wtk.lib.cldc10" value="${wtk.lib}/cldcapi10.jar"/>
@@ -22,17 +11,20 @@
 	<property name="wtk.bin.emulator" value="${wtk.bin}/emulator"/>
 	
 	<target name="clean">
-        <delete dir="${src.dir}"/>
-        <delete dir="${bin.dir}"/>
+        <delete dir="build"/>
+		<mkdir dir="${deployment.path}/${deployment.target}"/>
+        <delete>
+        	<fileset dir="${deployment.path}/${deployment.target}"/>
+        </delete>
     </target>
 
 	<target name="prepare" depends="clean">
 	    <mkdir dir="${src.dir}"/>
 	    <copy todir="${src.dir}">
-	      	<fileset dir="../src">
+	      	<fileset dir="${src.path}">
 	      		<include name="**"/>
 	    	</fileset>
-	      	<fileset dir="../../uml2cs-microjabberwookie/src">
+	      	<fileset dir="${jabberwookie.path}">
 	      		<include name="**"/>
 	    	</fileset>
 	    </copy>
@@ -62,7 +54,7 @@
 	</target>
 
 	<target name="jar" depends="preverify">
-		<jar destfile="${midlet.jar}" basedir="${bin.dir}">
+		<jar destfile="${deployment.path}/${deployment.target}/${midlet.jar}" basedir="${bin.dir}">
         	<include name="**"/>
         	<manifest>
         		<attribute name="MIDlet-1" value="${midlet.name}, ${midlet.icon}, ${midlet.class}"/>
@@ -77,8 +69,8 @@
 	</target>
 
 	<target name="jad" depends="jar">
-		<length file="${midlet.jar}" property="midlet.size"/>
-		<echo file="${midlet.jad}">MIDlet-1: ${midlet.name}, ${midlet.icon}, ${midlet.class}
+		<length file="${deployment.path}/${deployment.target}/${midlet.jar}" property="midlet.size"/>
+		<echo file="${deployment.path}/${deployment.target}/${midlet.jad}">MIDlet-1: ${midlet.name}, ${midlet.icon}, ${midlet.class}
 MIDlet-Jar-Size: ${midlet.size}
 MIDlet-Jar-URL: ${midlet.jar}
 MIDlet-Name: ${midlet.name}
@@ -89,12 +81,34 @@ MicroEdition-Configuration: ${midlet.configuration}
 MicroEdition-Profile: ${midlet.profile}
 </echo>
 	</target>
-	
+
+	<target name="resources">
+		<copy todir="${deployment.path}/${deployment.target}">
+			<fileset dir="${ant.file.uml2cs-instantmessenger-model/packaging/midp}.resources/"/>
+		</copy>
+		<copy file="${ant.file.uml2cs-instantmessenger-model/packaging/midp}.resources/instantmessenger.png" tofile="${deployment.path}/${deployment.target}/icon_1.png"/>
+	</target>
+
 	<target name="run">
-		<exec dir="." executable="${wtk.bin.emulator}" logError="true">
+		<exec dir="${deployment.path}/${deployment.target}" executable="${wtk.bin.emulator}" logError="true">
 			<arg value="-Xdescriptor:${midlet.jad}"/>
 		</exec>
 	</target>
 
-	<target name="all" depends="jad"/>
+	<target name="put_siemens_obex">
+		<exec dir="${deployment.path}/${deployment.target}" executable="obexftp" logError="true">
+			<arg line="-i -c Data/Java/jam/Games -C InstantMessenger"/>
+		</exec>
+		<exec dir="${deployment.path}/${deployment.target}" executable="obexftp" logError="true">
+			<arg line="-i -c Data/Java/jam/Games/InstantMessenger -p icon*"/>
+		</exec>
+		<exec dir="${deployment.path}/${deployment.target}" executable="obexftp" logError="true">
+			<arg line="-i -c Data/Java/jam/Games/InstantMessenger -p instantmessenger.jad"/>
+		</exec>
+		<exec dir="${deployment.path}/${deployment.target}" executable="obexftp" logError="true">
+			<arg line="-i -c Data/Java/jam/Games/InstantMessenger -p instantmessenger.jar"/>
+		</exec>
+	</target>
+
+	<target name="all" depends="jad, resources"/>
 </project>

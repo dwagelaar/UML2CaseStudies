@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uml2cs-instantmessenger-model/packaging/ipkg">
+	<property file="${certificate.path}/certificate.properties"/>
+
+	<target name="clean">
+        <delete dir="build"/>
+		<mkdir dir="${deployment.path}/${deployment.target}"/>
+        <delete>
+        	<fileset dir="${deployment.path}/${deployment.target}">
+	       		<include name="*.ipk"/>
+        	</fileset>
+        </delete>
+    </target>
+
+	<target name="prepare" depends="clean">
+	    <mkdir dir="build/data/opt/QtPalmtop/java/${ipk.name}"/>
+		<copy todir="build/data/opt/QtPalmtop/java/${ipk.name}">
+			<fileset dir="${ant.file.uml2cs-instantmessenger-model/packaging/ipkg}.resources/java"/>
+		</copy>
+		<mkdir dir="build/data/opt/QtPalmtop/apps/${ipk.tabname}"/>
+		<echo file="build/data/opt/QtPalmtop/apps/${ipk.tabname}/${ipk.name}.desktop">[Desktop Entry]
+Name=Instant Messenger
+Comment=Instant Messenger
+Exec=${ipk.name}
+Icon=${ipk.name}
+Type=Application
+CanFastLoad=0
+HidePrivilige=1
+NeedSpace=4096
+</echo>
+		<mkdir dir="build/data/opt/QtPalmtop/bin"/>
+		<echo file="build/data/opt/QtPalmtop/bin/${ipk.name}">IM_PATH=\$QPEDIR/java/${ipk.name}
+if [ -x \$QPEDIR/j2me/bin/cvm ]; then
+	JAVA=\$QPEDIR/j2me/bin/cvm
+elif [ -x \$QPEDIR/bin/evm ]; then
+	JAVA=\$QPEDIR/bin/evm
+	EXTRA_ARGS="-cp MicroJabberWookie.jar"
+else
+	JAVA=java
+fi
+cd \$IM_PATH
+\$JAVA -XappName=$0 -Djava.security.policy=java.policy.applet \$EXTRA_ARGS -appletviewer index.html
+</echo>
+		<mkdir dir="build/data/opt/QtPalmtop/pics"/>
+		<copy file="${ant.file.uml2cs-instantmessenger-model/packaging/ipkg}.resources/pics/instantmessenger.png" tofile="build/data/opt/QtPalmtop/pics/${ipk.name}.png"/>
+		<mkdir dir="build/data/opt/QtPalmtop/pics144"/>
+		<copy file="${ant.file.uml2cs-instantmessenger-model/packaging/ipkg}.resources/pics144/instantmessenger.png" tofile="build/data/opt/QtPalmtop/pics144/${ipk.name}.png"/>
+	</target>
+
+	<target name="jabberwookie" depends="prepare">
+		<copy file="${jabberwookie.path}/MicroJabberWookie.jar" todir="build/data/opt/QtPalmtop/java/${ipk.name}"/>
+	</target>
+	
+    <target name="jar" depends="jabberwookie">
+        <jar destfile="build/data/opt/QtPalmtop/java/${ipk.name}/im.jar" basedir="${bin.path}">
+        	<include name="**"/>
+        	<manifest>
+        		<attribute name="Main-Class" value="sun.applet.AppletViewer"/>
+        		<attribute name="Class-Path" value="MicroJabberWookie.jar"/>
+        	</manifest>
+        </jar>
+    </target>
+	
+	<target name="jar-sign" depends="jar">
+		<signjar jar="build/data/opt/QtPalmtop/java/${ipk.name}/im.jar"
+			alias="${certificate.alias}"
+			keystore="${certificate.path}/${certificate.name}"
+			storetype="pkcs12"
+			storepass="${certificate.passphrase}"/>
+	</target>
+	
+	<target name="data" depends="jar-sign">
+		<tar destfile="build/data.tar.gz" compression="gzip">
+			<tarfileset dir="build/data" prefix="./" username="root" group="qpe" uid="0" gid="500">
+				<exclude name="**/bin/**"/>
+			</tarfileset>
+			<tarfileset dir="build/data" prefix="./" username="root" group="qpe" uid="0" gid="500" mode="755">
+				<include name="**/bin/**"/>
+			</tarfileset>
+		</tar>
+	</target>
+	
+	<target name="control" depends="data">
+		<length property="ipk.installed-size">
+			<fileset dir="build/data"/>
+		</length>
+		<mkdir dir="build/control"/>
+		<echo file="build/control/control">Package: ${ipk.name}
+Version: ${ipk.version}
+Architecture: ${ipk.arch}
+Depends: ${ipk.depends}
+Priority: ${ipk.priority}
+Section: ${ipk.section}
+Maintainer: ${ipk.maintainer}
+Cardinst: ${ipk.cardinst}
+Installed-Size: ${ipk.installed-size}
+Description: ${ipk.description}
+</echo>
+		<tar destfile="build/control.tar.gz" compression="gzip">
+			<tarfileset dir="build/control" prefix="./" username="root" group="qpe" uid="0" gid="500"/>
+		</tar>
+	</target>
+	
+	<target name="ipk" depends="control">
+		<echo file="build/debian-binary">2.0
+</echo>
+		<tar destfile="${deployment.path}/${deployment.target}/${ipk.name}_${ipk.version}_${ipk.arch}.ipk" compression="gzip">
+			<tarfileset dir="build" prefix="./" username="root" group="qpe" uid="0" gid="500">
+				<include name="debian-binary"/>
+				<include name="data.tar.gz"/>
+				<include name="control.tar.gz"/>
+			</tarfileset>
+		</tar>
+	</target>
+	
+	<target name="all" depends="ipk"/>
+</project>

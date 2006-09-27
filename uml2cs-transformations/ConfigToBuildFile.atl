@@ -162,6 +162,25 @@ rule UML2MIDlet {
 		parent <- target)
 }
 
+rule Java2DataTypes {
+	from s : CFG!transformations::Java2DataTypes
+	-- <target name="IteratorEnumerationAdapter" depends="loadBaseModels">
+	to target : XML!XML::Element mapsTo s (
+		name <- 'target',
+		parent <- s.mapping.config,
+		children <- Sequence{
+			thisModule->TransformInvocation('IteratorEnumerationAdapter', 'enum')
+		}),
+	   targetName : XML!XML::Attribute (
+	   	name <- 'name',
+		value <- 'IteratorEnumerationAdapter',
+		parent <- target),
+	   targetDepends : XML!XML::Attribute (
+	   	name <- 'depends',
+		value <- 'loadBaseModels',
+		parent <- target)
+}
+
 rule TransformInvocation("in" : String, prefix : String) {
 	-- <transform in="in" prefix="prefix"/>
 	to macroInv : XML!XML::Element (
@@ -897,6 +916,10 @@ rule AllBase(c : CFG!transformations::TransformationConfig) {
 			then Sequence{'Observer'} else Sequence{} endif
 			->union(if c.applet->oclIsKindOf(CFG!transformations::UML2MIDlet)
 			then Sequence{'MIDlet'} else Sequence{} endif)
+			->union(if c.mapping->oclIsKindOf(CFG!transformations::JavaMapping) then 
+				if c.mapping.dataTypes->oclIsKindOf(CFG!transformations::Java2DataTypes)
+				then Sequence{'IteratorEnumerationAdapter'} else Sequence{} endif
+			else Sequence{} endif)
 			->iterate(e; acc : String = '' | acc +
 				if acc = '' then e
 				else ', ' + e endif)->debug('AllBase'),

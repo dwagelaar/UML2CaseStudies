@@ -12,8 +12,10 @@
       <details key="documentation" value="Root node for an instant messenger configuration model"/>
     </eAnnotations>
     <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint"/>
+      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deploymentTarget" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localNetwork" eType="#//LocalNetwork"
         defaultValueLiteral="" containment="true" eOpposite="#//LocalNetwork/config"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="jabberNetwork" eType="#//JabberNetwork"
@@ -25,14 +27,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LocalNetwork">
     <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint"/>
+      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#LocalPlatform"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="config" lowerBound="1"
         eType="#//InstantMessengerConfiguration" eOpposite="#//InstantMessengerConfiguration/localNetwork"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JabberNetwork">
     <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint"/>
+      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#JabberPlatform"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="jabberTransport" lowerBound="1"
         eType="#//JabberTransport" defaultValueLiteral="" containment="true" eOpposite="#//JabberTransport/jabberNetwork"/>
@@ -45,12 +47,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DefaultJabberTransport" eSuperTypes="#//JabberTransport">
     <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint"/>
+      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MEJabberTransport" eSuperTypes="#//JabberTransport">
     <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint"/>
+      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#MEJabberPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserInterface" abstract="true">
@@ -59,17 +61,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AWTUserInterface" eSuperTypes="#//UserInterface">
     <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint"/>
+      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#AWTPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SwingUserInterface" eSuperTypes="#//UserInterface">
     <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint"/>
+      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#SwingPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LCDUIUserInterface" eSuperTypes="#//UserInterface">
     <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint"/>
+      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#LCDUIPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Packaging" abstract="true">
@@ -78,17 +80,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WebAppletPackaging" eSuperTypes="#//Packaging">
     <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint"/>
+      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#WebAppletPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IpkgAppletPackaging" eSuperTypes="#//Packaging">
     <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint"/>
+      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MIDletPackaging" eSuperTypes="#//Packaging">
     <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint"/>
+      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#MIDletPlatform"/>
     </eAnnotations>
   </eClassifiers>
 </ecore:EPackage>

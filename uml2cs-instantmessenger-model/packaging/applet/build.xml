@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uml2cs-instantmessenger-model/packaging/applet">
+	<property file="${certificate.path}/certificate.properties"/>
+
+	<target name="clean">
+		<mkdir dir="${deployment.path}/${deployment.target}"/>
+        <delete>
+        	<fileset dir="${deployment.path}/${deployment.target}"/>
+        </delete>
+    </target>
+
+	<target name="jabberwookie" depends="clean">
+		<copy file="${jabberwookie.path}/MicroJabberWookie.jar" todir="${deployment.path}/${deployment.target}"/>
+	</target>
+	
+    <target name="jar" depends="jabberwookie">
+        <jar destfile="${deployment.path}/${deployment.target}/im.jar" basedir="${bin.path}">
+        	<include name="**"/>
+        	<manifest>
+        		<attribute name="Main-Class" value="sun.applet.AppletViewer"/>
+        		<attribute name="Class-Path" value="MicroJabberWookie.jar"/>
+        	</manifest>
+        </jar>
+    </target>
+	
+	<target name="jar-sign" depends="jar">
+		<signjar jar="${deployment.path}/${deployment.target}/im.jar"
+			alias="${certificate.alias}"
+			keystore="${certificate.path}/${certificate.name}"
+			storetype="pkcs12"
+			storepass="${certificate.passphrase}"/>
+	</target>
+	
+	<target name="resources">
+		<copy file="${ant.file.uml2cs-instantmessenger-model/packaging/applet}.resources/index.html" todir="${deployment.path}/${deployment.target}"/>
+	</target>
+	
+	<target name="all" depends="jar-sign, resources"/>
+</project>

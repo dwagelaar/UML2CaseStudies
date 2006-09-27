@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cddconfig:ConstraintSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cddconfig="http://ssel.vub.ac.be/cddtoolkit/cddconfig">
+  <ontology>../../configuration/InstantMessenger.owl</ontology>
+  <ontology>../../../uml2cs-transformations/configuration/Transformations.owl</ontology>
+  <options target="swing/applet/">
+    <constraint resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    <constraint resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint resource="http://local/Transformations.owl#Java2Platform"/>
+    <constraint resource="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <constraint resource="http://local/Transformations.owl#AppletPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#SwingPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#WebAppletPlatform"/>
+  </options>
+  <options target="java2/applet/">
+    <constraint resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    <constraint resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint resource="http://local/Transformations.owl#Java2Platform"/>
+    <constraint resource="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <constraint resource="http://local/Transformations.owl#AppletPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#AWTPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#WebAppletPlatform"/>
+  </options>
+  <options target="java2/ipkg/instantmessenger-j2me-pp_1.1-0_noarch.ipk">
+    <constraint resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    <constraint resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint resource="http://local/Transformations.owl#Java2Platform"/>
+    <constraint resource="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <constraint resource="http://local/Transformations.owl#AppletPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#AWTPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
+  </options>
+  <options target="default/applet/">
+    <constraint resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    <constraint resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint resource="http://local/Transformations.owl#Java1Platform"/>
+    <constraint resource="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <constraint resource="http://local/Transformations.owl#AppletPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#AWTPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#WebAppletPlatform"/>
+  </options>
+  <options target="default/ipkg/instantmessenger-jeode_1.1-0_noarch.ipk">
+    <constraint resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    <constraint resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint resource="http://local/Transformations.owl#Java1Platform"/>
+    <constraint resource="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <constraint resource="http://local/Transformations.owl#AppletPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#AWTPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
+  </options>
+  <options target="midp/instantmessenger.jad">
+    <constraint resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    <constraint resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint resource="http://local/Transformations.owl#Java1Platform"/>
+    <constraint resource="http://local/Transformations.owl#MIDletPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#MEJabberPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#LCDUIPlatform"/>
+    <constraint resource="http://local/InstantMessenger.owl#MIDletPlatform"/>
+  </options>
+</cddconfig:ConstraintSpace>

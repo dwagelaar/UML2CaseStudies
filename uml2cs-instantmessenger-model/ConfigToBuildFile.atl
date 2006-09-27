@@ -253,7 +253,7 @@ rule InstantMessengerModel(c : CFG!transformations::TransformationConfig) {
 }
 
 rule All(c : CFG!transformations::TransformationConfig) {
-	-- <target name="all" depends="..."/>
+	-- <target name="all" depends="...">
 	to target : XML!XML::Element (
 		name <- 'target'),
 	   targetName : XML!XML::Attribute(
@@ -269,7 +269,16 @@ rule All(c : CFG!transformations::TransformationConfig) {
 			->iterate(e; acc : String = '' | acc +
 				if acc = '' then e
 				else ', ' + e endif)->debug('All'),
-		parent <- target)
+		parent <- target),
+	-- 	<eclipse.refreshLocal resource="${ant.project.name}"/>
+	   refresh : XML!XML::Element (
+	   	name <- 'eclipse.refreshLocal',
+		parent <- target),
+	   refreshResource : XML!XML::Attribute (
+	   	name <- 'resource',
+		value <- '${ant.project.name}',
+		parent <- refresh)
+	-- </target>
 	do {
 		target;
 	}

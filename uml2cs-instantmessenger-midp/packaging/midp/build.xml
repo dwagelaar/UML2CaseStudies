@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uml2cs-instantmessenger-midp/packaging/midp" default="all">
+	<property name="deployment.target" value="midp"/>
+	<property name="jabberwookie.path" value="../../../uml2cs-microjabberwookie/src"/>
+	<property name="deployment.path" value="../../../uml2cs-instantmessenger-model/deployment/data"/>
+	<property name="src.path" value="../../src"/>
+	<property name="wtk.path" value="${user.home}/WTK2.2"/>
+
+	<property name="midlet.vendor" value="Vrije Universiteit Brussel"/>
+	<property name="midlet.version" value="1.1"/>
+	<property name="midlet.name" value="instantmessenger"/>
+	<property name="midlet.icon" value="${midlet.name}.png"/>
+	<property name="midlet.class" value="im.InstantMessagingClient"/>
+	<property name="midlet.permissions" value="javax.microedition.io.Connector.socket"/>
+	<property name="midlet.configuration" value="CLDC-1.0"/>
+	<property name="midlet.profile" value="MIDP-1.0"/>
+	<property name="midlet.jar" value="${midlet.name}.jar"/>
+	<property name="midlet.jad" value="${midlet.name}.jad"/>
+
+	<import file="../../../uml2cs-instantmessenger-model/packaging/midp/build.xml"/>
+</project>

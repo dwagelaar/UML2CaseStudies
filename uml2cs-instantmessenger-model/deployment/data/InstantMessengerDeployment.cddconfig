@@ -62,7 +62,7 @@
     <constraint resource="http://local/InstantMessenger.owl#AWTPlatform"/>
     <constraint resource="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
   </options>
-  <options target="midp/instantmessenger.jad">
+  <options target="midp/">
     <constraint resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     <constraint resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
     <constraint resource="http://local/Transformations.owl#Java1Platform"/>

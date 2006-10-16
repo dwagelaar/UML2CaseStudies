@@ -11,8 +11,11 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
+helper def : language : String = 'language'->value();
+helper def : singletons : Sequence(UML2!Singleton::Singleton) = UML2!Singleton::Singleton->allInstances();
+
 helper context UML2!uml::Classifier def : isSingleton() : Boolean =
-	UML2!Singleton::Singleton->allInstances()->select(o|o.base_Classifier=self)->notEmpty();
+	thisModule.singletons->select(o|o.base_Classifier=self)->notEmpty();
 
 -- ======================================================================
 -- model-specific helpers end
@@ -85,7 +88,7 @@ rule SingletonClass {
 	   getBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s.name->singletonBody()})
 }
 

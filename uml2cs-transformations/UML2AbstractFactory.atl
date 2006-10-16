@@ -11,14 +11,19 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
+helper def : language : String = 'language'->value();
+helper def : abstractFactories : Sequence(UML2!AbstractFactory::AbstractFactory) = UML2!AbstractFactory::AbstractFactory->allInstances();
+helper def : concreteFactories : Sequence(UML2!AbstractFactory::ConcreteFactory) = UML2!AbstractFactory::ConcreteFactory->allInstances();
+helper def : products : Sequence(UML2!AbstractFactory::product) = UML2!AbstractFactory::product->allInstances();
+
 helper context UML2!uml::Classifier def : isAbstractFactory() : Boolean =
-	UML2!AbstractFactory::AbstractFactory->allInstances()->select(a|a.base_Classifier=self)->notEmpty();
+	thisModule.abstractFactories->select(a|a.base_Classifier=self)->notEmpty();
 
 helper context UML2!uml::Class def : isConcreteFactory() : Boolean =
-	UML2!AbstractFactory::ConcreteFactory->allInstances()->select(a|a.base_Class=self)->notEmpty();
+	thisModule.concreteFactories->select(a|a.base_Class=self)->notEmpty();
 
 helper context UML2!uml::Dependency def : isProduct() : Boolean =
-	UML2!AbstractFactory::product->allInstances()->select(a|a.base_Dependency=self)->notEmpty();
+	thisModule.products->select(a|a.base_Dependency=self)->notEmpty();
 
 -- ======================================================================
 -- model-specific helpers end
@@ -252,7 +257,7 @@ rule ConcreteProductDependency {
 	   createBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- createOp,
 		name <- createOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s.supplier->first().name->createBody()})
 }
 

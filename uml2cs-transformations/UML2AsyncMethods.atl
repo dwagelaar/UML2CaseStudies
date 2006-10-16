@@ -10,8 +10,10 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
+helper def : asyncs : Sequence(UML2!Async::asynchronous) = UML2!Async::asynchronous->allInstances();
+
 helper context UML2!uml::Operation def : isAsynchronous() : Boolean =
-	UML2!Async::asynchronous->allInstances()->select(a|a.base_Operation=self)->notEmpty();
+	thisModule.asyncs->select(a|a.base_Operation=self)->notEmpty();
 
 -- ======================================================================
 -- model-specific helpers end

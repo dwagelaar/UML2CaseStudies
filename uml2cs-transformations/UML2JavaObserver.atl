@@ -17,18 +17,22 @@ helper def : Observable : UML2!uml::Class = 'java::util::Observable'->class();
 helper def : ObserverName : String = thisModule.Observer->qualifiedName('separator'->value());
 helper def : oclString : UML2!uml::PrimitiveType = 'String'->primitiveType();
 helper def : oclAny : UML2!uml::PrimitiveType = 'OclAny'->primitiveType();
+helper def : observables : Sequence(UML2!Observer::Observable) = UML2!Observer::Observable->allInstances();
+helper def : observers : Sequence(UML2!Observer::Observer) = UML2!Observer::Observer->allInstances();
+helper def : subscribes : Sequence(UML2!Observer::subscribe) = UML2!Observer::subscribe->allInstances();
+helper def : accessors : Sequence(UML2!Accessors::accessor) = UML2!Accessors::accessor->allInstances();
 
 helper context UML2!uml::Classifier def : isObservable() : Boolean =
-	UML2!Observer::Observable->allInstances()->select(o|o.base_Classifier=self)->notEmpty();
+	thisModule.observables->select(o|o.base_Classifier=self)->notEmpty();
 
 helper context UML2!uml::Classifier def : isObserver() : Boolean =
-	UML2!Observer::Observer->allInstances()->select(o|o.base_Classifier=self)->notEmpty();
+	thisModule.observers->select(o|o.base_Classifier=self)->notEmpty();
 
 helper context UML2!uml::Association def : isSubscribe() : Boolean =
-	UML2!Observer::subscribe->allInstances()->select(s|s.base_Association=self)->notEmpty();
+	thisModule.subscribes->select(s|s.base_Association=self)->notEmpty();
 
 helper context UML2!uml::Dependency def : isAccessor() : Boolean =
-	UML2!Accessors::accessor->allInstances()->select(a|a.base_Dependency=self)->notEmpty();
+	thisModule.accessors->select(a|a.base_Dependency=self)->notEmpty();
 
 helper context UML2!uml::Behavior def : isNotifyMethod() : Boolean =
 	if self.specification->isAccessor() then

@@ -13,9 +13,37 @@ uses Mappings;
 -- ======================================================================
 
 helper def : voidType : UML2!uml::Type = 'OclVoid'->implTypeName()->type();
+helper def : anyType : UML2!uml::Type = 'OclAny'->implTypeName()->type();
+helper def : integerType : UML2!uml::Type = 'Integer'->implTypeName()->type();
+helper def : unlimitedNaturalType : UML2!uml::Type = 'UnlimitedNatural'->implTypeName()->type();
+helper def : realType : UML2!uml::Type = 'Real'->implTypeName()->type();
+helper def : booleanType : UML2!uml::Type = 'Boolean'->implTypeName()->type();
+helper def : stringType : UML2!uml::Type = 'String'->implTypeName()->type();
+helper def : exceptionType : UML2!uml::Type = 'Exception'->implTypeName()->type();
+
+helper def : orderedSetType : UML2!uml::Type = 'OrderedSet'->implTypeName()->type();
+helper def : sequenceType : UML2!uml::Type = 'Sequence'->implTypeName()->type();
+helper def : setType : UML2!uml::Type = 'Set'->implTypeName()->type();
+helper def : bagType : UML2!uml::Type = 'Bag'->implTypeName()->type();
+helper def : orderedSetReturnType : UML2!uml::Type = 'OrderedSet'->implCollectionReturnTypeName()->type();
+helper def : sequenceReturnType : UML2!uml::Type = 'Sequence'->implCollectionReturnTypeName()->type();
+helper def : setReturnType : UML2!uml::Type = 'Set'->implCollectionReturnTypeName()->type();
+helper def : bagReturnType : UML2!uml::Type = 'Bag'->implCollectionReturnTypeName()->type();
 
 helper context UML2!uml::PrimitiveType def : implType() : UML2!uml::Type =
-	self.name->implTypeName()->type();
+	if self.name = 'Integer' then thisModule.integerType else
+	if self.name = 'UnlimitedNatural' then thisModule.unlimitedNaturalType else
+	if self.name = 'Real' then thisModule.realType else
+	if self.name = 'Boolean' then thisModule.booleanType else
+	if self.name = 'String' then thisModule.stringType else
+	if self.name = 'OclAny' then thisModule.anyType else
+	if self.name = 'Exception' then thisModule.exceptionType else
+	if self.name = 'OrderedSet' then thisModule.orderedSetType else
+	if self.name = 'Set' then thisModule.setType else
+	if self.name = 'Sequence' then thisModule.sequenceType else
+	if self.name = 'Bag' then thisModule.bagType else
+		thisModule.voidType
+	endif endif endif endif	endif endif endif endif endif endif endif;
 
 helper context UML2!uml::Type def : implType() : UML2!uml::Type =
 	self;
@@ -34,7 +62,7 @@ helper context UML2!uml::Parameter def : implType() : UML2!uml::Type =
 	if self->isSingle() then
 		self.type->implType()
 	else if self.direction = #return then
-		self.type.name->implCollectionReturnTypeName()->type()
+		self->implCollectionReturnType()
 	else
 		self->implCollectionType()
 	endif endif;
@@ -42,15 +70,30 @@ helper context UML2!uml::Parameter def : implType() : UML2!uml::Type =
 helper context UML2!uml::MultiplicityElement def : implCollectionType() : UML2!uml::Type =
 	if self.isOrdered then
 		if self.isUnique then
-			'OrderedSet'->implTypeName()->type()
+			thisModule.orderedSetType
 		else
-			'Sequence'->implTypeName()->type()
+			thisModule.sequenceType
 		endif
 	else
 		if self.isUnique then
-			'Set'->implTypeName()->type()
+			thisModule.setType
 		else
-			'Bag'->implTypeName()->type()
+			thisModule.bagType
+		endif
+	endif;
+
+helper context UML2!uml::MultiplicityElement def : implCollectionReturnType() : UML2!uml::Type =
+	if self.isOrdered then
+		if self.isUnique then
+			thisModule.orderedSetReturnType
+		else
+			thisModule.sequenceReturnType
+		endif
+	else
+		if self.isUnique then
+			thisModule.setReturnType
+		else
+			thisModule.bagReturnType
 		endif
 	endif;
 

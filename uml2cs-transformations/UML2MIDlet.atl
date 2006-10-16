@@ -11,13 +11,16 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
+helper def : language : String = 'language'->value();
 helper def : AppletMIDlet : UML2!uml::Class = 'midlet::AppletMIDlet'->class();
+helper def : applets : Sequence(UML2!Applet::Applet) = UML2!Applet::Applet->allInstances();
+helper def : singletons : Sequence(UML2!Singleton::Singleton) = UML2!Singleton::Singleton->allInstances();
 
 helper context UML2!uml::Classifier def : isApplet() : Boolean =
-	UML2!Applet::Applet->allInstances()->select(o|o.base_Classifier=self)->notEmpty();
+	thisModule.applets->select(o|o.base_Classifier=self)->notEmpty();
 
 helper context UML2!uml::Classifier def : isSingleton() : Boolean =
-	UML2!Singleton::Singleton->allInstances()->select(o|o.base_Classifier=self)->notEmpty();
+	thisModule.singletons->select(o|o.base_Classifier=self)->notEmpty();
 
 -- ======================================================================
 -- model-specific helpers end
@@ -126,7 +129,7 @@ rule AppletInitOperation(s : UML2!uml::Class) {
 	   initBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- initOp,
 		name <- initOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s->isSingleton()->midletInitBody()})
 	do {
 		initBehavior;

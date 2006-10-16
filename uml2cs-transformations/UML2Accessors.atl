@@ -24,6 +24,8 @@ uses Mappings;
 
 helper def : accessor : UML2!uml::Stereotype = 'accessor'->stereotype();
 helper def : oclInteger : UML2!uml::PrimitiveType = 'Integer'->primitiveType();
+helper def : separator : String = 'separator'->value();
+helper def : language : String = 'language'->value();
 
 helper context UML2!uml::Property def : setter() : String =
 	if self.hasAssociatedProperty() then
@@ -92,7 +94,7 @@ helper context UML2!uml::Property def : getter() : String =
 	else self.name->multiGetterBody() endif;
 
 helper context UML2!uml::Property def : getAt() : String =
-	self.name->getAtBody(self.type->qualifiedName('separator'->value()));
+	self.name->getAtBody(self.type->qualifiedName(thisModule.separator));
 
 -- ======================================================================
 -- model-specific helpers end
@@ -293,7 +295,7 @@ rule PublicPropertySingle {
 	   getBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
-	   	language <- Sequence{'language'->value()},
+	   	language <- Sequence{thisModule.language},
 		body <- Sequence{s->getter()}),
 	   getDep : UML2!uml::Dependency (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
@@ -318,7 +320,7 @@ rule PublicPropertySingle {
 	   setBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- setOp,
 		name <- setOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s->setter()}),
 	   setDep : UML2!uml::Dependency (
 	   	name <- 'accessor ' + 'set' + baseNameS + '()',
@@ -390,7 +392,7 @@ rule PublicPropertyCollection {
 	   getBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s->getter()}),
 	   getDep : UML2!uml::Dependency (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
@@ -415,7 +417,7 @@ rule PublicPropertyCollection {
 	   addBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- addOp,
 		name <- addOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s->adder()}),
 	   addDep : UML2!uml::Dependency (
 	   	name <- 'accessor ' + 'add' + baseName + '()',
@@ -440,7 +442,7 @@ rule PublicPropertyCollection {
 	   removeBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- removeOp,
 		name <- removeOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s->remover()}),
 	   removeDep : UML2!uml::Dependency (
 	   	name <- 'accessor ' + 'remove' + baseName + '()',
@@ -512,7 +514,7 @@ rule PublicPropertySequence {
 	   getBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s->getter()}),
 	   getDep : UML2!uml::Dependency (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
@@ -537,7 +539,7 @@ rule PublicPropertySequence {
 	   addBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- addOp,
 		name <- addOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s->adder()}),
 	   addDep : UML2!uml::Dependency (
 	   	name <- 'accessor ' + 'add' + baseName + '()',
@@ -562,7 +564,7 @@ rule PublicPropertySequence {
 	   removeBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- removeOp,
 		name <- removeOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s->remover()}),
 	   removeDep : UML2!uml::Dependency (
 	   	name <- 'accessor ' + 'remove' + baseName + '()',
@@ -592,7 +594,7 @@ rule PublicPropertySequence {
 	   getAtBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- getAtOp,
 		name <- getAtOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s->getAt()}),
 	   getAtDep : UML2!uml::Dependency (
 	   	name <- 'accessor ' + 'get' + baseName + 'At()',
@@ -622,7 +624,7 @@ rule PublicPropertySequence {
 	   indexOfBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- indexOfOp,
 		name <- indexOfOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s.name->indexOfBody()}),
 	   indexOfDep : UML2!uml::Dependency (
 	   	name <- 'accessor ' + 'getIndexOf' + baseName + '()',
@@ -652,7 +654,7 @@ rule PublicPropertySequence {
 	   insertBehavior : UML2!uml::OpaqueBehavior (
 	   	specification <- insertOp,
 		name <- insertOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s->insert()}),
 	   insertDep : UML2!uml::Dependency (
 	   	name <- 'accessor ' + 'insert' + baseName + '()',

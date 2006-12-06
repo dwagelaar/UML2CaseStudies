@@ -1,3 +1,4 @@
+-- @atlcompiler atl2006
 -- $Id$
 -- Generates an ATL transformation that copies models using the given Ecore meta-model
 query EModelCopyGenerator = ECORE!EClass->allInstancesFrom('IN')->iterate(e; acc : String = 

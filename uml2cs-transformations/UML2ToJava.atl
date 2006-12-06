@@ -1,3 +1,4 @@
+-- @atlcompiler atl2006
 -- $Id$
 query UML2toJava = UML2!uml::Classifier->allInstances()->collect(e |
 	if e->ignore() then true

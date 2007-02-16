@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel"
+    modelDirectory="/uml2cs-instantmessenger-config/src" editDirectory="/uml2cs-instantmessenger-config-edit/src"
+    editorDirectory="/uml2cs-instantmessenger-config-editor/src" modelPluginID="be.ac.vub.uml2cs.instantmessenger.config"
+    modelName="InstantMessenger" testsDirectory="/uml2cs-instantmessenger-config-tests/src"
+    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="../../../plugin/be.ac.vub.uml2cs.transformations.config/model/Transformations.genmodel#//transformations">
+  <foreignModel>InstantMessenger.ecore</foreignModel>
+  <genPackages prefix="Instantmessenger" basePackage="be.ac.vub.uml2cs" disposableProviderFactory="true"
+      ecorePackage="InstantMessenger.ecore#/">
+    <genClasses ecoreClass="InstantMessenger.ecore#//InstantMessengerConfiguration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute InstantMessenger.ecore#//InstantMessengerConfiguration/deploymentTarget"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference InstantMessenger.ecore#//InstantMessengerConfiguration/localNetwork"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference InstantMessenger.ecore#//InstantMessengerConfiguration/jabberNetwork"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference InstantMessenger.ecore#//InstantMessengerConfiguration/userInterface"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference InstantMessenger.ecore#//InstantMessengerConfiguration/packaging"/>
+    </genClasses>
+    <genClasses ecoreClass="InstantMessenger.ecore#//LocalNetwork">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference InstantMessenger.ecore#//LocalNetwork/config"/>
+    </genClasses>
+    <genClasses ecoreClass="InstantMessenger.ecore#//JabberNetwork">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference InstantMessenger.ecore#//JabberNetwork/jabberTransport"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference InstantMessenger.ecore#//JabberNetwork/config"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="InstantMessenger.ecore#//JabberTransport">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference InstantMessenger.ecore#//JabberTransport/jabberNetwork"/>
+    </genClasses>
+    <genClasses ecoreClass="InstantMessenger.ecore#//DefaultJabberTransport"/>
+    <genClasses ecoreClass="InstantMessenger.ecore#//MEJabberTransport"/>
+    <genClasses image="false" ecoreClass="InstantMessenger.ecore#//UserInterface">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference InstantMessenger.ecore#//UserInterface/config"/>
+    </genClasses>
+    <genClasses ecoreClass="InstantMessenger.ecore#//AWTUserInterface"/>
+    <genClasses ecoreClass="InstantMessenger.ecore#//SwingUserInterface"/>
+    <genClasses ecoreClass="InstantMessenger.ecore#//LCDUIUserInterface"/>
+    <genClasses image="false" ecoreClass="InstantMessenger.ecore#//Packaging">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference InstantMessenger.ecore#//Packaging/config"/>
+    </genClasses>
+    <genClasses ecoreClass="InstantMessenger.ecore#//WebAppletPackaging"/>
+    <genClasses ecoreClass="InstantMessenger.ecore#//IpkgAppletPackaging"/>
+    <genClasses ecoreClass="InstantMessenger.ecore#//MIDletPackaging"/>
+  </genPackages>
+</genmodel:GenModel>

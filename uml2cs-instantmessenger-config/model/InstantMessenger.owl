@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:java="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://local/InstantMessenger.owl#"
+    xmlns:os="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:platform="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#"
+  xml:base="http://local/InstantMessenger.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl"/>
+    <owl:imports rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl"/>
+    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="DefaultJabberPlatform">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaLang"/>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaUtil"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#StreamJavaIO"/>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaNet"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="JavaPlatform"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LCDUIPlatform">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaLang"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaUtil"/>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaxMicroeditionLCDUI"/>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaPlatform"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AWTPlatform">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaLang"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaUtil"/>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaAWTEvent"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaPlatform"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="IpkgAppletPlatform">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Ipkg"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaPlatform"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SwingPlatform">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaPlatform"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaLang"/>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaUtil"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaxSwing"/>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="WebAppletPlatform">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaPlatform"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JDK"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="MIDletPlatform">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#MIDP"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaPlatform"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="MEJabberPlatform">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaPlatform"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaLang"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#StreamJavaIO"/>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaxMicroeditionIO"/>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="InstantMessengerPlatform">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaPlatform"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaLang"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaUtil"/>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="JabberPlatform">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaLang"/>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaUtil"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#StreamJavaIO"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaPlatform"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LocalPlatform">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaPlatform"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaLang"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#JavaPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#Platform"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaVM"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 2.2, Build 339)  http://protege.stanford.edu -->

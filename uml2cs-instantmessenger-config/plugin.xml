@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://ssel.vub.ac.be/uml2cs/InstantMessenger" 
+       class = "be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage"
+       genModel = "model/InstantMessenger.genmodel" /> 
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.uri_mapping">
+     <mapping
+           source="http://ssel.vub.ac.be/uml2cs/InstantMessenger.cddconfig"
+           target="platform:/plugin/be.ac.vub.uml2cs.instantmessenger.config/model/InstantMessenger.cddconfig"/>
+     <mapping
+           source="http://ssel.vub.ac.be/uml2cs/InstantMessenger.inferred.owl"
+           target="platform:/plugin/be.ac.vub.uml2cs.instantmessenger.config/model/InstantMessenger.inferred.owl"/>
+  </extension>
+
+</plugin>
+

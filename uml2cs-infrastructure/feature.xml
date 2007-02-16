@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="be.ac.vub.uml2cs.infrastructure"
+      label="UML2 case studies infrastructure feature"
+      version="1.0.0"
+      provider-name="Vrije Universiteit Brussel">
+
+   <description>
+      UML2 case studies infrastructure:
+- EMF models for transformation and instantmessenger configuration
+- EMF editor for instantmessenger configuration
+- CDDToolkit meta-information
+   </description>
+
+   <copyright>
+      © Copyright 2007 Dennis Wagelaar, Vrije Universiteit Brussel
+   </copyright>
+
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
+      Vrije Universiteit Brussel makes available all content in this
+plug-in. The Content in this plug-in is provided to you under
+the terms and conditions of the Eclipse Public License Version
+1.0 (&quot;EPL&quot;). A copy of the EPL is available at http://www.eclipse.org/legal/epl-v10.html.
+   </license>
+
+   <url>
+      <update label="UML2 case studies infrastructure update site" url="http://ssel.vub.ac.be/tools/uml2cs/update"/>
+   </url>
+
+   <plugin
+         id="be.ac.vub.uml2cs.transformations.config"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="be.ac.vub.uml2cs.transformations.config.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="be.ac.vub.uml2cs.instantmessenger.config.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="be.ac.vub.uml2cs.instantmessenger.config.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="be.ac.vub.uml2cs.instantmessenger.config"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

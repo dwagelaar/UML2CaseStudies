@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: be.ac.vub.uml2cs.transformations.config.edit; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Bundle-Activator: be.ac.vub.uml2cs.transformations.provider.TransformationsEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: be.ac.vub.uml2cs.transformations.provider
+Require-Bundle: org.eclipse.core.runtime,
+ be.ac.vub.uml2cs.transformations.config;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport
+Eclipse-LazyStart: true

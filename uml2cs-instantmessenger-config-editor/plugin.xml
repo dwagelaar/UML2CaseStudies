@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+
+  <extension
+    point = "org.eclipse.ui.newWizards">
+    <category
+      id = "org.eclipse.emf.ecore.Wizard.category.ID"
+      name="%_UI_Wizard_category">
+    </category>
+    <wizard
+      id = "be.ac.vub.uml2cs.instantmessenger.presentation.InstantmessengerModelWizardID"
+      name = "%_UI_InstantmessengerModelWizard_label"
+      class = "be.ac.vub.uml2cs.instantmessenger.presentation.InstantmessengerModelWizard"
+      category = "org.eclipse.emf.ecore.Wizard.category.ID"
+      icon = "icons/full/obj16/InstantmessengerModelFile.gif">
+      <description>%_UI_InstantmessengerModelWizard_description</description>
+      <selection class = "org.eclipse.core.resources.IResource" />
+    </wizard>
+  </extension>
+
+  <extension point = "org.eclipse.ui.editors">
+    <editor
+        id = "be.ac.vub.uml2cs.instantmessenger.presentation.InstantmessengerEditorID"
+        name = "%_UI_InstantmessengerEditor_label"
+        icon = "icons/full/obj16/InstantmessengerModelFile.gif"
+        extensions = "instantmessenger"
+        class = "be.ac.vub.uml2cs.instantmessenger.presentation.InstantmessengerEditor" 
+        contributorClass="be.ac.vub.uml2cs.instantmessenger.presentation.InstantmessengerActionBarContributor" >
+    </editor>
+  </extension>    
+</plugin>

@@ -24,6 +24,9 @@
      <mapping
            source="http://ssel.vub.ac.be/uml2cs/InstantMessenger.inferred.owl"
            target="platform:/plugin/be.ac.vub.uml2cs.instantmessenger.config/model/InstantMessenger.inferred.owl"/>
+     <mapping
+           source="http://ssel.vub.ac.be/uml2cs/InstantMessenger.owl"
+           target="platform:/plugin/be.ac.vub.uml2cs.instantmessenger.config/model/InstantMessenger.owl"/>
   </extension>
 
 </plugin>

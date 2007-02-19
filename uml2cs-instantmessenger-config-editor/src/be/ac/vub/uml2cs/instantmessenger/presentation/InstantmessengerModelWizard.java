@@ -150,7 +150,6 @@ public class InstantmessengerModelWizard extends Wizard implements INewWizard {
 	 * Returns the names of the types that can be created as the root object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected Collection getInitialObjectNames() {
 		if (initialObjectNames == null) {

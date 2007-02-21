@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getUML2Observer()
  * @model annotation="GenModel documentation='Implements the Observer profile'"
  *        annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#Java1Platform'"
- *        annotation="PlatformKit ContextConstraint='http://local/Transformations.owl#Java1Platform'"
+ *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#Java1Platform'"
  * @generated
  */
 public interface UML2Observer extends EObject {

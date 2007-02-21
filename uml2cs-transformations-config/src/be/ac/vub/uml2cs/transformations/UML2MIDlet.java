@@ -16,7 +16,7 @@ package be.ac.vub.uml2cs.transformations;
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getUML2MIDlet()
  * @model annotation="GenModel documentation='Implements the Applet profile using a Java MIDP MIDlet'"
  *        annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#MIDletPlatform'"
- *        annotation="PlatformKit ContextConstraint='http://local/Transformations.owl#MIDletPlatform'"
+ *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#MIDletPlatform'"
  * @generated
  */
 public interface UML2MIDlet extends UML2Applet {

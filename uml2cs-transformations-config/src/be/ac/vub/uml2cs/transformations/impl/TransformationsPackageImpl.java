@@ -604,43 +604,43 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		  (javaMappingEClass, 
 		   source, 
 		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#JavaMappingsPlatform"
+			 "PlatformConstraint", "http://local/Transformations.owl#JavaMappingsPlatform"
 		   });					
 		addAnnotation
 		  (java1DataTypesEClass, 
 		   source, 
 		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#Java1Platform"
+			 "PlatformConstraint", "http://local/Transformations.owl#Java1Platform"
 		   });				
 		addAnnotation
 		  (java2DataTypesEClass, 
 		   source, 
 		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#Java2Platform"
+			 "PlatformConstraint", "http://local/Transformations.owl#Java2Platform"
 		   });				
 		addAnnotation
 		  (uml2ObserverEClass, 
 		   source, 
 		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#Java1Platform"
+			 "PlatformConstraint", "http://local/Transformations.owl#Java1Platform"
 		   });				
 		addAnnotation
 		  (uml2JavaObserverEClass, 
 		   source, 
 		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#JavaObserverPlatform"
+			 "PlatformConstraint", "http://local/Transformations.owl#JavaObserverPlatform"
 		   });				
 		addAnnotation
 		  (uml2AppletEClass, 
 		   source, 
 		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#AppletPlatform"
+			 "PlatformConstraint", "http://local/Transformations.owl#AppletPlatform"
 		   });				
 		addAnnotation
 		  (uml2MIDletEClass, 
 		   source, 
 		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#MIDletPlatform"
+			 "PlatformConstraint", "http://local/Transformations.owl#MIDletPlatform"
 		   });	
 	}
 

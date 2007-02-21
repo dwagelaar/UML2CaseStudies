@@ -3,17 +3,17 @@
     xmlns:java="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://local/platformkit/inferred.owl"
     xmlns:p1="http://www.owl-ontologies.com/assert.owl#"
     xmlns:corba="http://ssel.vub.ac.be/codamos/2006/01/Corba.owl#"
     xmlns:platform="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:os="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#"
-    xmlns="http://local/cddtoolkit/inferred.owl"
     xmlns:units="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-  xml:base="http://local/cddtoolkit/inferred.owl">
+  xml:base="http://local/platformkit/inferred.owl">
   <owl:Ontology rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Corba.owl">
     <rdfs:label xml:lang="en">CoDAMoS CORBA concepts ontology</rdfs:label>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -77,20 +77,6 @@
     <owl:imports rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl"/>
     <owl:imports rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl"/>
   </owl:Ontology>
-  <owl:Class rdf:about="#transformations::UML2AppletIntersection">
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/Transformations.owl#AppletPlatform"/>
-    </owl:intersectionOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/Transformations.owl#AppletPlatform"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#JavaPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#JavaPlatform"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#COMPlus">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#DCOM"/>
@@ -103,7 +89,7 @@
   </owl:Class>
   <owl:Class rdf:about="http://local/InstantMessenger.owl#MEJabberPlatform">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#LocalPlatform"/>
+      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
     </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Class>
@@ -139,7 +125,7 @@
       <owl:Class rdf:about="#instantmessenger::MEJabberTransportIntersection"/>
     </owl:equivalentClass>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#LocalPlatform"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#Feature"/>
@@ -159,6 +145,35 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Darwin"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#transformations::Java2DataTypesIntersection">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/Transformations.owl#Java2Platform"/>
+    </owl:intersectionOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://local/Transformations.owl#Java2Platform"/>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#CPUResource">
@@ -183,6 +198,9 @@
     <owl:equivalentClass>
       <owl:Class rdf:about="#instantmessenger::JabberNetworkIntersection"/>
     </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
+    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -214,25 +232,19 @@
       </owl:Class>
     </owl:equivalentClass>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
       <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Debian">
@@ -324,38 +336,6 @@
       <owl:Class rdf:about="http://local/InstantMessenger.owl#JavaPlatform"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#transformations::Java2DataTypesIntersection">
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/Transformations.owl#Java2Platform"/>
-    </owl:intersectionOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
-    </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/Transformations.owl#Java2Platform"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Dpkg">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#PackageManager"/>
@@ -375,38 +355,6 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Windows2000"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#transformations::Java1DataTypesIntersection">
-    <owl:equivalentClass>
-      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#LocalPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
-    </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    </owl:equivalentClass>
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
-    </owl:intersectionOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-    </owl:equivalentClass>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Cycles_Per_Second">
     <rdfs:subClassOf>
@@ -455,9 +403,8 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#transformations::Java1DataTypesIntersection"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
@@ -465,6 +412,9 @@
     <owl:equivalentClass>
       <owl:Class rdf:about="#transformations::UML2JavaObserverIntersection"/>
     </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -496,13 +446,10 @@
       </owl:Class>
     </owl:equivalentClass>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::InstantMessengerConfigurationIntersection"/>
+      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#KiloBit">
@@ -550,36 +497,6 @@
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Dcop"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#instantmessenger::InstantMessengerConfigurationIntersection">
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
-    </owl:equivalentClass>
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    </owl:intersectionOf>
-    <owl:equivalentClass rdf:resource="#transformations::Java1DataTypesIntersection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
-    </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#LocalPlatform"/>
-    </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
-    </owl:equivalentClass>
-  </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#MebiBit_Per_Second">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
@@ -598,9 +515,18 @@
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaLibrary"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Redhat">
+  <owl:Class rdf:about="#instantmessenger::IpkgAppletPackagingIntersection">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
+    </owl:intersectionOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
+    </owl:equivalentClass>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#RPMBasedLinux"/>
+      <owl:Class rdf:about="http://local/Transformations.owl#JavaPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#JavaPlatform"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#WindowsMobile">
@@ -611,27 +537,14 @@
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#CAB"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Redhat">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#RPMBasedLinux"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#MegaByte">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#IntegerValue"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#instantmessenger::WebAppletPackagingIntersection">
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#WebAppletPlatform"/>
-    </owl:intersectionOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#WebAppletPlatform"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#transformations::UML2AppletIntersection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::DefaultJabberTransportIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#AppletPlatform"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#DebBasedLinux">
@@ -670,12 +583,17 @@
   </owl:Class>
   <owl:Class rdf:about="http://local/Transformations.owl#JavaMappingsPlatform">
     <owl:equivalentClass>
-      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass>
       <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     </owl:equivalentClass>
-    <owl:equivalentClass rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#LocalPlatform"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
+    </owl:equivalentClass>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -696,19 +614,15 @@
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+    </owl:equivalentClass>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#LocalPlatform"/>
+      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
     </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
     </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass rdf:resource="#transformations::Java1DataTypesIntersection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
-    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
     </owl:equivalentClass>
@@ -717,6 +631,33 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaLibrary"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#transformations::UML2ObserverIntersection">
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
+    </owl:equivalentClass>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
+    </owl:intersectionOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+    </owl:equivalentClass>
+    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#LocalPlatform"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    </owl:equivalentClass>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#GNOME2">
     <rdfs:subClassOf>
@@ -731,20 +672,6 @@
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaxMicroeditionMIDlet">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaLibrary"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#instantmessenger::IpkgAppletPackagingIntersection">
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
-    </owl:intersectionOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#JavaPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#JavaPlatform"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaVM">
@@ -771,30 +698,6 @@
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaMath">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaLibrary"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#instantmessenger::JabberNetworkIntersection">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
-    </rdfs:subClassOf>
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#JabberPlatform"/>
-    </owl:intersectionOf>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
-    </rdfs:subClassOf>
-    <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#JabberPlatform"/>
-    <rdfs:subClassOf rdf:resource="#transformations::Java1DataTypesIntersection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#GigaBit_Per_Second">
@@ -851,20 +754,6 @@
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#MebiByte_Per_Second">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
   </owl:Class>
-  <owl:Class rdf:about="#instantmessenger::SwingUserInterfaceIntersection">
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#SwingPlatform"/>
-    </owl:intersectionOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#SwingPlatform"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::AWTUserInterfaceIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#AWTPlatform"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CDC">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaLangReflect"/>
@@ -900,32 +789,6 @@
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#IntegerValue">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Value"/>
   </owl:Class>
-  <owl:Class rdf:about="#transformations::JavaMappingIntersection">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#LocalPlatform"/>
-    </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
-    </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    <owl:equivalentClass rdf:resource="#transformations::Java1DataTypesIntersection"/>
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    </owl:intersectionOf>
-    <owl:equivalentClass rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-  </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Joules">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
   </owl:Class>
@@ -936,7 +799,9 @@
   </owl:Class>
   <owl:Class rdf:about="http://local/Transformations.owl#Java2Platform">
     <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    <rdfs:subClassOf rdf:resource="#transformations::JavaMappingIntersection"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
     </rdfs:subClassOf>
@@ -958,15 +823,14 @@
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#transformations::Java1DataTypesIntersection"/>
     <owl:equivalentClass rdf:resource="#transformations::Java2DataTypesIntersection"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#transformations::UML2ObserverIntersection"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     </rdfs:subClassOf>
@@ -982,11 +846,6 @@
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaLibrary"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#Java2SQL">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaSQL"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Windows3.0">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Windows16"/>
@@ -994,6 +853,11 @@
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Celsius">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#Java2SQL">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaSQL"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#KiloGram">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
@@ -1023,9 +887,25 @@
   </owl:Class>
   <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform">
     <owl:equivalentClass>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
       <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     </owl:equivalentClass>
-    <owl:equivalentClass rdf:resource="#transformations::Java1DataTypesIntersection"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#LocalPlatform"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+    </owl:equivalentClass>
+    <owl:equivalentClass rdf:resource="#transformations::UML2ObserverIntersection"/>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
+    </owl:equivalentClass>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -1044,21 +924,6 @@
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:equivalentClass rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#LocalPlatform"/>
-    </rdfs:subClassOf>
-    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
-    </owl:equivalentClass>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
-    </rdfs:subClassOf>
-    <owl:equivalentClass rdf:resource="#transformations::JavaMappingIntersection"/>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaAWTEvent">
     <rdfs:subClassOf>
@@ -1067,6 +932,26 @@
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Watt">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
+  </owl:Class>
+  <owl:Class rdf:about="#instantmessenger::WebAppletPackagingIntersection">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#WebAppletPlatform"/>
+    </owl:intersectionOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#WebAppletPlatform"/>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#instantmessenger::DefaultJabberTransportIntersection"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/Transformations.owl#AppletPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::UML2AppletIntersection"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Linux">
     <rdfs:subClassOf>
@@ -1084,44 +969,10 @@
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#MegaBit">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#IntegerValue"/>
   </owl:Class>
-  <owl:Class rdf:about="#instantmessenger::MIDletPackagingIntersection">
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#MEJabberPlatform"/>
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#MIDletPlatform"/>
-    </owl:intersectionOf>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#JabberPlatform"/>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#MIDletPlatform"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::LCDUIUserInterfaceIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#LCDUIPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::MEJabberTransportIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::JabberNetworkIntersection"/>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#MIDletPlatform"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::UML2MIDletIntersection"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#OpenZaurus">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#IPKBasedLinux"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#instantmessenger::DefaultJabberTransportIntersection">
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
-    </owl:intersectionOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::JabberNetworkIntersection"/>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#JabberPlatform"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#GigaByte_Per_Second">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
@@ -1169,6 +1020,16 @@
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#BSD"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="#instantmessenger::MEJabberTransportIntersection">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#MEJabberPlatform"/>
+    </owl:intersectionOf>
+    <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#MEJabberPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaxMicroeditionLCDUI">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaRenderingEngine"/>
   </owl:Class>
@@ -1188,6 +1049,11 @@
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#GigaBit">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#IntegerValue"/>
   </owl:Class>
+  <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#BSD">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#UNIX"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#ORBit">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#IPCFramework"/>
@@ -1197,10 +1063,17 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Corba.owl#CORBA2.4"/>
   </owl:Class>
-  <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#BSD">
+  <owl:Class rdf:about="#transformations::UML2AppletIntersection">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/Transformations.owl#AppletPlatform"/>
+    </owl:intersectionOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://local/Transformations.owl#AppletPlatform"/>
+    </owl:equivalentClass>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#UNIX"/>
+      <owl:Class rdf:about="http://local/Transformations.owl#JavaPlatform"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#JavaPlatform"/>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Corba.owl#CORBA3">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Corba.owl#CORBA2.4"/>
@@ -1210,6 +1083,41 @@
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaLibrary"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="#instantmessenger::LCDUIUserInterfaceIntersection">
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#LCDUIPlatform"/>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+    </rdfs:subClassOf>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#LCDUIPlatform"/>
+    </owl:intersectionOf>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#transformations::UML2ObserverIntersection"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#instantmessenger::DefaultJabberTransportIntersection">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    </owl:intersectionOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#instantmessenger::JabberNetworkIntersection"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#JabberPlatform"/>
+  </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Bytes_Per_Second">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#IntegerValue"/>
   </owl:Class>
@@ -1218,32 +1126,6 @@
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#MebiByte">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#IntegerValue"/>
-  </owl:Class>
-  <owl:Class rdf:about="#instantmessenger::AWTUserInterfaceIntersection">
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
-    <rdfs:subClassOf rdf:resource="#transformations::Java1DataTypesIntersection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#AppletPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#transformations::JavaMappingIntersection"/>
-    <rdfs:subClassOf rdf:resource="#transformations::UML2AppletIntersection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
-    </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#AWTPlatform"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#AWTPlatform"/>
-    </owl:intersectionOf>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Pound">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
@@ -1353,48 +1235,6 @@
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#KiloByte">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#IntegerValue"/>
   </owl:Class>
-  <owl:Class rdf:ID="_intersectionList_Intersection">
-    <rdfs:subClassOf rdf:resource="#instantmessenger::MIDletPackagingIntersection"/>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::WebAppletPackagingIntersection"/>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::SwingUserInterfaceIntersection"/>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::UML2JavaObserverIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#MIDletPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#WebAppletPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaObserverPlatform"/>
-    <rdfs:subClassOf rdf:resource="#transformations::Java2DataTypesIntersection"/>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::IpkgAppletPackagingIntersection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#SwingPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java2Platform"/>
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
-      <owl:Class rdf:about="#instantmessenger::JabberNetworkIntersection"/>
-      <owl:Class rdf:about="#instantmessenger::DefaultJabberTransportIntersection"/>
-      <owl:Class rdf:about="#instantmessenger::MEJabberTransportIntersection"/>
-      <owl:Class rdf:about="#instantmessenger::AWTUserInterfaceIntersection"/>
-      <owl:Class rdf:about="#instantmessenger::SwingUserInterfaceIntersection"/>
-      <owl:Class rdf:about="#instantmessenger::LCDUIUserInterfaceIntersection"/>
-      <owl:Class rdf:about="#instantmessenger::WebAppletPackagingIntersection"/>
-      <owl:Class rdf:about="#instantmessenger::IpkgAppletPackagingIntersection"/>
-      <owl:Class rdf:about="#instantmessenger::MIDletPackagingIntersection"/>
-      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
-      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
-      <owl:Class rdf:about="#transformations::Java2DataTypesIntersection"/>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
-      <owl:Class rdf:about="#transformations::UML2JavaObserverIntersection"/>
-      <owl:Class rdf:about="#transformations::UML2AppletIntersection"/>
-      <owl:Class rdf:about="#transformations::UML2MIDletIntersection"/>
-    </owl:intersectionOf>
-  </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#Library">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#Software"/>
@@ -1403,6 +1243,28 @@
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#OpenZaurusGPE">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#OpenZaurus"/>
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#GPE"/>
+  </owl:Class>
+  <owl:Class rdf:about="#transformations::UML2MIDletIntersection">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/Transformations.owl#MIDletPlatform"/>
+    </owl:intersectionOf>
+    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#MIDletPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#JavaPlatform"/>
+  </owl:Class>
+  <owl:Class rdf:about="#instantmessenger::SwingUserInterfaceIntersection">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#SwingPlatform"/>
+    </owl:intersectionOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#SwingPlatform"/>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#AWTPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#instantmessenger::AWTUserInterfaceIntersection"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#StringValue">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Value"/>
@@ -1422,8 +1284,12 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#transformations::JavaMappingIntersection"/>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
+    <owl:equivalentClass rdf:resource="#instantmessenger::LCDUIUserInterfaceIntersection"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#transformations::UML2ObserverIntersection"/>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -1449,25 +1315,17 @@
       </owl:Class>
     </owl:equivalentClass>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
     <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    <rdfs:subClassOf rdf:resource="#transformations::Java1DataTypesIntersection"/>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="#instantmessenger::LCDUIUserInterfaceIntersection"/>
-    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Opie">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#QtopiaPDA"/>
   </owl:Class>
   <owl:Class rdf:about="http://local/InstantMessenger.owl#AWTPlatform">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
-    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
@@ -1475,12 +1333,6 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://local/Transformations.owl#AppletPlatform"/>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#transformations::UML2AppletIntersection"/>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#transformations::Java1DataTypesIntersection"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -1505,8 +1357,20 @@
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:equivalentClass rdf:resource="#instantmessenger::AWTUserInterfaceIntersection"/>
-    <rdfs:subClassOf rdf:resource="#transformations::JavaMappingIntersection"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#instantmessenger::AWTUserInterfaceIntersection"/>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#transformations::UML2ObserverIntersection"/>
+    <rdfs:subClassOf rdf:resource="#transformations::UML2AppletIntersection"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaSQL">
@@ -1547,6 +1411,14 @@
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Fahrenheit">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
   </owl:Class>
+  <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#LocalPlatform"/>
+    </owl:intersectionOf>
+    <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#JavaPlatform"/>
+  </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#QtopiaPhone">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Qtopia"/>
   </owl:Class>
@@ -1583,8 +1455,16 @@
       <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
     </owl:equivalentClass>
     <owl:equivalentClass rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    <owl:equivalentClass rdf:resource="#transformations::JavaMappingIntersection"/>
+    <rdfs:subClassOf rdf:resource="#instantmessenger::LocalNetworkIntersection"/>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+    </owl:equivalentClass>
     <owl:equivalentClass rdf:resource="http://local/Transformations.owl#Java1Platform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </owl:equivalentClass>
+    <owl:equivalentClass rdf:resource="#transformations::UML2ObserverIntersection"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -1603,33 +1483,6 @@
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:equivalentClass rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-    <owl:equivalentClass rdf:resource="#transformations::Java1DataTypesIntersection"/>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#LocalPlatform"/>
-    <owl:equivalentClass>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
-    </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#instantmessenger::LCDUIUserInterfaceIntersection">
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    <rdfs:subClassOf rdf:resource="#transformations::JavaMappingIntersection"/>
-    <rdfs:subClassOf rdf:resource="#transformations::Java1DataTypesIntersection"/>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-    <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#LCDUIPlatform"/>
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#LCDUIPlatform"/>
-    </owl:intersectionOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#CAB">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#PackageManager"/>
@@ -1645,7 +1498,30 @@
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Kelvin">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
   </owl:Class>
+  <owl:Class rdf:about="#instantmessenger::JabberNetworkIntersection">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
+    <rdfs:subClassOf rdf:resource="#transformations::UML2ObserverIntersection"/>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#JabberPlatform"/>
+    </owl:intersectionOf>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="http://local/Transformations.owl#ObserverPlatform">
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </owl:equivalentClass>
+    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#Java1Platform"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -1664,30 +1540,42 @@
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <owl:equivalentClass rdf:resource="#transformations::Java1DataTypesIntersection"/>
-    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#Java1Platform"/>
     <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    <owl:equivalentClass rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
-    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#instantmessenger::LocalNetworkIntersection"/>
+    <owl:equivalentClass rdf:resource="#transformations::UML2ObserverIntersection"/>
     <owl:equivalentClass>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
     </owl:equivalentClass>
-    <owl:equivalentClass rdf:resource="#transformations::JavaMappingIntersection"/>
     <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#LocalPlatform"/>
     <owl:equivalentClass rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
   </owl:Class>
+  <owl:Class rdf:about="#transformations::UML2JavaObserverIntersection">
+    <rdfs:subClassOf rdf:resource="#transformations::UML2ObserverIntersection"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/Transformations.owl#JavaObserverPlatform"/>
+    </owl:intersectionOf>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#ObserverPlatform"/>
+    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Second">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#MebiBit">
-    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#IntegerValue"/>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Xorg">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#X11"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#MebiBit">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#IntegerValue"/>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Dcop">
     <rdfs:subClassOf>
@@ -1785,19 +1673,24 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#CAB"/>
   </owl:Class>
+  <owl:Class rdf:about="#transformations::JavaMappingIntersection">
+    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#Java1Platform"/>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <rdfs:subClassOf rdf:resource="#instantmessenger::LocalNetworkIntersection"/>
+    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#ObserverPlatform"/>
+    <owl:equivalentClass rdf:resource="#transformations::UML2ObserverIntersection"/>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    </owl:intersectionOf>
+    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+  </owl:Class>
   <owl:Class rdf:about="http://local/InstantMessenger.owl#MIDletPlatform">
     <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#LCDUIPlatform"/>
     <rdfs:subClassOf rdf:resource="#instantmessenger::JabberNetworkIntersection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#instantmessenger::MEJabberTransportIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::LCDUIUserInterfaceIntersection"/>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#JabberPlatform"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::UML2MIDletIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#MEJabberPlatform"/>
-    <owl:equivalentClass rdf:resource="#instantmessenger::MIDletPackagingIntersection"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
@@ -1806,28 +1699,20 @@
         <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#MIDP"/>
       </owl:Restriction>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#instantmessenger::MEJabberTransportIntersection"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <owl:equivalentClass>
+      <owl:Class rdf:about="#instantmessenger::MIDletPackagingIntersection"/>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#MEJabberPlatform"/>
+    <rdfs:subClassOf rdf:resource="#transformations::UML2MIDletIntersection"/>
+    <rdfs:subClassOf rdf:resource="#instantmessenger::LCDUIUserInterfaceIntersection"/>
     <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#MIDletPlatform"/>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#J2MEMMAPI">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaLibrary"/>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#transformations::UML2JavaObserverIntersection">
-    <rdfs:subClassOf rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    <rdfs:subClassOf rdf:resource="#transformations::Java1DataTypesIntersection"/>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#ObserverPlatform"/>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/Transformations.owl#JavaObserverPlatform"/>
-    </owl:intersectionOf>
-    <rdfs:subClassOf rdf:resource="#transformations::JavaMappingIntersection"/>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#JavaObserverPlatform"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#Hardware">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#Feature"/>
@@ -1873,27 +1758,42 @@
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaAWT"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#transformations::UML2MIDletIntersection">
+  <owl:Class rdf:about="#instantmessenger::MIDletPackagingIntersection">
+    <rdfs:subClassOf rdf:resource="#instantmessenger::JabberNetworkIntersection"/>
+    <rdfs:subClassOf rdf:resource="#transformations::UML2MIDletIntersection"/>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#MIDletPlatform"/>
+    <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#MIDletPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#LCDUIPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <rdfs:subClassOf rdf:resource="#instantmessenger::LCDUIUserInterfaceIntersection"/>
+    <rdfs:subClassOf rdf:resource="#instantmessenger::MEJabberTransportIntersection"/>
     <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/Transformations.owl#MIDletPlatform"/>
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#MIDletPlatform"/>
     </owl:intersectionOf>
-    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#MIDletPlatform"/>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaPlatform"/>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#JavaPlatform"/>
-  </owl:Class>
-  <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection">
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#LocalPlatform"/>
-    </owl:intersectionOf>
-    <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#LocalPlatform"/>
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaPlatform"/>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#JavaPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#MEJabberPlatform"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#PowerResource">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#Resource"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Year">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
+  </owl:Class>
+  <owl:Class rdf:about="#instantmessenger::AWTUserInterfaceIntersection">
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
+    <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#AWTPlatform"/>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/InstantMessenger.owl#AWTPlatform"/>
+    </owl:intersectionOf>
+    <rdfs:subClassOf rdf:resource="#transformations::UML2AppletIntersection"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#transformations::JavaMappingIntersection"/>
+    <rdfs:subClassOf rdf:resource="#transformations::UML2ObserverIntersection"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#AppletPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#ObserverPlatform"/>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDC">
     <rdfs:subClassOf>
@@ -1908,20 +1808,6 @@
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#IPCFramework">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#Software"/>
-  </owl:Class>
-  <owl:Class rdf:about="#transformations::UML2ObserverIntersection">
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
-    </owl:intersectionOf>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::LocalNetworkIntersection"/>
-    <owl:equivalentClass rdf:resource="#transformations::Java1DataTypesIntersection"/>
-    <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#ObserverPlatform"/>
-    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#Java1Platform"/>
-    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    <owl:equivalentClass rdf:resource="#instantmessenger::InstantMessengerConfigurationIntersection"/>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#LocalPlatform"/>
-    <owl:equivalentClass rdf:resource="#transformations::JavaMappingIntersection"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Month">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
@@ -2005,7 +1891,7 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://local/InstantMessenger.owl#WebAppletPlatform">
-    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#AppletPlatform"/>
+    <rdfs:subClassOf rdf:resource="#transformations::UML2AppletIntersection"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JDK"/>
@@ -2015,11 +1901,11 @@
       </owl:Restriction>
     </owl:equivalentClass>
     <owl:equivalentClass rdf:resource="#instantmessenger::WebAppletPackagingIntersection"/>
-    <rdfs:subClassOf rdf:resource="#transformations::UML2AppletIntersection"/>
     <rdfs:subClassOf rdf:resource="#instantmessenger::DefaultJabberTransportIntersection"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#AppletPlatform"/>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#WindowsME">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Windows98"/>
@@ -2053,7 +1939,7 @@
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
   </owl:Class>
   <owl:Class rdf:about="http://local/InstantMessenger.owl#SwingPlatform">
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#AWTPlatform"/>
+    <rdfs:subClassOf rdf:resource="#instantmessenger::AWTUserInterfaceIntersection"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -2079,7 +1965,7 @@
       </owl:Class>
     </owl:equivalentClass>
     <owl:equivalentClass rdf:resource="#instantmessenger::SwingUserInterfaceIntersection"/>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::AWTUserInterfaceIntersection"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#AWTPlatform"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#KibiByte_Per_Second">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
@@ -2122,14 +2008,6 @@
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaxMicroeditionMedia"/>
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#MIDP"/>
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaxMicroeditionPKI"/>
-  </owl:Class>
-  <owl:Class rdf:about="#instantmessenger::MEJabberTransportIntersection">
-    <owl:intersectionOf rdf:parseType="Collection">
-      <owl:Class rdf:about="http://local/InstantMessenger.owl#MEJabberPlatform"/>
-    </owl:intersectionOf>
-    <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#MEJabberPlatform"/>
-    <rdfs:subClassOf rdf:resource="#instantmessenger::LocalNetworkIntersection"/>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#LocalPlatform"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#MilliSecond">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
@@ -2183,12 +2061,58 @@
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#J2MESATSA">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JavaLibrary"/>
   </owl:Class>
+  <owl:Class rdf:ID="_intersectionSet_Intersection">
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#SwingPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#WebAppletPlatform"/>
+    <rdfs:subClassOf rdf:resource="#instantmessenger::MIDletPackagingIntersection"/>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java2Platform"/>
+    <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <rdfs:subClassOf rdf:resource="#transformations::UML2JavaObserverIntersection"/>
+    <rdfs:subClassOf rdf:resource="#instantmessenger::SwingUserInterfaceIntersection"/>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="#instantmessenger::LocalNetworkIntersection"/>
+      <owl:Class rdf:about="#instantmessenger::JabberNetworkIntersection"/>
+      <owl:Class rdf:about="#instantmessenger::DefaultJabberTransportIntersection"/>
+      <owl:Class rdf:about="#instantmessenger::MEJabberTransportIntersection"/>
+      <owl:Class rdf:about="#instantmessenger::AWTUserInterfaceIntersection"/>
+      <owl:Class rdf:about="#instantmessenger::SwingUserInterfaceIntersection"/>
+      <owl:Class rdf:about="#instantmessenger::LCDUIUserInterfaceIntersection"/>
+      <owl:Class rdf:about="#instantmessenger::WebAppletPackagingIntersection"/>
+      <owl:Class rdf:about="#instantmessenger::IpkgAppletPackagingIntersection"/>
+      <owl:Class rdf:about="#instantmessenger::MIDletPackagingIntersection"/>
+      <owl:Class rdf:about="#transformations::JavaMappingIntersection"/>
+      <owl:Class rdf:about="#transformations::Java1DataTypesIntersection"/>
+      <owl:Class rdf:about="#transformations::Java2DataTypesIntersection"/>
+      <owl:Class rdf:about="#transformations::UML2ObserverIntersection"/>
+      <owl:Class rdf:about="#transformations::UML2JavaObserverIntersection"/>
+      <owl:Class rdf:about="#transformations::UML2AppletIntersection"/>
+      <owl:Class rdf:about="#transformations::UML2MIDletIntersection"/>
+    </owl:intersectionOf>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#MIDletPlatform"/>
+    <rdfs:subClassOf rdf:resource="#instantmessenger::IpkgAppletPackagingIntersection"/>
+    <rdfs:subClassOf rdf:resource="#transformations::Java2DataTypesIntersection"/>
+    <rdfs:subClassOf rdf:resource="#instantmessenger::WebAppletPackagingIntersection"/>
+  </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Familiar">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#IPKBasedLinux"/>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/Corba.owl#ObjectRequestBroker">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#Middleware"/>
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Corba.owl#CORBA"/>
+  </owl:Class>
+  <owl:Class rdf:about="#transformations::Java1DataTypesIntersection">
+    <rdfs:subClassOf rdf:resource="#instantmessenger::LocalNetworkIntersection"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <owl:equivalentClass rdf:resource="#transformations::JavaMappingIntersection"/>
+    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#ObserverPlatform"/>
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform"/>
+    </owl:intersectionOf>
+    <owl:equivalentClass rdf:resource="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    <owl:equivalentClass rdf:resource="#transformations::UML2ObserverIntersection"/>
+    <owl:equivalentClass rdf:resource="http://local/Transformations.owl#Java1Platform"/>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#Embedix">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/OperatingSystems.owl#IPKBasedLinux"/>

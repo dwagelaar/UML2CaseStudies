@@ -16,6 +16,7 @@ package be.ac.vub.uml2cs.transformations;
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getUML2JavaObserver()
  * @model annotation="GenModel documentation='Implements the Observer profile using the java.util.Observer API'"
  *        annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#JavaObserverPlatform'"
+ *        annotation="PlatformKit ContextConstraint='http://local/Transformations.owl#JavaObserverPlatform'"
  * @generated
  */
 public interface UML2JavaObserver extends UML2Observer {

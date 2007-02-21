@@ -96,10 +96,33 @@
       </owl:Class>
     </owl:equivalentClass>
   </owl:Class>
+  <owl:Class rdf:ID="ObserverPlatform">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaPlatform"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaLang"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaUtil"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
   <owl:Class rdf:ID="JavaObserverPlatform">
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#CLDCJavaLang"/>
+          </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2006/01/Java.owl#JDKJavaUtil"/>
             <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2006/01/Platform.owl#providesFeature"/>

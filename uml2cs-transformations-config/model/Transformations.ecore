@@ -6,6 +6,9 @@
   <eAnnotations source="CDDToolkit">
     <details key="Ontology" value="Transformations.owl"/>
   </eAnnotations>
+  <eAnnotations source="PlatformKit">
+    <details key="Ontology" value="Transformations.owl"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="TransformationConfig">
     <eAnnotations source="GenModel">
       <details key="documentation" value="Root node for a transformation configuration model"/>
@@ -61,6 +64,9 @@
     <eAnnotations source="CDDToolkit">
       <details key="ContextConstraint" value="http://local/Transformations.owl#JavaMappingsPlatform"/>
     </eAnnotations>
+    <eAnnotations source="PlatformKit">
+      <details key="PlatformConstraint" value="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataTypes" lowerBound="1"
         eType="#//JavaDataTypes" containment="true" eOpposite="#//JavaDataTypes/mapping"/>
   </eClassifiers>
@@ -78,6 +84,9 @@
     <eAnnotations source="CDDToolkit">
       <details key="ContextConstraint" value="http://local/Transformations.owl#Java1Platform"/>
     </eAnnotations>
+    <eAnnotations source="PlatformKit">
+      <details key="PlatformConstraint" value="http://local/Transformations.owl#Java1Platform"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Java2DataTypes" eSuperTypes="#//JavaDataTypes">
     <eAnnotations source="GenModel">
@@ -86,6 +95,9 @@
     <eAnnotations source="CDDToolkit">
       <details key="ContextConstraint" value="http://local/Transformations.owl#Java2Platform"/>
     </eAnnotations>
+    <eAnnotations source="PlatformKit">
+      <details key="PlatformConstraint" value="http://local/Transformations.owl#Java2Platform"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UML2Observer">
     <eAnnotations source="GenModel">
@@ -93,6 +105,9 @@
     </eAnnotations>
     <eAnnotations source="CDDToolkit">
       <details key="ContextConstraint" value="http://local/Transformations.owl#Java1Platform"/>
+    </eAnnotations>
+    <eAnnotations source="PlatformKit">
+      <details key="PlatformConstraint" value="http://local/Transformations.owl#Java1Platform"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="config" lowerBound="1"
         eType="#//TransformationConfig" eOpposite="#//TransformationConfig/observer"/>
@@ -104,6 +119,9 @@
     <eAnnotations source="CDDToolkit">
       <details key="ContextConstraint" value="http://local/Transformations.owl#JavaObserverPlatform"/>
     </eAnnotations>
+    <eAnnotations source="PlatformKit">
+      <details key="PlatformConstraint" value="http://local/Transformations.owl#JavaObserverPlatform"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UML2Applet">
     <eAnnotations source="GenModel">
@@ -111,6 +129,9 @@
     </eAnnotations>
     <eAnnotations source="CDDToolkit">
       <details key="ContextConstraint" value="http://local/Transformations.owl#AppletPlatform"/>
+    </eAnnotations>
+    <eAnnotations source="PlatformKit">
+      <details key="PlatformConstraint" value="http://local/Transformations.owl#AppletPlatform"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="config" lowerBound="1"
         eType="#//TransformationConfig" eOpposite="#//TransformationConfig/applet"/>
@@ -121,6 +142,9 @@
     </eAnnotations>
     <eAnnotations source="CDDToolkit">
       <details key="ContextConstraint" value="http://local/Transformations.owl#MIDletPlatform"/>
+    </eAnnotations>
+    <eAnnotations source="PlatformKit">
+      <details key="PlatformConstraint" value="http://local/Transformations.owl#MIDletPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SaveModelType">

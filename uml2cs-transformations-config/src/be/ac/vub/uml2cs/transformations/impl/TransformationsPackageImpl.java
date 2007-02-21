@@ -522,6 +522,8 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		// Create annotations
 		// CDDToolkit
 		createCDDToolkitAnnotations();
+		// PlatformKit
+		createPlatformKitAnnotations();
 		// GenModel
 		createGenModelAnnotations();
 	}
@@ -539,19 +541,19 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		   source, 
 		   new String[] {
 			 "Ontology", "Transformations.owl"
-		   });											
+		   });												
 		addAnnotation
 		  (javaMappingEClass, 
 		   source, 
 		   new String[] {
 			 "ContextConstraint", "http://local/Transformations.owl#JavaMappingsPlatform"
-		   });				
+		   });					
 		addAnnotation
 		  (java1DataTypesEClass, 
 		   source, 
 		   new String[] {
 			 "ContextConstraint", "http://local/Transformations.owl#Java1Platform"
-		   });			
+		   });				
 		addAnnotation
 		  (java2DataTypesEClass, 
 		   source, 
@@ -559,17 +561,81 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 			 "ContextConstraint", "http://local/Transformations.owl#Java2Platform"
 		   });				
 		addAnnotation
+		  (uml2ObserverEClass, 
+		   source, 
+		   new String[] {
+			 "ContextConstraint", "http://local/Transformations.owl#Java1Platform"
+		   });				
+		addAnnotation
 		  (uml2JavaObserverEClass, 
 		   source, 
 		   new String[] {
 			 "ContextConstraint", "http://local/Transformations.owl#JavaObserverPlatform"
-		   });			
+		   });				
 		addAnnotation
 		  (uml2AppletEClass, 
 		   source, 
 		   new String[] {
 			 "ContextConstraint", "http://local/Transformations.owl#AppletPlatform"
-		   });			
+		   });				
+		addAnnotation
+		  (uml2MIDletEClass, 
+		   source, 
+		   new String[] {
+			 "ContextConstraint", "http://local/Transformations.owl#MIDletPlatform"
+		   });		
+	}
+
+	/**
+	 * Initializes the annotations for <b>PlatformKit</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createPlatformKitAnnotations() {
+		String source = "PlatformKit";			
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "Ontology", "Transformations.owl"
+		   });												
+		addAnnotation
+		  (javaMappingEClass, 
+		   source, 
+		   new String[] {
+			 "ContextConstraint", "http://local/Transformations.owl#JavaMappingsPlatform"
+		   });					
+		addAnnotation
+		  (java1DataTypesEClass, 
+		   source, 
+		   new String[] {
+			 "ContextConstraint", "http://local/Transformations.owl#Java1Platform"
+		   });				
+		addAnnotation
+		  (java2DataTypesEClass, 
+		   source, 
+		   new String[] {
+			 "ContextConstraint", "http://local/Transformations.owl#Java2Platform"
+		   });				
+		addAnnotation
+		  (uml2ObserverEClass, 
+		   source, 
+		   new String[] {
+			 "ContextConstraint", "http://local/Transformations.owl#Java1Platform"
+		   });				
+		addAnnotation
+		  (uml2JavaObserverEClass, 
+		   source, 
+		   new String[] {
+			 "ContextConstraint", "http://local/Transformations.owl#JavaObserverPlatform"
+		   });				
+		addAnnotation
+		  (uml2AppletEClass, 
+		   source, 
+		   new String[] {
+			 "ContextConstraint", "http://local/Transformations.owl#AppletPlatform"
+		   });				
 		addAnnotation
 		  (uml2MIDletEClass, 
 		   source, 
@@ -585,7 +651,7 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 	 * @generated
 	 */
 	protected void createGenModelAnnotations() {
-		String source = "GenModel";			
+		String source = "GenModel";				
 		addAnnotation
 		  (transformationConfigEClass, 
 		   source, 
@@ -639,7 +705,7 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		   source, 
 		   new String[] {
 			 "documentation", "Java language mapping"
-		   });			
+		   });				
 		addAnnotation
 		  (javaDataTypesEClass, 
 		   source, 
@@ -651,37 +717,37 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		   source, 
 		   new String[] {
 			 "documentation", "Java 1.0 data types"
-		   });			
+		   });				
 		addAnnotation
 		  (java2DataTypesEClass, 
 		   source, 
 		   new String[] {
 			 "documentation", "Java 1.2 data types"
-		   });			
+		   });				
 		addAnnotation
 		  (uml2ObserverEClass, 
 		   source, 
 		   new String[] {
 			 "documentation", "Implements the Observer profile"
-		   });		
+		   });				
 		addAnnotation
 		  (uml2JavaObserverEClass, 
 		   source, 
 		   new String[] {
 			 "documentation", "Implements the Observer profile using the java.util.Observer API"
-		   });			
+		   });				
 		addAnnotation
 		  (uml2AppletEClass, 
 		   source, 
 		   new String[] {
 			 "documentation", "Implements the Applet profile using a Java AWT Applet"
-		   });			
+		   });				
 		addAnnotation
 		  (uml2MIDletEClass, 
 		   source, 
 		   new String[] {
 			 "documentation", "Implements the Applet profile using a Java MIDP MIDlet"
-		   });			
+		   });				
 		addAnnotation
 		  (saveModelTypeEEnum, 
 		   source, 

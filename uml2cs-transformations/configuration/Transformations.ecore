@@ -92,6 +92,9 @@
     <eAnnotations source="GenModel">
       <details key="documentation" value="Implements the Observer profile"/>
     </eAnnotations>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/Transformations.owl#ObserverPlatform"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="config" lowerBound="1"
         eType="#//TransformationConfig" eOpposite="#//TransformationConfig/observer"/>
   </eClassifiers>

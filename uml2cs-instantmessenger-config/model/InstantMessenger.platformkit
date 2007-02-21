@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<platformkit:ConstraintSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:platformkit="http://ssel.vub.ac.be/platformkit">
+  <ontology>InstantMessenger.owl</ontology>
+  <ontology>../../uml2cs-transformations-config/model/Transformations.owl</ontology>
+  <constraintSet name="instantmessenger::SwingUserInterface">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#SwingPlatform"/>
+  </constraintSet>
+  <constraintSet name="instantmessenger::WebAppletPackaging">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#WebAppletPlatform"/>
+  </constraintSet>
+  <constraintSet name="instantmessenger::IpkgAppletPackaging">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
+  </constraintSet>
+  <constraintSet name="instantmessenger::MIDletPackaging">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#MIDletPlatform"/>
+  </constraintSet>
+  <constraintSet name="transformations::Java2DataTypes">
+    <constraint ontClassURI="http://local/Transformations.owl#Java2Platform"/>
+  </constraintSet>
+  <constraintSet name="transformations::UML2JavaObserver">
+    <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
+  </constraintSet>
+  <constraintSet name="transformations::UML2MIDlet">
+    <constraint ontClassURI="http://local/Transformations.owl#MIDletPlatform"/>
+  </constraintSet>
+  <constraintSet name="instantmessenger::DefaultJabberTransport">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+  </constraintSet>
+  <constraintSet name="instantmessenger::MEJabberTransport">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#MEJabberPlatform"/>
+  </constraintSet>
+  <constraintSet name="instantmessenger::AWTUserInterface">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#AWTPlatform"/>
+  </constraintSet>
+  <constraintSet name="instantmessenger::LCDUIUserInterface">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#LCDUIPlatform"/>
+  </constraintSet>
+  <constraintSet name="transformations::UML2Applet">
+    <constraint ontClassURI="http://local/Transformations.owl#AppletPlatform"/>
+  </constraintSet>
+  <constraintSet name="instantmessenger::JabberNetwork">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#JabberPlatform"/>
+  </constraintSet>
+  <constraintSet name="transformations::JavaMapping">
+    <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
+  </constraintSet>
+  <constraintSet name="transformations::Java1DataTypes">
+    <constraint ontClassURI="http://local/Transformations.owl#Java1Platform"/>
+  </constraintSet>
+  <constraintSet name="transformations::UML2Observer">
+    <constraint ontClassURI="http://local/Transformations.owl#Java1Platform"/>
+  </constraintSet>
+  <constraintSet name="instantmessenger::LocalNetwork">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#LocalPlatform"/>
+  </constraintSet>
+</platformkit:ConstraintSpace>

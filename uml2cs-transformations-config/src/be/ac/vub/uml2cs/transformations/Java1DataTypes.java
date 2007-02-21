@@ -16,6 +16,7 @@ package be.ac.vub.uml2cs.transformations;
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getJava1DataTypes()
  * @model annotation="GenModel documentation='Java 1.0 data types'"
  *        annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#Java1Platform'"
+ *        annotation="PlatformKit ContextConstraint='http://local/Transformations.owl#Java1Platform'"
  * @generated
  */
 public interface Java1DataTypes extends JavaDataTypes {

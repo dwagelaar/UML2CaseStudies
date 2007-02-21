@@ -15,6 +15,7 @@ package be.ac.vub.uml2cs.instantmessenger;
  *
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getSwingUserInterface()
  * @model annotation="CDDToolkit ContextConstraint='http://local/InstantMessenger.owl#SwingPlatform'"
+ *        annotation="PlatformKit PlatformConstraint='http://local/InstantMessenger.owl#SwingPlatform'"
  * @generated
  */
 public interface SwingUserInterface extends UserInterface {

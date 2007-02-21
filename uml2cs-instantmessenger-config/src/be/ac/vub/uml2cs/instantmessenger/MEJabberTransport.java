@@ -15,6 +15,7 @@ package be.ac.vub.uml2cs.instantmessenger;
  *
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getMEJabberTransport()
  * @model annotation="CDDToolkit ContextConstraint='http://local/InstantMessenger.owl#MEJabberPlatform'"
+ *        annotation="PlatformKit PlatformConstraint='http://local/InstantMessenger.owl#MEJabberPlatform'"
  * @generated
  */
 public interface MEJabberTransport extends JabberTransport {

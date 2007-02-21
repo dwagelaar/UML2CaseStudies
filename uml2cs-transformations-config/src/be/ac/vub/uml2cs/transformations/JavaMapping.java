@@ -22,6 +22,7 @@ package be.ac.vub.uml2cs.transformations;
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getJavaMapping()
  * @model annotation="GenModel documentation='Java language mapping'"
  *        annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#JavaMappingsPlatform'"
+ *        annotation="PlatformKit ContextConstraint='http://local/Transformations.owl#JavaMappingsPlatform'"
  * @generated
  */
 public interface JavaMapping extends Mapping {

@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EReference;
  * @see be.ac.vub.uml2cs.transformations.TransformationsFactory
  * @model kind="package"
  *        annotation="CDDToolkit Ontology='Transformations.owl'"
+ *        annotation="PlatformKit Ontology='Transformations.owl'"
  * @generated
  */
 public interface TransformationsPackage extends EPackage {

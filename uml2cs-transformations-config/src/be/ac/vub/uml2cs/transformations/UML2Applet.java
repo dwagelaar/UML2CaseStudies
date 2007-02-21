@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getUML2Applet()
  * @model annotation="GenModel documentation='Implements the Applet profile using a Java AWT Applet'"
  *        annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#AppletPlatform'"
+ *        annotation="PlatformKit ContextConstraint='http://local/Transformations.owl#AppletPlatform'"
  * @generated
  */
 public interface UML2Applet extends EObject {

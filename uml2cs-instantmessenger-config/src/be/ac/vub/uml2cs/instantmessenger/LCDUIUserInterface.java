@@ -15,6 +15,7 @@ package be.ac.vub.uml2cs.instantmessenger;
  *
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getLCDUIUserInterface()
  * @model annotation="CDDToolkit ContextConstraint='http://local/InstantMessenger.owl#LCDUIPlatform'"
+ *        annotation="PlatformKit PlatformConstraint='http://local/InstantMessenger.owl#LCDUIPlatform'"
  * @generated
  */
 public interface LCDUIUserInterface extends UserInterface {

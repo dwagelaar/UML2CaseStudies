@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EReference;
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerFactory
  * @model kind="package"
  *        annotation="CDDToolkit Ontology='InstantMessenger.owl'"
+ *        annotation="PlatformKit Ontology='InstantMessenger.owl'"
  * @generated
  */
 public interface InstantmessengerPackage extends EPackage {
@@ -843,7 +844,7 @@ public interface InstantmessengerPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	interface Literals {
+	interface Literals  {
 		/**
 		 * The meta object literal for the '{@link be.ac.vub.uml2cs.instantmessenger.impl.InstantMessengerConfigurationImpl <em>Instant Messenger Configuration</em>}' class.
 		 * <!-- begin-user-doc -->

@@ -15,6 +15,7 @@ package be.ac.vub.uml2cs.instantmessenger;
  *
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getWebAppletPackaging()
  * @model annotation="CDDToolkit ContextConstraint='http://local/InstantMessenger.owl#WebAppletPlatform'"
+ *        annotation="PlatformKit PlatformConstraint='http://local/InstantMessenger.owl#WebAppletPlatform'"
  * @generated
  */
 public interface WebAppletPackaging extends Packaging {

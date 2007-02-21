@@ -2,7 +2,7 @@
 <feature
       id="be.ac.vub.uml2cs.infrastructure"
       label="UML2 case studies infrastructure feature"
-      version="1.0.3"
+      version="1.0.4"
       provider-name="Vrije Universiteit Brussel">
 
    <description>
@@ -29,15 +29,15 @@ the terms and conditions of the Eclipse Public License Version
 
    <plugin
          id="be.ac.vub.uml2cs.transformations.config"
-         download-size="0"
-         install-size="0"
+         download-size="44"
+         install-size="44"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="be.ac.vub.uml2cs.transformations.config.edit"
-         download-size="0"
-         install-size="0"
+         download-size="28"
+         install-size="28"
          version="0.0.0"
          unpack="false"/>
 

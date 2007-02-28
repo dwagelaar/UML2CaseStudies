@@ -15,6 +15,7 @@ module UML2Accessors; --extends UML2Copy
 
 create OUT : UML2 from IN : UML2, ACCESSORS : UML2, UML2TYPES : UML2;
 
+uses UML2Copy;
 uses Strings;
 uses UML2;
 uses Mappings;

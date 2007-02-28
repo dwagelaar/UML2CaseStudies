@@ -5,6 +5,8 @@ module UML2ProfileCopy; --extends UML2Copy
 
 create OUT : UML2 from IN : UML2;
 
+uses UML2Copy;
+
 -- ======================================================================
 -- Stereotype copying rules begin
 -- ======================================================================

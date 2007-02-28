@@ -5,6 +5,7 @@ module UML2Observer; --extends UML2Copy
 
 create OUT : UML2 from IN : UML2, OBSERVER : UML2, UML2TYPES : UML2;
 
+uses UML2Copy;
 uses Strings;
 uses UML2;
 uses Mappings;

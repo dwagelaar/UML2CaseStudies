@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<platformkit:ConstraintSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:platformkit="http://ssel.vub.ac.be/platformkit">
+  <ontology>http://ssel.vub.ac.be/uml2cs/InstantMessenger.owl</ontology>
+  <ontology>http://ssel.vub.ac.be/uml2cs/Transformations.owl</ontology>
+  <constraintSet name="swing/applet/">
+    <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#Java2Platform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#AppletPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#SwingPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#WebAppletPlatform"/>
+  </constraintSet>
+  <constraintSet name="java2/applet/">
+    <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#Java2Platform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#AppletPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#AWTPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#WebAppletPlatform"/>
+  </constraintSet>
+  <constraintSet name="default/applet/">
+    <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#Java1Platform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#AppletPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#AWTPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#WebAppletPlatform"/>
+  </constraintSet>
+  <constraintSet name="java2/ipkg/instantmessenger-j2me-pp_1.1-0_noarch.ipk">
+    <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#Java2Platform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#AppletPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#AWTPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
+  </constraintSet>
+  <constraintSet name="default/ipkg/instantmessenger-jeode_1.1-0_noarch.ipk">
+    <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#Java1Platform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#AppletPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#AWTPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
+  </constraintSet>
+  <constraintSet name="midp/">
+    <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#Java1Platform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#MIDletPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#MEJabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#LCDUIPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#MIDletPlatform"/>
+  </constraintSet>
+</platformkit:ConstraintSpace>

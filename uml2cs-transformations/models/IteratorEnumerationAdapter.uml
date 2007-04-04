@@ -20,7 +20,7 @@
             <eAnnotations xmi:id="_3KFjYPupEdqPS9oJcuwDkA" source="http://www.topcased.org/uuid">
               <details xmi:id="_3KFjYfupEdqPS9oJcuwDkA" key="uuid" value="11502917930464"/>
             </eAnnotations>
-            <packagedElement xmi:type="uml:Class" xmi:id="_IrQwkPupEdqPS9oJcuwDkA" name="IteratorEnumerationAdapter" clientDependency="_cKrdwPxFEdqPCPYQWc94YQ __kR1YETPEdufqYn5Bpo1pQ">
+            <packagedElement xmi:type="uml:Class" xmi:id="_IrQwkPupEdqPS9oJcuwDkA" name="IteratorEnumerationAdapter" clientDependency="_cKrdwPxFEdqPCPYQWc94YQ">
               <eAnnotations xmi:id="_3KGKcPupEdqPS9oJcuwDkA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_3KGKcfupEdqPS9oJcuwDkA" key="uuid" value="11502917930475"/>
               </eAnnotations>
@@ -106,12 +106,6 @@
                   <type xmi:type="uml:Class" href="JavaTypes.uml#_bjrpkPfvEdqaqL9wEVL3aA"/>
                 </ownedParameter>
               </ownedOperation>
-            </packagedElement>
-            <packagedElement xmi:type="uml:Dependency" xmi:id="__kR1YETPEdufqYn5Bpo1pQ" name="Dependency1" client="_IrQwkPupEdqPS9oJcuwDkA">
-              <eAnnotations xmi:id="_eis1ZkTQEdufqYn5Bpo1pQ" source="http://www.topcased.org/uuid">
-                <details xmi:id="_eis1Z0TQEdufqYn5Bpo1pQ" key="uuid" value="115833481311048"/>
-              </eAnnotations>
-              <supplier xmi:type="uml:Interface" href="JavaTypes.uml#_PDpWEPxFEdqPCPYQWc94YQ"/>
             </packagedElement>
           </packagedElement>
         </packagedElement>

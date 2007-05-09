@@ -8,7 +8,7 @@
       <eAnnotations xmi:id="_esyuMOQoEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
         <details xmi:id="_esyuMeQoEdqD2ZNp93yIAQ" key="uuid" value="11477073470911"/>
       </eAnnotations>
-      <packagedElement xmi:type="uml:Class" xmi:id="_gOtz8OQoEdqD2ZNp93yIAQ" name="InstantMessagingClient" clientDependency="_gpvbsOQrEdqD2ZNp93yIAQ _BPhwMPyYEdqlTr7ZXrCGhQ _MRkocP00Edq3U8J4qyDFVg _jk0FcP00Edq3U8J4qyDFVg">
+      <packagedElement xmi:type="uml:Class" xmi:id="_gOtz8OQoEdqD2ZNp93yIAQ" name="InstantMessagingClient" clientDependency="_gpvbsOQrEdqD2ZNp93yIAQ _BPhwMPyYEdqlTr7ZXrCGhQ _MRkocP00Edq3U8J4qyDFVg _jk0FcP00Edq3U8J4qyDFVg _7Wld0f4XEdu5Rbo6DYG3bw">
         <eAnnotations xmi:id="_sJzs9uQoEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
           <details xmi:id="_sJzs9-QoEdqD2ZNp93yIAQ" key="uuid" value="114770743737512"/>
         </eAnnotations>
@@ -97,7 +97,7 @@
             <details xmi:id="_ziOVgUMeEduaOpfN-LmTUw" key="uuid" value="115814855240860"/>
           </eAnnotations>
           <language>java</language>
-          <body>    try {&#xA;        // ViewFactory&#xA;        setViewFactory(im.view.ViewFactory.getDefault());&#xA;        // Network&#xA;        im.networking.Network.discoverNetworks();&#xA;        // Create and register edit/view&#xA;        new im.edit.ContactListEdit(contactList);&#xA;    } catch (Exception e) {&#xA;        e.printStackTrace();&#xA;    }</body>
+          <body>    try {&#xA;        // ViewFactory&#xA;        setViewFactory(ViewFactory.getDefault());&#xA;        // Network&#xA;        Network.discoverNetworks();&#xA;        // Create and register edit/view&#xA;        new ContactListEdit(contactList);&#xA;    } catch (Exception e) {&#xA;        e.printStackTrace();&#xA;    }</body>
         </ownedBehavior>
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_0lY4IEMdEduaOpfN-LmTUw" name="InstantMessagingClient_startBehavior" specification="_aNKN0OcgEdqQTtzfbcEKGw">
           <eAnnotations xmi:id="_ziO8kEMeEduaOpfN-LmTUw" source="http://www.topcased.org/uuid">
@@ -630,7 +630,7 @@
           <eAnnotations xmi:id="_4M_MtuciEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">
             <details xmi:id="_4M_Mt-ciEdqQTtzfbcEKGw" key="uuid" value="1148034794747159"/>
           </eAnnotations>
-          <ownedEnd xmi:id="_gbMygOciEdqQTtzfbcEKGw" name="network" type="_49VF8OQsEdqD2ZNp93yIAQ" aggregation="composite" association="_gbGr4OciEdqQTtzfbcEKGw">
+          <ownedEnd xmi:id="_gbMygOciEdqQTtzfbcEKGw" name="network" type="_49VF8OQsEdqD2ZNp93yIAQ" aggregation="shared" association="_gbGr4OciEdqQTtzfbcEKGw">
             <eAnnotations xmi:id="_4M_zwOciEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">
               <details xmi:id="_4M_zweciEdqQTtzfbcEKGw" key="uuid" value="1148034794748160"/>
             </eAnnotations>
@@ -650,7 +650,7 @@
           <eAnnotations xmi:id="_4NBB4uciEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">
             <details xmi:id="_4NBB4-ciEdqQTtzfbcEKGw" key="uuid" value="1148034794750163"/>
           </eAnnotations>
-          <ownedEnd xmi:id="_guxOwOciEdqQTtzfbcEKGw" name="network" type="_49VF8OQsEdqD2ZNp93yIAQ" aggregation="composite" association="_guuLcOciEdqQTtzfbcEKGw">
+          <ownedEnd xmi:id="_guxOwOciEdqQTtzfbcEKGw" name="network" type="_49VF8OQsEdqD2ZNp93yIAQ" aggregation="shared" association="_guuLcOciEdqQTtzfbcEKGw">
             <eAnnotations xmi:id="_4NCQAOciEdqQTtzfbcEKGw" source="http://www.topcased.org/uuid">
               <details xmi:id="_4NCQAeciEdqQTtzfbcEKGw" key="uuid" value="1148034794752164"/>
             </eAnnotations>
@@ -735,7 +735,7 @@
               </eAnnotations>
             </ownedParameter>
             <language>java</language>
-            <body>    setModel(c);&#xA;    InstantMessagingClient client = InstantMessagingClient.getInstance();&#xA;    setView(client.getViewFactory().createContactListView());&#xA;    getView().addListener(this);</body>
+            <body>    setModel(c);&#xA;    InstantMessagingClient client = InstantMessagingClient.getInstance();&#xA;    setView(client.getViewFactory().createContactListView());&#xA;    getView().addListener(this);&#xD;    onContactListAdd();</body>
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UpuuoEMvEduvwfpPI_uz7A" name="ContactListEdit_onContactChangeBehavior" specification="_PVT-IPyjEdqjP_ILe4Jwkg">
             <eAnnotations xmi:id="_7RT4YkMvEduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
@@ -1707,6 +1707,7 @@
           <details xmi:id="_nPJCIf00Edq3U8J4qyDFVg" key="uuid" value="1150461337410907"/>
         </eAnnotations>
       </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_7Wld0f4XEdu5Rbo6DYG3bw" name="Dependency1" supplier="_HVnPkOQsEdqD2ZNp93yIAQ" client="_gOtz8OQoEdqD2ZNp93yIAQ"/>
     </packagedElement>
     <profileApplication xmi:id="_fpc8kEPUEdusb52s3APTjA">
       <eAnnotations xmi:id="_fpc8kUPUEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -1782,7 +1783,7 @@
   <Observer:subscribe xmi:id="_mH6i4EPWEdusb52s3APTjA" base_Association="_0BHt0PyaEdqjP_ILe4Jwkg"/>
   <Observer:subscribe xmi:id="_odKjAEPWEdusb52s3APTjA" base_Association="_0cy9MPyaEdqjP_ILe4Jwkg"/>
   <Observer:subscribe xmi:id="_qKY50EPWEdusb52s3APTjA" base_Association="_0Otd4PyaEdqjP_ILe4Jwkg"/>
-  <Applet:Applet xmi:id="_t7udcEPWEdusb52s3APTjA" appletInfo="Title: InstantMessagingClient\n(C) 2005, Dennis Wagelaar, System and Software Engineering Lab, Vrije Universiteit Brussel\nA simple instant messaging client generated from a PIM" base_Classifier="_gOtz8OQoEdqD2ZNp93yIAQ"/>
+  <Applet:Applet xmi:id="_t7udcEPWEdusb52s3APTjA" appletInfo="Title: InstantMessagingClient\n(C) 2005-2007, Dennis Wagelaar, System and Software Engineering Lab, Vrije Universiteit Brussel\nA simple instant messaging client generated from a PIM" base_Classifier="_gOtz8OQoEdqD2ZNp93yIAQ"/>
   <Observer:Observer xmi:id="_t7vEgEPWEdusb52s3APTjA" base_Classifier="_gOtz8OQoEdqD2ZNp93yIAQ"/>
   <Singleton:Singleton xmi:id="_t7vEgUPWEdusb52s3APTjA" base_Classifier="_gOtz8OQoEdqD2ZNp93yIAQ"/>
   <Observer:subscribe xmi:id="_vSJd0EPWEdusb52s3APTjA" base_Association="_yPa8sOcPEdqhor9CwI893A"/>

@@ -221,7 +221,7 @@
                 <type xmi:type="uml:Class" href="JabberWookie.uml#_j_iNIESyEduo0qgZQXhZYA"/>
               </ownedParameter>
               <language>java</language>
-              <body>   System.out.println(&quot;Message: &quot; + message);&#xA;    im.model.Message msg = new im.model.Message();&#xA;    msg.setSender(stripResource(message.getFrom()));&#xA;    msg.setRecipient(message.getTo());&#xA;    msg.setContent(message.getBody());&#xA;    setRecvMsg(msg);</body>
+              <body>    System.out.println(&quot;Message: &quot; + message);&#xA;    if (message.getBody() == null) {&#xA;    &#x9;return;&#xA;    }&#xA;    im.model.Message msg = new im.model.Message();&#xA;    msg.setSender(stripResource(message.getFrom()));&#xA;    msg.setRecipient(message.getTo());&#xA;    msg.setContent(message.getBody());&#xA;    setRecvMsg(msg);</body>
             </ownedBehavior>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_0SYlAES8Eduo0qgZQXhZYA" name="Jabber_incomingPresenceBehavior" specification="_UlhxsES8Eduo0qgZQXhZYA">
               <eAnnotations xmi:id="_3JXjxkS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">

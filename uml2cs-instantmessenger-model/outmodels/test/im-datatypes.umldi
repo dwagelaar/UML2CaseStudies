@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/0.11" activeDiagram="//@subdiagrams.0/@diagrams.0">
+  <model href="im-datatypes.uml#_cEMxUOnREduR6ZmwQjwM4A"/>
+  <diagrams position="0,0" size="100,100" name="im-datatypes" viewport="0,0">
+    <property key="pageFormatName" value="A4"/>
+    <property key="diagramWidth" value="840"/>
+    <property key="diagramHeight" value="1188"/>
+    <property key="pageMarginName" value="Small Margin"/>
+    <property key="diagramTopMargin" value="20"/>
+    <property key="diagramBottomMargin" value="20"/>
+    <property key="diagramLeftMargin" value="20"/>
+    <property key="diagramRightMargin" value="20"/>
+    <property key="orientation" value="portrait"/>
+    <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="org.topcased.modeler.uml.classdiagram">
+      <element href="im-datatypes.uml#_cEMxUOnREduR6ZmwQjwM4A"/>
+    </semanticModel>
+    <contained xsi:type="di:GraphNode" position="24,26" size="118,93">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+        <element href="im-datatypes.uml#_cGmlE-nREduR6ZmwQjwM4A"/>
+      </semanticModel>
+    </contained>
+  </diagrams>
+  <subdiagrams>
+    <model href="im-datatypes.uml#_cGmlE-nREduR6ZmwQjwM4A"/>
+    <diagrams position="0,0" size="100,100" name="unnamed" viewport="239,0">
+      <property key="pageFormatName" value="newPageFormat"/>
+      <property key="diagramWidth" value="1070"/>
+      <property key="diagramHeight" value="860"/>
+      <property key="pageMarginName" value="Small Margin"/>
+      <property key="diagramTopMargin" value="20"/>
+      <property key="diagramBottomMargin" value="20"/>
+      <property key="diagramLeftMargin" value="20"/>
+      <property key="diagramRightMargin" value="20"/>
+      <property key="orientation" value="portrait"/>
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="org.topcased.modeler.uml.classdiagram">
+        <element href="im-datatypes.uml#_cGmlE-nREduR6ZmwQjwM4A"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" position="18,16" size="199,-1">
+        <property key="backgroundColor" value="255,255,255"/>
+        <anchorage graphEdge="//@subdiagrams.0/@diagrams.0/@contained.12"/>
+        <anchorage/>
+        <anchorage/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cHn4w-nREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="37"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="im-datatypes.uml#_cHn4w-nREduR6ZmwQjwM4A"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="38"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="im-datatypes.uml#_cHn4w-nREduR6ZmwQjwM4A"/>
+          </semanticModel>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFOsEunREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+        </contained>
+      </contained>
+      <contained xsi:type="di:GraphNode" position="19,717" size="72,50">
+        <property key="backgroundColor" value="255,255,255"/>
+        <anchorage graphEdge="//@subdiagrams.0/@diagrams.0/@contained.11"/>
+        <anchorage/>
+        <anchorage/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cGmlEOnREduR6ZmwQjwM4A"/>
+        </semanticModel>
+      </contained>
+      <contained xsi:type="di:GraphNode" position="126,718" size="55,50">
+        <property key="backgroundColor" value="255,255,255"/>
+        <anchorage graphEdge="//@subdiagrams.0/@diagrams.0/@contained.10"/>
+        <anchorage/>
+        <anchorage/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cGmlEunREduR6ZmwQjwM4A"/>
+        </semanticModel>
+      </contained>
+      <contained xsi:type="di:GraphNode" position="215,719" size="62,50">
+        <property key="backgroundColor" value="255,255,255"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cGmlFOnREduR6ZmwQjwM4A"/>
+        </semanticModel>
+      </contained>
+      <contained xsi:type="di:GraphNode" position="232,16" size="98,-1">
+        <property key="backgroundColor" value="255,255,255"/>
+        <anchorage graphEdge="//@subdiagrams.0/@diagrams.0/@contained.9"/>
+        <anchorage/>
+        <anchorage/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="../../../uml2cs-transformations/models/JavaTypes.uml#_RBbEYPfyEdqaqL9wEVL3aA"/>
+        </semanticModel>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="37"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="../../../uml2cs-transformations/models/JavaTypes.uml#_RBbEYPfyEdqaqL9wEVL3aA"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="47"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="../../../uml2cs-transformations/models/JavaTypes.uml#_RBbEYPfyEdqaqL9wEVL3aA"/>
+          </semanticModel>
+        </contained>
+      </contained>
+      <contained xsi:type="di:GraphNode" position="301,718" size="102,50">
+        <property key="backgroundColor" value="255,255,255"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cGmlEenREduR6ZmwQjwM4A"/>
+        </semanticModel>
+      </contained>
+      <contained xsi:type="di:GraphNode" position="665,493" size="344,-1">
+        <property key="backgroundColor" value="255,255,255"/>
+        <anchorage graphEdge="//@subdiagrams.0/@diagrams.0/@contained.8 //@subdiagrams.0/@diagrams.0/@contained.19"/>
+        <anchorage/>
+        <anchorage/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cFXO9OnREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="37"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="im-datatypes.uml#_cFXO9OnREduR6ZmwQjwM4A"/>
+          </semanticModel>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFpi0OnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+        </contained>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="47"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="im-datatypes.uml#_cFXO9OnREduR6ZmwQjwM4A"/>
+          </semanticModel>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFNd8-nREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFLowenREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFPTKOnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFMP0-nREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFP6MenREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFOsF-nREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFMP1unREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFMP1OnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+        </contained>
+      </contained>
+      <contained xsi:type="di:GraphNode" position="665,330" size="280,-1">
+        <property key="backgroundColor" value="255,255,255"/>
+        <anchorage graphEdge="//@subdiagrams.0/@diagrams.0/@contained.20"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cFWn4OnREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="37"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="im-datatypes.uml#_cFWn4OnREduR6ZmwQjwM4A"/>
+          </semanticModel>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFrYAOnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFpi2OnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+        </contained>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="47"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="im-datatypes.uml#_cFWn4OnREduR6ZmwQjwM4A"/>
+          </semanticModel>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFQhQenREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFKapunREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFLBsunREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFPTIOnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+        </contained>
+      </contained>
+      <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@diagrams.0/@contained.13/@anchorage.0 //@subdiagrams.0/@diagrams.0/@contained.6/@anchorage.0">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cHq8GenREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:EdgeObjectUV" id="srcNameEdgeObject" uDistance="10" vDistance="10"/>
+        <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
+        <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
+        <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
+        <contained xsi:type="di:EdgeObjectOffset" visible="false" id="middleNameEdgeObject" offset="0,10"/>
+        <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject" offset="0,-10"/>
+      </contained>
+      <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@diagrams.0/@contained.13/@anchorage.0 //@subdiagrams.0/@diagrams.0/@contained.4/@anchorage.0">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cIcYIOnREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject"/>
+      </contained>
+      <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@diagrams.0/@contained.13/@anchorage.0 //@subdiagrams.0/@diagrams.0/@contained.2/@anchorage.0">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cIqalunREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject"/>
+      </contained>
+      <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@diagrams.0/@contained.13/@anchorage.0 //@subdiagrams.0/@diagrams.0/@contained.1/@anchorage.0">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cIqakOnREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject"/>
+      </contained>
+      <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@diagrams.0/@contained.13/@anchorage.0 //@subdiagrams.0/@diagrams.0/@contained.0/@anchorage.0">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cEwyBenREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject"/>
+      </contained>
+      <contained xsi:type="di:GraphNode" position="63,167" size="437,-1">
+        <property key="backgroundColor" value="255,255,255"/>
+        <anchorage graphEdge="//@subdiagrams.0/@diagrams.0/@contained.8 //@subdiagrams.0/@diagrams.0/@contained.9 //@subdiagrams.0/@diagrams.0/@contained.10 //@subdiagrams.0/@diagrams.0/@contained.11 //@subdiagrams.0/@diagrams.0/@contained.12 //@subdiagrams.0/@diagrams.0/@contained.14 //@subdiagrams.0/@diagrams.0/@contained.17"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cFXO8enREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="37"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="im-datatypes.uml#_cFXO8enREduR6ZmwQjwM4A"/>
+          </semanticModel>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFqw-unREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFpi0-nREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFqw8OnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFqw8unREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFqJ5enREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+        </contained>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="47"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="im-datatypes.uml#_cFXO8enREduR6ZmwQjwM4A"/>
+          </semanticModel>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFKaqOnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFQhSOnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFOsGOnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFOFAenREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFM24OnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFM24enREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFP6NOnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFNd8enREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFP6MOnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFQhQOnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFLBt-nREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFOsFenREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFLBsOnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFNd9OnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFMP2OnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFKap-nREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFOFBunREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFOFBenREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFOsFunREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFJzmunREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFQhSenREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFLBsenREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+        </contained>
+      </contained>
+      <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@diagrams.0/@contained.13/@anchorage.0 //@subdiagrams.0/@diagrams.0/@contained.15/@anchorage.0">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cIpMdOnREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject"/>
+      </contained>
+      <contained xsi:type="di:GraphNode" position="665,3" size="320,-1">
+        <property key="backgroundColor" value="255,255,255"/>
+        <anchorage graphEdge="//@subdiagrams.0/@diagrams.0/@contained.14 //@subdiagrams.0/@diagrams.0/@contained.21"/>
+        <anchorage/>
+        <anchorage/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cFZEIenREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="37"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="im-datatypes.uml#_cFZEIenREduR6ZmwQjwM4A"/>
+          </semanticModel>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFqJ4enREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFqJ6enREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFqw-OnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+        </contained>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="47"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="im-datatypes.uml#_cFZEIenREduR6ZmwQjwM4A"/>
+          </semanticModel>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFLowunREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFLoyOnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFLoyenREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFPTIenREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFP6OOnREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFKaounREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFPTIunREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFMP1enREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFMP2unREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFJzlenREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFLoxunREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="im-datatypes.uml#_cFQhR-nREduR6ZmwQjwM4A"/>
+            </semanticModel>
+          </contained>
+        </contained>
+      </contained>
+      <contained xsi:type="di:GraphNode" position="343,16" size="111,-1">
+        <property key="backgroundColor" value="255,255,255"/>
+        <anchorage graphEdge="//@subdiagrams.0/@diagrams.0/@contained.17"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="../../../uml2cs-transformations/models/JavaTypes.uml#_LmJj8PfxEdqaqL9wEVL3aA"/>
+        </semanticModel>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="37"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="../../../uml2cs-transformations/models/JavaTypes.uml#_LmJj8PfxEdqaqL9wEVL3aA"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="38"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="../../../uml2cs-transformations/models/JavaTypes.uml#_LmJj8PfxEdqaqL9wEVL3aA"/>
+          </semanticModel>
+        </contained>
+      </contained>
+      <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@diagrams.0/@contained.13/@anchorage.0 //@subdiagrams.0/@diagrams.0/@contained.16/@anchorage.0">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cEwyAunREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject"/>
+      </contained>
+      <contained xsi:type="di:GraphNode" position="511,16" size="99,-1">
+        <property key="backgroundColor" value="255,255,255"/>
+        <anchorage graphEdge="//@subdiagrams.0/@diagrams.0/@contained.19 //@subdiagrams.0/@diagrams.0/@contained.20 //@subdiagrams.0/@diagrams.0/@contained.21"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="../../../uml2cs-transformations/models/JavaTypes.uml#_IE_xYPfxEdqaqL9wEVL3aA"/>
+        </semanticModel>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="37"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="../../../uml2cs-transformations/models/JavaTypes.uml#_IE_xYPfxEdqaqL9wEVL3aA"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode">
+          <property key="eStructuralFeatureID" value="47"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+            <element href="../../../uml2cs-transformations/models/JavaTypes.uml#_IE_xYPfxEdqaqL9wEVL3aA"/>
+          </semanticModel>
+        </contained>
+      </contained>
+      <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@diagrams.0/@contained.6/@anchorage.0 //@subdiagrams.0/@diagrams.0/@contained.18/@anchorage.0">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cIcYIunREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject"/>
+        <waypoints>[0, -120, 277, 437]</waypoints>
+        <waypoints>[-277, -120, 0, 437]</waypoints>
+      </contained>
+      <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@diagrams.0/@contained.7/@anchorage.0 //@subdiagrams.0/@diagrams.0/@contained.18/@anchorage.0">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cIcYJOnREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject"/>
+        <waypoints>[0, -83, 245, 273]</waypoints>
+        <waypoints>[-245, -83, 0, 273]</waypoints>
+      </contained>
+      <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@diagrams.0/@contained.15/@anchorage.0 //@subdiagrams.0/@diagrams.0/@contained.18/@anchorage.0">
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+          <element href="im-datatypes.uml#_cIbxEOnREduR6ZmwQjwM4A"/>
+        </semanticModel>
+        <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject"/>
+        <waypoints>[0, -139, 265, -56]</waypoints>
+        <waypoints>[-265, -139, 0, -56]</waypoints>
+      </contained>
+    </diagrams>
+  </subdiagrams>
+</diagrams:Diagrams>

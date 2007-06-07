@@ -153,7 +153,7 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         List superimpose = new ArrayList();
         superimpose.add(trans2);
         AtlLauncher myLauncher = AtlLauncher.getDefault();
-        myLauncher.launch(trans1, libs, models, params, superimpose);
+        myLauncher.launch(trans1, libs, models, params, superimpose, Collections.EMPTY_MAP);
         xmlExtraction(out, buildFile);
         buildFile.refreshLocal(0, null);
         worked(monitor);
@@ -165,7 +165,7 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         models.put(in.getName(), in);
         models.put(out.getName(), out);
         URL trans3 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/ConfigToParameters.asm");
-        myLauncher.launch(trans3, libs, models, params);
+        myLauncher.launch(trans3, libs, models, params, Collections.EMPTY_LIST, Collections.EMPTY_MAP);
         xmlExtraction(out, parFile);
         parFile.refreshLocal(0, null);
         worked(monitor);

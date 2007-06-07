@@ -33,6 +33,7 @@ import org.eclipse.m2m.atl.engine.AtlEMFModelHandler;
 import org.eclipse.m2m.atl.engine.AtlLauncher;
 import org.eclipse.m2m.atl.engine.AtlModelHandler;
 import org.eclipse.m2m.atl.engine.extractors.xml.XMLExtractor;
+import org.eclipse.m2m.atl.engine.vm.SimpleDebugger;
 import org.eclipse.m2m.atl.engine.vm.nativelib.ASMModel;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
@@ -44,6 +45,17 @@ import be.ac.vub.uml2cs.instantmessenger.presentation.InstantMessengerEditorPlug
 
 public class GenerateBuildFileAction implements IObjectActionDelegate {
 
+	protected static SimpleDebugger atlDebugger = new SimpleDebugger(
+			/* step = */ false,
+			/* stepops = */ new ArrayList(),
+			/* deepstepops = */ new ArrayList(),
+			/* nostepops = */ new ArrayList(),
+			/* deepnostepops = */ new ArrayList(),
+			/* showStackTrace = */ true,
+			/* show summary = */ false,
+			/* profile = */ false,
+			/* continue after error = */ false);
+	
     protected ISelection selection;
     protected IAction action;
     private boolean cancelled = false;
@@ -153,7 +165,7 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         List superimpose = new ArrayList();
         superimpose.add(trans2);
         AtlLauncher myLauncher = AtlLauncher.getDefault();
-        myLauncher.launch(trans1, libs, models, params, superimpose, Collections.EMPTY_MAP);
+        myLauncher.launch(trans1, libs, models, params, superimpose, Collections.EMPTY_MAP, atlDebugger);
         xmlExtraction(out, buildFile);
         buildFile.refreshLocal(0, null);
         worked(monitor);

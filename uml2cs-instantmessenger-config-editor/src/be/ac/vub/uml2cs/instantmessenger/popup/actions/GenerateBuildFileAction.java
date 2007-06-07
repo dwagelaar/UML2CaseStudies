@@ -165,7 +165,7 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         List superimpose = new ArrayList();
         superimpose.add(trans2);
         AtlLauncher myLauncher = AtlLauncher.getDefault();
-        myLauncher.launch(trans1, libs, models, params, superimpose, Collections.EMPTY_MAP, atlDebugger);
+        myLauncher.launch(trans1, libs, models, params, superimpose);
         xmlExtraction(out, buildFile);
         buildFile.refreshLocal(0, null);
         worked(monitor);

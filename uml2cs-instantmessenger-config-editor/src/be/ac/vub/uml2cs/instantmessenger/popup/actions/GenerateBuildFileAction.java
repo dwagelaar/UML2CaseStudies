@@ -33,7 +33,6 @@ import org.eclipse.m2m.atl.engine.AtlEMFModelHandler;
 import org.eclipse.m2m.atl.engine.AtlLauncher;
 import org.eclipse.m2m.atl.engine.AtlModelHandler;
 import org.eclipse.m2m.atl.engine.extractors.xml.XMLExtractor;
-import org.eclipse.m2m.atl.engine.vm.SimpleDebugger;
 import org.eclipse.m2m.atl.engine.vm.nativelib.ASMModel;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
@@ -45,17 +44,6 @@ import be.ac.vub.uml2cs.instantmessenger.presentation.InstantMessengerEditorPlug
 
 public class GenerateBuildFileAction implements IObjectActionDelegate {
 
-	protected static SimpleDebugger atlDebugger = new SimpleDebugger(
-			/* step = */ false,
-			/* stepops = */ new ArrayList(),
-			/* deepstepops = */ new ArrayList(),
-			/* nostepops = */ new ArrayList(),
-			/* deepnostepops = */ new ArrayList(),
-			/* showStackTrace = */ true,
-			/* show summary = */ false,
-			/* profile = */ false,
-			/* continue after error = */ false);
-	
     protected ISelection selection;
     protected IAction action;
     private boolean cancelled = false;
@@ -177,7 +165,7 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         models.put(in.getName(), in);
         models.put(out.getName(), out);
         URL trans3 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/ConfigToParameters.asm");
-        myLauncher.launch(trans3, libs, models, params, Collections.EMPTY_LIST, Collections.EMPTY_MAP);
+        myLauncher.launch(trans3, libs, models, params, Collections.EMPTY_LIST);
         xmlExtraction(out, parFile);
         parFile.refreshLocal(0, null);
         worked(monitor);

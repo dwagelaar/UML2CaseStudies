@@ -6,8 +6,8 @@ query EModelCopyGenerator = ECORE!EClass->allInstancesFrom('IN')->iterate(e; acc
 	'module EModelCopy;\n\n' +
 	'create OUT : OUTMODEL from IN : INMODEL;\n\n' +
 	'helper def : inElements : Set(INMODEL!EObject) = INMODEL!EObject->allInstancesFrom(\'IN\');\n\n'|
-	acc + e.toRuleString()).
-	writeTo('EModelCopy.atl'.path());
+	acc + e->toRuleString()).
+	writeTo('EModelCopy.atl'->path());
 
 uses Config;
 
@@ -57,7 +57,7 @@ helper context ECORE!EClass def : inputConstraint() : String =
 	if self->hasConcreteSubclasses() then
 		' (\n' + 
 		'		if thisModule.inElements->includes(s) then\n' +
-		'			s->oclIsTypeOf(INMODEL!' + self.cname() + ')\n'+
+		'			s->oclIsTypeOf(INMODEL!' + self->cname() + ')\n'+
 		'		else false endif)'
 	else
 		' (thisModule.inElements->includes(s))'

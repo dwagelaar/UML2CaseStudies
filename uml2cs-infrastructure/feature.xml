@@ -2,21 +2,23 @@
 <feature
       id="be.ac.vub.uml2cs.infrastructure"
       label="UML2 case studies infrastructure feature"
-      version="1.0.6"
-      provider-name="Vrije Universiteit Brussel">
+      version="1.0.7"
+      provider-name="Vrije Universiteit Brussel"
+      plugin="be.ac.vub.uml2cs.instantmessenger.config"
+      image="VUB_logo_compact.gif">
 
-   <description>
+   <description url="about.html">
       UML2 case studies infrastructure:
 - EMF models for transformation and instantmessenger configuration
 - EMF editor for instantmessenger configuration
 - CDDToolkit meta-information
    </description>
 
-   <copyright>
+   <copyright url="about.html">
       © Copyright 2007 Dennis Wagelaar, Vrije Universiteit Brussel
    </copyright>
 
-   <license url="http://www.eclipse.org/legal/epl-v10.html">
+   <license url="about.html">
       Vrije Universiteit Brussel makes available all content in this
 plug-in. The Content in this plug-in is provided to you under
 the terms and conditions of the Eclipse Public License Version

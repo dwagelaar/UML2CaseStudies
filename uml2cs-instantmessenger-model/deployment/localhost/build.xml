@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="uml2cs-instantmessenger-model/deployment/localhost" default="all">
 	<property name="deploy.path" value="${user.home}/Sites/platformkit/instantmessenger"/>
-	<eclipse.convertPath resourcePath="platformkit-examples" property="example.path"/>
+	<eclipse.convertPath resourcePath="platformkit-examples/codamos_2007_01" property="example.path"/>
 
 	<target name="clean">
 		<mkdir dir="${deploy.path}"/>

@@ -138,7 +138,7 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         xml.setIsTarget(false);
         ASMModel in = amh.loadModel("IN", cfg, res.getURI());
         in.setIsTarget(false);
-        ASMModel out = amh.newModel("OUT", xml);
+        ASMModel out = amh.newModel("OUT", buildFile.getLocationURI().toString(), xml);
         worked(monitor);
         monitor.subTask("Generating build.xml...");
         Map params = Collections.EMPTY_MAP;
@@ -158,7 +158,7 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         buildFile.refreshLocal(0, null);
         worked(monitor);
         monitor.subTask("Generating parameters.xml...");
-        out = amh.newModel("OUT", xml);
+        out = amh.newModel("OUT", parFile.getLocationURI().toString(), xml);
         models.clear();
         models.put(cfg.getName(), cfg);
         models.put(xml.getName(), xml);

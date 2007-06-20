@@ -65,12 +65,14 @@ helper context UML2!uml::Feature def : isStatic() : String =
 	if self.isStatic then 'static '
 	else '' endif;
 
-helper context UML2!uml::StructuralFeature def : final() : String =
-	if self.isReadOnly then 'final '
-	else '' endif;
-
 helper context UML2!uml::Parameter def : isFinal() : Boolean =
 	UML2!Final::final->allInstances()->select(f|f.base_Parameter=self)->notEmpty();
+	
+helper context UML2!uml::StructuralFeature def : final() : String =
+	if self.isLeaf or self.isReadOnly then 'final ' else '' endif;
+	
+helper context UML2!uml::RedefinableElement def : final() : String =
+	if self.isLeaf then 'final ' else '' endif;
 	
 helper context UML2!uml::Parameter def : final() : String =
 	if self->isFinal() then 'final '
@@ -96,10 +98,10 @@ helper context UML2!uml::Classifier def : packageDecl() : String =
 	else '' endif;
 
 helper context UML2!uml::Classifier def : importDecl() : String =
-	self.clientDependency->select(c |
-		c->oclIsTypeOf(UML2!uml::Dependency))->collect(d|d.supplier)->
-			flatten()->iterate(e; acc : String = '' |
-				acc + e->importLine());
+	self.clientDependency
+		->select(c|c->oclIsTypeOf(UML2!uml::Dependency) and c->getAppliedStereotypes()->isEmpty())
+		->collect(d|d.supplier)->flatten()
+		->iterate(e; acc : String = '' | acc + e->importLine());
 
 helper context UML2!uml::NamedElement def : importLine() : String =
 	'import ' + self->importName() + ';\n';
@@ -111,8 +113,8 @@ helper context UML2!uml::Package def : importName() : String =
 	self->qualifiedName('.') + '.*';
 
 helper context UML2!uml::Class def : toString() : String =
-	self->visibility() + self->isAbstract() + 'class ' + self.name +
-	self->extendsClause() + self->implementsClause() +
+	self->visibility() + self->isAbstract() + self->final() + 
+	'class ' + self.name + self->extendsClause() + self->implementsClause() +
 	' {\n' +
 	self.nestedClassifier->iterate(e; acc : String = '' | acc + e->toString()) +
 	self.ownedAttribute->iterate(e; acc : String = '' | acc + e->toString()) +
@@ -143,7 +145,7 @@ helper context UML2!uml::Property def : toString() : String =
 	';\n\n';
 
 helper context UML2!uml::Operation def : toString() : String =
-	self->visibility() + self->isStatic() + self->isAbstract() +
+	self->visibility() + self->isStatic() + self->isAbstract() + self->final() +
 	self->returnParameter() + self.name + '(' + self->parameters() + ')' +
 	self->throwsClause() +
 	if self.isAbstract or self.owner->oclIsKindOf(UML2!uml::Interface)

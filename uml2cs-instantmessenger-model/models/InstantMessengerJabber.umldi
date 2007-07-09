@@ -48,10 +48,10 @@
       </diagrams>
       <subdiagrams>
         <model href="InstantMessengerJabber.uml#_5YAmkESyEduo0qgZQXhZYA"/>
-        <diagrams position="0,0" size="100,100" name="im.networking.jabber" viewport="0,80">
-          <property key="pageFormatName" value="A4"/>
+        <diagrams position="0,0" size="100,100" name="im.networking.jabber" viewport="28,38">
+          <property key="pageFormatName" value="imJabberPageFormat"/>
           <property key="diagramWidth" value="840"/>
-          <property key="diagramHeight" value="1188"/>
+          <property key="diagramHeight" value="855"/>
           <property key="pageMarginName" value="Small Margin"/>
           <property key="diagramTopMargin" value="20"/>
           <property key="diagramBottomMargin" value="20"/>
@@ -61,7 +61,7 @@
           <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="org.topcased.modeler.uml.classdiagram">
             <element href="InstantMessengerJabber.uml#_5YAmkESyEduo0qgZQXhZYA"/>
           </semanticModel>
-          <contained xsi:type="di:GraphNode" position="12,40" size="219,-1">
+          <contained xsi:type="di:GraphNode" position="12,8" size="243,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.15"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -125,14 +125,14 @@
               </contained>
             </contained>
           </contained>
-          <contained xsi:type="di:GraphNode" position="425,736" size="103,33">
+          <contained xsi:type="di:GraphNode" position="440,545" size="119,33">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.3 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.5 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.8"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
               <element href="InstantMessengerJabber.uml#_5KLJcESzEduo0qgZQXhZYA"/>
             </semanticModel>
           </contained>
-          <contained xsi:type="di:GraphNode" position="502,518" size="219,-1">
+          <contained xsi:type="di:GraphNode" position="483,376" size="240,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.3 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.6 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.9 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.14"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -180,7 +180,7 @@
             <property key="foregroundColor" value="0,0,0"/>
             <semanticModel xsi:type="di:SimpleSemanticModelElement" presentation="default" typeInfo="CommentLink"/>
           </contained>
-          <contained xsi:type="di:GraphNode" position="55,798" size="374,-1">
+          <contained xsi:type="di:GraphNode" position="8,607" size="389,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.5 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.6"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -244,7 +244,7 @@
               <element href="InstantMessengerJabber.uml#__92csESzEduo0qgZQXhZYA"/>
             </semanticModel>
           </contained>
-          <contained xsi:type="di:GraphNode" position="437,798" size="350,-1">
+          <contained xsi:type="di:GraphNode" position="419,607" size="369,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.8 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.9"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -278,7 +278,7 @@
               <element href="InstantMessengerJabber.uml#_AUKq8ES0Eduo0qgZQXhZYA"/>
             </semanticModel>
           </contained>
-          <contained xsi:type="di:GraphNode" position="245,157" size="174,-1">
+          <contained xsi:type="di:GraphNode" position="303,125" size="147,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.16"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -297,7 +297,7 @@
               </semanticModel>
             </contained>
           </contained>
-          <contained xsi:type="di:GraphNode" position="432,157" size="174,-1">
+          <contained xsi:type="di:GraphNode" position="471,125" size="147,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.17"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -316,7 +316,7 @@
               </semanticModel>
             </contained>
           </contained>
-          <contained xsi:type="di:GraphNode" position="616,157" size="174,-1">
+          <contained xsi:type="di:GraphNode" position="640,125" size="147,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.18"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -335,7 +335,7 @@
               </semanticModel>
             </contained>
           </contained>
-          <contained xsi:type="di:GraphNode" position="8,322" size="334,-1">
+          <contained xsi:type="di:GraphNode" position="8,262" size="362,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.14 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.15 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.16 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.17 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.18 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.20"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -432,7 +432,7 @@
             <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
             <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
             <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-            <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
+            <contained xsi:type="di:EdgeObjectOffset" visible="false" id="middleNameEdgeObject"/>
           </contained>
           <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.13/@anchorage.0 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.0/@anchorage.0">
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -454,7 +454,7 @@
               <element href="InstantMessengerJabber.uml#_CdHBgETBEduo0qgZQXhZYA"/>
             </semanticModel>
           </contained>
-          <contained xsi:type="di:GraphNode" position="525,368" size="174,-1">
+          <contained xsi:type="di:GraphNode" position="525,281" size="174,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.20"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -481,7 +481,7 @@
             <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
             <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
             <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-            <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
+            <contained xsi:type="di:EdgeObjectOffset" visible="false" id="middleNameEdgeObject"/>
           </contained>
         </diagrams>
       </subdiagrams>

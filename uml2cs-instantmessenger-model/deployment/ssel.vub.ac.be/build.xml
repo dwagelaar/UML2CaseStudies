@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uml2cs-instantmessenger-model/deployment/localhost" default="all">
+	<property name="deploy.host" value="dwagelaa@ssel.vub.ac.be"/>
+	<property name="deploy.path" value="/var/www/html/platformkit/instantmessenger"/>
+	<eclipse.convertPath resourcePath="platformkit-examples/codamos_2007_01" property="example.path"/>
+
+	<target name="deploy">
+		<exec dir="../data" executable="rsync" logError="true">
+			<arg line="-rlvuzC"/>
+			<arg line="."/>
+			<arg line="${deploy.host}:${deploy.path}"/>
+		</exec>
+		<exec dir="." executable="scp" logError="true">
+			<arg line="index.html"/>
+			<arg line="${deploy.host}:${deploy.path}"/>
+		</exec>
+		<exec dir="${example.path}" executable="rsync" logError="true">
+			<arg line="-rlvuzC"/>
+			<arg line="."/>
+			<arg line="${deploy.host}:${deploy.path}/example"/>
+		</exec>
+	</target>
+
+	<target name="fixFiles" depends="deploy">
+		<exec dir="." executable="ssh" logError="true">
+			<arg line="${deploy.host}"/>
+			<arg line="chown -R :ssel ${deploy.path};"/>
+			<arg line="find ${deploy.path} -type d | xargs chmod 775;"/>
+			<arg line="find ${deploy.path} -type f | xargs chmod 664"/>
+		</exec>
+	</target>
+
+	<target name="all" depends="fixFiles"/>
+</project>

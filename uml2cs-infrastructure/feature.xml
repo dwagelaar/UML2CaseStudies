@@ -2,7 +2,7 @@
 <feature
       id="be.ac.vub.uml2cs.infrastructure"
       label="UML2 case studies infrastructure feature"
-      version="1.0.9"
+      version="1.0.10"
       provider-name="Vrije Universiteit Brussel"
       plugin="be.ac.vub.uml2cs.instantmessenger.config"
       image="VUB_logo_compact.gif">
@@ -28,6 +28,17 @@ the terms and conditions of the Eclipse Public License Version
    <url>
       <update label="UML2 case studies infrastructure update site" url="http://ssel.vub.ac.be/tools/uml2cs/update"/>
    </url>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.m2m.atl.engine"/>
+   </requires>
 
    <plugin
          id="be.ac.vub.uml2cs.transformations.config"

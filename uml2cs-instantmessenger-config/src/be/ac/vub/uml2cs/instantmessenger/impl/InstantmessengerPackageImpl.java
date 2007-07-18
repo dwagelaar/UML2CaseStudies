@@ -595,8 +595,6 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		createPlatformKitAnnotations();
 		// GenModel
 		createGenModelAnnotations();
-		// PlatformToolkit
-		createPlatformToolkitAnnotations();
 	}
 
 	/**
@@ -694,7 +692,13 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		   source, 
 		   new String[] {
 			 "Ontology", "InstantMessenger.owl"
-		   });						
+		   });				
+		addAnnotation
+		  (instantMessengerConfigurationEClass, 
+		   source, 
+		   new String[] {
+			 "PlatformConstraint", "http://local/InstantMessenger.owl#InstantMessengerPlatform"
+		   });			
 		addAnnotation
 		  (localNetworkEClass, 
 		   source, 
@@ -771,22 +775,6 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		   new String[] {
 			 "documentation", "Root node for an instant messenger configuration model"
 		   });																						
-	}
-
-	/**
-	 * Initializes the annotations for <b>PlatformToolkit</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createPlatformToolkitAnnotations() {
-		String source = "PlatformToolkit";						
-		addAnnotation
-		  (instantMessengerConfigurationEClass, 
-		   source, 
-		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#InstantMessengerPlatform"
-		   });																				
 	}
 
 } //InstantmessengerPackageImpl

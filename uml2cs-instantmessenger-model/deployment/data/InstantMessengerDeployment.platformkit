@@ -3,6 +3,7 @@
   <ontology>http://ssel.vub.ac.be/uml2cs/InstantMessenger.owl</ontology>
   <ontology>http://ssel.vub.ac.be/uml2cs/Transformations.owl</ontology>
   <constraintSet name="swing/applet/">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#Java2Platform"/>
     <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
@@ -14,6 +15,7 @@
     <constraint ontClassURI="http://local/InstantMessenger.owl#WebAppletPlatform"/>
   </constraintSet>
   <constraintSet name="java2/applet/">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#Java2Platform"/>
     <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
@@ -25,6 +27,7 @@
     <constraint ontClassURI="http://local/InstantMessenger.owl#WebAppletPlatform"/>
   </constraintSet>
   <constraintSet name="default/applet/">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#Java1Platform"/>
     <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
@@ -36,6 +39,7 @@
     <constraint ontClassURI="http://local/InstantMessenger.owl#WebAppletPlatform"/>
   </constraintSet>
   <constraintSet name="java2/ipkg/instantmessenger-j2me-pp_1.1-0_noarch.ipk">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#Java2Platform"/>
     <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
@@ -47,6 +51,7 @@
     <constraint ontClassURI="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
   </constraintSet>
   <constraintSet name="default/ipkg/instantmessenger-jeode_1.1-0_noarch.ipk">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#Java1Platform"/>
     <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
@@ -58,6 +63,7 @@
     <constraint ontClassURI="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
   </constraintSet>
   <constraintSet name="midp/">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#Java1Platform"/>
     <constraint ontClassURI="http://local/Transformations.owl#MIDletPlatform"/>

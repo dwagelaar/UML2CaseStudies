@@ -290,7 +290,7 @@
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
             <language>java</language>
-            <body>    for (java.util.Enumeration cs = getContacts(); cs.hasMoreElements();) {&#xA;        Contact contact = (Contact) cs.nextElement();&#xA;        if (contact.getUserId().equals(userId)) {&#xA;            return contact.getName();&#xA;        }&#xA;    }&#xA;    return userId;</body>
+            <body>    for (java.util.Enumeration cs = getContacts(); cs.hasMoreElements();) {&#xA;        Contact contact = (Contact) cs.nextElement();&#xA;        if (contact.getUserId().equals(userId)) {&#xA;            if (contact.getName() == null) {&#xA;        &#x9;        return contact.getUserId();&#xA;            } else {&#xA;                 return contact.getName();&#xA;            }&#xA;        }&#xA;    }&#xA;    return userId;</body>
           </ownedBehavior>
           <ownedOperation xmi:id="_GwgOoPxaEdqLE70fRD83Rw" name="getIdentity" method="_gOFqAEMsEduvwfpPI_uz7A">
             <eAnnotations xmi:id="_kG7WEPxaEdqLE70fRD83Rw" source="http://www.topcased.org/uuid">
@@ -982,7 +982,7 @@
               <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
             </ownedParameter>
             <language>java</language>
-            <body>    String name = getModel().getName();&#xA;    String status = getModel().getStatus();&#xA;    if (getModel() instanceof im.model.Identity) {&#xA;        name = &quot;* &quot; + name;&#xA;    } else {&#xA;        name = &quot;  &quot; + name;&#xA;    }&#xA;    if (getModel().getNetwork() != null) {&#xA;        name += &quot; - &quot; + getModel().getNetwork().getName();&#xA;    }&#xA;    if (status == null) {&#xA;        status = &quot;offline&quot;;&#xA;    }&#xA;    name += &quot; (&quot; + status + &quot;)&quot;;&#xA;    return name;</body>
+            <body>    String name = getModel().getName();&#xA;    if (name == null) {&#xA;    &#x9;name = getModel().getUserId();&#xA;    }&#xA;    String status = getModel().getStatus();&#xA;    if (getModel() instanceof im.model.Identity) {&#xA;        name = &quot;* &quot; + name;&#xA;    } else {&#xA;        name = &quot;  &quot; + name;&#xA;    }&#xA;    if (getModel().getNetwork() != null) {&#xA;        name += &quot; - &quot; + getModel().getNetwork().getName();&#xA;    }&#xA;    if (status == null) {&#xA;        status = &quot;offline&quot;;&#xA;    }&#xA;    name += &quot; (&quot; + status + &quot;)&quot;;&#xA;    return name;</body>
           </ownedBehavior>
           <ownedOperation xmi:id="_dvK_oPyjEdqjP_ILe4Jwkg" name="ContactEdit" method="_X_CvgEMtEduvwfpPI_uz7A">
             <eAnnotations xmi:id="_zmIr4PyjEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">

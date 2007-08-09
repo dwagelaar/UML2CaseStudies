@@ -43,7 +43,7 @@
 
 	<target name="preverify" depends="compile">
 		<exec dir="." executable="${wtk.bin.preverify}" logError="true">
-			<arg line="-target CLDC1.0"/>
+			<!--arg line="-target CLDC1.0"/-->
 			<arg line="-nofinalize"/>
 			<arg line="-nonative"/>
 			<arg line="-nofp"/>

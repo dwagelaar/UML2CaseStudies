@@ -34,27 +34,26 @@ package com.jabberwookie;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.DataInputStream;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
-
+import java.util.Hashtable;
 import java.util.Stack;
 import java.util.Vector;
-import java.util.Hashtable;
 
-import com.jabberwookie.ns.jabber.Const;
 import com.jabberwookie.ns.jabber.Chunk;
+import com.jabberwookie.ns.jabber.Const;
 import com.jabberwookie.ns.jabber.IQ;
 import com.jabberwookie.ns.jabber.Message;
 import com.jabberwookie.ns.jabber.Presence;
-
-import com.ssttr.xml.SAXParser;
-import com.ssttr.xml.SAXInterface;
-import com.ssttr.xml.XMLElement;
-import com.ssttr.xml.ParserException;
-
 import com.ssttr.util.processor.Processor;
+import com.ssttr.xml.ParserException;
+import com.ssttr.xml.SAXInterface;
+import com.ssttr.xml.SAXParser;
+import com.ssttr.xml.XMLElement;
 
 /**
  * This implements the most basic functions required to establish and
@@ -80,7 +79,7 @@ public abstract class Stream implements SAXInterface
     protected static final  byte        _0_             = (byte)'0';
     */
     
-    protected DataInputStream           in              = null;
+    protected Reader                    in              = null;
     protected OutputStream              out             = null;
     protected Writer                    outWriter       = null;
     
@@ -119,10 +118,11 @@ public abstract class Stream implements SAXInterface
      * course). */
     public Stream (InputStream in, OutputStream out, Processor processor)
     {
-        if( in instanceof DataInputStream )
-            this.in = (DataInputStream)in;
-        else
-            this.in = new DataInputStream(in);
+    	try {
+            this.in = new InputStreamReader(in, "UTF-8");
+    	} catch (UnsupportedEncodingException e) {
+            this.in = new InputStreamReader(in);
+    	}
         
         this.out = out;
         // BufferedWriter is not supported in MIDP

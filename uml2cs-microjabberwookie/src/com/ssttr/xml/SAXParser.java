@@ -31,11 +31,10 @@
 
 package com.ssttr.xml;
 
-import java.util.Stack;
-import java.util.Hashtable;
-
 import java.io.IOException;
-import java.io.DataInputStream;
+import java.io.Reader;
+import java.util.Hashtable;
+import java.util.Stack;
 
 /**
  * This is a SAX style XML parser that can handle most (good) XML you are
@@ -83,7 +82,7 @@ public class SAXParser
     }
     
     StringBuffer buf;
-    DataInputStream  xml;
+    Reader xml;
     int          r;
     char         c, lastC = 0;
     int          lvl = 0;
@@ -97,7 +96,7 @@ public class SAXParser
      * @throws ParserException when it encounters bad XML.
      * @throws IOException when there is a problem reading from the XML stream.
      */
-    public void parse(DataInputStream xml)
+    public void parse(Reader xml)
     	throws NullPointerException, ParserException, IOException
     {
 		if( xml == null )
@@ -558,7 +557,7 @@ public class SAXParser
     private char read()
     throws IOException
     {
-        return (char)xml.readByte();
+    	return (char)xml.read();
     }
     
     private static void pause()

@@ -148,7 +148,7 @@
                 <eAnnotations xmi:id="_zHdAEkXGEducIJIKmE_wpw" source="http://www.topcased.org/uuid">
                   <details xmi:id="_zHdAE0XGEducIJIKmE_wpw" key="uuid" value="115844060737774"/>
                 </eAnnotations>
-                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+                <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
               </ownedParameter>
               <ownedParameter xmi:id="_nf_6k0VfEdu1R4x2hFmiHQ" name="index" effect="create">
                 <eAnnotations xmi:id="_zHdAFEXGEducIJIKmE_wpw" source="http://www.topcased.org/uuid">
@@ -157,7 +157,7 @@
                 <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
               </ownedParameter>
               <language>java</language>
-              <body>    insert(index, c, null);</body>
+              <body>    insert(index, c.toString(), null);</body>
             </ownedBehavior>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_U_qOMEPmEdug19jXgM5cew" name="LCDUIContactListView_removeContactBehavior" specification="_KRb4UEPjEdusb52s3APTjA">
               <eAnnotations xmi:id="_t-OklEPmEdug19jXgM5cew" source="http://www.topcased.org/uuid">
@@ -244,7 +244,7 @@
                 <eAnnotations xmi:id="_DL_qMkPkEdusb52s3APTjA" source="http://www.topcased.org/uuid">
                   <details xmi:id="_DL_qM0PkEdusb52s3APTjA" key="uuid" value="115823326830755"/>
                 </eAnnotations>
-                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+                <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
               </ownedParameter>
               <ownedParameter xmi:id="_qzsCkEPjEdusb52s3APTjA" name="index" effect="create">
                 <eAnnotations xmi:id="_DL_qNEPkEdusb52s3APTjA" source="http://www.topcased.org/uuid">

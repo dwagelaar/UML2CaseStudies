@@ -150,13 +150,13 @@
                 <details xmi:id="_t-Okk0PmEdug19jXgM5cew" key="uuid" value="115823441442546"/>
               </eAnnotations>
               <ownedParameter xmi:id="_RpMb0EVeEdu1R4x2hFmiHQ" name="c">
-                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+                <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
               </ownedParameter>
               <ownedParameter xmi:id="_RpMb00VeEdu1R4x2hFmiHQ" name="index" effect="create">
                 <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
               </ownedParameter>
               <language>java</language>
-              <body>    Vector listData = new Vector();&#xA;    ListModel listModel = list.getModel();&#xA;    for (int i = 0; i &lt; listModel.getSize(); i++) {&#xA;        if (i == index) {&#xA;            listData.addElement(c);&#xA;        }&#xA;        listData.addElement(listModel.getElementAt(i));&#xA;    }&#xA;    if (index == listModel.getSize()) {&#xA;        listData.addElement(c);&#xA;    }&#xA;    list.setListData(listData);</body>
+              <body>    Vector listData = new Vector();&#xA;    ListModel listModel = list.getModel();&#xA;    for (int i = 0; i &lt; listModel.getSize(); i++) {&#xA;        if (i == index) {&#xA;            listData.addElement(c.toString());&#xA;        }&#xA;        listData.addElement(listModel.getElementAt(i));&#xA;    }&#xA;    if (index == listModel.getSize()) {&#xA;        listData.addElement(c.toString());&#xA;    }&#xA;    list.setListData(listData);</body>
             </ownedBehavior>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_U_qOMEPmEdug19jXgM5cew" name="SwingContactListView_removeContactBehavior" specification="_KRb4UEPjEdusb52s3APTjA">
               <eAnnotations xmi:id="_t-OklEPmEdug19jXgM5cew" source="http://www.topcased.org/uuid">
@@ -224,7 +224,7 @@
                 <eAnnotations xmi:id="_DL_qMkPkEdusb52s3APTjA" source="http://www.topcased.org/uuid">
                   <details xmi:id="_DL_qM0PkEdusb52s3APTjA" key="uuid" value="115823326830755"/>
                 </eAnnotations>
-                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+                <type xmi:type="uml:Class" href="InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
               </ownedParameter>
               <ownedParameter xmi:id="_qzsCkEPjEdusb52s3APTjA" name="index" effect="create">
                 <eAnnotations xmi:id="_DL_qNEPkEdusb52s3APTjA" source="http://www.topcased.org/uuid">

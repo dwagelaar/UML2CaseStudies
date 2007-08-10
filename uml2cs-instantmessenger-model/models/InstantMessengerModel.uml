@@ -236,6 +236,18 @@
             </eAnnotations>
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#String"/>
           </ownedAttribute>
+          <nestedClassifier xmi:type="uml:OpaqueBehavior" xmi:id="_Y8lz0EceEdyUSvGDYHY1zw" name="Contact_toStringBehavior" specification="_KLhMMEceEdyUSvGDYHY1zw">
+            <ownedParameter xmi:id="_aAKJoEceEdyUSvGDYHY1zw" name="return" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+            <language>java</language>
+            <body>&#x9;final StringBuffer fmt = new StringBuffer();&#xA;&#x9;final String name = getName();&#xA;&#x9;final String status = getStatus();&#xA;&#x9;fmt.append(&quot;  &quot;);&#xA;&#x9;fmt.append((name == null) ? getUserId() : name);&#xA;&#x9;if (getNetwork() != null) {&#xA;&#x9;&#x9;fmt.append(&quot; - &quot;);&#xA;&#x9;&#x9;fmt.append(getNetwork().getName());&#xA;&#x9;}&#xA;&#x9;fmt.append(&quot; (&quot;);&#xA;&#x9;fmt.append((status == null) ? &quot;offline&quot; : status);&#xA;&#x9;fmt.append(&quot;)&quot;);&#xA;&#x9;return fmt.toString();</body>
+          </nestedClassifier>
+          <ownedOperation xmi:id="_KLhMMEceEdyUSvGDYHY1zw" name="toString" method="_Y8lz0EceEdyUSvGDYHY1zw">
+            <ownedParameter xmi:id="_LWDFoEceEdyUSvGDYHY1zw" name="return" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_Yji7MOQsEdqD2ZNp93yIAQ" name="ContactList">
           <eAnnotations xmi:id="_jO98EOQsEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
@@ -375,6 +387,18 @@
             </eAnnotations>
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#String"/>
           </ownedAttribute>
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_f4XoQEcgEdyUSvGDYHY1zw" name="Identity_toStringBehavior" specification="_fOBDsEcgEdyUSvGDYHY1zw">
+            <ownedParameter xmi:id="_f4XoQUcgEdyUSvGDYHY1zw" name="return" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+            <language>java</language>
+            <body>&#x9;return &quot;* &quot; + super.toString().substring(2);</body>
+          </ownedBehavior>
+          <ownedOperation xmi:id="_fOBDsEcgEdyUSvGDYHY1zw" name="toString" method="_f4XoQEcgEdyUSvGDYHY1zw">
+            <ownedParameter xmi:id="_fOBDsUcgEdyUSvGDYHY1zw" name="return" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_c0hoMOQsEdqD2ZNp93yIAQ" name="Message">
           <eAnnotations xmi:id="_jO_KMuQsEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
@@ -747,7 +771,7 @@
               </eAnnotations>
             </ownedParameter>
             <language>java</language>
-            <body>    int index = getModel().getIndexOfContact(c);&#xA;    if (index > -1) {&#xA;        ContactEdit edit = new ContactEdit(c);&#xA;        insertContactEdit(edit, index);&#xA;        getView().addContact(edit.formatContact(), index);&#xA;    } else {&#xA;        ContactEdit edit = getContactEditFor(c);&#xA;        index = getIndexOfContactEdit(edit);&#xA;        getView().removeContact(index);&#xA;        removeContactEdit(edit);&#xA;    }</body>
+            <body>    int index = getModel().getIndexOfContact(c);&#xA;    if (index > -1) {&#xA;        ContactEdit edit = new ContactEdit(c);&#xA;        insertContactEdit(edit, index);&#xA;        getView().addContact(c, index);&#xA;    } else {&#xA;        ContactEdit edit = getContactEditFor(c);&#xA;        index = getIndexOfContactEdit(edit);&#xA;        getView().removeContact(index);&#xA;        removeContactEdit(edit);&#xA;    }&#xA;</body>
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_9_f88EMvEduvwfpPI_uz7A" name="ContactListEdit_onContactListAddBehavior" specification="_RdEp8PylEdqjP_ILe4Jwkg">
             <eAnnotations xmi:id="_HFro4EMxEduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
@@ -969,20 +993,7 @@
               <details xmi:id="_-vo14UMuEduvwfpPI_uz7A" key="uuid" value="1158155499582486"/>
             </eAnnotations>
             <language>java</language>
-            <body>    int index = getListEdit().getIndexOfContactEdit(this);&#xA;    if (index > -1) {&#xA;        getListEdit().getView().removeContact(index);&#xA;        getListEdit().getView().addContact(formatContact(), index);&#xA;    }</body>
-          </ownedBehavior>
-          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_fDd_EEMuEduvwfpPI_uz7A" name="ContactEdit_formatContactBehavior" specification="_kVWCYPyjEdqjP_ILe4Jwkg">
-            <eAnnotations xmi:id="_-vo14kMuEduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
-              <details xmi:id="_-vo140MuEduvwfpPI_uz7A" key="uuid" value="1158155499582487"/>
-            </eAnnotations>
-            <ownedParameter xmi:id="_mtuQcEVcEdu1R4x2hFmiHQ" name="return" direction="return">
-              <eAnnotations xmi:id="_1xxpAEVdEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
-                <details xmi:id="_1xxpAUVdEdu1R4x2hFmiHQ" key="uuid" value="1158395528080513"/>
-              </eAnnotations>
-              <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
-            </ownedParameter>
-            <language>java</language>
-            <body>    String name = getModel().getName();&#xA;    if (name == null) {&#xA;    &#x9;name = getModel().getUserId();&#xA;    }&#xA;    String status = getModel().getStatus();&#xA;    if (getModel() instanceof im.model.Identity) {&#xA;        name = &quot;* &quot; + name;&#xA;    } else {&#xA;        name = &quot;  &quot; + name;&#xA;    }&#xA;    if (getModel().getNetwork() != null) {&#xA;        name += &quot; - &quot; + getModel().getNetwork().getName();&#xA;    }&#xA;    if (status == null) {&#xA;        status = &quot;offline&quot;;&#xA;    }&#xA;    name += &quot; (&quot; + status + &quot;)&quot;;&#xA;    return name;</body>
+            <body>    int index = getListEdit().getIndexOfContactEdit(this);&#xA;    if (index > -1) {&#xA;        getListEdit().getView().removeContact(index);&#xA;        getListEdit().getView().addContact(getModel(), index);&#xA;    }&#xA;</body>
           </ownedBehavior>
           <ownedOperation xmi:id="_dvK_oPyjEdqjP_ILe4Jwkg" name="ContactEdit" method="_X_CvgEMtEduvwfpPI_uz7A">
             <eAnnotations xmi:id="_zmIr4PyjEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
@@ -1025,17 +1036,6 @@
             <eAnnotations xmi:id="_zmM9UPyjEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
               <details xmi:id="_zmM9UfyjEdqjP_ILe4Jwkg" key="uuid" value="1150399143333493"/>
             </eAnnotations>
-          </ownedOperation>
-          <ownedOperation xmi:id="_kVWCYPyjEdqjP_ILe4Jwkg" name="formatContact" method="_fDd_EEMuEduvwfpPI_uz7A">
-            <eAnnotations xmi:id="_zmNkYPyjEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
-              <details xmi:id="_zmNkYfyjEdqjP_ILe4Jwkg" key="uuid" value="1150399143334494"/>
-            </eAnnotations>
-            <ownedParameter xmi:id="_Hv7EoPykEdqjP_ILe4Jwkg" name="return" direction="return">
-              <eAnnotations xmi:id="_WAF-oPykEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
-                <details xmi:id="_WAF-ofykEdqjP_ILe4Jwkg" key="uuid" value="1150399374218517"/>
-              </eAnnotations>
-              <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
-            </ownedParameter>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_d5rVkPyaEdqjP_ILe4Jwkg" name="ConversationEdit" clientDependency="_DY9y0PyhEdqjP_ILe4Jwkg">
@@ -1333,11 +1333,10 @@
             <eAnnotations xmi:id="__R5-MPydEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
               <details xmi:id="__R5-MfydEdqjP_ILe4Jwkg" key="uuid" value="1150396644755500"/>
             </eAnnotations>
-            <ownedParameter xmi:id="_VD0n0PydEdqjP_ILe4Jwkg" name="c" effect="read">
+            <ownedParameter xmi:id="_VD0n0PydEdqjP_ILe4Jwkg" name="c" type="_Xxa6sOQsEdqD2ZNp93yIAQ" effect="read">
               <eAnnotations xmi:id="__R7MUPydEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">
                 <details xmi:id="__R7MUfydEdqjP_ILe4Jwkg" key="uuid" value="1150396644757501"/>
               </eAnnotations>
-              <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
             </ownedParameter>
             <ownedParameter xmi:id="_VD0n0fydEdqjP_ILe4Jwkg" name="index" effect="update">
               <eAnnotations xmi:id="__R7zYPydEdqjP_ILe4Jwkg" source="http://www.topcased.org/uuid">

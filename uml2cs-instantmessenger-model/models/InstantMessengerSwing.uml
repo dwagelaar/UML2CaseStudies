@@ -46,7 +46,7 @@
               <raisedException xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_OnuCwET5Edu8hscEjMiyKA"/>
             </ownedOperation>
           </packagedElement>
-          <packagedElement xmi:type="uml:Class" xmi:id="_ud7IYEPSEdusb52s3APTjA" name="SwingContactListView" clientDependency="_M3EskEPdEdusb52s3APTjA _Fsg-0EPnEdug19jXgM5cew _GJDJ0EPnEdug19jXgM5cew _MWe5oEQtEdu13J6qpC4E7g _VphAoETwEdum9Mv7WaUBHw _faTlQETwEdum9Mv7WaUBHw">
+          <packagedElement xmi:type="uml:Class" xmi:id="_ud7IYEPSEdusb52s3APTjA" name="SwingContactListView" clientDependency="_M3EskEPdEdusb52s3APTjA _Fsg-0EPnEdug19jXgM5cew _GJDJ0EPnEdug19jXgM5cew _MWe5oEQtEdu13J6qpC4E7g _VphAoETwEdum9Mv7WaUBHw">
             <eAnnotations xmi:id="_bBM0gEPTEdusb52s3APTjA" source="http://www.topcased.org/uuid">
               <details xmi:id="_bBM0gUPTEdusb52s3APTjA" key="uuid" value="115822612679227"/>
             </eAnnotations>
@@ -137,13 +137,17 @@
                 <body>new JScrollPane()</body>
               </defaultValue>
             </ownedAttribute>
+            <ownedAttribute xmi:id="_7HfcoEd7Edy_8vCCth3JFA" name="listModel" visibility="private">
+              <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_NTkykEd8Edy_8vCCth3JFA"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZCw9kEd8Edy_8vCCth3JFA" value="new DefaultListModel()"/>
+            </ownedAttribute>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_PyFWEEPmEdug19jXgM5cew" name="SwingContactListViewBehavior" specification="_4K0f8EPcEdusb52s3APTjA">
               <eAnnotations xmi:id="_t-OkkEPmEdug19jXgM5cew" source="http://www.topcased.org/uuid">
                 <details xmi:id="_t-OkkUPmEdug19jXgM5cew" key="uuid" value="115823441442445"/>
               </eAnnotations>
               <ownedParameter xmi:id="_Y1j74EVeEdu1R4x2hFmiHQ" name="return" type="_ud7IYEPSEdusb52s3APTjA" direction="return"/>
               <language>java</language>
-              <body>    addContactBtn.addActionListener(new ActionListener() {&#xA;        public void actionPerformed(ActionEvent e) {&#xA;            notifyAddClicked();&#xA;        }&#xA;    });&#xA;    removeContactBtn.addActionListener(new ActionListener() {&#xA;        public void actionPerformed(ActionEvent e) {&#xA;            notifyRemoveClicked();&#xA;        }&#xA;    });&#xA;    list.addMouseListener(new MouseAdapter() {&#xA;        public void mouseClicked(MouseEvent e) {&#xA;            if (e.getClickCount() == 2) {&#xA;                notifyContactAction();&#xA;            }&#xA;        }&#xA;    });&#xA;    setLayout(new BorderLayout());&#xA;    listScroll.getViewport().setView(list);&#xA;    add(listScroll, BorderLayout.CENTER);&#xA;    btnPanel.setLayout(new FlowLayout());&#xA;    btnPanel.add(addContactBtn);&#xA;    btnPanel.add(removeContactBtn);&#xA;    add(btnPanel, BorderLayout.SOUTH);&#xA;    im.InstantMessagingClient.getInstance().setLayout(new BorderLayout());&#xA;    im.InstantMessagingClient.getInstance().add(this, BorderLayout.CENTER);</body>
+              <body>    addContactBtn.addActionListener(new ActionListener() {&#xA;        public void actionPerformed(ActionEvent e) {&#xA;            notifyAddClicked();&#xA;        }&#xA;    });&#xA;    removeContactBtn.addActionListener(new ActionListener() {&#xA;        public void actionPerformed(ActionEvent e) {&#xA;            notifyRemoveClicked();&#xA;        }&#xA;    });&#xA;    list.addMouseListener(new MouseAdapter() {&#xA;        public void mouseClicked(MouseEvent e) {&#xA;            if (e.getClickCount() > 1) {&#xA;                notifyContactAction();&#xA;            }&#xA;        }&#xA;    });&#xA;    list.addKeyListener(new KeyAdapter() {&#xA;&#x9;&#x9;public void keyPressed(KeyEvent e) {&#xA;&#x9;&#x9;&#x9;switch (e.getKeyCode()) {&#xA;&#x9;&#x9;&#x9;case KeyEvent.VK_SPACE:&#xA;&#x9;&#x9;&#x9;case KeyEvent.VK_ENTER:&#xA;&#x9;&#x9;&#x9;&#x9;notifyContactAction();&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;    });&#xA;    list.setModel(listModel);&#xA;    list.setCellRenderer(new SwingContactCellRenderer());&#xA;    setLayout(new BorderLayout());&#xA;    listScroll.getViewport().setView(list);&#xA;    add(listScroll, BorderLayout.CENTER);&#xA;    btnPanel.setLayout(new FlowLayout());&#xA;    btnPanel.add(addContactBtn);&#xA;    btnPanel.add(removeContactBtn);&#xA;    add(btnPanel, BorderLayout.SOUTH);&#xA;    im.InstantMessagingClient.getInstance().setLayout(new BorderLayout());&#xA;    im.InstantMessagingClient.getInstance().add(this, BorderLayout.CENTER);</body>
             </ownedBehavior>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_S7LN8EPmEdug19jXgM5cew" name="SwingContactListView_addContactBehavior" specification="_Ivp8gEPjEdusb52s3APTjA">
               <eAnnotations xmi:id="_t-OkkkPmEdug19jXgM5cew" source="http://www.topcased.org/uuid">
@@ -156,7 +160,7 @@
                 <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
               </ownedParameter>
               <language>java</language>
-              <body>    Vector listData = new Vector();&#xA;    ListModel listModel = list.getModel();&#xA;    for (int i = 0; i &lt; listModel.getSize(); i++) {&#xA;        if (i == index) {&#xA;            listData.addElement(c.toString());&#xA;        }&#xA;        listData.addElement(listModel.getElementAt(i));&#xA;    }&#xA;    if (index == listModel.getSize()) {&#xA;        listData.addElement(c.toString());&#xA;    }&#xA;    list.setListData(listData);</body>
+              <body>&#x9;listModel.insertElementAt(c, index);</body>
             </ownedBehavior>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_U_qOMEPmEdug19jXgM5cew" name="SwingContactListView_removeContactBehavior" specification="_KRb4UEPjEdusb52s3APTjA">
               <eAnnotations xmi:id="_t-OklEPmEdug19jXgM5cew" source="http://www.topcased.org/uuid">
@@ -166,7 +170,7 @@
                 <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
               </ownedParameter>
               <language>java</language>
-              <body>    Vector listData = new Vector();&#xA;    ListModel listModel = list.getModel();&#xA;    for (int i = 0; i &lt; listModel.getSize(); i++) {&#xA;        if (i != index) {&#xA;            listData.addElement(listModel.getElementAt(i));&#xA;        }&#xA;    }&#xA;    list.setListData(listData);</body>
+              <body>&#x9;listModel.remove(index);</body>
             </ownedBehavior>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_W_0IEEPmEdug19jXgM5cew" name="SwingContactListView_getSelectedContactBehavior" specification="_LwyyQEPjEdusb52s3APTjA">
               <eAnnotations xmi:id="_t-PLoEPmEdug19jXgM5cew" source="http://www.topcased.org/uuid">
@@ -381,7 +385,7 @@
               </eAnnotations>
               <ownedParameter xmi:id="_bHN1cEVeEdu1R4x2hFmiHQ" name="return" type="_wd_isEPSEdusb52s3APTjA" direction="return"/>
               <language>java</language>
-              <body>    addWindowListener(new WindowAdapter() {&#xA;        public void windowClosing(WindowEvent e) {&#xA;            notifyClose();&#xA;        }&#xA;    });&#xA;    sendBtn.addActionListener(new ActionListener() {&#xA;        public void actionPerformed(ActionEvent e) {&#xA;            notifySendClicked();&#xA;        }&#xA;    });&#xA;    messageField.addActionListener(new ActionListener() {&#xA;        public void actionPerformed(ActionEvent e) {&#xA;            notifySendClicked();&#xA;        }&#xA;    });&#xA;    setTitle(&quot;Message&quot;);&#xA;    getContentPane().setLayout(new BorderLayout());&#xA;    textConvField.setEditable(false);&#xA;    textConvScroll.setPreferredSize(new Dimension(500, 300));&#xA;    textConvScroll.getViewport().setView(textConvField);&#xA;    convPanel.setLayout(new BorderLayout());&#xA;    convPanel.add(textConvScroll, BorderLayout.CENTER);&#xA;    getContentPane().add(convPanel, BorderLayout.CENTER);&#xA;    btnPanel.setLayout(new BorderLayout());&#xA;    btnPanel.add(sendBtn, BorderLayout.EAST);&#xA;    btnPanel.add(messageField, BorderLayout.CENTER);&#xA;    getContentPane().add(btnPanel, BorderLayout.SOUTH);&#xA;    pack();&#xA;    setVisible(true);</body>
+              <body>    addWindowListener(new WindowAdapter() {&#xA;        public void windowClosing(WindowEvent e) {&#xA;            notifyClose();&#xA;        }&#xA;    });&#xA;    sendBtn.addActionListener(new ActionListener() {&#xA;        public void actionPerformed(ActionEvent e) {&#xA;            notifySendClicked();&#xA;        }&#xA;    });&#xA;    messageField.addActionListener(new ActionListener() {&#xA;        public void actionPerformed(ActionEvent e) {&#xA;            notifySendClicked();&#xA;        }&#xA;    });&#xA;    setTitle(&quot;Message&quot;);&#xA;    getContentPane().setLayout(new BorderLayout());&#xA;    textConvField.setEditable(false);&#xA;    textConvScroll.setPreferredSize(new Dimension(500, 300));&#xA;    textConvScroll.getViewport().setView(textConvField);&#xA;    convPanel.setLayout(new BorderLayout());&#xA;    convPanel.add(textConvScroll, BorderLayout.CENTER);&#xA;    getContentPane().add(convPanel, BorderLayout.CENTER);&#xA;    btnPanel.setLayout(new BorderLayout());&#xA;    btnPanel.add(sendBtn, BorderLayout.EAST);&#xA;    btnPanel.add(messageField, BorderLayout.CENTER);&#xA;    getContentPane().add(btnPanel, BorderLayout.SOUTH);&#xA;    pack();&#xA;    setVisible(true);&#xD;    messageField.requestFocus();</body>
             </ownedBehavior>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_WNuDIEPuEdug19jXgM5cew" name="SwingConversationView_getContentBehavior" specification="_bMUgkEPtEdug19jXgM5cew">
               <eAnnotations xmi:id="_o9R5kkPuEdug19jXgM5cew" source="http://www.topcased.org/uuid">
@@ -1005,11 +1009,96 @@
             </eAnnotations>
             <supplier xmi:type="uml:Package" href="../../uml2cs-transformations/models/JavaTypes.uml#_-GCaIETtEdum9Mv7WaUBHw"/>
           </packagedElement>
-          <packagedElement xmi:type="uml:Dependency" xmi:id="_faTlQETwEdum9Mv7WaUBHw" name="Dependency16" client="_ud7IYEPSEdusb52s3APTjA">
-            <eAnnotations xmi:id="_herQxkTwEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
-              <details xmi:id="_herQx0TwEdum9Mv7WaUBHw" key="uuid" value="1158348576716474"/>
-            </eAnnotations>
-            <supplier xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_ls5VQPfvEdqaqL9wEVL3aA"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_zZ9zcEd_Edyl5eqQ4RjOpw" name="SwingContactCellRenderer" clientDependency="_RUyocEeAEdyl5eqQ4RjOpw _5BG6wEeCEdyE8rMHBJO3IA __uO6EEeCEdyE8rMHBJO3IA _HiSsQEeDEdyE8rMHBJO3IA">
+            <generalization xmi:id="_Q6vJsEeAEdyl5eqQ4RjOpw">
+              <general xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_Z7rrUETuEdum9Mv7WaUBHw"/>
+            </generalization>
+            <ownedAttribute xmi:id="_Vq_zsEeAEdyl5eqQ4RjOpw" name="hgap" visibility="public">
+              <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_fxVKgEeAEdyl5eqQ4RjOpw" value="2"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_WwVEEEeAEdyl5eqQ4RjOpw" name="vgap" visibility="public">
+              <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_djHmgEeAEdyl5eqQ4RjOpw" value="2"/>
+            </ownedAttribute>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_7Sp8EEeBEdyE8rMHBJO3IA" name="SwingContactCellRendererBehavior" specification="_jwjZIEeAEdyl5eqQ4RjOpw">
+              <language>java</language>
+              <body>&#x9;super();&#xA;&#x9;this.setBorder(new EmptyBorder(vgap, hgap, vgap, hgap));</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_75jkAEeBEdyE8rMHBJO3IA" name="SwingContactCellRenderer_getListCellRendererComponentBehavior" specification="_uBqckEeAEdyl5eqQ4RjOpw">
+              <ownedParameter xmi:id="_MUBLUEeCEdyE8rMHBJO3IA" name="list">
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_JlmNsETuEdum9Mv7WaUBHw"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_MrXUUEeCEdyE8rMHBJO3IA" name="value">
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_xPo38PyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_NDPo0EeCEdyE8rMHBJO3IA" name="index">
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_NgFV0EeCEdyE8rMHBJO3IA" name="isSelected">
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_--NgwPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_OS-LUEeCEdyE8rMHBJO3IA" name="cellHasFocus">
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_--NgwPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_O7GiUEeCEdyE8rMHBJO3IA" name="return" direction="return">
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_anFwUEcqEdyUSvGDYHY1zw"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>&#x9;String s = value.toString();&#xA;&#x9;setText(s);&#xA;&#x9;if (value instanceof Contact) {&#xA;&#x9;&#x9;String status = ((Contact) value).getStatus();&#xA;&#x9;&#x9;setIcon(getStatusIcon(status));&#xA;&#x9;}&#xA;&#x9;if (isSelected) {&#xA;&#x9;&#x9;setBackground(list.getSelectionBackground());&#xA;&#x9;&#x9;setForeground(list.getSelectionForeground());&#xA;&#x9;} else {&#xA;&#x9;&#x9;setBackground(list.getBackground());&#xA;&#x9;&#x9;setForeground(list.getForeground());&#xA;&#x9;}&#xA;&#x9;setEnabled(list.isEnabled());&#xA;&#x9;setFont(list.getFont());&#xA;&#x9;setOpaque(true);&#xA;&#x9;return this;</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8If-8EeBEdyE8rMHBJO3IA" name="SwingContactCellRenderer_getStatusIconBehavior" specification="_xyraoEeBEdyE8rMHBJO3IA">
+              <ownedParameter xmi:id="_P787UEeCEdyE8rMHBJO3IA" name="status">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_QVIQUEeCEdyE8rMHBJO3IA" name="return" direction="return">
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_tOOYAUeBEdyE8rMHBJO3IA"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>&#x9;final URL iconURL;&#xA;&#x9;if (status != null) {&#xA;&#x9;&#x9;if (status.equals(&quot;away&quot;)) {&#xA;&#x9;&#x9;&#x9;iconURL = ContactListViewListener.class.getResource(&quot;away.png&quot;);&#xA;&#x9;&#x9;} else if (status.equals(&quot;dnd&quot;)) {&#xA;&#x9;&#x9;&#x9;iconURL = ContactListViewListener.class.getResource(&quot;busy.png&quot;);&#xA;&#x9;&#x9;} else if (status.equals(&quot;xa&quot;)) {&#xA;&#x9;&#x9;&#x9;iconURL = ContactListViewListener.class.getResource(&quot;extended-away.png&quot;);&#xA;&#x9;&#x9;} else if (status.equals(&quot;offline&quot;)) {&#xA;&#x9;&#x9;&#x9;iconURL = ContactListViewListener.class.getResource(&quot;offline.png&quot;);&#xA;&#x9;&#x9;} else {&#xA;&#x9;&#x9;&#x9;iconURL = ContactListViewListener.class.getResource(&quot;available.png&quot;);&#xA;&#x9;&#x9;}&#xA;&#x9;} else {&#xA;&#x9;&#x9;iconURL = ContactListViewListener.class.getResource(&quot;offline.png&quot;);&#xA;&#x9;}&#xA;&#x9;final im.InstantMessagingClient imc = im.InstantMessagingClient.getInstance();&#xA;&#x9;try {&#xA;&#x9;&#x9;return new ImageIcon(iconURL);&#xA;&#x9;} catch (Exception e) {&#xA;&#x9;&#x9;imc.report(e);&#xA;&#x9;}&#xA;&#x9;return null;</body>
+            </ownedBehavior>
+            <interfaceRealization xmi:id="_RUyocEeAEdyl5eqQ4RjOpw" name="InterfaceRealization1" client="_zZ9zcEd_Edyl5eqQ4RjOpw">
+              <supplier xmi:type="uml:Interface" href="../../uml2cs-transformations/models/JavaTypes.uml#_G9SpIEeAEdyl5eqQ4RjOpw"/>
+              <contract href="../../uml2cs-transformations/models/JavaTypes.uml#_G9SpIEeAEdyl5eqQ4RjOpw"/>
+            </interfaceRealization>
+            <ownedOperation xmi:id="_jwjZIEeAEdyl5eqQ4RjOpw" name="SwingContactCellRenderer" method="_7Sp8EEeBEdyE8rMHBJO3IA"/>
+            <ownedOperation xmi:id="_uBqckEeAEdyl5eqQ4RjOpw" name="getListCellRendererComponent" method="_75jkAEeBEdyE8rMHBJO3IA">
+              <ownedParameter xmi:id="_vqZ8AEeAEdyl5eqQ4RjOpw" name="list">
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_JlmNsETuEdum9Mv7WaUBHw"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_zVwMYEeAEdyl5eqQ4RjOpw" name="value">
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_xPo38PyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_GMQ_YEeBEdyl5eqQ4RjOpw" name="index">
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_LbHp4EeBEdyl5eqQ4RjOpw" name="isSelected">
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_--NgwPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Nxz0cEeBEdyl5eqQ4RjOpw" name="cellHasFocus">
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_--NgwPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_VHeacEeBEdyl5eqQ4RjOpw" name="return" direction="return">
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_anFwUEcqEdyUSvGDYHY1zw"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_xyraoEeBEdyE8rMHBJO3IA" name="getStatusIcon" visibility="private" method="_8If-8EeBEdyE8rMHBJO3IA">
+              <ownedParameter xmi:id="_zc8kEEeBEdyE8rMHBJO3IA" name="status">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_15e38EeBEdyE8rMHBJO3IA" name="return" direction="return">
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_tOOYAUeBEdyE8rMHBJO3IA"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_5BG6wEeCEdyE8rMHBJO3IA" name="Dependency16" client="_zZ9zcEd_Edyl5eqQ4RjOpw">
+            <supplier xmi:type="uml:Package" href="../../uml2cs-transformations/models/JavaTypes.uml#_-GCaIETtEdum9Mv7WaUBHw"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="__uO6EEeCEdyE8rMHBJO3IA" name="Dependency18" client="_zZ9zcEd_Edyl5eqQ4RjOpw">
+            <supplier xmi:type="uml:Package" href="../../uml2cs-transformations/models/JavaTypes.uml#_nT4EAEeCEdyE8rMHBJO3IA"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_HiSsQEeDEdyE8rMHBJO3IA" name="Dependency19" client="_zZ9zcEd_Edyl5eqQ4RjOpw">
+            <supplier xmi:type="uml:Package" href="InstantMessengerModel.uml#_DKHfgOQsEdqD2ZNp93yIAQ"/>
           </packagedElement>
         </packagedElement>
       </packagedElement>
@@ -1061,4 +1150,5 @@
   <Standard:Create xmi:id="_DnIqMET5Edu8hscEjMiyKA" base_BehavioralFeature="_4K0f8EPcEdusb52s3APTjA"/>
   <Standard:Create xmi:id="_EmDJgET5Edu8hscEjMiyKA" base_BehavioralFeature="_vCDSsEPeEdusb52s3APTjA"/>
   <Final:final xmi:id="_sxwkkEVeEdu1R4x2hFmiHQ" base_Parameter="_pxzakEVeEdu1R4x2hFmiHQ"/>
+  <Standard:Create xmi:id="_l7iqAEeAEdyl5eqQ4RjOpw" base_BehavioralFeature="_jwjZIEeAEdyl5eqQ4RjOpw"/>
 </xmi:XMI>

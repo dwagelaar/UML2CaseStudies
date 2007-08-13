@@ -48,20 +48,20 @@
       </diagrams>
       <subdiagrams>
         <model href="InstantMessengerSwing.uml#_QS7tQEPOEdusb52s3APTjA"/>
-        <diagrams position="0,0" size="100,100" name="im.view.swing" viewport="241,0">
-          <property key="pageFormatName" value="A4"/>
-          <property key="diagramWidth" value="840"/>
-          <property key="diagramHeight" value="1188"/>
+        <diagrams position="0,0" size="100,100" name="im.view.swing" viewport="857,452">
+          <property key="pageFormatName" value="A3"/>
+          <property key="diagramWidth" value="1188"/>
+          <property key="diagramHeight" value="1680"/>
           <property key="pageMarginName" value="Small Margin"/>
           <property key="diagramTopMargin" value="20"/>
           <property key="diagramBottomMargin" value="20"/>
           <property key="diagramLeftMargin" value="20"/>
           <property key="diagramRightMargin" value="20"/>
-          <property key="orientation" value="portrait"/>
+          <property key="orientation" value="landscape"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="org.topcased.modeler.uml.classdiagram">
             <element href="InstantMessengerSwing.uml#_QS7tQEPOEdusb52s3APTjA"/>
           </semanticModel>
-          <contained xsi:type="di:GraphNode" position="2,297" size="324,-1">
+          <contained xsi:type="di:GraphNode" position="3,279" size="324,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.2 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.6 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.7 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.8"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -85,7 +85,7 @@
               </contained>
             </contained>
           </contained>
-          <contained xsi:type="di:GraphNode" position="19,176" size="291,-1">
+          <contained xsi:type="di:GraphNode" position="19,4" size="291,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.2"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -114,9 +114,9 @@
               <element href="InstantMessengerSwing.uml#_yyre8EPOEdusb52s3APTjA"/>
             </semanticModel>
           </contained>
-          <contained xsi:type="di:GraphNode" position="414,200" size="370,-1">
+          <contained xsi:type="di:GraphNode" position="609,200" size="370,-1">
             <property key="backgroundColor" value="255,255,255"/>
-            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.6 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.10 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.16 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.25"/>
+            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.6 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.10 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.16 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.23"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
               <element href="InstantMessengerSwing.uml#_ud7IYEPSEdusb52s3APTjA"/>
             </semanticModel>
@@ -148,6 +148,11 @@
               <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
                 <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
                   <element href="InstantMessengerSwing.uml#_MQxlEETvEdum9Mv7WaUBHw"/>
+                </semanticModel>
+              </contained>
+              <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                  <element href="InstantMessengerSwing.uml#_7HfcoEd7Edy_8vCCth3JFA"/>
                 </semanticModel>
               </contained>
             </contained>
@@ -195,7 +200,7 @@
           </contained>
           <contained xsi:type="di:GraphNode" position="394,480" size="390,-1">
             <property key="backgroundColor" value="255,255,255"/>
-            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.7 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.12 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.18 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.23"/>
+            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.7 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.12 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.18 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.21"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
               <element href="InstantMessengerSwing.uml#_wd_isEPSEdusb52s3APTjA"/>
             </semanticModel>
@@ -279,7 +284,7 @@
           </contained>
           <contained xsi:type="di:GraphNode" position="3,480" size="381,-1">
             <property key="backgroundColor" value="255,255,255"/>
-            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.8 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.14 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.20 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.22"/>
+            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.8 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.14 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.20 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.30 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.31"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
               <element href="InstantMessengerSwing.uml#_yKe5sEPSEdusb52s3APTjA"/>
             </semanticModel>
@@ -416,7 +421,7 @@
               <element href="InstantMessengerSwing.uml#_yUAhwEPVEdusb52s3APTjA"/>
             </semanticModel>
           </contained>
-          <contained xsi:type="di:GraphNode" position="260,4" size="247,-1">
+          <contained xsi:type="di:GraphNode" position="455,4" size="247,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.10"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -465,7 +470,7 @@
               <element href="InstantMessengerSwing.uml#_M3EskEPdEdusb52s3APTjA"/>
             </semanticModel>
           </contained>
-          <contained xsi:type="di:GraphNode" position="519,870" size="257,-1">
+          <contained xsi:type="di:GraphNode" position="695,870" size="257,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.12"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -568,7 +573,7 @@
               <element href="InstantMessengerSwing.uml#_SxpQwEPhEdusb52s3APTjA"/>
             </semanticModel>
           </contained>
-          <contained xsi:type="di:GraphNode" position="627,4" size="155,-1">
+          <contained xsi:type="di:GraphNode" position="889,4" size="155,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.16"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -610,11 +615,9 @@
             <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="4" vDistance="17"/>
             <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
             <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-            <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
-            <waypoints>[49, -118, -57, 136]</waypoints>
-            <waypoints>[80, -192, -26, 62]</waypoints>
+            <contained xsi:type="di:EdgeObjectOffset" visible="false" id="middleNameEdgeObject"/>
           </contained>
-          <contained xsi:type="di:GraphNode" position="343,928" size="167,-1">
+          <contained xsi:type="di:GraphNode" position="505,870" size="167,-1">
             <property key="backgroundColor" value="255,255,255"/>
             <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.18"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
@@ -651,50 +654,11 @@
             <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
             <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
             <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-            <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject" offset="-76,-2"/>
-            <waypoints>[28, 127, -75, -339]</waypoints>
-            <waypoints>[91, 413, -12, -53]</waypoints>
+            <contained xsi:type="di:EdgeObjectOffset" visible="false" id="middleNameEdgeObject" offset="-76,-2"/>
           </contained>
-          <contained xsi:type="di:GraphNode" position="330,1043" size="-1,-1">
+          <contained xsi:type="di:GraphNode" position="394,366" size="-1,-1">
             <property key="backgroundColor" value="255,255,255"/>
-            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.20"/>
-            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-              <element href="InstantMessengerModel.uml#_wl02MPybEdqjP_ILe4Jwkg"/>
-            </semanticModel>
-            <contained xsi:type="di:GraphNode">
-              <property key="eStructuralFeatureID" value="37"/>
-              <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-                <element href="InstantMessengerModel.uml#_wl02MPybEdqjP_ILe4Jwkg"/>
-              </semanticModel>
-            </contained>
-            <contained xsi:type="di:GraphNode">
-              <property key="eStructuralFeatureID" value="38"/>
-              <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-                <element href="InstantMessengerModel.uml#_wl02MPybEdqjP_ILe4Jwkg"/>
-              </semanticModel>
-              <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-                <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-                  <element href="InstantMessengerModel.uml#_rXTwoPygEdqjP_ILe4Jwkg"/>
-                </semanticModel>
-              </contained>
-            </contained>
-          </contained>
-          <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.5/@anchorage.0 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.19/@anchorage.0">
-            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-              <element href="InstantMessengerSwing.uml#_0jR5EEP-Edug19jXgM5cew"/>
-            </semanticModel>
-            <contained xsi:type="di:EdgeObjectUV" id="srcNameEdgeObject" uDistance="28"/>
-            <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
-            <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
-            <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-            <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
-            <waypoints>[64, 212, -292, -176]</waypoints>
-            <waypoints>[117, 388, -239, 0]</waypoints>
-            <waypoints>[133, 388, -223, 0]</waypoints>
-          </contained>
-          <contained xsi:type="di:GraphNode" position="309,376" size="-1,-1">
-            <property key="backgroundColor" value="255,255,255"/>
-            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.22 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.23"/>
+            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.20 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.21"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
               <element href="../../uml2cs-transformations/models/JavaTypes.uml#_N1xCYETuEdum9Mv7WaUBHw"/>
             </semanticModel>
@@ -711,19 +675,19 @@
               </semanticModel>
             </contained>
           </contained>
-          <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.5/@anchorage.0 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.21/@anchorage.0">
+          <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.5/@anchorage.0 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.19/@anchorage.0">
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
               <element href="InstantMessengerSwing.uml#_6voCgETuEdum9Mv7WaUBHw"/>
             </semanticModel>
           </contained>
-          <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.4/@anchorage.0 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.21/@anchorage.0">
+          <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.4/@anchorage.0 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.19/@anchorage.0">
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
               <element href="InstantMessengerSwing.uml#_7BICMETuEdum9Mv7WaUBHw"/>
             </semanticModel>
           </contained>
-          <contained xsi:type="di:GraphNode" position="516,4" size="-1,-1">
+          <contained xsi:type="di:GraphNode" position="758,4" size="-1,-1">
             <property key="backgroundColor" value="255,255,255"/>
-            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.25"/>
+            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.23"/>
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
               <element href="../../uml2cs-transformations/models/JavaTypes.uml#_C-Cq4ETuEdum9Mv7WaUBHw"/>
             </semanticModel>
@@ -740,10 +704,145 @@
               </semanticModel>
             </contained>
           </contained>
-          <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.3/@anchorage.0 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.24/@anchorage.0">
+          <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.3/@anchorage.0 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.22/@anchorage.0">
             <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
               <element href="InstantMessengerSwing.uml#_H9Lo8ETvEdum9Mv7WaUBHw"/>
             </semanticModel>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="838,480" size="778,-1">
+            <property key="backgroundColor" value="255,255,255"/>
+            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.27 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.28"/>
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="InstantMessengerSwing.uml#_zZ9zcEd_Edyl5eqQ4RjOpw"/>
+            </semanticModel>
+            <contained xsi:type="di:GraphNode">
+              <property key="eStructuralFeatureID" value="37"/>
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                <element href="InstantMessengerSwing.uml#_zZ9zcEd_Edyl5eqQ4RjOpw"/>
+              </semanticModel>
+              <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                  <element href="InstantMessengerSwing.uml#_Vq_zsEeAEdyl5eqQ4RjOpw"/>
+                </semanticModel>
+              </contained>
+              <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                  <element href="InstantMessengerSwing.uml#_WwVEEEeAEdyl5eqQ4RjOpw"/>
+                </semanticModel>
+              </contained>
+            </contained>
+            <contained xsi:type="di:GraphNode">
+              <property key="eStructuralFeatureID" value="47"/>
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                <element href="InstantMessengerSwing.uml#_zZ9zcEd_Edyl5eqQ4RjOpw"/>
+              </semanticModel>
+              <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                  <element href="InstantMessengerSwing.uml#_jwjZIEeAEdyl5eqQ4RjOpw"/>
+                </semanticModel>
+              </contained>
+              <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                  <element href="InstantMessengerSwing.uml#_uBqckEeAEdyl5eqQ4RjOpw"/>
+                </semanticModel>
+              </contained>
+              <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                  <element href="InstantMessengerSwing.uml#_xyraoEeBEdyE8rMHBJO3IA"/>
+                </semanticModel>
+              </contained>
+            </contained>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="1186,103" size="82,-1">
+            <property key="backgroundColor" value="255,255,255"/>
+            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.27"/>
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="../../uml2cs-transformations/models/JavaTypes.uml#_Z7rrUETuEdum9Mv7WaUBHw"/>
+            </semanticModel>
+            <contained xsi:type="di:GraphNode">
+              <property key="eStructuralFeatureID" value="37"/>
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                <element href="../../uml2cs-transformations/models/JavaTypes.uml#_Z7rrUETuEdum9Mv7WaUBHw"/>
+              </semanticModel>
+            </contained>
+            <contained xsi:type="di:GraphNode">
+              <property key="eStructuralFeatureID" value="47"/>
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                <element href="../../uml2cs-transformations/models/JavaTypes.uml#_Z7rrUETuEdum9Mv7WaUBHw"/>
+              </semanticModel>
+            </contained>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="1324,103" size="106,-1">
+            <property key="backgroundColor" value="255,255,255"/>
+            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.28"/>
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="../../uml2cs-transformations/models/JavaTypes.uml#_G9SpIEeAEdyl5eqQ4RjOpw"/>
+            </semanticModel>
+            <contained xsi:type="di:GraphNode">
+              <property key="eStructuralFeatureID" value="37"/>
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                <element href="../../uml2cs-transformations/models/JavaTypes.uml#_G9SpIEeAEdyl5eqQ4RjOpw"/>
+              </semanticModel>
+            </contained>
+            <contained xsi:type="di:GraphNode">
+              <property key="eStructuralFeatureID" value="38"/>
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                <element href="../../uml2cs-transformations/models/JavaTypes.uml#_G9SpIEeAEdyl5eqQ4RjOpw"/>
+              </semanticModel>
+            </contained>
+          </contained>
+          <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.24/@anchorage.0 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.25/@anchorage.0">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="InstantMessengerSwing.uml#_Q6vJsEeAEdyl5eqQ4RjOpw"/>
+            </semanticModel>
+            <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject"/>
+          </contained>
+          <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.24/@anchorage.0 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.26/@anchorage.0">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="InstantMessengerSwing.uml#_RUyocEeAEdyl5eqQ4RjOpw"/>
+            </semanticModel>
+            <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject"/>
+          </contained>
+          <contained xsi:type="di:GraphNode" position="287,1023" size="442,-1">
+            <property key="backgroundColor" value="255,255,255"/>
+            <anchorage graphEdge="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.30 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.31"/>
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="InstantMessengerModel.uml#_wl02MPybEdqjP_ILe4Jwkg"/>
+            </semanticModel>
+            <contained xsi:type="di:GraphNode">
+              <property key="eStructuralFeatureID" value="37"/>
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                <element href="InstantMessengerModel.uml#_wl02MPybEdqjP_ILe4Jwkg"/>
+              </semanticModel>
+            </contained>
+            <contained xsi:type="di:GraphNode">
+              <property key="eStructuralFeatureID" value="38"/>
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                <element href="InstantMessengerModel.uml#_wl02MPybEdqjP_ILe4Jwkg"/>
+              </semanticModel>
+              <contained xsi:type="di:GraphNode" position="0,0" size="-1,-1">
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+                  <element href="InstantMessengerModel.uml#_rXTwoPygEdqjP_ILe4Jwkg"/>
+                </semanticModel>
+              </contained>
+            </contained>
+          </contained>
+          <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.5/@anchorage.0 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.29/@anchorage.0">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="InstantMessengerSwing.uml#_Bf0coEQuEdu13J6qpC4E7g"/>
+            </semanticModel>
+            <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject"/>
+          </contained>
+          <contained xsi:type="di:GraphEdge" anchor="//@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.5/@anchorage.0 //@subdiagrams.0/@subdiagrams.0/@subdiagrams.0/@diagrams.0/@contained.29/@anchorage.0">
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
+              <element href="InstantMessengerSwing.uml#_0jR5EEP-Edug19jXgM5cew"/>
+            </semanticModel>
+            <contained xsi:type="di:EdgeObjectUV" id="srcNameEdgeObject" uDistance="10" vDistance="10"/>
+            <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
+            <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
+            <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
+            <contained xsi:type="di:EdgeObjectOffset" visible="false" id="middleNameEdgeObject" offset="0,10"/>
+            <contained xsi:type="di:EdgeObjectOffset" id="stereotypeEdgeObject" offset="0,-10"/>
           </contained>
         </diagrams>
       </subdiagrams>

@@ -255,12 +255,22 @@
         <eAnnotations xmi:id="_1h_4AEPmEdug19jXgM5cew" source="http://www.topcased.org/uuid">
           <details xmi:id="_1h_4AUPmEdug19jXgM5cew" key="uuid" value="1158234465151141"/>
         </eAnnotations>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_jaSOAEdbEdyaA4Gv-JMuzw" name="ActionListener"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_cEVFUEVbEdu1R4x2hFmiHQ" name="Panel">
         <eAnnotations xmi:id="_gx0IIEVbEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
           <details xmi:id="_gx0IIUVbEdu1R4x2hFmiHQ" key="uuid" value="1158394528162156"/>
         </eAnnotations>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_anFwUEcqEdyUSvGDYHY1zw" name="Component"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_bDUVUEdWEdyaA4Gv-JMuzw" name="ScrollPane"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Lt-iAEdhEdyaA4Gv-JMuzw" name="Image"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_W2n_gEdjEdyaA4Gv-JMuzw" name="Graphics"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_j-L5YEdoEdyBwOHc9Z842g" name="Container"/>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_dWd9gEdzEdy_8vCCth3JFA" name="LayoutManager"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_EdElkEd0Edy_8vCCth3JFA" name="Dimension"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_FWrHEEd0Edy_8vCCth3JFA" name="Point"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Nu1jcEhGEdycN-x3fEK4ZQ" name="Canvas"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_bUmisETFEdutoZk0i5ZyXw" name="net">
       <eAnnotations xmi:id="_j9UsAETFEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
@@ -360,6 +370,7 @@
             <details xmi:id="_XkbhQUUIEduVMPxyamT3tw" key="uuid" value="1158358818132216"/>
           </eAnnotations>
         </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_HjtioElyEdyvGItN_twx6g" name="Image"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_PkY8wEWxEdumfbPIzYgV4Q" name="io">
         <eAnnotations xmi:id="_iXnyQEWxEdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
@@ -430,6 +441,21 @@
         <eAnnotations xmi:id="_hj-5cETuEdum9Mv7WaUBHw" source="http://www.topcased.org/uuid">
           <details xmi:id="_hj-5cUTuEdum9Mv7WaUBHw" key="uuid" value="1158347718278189"/>
         </eAnnotations>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_HzGMkEd8Edy_8vCCth3JFA" name="ListModel"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_LCdrkEd8Edy_8vCCth3JFA" name="AbstractListModel" clientDependency="_S0dBMEd8Edy_8vCCth3JFA">
+        <interfaceRealization xmi:id="_S0dBMEd8Edy_8vCCth3JFA" name="InterfaceRealization1" supplier="_HzGMkEd8Edy_8vCCth3JFA" client="_LCdrkEd8Edy_8vCCth3JFA" contract="_HzGMkEd8Edy_8vCCth3JFA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_NTkykEd8Edy_8vCCth3JFA" name="DefaultListModel">
+        <generalization xmi:id="_TK81oEd8Edy_8vCCth3JFA" general="_LCdrkEd8Edy_8vCCth3JFA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_G9SpIEeAEdyl5eqQ4RjOpw" name="ListCellRenderer"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_tOOYAUeBEdyE8rMHBJO3IA" name="ImageIcon"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_nT4EAEeCEdyE8rMHBJO3IA" name="border">
+        <packagedElement xmi:type="uml:Class" xmi:id="_rfODEEeCEdyE8rMHBJO3IA" name="EmptyBorder" clientDependency="_wILLMEeCEdyE8rMHBJO3IA">
+          <interfaceRealization xmi:id="_wILLMEeCEdyE8rMHBJO3IA" name="InterfaceRealization1" supplier="_un9VoEeCEdyE8rMHBJO3IA" client="_rfODEEeCEdyE8rMHBJO3IA" contract="_un9VoEeCEdyE8rMHBJO3IA"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_un9VoEeCEdyE8rMHBJO3IA" name="Border"/>
       </packagedElement>
     </packagedElement>
   </packagedElement>

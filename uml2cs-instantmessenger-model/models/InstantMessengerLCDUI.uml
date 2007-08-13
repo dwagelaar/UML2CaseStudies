@@ -157,7 +157,7 @@
                 <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
               </ownedParameter>
               <language>java</language>
-              <body>    insert(index, c.toString(), null);</body>
+              <body>    insert(index, c.toString(), getStatusIcon(c.getStatus()));</body>
             </ownedBehavior>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_U_qOMEPmEdug19jXgM5cew" name="LCDUIContactListView_removeContactBehavior" specification="_KRb4UEPjEdusb52s3APTjA">
               <eAnnotations xmi:id="_t-OklEPmEdug19jXgM5cew" source="http://www.topcased.org/uuid">
@@ -218,6 +218,16 @@
               </ownedParameter>
               <language>java</language>
               <body>    if (enabled) {&#xA;        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;        Display.getDisplay(client).setCurrent(this);&#xA;    }</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ZwO9cElyEdyvGItN_twx6g" name="LCDUIContactListView_getStatusIconBehavior" specification="__IwIgElxEdyvGItN_twx6g">
+              <ownedParameter xmi:id="_HkLAMElzEdyvGItN_twx6g" name="status">
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_IBToIElzEdyvGItN_twx6g" name="return" direction="return">
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_HjtioElyEdyvGItN_twx6g"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>&#x9;final Image iconURL;&#xA;&#x9;final im.InstantMessagingClient imc = im.InstantMessagingClient.getInstance();&#xA;&#x9;try {&#xA;&#x9;&#x9;if (status != null) {&#xA;&#x9;&#x9;&#x9;if (status.equals(&quot;away&quot;)) {&#xA;&#x9;&#x9;&#x9;&#x9;iconURL = Image.createImage(&quot;/im/view/lcdui/away.png&quot;);&#xA;&#x9;&#x9;&#x9;} else if (status.equals(&quot;dnd&quot;)) {&#xA;&#x9;&#x9;&#x9;&#x9;iconURL = Image.createImage(&quot;/im/view/lcdui/busy.png&quot;);&#xA;&#x9;&#x9;&#x9;} else if (status.equals(&quot;xa&quot;)) {&#xA;&#x9;&#x9;&#x9;&#x9;iconURL = Image.createImage(&quot;/im/view/lcdui/extended-away.png&quot;);&#xA;&#x9;&#x9;&#x9;} else if (status.equals(&quot;offline&quot;)) {&#xA;&#x9;&#x9;&#x9;&#x9;iconURL = Image.createImage(&quot;/im/view/lcdui/offline.png&quot;);&#xA;&#x9;&#x9;&#x9;} else {&#xA;&#x9;&#x9;&#x9;&#x9;iconURL = Image.createImage(&quot;/im/view/lcdui/available.png&quot;);&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;} else {&#xA;&#x9;&#x9;&#x9;iconURL = Image.createImage(&quot;/im/view/lcdui/offline.png&quot;);&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;return iconURL;&#xA;&#x9;} catch (Exception e) {&#xA;&#x9;&#x9;imc.report(e);&#xA;&#x9;}&#xA;&#x9;return null;</body>
             </ownedBehavior>
             <interfaceRealization xmi:id="_M3EskEPdEdusb52s3APTjA" name="InterfaceRealization1" client="_ud7IYEPSEdusb52s3APTjA">
               <eAnnotations xmi:id="_PVQmQEPdEdusb52s3APTjA" source="http://www.topcased.org/uuid">
@@ -299,6 +309,14 @@
                   <details xmi:id="_45nAc0UMEduVMPxyamT3tw" key="uuid" value="1158360759799127"/>
                 </eAnnotations>
                 <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_--NgwPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="__IwIgElxEdyvGItN_twx6g" name="getStatusIcon" visibility="private" method="_ZwO9cElyEdyvGItN_twx6g">
+              <ownedParameter xmi:id="_TH-3EElyEdyvGItN_twx6g" name="status">
+                <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_MZCS0ElyEdyvGItN_twx6g" name="return" direction="return">
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_HjtioElyEdyvGItN_twx6g"/>
               </ownedParameter>
             </ownedOperation>
           </packagedElement>

@@ -29,6 +29,11 @@
 	    	</fileset>
 	    </copy>
 	    <mkdir dir="${bin.dir}"/>
+	    <copy todir="${bin.dir}">
+	      	<fileset dir="${resources.path}">
+	      		<include name="**"/>
+	    	</fileset>
+	    </copy>
 	</target>
 
 	<target name="compile" depends="prepare">

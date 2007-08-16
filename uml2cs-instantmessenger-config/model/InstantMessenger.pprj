@@ -1,4 +1,4 @@
-; Mon Aug 13 11:17:15 CEST 2007
+; Thu Aug 16 15:37:02 CEST 2007
 ; 
 ;+ (version "3.2.1")
 ;+ (build "Build 365")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[InstantMessenger_ProjectKB_Instance_25]
-		[InstantMessenger_ProjectKB_Instance_26]
-		[InstantMessenger_ProjectKB_Instance_27]
-		[InstantMessenger_ProjectKB_Instance_28]
-		[InstantMessenger_ProjectKB_Instance_29]))
+		[InstantMessenger_ProjectKB_Instance_15]
+		[InstantMessenger_ProjectKB_Instance_16]
+		[InstantMessenger_ProjectKB_Instance_17]
+		[InstantMessenger_ProjectKB_Instance_18]
+		[InstantMessenger_ProjectKB_Instance_19]))
 
 ([CLSES_TAB] of  Widget
 
@@ -253,36 +253,36 @@
 ([InstantMessenger_ProjectKB_Instance_1] of  Property_List
 )
 
+([InstantMessenger_ProjectKB_Instance_15] of  String
+
+	(name "owl:Class")
+	(string_value "%3ANAME"))
+
+([InstantMessenger_ProjectKB_Instance_16] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([InstantMessenger_ProjectKB_Instance_17] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([InstantMessenger_ProjectKB_Instance_18] of  String
+
+	(name "owl:Thing")
+	(string_value "%3ANAME"))
+
+([InstantMessenger_ProjectKB_Instance_19] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
 ([InstantMessenger_ProjectKB_Instance_2] of  Widget
 
 	(is_hidden TRUE)
 	(property_list [InstantMessenger_ProjectKB_Instance_3])
 	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
-
-([InstantMessenger_ProjectKB_Instance_25] of  String
-
-	(name "owl:Class")
-	(string_value "%3ANAME"))
-
-([InstantMessenger_ProjectKB_Instance_26] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([InstantMessenger_ProjectKB_Instance_27] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([InstantMessenger_ProjectKB_Instance_28] of  String
-
-	(name "owl:Thing")
-	(string_value "%3ANAME"))
-
-([InstantMessenger_ProjectKB_Instance_29] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
 
 ([InstantMessenger_ProjectKB_Instance_3] of  Property_List
 )
@@ -7042,12 +7042,12 @@
 		[KB_713803_Instance_693]
 		[KB_313796_Instance_943]
 		[KB_938545_Instance_495]
-		[KB_713803_Instance_303]
 		[STANDARD_CLASS_FORM_WIDGET]
+		[KB_713803_Instance_303]
 		[KB_313796_Instance_852]
 		[Instance_1005]
-		[Instance_581]
 		[KB_301165_Instance_1013]
+		[Instance_581]
 		[KB_938545_Instance_412]
 		[KB_764103_Instance_545]
 		[KB_713803_Instance_390]
@@ -7090,12 +7090,12 @@
 		"owl:Class"
 		"rdfs:Container"
 		"owl:Ontology"
-		"owl:DataRange"
-		"xsd:gMonthDay"
 		":TO"
+		"xsd:gMonthDay"
+		"owl:DataRange"
 		"xsd:NMTOKEN"
-		"xsd:unsignedInt"
 		"xsd:QName"
+		"xsd:unsignedInt"
 		"owl:FunctionalProperty"
 		"xsd:long"
 		"owl:onProperty"
@@ -7123,41 +7123,41 @@
 		"rdf:rest"
 		"xsd:decimal"
 		"rdf:subject"
-		"owl:SymmetricProperty"
-		"owl:sameAs"
-		"rdf:value"
 		"xsd:Name"
+		"rdf:value"
+		"owl:sameAs"
+		"owl:SymmetricProperty"
 		"xsd:byte"
-		"owl:AllDifferent"
 		"owl:differentFrom"
-		"owl:Nothing"
+		"owl:AllDifferent"
 		"rdf:Property"
-		"owl:InverseFunctionalProperty"
+		"owl:Nothing"
 		"owl:cardinality"
+		"owl:InverseFunctionalProperty"
 		"xsd:nonNegativeInteger"
 		"rdf:Statement"
-		"rdfs:Literal"
 		":FROM"
-		"xsd:anySimpleType"
+		"rdfs:Literal"
 		"owl:disjointWith"
+		"xsd:anySimpleType"
 		"owl:minCardinality"
 		"xsd:ID"
 		"xsd:gDay"
 		"xsd:gYearMonth"
-		"owl:distinctMembers"
 		"xsd:NCName"
+		"owl:distinctMembers"
 		"xsd:nonPositiveInteger"
 		"rdfs:Datatype"
-		"owl:TransitiveProperty"
-		"xsd:token"
 		":DIRECTED-BINARY-RELATION"
-		"xsd:normalizedString"
-		"xsd:ENTITY"
+		"xsd:token"
+		"owl:TransitiveProperty"
 		"xsd:IDREF"
+		"xsd:ENTITY"
+		"xsd:normalizedString"
 		"xsd:gMonth"
-		"owl:maxCardinality"
-		"owl:oneOf"
 		"rdf:type"
+		"owl:oneOf"
+		"owl:maxCardinality"
 		"rdf:object")
 	(journaling_enabled FALSE)
 	(next_frame_number 0)

@@ -20,6 +20,7 @@
     <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="InstantMessengerPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -28,24 +29,21 @@
         <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
   </owl:Class>
   <owl:Class rdf:ID="IpkgAppletPlatform">
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
         <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/PackageManagers.owl#Ipkg"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
   </owl:Class>
   <owl:Class rdf:ID="DefaultJabberJRE">
-    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang, java.io and java.util</rdfs:comment>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -54,6 +52,7 @@
                 </owl:unionOf>
               </owl:Class>
             </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
@@ -67,8 +66,8 @@
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaIoLibrary"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom>
@@ -85,10 +84,11 @@
       </owl:Class>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
+    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang, java.io and java.util</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="JavaLangJRE">
-    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
+    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang</rdfs:comment>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -115,21 +115,21 @@
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
   </owl:Class>
   <owl:Class rdf:ID="MIDletJRE">
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesJavaPackageManager"/>
         <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaMIDlet"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesJavaPackageManager"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
   </owl:Class>
   <owl:Class rdf:ID="LCDUIJRE">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
+    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang, java.util and javax.microedition.lcdui</rdfs:comment>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -138,6 +138,7 @@
                 </owl:unionOf>
               </owl:Class>
             </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
@@ -157,19 +158,17 @@
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang, java.util and javax.microedition.lcdui</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="WebAppletJRE">
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesJavaPackageManager"/>
         <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaWebApplet"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesJavaPackageManager"/>
       </owl:Restriction>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
   </owl:Class>
   <owl:Class rdf:about="#JabberJRE">
-    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang, java.io and java.util</rdfs:comment>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -185,7 +184,6 @@
             <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -194,44 +192,46 @@
                 </owl:unionOf>
               </owl:Class>
             </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaIoLibrary"/>
             <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaIoLibrary"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
+    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang, java.io and java.util</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="WebAppletPlatform">
-    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
         <owl:someValuesFrom rdf:resource="#WebAppletJRE"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
       </owl:Restriction>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
   </owl:Class>
   <owl:Class rdf:ID="SwingPlatform">
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
         <owl:someValuesFrom>
           <owl:Class rdf:ID="SwingJRE"/>
         </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
   </owl:Class>
   <owl:Class rdf:ID="LocalPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#JavaLangJRE"/>
         <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
+        <owl:someValuesFrom rdf:resource="#JavaLangJRE"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
   </owl:Class>
   <owl:Class rdf:ID="LCDUIPlatform">
     <owl:equivalentClass>
@@ -243,21 +243,19 @@
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
   </owl:Class>
   <owl:Class rdf:ID="DefaultJabberPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
         <owl:someValuesFrom rdf:resource="#DefaultJabberJRE"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
   </owl:Class>
   <owl:Class rdf:about="#BasicJRE">
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -266,9 +264,9 @@
                 </owl:unionOf>
               </owl:Class>
             </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -277,14 +275,15 @@
                 </owl:unionOf>
               </owl:Class>
             </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
     <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang and java.util</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="MEJabberPlatform">
-    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:someValuesFrom>
@@ -293,21 +292,23 @@
         <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
       </owl:Restriction>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
   </owl:Class>
   <owl:Class rdf:ID="MIDletPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#MIDletJRE"/>
         <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
+        <owl:someValuesFrom rdf:resource="#MIDletJRE"/>
       </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
   </owl:Class>
   <owl:Class rdf:about="#SwingJRE">
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -316,7 +317,6 @@
                 </owl:unionOf>
               </owl:Class>
             </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
@@ -330,6 +330,7 @@
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -339,7 +340,6 @@
                 </owl:unionOf>
               </owl:Class>
             </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
@@ -353,6 +353,7 @@
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -362,25 +363,29 @@
                 </owl:unionOf>
               </owl:Class>
             </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                  <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaNetLibrary"/>
+                  <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaNetLibrary"/>
+                </owl:unionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
             <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
-            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaNetLibrary"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang, java.util, java.awt, java.awt.event and javax.swing</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
+    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang, java.util, java.awt, java.awt.event and javax.swing</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="AWTJRE">
-    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang, java.util, java.awt and java.awt.event</rdfs:comment>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -389,6 +394,7 @@
                 </owl:unionOf>
               </owl:Class>
             </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom>
@@ -402,7 +408,6 @@
             <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -412,6 +417,7 @@
                 </owl:unionOf>
               </owl:Class>
             </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom>
@@ -426,16 +432,23 @@
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
-            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaNetLibrary"/>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                  <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaNetLibrary"/>
+                  <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaNetLibrary"/>
+                </owl:unionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang, java.util, java.awt and java.awt.event</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
   </owl:Class>
   <owl:Class rdf:about="#MEJabberJRE">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
-    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang, java.io and java.util</rdfs:comment>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -451,6 +464,7 @@
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom>
               <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -459,28 +473,28 @@
                 </owl:unionOf>
               </owl:Class>
             </owl:someValuesFrom>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaIoLibrary"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
             <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-2_0-api.owl#JavaxMicroeditionIoLibrary"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang, java.io and java.util</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:ID="AWTPlatform">
-    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
         <owl:someValuesFrom rdf:resource="#AWTJRE"/>
       </owl:Restriction>
     </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
   </owl:Class>
 </rdf:RDF>
 

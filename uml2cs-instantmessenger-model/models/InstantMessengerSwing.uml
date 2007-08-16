@@ -1009,7 +1009,7 @@
             </eAnnotations>
             <supplier xmi:type="uml:Package" href="../../uml2cs-transformations/models/JavaTypes.uml#_-GCaIETtEdum9Mv7WaUBHw"/>
           </packagedElement>
-          <packagedElement xmi:type="uml:Class" xmi:id="_zZ9zcEd_Edyl5eqQ4RjOpw" name="SwingContactCellRenderer" clientDependency="_RUyocEeAEdyl5eqQ4RjOpw _5BG6wEeCEdyE8rMHBJO3IA __uO6EEeCEdyE8rMHBJO3IA _HiSsQEeDEdyE8rMHBJO3IA">
+          <packagedElement xmi:type="uml:Class" xmi:id="_zZ9zcEd_Edyl5eqQ4RjOpw" name="SwingContactCellRenderer" clientDependency="_RUyocEeAEdyl5eqQ4RjOpw _5BG6wEeCEdyE8rMHBJO3IA __uO6EEeCEdyE8rMHBJO3IA _HiSsQEeDEdyE8rMHBJO3IA _JIBzEEv5Edy-PdU0Pm7_NA">
             <generalization xmi:id="_Q6vJsEeAEdyl5eqQ4RjOpw">
               <general xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_Z7rrUETuEdum9Mv7WaUBHw"/>
             </generalization>
@@ -1099,6 +1099,9 @@
           </packagedElement>
           <packagedElement xmi:type="uml:Dependency" xmi:id="_HiSsQEeDEdyE8rMHBJO3IA" name="Dependency19" client="_zZ9zcEd_Edyl5eqQ4RjOpw">
             <supplier xmi:type="uml:Package" href="InstantMessengerModel.uml#_DKHfgOQsEdqD2ZNp93yIAQ"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_JIBzEEv5Edy-PdU0Pm7_NA" name="Dependency17" client="_zZ9zcEd_Edyl5eqQ4RjOpw">
+            <supplier xmi:type="uml:Package" href="../../uml2cs-transformations/models/JavaTypes.uml#_bUmisETFEdutoZk0i5ZyXw"/>
           </packagedElement>
         </packagedElement>
       </packagedElement>

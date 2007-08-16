@@ -17,5 +17,5 @@
 	<property name="ipk.description" value="Instant Messenger case study for Model-Driven Development.&#010; Supports the Jabber protocol for now."/>
 	<property name="ipk.tabname" value="Jeode"/>
 
-	<import file="../../../uml2cs-instantmessenger-model/packaging/ipkg/build.xml"/>
+	<import file="../../../uml2cs-instantmessenger-model/packaging/ipkg/jeode/build.xml"/>
 </project>

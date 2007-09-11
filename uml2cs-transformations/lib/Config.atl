@@ -27,3 +27,7 @@ helper context ECORE!EClass def : inclusionCondition() : Boolean =
 -- select whether or not to use fully qualified meta-class names (<package>::<class>)
 helper context ECORE!ENamedElement def : useQualifiedName() : Boolean =
 	true;
+
+-- select whether or not to use fully qualified rule names (<package>::<class>)
+helper context ECORE!ENamedElement def : useQualifiedRuleName() : Boolean =
+	false;

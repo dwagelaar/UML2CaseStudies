@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
-<stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Copy.atl"/>
 <mapAttribute key="Model Handler">
-<mapEntry key="OUT" value=""/>
 <mapEntry key="UML2" value="EMF"/>
-<mapEntry key="IN" value=""/>
 </mapAttribute>
 <mapAttribute key="Libs">
 <mapEntry key="Mappings" value="/uml2cs-transformations/lib/JavaMappings.asm"/>
 </mapAttribute>
+<stringAttribute key="ATL VM" value="Regular VM (with debugger)"/>
 <booleanAttribute key="Mode Debug" value="false"/>
-<stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <mapAttribute key="ModelType">
 <mapEntry key="OUT" value="MODELOUTPUT"/>
-<mapEntry key="UML2" value="METAMODELINPUT"/>
+<mapEntry key="UML2" value="METAMODELOUTPUT"/>
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
+<stringAttribute key="Project Name" value="uml2cs-transformations"/>
+<mapAttribute key="Output">
+<mapEntry key="OUT" value="UML2"/>
+</mapAttribute>
+<booleanAttribute key="profile" value="false"/>
+<mapAttribute key="Input">
+<mapEntry key="IN" value="UML2"/>
+</mapAttribute>
+<booleanAttribute key="AllowInterModelReferences" value="true"/>
+<booleanAttribute key="printExecutionTime" value="false"/>
+<booleanAttribute key="disableAttributeHelperCache" value="false"/>
+<stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Copy.atl"/>
+<booleanAttribute key="continueAfterError" value="false"/>
+<booleanAttribute key="showSummary" value="false"/>
 <mapAttribute key="Path">
 <mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/im-asyncmethods.uml"/>
 <mapEntry key="UML2" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
 <mapEntry key="IN" value="/uml2cs-instantmessenger-model/outmodels/test/im-applet.uml"/>
 </mapAttribute>
-<mapAttribute key="Output">
-<mapEntry key="OUT" value="UML2"/>
-</mapAttribute>
-<booleanAttribute key="AllowInterModelReferences" value="true"/>
-<mapAttribute key="Input">
-<mapEntry key="IN" value="UML2"/>
-</mapAttribute>
+<booleanAttribute key="step" value="false"/>
 <listAttribute key="Superimpose">
 <listEntry value="/uml2cs-transformations/UML2AsyncMethods.asm"/>
 <listEntry value="/uml2cs-transformations/UML2ProfileCopy.asm"/>

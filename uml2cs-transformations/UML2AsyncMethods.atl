@@ -12,9 +12,9 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : asyncs : Sequence(UML2!Async::asynchronous) = UML2!Async::asynchronous->allInstances();
+helper def : asyncs : Sequence(UML2!"Async::asynchronous") = UML2!"Async::asynchronous"->allInstances();
 
-helper context UML2!uml::Operation def : isAsynchronous() : Boolean =
+helper context UML2!"uml::Operation" def : isAsynchronous() : Boolean =
 	thisModule.asyncs->select(a|a.base_Operation=self)->notEmpty();
 
 -- ======================================================================
@@ -26,12 +26,12 @@ helper context UML2!uml::Operation def : isAsynchronous() : Boolean =
 -- ======================================================================
 
 rule OpaqueBehavior {
-    from s : UML2!uml::OpaqueBehavior (
+    from s : UML2!"uml::OpaqueBehavior" (
     	if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::OpaqueBehavior) and
+			s->oclIsTypeOf(UML2!"uml::OpaqueBehavior") and
 			not s.specification->isAsynchronous()
 		else false endif)
-    to t : UML2!uml::OpaqueBehavior mapsTo s (
+    to t : UML2!"uml::OpaqueBehavior" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -76,12 +76,12 @@ rule OpaqueBehavior {
 }
 
 rule AsyncOpaqueBehavior {
-    from s : UML2!uml::OpaqueBehavior (
+    from s : UML2!"uml::OpaqueBehavior" (
     	if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::OpaqueBehavior) and
+			s->oclIsTypeOf(UML2!"uml::OpaqueBehavior") and
 			s.specification->isAsynchronous()
 		else false endif)
-    to t : UML2!uml::OpaqueBehavior mapsTo s (
+    to t : UML2!"uml::OpaqueBehavior" mapsTo s (
         name <- s.name->debug('AsyncOpaqueBehavior'),
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,

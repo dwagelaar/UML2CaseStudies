@@ -14,14 +14,14 @@ uses Mappings;
 -- ======================================================================
 
 helper def : language : String = 'language'->value();
-helper def : AppletMIDlet : UML2!uml::Class = 'midlet::AppletMIDlet'->class();
-helper def : applets : Sequence(UML2!Applet::Applet) = UML2!Applet::Applet->allInstances();
-helper def : singletons : Sequence(UML2!Singleton::Singleton) = UML2!Singleton::Singleton->allInstances();
+helper def : AppletMIDlet : UML2!"uml::Class" = 'midlet::AppletMIDlet'->class();
+helper def : applets : Sequence(UML2!"Applet::Applet") = UML2!"Applet::Applet"->allInstances();
+helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton"->allInstances();
 
-helper context UML2!uml::Classifier def : isApplet() : Boolean =
+helper context UML2!"uml::Classifier" def : isApplet() : Boolean =
 	thisModule.applets->select(o|o.base_Classifier=self)->notEmpty();
 
-helper context UML2!uml::Classifier def : isSingleton() : Boolean =
+helper context UML2!"uml::Classifier" def : isSingleton() : Boolean =
 	thisModule.singletons->select(o|o.base_Classifier=self)->notEmpty();
 
 -- ======================================================================
@@ -33,12 +33,12 @@ helper context UML2!uml::Classifier def : isSingleton() : Boolean =
 -- ======================================================================
 
 rule Class {
-    from s : UML2!uml::Class (
+    from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Class) and
+			s->oclIsTypeOf(UML2!"uml::Class") and
 			not s->isApplet()
 		else false endif)
-    to t : UML2!uml::Class mapsTo s (
+    to t : UML2!"uml::Class" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -74,13 +74,13 @@ rule Class {
 }
 	
 rule AppletClass {
-    from s : UML2!uml::Class (
+    from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Class) and
+			s->oclIsTypeOf(UML2!"uml::Class") and
 			s->isApplet()
 		else false endif)
 	using { hasInit : Boolean = s.ownedOperation->select(o|o.name='init')->notEmpty(); }
-    to t : UML2!uml::Class mapsTo s (
+    to t : UML2!"uml::Class" mapsTo s (
         name <- s.name->debug('AppletClass'),
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -117,18 +117,18 @@ rule AppletClass {
         ownedOperation <- s.ownedOperation,
         ownedReception <- s.ownedReception),
 	-- MIDlet functionality --
-	   g : UML2!uml::Generalization (
+	   g : UML2!"uml::Generalization" (
 	   	general <- thisModule.AppletMIDlet,
 		specific <- s)
 }
 
-rule AppletInitOperation(s : UML2!uml::Class) {
-	to initOp : UML2!uml::Operation (
+rule AppletInitOperation(s : UML2!"uml::Class") {
+	to initOp : UML2!"uml::Operation" (
 	   	name <- 'init',
 		class <- s->debug('AppletInitOperation'),
 		visibility <- #public,
 		concurrency <- #sequential),
-	   initBehavior : UML2!uml::OpaqueBehavior (
+	   initBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- initOp,
 		name <- initOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
@@ -139,15 +139,15 @@ rule AppletInitOperation(s : UML2!uml::Class) {
 }
 
 rule OpaqueBehavior {
-    from s : UML2!uml::OpaqueBehavior (
+    from s : UML2!"uml::OpaqueBehavior" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::OpaqueBehavior)
+			s->oclIsTypeOf(UML2!"uml::OpaqueBehavior")
 		else false endif)
 	using { isAppletInit : Boolean = 
 		if (s.specification.name = 'init') then
 			s.specification.class->isApplet()
 		else false endif; }
-    to t : UML2!uml::OpaqueBehavior mapsTo s (
+    to t : UML2!"uml::OpaqueBehavior" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,

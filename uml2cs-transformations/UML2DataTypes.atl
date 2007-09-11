@@ -14,25 +14,25 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : voidType : UML2!uml::Type = 'OclVoid'->implTypeName()->type();
-helper def : anyType : UML2!uml::Type = 'OclAny'->implTypeName()->type();
-helper def : integerType : UML2!uml::Type = 'Integer'->implTypeName()->type();
-helper def : unlimitedNaturalType : UML2!uml::Type = 'UnlimitedNatural'->implTypeName()->type();
-helper def : realType : UML2!uml::Type = 'Real'->implTypeName()->type();
-helper def : booleanType : UML2!uml::Type = 'Boolean'->implTypeName()->type();
-helper def : stringType : UML2!uml::Type = 'String'->implTypeName()->type();
-helper def : exceptionType : UML2!uml::Type = 'Exception'->implTypeName()->type();
+helper def : voidType : UML2!"uml::Type" = 'OclVoid'->implTypeName()->type();
+helper def : anyType : UML2!"uml::Type" = 'OclAny'->implTypeName()->type();
+helper def : integerType : UML2!"uml::Type" = 'Integer'->implTypeName()->type();
+helper def : unlimitedNaturalType : UML2!"uml::Type" = 'UnlimitedNatural'->implTypeName()->type();
+helper def : realType : UML2!"uml::Type" = 'Real'->implTypeName()->type();
+helper def : booleanType : UML2!"uml::Type" = 'Boolean'->implTypeName()->type();
+helper def : stringType : UML2!"uml::Type" = 'String'->implTypeName()->type();
+helper def : exceptionType : UML2!"uml::Type" = 'Exception'->implTypeName()->type();
 
-helper def : orderedSetType : UML2!uml::Type = 'OrderedSet'->implTypeName()->type();
-helper def : sequenceType : UML2!uml::Type = 'Sequence'->implTypeName()->type();
-helper def : setType : UML2!uml::Type = 'Set'->implTypeName()->type();
-helper def : bagType : UML2!uml::Type = 'Bag'->implTypeName()->type();
-helper def : orderedSetReturnType : UML2!uml::Type = 'OrderedSet'->implCollectionReturnTypeName()->type();
-helper def : sequenceReturnType : UML2!uml::Type = 'Sequence'->implCollectionReturnTypeName()->type();
-helper def : setReturnType : UML2!uml::Type = 'Set'->implCollectionReturnTypeName()->type();
-helper def : bagReturnType : UML2!uml::Type = 'Bag'->implCollectionReturnTypeName()->type();
+helper def : orderedSetType : UML2!"uml::Type" = 'OrderedSet'->implTypeName()->type();
+helper def : sequenceType : UML2!"uml::Type" = 'Sequence'->implTypeName()->type();
+helper def : setType : UML2!"uml::Type" = 'Set'->implTypeName()->type();
+helper def : bagType : UML2!"uml::Type" = 'Bag'->implTypeName()->type();
+helper def : orderedSetReturnType : UML2!"uml::Type" = 'OrderedSet'->implCollectionReturnTypeName()->type();
+helper def : sequenceReturnType : UML2!"uml::Type" = 'Sequence'->implCollectionReturnTypeName()->type();
+helper def : setReturnType : UML2!"uml::Type" = 'Set'->implCollectionReturnTypeName()->type();
+helper def : bagReturnType : UML2!"uml::Type" = 'Bag'->implCollectionReturnTypeName()->type();
 
-helper context UML2!uml::PrimitiveType def : implType() : UML2!uml::Type =
+helper context UML2!"uml::PrimitiveType" def : implType() : UML2!"uml::Type" =
 	if self.name = 'Integer' then thisModule.integerType else
 	if self.name = 'UnlimitedNatural' then thisModule.unlimitedNaturalType else
 	if self.name = 'Real' then thisModule.realType else
@@ -47,20 +47,20 @@ helper context UML2!uml::PrimitiveType def : implType() : UML2!uml::Type =
 		thisModule.voidType
 	endif endif endif endif	endif endif endif endif endif endif endif;
 
-helper context UML2!uml::Type def : implType() : UML2!uml::Type =
+helper context UML2!"uml::Type" def : implType() : UML2!"uml::Type" =
 	self;
 
-helper context UML2!uml::TypedElement def : implType() : UML2!uml::Type =
+helper context UML2!"uml::TypedElement" def : implType() : UML2!"uml::Type" =
 	self.type->implType();
 
-helper context UML2!uml::Property def : implType() : UML2!uml::Type =
+helper context UML2!"uml::Property" def : implType() : UML2!"uml::Type" =
 	if self->isSingle() then
 		self.type->implType()
 	else
 		self->implCollectionType()
 	endif;
 
-helper context UML2!uml::Parameter def : implType() : UML2!uml::Type =
+helper context UML2!"uml::Parameter" def : implType() : UML2!"uml::Type" =
 	if self->isSingle() then
 		self.type->implType()
 	else if self.direction = #return then
@@ -69,7 +69,7 @@ helper context UML2!uml::Parameter def : implType() : UML2!uml::Type =
 		self->implCollectionType()
 	endif endif;
 
-helper context UML2!uml::MultiplicityElement def : implCollectionType() : UML2!uml::Type =
+helper context UML2!"uml::MultiplicityElement" def : implCollectionType() : UML2!"uml::Type" =
 	if self.isOrdered then
 		if self.isUnique then
 			thisModule.orderedSetType
@@ -84,7 +84,7 @@ helper context UML2!uml::MultiplicityElement def : implCollectionType() : UML2!u
 		endif
 	endif;
 
-helper context UML2!uml::MultiplicityElement def : implCollectionReturnType() : UML2!uml::Type =
+helper context UML2!"uml::MultiplicityElement" def : implCollectionReturnType() : UML2!"uml::Type" =
 	if self.isOrdered then
 		if self.isUnique then
 			thisModule.orderedSetReturnType
@@ -99,17 +99,17 @@ helper context UML2!uml::MultiplicityElement def : implCollectionReturnType() : 
 		endif
 	endif;
 
-helper context UML2!uml::TypedElement def : defaultValueBody() : String =
+helper context UML2!"uml::TypedElement" def : defaultValueBody() : String =
 	self.type->defaultValueBody();
 
-helper context UML2!uml::Property def : defaultValueBody() : String =
+helper context UML2!"uml::Property" def : defaultValueBody() : String =
 	if self->isSingle() then
 		self->implType()->defaultValueBody()
 	else
 		self->implCollectionType()->defaultValueBody()
 	endif;
 
-helper context UML2!uml::Type def : defaultValueBody() : String =
+helper context UML2!"uml::Type" def : defaultValueBody() : String =
 	self->umlQualifiedName()->defaultValueBody();
 
 -- ======================================================================
@@ -121,11 +121,11 @@ helper context UML2!uml::Type def : defaultValueBody() : String =
 -- ======================================================================
 
 rule Property {
-    from s : UML2!uml::Property (
+    from s : UML2!"uml::Property" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Property)
+			s->oclIsTypeOf(UML2!"uml::Property")
 		else false endif)
-    to t : UML2!uml::Property mapsTo s (
+    to t : UML2!"uml::Property" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -156,8 +156,8 @@ rule Property {
         qualifier <- s.qualifier)
 }
 
-rule DefVal(s : UML2!uml::Property) {
-    to defVal : UML2!uml::OpaqueExpression (
+rule DefVal(s : UML2!"uml::Property") {
+    to defVal : UML2!"uml::OpaqueExpression" (
 		language <- Sequence{'language'->value()},
 		body <- Sequence{s->defaultValueBody()})
 	do {
@@ -166,8 +166,8 @@ rule DefVal(s : UML2!uml::Property) {
 }
 
 rule Parameter {
-    from s : UML2!uml::Parameter (thisModule.inElements->includes(s))
-    to t : UML2!uml::Parameter mapsTo s (
+    from s : UML2!"uml::Parameter" (thisModule.inElements->includes(s))
+    to t : UML2!"uml::Parameter" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isOrdered <- s.isOrdered,
@@ -190,8 +190,8 @@ rule Parameter {
 }
 
 rule Operation {
-    from s : UML2!uml::Operation (thisModule.inElements->includes(s))
-    to t : UML2!uml::Operation mapsTo s (
+    from s : UML2!"uml::Operation" (thisModule.inElements->includes(s))
+    to t : UML2!"uml::Operation" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -222,7 +222,7 @@ rule Operation {
 }
 
 rule VoidParameter() {
-    to retPar : UML2!uml::Parameter (
+    to retPar : UML2!"uml::Parameter" (
 	   	name <- 'return',
 		type <- thisModule.voidType,
 		effect <- #read,

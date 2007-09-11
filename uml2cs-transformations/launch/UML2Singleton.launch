@@ -1,37 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
+<booleanAttribute key="ContinueAfterError" value="false"/>
 <mapAttribute key="Model Handler">
-<mapEntry key="OUT" value=""/>
-<mapEntry key="UML2" value="EMF"/>
 <mapEntry key="IN" value=""/>
+<mapEntry key="UML2" value="EMF"/>
+<mapEntry key="OUT" value=""/>
 </mapAttribute>
-<stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Copy.atl"/>
 <mapAttribute key="Libs">
-<mapEntry key="Java" value="/uml2cs-transformations/lib/Java1.asm"/>
-<mapEntry key="UML2" value="/uml2cs-transformations/lib/UML2.asm"/>
 <mapEntry key="Mappings" value="/uml2cs-transformations/lib/JavaMappings.asm"/>
-</mapAttribute>
-<booleanAttribute key="Mode Debug" value="false"/>
-<mapAttribute key="ModelType">
-<mapEntry key="OUT" value="MODELOUTPUT"/>
-<mapEntry key="UML2" value="METAMODELINPUT"/>
-<mapEntry key="IN" value="MODELINPUT"/>
-</mapAttribute>
-<mapAttribute key="Path">
-<mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/im-singleton.uml"/>
-<mapEntry key="UML2" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
-<mapEntry key="IN" value="/uml2cs-instantmessenger-model/outmodels/test/im-abstractfactory.uml"/>
-</mapAttribute>
-<stringAttribute key="Project Name" value="uml2cs-transformations"/>
-<mapAttribute key="Output">
-<mapEntry key="OUT" value="UML2"/>
+<mapEntry key="UML2" value="/uml2cs-transformations/lib/UML2.asm"/>
+<mapEntry key="Java" value="/uml2cs-transformations/lib/Java1.asm"/>
 </mapAttribute>
 <mapAttribute key="Input">
 <mapEntry key="IN" value="UML2"/>
 </mapAttribute>
-<booleanAttribute key="AllowInterModelReferences" value="true"/>
+<stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <listAttribute key="Superimpose">
 <listEntry value="/uml2cs-transformations/UML2Singleton.asm"/>
 <listEntry value="/uml2cs-transformations/UML2ProfileCopy.asm"/>
 </listAttribute>
+<mapAttribute key="ModelType">
+<mapEntry key="IN" value="MODELINPUT"/>
+<mapEntry key="UML2" value="METAMODELINPUT"/>
+<mapEntry key="OUT" value="MODELOUTPUT"/>
+</mapAttribute>
+<booleanAttribute key="Mode Debug" value="false"/>
+<mapAttribute key="Output">
+<mapEntry key="OUT" value="UML2"/>
+</mapAttribute>
+<stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Copy.atl"/>
+<booleanAttribute key="AllowInterModelReferences" value="true"/>
+<mapAttribute key="Path">
+<mapEntry key="IN" value="/uml2cs-instantmessenger-model/outmodels/test/im-abstractfactory.uml"/>
+<mapEntry key="UML2" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
+<mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/im-singleton.uml"/>
+</mapAttribute>
 </launchConfiguration>

@@ -10,19 +10,19 @@ create OUT : XML from IN : CFG;
 -- ======================================================================
 
 rule ConfigRoot {
-	from s : CFG!transformations::TransformationConfig
+	from s : CFG!"transformations::TransformationConfig"
 	-- <parameters>
-	to root : XML!XML::Root mapsTo s (
+	to root : XML!"XML::Root" mapsTo s (
 		name <- 'parameters'),
 	-- <param name="path" value="s.targetPath"/>
-	   param : XML!XML::Element (
+	   param : XML!"XML::Element" (
 	   	parent <- root,
 	   	name <- 'param'),
-	   paramName : XML!XML::Attribute (
+	   paramName : XML!"XML::Attribute" (
 	   	parent <- param,
 		name <- 'name',
 		value <- 'path'),
-	   paramValue : XML!XML::Attribute (
+	   paramValue : XML!"XML::Attribute" (
 	   	parent <- param,
 		name <- 'value',
 		value <- s.targetPath->debug('target path'))

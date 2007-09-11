@@ -14,19 +14,19 @@ uses Mappings;
 -- ======================================================================
 
 helper def : language : String = 'language'->value();
-helper def : Applet : UML2!uml::Class = 'java::applet::Applet'->class();
-helper def : implString : UML2!uml::Class = ('String'->implTypeName())->class();
-helper def : implStringAA : UML2!uml::Class = ('String'->implTypeName() + '[][]')->class();
-helper def : applets : Sequence(UML2!Applet::Applet) = UML2!Applet::Applet->allInstances();
-helper def : singletons : Sequence(UML2!Singleton::Singleton) = UML2!Singleton::Singleton->allInstances();
+helper def : Applet : UML2!"uml::Class" = 'java::applet::Applet'->class();
+helper def : implString : UML2!"uml::Class" = ('String'->implTypeName())->class();
+helper def : implStringAA : UML2!"uml::Class" = ('String'->implTypeName() + '[][]')->class();
+helper def : applets : Sequence(UML2!"Applet::Applet") = UML2!"Applet::Applet"->allInstances();
+helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton"->allInstances();
 
-helper context UML2!uml::Classifier def : isApplet() : Boolean =
+helper context UML2!"uml::Classifier" def : isApplet() : Boolean =
 	thisModule.applets->select(o|o.base_Classifier=self)->notEmpty();
 
-helper context UML2!uml::Classifier def : isSingleton() : Boolean =
+helper context UML2!"uml::Classifier" def : isSingleton() : Boolean =
 	thisModule.singletons->select(o|o.base_Classifier=self)->notEmpty();
 
-helper context UML2!uml::Classifier def : getApplet() : UML2!Applet::Applet =
+helper context UML2!"uml::Classifier" def : getApplet() : UML2!"Applet::Applet" =
 	thisModule.applets->select(o|o.base_Classifier=self)->first();
 
 -- ======================================================================
@@ -38,12 +38,12 @@ helper context UML2!uml::Classifier def : getApplet() : UML2!Applet::Applet =
 -- ======================================================================
 
 rule Class {
-    from s : UML2!uml::Class (
+    from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Class) and
+			s->oclIsTypeOf(UML2!"uml::Class") and
 			not s->isApplet()
 		else false endif)
-    to t : UML2!uml::Class mapsTo s (
+    to t : UML2!"uml::Class" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -79,14 +79,14 @@ rule Class {
 }
 	
 rule AppletClass {
-    from s : UML2!uml::Class (
+    from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Class) and
+			s->oclIsTypeOf(UML2!"uml::Class") and
 			s->isApplet()
 		else false endif)
 	using { hasInit : Boolean = s.ownedOperation->select(o|o.name='init')->notEmpty();
-			applet : UML2!Applet::Applet = s->getApplet(); }
-    to t : UML2!uml::Class mapsTo s (
+			applet : UML2!"Applet::Applet" = s->getApplet(); }
+    to t : UML2!"uml::Class" mapsTo s (
         name <- s.name->debug('AppletClass'),
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -129,18 +129,18 @@ rule AppletClass {
         ownedOperation <- s.ownedOperation,
         ownedReception <- s.ownedReception),
 	-- Applet functionality --
-	   g : UML2!uml::Generalization (
+	   g : UML2!"uml::Generalization" (
 	   	general <- thisModule.Applet,
 		specific <- s)
 }
 
-rule AppletInitOperation(s : UML2!uml::Class) {
-	to initOp : UML2!uml::Operation (
+rule AppletInitOperation(s : UML2!"uml::Class") {
+	to initOp : UML2!"uml::Operation" (
 	   	name <- 'init',
 		class <- s->debug('AppletInitOperation'),
 		visibility <- #public,
 		concurrency <- #sequential),
-	   initBehavior : UML2!uml::OpaqueBehavior (
+	   initBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- initOp,
 		name <- initOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
@@ -150,19 +150,19 @@ rule AppletInitOperation(s : UML2!uml::Class) {
 	}
 }
 
-rule AppletInfoOperation(s : UML2!uml::Class, a : UML2!Applet::Applet) {
-	to infoOp : UML2!uml::Operation (
+rule AppletInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
+	to infoOp : UML2!"uml::Operation" (
 	   	name <- 'getAppletInfo',
 		class <- s->debug('AppletInfoOperation'),
 		visibility <- #public,
 		ownedParameter <- Sequence{infoPar},
 		concurrency <- #sequential),
-	   infoPar : UML2!uml::Parameter (
+	   infoPar : UML2!"uml::Parameter" (
 	   	name <- 'return',
 		type <- thisModule.implString,
 		effect <- #read,
 		direction <- #return),
-	   infoBehavior : UML2!uml::OpaqueBehavior (
+	   infoBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- infoOp,
 		name <- infoOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
@@ -172,19 +172,19 @@ rule AppletInfoOperation(s : UML2!uml::Class, a : UML2!Applet::Applet) {
 	}
 }
 
-rule ParameterInfoOperation(s : UML2!uml::Class, a : UML2!Applet::Applet) {
-	to infoOp : UML2!uml::Operation (
+rule ParameterInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
+	to infoOp : UML2!"uml::Operation" (
 	   	name <- 'getParameterInfo',
 		class <- s->debug('ParameterInfoOperation'),
 		visibility <- #public,
 		ownedParameter <- Sequence{infoPar},
 		concurrency <- #sequential),
-	   infoPar : UML2!uml::Parameter (
+	   infoPar : UML2!"uml::Parameter" (
 	   	name <- 'return',
 		type <- thisModule.implStringAA,
 		effect <- #read,
 		direction <- #return),
-	   infoBehavior : UML2!uml::OpaqueBehavior (
+	   infoBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- infoOp,
 		name <- infoOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
@@ -195,15 +195,15 @@ rule ParameterInfoOperation(s : UML2!uml::Class, a : UML2!Applet::Applet) {
 }
 
 rule OpaqueBehavior {
-    from s : UML2!uml::OpaqueBehavior (
+    from s : UML2!"uml::OpaqueBehavior" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::OpaqueBehavior)
+			s->oclIsTypeOf(UML2!"uml::OpaqueBehavior")
 		else false endif)
 	using { isAppletInit : Boolean = 
 		if (s.specification.name = 'init') then
 			s.specification.class->isApplet()
 		else false endif; }
-    to t : UML2!uml::OpaqueBehavior mapsTo s (
+    to t : UML2!"uml::OpaqueBehavior" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,

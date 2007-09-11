@@ -24,19 +24,19 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : accessor : UML2!uml::Stereotype = 'accessor'->stereotype();
-helper def : oclInteger : UML2!uml::PrimitiveType = 'Integer'->primitiveType();
+helper def : accessor : UML2!"uml::Stereotype" = 'accessor'->stereotype();
+helper def : oclInteger : UML2!"uml::PrimitiveType" = 'Integer'->primitiveType();
 helper def : separator : String = 'separator'->value();
 helper def : language : String = 'language'->value();
 
-helper context UML2!uml::Property def : setter() : String =
+helper context UML2!"uml::Property" def : setter() : String =
 	if self.hasAssociatedProperty() then
 		self->dualSetter()
 	else
 		self.name->setterBody()
 	endif;
 
-helper context UML2!uml::Property def : dualSetter() : String =
+helper context UML2!"uml::Property" def : dualSetter() : String =
 	if self.associatedProperty().isSingle() then
 		self.name->dualSetterBody(
 			self->associatedProperty().name->firstToUpper())
@@ -45,14 +45,14 @@ helper context UML2!uml::Property def : dualSetter() : String =
 			self->associatedProperty().name->firstToUpper())
 	endif;
 	
-helper context UML2!uml::Property def : adder() : String =
+helper context UML2!"uml::Property" def : adder() : String =
 	if self->hasAssociatedProperty() then
 		self->dualAdder()
 	else
 		self.name->adderBody(self.isUnique)
 	endif;
 
-helper context UML2!uml::Property def : dualAdder() : String =
+helper context UML2!"uml::Property" def : dualAdder() : String =
 	if self->associatedProperty()->isSingle() then
 		self.name->setterAdderBody(
 			self->associatedProperty().name->firstToUpper())
@@ -61,14 +61,14 @@ helper context UML2!uml::Property def : dualAdder() : String =
 			self->associatedProperty().name->firstToUpper())
 	endif;
 	
-helper context UML2!uml::Property def : insert() : String =
+helper context UML2!"uml::Property" def : insert() : String =
 	if self->hasAssociatedProperty() then
 		self->dualInsert()
 	else
 		self.name->insertBody(self.isUnique)
 	endif;
 
-helper context UML2!uml::Property def : dualInsert() : String =
+helper context UML2!"uml::Property" def : dualInsert() : String =
 	if self->associatedProperty()->isSingle() then
 		self.name->setterInsertBody(
 			self->associatedProperty().name->firstToUpper())
@@ -77,25 +77,25 @@ helper context UML2!uml::Property def : dualInsert() : String =
 			self->associatedProperty().name->firstToUpper())
 	endif;
 	
-helper context UML2!uml::Property def : remover() : String =
+helper context UML2!"uml::Property" def : remover() : String =
 	if self->hasAssociatedProperty() then
 		self->dualRemover()
 	else
 		self.name->removerBody()
 	endif;
 
-helper context UML2!uml::Property def : dualRemover() : String =
+helper context UML2!"uml::Property" def : dualRemover() : String =
 	if self->associatedProperty().isSingle() then
 		self.name->setterRemoverBody(self->associatedProperty().name->firstToUpper())
 	else
 		self.name->dualRemoverBody(self->associatedProperty().name->firstToUpper())
 	endif;
 
-helper context UML2!uml::Property def : getter() : String =
+helper context UML2!"uml::Property" def : getter() : String =
 	if self->isSingle() then self.name->getterBody()
 	else self.name->multiGetterBody() endif;
 
-helper context UML2!uml::Property def : getAt() : String =
+helper context UML2!"uml::Property" def : getAt() : String =
 	self.name->getAtBody(self.type->qualifiedName(thisModule.separator));
 
 -- ======================================================================
@@ -107,17 +107,17 @@ helper context UML2!uml::Property def : getAt() : String =
 -- ======================================================================
 
 rule Package {
-    from s : UML2!uml::Package (
+    from s : UML2!"uml::Package" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Package)
+			s->oclIsTypeOf(UML2!"uml::Package")
 		else false endif)
-	using { myProperties : Set(UML2!uml::Property) = 
-		UML2!uml::Property->allInstancesFrom('IN')
+	using { myProperties : Set(UML2!"uml::Property") = 
+		UML2!"uml::Property"->allInstancesFrom('IN')
 				->select(p|p->getNearestPackage()=s)
-				->select(p|p->oclIsTypeOf(UML2!uml::Property) and 
+				->select(p|p->oclIsTypeOf(UML2!"uml::Property") and 
 					       (p.visibility=#public) and 
 						   p->isNavigable()); }
-    to t : UML2!uml::Package mapsTo s (
+    to t : UML2!"uml::Package" mapsTo s (
         name <- s.name->debug('Package'),
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -150,15 +150,15 @@ rule Package {
 }
 
 rule Class {
-    from s : UML2!uml::Class (
+    from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Class)
+			s->oclIsTypeOf(UML2!"uml::Class")
 		else false endif)
-	using { myProperties : Set(UML2!uml::Property) = s.attribute
-				->select(p|p->oclIsTypeOf(UML2!uml::Property) and 
+	using { myProperties : Set(UML2!"uml::Property") = s.attribute
+				->select(p|p->oclIsTypeOf(UML2!"uml::Property") and 
 					       (p.visibility=#public) and 
 						   p->isNavigable()); }
-	to t : UML2!uml::Class mapsTo s (
+	to t : UML2!"uml::Class" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -208,12 +208,12 @@ rule Class {
 }
 
 rule Property {
-    from s : UML2!uml::Property (
+    from s : UML2!"uml::Property" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Property) and
+			s->oclIsTypeOf(UML2!"uml::Property") and
 			not ((s.visibility = #public) and (s->isNavigable()))
 		else false endif)
-    to t : UML2!uml::Property mapsTo s (
+    to t : UML2!"uml::Property" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -244,15 +244,15 @@ rule Property {
 }
 
 rule PublicPropertySingle {
-	from s : UML2!uml::Property (
+	from s : UML2!"uml::Property" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Property) and
+			s->oclIsTypeOf(UML2!"uml::Property") and
 			(s.visibility = #public) and 
 			s->isNavigable() and
 			s->isSingle()
 		else false endif)
 	using { baseNameS : String = s->accessorBaseNameS(); }
-    to t : UML2!uml::Property mapsTo s (
+    to t : UML2!"uml::Property" mapsTo s (
         name <- s.name,
         visibility <- #private,
         isLeaf <- s.isLeaf,
@@ -281,7 +281,7 @@ rule PublicPropertySingle {
         defaultValue <- s.defaultValue,
         qualifier <- s.qualifier),
 	-- Get --
-		getOp : UML2!uml::Operation (
+		getOp : UML2!"uml::Operation" (
 	   	name <- 'get' + baseNameS,
 		class <- s.class,
 		visibility <- s.visibility,
@@ -289,24 +289,24 @@ rule PublicPropertySingle {
 		isAbstract <- false,
 		ownedParameter <- Sequence{getPar},
 		concurrency <- #sequential),
-	   getPar : UML2!uml::Parameter (
+	   getPar : UML2!"uml::Parameter" (
 	   	name <- 'return',
 		type <- s.type,
 		effect <- #read,
 		direction <- #return),
-	   getBehavior : UML2!uml::OpaqueBehavior (
+	   getBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
 	   	language <- Sequence{thisModule.language},
 		body <- Sequence{s->getter()}),
-	   getDep : UML2!uml::Dependency (
+	   getDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
 		client <- getOp,
 		supplier <- s),
-	   getDepST : UML2!Accessors::accessor (
+	   getDepST : UML2!"Accessors::accessor" (
 	   	base_Dependency <- getDep),
 	-- Set --
-	   setOp : UML2!uml::Operation (
+	   setOp : UML2!"uml::Operation" (
 	   	name <- 'set' + baseNameS,
 		class <- s.class,
 		visibility <- s.visibility,
@@ -314,28 +314,28 @@ rule PublicPropertySingle {
 		isAbstract <- false,
 		ownedParameter <- Sequence{setPar},
 		concurrency <- #sequential),
-	   setPar : UML2!uml::Parameter (
+	   setPar : UML2!"uml::Parameter" (
 	   	name <- s.name,
 		type <- s.type,
 		effect <- #update,
 		direction <- #"in"),
-	   setBehavior : UML2!uml::OpaqueBehavior (
+	   setBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- setOp,
 		name <- setOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
 		body <- Sequence{s->setter()}),
-	   setDep : UML2!uml::Dependency (
+	   setDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor ' + 'set' + baseNameS + '()',
 		client <- setOp,
 		supplier <- s),
-	   setDepST : UML2!Accessors::accessor (
+	   setDepST : UML2!"Accessors::accessor" (
 	   	base_Dependency <- setDep)
 }
 
 rule PublicPropertyCollection {
-	from s : UML2!uml::Property (
+	from s : UML2!"uml::Property" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Property) and
+			s->oclIsTypeOf(UML2!"uml::Property") and
 			(s.visibility = #public) and 
 			s->isNavigable() and
 			not s->isSingle() and 
@@ -343,7 +343,7 @@ rule PublicPropertyCollection {
 		else false endif)
 	using { baseNameS : String = s->accessorBaseNameS();
 			baseName : String = s->accessorBaseName(); }
-    to t : UML2!uml::Property mapsTo s (
+    to t : UML2!"uml::Property" mapsTo s (
         name <- s.name,
         visibility <- #private,
         isLeaf <- s.isLeaf,
@@ -372,7 +372,7 @@ rule PublicPropertyCollection {
         defaultValue <- s.defaultValue,
         qualifier <- s.qualifier),
 	-- Get --
-		getOp : UML2!uml::Operation (
+		getOp : UML2!"uml::Operation" (
 	   	name <- 'get' + baseNameS,
 		class <- s.class,
 		visibility <- s.visibility,
@@ -380,30 +380,30 @@ rule PublicPropertyCollection {
 		isAbstract <- false,
 		ownedParameter <- Sequence{getPar},
 		concurrency <- #sequential),
-	   getPar : UML2!uml::Parameter (
+	   getPar : UML2!"uml::Parameter" (
 	   	name <- 'return',
 		lowerValue <- getParLow,
         upperValue <- getParUp,
 		type <- s.type,
 		effect <- #read,
 		direction <- #return),
-	   getParLow : UML2!uml::LiteralInteger (
+	   getParLow : UML2!"uml::LiteralInteger" (
 	   	value <- s->lower()),
-	   getParUp : UML2!uml::LiteralUnlimitedNatural (
+	   getParUp : UML2!"uml::LiteralUnlimitedNatural" (
 	   	value <- s->upper()),
-	   getBehavior : UML2!uml::OpaqueBehavior (
+	   getBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
 		body <- Sequence{s->getter()}),
-	   getDep : UML2!uml::Dependency (
+	   getDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
 		client <- getOp,
 		supplier <- s),
-	   setDepST : UML2!Accessors::accessor (
+	   setDepST : UML2!"Accessors::accessor" (
 	   	base_Dependency <- getDep),
 	-- Add --
-	   addOp : UML2!uml::Operation (
+	   addOp : UML2!"uml::Operation" (
 	   	name <- 'add' + baseName,
 		class <- s.class,
 		visibility <- s.visibility,
@@ -411,24 +411,24 @@ rule PublicPropertyCollection {
 		isAbstract <- false,
 		ownedParameter <- Sequence{addPar},
 		concurrency <- #sequential),
-	   addPar : UML2!uml::Parameter (
+	   addPar : UML2!"uml::Parameter" (
 	   	name <- s.name,
 		type <- s.type,
 		effect <- #update,
 		direction <- #"in"),
-	   addBehavior : UML2!uml::OpaqueBehavior (
+	   addBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- addOp,
 		name <- addOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
 		body <- Sequence{s->adder()}),
-	   addDep : UML2!uml::Dependency (
+	   addDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor ' + 'add' + baseName + '()',
 		client <- addOp,
 		supplier <- s),
-	   addDepST : UML2!Accessors::accessor (
+	   addDepST : UML2!"Accessors::accessor" (
 	   	base_Dependency <- addDep),
 	-- Remove --
-	   removeOp : UML2!uml::Operation (
+	   removeOp : UML2!"uml::Operation" (
 	   	name <- 'remove' + baseName,
 		class <- s.class,
 		visibility <- s.visibility,
@@ -436,28 +436,28 @@ rule PublicPropertyCollection {
 		isAbstract <- false,
 		ownedParameter <- Sequence{removePar},
 		concurrency <- #sequential),
-	   removePar : UML2!uml::Parameter (
+	   removePar : UML2!"uml::Parameter" (
 	   	name <- s.name,
 		type <- s.type,
 		effect <- #update,
 		direction <- #"in"),
-	   removeBehavior : UML2!uml::OpaqueBehavior (
+	   removeBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- removeOp,
 		name <- removeOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
 		body <- Sequence{s->remover()}),
-	   removeDep : UML2!uml::Dependency (
+	   removeDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor ' + 'remove' + baseName + '()',
 		client <- removeOp,
 		supplier <- s),
-	   removeDepST : UML2!Accessors::accessor (
+	   removeDepST : UML2!"Accessors::accessor" (
 	   	base_Dependency <- removeDep)
 }
 
 rule PublicPropertySequence {
-	from s : UML2!uml::Property (
+	from s : UML2!"uml::Property" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!uml::Property) and
+			s->oclIsTypeOf(UML2!"uml::Property") and
 			(s.visibility = #public) and 
 			s->isNavigable() and
 			not s->isSingle() and 
@@ -465,7 +465,7 @@ rule PublicPropertySequence {
 		else false endif)
 	using { baseNameS : String = s->accessorBaseNameS();
 			baseName : String = s->accessorBaseName(); }
-    to t : UML2!uml::Property mapsTo s (
+    to t : UML2!"uml::Property" mapsTo s (
         name <- s.name,
         visibility <- #private,
         isLeaf <- s.isLeaf,
@@ -494,7 +494,7 @@ rule PublicPropertySequence {
         defaultValue <- s.defaultValue,
         qualifier <- s.qualifier),
 	-- Get --
-		getOp : UML2!uml::Operation (
+		getOp : UML2!"uml::Operation" (
 	   	name <- 'get' + baseNameS,
 		class <- s.class,
 		visibility <- s.visibility,
@@ -502,30 +502,30 @@ rule PublicPropertySequence {
 		isAbstract <- false,
 		ownedParameter <- Sequence{getPar},
 		concurrency <- #sequential),
-	   getPar : UML2!uml::Parameter (
+	   getPar : UML2!"uml::Parameter" (
 	   	name <- 'return',
 		lowerValue <- getParLow,
         upperValue <- getParUp,
 		type <- s.type,
 		effect <- #read,
 		direction <- #return),
-	   getParLow : UML2!uml::LiteralInteger (
+	   getParLow : UML2!"uml::LiteralInteger" (
 	   	value <- s->lower()),
-	   getParUp : UML2!uml::LiteralUnlimitedNatural (
+	   getParUp : UML2!"uml::LiteralUnlimitedNatural" (
 	   	value <- s->upper()),
-	   getBehavior : UML2!uml::OpaqueBehavior (
+	   getBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
 		body <- Sequence{s->getter()}),
-	   getDep : UML2!uml::Dependency (
+	   getDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor ' + 'get' + baseNameS + '()',
 		client <- getOp,
 		supplier <- s),
-	   getDepST : UML2!Accessors::accessor (
+	   getDepST : UML2!"Accessors::accessor" (
 	   	base_Dependency <- getDep),
 	-- Add --
-	   addOp : UML2!uml::Operation (
+	   addOp : UML2!"uml::Operation" (
 	   	name <- 'add' + baseName,
 		class <- s.class,
 		visibility <- s.visibility,
@@ -533,24 +533,24 @@ rule PublicPropertySequence {
 		isAbstract <- false,
 		ownedParameter <- Sequence{addPar},
 		concurrency <- #sequential),
-	   addPar : UML2!uml::Parameter (
+	   addPar : UML2!"uml::Parameter" (
 	   	name <- s.name,
 		type <- s.type,
 		effect <- #update,
 		direction <- #"in"),
-	   addBehavior : UML2!uml::OpaqueBehavior (
+	   addBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- addOp,
 		name <- addOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
 		body <- Sequence{s->adder()}),
-	   addDep : UML2!uml::Dependency (
+	   addDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor ' + 'add' + baseName + '()',
 		client <- addOp,
 		supplier <- s),
-	   addDepST : UML2!Accessors::accessor (
+	   addDepST : UML2!"Accessors::accessor" (
 	   	base_Dependency <- addDep),
 	-- Remove --
-	   removeOp : UML2!uml::Operation (
+	   removeOp : UML2!"uml::Operation" (
 	   	name <- 'remove' + baseName,
 		class <- s.class,
 		visibility <- s.visibility,
@@ -558,24 +558,24 @@ rule PublicPropertySequence {
 		isAbstract <- false,
 		ownedParameter <- Sequence{removePar},
 		concurrency <- #sequential),
-	   removePar : UML2!uml::Parameter (
+	   removePar : UML2!"uml::Parameter" (
 	   	name <- s.name,
 		type <- s.type,
 		effect <- #update,
 		direction <- #"in"),
-	   removeBehavior : UML2!uml::OpaqueBehavior (
+	   removeBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- removeOp,
 		name <- removeOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
 		body <- Sequence{s->remover()}),
-	   removeDep : UML2!uml::Dependency (
+	   removeDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor ' + 'remove' + baseName + '()',
 		client <- removeOp,
 		supplier <- s),
-	   removeDepST : UML2!Accessors::accessor (
+	   removeDepST : UML2!"Accessors::accessor" (
 	   	base_Dependency <- removeDep),
 	-- GetAt --
-	   getAtOp : UML2!uml::Operation (
+	   getAtOp : UML2!"uml::Operation" (
 	   	name <- 'get' + baseName + 'At',
 		class <- s.class,
 		visibility <- s.visibility,
@@ -583,29 +583,29 @@ rule PublicPropertySequence {
 		isAbstract <- false,
 		ownedParameter <- Sequence{getAtPar1, getAtPar2},
 		concurrency <- #sequential),
-	   getAtPar1 : UML2!uml::Parameter (
+	   getAtPar1 : UML2!"uml::Parameter" (
 	   	name <- 'index',
 		type <- thisModule.oclInteger,
 		effect <- #read,
 		direction <- #"in"),
-	   getAtPar2 : UML2!uml::Parameter (
+	   getAtPar2 : UML2!"uml::Parameter" (
 	   	name <- 'return',
 		type <- s.type,
 		effect <- #read,
 		direction <- #"return"),
-	   getAtBehavior : UML2!uml::OpaqueBehavior (
+	   getAtBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- getAtOp,
 		name <- getAtOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
 		body <- Sequence{s->getAt()}),
-	   getAtDep : UML2!uml::Dependency (
+	   getAtDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor ' + 'get' + baseName + 'At()',
 		client <- getAtOp,
 		supplier <- s),
-	   getAtDepST : UML2!Accessors::accessor (
+	   getAtDepST : UML2!"Accessors::accessor" (
 	   	base_Dependency <- getAtDep),
 	-- IndexOf --
-	   indexOfOp : UML2!uml::Operation (
+	   indexOfOp : UML2!"uml::Operation" (
 	   	name <- 'getIndexOf' + baseName,
 		class <- s.class,
 		visibility <- s.visibility,
@@ -613,29 +613,29 @@ rule PublicPropertySequence {
 		isAbstract <- false,
 		ownedParameter <- Sequence{indexOfPar1, indexOfPar2},
 		concurrency <- #sequential),
-	   indexOfPar1 : UML2!uml::Parameter (
+	   indexOfPar1 : UML2!"uml::Parameter" (
 	   	name <- s.name,
 		type <- s.type,
 		effect <- #read,
 		direction <- #"in"),
-	   indexOfPar2 : UML2!uml::Parameter (
+	   indexOfPar2 : UML2!"uml::Parameter" (
 	   	name <- 'return',
 		type <- thisModule.oclInteger,
 		effect <- #read,
 		direction <- #"return"),
-	   indexOfBehavior : UML2!uml::OpaqueBehavior (
+	   indexOfBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- indexOfOp,
 		name <- indexOfOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
 		body <- Sequence{s.name->indexOfBody()}),
-	   indexOfDep : UML2!uml::Dependency (
+	   indexOfDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor ' + 'getIndexOf' + baseName + '()',
 		client <- indexOfOp,
 		supplier <- s),
-	   indexOfDepST : UML2!Accessors::accessor (
+	   indexOfDepST : UML2!"Accessors::accessor" (
 	   	base_Dependency <- indexOfDep),
 	-- Insert --
-	   insertOp : UML2!uml::Operation (
+	   insertOp : UML2!"uml::Operation" (
 	   	name <- 'insert' + baseName,
 		class <- s.class,
 		visibility <- s.visibility,
@@ -643,26 +643,26 @@ rule PublicPropertySequence {
 		isAbstract <- false,
 		ownedParameter <- Sequence{insertPar1, insertPar2},
 		concurrency <- #sequential),
-	   insertPar1 : UML2!uml::Parameter (
+	   insertPar1 : UML2!"uml::Parameter" (
 	   	name <- s.name,
 		type <- s.type,
 		effect <- #update,
 		direction <- #"in"),
-	   insertPar2 : UML2!uml::Parameter (
+	   insertPar2 : UML2!"uml::Parameter" (
 	   	name <- 'index',
 		type <- thisModule.oclInteger,
 		effect <- #read,
 		direction <- #"in"),
-	   insertBehavior : UML2!uml::OpaqueBehavior (
+	   insertBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- insertOp,
 		name <- insertOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
 		body <- Sequence{s->insert()}),
-	   insertDep : UML2!uml::Dependency (
+	   insertDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor ' + 'insert' + baseName + '()',
 		client <- insertOp,
 		supplier <- s),
-	   insertDepST : UML2!Accessors::accessor (
+	   insertDepST : UML2!"Accessors::accessor" (
 	   	base_Dependency <- insertDep)
 }
 

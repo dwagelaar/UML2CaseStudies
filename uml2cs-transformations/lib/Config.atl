@@ -7,7 +7,7 @@ helper context String def : path() : String =
 	'uml2cs-transformations/' + self;
 
 -- adapt the following inclusion condition for your specific model
-helper context ECORE!EClass def : inclusionCondition() : Boolean =
+helper context ECORE!"ecore::EClass" def : inclusionCondition() : Boolean =
 	not (
     	self.name = 'EAttribute' or
 	    self.name = 'EClass' or
@@ -25,9 +25,9 @@ helper context ECORE!EClass def : inclusionCondition() : Boolean =
 	);
 
 -- select whether or not to use fully qualified meta-class names (<package>::<class>)
-helper context ECORE!ENamedElement def : useQualifiedName() : Boolean =
+helper context ECORE!"ecore::ENamedElement" def : useQualifiedName() : Boolean =
 	true;
 
 -- select whether or not to use fully qualified rule names (<package>::<class>)
-helper context ECORE!ENamedElement def : useQualifiedRuleName() : Boolean =
+helper context ECORE!"ecore::ENamedElement" def : useQualifiedRuleName() : Boolean =
 	false;

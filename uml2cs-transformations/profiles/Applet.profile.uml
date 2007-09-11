@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_8186IOQoEdqD2ZNp93yIAQ" name="Applet" metaclassReference="_ScoD0DntEduHCOb_wCU8nA">
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_8186IOQoEdqD2ZNp93yIAQ" name="Applet" metaclassReference="_ScoD0DntEduHCOb_wCU8nA">
   <eAnnotations xmi:id="_J9PEAOQqEdqD2ZNp93yIAQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
     <contents xmi:type="ecore:EPackage" xmi:id="_i8fxgDgqEduNII1tDKqNvA" name="Applet" nsURI="http:///schemas/Applet/1" nsPrefix="Applet">
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_i8gYkDgqEduNII1tDKqNvA" name="Applet">
@@ -11,7 +11,7 @@
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eStructuralFeatures>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_i8gYlDgqEduNII1tDKqNvA" name="base_Classifier" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Classifier"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Classifier"/>
         </eStructuralFeatures>
       </eClassifiers>
     </contents>
@@ -19,7 +19,7 @@
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_J9dGceQqEdqD2ZNp93yIAQ" name="Applet__Applet">
         <eAnnotations xmi:id="_J9dGcuQqEdqD2ZNp93yIAQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_OtlqEOQpEdqD2ZNp93yIAQ"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Mi2O8DgqEduNII1tDKqNvA" name="base_Classifier">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Classifier"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Classifier"/>
         </eStructuralFeatures>
         <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_PlvH4PrDEdqXK6c4NbDn4w" name="appletInfo">
           <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>

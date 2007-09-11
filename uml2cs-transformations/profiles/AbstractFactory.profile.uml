@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_j8ZN4EPTEdusb52s3APTjA" name="AbstractFactory" metaclassReference="_-agrcEPTEdusb52s3APTjA _-ajHsUPTEdusb52s3APTjA _-akV0EPTEdusb52s3APTjA">
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_j8ZN4EPTEdusb52s3APTjA" name="AbstractFactory" metaclassReference="_-agrcEPTEdusb52s3APTjA _-ajHsUPTEdusb52s3APTjA _-akV0EPTEdusb52s3APTjA">
   <eAnnotations xmi:id="_-a-lgEPTEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
     <contents xmi:type="ecore:EPackage" xmi:id="_-a-lgUPTEdusb52s3APTjA" name="AbstractFactory" nsURI="http:///schemas/AbstractFactory/0" nsPrefix="AbstractFactory">
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_-a-lgkPTEdusb52s3APTjA" name="AbstractFactory">
         <eAnnotations xmi:id="_-a-lg0PTEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_o1ayUEPTEdusb52s3APTjA"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_-a-lhEPTEdusb52s3APTjA" name="base_Classifier" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Classifier"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Classifier"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_-a-lhUPTEdusb52s3APTjA" name="ConcreteFactory">
         <eAnnotations xmi:id="_-a-lhkPTEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ub55sEPTEdusb52s3APTjA"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_-a-lh0PTEdusb52s3APTjA" name="base_Class" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Class"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Class"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_-a-liEPTEdusb52s3APTjA" name="product">
         <eAnnotations xmi:id="_-a-liUPTEdusb52s3APTjA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_xIqa4EPTEdusb52s3APTjA"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_-a-likPTEdusb52s3APTjA" name="base_Dependency" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Dependency"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Dependency"/>
         </eStructuralFeatures>
       </eClassifiers>
     </contents>

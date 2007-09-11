@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AbstractFactory="http:///schemas/AbstractFactory/0" xmlns:Final="http:///schemas/Final/1" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xsi:schemaLocation="http:///schemas/AbstractFactory/0 ../../uml2cs-transformations/profiles/AbstractFactory.profile.uml#_-a-lgUPTEdusb52s3APTjA http:///schemas/Final/1 ../../uml2cs-transformations/profiles/Final.profile.uml#_4InvEDntEduHCOb_wCU8nA http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AbstractFactory="http:///schemas/AbstractFactory/0" xmlns:Final="http:///schemas/Final/1" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http:///schemas/AbstractFactory/0 ../../uml2cs-transformations/profiles/AbstractFactory.profile.uml#_-a-lgUPTEdusb52s3APTjA http:///schemas/Final/1 ../../uml2cs-transformations/profiles/Final.profile.uml#_4InvEDntEduHCOb_wCU8nA http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
   <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="InstantMessengerSwing">
     <eAnnotations xmi:id="_foGgcEPOEdusb52s3APTjA" source="http://www.topcased.org/uuid">
       <details xmi:id="_foGgcUPOEdusb52s3APTjA" key="uuid" value="11582240102290"/>
@@ -108,7 +108,7 @@
                 <body>new JButton(&quot;Remove&quot;)</body>
               </defaultValue>
             </ownedAttribute>
-            <ownedAttribute xmi:id="_n6sRoEPiEdusb52s3APTjA" name="listener" association="_n6p1YEPiEdusb52s3APTjA">
+            <ownedAttribute xmi:id="_n6sRoEPiEdusb52s3APTjA" name="listener" aggregation="shared" association="_n6p1YEPiEdusb52s3APTjA">
               <eAnnotations xmi:id="_5UwUwUPiEdusb52s3APTjA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_5UwUwkPiEdusb52s3APTjA" key="uuid" value="115823277262097"/>
               </eAnnotations>
@@ -350,7 +350,7 @@
                 <body>new JButton(&quot;Send&quot;)</body>
               </defaultValue>
             </ownedAttribute>
-            <ownedAttribute xmi:id="_G6254EPqEdug19jXgM5cew" name="listener" association="_G6zPgEPqEdug19jXgM5cew">
+            <ownedAttribute xmi:id="_G6254EPqEdug19jXgM5cew" name="listener" aggregation="shared" association="_G6zPgEPqEdug19jXgM5cew">
               <eAnnotations xmi:id="_hmQliEPqEdug19jXgM5cew" source="http://www.topcased.org/uuid">
                 <details xmi:id="_hmQliUPqEdug19jXgM5cew" key="uuid" value="1158236049368180"/>
               </eAnnotations>
@@ -670,7 +670,7 @@
                 <body>new JPasswordField()</body>
               </defaultValue>
             </ownedAttribute>
-            <ownedAttribute xmi:id="_0jTHMEP-Edug19jXgM5cew" name="listener" association="_0jR5EEP-Edug19jXgM5cew">
+            <ownedAttribute xmi:id="_0jTHMEP-Edug19jXgM5cew" name="listener" aggregation="shared" association="_0jR5EEP-Edug19jXgM5cew">
               <eAnnotations xmi:id="_cHId1UP_Edug19jXgM5cew" source="http://www.topcased.org/uuid">
                 <details xmi:id="_cHId1kP_Edug19jXgM5cew" key="uuid" value="1158245031981439"/>
               </eAnnotations>
@@ -881,7 +881,7 @@
             <eAnnotations xmi:id="_5UufkEPiEdusb52s3APTjA" source="http://www.topcased.org/uuid">
               <details xmi:id="_5UufkUPiEdusb52s3APTjA" key="uuid" value="115823277261793"/>
             </eAnnotations>
-            <ownedEnd xmi:id="_n6rqkEPiEdusb52s3APTjA" name="swingContactListView" type="_ud7IYEPSEdusb52s3APTjA" aggregation="shared" association="_n6p1YEPiEdusb52s3APTjA">
+            <ownedEnd xmi:id="_n6rqkEPiEdusb52s3APTjA" name="swingContactListView" type="_ud7IYEPSEdusb52s3APTjA" association="_n6p1YEPiEdusb52s3APTjA">
               <eAnnotations xmi:id="_5UufkkPiEdusb52s3APTjA" source="http://www.topcased.org/uuid">
                 <details xmi:id="_5Uufk0PiEdusb52s3APTjA" key="uuid" value="115823277261794"/>
               </eAnnotations>
@@ -890,7 +890,7 @@
                   <details xmi:id="_5UvGoUPiEdusb52s3APTjA" key="uuid" value="115823277261795"/>
                 </eAnnotations>
               </upperValue>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_n6s4sEPiEdusb52s3APTjA" value="1">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_n6s4sEPiEdusb52s3APTjA">
                 <eAnnotations xmi:id="_5UvGokPiEdusb52s3APTjA" source="http://www.topcased.org/uuid">
                   <details xmi:id="_5UwUwEPiEdusb52s3APTjA" key="uuid" value="115823277261896"/>
                 </eAnnotations>
@@ -913,7 +913,7 @@
             <eAnnotations xmi:id="_hmQlgEPqEdug19jXgM5cew" source="http://www.topcased.org/uuid">
               <details xmi:id="_hmQlgUPqEdug19jXgM5cew" key="uuid" value="1158236049368176"/>
             </eAnnotations>
-            <ownedEnd xmi:id="_G61rwEPqEdug19jXgM5cew" name="swingConversationView" type="_wd_isEPSEdusb52s3APTjA" aggregation="shared" association="_G6zPgEPqEdug19jXgM5cew">
+            <ownedEnd xmi:id="_G61rwEPqEdug19jXgM5cew" name="swingConversationView" type="_wd_isEPSEdusb52s3APTjA" association="_G6zPgEPqEdug19jXgM5cew">
               <eAnnotations xmi:id="_hmQlgkPqEdug19jXgM5cew" source="http://www.topcased.org/uuid">
                 <details xmi:id="_hmQlg0PqEdug19jXgM5cew" key="uuid" value="1158236049368177"/>
               </eAnnotations>
@@ -922,7 +922,7 @@
                   <details xmi:id="_hmQlhUPqEdug19jXgM5cew" key="uuid" value="1158236049368178"/>
                 </eAnnotations>
               </upperValue>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G63g8EPqEdug19jXgM5cew" value="1">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G63g8EPqEdug19jXgM5cew">
                 <eAnnotations xmi:id="_hmQlhkPqEdug19jXgM5cew" source="http://www.topcased.org/uuid">
                   <details xmi:id="_hmQlh0PqEdug19jXgM5cew" key="uuid" value="1158236049368179"/>
                 </eAnnotations>
@@ -957,7 +957,7 @@
             <eAnnotations xmi:id="_cHH2wEP_Edug19jXgM5cew" source="http://www.topcased.org/uuid">
               <details xmi:id="_cHH2wUP_Edug19jXgM5cew" key="uuid" value="1158245031980435"/>
             </eAnnotations>
-            <ownedEnd xmi:id="_0jSgIEP-Edug19jXgM5cew" name="swingNewContactDialogView" type="_yKe5sEPSEdusb52s3APTjA" aggregation="shared" association="_0jR5EEP-Edug19jXgM5cew">
+            <ownedEnd xmi:id="_0jSgIEP-Edug19jXgM5cew" name="swingNewContactDialogView" type="_yKe5sEPSEdusb52s3APTjA" association="_0jR5EEP-Edug19jXgM5cew">
               <eAnnotations xmi:id="_cHH2wkP_Edug19jXgM5cew" source="http://www.topcased.org/uuid">
                 <details xmi:id="_cHId0EP_Edug19jXgM5cew" key="uuid" value="1158245031980436"/>
               </eAnnotations>
@@ -966,7 +966,7 @@
                   <details xmi:id="_cHId0kP_Edug19jXgM5cew" key="uuid" value="1158245031981437"/>
                 </eAnnotations>
               </upperValue>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0jTHMUP-Edug19jXgM5cew" value="1">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0jTHMUP-Edug19jXgM5cew">
                 <eAnnotations xmi:id="_cHId00P_Edug19jXgM5cew" source="http://www.topcased.org/uuid">
                   <details xmi:id="_cHId1EP_Edug19jXgM5cew" key="uuid" value="1158245031981438"/>
                 </eAnnotations>

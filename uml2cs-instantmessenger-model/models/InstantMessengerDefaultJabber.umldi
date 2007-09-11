@@ -1,236 +1,248 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" activeDiagram="//@diagrams.3">
+<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="_4-oqkGBlEdyQ3v2UkQxt4g" activeDiagram="_4-pRs2BlEdyQ3v2UkQxt4g">
   <model href="InstantMessengerDefaultJabber.uml#_qb8akM37EdqwVrslYOdUDA"/>
-  <diagrams position="0,0" size="100,100" name="InstantMessengerDefaultJabber" viewport="0,0">
-    <property key="org.topcased.modeler.di.typeName" value="Class Diagram"/>
-    <property key="pageFormatName" value="A4"/>
-    <property key="diagramWidth" value="840"/>
-    <property key="diagramHeight" value="1188"/>
-    <property key="pageMarginName" value="Small Margin"/>
-    <property key="diagramTopMargin" value="20"/>
-    <property key="diagramBottomMargin" value="20"/>
-    <property key="diagramLeftMargin" value="20"/>
-    <property key="diagramRightMargin" value="20"/>
-    <property key="orientation" value="portrait"/>
-    <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="org.topcased.modeler.uml.classdiagram">
-      <element href="InstantMessengerDefaultJabber.uml#_w8IxIM37EdqwVrslYOdUDA"/>
-    </semanticModel>
-    <contained xsi:type="di:GraphNode" position="23,47" size="100,80">
-      <property key="backgroundColor" value="255,255,255"/>
-      <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-        <element href="InstantMessengerDefaultJabber.uml#_9288cETFEdutoZk0i5ZyXw"/>
+  <subdiagrams xmi:id="_5G2LYGBlEdyQ3v2UkQxt4g">
+    <model href="InstantMessengerDefaultJabber.uml#_w8IxIM37EdqwVrslYOdUDA"/>
+    <diagrams xmi:id="_4-oqkWBlEdyQ3v2UkQxt4g" position="0,0" size="100,100" name="InstantMessengerDefaultJabber" viewport="0,0">
+      <property xmi:id="_4-oqkmBlEdyQ3v2UkQxt4g" key="org.topcased.modeler.di.typeName" value="Class Diagram"/>
+      <property xmi:id="_4-oqk2BlEdyQ3v2UkQxt4g" key="pageFormatName" value="A4"/>
+      <property xmi:id="_4-oqlGBlEdyQ3v2UkQxt4g" key="diagramWidth" value="840"/>
+      <property xmi:id="_4-oqlWBlEdyQ3v2UkQxt4g" key="diagramHeight" value="1188"/>
+      <property xmi:id="_4-oqlmBlEdyQ3v2UkQxt4g" key="pageMarginName" value="Small Margin"/>
+      <property xmi:id="_4-oql2BlEdyQ3v2UkQxt4g" key="diagramTopMargin" value="20"/>
+      <property xmi:id="_4-oqmGBlEdyQ3v2UkQxt4g" key="diagramBottomMargin" value="20"/>
+      <property xmi:id="_4-oqmWBlEdyQ3v2UkQxt4g" key="diagramLeftMargin" value="20"/>
+      <property xmi:id="_4-oqmmBlEdyQ3v2UkQxt4g" key="diagramRightMargin" value="20"/>
+      <property xmi:id="_4-oqm2BlEdyQ3v2UkQxt4g" key="orientation" value="portrait"/>
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-oqnGBlEdyQ3v2UkQxt4g" presentation="org.topcased.modeler.uml.classdiagram">
+        <element href="InstantMessengerDefaultJabber.uml#_w8IxIM37EdqwVrslYOdUDA"/>
       </semanticModel>
-    </contained>
-  </diagrams>
-  <diagrams position="0,0" size="100,100" name="im.networking" viewport="0,0">
-    <property key="pageFormatName" value="A4"/>
-    <property key="diagramWidth" value="840"/>
-    <property key="diagramHeight" value="1188"/>
-    <property key="pageMarginName" value="Small Margin"/>
-    <property key="diagramTopMargin" value="20"/>
-    <property key="diagramBottomMargin" value="20"/>
-    <property key="diagramLeftMargin" value="20"/>
-    <property key="diagramRightMargin" value="20"/>
-    <property key="orientation" value="portrait"/>
-    <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="org.topcased.modeler.uml.classdiagram">
-      <element href="InstantMessengerDefaultJabber.uml#_9288cETFEdutoZk0i5ZyXw"/>
-    </semanticModel>
-    <contained xsi:type="di:GraphNode" position="17,44" size="100,80">
-      <property key="backgroundColor" value="255,255,255"/>
-      <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-        <element href="InstantMessengerDefaultJabber.uml#_BBHLUETGEdutoZk0i5ZyXw"/>
-      </semanticModel>
-    </contained>
-  </diagrams>
-  <diagrams position="0,0" size="100,100" name="im.networking.jabber" viewport="0,0">
-    <property key="pageFormatName" value="A4"/>
-    <property key="diagramWidth" value="840"/>
-    <property key="diagramHeight" value="1188"/>
-    <property key="pageMarginName" value="Small Margin"/>
-    <property key="diagramTopMargin" value="20"/>
-    <property key="diagramBottomMargin" value="20"/>
-    <property key="diagramLeftMargin" value="20"/>
-    <property key="diagramRightMargin" value="20"/>
-    <property key="orientation" value="portrait"/>
-    <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="org.topcased.modeler.uml.classdiagram">
-      <element href="InstantMessengerDefaultJabber.uml#_BBHLUETGEdutoZk0i5ZyXw"/>
-    </semanticModel>
-    <contained xsi:type="di:GraphNode" position="24,49" size="100,80">
-      <property key="backgroundColor" value="255,255,255"/>
-      <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-        <element href="InstantMessengerDefaultJabber.uml#_EWFjEETGEdutoZk0i5ZyXw"/>
-      </semanticModel>
-    </contained>
-  </diagrams>
-  <diagrams position="0,0" size="100,100" name="im.networking.jabber.defaultjabber" viewport="0,60">
-    <property key="pageFormatName" value="A4"/>
-    <property key="diagramWidth" value="840"/>
-    <property key="diagramHeight" value="1188"/>
-    <property key="pageMarginName" value="Small Margin"/>
-    <property key="diagramTopMargin" value="20"/>
-    <property key="diagramBottomMargin" value="20"/>
-    <property key="diagramLeftMargin" value="20"/>
-    <property key="diagramRightMargin" value="20"/>
-    <property key="orientation" value="portrait"/>
-    <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="org.topcased.modeler.uml.classdiagram">
-      <element href="InstantMessengerDefaultJabber.uml#_EWFjEETGEdutoZk0i5ZyXw"/>
-    </semanticModel>
-    <contained xsi:type="di:GraphNode" position="9,34" size="334,-1">
-      <property key="backgroundColor" value="255,255,255"/>
-      <anchorage graphEdge="//@diagrams.3/@contained.4"/>
-      <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-        <element href="InstantMessengerJabber.uml#_Ax4-MESzEduo0qgZQXhZYA"/>
-      </semanticModel>
-      <contained xsi:type="di:GraphNode">
-        <property key="eStructuralFeatureID" value="37"/>
-        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-          <element href="InstantMessengerJabber.uml#_Ax4-MESzEduo0qgZQXhZYA"/>
-        </semanticModel>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_C-SH0ES0Eduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_K6WBoETDEduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-      </contained>
-      <contained xsi:type="di:GraphNode">
-        <property key="eStructuralFeatureID" value="47"/>
-        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-          <element href="InstantMessengerJabber.uml#_Ax4-MESzEduo0qgZQXhZYA"/>
-        </semanticModel>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_xGSWEES0Eduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_i0FbwES0Eduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_pRTW0ES0Eduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_pRTW00S0Eduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_pRT94ES0Eduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_pRT95kS0Eduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_8vnh8ES6Eduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_ox6n8ES7Eduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_JuJYcES8Eduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_T8y9wES8Eduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_UlhxsES8Eduo0qgZQXhZYA"/>
-          </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerJabber.uml#_Ad1xEETEEdutoZk0i5ZyXw"/>
-          </semanticModel>
-        </contained>
-      </contained>
-    </contained>
-    <contained xsi:type="di:GraphNode" position="542,445" size="109,-1">
-      <property key="backgroundColor" value="255,255,255"/>
-      <anchorage graphEdge="//@diagrams.3/@contained.3"/>
-      <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-        <element href="../../uml2cs-transformations/models/JavaTypes.uml#_iB1PsETFEdutoZk0i5ZyXw"/>
-      </semanticModel>
-      <contained xsi:type="di:GraphNode">
-        <property key="eStructuralFeatureID" value="37"/>
-        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-          <element href="../../uml2cs-transformations/models/JavaTypes.uml#_iB1PsETFEdutoZk0i5ZyXw"/>
+      <contained xsi:type="di:GraphNode" xmi:id="_4-oqnWBlEdyQ3v2UkQxt4g" position="23,47" size="100,80">
+        <property xmi:id="_4-oqnmBlEdyQ3v2UkQxt4g" key="backgroundColor" value="255,255,255"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-oqn2BlEdyQ3v2UkQxt4g" presentation="default">
+          <element href="InstantMessengerDefaultJabber.uml#_9288cETFEdutoZk0i5ZyXw"/>
         </semanticModel>
       </contained>
-      <contained xsi:type="di:GraphNode">
-        <property key="eStructuralFeatureID" value="47"/>
-        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-          <element href="../../uml2cs-transformations/models/JavaTypes.uml#_iB1PsETFEdutoZk0i5ZyXw"/>
+    </diagrams>
+    <subdiagrams xmi:id="_5G2LYWBlEdyQ3v2UkQxt4g">
+      <model href="InstantMessengerDefaultJabber.uml#_9288cETFEdutoZk0i5ZyXw"/>
+      <diagrams xmi:id="_4-oqoGBlEdyQ3v2UkQxt4g" position="0,0" size="100,100" name="im.networking" viewport="0,0">
+        <property xmi:id="_4-oqoWBlEdyQ3v2UkQxt4g" key="pageFormatName" value="A4"/>
+        <property xmi:id="_4-oqomBlEdyQ3v2UkQxt4g" key="diagramWidth" value="840"/>
+        <property xmi:id="_4-oqo2BlEdyQ3v2UkQxt4g" key="diagramHeight" value="1188"/>
+        <property xmi:id="_4-oqpGBlEdyQ3v2UkQxt4g" key="pageMarginName" value="Small Margin"/>
+        <property xmi:id="_4-oqpWBlEdyQ3v2UkQxt4g" key="diagramTopMargin" value="20"/>
+        <property xmi:id="_4-oqpmBlEdyQ3v2UkQxt4g" key="diagramBottomMargin" value="20"/>
+        <property xmi:id="_4-oqp2BlEdyQ3v2UkQxt4g" key="diagramLeftMargin" value="20"/>
+        <property xmi:id="_4-oqqGBlEdyQ3v2UkQxt4g" key="diagramRightMargin" value="20"/>
+        <property xmi:id="_4-pRoGBlEdyQ3v2UkQxt4g" key="orientation" value="portrait"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-pRoWBlEdyQ3v2UkQxt4g" presentation="org.topcased.modeler.uml.classdiagram">
+          <element href="InstantMessengerDefaultJabber.uml#_9288cETFEdutoZk0i5ZyXw"/>
         </semanticModel>
-      </contained>
-    </contained>
-    <contained xsi:type="di:GraphNode" position="23,433" size="306,-1">
-      <property key="backgroundColor" value="255,255,255"/>
-      <anchorage graphEdge="//@diagrams.3/@contained.3 //@diagrams.3/@contained.4"/>
-      <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-        <element href="InstantMessengerDefaultJabber.uml#_H1r2cETGEdutoZk0i5ZyXw"/>
-      </semanticModel>
-      <contained xsi:type="di:GraphNode">
-        <property key="eStructuralFeatureID" value="37"/>
-        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-          <element href="InstantMessengerDefaultJabber.uml#_H1r2cETGEdutoZk0i5ZyXw"/>
-        </semanticModel>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerDefaultJabber.uml#_bPjjQETIEdutoZk0i5ZyXw"/>
+        <contained xsi:type="di:GraphNode" xmi:id="_4-pRomBlEdyQ3v2UkQxt4g" position="17,44" size="100,80">
+          <property xmi:id="_4-pRo2BlEdyQ3v2UkQxt4g" key="backgroundColor" value="255,255,255"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-pRpGBlEdyQ3v2UkQxt4g" presentation="default">
+            <element href="InstantMessengerDefaultJabber.uml#_BBHLUETGEdutoZk0i5ZyXw"/>
           </semanticModel>
         </contained>
-      </contained>
-      <contained xsi:type="di:GraphNode">
-        <property key="eStructuralFeatureID" value="47"/>
-        <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-          <element href="InstantMessengerDefaultJabber.uml#_H1r2cETGEdutoZk0i5ZyXw"/>
-        </semanticModel>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerDefaultJabber.uml#_5pK38ETGEdutoZk0i5ZyXw"/>
+      </diagrams>
+      <subdiagrams xmi:id="_5G2LYmBlEdyQ3v2UkQxt4g">
+        <model href="InstantMessengerDefaultJabber.uml#_BBHLUETGEdutoZk0i5ZyXw"/>
+        <diagrams xmi:id="_4-pRpWBlEdyQ3v2UkQxt4g" position="0,0" size="100,100" name="im.networking.jabber" viewport="0,0">
+          <property xmi:id="_4-pRpmBlEdyQ3v2UkQxt4g" key="pageFormatName" value="A4"/>
+          <property xmi:id="_4-pRp2BlEdyQ3v2UkQxt4g" key="diagramWidth" value="840"/>
+          <property xmi:id="_4-pRqGBlEdyQ3v2UkQxt4g" key="diagramHeight" value="1188"/>
+          <property xmi:id="_4-pRqWBlEdyQ3v2UkQxt4g" key="pageMarginName" value="Small Margin"/>
+          <property xmi:id="_4-pRqmBlEdyQ3v2UkQxt4g" key="diagramTopMargin" value="20"/>
+          <property xmi:id="_4-pRq2BlEdyQ3v2UkQxt4g" key="diagramBottomMargin" value="20"/>
+          <property xmi:id="_4-pRrGBlEdyQ3v2UkQxt4g" key="diagramLeftMargin" value="20"/>
+          <property xmi:id="_4-pRrWBlEdyQ3v2UkQxt4g" key="diagramRightMargin" value="20"/>
+          <property xmi:id="_4-pRrmBlEdyQ3v2UkQxt4g" key="orientation" value="portrait"/>
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-pRr2BlEdyQ3v2UkQxt4g" presentation="org.topcased.modeler.uml.classdiagram">
+            <element href="InstantMessengerDefaultJabber.uml#_BBHLUETGEdutoZk0i5ZyXw"/>
           </semanticModel>
-        </contained>
-        <contained xsi:type="di:GraphNode" position="0,0" size="0,0">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-            <element href="InstantMessengerDefaultJabber.uml#_83NhQETGEdutoZk0i5ZyXw"/>
-          </semanticModel>
-        </contained>
-      </contained>
-    </contained>
-    <contained xsi:type="di:GraphEdge" anchor="//@diagrams.3/@contained.2/@anchorage.0 //@diagrams.3/@contained.1/@anchorage.0">
-      <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-        <element href="InstantMessengerDefaultJabber.uml#_OXwKYETIEdutoZk0i5ZyXw"/>
-      </semanticModel>
-      <contained xsi:type="di:EdgeObjectUV" id="srcNameEdgeObject" uDistance="10" vDistance="10"/>
-      <contained xsi:type="di:EdgeObjectUV" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
-      <contained xsi:type="di:EdgeObjectUV" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
-      <contained xsi:type="di:EdgeObjectUV" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
-      <contained xsi:type="di:EdgeObjectOffset" id="middleNameEdgeObject"/>
-    </contained>
-    <contained xsi:type="di:GraphEdge" anchor="//@diagrams.3/@contained.2/@anchorage.0 //@diagrams.3/@contained.0/@anchorage.0">
-      <semanticModel xsi:type="di:EMFSemanticModelBridge" presentation="default">
-        <element href="InstantMessengerDefaultJabber.uml#_N37FsETGEdutoZk0i5ZyXw"/>
-      </semanticModel>
-    </contained>
-  </diagrams>
+          <contained xsi:type="di:GraphNode" xmi:id="_4-pRsGBlEdyQ3v2UkQxt4g" position="24,49" size="100,80">
+            <property xmi:id="_4-pRsWBlEdyQ3v2UkQxt4g" key="backgroundColor" value="255,255,255"/>
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-pRsmBlEdyQ3v2UkQxt4g" presentation="default">
+              <element href="InstantMessengerDefaultJabber.uml#_EWFjEETGEdutoZk0i5ZyXw"/>
+            </semanticModel>
+          </contained>
+        </diagrams>
+        <subdiagrams xmi:id="_5G2LY2BlEdyQ3v2UkQxt4g">
+          <model href="InstantMessengerDefaultJabber.uml#_EWFjEETGEdutoZk0i5ZyXw"/>
+          <diagrams xmi:id="_4-pRs2BlEdyQ3v2UkQxt4g" position="0,0" size="100,100" name="im.networking.jabber.defaultjabber" viewport="0,0">
+            <property xmi:id="_4-pRtGBlEdyQ3v2UkQxt4g" key="pageFormatName" value="A4"/>
+            <property xmi:id="_4-pRtWBlEdyQ3v2UkQxt4g" key="diagramWidth" value="840"/>
+            <property xmi:id="_4-pRtmBlEdyQ3v2UkQxt4g" key="diagramHeight" value="1188"/>
+            <property xmi:id="_4-pRt2BlEdyQ3v2UkQxt4g" key="pageMarginName" value="Small Margin"/>
+            <property xmi:id="_4-pRuGBlEdyQ3v2UkQxt4g" key="diagramTopMargin" value="20"/>
+            <property xmi:id="_4-pRuWBlEdyQ3v2UkQxt4g" key="diagramBottomMargin" value="20"/>
+            <property xmi:id="_4-pRumBlEdyQ3v2UkQxt4g" key="diagramLeftMargin" value="20"/>
+            <property xmi:id="_4-pRu2BlEdyQ3v2UkQxt4g" key="diagramRightMargin" value="20"/>
+            <property xmi:id="_4-pRvGBlEdyQ3v2UkQxt4g" key="orientation" value="portrait"/>
+            <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-pRvWBlEdyQ3v2UkQxt4g" presentation="org.topcased.modeler.uml.classdiagram">
+              <element href="InstantMessengerDefaultJabber.uml#_EWFjEETGEdutoZk0i5ZyXw"/>
+            </semanticModel>
+            <contained xsi:type="di:GraphNode" xmi:id="_4-pRvmBlEdyQ3v2UkQxt4g" position="9,34" size="334,-1">
+              <property xmi:id="_4-pRv2BlEdyQ3v2UkQxt4g" key="backgroundColor" value="255,255,255"/>
+              <anchorage xmi:id="_4-pRwGBlEdyQ3v2UkQxt4g" graphEdge="_4-rG1WBlEdyQ3v2UkQxt4g"/>
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-pRwWBlEdyQ3v2UkQxt4g" presentation="default">
+                <element href="InstantMessengerJabber.uml#_Ax4-MESzEduo0qgZQXhZYA"/>
+              </semanticModel>
+              <contained xsi:type="di:GraphNode" xmi:id="_4-pRwmBlEdyQ3v2UkQxt4g">
+                <property xmi:id="_4-pRw2BlEdyQ3v2UkQxt4g" key="eStructuralFeatureID" value="37"/>
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-pRxGBlEdyQ3v2UkQxt4g" presentation="default">
+                  <element href="InstantMessengerJabber.uml#_Ax4-MESzEduo0qgZQXhZYA"/>
+                </semanticModel>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4sGBlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4sWBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_C-SH0ES0Eduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4smBlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4s2BlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_K6WBoETDEduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+              </contained>
+              <contained xsi:type="di:GraphNode" xmi:id="_4-p4tGBlEdyQ3v2UkQxt4g">
+                <property xmi:id="_4-p4tWBlEdyQ3v2UkQxt4g" key="eStructuralFeatureID" value="47"/>
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4tmBlEdyQ3v2UkQxt4g" presentation="default">
+                  <element href="InstantMessengerJabber.uml#_Ax4-MESzEduo0qgZQXhZYA"/>
+                </semanticModel>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4t2BlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4uGBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_xGSWEES0Eduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4uWBlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4umBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_i0FbwES0Eduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4u2BlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4vGBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_pRTW0ES0Eduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4vWBlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4vmBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_pRTW00S0Eduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4v2BlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4wGBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_pRT94ES0Eduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4wWBlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4wmBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_pRT95kS0Eduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4w2BlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4xGBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_8vnh8ES6Eduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4xWBlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4xmBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_ox6n8ES7Eduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4x2BlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4yGBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_JuJYcES8Eduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4yWBlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4ymBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_T8y9wES8Eduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-p4y2BlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-p4zGBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_UlhxsES8Eduo0qgZQXhZYA"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-qfwGBlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-qfwWBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerJabber.uml#_Ad1xEETEEdutoZk0i5ZyXw"/>
+                  </semanticModel>
+                </contained>
+              </contained>
+            </contained>
+            <contained xsi:type="di:GraphNode" xmi:id="_4-qfwmBlEdyQ3v2UkQxt4g" position="542,445" size="109,-1">
+              <property xmi:id="_4-qfw2BlEdyQ3v2UkQxt4g" key="backgroundColor" value="255,255,255"/>
+              <anchorage xmi:id="_4-qfxGBlEdyQ3v2UkQxt4g" graphEdge="_4-qf3GBlEdyQ3v2UkQxt4g"/>
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-qfxWBlEdyQ3v2UkQxt4g" presentation="default">
+                <element href="../../uml2cs-transformations/models/JavaTypes.uml#_iB1PsETFEdutoZk0i5ZyXw"/>
+              </semanticModel>
+              <contained xsi:type="di:GraphNode" xmi:id="_4-qfxmBlEdyQ3v2UkQxt4g">
+                <property xmi:id="_4-qfx2BlEdyQ3v2UkQxt4g" key="eStructuralFeatureID" value="37"/>
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-qfyGBlEdyQ3v2UkQxt4g" presentation="default">
+                  <element href="../../uml2cs-transformations/models/JavaTypes.uml#_iB1PsETFEdutoZk0i5ZyXw"/>
+                </semanticModel>
+              </contained>
+              <contained xsi:type="di:GraphNode" xmi:id="_4-qfyWBlEdyQ3v2UkQxt4g">
+                <property xmi:id="_4-qfymBlEdyQ3v2UkQxt4g" key="eStructuralFeatureID" value="47"/>
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-qfy2BlEdyQ3v2UkQxt4g" presentation="default">
+                  <element href="../../uml2cs-transformations/models/JavaTypes.uml#_iB1PsETFEdutoZk0i5ZyXw"/>
+                </semanticModel>
+              </contained>
+            </contained>
+            <contained xsi:type="di:GraphNode" xmi:id="_4-qfzGBlEdyQ3v2UkQxt4g" position="23,433" size="306,-1">
+              <property xmi:id="_4-qfzWBlEdyQ3v2UkQxt4g" key="backgroundColor" value="255,255,255"/>
+              <anchorage xmi:id="_4-qfzmBlEdyQ3v2UkQxt4g" graphEdge="_4-qf3GBlEdyQ3v2UkQxt4g _4-rG1WBlEdyQ3v2UkQxt4g"/>
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-qfz2BlEdyQ3v2UkQxt4g" presentation="default">
+                <element href="InstantMessengerDefaultJabber.uml#_H1r2cETGEdutoZk0i5ZyXw"/>
+              </semanticModel>
+              <contained xsi:type="di:GraphNode" xmi:id="_4-qf0GBlEdyQ3v2UkQxt4g">
+                <property xmi:id="_4-qf0WBlEdyQ3v2UkQxt4g" key="eStructuralFeatureID" value="37"/>
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-qf0mBlEdyQ3v2UkQxt4g" presentation="default">
+                  <element href="InstantMessengerDefaultJabber.uml#_H1r2cETGEdutoZk0i5ZyXw"/>
+                </semanticModel>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-qf02BlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-qf1GBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerDefaultJabber.uml#_bPjjQETIEdutoZk0i5ZyXw"/>
+                  </semanticModel>
+                </contained>
+              </contained>
+              <contained xsi:type="di:GraphNode" xmi:id="_4-qf1WBlEdyQ3v2UkQxt4g">
+                <property xmi:id="_4-qf1mBlEdyQ3v2UkQxt4g" key="eStructuralFeatureID" value="47"/>
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-qf12BlEdyQ3v2UkQxt4g" presentation="default">
+                  <element href="InstantMessengerDefaultJabber.uml#_H1r2cETGEdutoZk0i5ZyXw"/>
+                </semanticModel>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-qf2GBlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-qf2WBlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerDefaultJabber.uml#_5pK38ETGEdutoZk0i5ZyXw"/>
+                  </semanticModel>
+                </contained>
+                <contained xsi:type="di:GraphNode" xmi:id="_4-qf2mBlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
+                  <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-qf22BlEdyQ3v2UkQxt4g" presentation="default">
+                    <element href="InstantMessengerDefaultJabber.uml#_83NhQETGEdutoZk0i5ZyXw"/>
+                  </semanticModel>
+                </contained>
+              </contained>
+            </contained>
+            <contained xsi:type="di:GraphEdge" xmi:id="_4-qf3GBlEdyQ3v2UkQxt4g" anchor="_4-qfzmBlEdyQ3v2UkQxt4g _4-qfxGBlEdyQ3v2UkQxt4g">
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-qf3WBlEdyQ3v2UkQxt4g" presentation="default">
+                <element href="InstantMessengerDefaultJabber.uml#_OXwKYETIEdutoZk0i5ZyXw"/>
+              </semanticModel>
+              <contained xsi:type="di:EdgeObjectUV" xmi:id="_4-rG0GBlEdyQ3v2UkQxt4g" id="srcNameEdgeObject" uDistance="10" vDistance="10"/>
+              <contained xsi:type="di:EdgeObjectUV" xmi:id="_4-rG0WBlEdyQ3v2UkQxt4g" id="srcCountEdgeObject" uDistance="10" vDistance="-10"/>
+              <contained xsi:type="di:EdgeObjectUV" xmi:id="_4-rG0mBlEdyQ3v2UkQxt4g" id="targetNameEdgeObject" uDistance="10" vDistance="10"/>
+              <contained xsi:type="di:EdgeObjectUV" xmi:id="_4-rG02BlEdyQ3v2UkQxt4g" id="targetCountEdgeObject" uDistance="10" vDistance="-10"/>
+              <contained xsi:type="di:EdgeObjectOffset" xmi:id="_4-rG1GBlEdyQ3v2UkQxt4g" visible="false" id="middleNameEdgeObject"/>
+            </contained>
+            <contained xsi:type="di:GraphEdge" xmi:id="_4-rG1WBlEdyQ3v2UkQxt4g" anchor="_4-qfzmBlEdyQ3v2UkQxt4g _4-pRwGBlEdyQ3v2UkQxt4g">
+              <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4-rG1mBlEdyQ3v2UkQxt4g" presentation="default">
+                <element href="InstantMessengerDefaultJabber.uml#_N37FsETGEdutoZk0i5ZyXw"/>
+              </semanticModel>
+            </contained>
+          </diagrams>
+        </subdiagrams>
+      </subdiagrams>
+    </subdiagrams>
+  </subdiagrams>
 </diagrams:Diagrams>

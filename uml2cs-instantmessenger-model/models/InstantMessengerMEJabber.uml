@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="InstantMessengerMEJabber">
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="InstantMessengerMEJabber">
   <eAnnotations xmi:id="_JEBR0ETGEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
     <details xmi:id="_JEBR0UTGEdutoZk0i5ZyXw" key="uuid" value="11583303739960"/>
   </eAnnotations>
@@ -35,7 +35,7 @@
               </eAnnotations>
               <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
             </ownedAttribute>
-            <ownedAttribute xmi:id="_Qe3ZQUW3EdumfbPIzYgV4Q" name="socket" association="_Qe2yMEW3EdumfbPIzYgV4Q">
+            <ownedAttribute xmi:id="_Qe3ZQUW3EdumfbPIzYgV4Q" name="socket" aggregation="shared" association="_Qe2yMEW3EdumfbPIzYgV4Q">
               <eAnnotations xmi:id="_YR-JMkW3EdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
                 <details xmi:id="_YR-JM0W3EdumfbPIzYgV4Q" key="uuid" value="115843398483567"/>
               </eAnnotations>
@@ -136,7 +136,7 @@
             <eAnnotations xmi:id="_YR9iIEW3EdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
               <details xmi:id="_YR9iIUW3EdumfbPIzYgV4Q" key="uuid" value="115843398483463"/>
             </eAnnotations>
-            <ownedEnd xmi:id="_Qe3ZQEW3EdumfbPIzYgV4Q" name="meJabber" type="_H1r2cETGEdutoZk0i5ZyXw" aggregation="shared" association="_Qe2yMEW3EdumfbPIzYgV4Q">
+            <ownedEnd xmi:id="_Qe3ZQEW3EdumfbPIzYgV4Q" name="meJabber" type="_H1r2cETGEdutoZk0i5ZyXw" association="_Qe2yMEW3EdumfbPIzYgV4Q">
               <eAnnotations xmi:id="_YR9iIkW3EdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
                 <details xmi:id="_YR9iI0W3EdumfbPIzYgV4Q" key="uuid" value="115843398483464"/>
               </eAnnotations>
@@ -145,7 +145,7 @@
                   <details xmi:id="_YR9iJUW3EdumfbPIzYgV4Q" key="uuid" value="115843398483465"/>
                 </eAnnotations>
               </upperValue>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Qe3ZQkW3EdumfbPIzYgV4Q" value="1">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Qe3ZQkW3EdumfbPIzYgV4Q">
                 <eAnnotations xmi:id="_YR-JMEW3EdumfbPIzYgV4Q" source="http://www.topcased.org/uuid">
                   <details xmi:id="_YR-JMUW3EdumfbPIzYgV4Q" key="uuid" value="115843398483466"/>
                 </eAnnotations>

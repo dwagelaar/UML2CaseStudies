@@ -19,7 +19,7 @@ helper def : ModelPath : String = '/uml2cs-instantmessenger-model/models';
 -- helper methods begin
 -- ======================================================================
 
-helper context CFG!instantmessenger::InstantMessengerConfiguration
+helper context CFG!"instantmessenger::InstantMessengerConfiguration"
 def : localNetworkDepends() : Sequence(String) =
 	if self.localNetwork->oclIsUndefined() then
 		Sequence{}
@@ -27,37 +27,37 @@ def : localNetworkDepends() : Sequence(String) =
 		Sequence{'LocalNetwork'}
 	endif;
 	
-helper context CFG!instantmessenger::InstantMessengerConfiguration
+helper context CFG!"instantmessenger::InstantMessengerConfiguration"
 def : jabberNetworkDepends() : Sequence(String) =
 	if self.jabberNetwork->oclIsUndefined() then
 		Sequence{}
 	else
 		if self.jabberNetwork.jabberTransport->oclIsKindOf(
-			CFG!instantmessenger::MEJabberTransport) then
+			CFG!"instantmessenger::MEJabberTransport") then
 			Sequence{'JabberNetwork', 'MEJabberTransport'}
 		else
 			Sequence{'JabberNetwork', 'DefaultJabberTransport'}
 		endif
 	endif;
 	
-helper context CFG!instantmessenger::InstantMessengerConfiguration
+helper context CFG!"instantmessenger::InstantMessengerConfiguration"
 def : userInterfaceDepends() : Sequence(String) =
 	if self.userInterface->select(u|u.oclIsKindOf(
-		CFG!instantmessenger::AWTUserInterface))->notEmpty() then
+		CFG!"instantmessenger::AWTUserInterface"))->notEmpty() then
 		Sequence{'AWTUserInterface'}
 	else
 		Sequence{}
 	endif
 	->union(
 	if self.userInterface->select(u|u.oclIsKindOf(
-		CFG!instantmessenger::SwingUserInterface))->notEmpty() then
+		CFG!"instantmessenger::SwingUserInterface"))->notEmpty() then
 		Sequence{'SwingUserInterface'}
 	else
 		Sequence{}
 	endif)
 	->union(
 	if self.userInterface->select(u|u.oclIsKindOf(
-		CFG!instantmessenger::LCDUIUserInterface))->notEmpty() then
+		CFG!"instantmessenger::LCDUIUserInterface"))->notEmpty() then
 		Sequence{'LCDUIUserInterface'}
 	else
 		Sequence{}
@@ -72,178 +72,178 @@ def : userInterfaceDepends() : Sequence(String) =
 -- ======================================================================
 
 rule ConfigRoot {
-	from s : CFG!instantmessenger::InstantMessengerConfiguration
+	from s : CFG!"instantmessenger::InstantMessengerConfiguration"
 	-- <project name="s.buildPath" default="all">
-	to root : XML!XML::Root mapsTo s (
+	to root : XML!"XML::Root" mapsTo s (
 		name <- 'project',
 		children <- s->contents()
 			->union(Sequence{
 				thisModule->InstantMessengerModel(s),
 				thisModule->All(s)
 			})),
-	   name : XML!XML::Attribute (
+	   name : XML!"XML::Attribute" (
 	   	parent <- root,
 	   	name <- 'name',
 		value <- s.buildPath),
-	   default : XML!XML::Attribute (
+	   default : XML!"XML::Attribute" (
 	   	parent <- root,
 	   	name <- 'default',
 		value <- 'all')
 }
 
 rule LocalNetwork {
-	from s : CFG!instantmessenger::LocalNetwork
+	from s : CFG!"instantmessenger::LocalNetwork"
 	-- <target name="LocalNetwork" depends="loadBaseModels">
-	to target : XML!XML::Element mapsTo s (
+	to target : XML!"XML::Element" mapsTo s (
 		name <- 'target',
 		parent <- s.config,
 		children <- Sequence{
 			thisModule->LoadModel('Local', 'UML2', thisModule.ModelPath + '/InstantMessengerLocal.uml'),
 			thisModule->TransformInvocation('Local', 'local')
 		}),
-	   targetName : XML!XML::Attribute (
+	   targetName : XML!"XML::Attribute" (
 	   	name <- 'name',
 		value <- 'LocalNetwork',
 		parent <- target),
-	   targetDepends : XML!XML::Attribute (
+	   targetDepends : XML!"XML::Attribute" (
 	   	name <- 'depends',
 		value <- 'loadBaseModels',
 		parent <- target)
 }
 
 rule JabberNetwork {
-	from s : CFG!instantmessenger::JabberNetwork
+	from s : CFG!"instantmessenger::JabberNetwork"
 	-- <target name="JabberNetwork" depends="loadBaseModels">
-	to target : XML!XML::Element mapsTo s (
+	to target : XML!"XML::Element" mapsTo s (
 		name <- 'target',
 		parent <- s.config,
 		children <- Sequence{
 			thisModule->LoadModel('Jabber', 'UML2', thisModule.ModelPath + '/InstantMessengerJabber.uml'),
 			thisModule->TransformInvocation('Jabber', 'jabber')
 		}),
-	   targetName : XML!XML::Attribute (
+	   targetName : XML!"XML::Attribute" (
 	   	name <- 'name',
 		value <- 'JabberNetwork',
 		parent <- target),
-	   targetDepends : XML!XML::Attribute (
+	   targetDepends : XML!"XML::Attribute" (
 	   	name <- 'depends',
 		value <- 'loadBaseModels',
 		parent <- target)
 }
 
 rule DefaultJabberTransport {
-	from s : CFG!instantmessenger::DefaultJabberTransport
+	from s : CFG!"instantmessenger::DefaultJabberTransport"
 	-- <target name="DefaultJabberTransport" depends="loadBaseModels">
-	to target : XML!XML::Element mapsTo s (
+	to target : XML!"XML::Element" mapsTo s (
 		name <- 'target',
 		parent <- s.jabberNetwork.config,
 		children <- Sequence{
 			thisModule->LoadModel('DefaultJabber', 'UML2', thisModule.ModelPath + '/InstantMessengerDefaultJabber.uml'),
 			thisModule->TransformInvocation('DefaultJabber', 'defaultjabber')
 		}),
-	   targetName : XML!XML::Attribute (
+	   targetName : XML!"XML::Attribute" (
 	   	name <- 'name',
 		value <- 'DefaultJabberTransport',
 		parent <- target),
-	   targetDepends : XML!XML::Attribute (
+	   targetDepends : XML!"XML::Attribute" (
 	   	name <- 'depends',
 		value <- 'loadBaseModels',
 		parent <- target)
 }
 
 rule MEJabberTransport {
-	from s : CFG!instantmessenger::MEJabberTransport
+	from s : CFG!"instantmessenger::MEJabberTransport"
 	-- <target name="MEJabberTransport" depends="loadBaseModels">
-	to target : XML!XML::Element mapsTo s (
+	to target : XML!"XML::Element" mapsTo s (
 		name <- 'target',
 		parent <- s.jabberNetwork.config,
 		children <- Sequence{
 			thisModule->LoadModel('MEJabber', 'UML2', thisModule.ModelPath + '/InstantMessengerMEJabber.uml'),
 			thisModule->TransformInvocation('MEJabber', 'mejabber')
 		}),
-	   targetName : XML!XML::Attribute (
+	   targetName : XML!"XML::Attribute" (
 	   	name <- 'name',
 		value <- 'MEJabberTransport',
 		parent <- target),
-	   targetDepends : XML!XML::Attribute (
+	   targetDepends : XML!"XML::Attribute" (
 	   	name <- 'depends',
 		value <- 'loadBaseModels',
 		parent <- target)
 }
 
 rule AWTUserInterface {
-	from s : CFG!instantmessenger::AWTUserInterface
+	from s : CFG!"instantmessenger::AWTUserInterface"
 	-- <target name="AWTUserInterface" depends="loadBaseModels">
-	to target : XML!XML::Element mapsTo s (
+	to target : XML!"XML::Element" mapsTo s (
 		name <- 'target',
 		parent <- s.config,
 		children <- Sequence{
 			thisModule->LoadModel('AWT', 'UML2', thisModule.ModelPath + '/InstantMessengerAWT.uml'),
 			thisModule->TransformInvocation('AWT', 'awt')
 		}),
-	   targetName : XML!XML::Attribute (
+	   targetName : XML!"XML::Attribute" (
 	   	name <- 'name',
 		value <- 'AWTUserInterface',
 		parent <- target),
-	   targetDepends : XML!XML::Attribute (
+	   targetDepends : XML!"XML::Attribute" (
 	   	name <- 'depends',
 		value <- 'loadBaseModels',
 		parent <- target)
 }
 
 rule SwingUserInterface {
-	from s : CFG!instantmessenger::SwingUserInterface
+	from s : CFG!"instantmessenger::SwingUserInterface"
 	-- <target name="SwingUserInterface" depends="loadBaseModels">
-	to target : XML!XML::Element mapsTo s (
+	to target : XML!"XML::Element" mapsTo s (
 		name <- 'target',
 		parent <- s.config,
 		children <- Sequence{
 			thisModule->LoadModel('Swing', 'UML2', thisModule.ModelPath + '/InstantMessengerSwing.uml'),
 			thisModule->TransformInvocation('Swing', 'swing')
 		}),
-	   targetName : XML!XML::Attribute (
+	   targetName : XML!"XML::Attribute" (
 	   	name <- 'name',
 		value <- 'SwingUserInterface',
 		parent <- target),
-	   targetDepends : XML!XML::Attribute (
+	   targetDepends : XML!"XML::Attribute" (
 	   	name <- 'depends',
 		value <- 'loadBaseModels',
 		parent <- target)
 }
 
 rule LCDUIUserInterface {
-	from s : CFG!instantmessenger::LCDUIUserInterface
+	from s : CFG!"instantmessenger::LCDUIUserInterface"
 	-- <target name="LCDUIUserInterface" depends="loadBaseModels">
-	to target : XML!XML::Element mapsTo s (
+	to target : XML!"XML::Element" mapsTo s (
 		name <- 'target',
 		parent <- s.config,
 		children <- Sequence{
 			thisModule->LoadModel('LCDUI', 'UML2', thisModule.ModelPath + '/InstantMessengerLCDUI.uml'),
 			thisModule->TransformInvocation('LCDUI', 'lcdui')
 		}),
-	   targetName : XML!XML::Attribute (
+	   targetName : XML!"XML::Attribute" (
 	   	name <- 'name',
 		value <- 'LCDUIUserInterface',
 		parent <- target),
-	   targetDepends : XML!XML::Attribute (
+	   targetDepends : XML!"XML::Attribute" (
 	   	name <- 'depends',
 		value <- 'loadBaseModels',
 		parent <- target)
 }
 
-rule InstantMessengerModel(c : CFG!transformations::TransformationConfig) {
+rule InstantMessengerModel(c : CFG!"transformations::TransformationConfig") {
 	-- <target name="InstantMessengerModel" depends="loadBaseModels">
-	to target : XML!XML::Element (
+	to target : XML!"XML::Element" (
 		name <- 'target',
 		children <- Sequence{
 			thisModule->LoadModel('inModel', 'UML2', thisModule.ModelPath + '/InstantMessengerModel.uml'),
 			thisModule->TransformInvocation('inModel', 'im')
 		}),
-	   targetName : XML!XML::Attribute(
+	   targetName : XML!"XML::Attribute"(
 	   	name <- 'name',
 		value <- 'InstantMessengerModel',
 		parent <- target),
-	   targetDepends : XML!XML::Attribute(
+	   targetDepends : XML!"XML::Attribute"(
 	   	name <- 'depends',
 		value <- 'loadBaseModels',
 		parent <- target)
@@ -253,15 +253,15 @@ rule InstantMessengerModel(c : CFG!transformations::TransformationConfig) {
 	}
 }
 
-rule All(c : CFG!transformations::TransformationConfig) {
+rule All(c : CFG!"transformations::TransformationConfig") {
 	-- <target name="all" depends="...">
-	to target : XML!XML::Element (
+	to target : XML!"XML::Element" (
 		name <- 'target'),
-	   targetName : XML!XML::Attribute(
+	   targetName : XML!"XML::Attribute"(
 	   	name <- 'name',
 		value <- 'all',
 		parent <- target),
-	   targetDepends : XML!XML::Attribute(
+	   targetDepends : XML!"XML::Attribute"(
 	   	name <- 'depends',
 		value <- Sequence{'allBase', 'InstantMessengerModel'}
 	   		->union(c->localNetworkDepends())
@@ -272,10 +272,10 @@ rule All(c : CFG!transformations::TransformationConfig) {
 				else ', ' + e endif)->debug('All'),
 		parent <- target),
 	-- 	<eclipse.refreshLocal resource="${ant.project.name}"/>
-	   refresh : XML!XML::Element (
+	   refresh : XML!"XML::Element" (
 	   	name <- 'eclipse.refreshLocal',
 		parent <- target),
-	   refreshResource : XML!XML::Attribute (
+	   refreshResource : XML!"XML::Attribute" (
 	   	name <- 'resource',
 		value <- '${ant.project.name}',
 		parent <- refresh)

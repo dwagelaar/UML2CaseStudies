@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
+<stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Copy.atl"/>
+<stringAttribute key="ATL VM" value="Regular VM (with debugger)"/>
+<booleanAttribute key="AllowInterModelReferences" value="true"/>
+<booleanAttribute key="ContinueAfterError" value="false"/>
+<mapAttribute key="Input">
+<mapEntry key="ACCESSORS" value="UML2"/>
+<mapEntry key="UML2TYPES" value="UML2"/>
+<mapEntry key="IN" value="UML2"/>
+</mapAttribute>
+<mapAttribute key="Libs">
+<mapEntry key="Java" value="/uml2cs-transformations/lib/Java1.asm"/>
+<mapEntry key="UML2" value="/uml2cs-transformations/lib/UML2.asm"/>
+<mapEntry key="Mappings" value="/uml2cs-transformations/lib/JavaMappings.asm"/>
+<mapEntry key="Strings" value="/uml2cs-transformations/lib/Strings.asm"/>
+</mapAttribute>
+<booleanAttribute key="Mode Debug" value="false"/>
 <mapAttribute key="Model Handler">
 <mapEntry key="UML2" value="EMF"/>
 </mapAttribute>
-<mapAttribute key="Libs">
-<mapEntry key="UML2" value=""/>
-<mapEntry key="Mappings" value=""/>
-<mapEntry key="Strings" value=""/>
-</mapAttribute>
-<stringAttribute key="ATL VM" value="Regular VM (with debugger)"/>
-<booleanAttribute key="Mode Debug" value="false"/>
 <mapAttribute key="ModelType">
 <mapEntry key="OUT" value="MODELOUTPUT"/>
 <mapEntry key="UML2" value="METAMODELOUTPUT"/>
@@ -17,33 +26,25 @@
 <mapEntry key="UML2TYPES" value="MODELINPUT"/>
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
-<stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <mapAttribute key="Output">
 <mapEntry key="OUT" value="UML2"/>
 </mapAttribute>
-<booleanAttribute key="ContinueAfterError" value="false"/>
-<booleanAttribute key="profile" value="false"/>
-<booleanAttribute key="AllowInterModelReferences" value="true"/>
-<mapAttribute key="Input">
-<mapEntry key="ACCESSORS" value="UML2"/>
-<mapEntry key="UML2TYPES" value="UML2"/>
-<mapEntry key="IN" value="UML2"/>
-</mapAttribute>
-<booleanAttribute key="printExecutionTime" value="false"/>
-<booleanAttribute key="disableAttributeHelperCache" value="false"/>
-<stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Copy.atl"/>
-<booleanAttribute key="continueAfterError" value="false"/>
-<booleanAttribute key="showSummary" value="false"/>
 <mapAttribute key="Path">
-<mapEntry key="OUT" value=""/>
-<mapEntry key="UML2" value=""/>
-<mapEntry key="ACCESSORS" value=""/>
-<mapEntry key="UML2TYPES" value=""/>
-<mapEntry key="IN" value=""/>
+<mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/im-accessors.uml"/>
+<mapEntry key="UML2" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
+<mapEntry key="ACCESSORS" value="/uml2cs-transformations/profiles/Accessors.profile.uml"/>
+<mapEntry key="UML2TYPES" value="/uml2cs-transformations/models/PrimitiveTypes.uml"/>
+<mapEntry key="IN" value="/uml2cs-instantmessenger-model/outmodels/test/im-profiles.uml"/>
 </mapAttribute>
-<booleanAttribute key="step" value="false"/>
+<stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <listAttribute key="Superimpose">
 <listEntry value="/uml2cs-transformations/UML2Accessors.asm"/>
 <listEntry value="/uml2cs-transformations/UML2ProfileCopy.asm"/>
 </listAttribute>
+<booleanAttribute key="continueAfterError" value="false"/>
+<booleanAttribute key="disableAttributeHelperCache" value="false"/>
+<booleanAttribute key="printExecutionTime" value="true"/>
+<booleanAttribute key="profile" value="false"/>
+<booleanAttribute key="showSummary" value="false"/>
+<booleanAttribute key="step" value="false"/>
 </launchConfiguration>

@@ -18,13 +18,13 @@ helper def : abstractFactories : Sequence(UML2!"AbstractFactory::AbstractFactory
 helper def : concreteFactories : Sequence(UML2!"AbstractFactory::ConcreteFactory") = UML2!"AbstractFactory::ConcreteFactory"->allInstances();
 helper def : products : Sequence(UML2!"AbstractFactory::product") = UML2!"AbstractFactory::product"->allInstances();
 
-helper context UML2!"uml::Classifier" def : isAbstractFactory() : Boolean =
+helper context UML2!"uml::Classifier" def : isAbstractFactory : Boolean =
 	thisModule.abstractFactories->select(a|a.base_Classifier=self)->notEmpty();
 
-helper context UML2!"uml::Class" def : isConcreteFactory() : Boolean =
+helper context UML2!"uml::Class" def : isConcreteFactory : Boolean =
 	thisModule.concreteFactories->select(a|a.base_Class=self)->notEmpty();
 
-helper context UML2!"uml::Dependency" def : isProduct() : Boolean =
+helper context UML2!"uml::Dependency" def : isProduct : Boolean =
 	thisModule.products->select(a|a.base_Dependency=self)->notEmpty();
 
 -- ======================================================================
@@ -39,11 +39,11 @@ rule Class {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
 			s->oclIsTypeOf(UML2!"uml::Class") and
-			not s->isConcreteFactory()
+			not s.isConcreteFactory
 		else false endif)
 	using { myDependencies : Set(UML2!"uml::Dependency") = 
 		s.clientDependency->select(d|
-			d->oclIsTypeOf(UML2!"uml::Dependency") and d->isProduct()); }
+			d->oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct); }
     to t : UML2!"uml::Class" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
@@ -85,11 +85,11 @@ rule ConcreteFactoryClass {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
 			s->oclIsTypeOf(UML2!"uml::Class") and
-			s->isConcreteFactory()
+			s.isConcreteFactory
 		else false endif)
 	using { myDependencies : Set(UML2!"uml::Dependency") = 
 		s.clientDependency->select(d|
-			d->oclIsTypeOf(UML2!"uml::Dependency") and d->isProduct()); }
+			d->oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct); }
     to t : UML2!"uml::Class" mapsTo s (
         name <- s.name->debug('ConcreteFactoryClass'),
         visibility <- s.visibility,
@@ -133,7 +133,7 @@ rule Interface {
     from s : UML2!"uml::Interface" (thisModule.inElements->includes(s))
 	using { myDependencies : Set(UML2!"uml::Dependency") = 
 		s.clientDependency->select(d|
-			d->oclIsTypeOf(UML2!"uml::Dependency") and d->isProduct()); }
+			d->oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct); }
 	to t : UML2!"uml::Interface" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
@@ -171,7 +171,7 @@ rule Dependency {
     from s : UML2!"uml::Dependency" (
 		if thisModule.inElements->includes(s) then
 			s->oclIsTypeOf(UML2!"uml::Dependency") and
-			not s->isProduct()
+			not s.isProduct
 		else false endif)
     to t : UML2!"uml::Dependency" mapsTo s (
         name <- s.name,
@@ -189,8 +189,8 @@ rule AbstractProductDependency {
     from s : UML2!"uml::Dependency" (
 		if thisModule.inElements->includes(s) then
 			s->oclIsTypeOf(UML2!"uml::Dependency") and
-			if s->isProduct() then
-				s.client->select(c|c->isAbstractFactory())->notEmpty()
+			if s.isProduct then
+				s.client->select(c|c.isAbstractFactory)->notEmpty()
 			else false endif
 		else false endif)
 	using { supplier : UML2!"uml::Classifier" = s.supplier->first(); }
@@ -222,18 +222,18 @@ rule ConcreteProductDependency {
     from s : UML2!"uml::Dependency" (
 		if thisModule.inElements->includes(s) then
 			s->oclIsTypeOf(UML2!"uml::Dependency") and
-			if s->isProduct() then
-				s.client->select(c|c->isConcreteFactory())->notEmpty()
+			if s.isProduct then
+				s.client->select(c|c.isConcreteFactory)->notEmpty()
 			else false endif
 		else false endif)
 	using { superTypes : Set(UML2!"uml::Classifier") = s.client
-    			->collect(c|c->superTypes())->flatten();
+    			->collect(c|c.superTypes)->flatten();
 			clientDependencies : Set(UML2!"uml::Dependency") = superTypes
 				->collect(c|c.clientDependency)->flatten();
 			products : Set(UML2!"uml::Classifier") = clientDependencies
 				->collect(d|d.supplier)->flatten();
 			supplier : UML2!"uml::Classifier" = s.supplier
-				->collect(s|s->superTypes())->flatten()
+				->collect(s|s.superTypes)->flatten()
 				->select(c|products->includes(c))->first(); }
     to t : UML2!"uml::Dependency" mapsTo s (
         name <- s.name->debug('ConcreteProductDependency'),

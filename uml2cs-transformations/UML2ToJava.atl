@@ -11,6 +11,11 @@ uses UML2;
 -- plumbing helpers begin
 -- ======================================================================
 
+helper def : path : String = 'path'->parameterValue();
+
+helper context UML2!"uml::NamedElement" def : implQualifiedName : String =
+	self->qualifiedName('.');
+
 helper context String def : parameterValue() : String =
 	XML!"XML::Element"->allInstancesFrom('parameters')->select(e |
 		e.name = 'param'
@@ -34,51 +39,51 @@ helper context UML2!"uml::Class" def : ignore() : Boolean =
 helper context UML2!"uml::Interface" def : ignore() : Boolean =
 	self.owner->oclIsKindOf(UML2!"uml::Classifier");
 
-helper context UML2!"uml::Element" def : isInPackage() : Boolean =
+helper context UML2!"uml::Element" def : isInPackage : Boolean =
 	self.owner->oclIsTypeOf(UML2!"uml::Package");
 
-helper context UML2!"uml::Type" def : typeName() : String =
-	self->qualifiedName('.');
+helper context UML2!"uml::Type" def : typeName : String =
+	self.implQualifiedName;
 
-helper context UML2!"uml::DataType" def : typeName() : String =
+helper context UML2!"uml::DataType" def : typeName : String =
 	self.name;
 
 helper context UML2!"uml::NamedElement" def : fileName() : String =
 	self->qualifiedName('/');
 
 helper context UML2!"uml::NamedElement" def : pathName() : String =
-	'path'->parameterValue() + '/' + self->fileName() + '.java';
+	thisModule.path + '/' + self->fileName() + '.java';
 
-helper context UML2!"uml::NamedElement" def : visibility() : String =
+helper context UML2!"uml::NamedElement" def : visibilityStr : String =
 	if self.visibility = #private then 'private '
 	else if self.visibility = #protected then 'protected '
 	else if self.visibility = #public then 'public '
 	else '' endif endif endif;
 
-helper context UML2!"uml::Classifier" def : isAbstract() : String =
+helper context UML2!"uml::Classifier" def : abstractStr : String =
 	if self.isAbstract then 'abstract ' else '' endif;
 
-helper context UML2!"uml::BehavioralFeature" def : isAbstract() : String =
+helper context UML2!"uml::BehavioralFeature" def : abstractStr : String =
 	if self.isAbstract then 'abstract ' else '' endif;
 
-helper context UML2!"uml::Feature" def : isStatic() : String =
+helper context UML2!"uml::Feature" def : staticStr : String =
 	if self.isStatic then 'static '
 	else '' endif;
 
-helper context UML2!"uml::Parameter" def : isFinal() : Boolean =
+helper context UML2!"uml::Parameter" def : isFinal : Boolean =
 	UML2!"Final::final"->allInstances()->select(f|f.base_Parameter=self)->notEmpty();
 	
-helper context UML2!"uml::StructuralFeature" def : final() : String =
+helper context UML2!"uml::StructuralFeature" def : finalStr : String =
 	if self.isLeaf or self.isReadOnly then 'final ' else '' endif;
 	
-helper context UML2!"uml::RedefinableElement" def : final() : String =
+helper context UML2!"uml::RedefinableElement" def : finalStr : String =
 	if self.isLeaf then 'final ' else '' endif;
 	
-helper context UML2!"uml::Parameter" def : final() : String =
-	if self->isFinal() then 'final '
+helper context UML2!"uml::Parameter" def : finalStr : String =
+	if self.isFinal then 'final '
 	else '' endif;
 
-helper context UML2!"uml::BehavioralFeature" def : isConstructor() : Boolean =
+helper context UML2!"uml::BehavioralFeature" def : isConstructor : Boolean =
 	UML2!"Standard::Create"->allInstances()->select(c|c.base_BehavioralFeature=self)->notEmpty();
 
 -- ======================================================================
@@ -94,7 +99,7 @@ helper context UML2!"uml::Classifier" def : toFileString() : String =
 	self->toString();
 
 helper context UML2!"uml::Classifier" def : packageDecl() : String =
-	if self->isInPackage() then 'package ' + self.owner->qualifiedName('.') + ';\n\n'
+	if self.isInPackage then 'package ' + self.owner->qualifiedName('.') + ';\n\n'
 	else '' endif;
 
 helper context UML2!"uml::Classifier" def : importDecl() : String =
@@ -104,16 +109,16 @@ helper context UML2!"uml::Classifier" def : importDecl() : String =
 		->iterate(e; acc : String = '' | acc + e->importLine());
 
 helper context UML2!"uml::NamedElement" def : importLine() : String =
-	'import ' + self->importName() + ';\n';
+	'import ' + self.importName + ';\n';
 
-helper context UML2!"uml::NamedElement" def : importName() : String =
-	self->qualifiedName('.');
+helper context UML2!"uml::NamedElement" def : importName : String =
+	self.implQualifiedName;
 
-helper context UML2!"uml::Package" def : importName() : String =
-	self->qualifiedName('.') + '.*';
+helper context UML2!"uml::Package" def : importName : String =
+	self.implQualifiedName + '.*';
 
 helper context UML2!"uml::Class" def : toString() : String =
-	self->visibility() + self->isAbstract() + self->final() + 
+	self.visibilityStr + self.abstractStr + self.finalStr + 
 	'class ' + self.name + self->extendsClause() + self->implementsClause() +
 	' {\n' +
 	self.nestedClassifier->iterate(e; acc : String = '' | acc + e->toString()) +
@@ -124,28 +129,28 @@ helper context UML2!"uml::Class" def : toString() : String =
 helper context UML2!"uml::Class" def : extendsClause() : String =
 	self.generalization->iterate(e; acc : String = '' |
 		acc +
-		if acc = '' then ' extends ' + e.general->qualifiedName('.')
-		else ', ' + e.general->qualifiedName('.')
+		if acc = '' then ' extends ' + e.general.implQualifiedName
+		else ', ' + e.general.implQualifiedName
 		endif);
 
 helper context UML2!"uml::Class" def : implementsClause() : String =
 	self.clientDependency->select(e |
 		e->oclIsTypeOf(UML2!"uml::InterfaceRealization"))->iterate(e; acc : String = '' |
 			acc + 
-			if acc = '' then ' implements ' + e.contract->qualifiedName('.')
-			else ', ' + e.contract->qualifiedName('.')
+			if acc = '' then ' implements ' + e.contract.implQualifiedName
+			else ', ' + e.contract.implQualifiedName
 			endif);
 
 helper context UML2!"uml::Property" def : toString() : String =
-	self->visibility() + self->isStatic() + self->final() +
-	self.type->typeName() + ' ' + self.name +
+	self.visibilityStr + self.staticStr + self.finalStr +
+	self.type.typeName + ' ' + self.name +
 	if self.defaultValue->oclIsUndefined() then ''
 	else if self.defaultValue->stringValue() = '' then ''
 	else ' = ' + self.defaultValue->stringValue() endif endif +
 	';\n\n';
 
 helper context UML2!"uml::Operation" def : toString() : String =
-	self->visibility() + self->isStatic() + self->isAbstract() + self->final() +
+	self.visibilityStr + self.staticStr + self.abstractStr + self.finalStr +
 	self->returnParameter() + self.name + '(' + self->parameters() + ')' +
 	self->throwsClause() +
 	if self.isAbstract or self.owner->oclIsKindOf(UML2!"uml::Interface")
@@ -168,19 +173,19 @@ helper context UML2!"uml::Operation" def : body() : String =
 		acc + e.body->at(e.language->indexOf('java')));
 
 helper context UML2!"uml::BehavioralFeature" def : returnParameter() : String =
-	if self->isConstructor() then ''
+	if self.isConstructor then ''
 	else self.ownedParameter->select(p|p.direction = #return)->iterate(e; acc : String = '' |
-		acc + e.type->typeName() + ' ')
+		acc + e.type.typeName + ' ')
 	endif;
 
 helper context UML2!"uml::BehavioralFeature" def : parameters() : String =
 	self.ownedParameter->select(p|not (p.direction = #return))->iterate(e; acc : String = '' |
 		acc +
 		if acc = '' then '' else	', ' endif +
-		e->final() + e.type->typeName() + ' ' + e.name);
+		e.finalStr + e.type.typeName + ' ' + e.name);
 
 helper context UML2!"uml::Interface" def : toString() : String =
-	self->visibility() + self->isAbstract() + 'interface ' + self.name +
+	self.visibilityStr + self.abstractStr + 'interface ' + self.name +
 	self->extendsClause() +
 	' {\n' +
 	self.nestedClassifier->iterate(e; acc : String = '' | acc + e->toString()) +
@@ -191,8 +196,8 @@ helper context UML2!"uml::Interface" def : extendsClause() : String =
 	self.clientDependency->select(e |
 		e->oclIsTypeOf(UML2!"uml::InterfaceRealization"))->iterate(e; acc : String = '' |
 			acc + 
-			if acc = '' then ' extends ' + e.contract->qualifiedName('.')
-			else ', ' + e.contract->qualifiedName('.')
+			if acc = '' then ' extends ' + e.contract.ImplQualifiedName
+			else ', ' + e.contract.implQualifiedName
 			endif);
 
 -- ======================================================================

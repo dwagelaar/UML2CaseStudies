@@ -14,6 +14,8 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
+helper def : language : String = 'language'->value();
+
 helper def : voidType : UML2!"uml::Type" = 'OclVoid'->implTypeName()->type();
 helper def : anyType : UML2!"uml::Type" = 'OclAny'->implTypeName()->type();
 helper def : integerType : UML2!"uml::Type" = 'Integer'->implTypeName()->type();
@@ -32,7 +34,7 @@ helper def : sequenceReturnType : UML2!"uml::Type" = 'Sequence'->implCollectionR
 helper def : setReturnType : UML2!"uml::Type" = 'Set'->implCollectionReturnTypeName()->type();
 helper def : bagReturnType : UML2!"uml::Type" = 'Bag'->implCollectionReturnTypeName()->type();
 
-helper context UML2!"uml::PrimitiveType" def : implType() : UML2!"uml::Type" =
+helper context UML2!"uml::PrimitiveType" def : implType : UML2!"uml::Type" =
 	if self.name = 'Integer' then thisModule.integerType else
 	if self.name = 'UnlimitedNatural' then thisModule.unlimitedNaturalType else
 	if self.name = 'Real' then thisModule.realType else
@@ -47,29 +49,29 @@ helper context UML2!"uml::PrimitiveType" def : implType() : UML2!"uml::Type" =
 		thisModule.voidType
 	endif endif endif endif	endif endif endif endif endif endif endif;
 
-helper context UML2!"uml::Type" def : implType() : UML2!"uml::Type" =
+helper context UML2!"uml::Type" def : implType : UML2!"uml::Type" =
 	self;
 
-helper context UML2!"uml::TypedElement" def : implType() : UML2!"uml::Type" =
-	self.type->implType();
+helper context UML2!"uml::TypedElement" def : implType : UML2!"uml::Type" =
+	self.type.implType;
 
-helper context UML2!"uml::Property" def : implType() : UML2!"uml::Type" =
-	if self->isSingle() then
-		self.type->implType()
+helper context UML2!"uml::Property" def : implType : UML2!"uml::Type" =
+	if self.isSingle then
+		self.type.implType
 	else
-		self->implCollectionType()
+		self.implCollectionType
 	endif;
 
-helper context UML2!"uml::Parameter" def : implType() : UML2!"uml::Type" =
-	if self->isSingle() then
-		self.type->implType()
+helper context UML2!"uml::Parameter" def : implType : UML2!"uml::Type" =
+	if self.isSingle then
+		self.type.implType
 	else if self.direction = #return then
-		self->implCollectionReturnType()
+		self.implCollectionReturnType
 	else
-		self->implCollectionType()
+		self.implCollectionType
 	endif endif;
 
-helper context UML2!"uml::MultiplicityElement" def : implCollectionType() : UML2!"uml::Type" =
+helper context UML2!"uml::MultiplicityElement" def : implCollectionType : UML2!"uml::Type" =
 	if self.isOrdered then
 		if self.isUnique then
 			thisModule.orderedSetType
@@ -84,7 +86,7 @@ helper context UML2!"uml::MultiplicityElement" def : implCollectionType() : UML2
 		endif
 	endif;
 
-helper context UML2!"uml::MultiplicityElement" def : implCollectionReturnType() : UML2!"uml::Type" =
+helper context UML2!"uml::MultiplicityElement" def : implCollectionReturnType : UML2!"uml::Type" =
 	if self.isOrdered then
 		if self.isUnique then
 			thisModule.orderedSetReturnType
@@ -100,17 +102,17 @@ helper context UML2!"uml::MultiplicityElement" def : implCollectionReturnType() 
 	endif;
 
 helper context UML2!"uml::TypedElement" def : defaultValueBody() : String =
-	self.type->defaultValueBody();
+	self.implType->defaultValueBody();
 
-helper context UML2!"uml::Property" def : defaultValueBody() : String =
-	if self->isSingle() then
-		self->implType()->defaultValueBody()
-	else
-		self->implCollectionType()->defaultValueBody()
-	endif;
+--helper context UML2!"uml::Property" def : defaultValueBody() : String =
+--	if self.isSingle then
+--		self.implType->defaultValueBody()
+--	else
+--		self.implCollectionType->defaultValueBody()
+--	endif;
 
 helper context UML2!"uml::Type" def : defaultValueBody() : String =
-	self->umlQualifiedName()->defaultValueBody();
+	self.umlQualifiedName->defaultValueBody();
 
 -- ======================================================================
 -- model-specific helpers end
@@ -140,7 +142,7 @@ rule Property {
         ownedComment <- s.ownedComment,
         clientDependency <- s.clientDependency,
         nameExpression <- s.nameExpression,
-        type <- s->implType()->debug('Property'),
+        type <- s.implType->debug('Property'),
         upperValue <- s.upperValue,
         lowerValue <- s.lowerValue,
         templateParameter <- s.templateParameter,
@@ -158,7 +160,7 @@ rule Property {
 
 rule DefVal(s : UML2!"uml::Property") {
     to defVal : UML2!"uml::OpaqueExpression" (
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s->defaultValueBody()})
 	do {
 		defVal;
@@ -180,7 +182,7 @@ rule Parameter {
         ownedComment <- s.ownedComment,
         clientDependency <- s.clientDependency,
         nameExpression <- s.nameExpression,
-        type <- s->implType(),
+        type <- s.implType,
         templateParameter <- s.templateParameter,
         end <- s.end,
         upperValue <- s.upperValue,

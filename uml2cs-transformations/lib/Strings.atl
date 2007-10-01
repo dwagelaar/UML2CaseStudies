@@ -3,19 +3,21 @@
 -- String manipulation helpers
 library Strings;
 
-helper context String def: firstToUpper() : String =
+helper context String def: firstToUpper : String =
 	self->substring(1, 1)->toUpper() + self->substring(2, self->size());
 
-helper context String def : startsWith(begin : String) : Boolean =
-	if (self->size() < begin->size()) then
-		false
-	else
-		self->substring(1, begin->size()) = begin
-	endif;
+-- The following operations are already implemented natively
 
-helper context String def : endsWith(end : String) : Boolean =
-	if (self->size() < end->size()) then
-		false
-	else
-		self->substring(self->size() - end->size() + 1, self->size()) = end
-	endif;
+--helper context String def : startsWith(begin : String) : Boolean =
+--	if (self->size() < begin->size()) then
+--		false
+--	else
+--		self->substring(1, begin->size()) = begin
+--	endif;
+--
+--helper context String def : endsWith(end : String) : Boolean =
+--	if (self->size() < end->size()) then
+--		false
+--	else
+--		self->substring(self->size() - end->size() + 1, self->size()) = end
+--	endif;

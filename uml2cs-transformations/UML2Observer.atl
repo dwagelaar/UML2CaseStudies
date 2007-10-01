@@ -14,6 +14,8 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
+helper def : language : String = 'language'->value();
+helper def : separator : String = 'separator'->value();
 helper def : Observer : UML2!"uml::Interface" = 'observer::Observer'->interface();
 helper def : ObserverName : String = thisModule.Observer->qualifiedName('separator'->value());
 helper def : oclString : UML2!"uml::PrimitiveType" = 'String'->primitiveType();
@@ -23,16 +25,16 @@ helper def : observers : Sequence(UML2!"Observer::Observer") = UML2!"Observer::O
 helper def : subscribes : Sequence(UML2!"Observer::subscribe") = UML2!"Observer::subscribe"->allInstances();
 helper def : accessors : Sequence(UML2!"Accessors::accessor") = UML2!"Accessors::accessor"->allInstances();
 
-helper context UML2!"uml::Classifier" def : isObservable() : Boolean =
+helper context UML2!"uml::Classifier" def : isObservable : Boolean =
 	thisModule.observables->select(o|o.base_Classifier=self)->notEmpty();
 
-helper context UML2!"uml::Classifier" def : isObserver() : Boolean =
+helper context UML2!"uml::Classifier" def : isObserver : Boolean =
 	thisModule.observers->select(o|o.base_Classifier=self)->notEmpty();
 
-helper context UML2!"uml::Association" def : isSubscribe() : Boolean =
+helper context UML2!"uml::Association" def : isSubscribe : Boolean =
 	thisModule.subscribes->select(s|s.base_Association=self)->notEmpty();
 
-helper context UML2!"uml::Dependency" def : isAccessor() : Boolean =
+helper context UML2!"uml::Dependency" def : isAccessor : Boolean =
 	thisModule.accessors->select(a|a.base_Dependency=self)->notEmpty();
 
 helper context UML2!"uml::Class" def : update() : String =
@@ -45,25 +47,25 @@ helper context UML2!"uml::Class" def : handlers() : Sequence(UML2!"uml::Operatio
 		o.name->size() > 8);
 
 helper context UML2!"uml::Operation" def : update() : String =
-	self.name->updateBody(self->propertyName(), self->parTypeName());
+	self.name->updateBody(self.propertyName, self.parTypeName);
 
-helper context UML2!"uml::Operation" def : propertyName() : String =
+helper context UML2!"uml::Operation" def : propertyName : String =
 	self.name->substring(3, self.name->size() - 6); -- onPropertyChange -> Property
 
-helper context UML2!"uml::Operation" def : parTypeName() : String =
-	self.ownedParameter->first().type->qualifiedName('separator'->value());
+helper context UML2!"uml::Operation" def : parTypeName : String =
+	self.ownedParameter->first().type->qualifiedName(thisModule.separator);
 
-helper context UML2!"uml::Behavior" def : isNotifyMethod() : Boolean =
-	if self.specification->isAccessor() then
-		self.owner->isObservableKind()
+helper context UML2!"uml::Behavior" def : isNotifyMethod : Boolean =
+	if self.specification.isAccessor then
+		self.owner.isObservableKind
 	else
 		false
 	endif;
 	
-helper context UML2!"uml::Behavior" def : isSubscribeMethod() : Boolean =
-	if self.specification->isAccessor() then
-		if self.owner->isObserverKind() then
-			self.specification->isSubscriber()
+helper context UML2!"uml::Behavior" def : isSubscribeMethod : Boolean =
+	if self.specification.isAccessor then
+		if self.owner.isObserverKind then
+			self.specification.isSubscriber
 		else
 			false
 		endif
@@ -71,74 +73,75 @@ helper context UML2!"uml::Behavior" def : isSubscribeMethod() : Boolean =
 		false
 	endif;
 
-helper context UML2!"uml::Operation" def : isAccessor() : Boolean =
-	self.clientDependency->select(d|d->isAccessor())->notEmpty();
+helper context UML2!"uml::Operation" def : accessorFor : UML2!"uml::Property" =
+	self.accessorDependency.supplier->select(p|
+		p.oclIsKindOf(UML2!"uml::Property"))->first();
 
-helper context UML2!"uml::Classifier" def : isObservableKind() : Boolean =
-	if self->isObservable() then
+helper context UML2!"uml::Operation" def : accessorDependency : UML2!"uml::Dependency" =
+	self.clientDependency->select(d|d.isAccessor)->first();
+
+helper context UML2!"uml::Operation" def : isAccessor : Boolean =
+	not self.accessorDependency->oclIsUndefined();
+--	self.clientDependency->select(d|d->isAccessor())->notEmpty();
+
+helper context UML2!"uml::Classifier" def : isObservableKind : Boolean =
+	if self.isObservable then
 		true
 	else
-		self.generalization->select(g|g.general->isObservableKind())->notEmpty()
+		self.generalization->select(g|g.general.isObservableKind)->notEmpty()
 	endif;
 
-helper context UML2!"uml::Classifier" def : isObserverKind() : Boolean =
-	if self->isObserver() then
+helper context UML2!"uml::Classifier" def : isObserverKind : Boolean =
+	if self.isObserver then
 		true
 	else
-		self.generalization->select(g|g.general->isObserverKind())->notEmpty()
+		self.generalization->select(g|g.general.isObserverKind)->notEmpty()
 	endif;
 
-helper context UML2!"uml::Operation" def : isSubscriber() : Boolean =
-	if self->isAccessor() then
-		self->accessorFor()->hasSubscribesAssociation()
+helper context UML2!"uml::Operation" def : isSubscriber : Boolean =
+	if self.isAccessor then
+		self.accessorFor.hasSubscribesAssociation
 	else
 		false
 	endif;
 
-helper context UML2!"uml::Operation" def : accessorFor() : UML2!"uml::Property" =
-	self->accessorDependency().supplier->select(p|
-		p.oclIsKindOf(UML2!"uml::Property"))->first();
-
-helper context UML2!"uml::Operation" def : accessorDependency() : UML2!"uml::Dependency" =
-	self.clientDependency->select(d|d->isAccessor())->first();
-
-helper context UML2!"uml::Property" def : hasSubscribesAssociation() : Boolean =
+helper context UML2!"uml::Property" def : hasSubscribesAssociation : Boolean =
 	if self.association->oclIsUndefined() then
 		false
 	else
-		self.association->isSubscribe()
+		self.association.isSubscribe
 	endif;
 
 helper context UML2!"uml::Operation" def : notify(body : String) : String =
 	if self.name->startsWith('remove') then
-		self->accessorFor()->removerNotify(body)
+		self.accessorFor->removerNotify(body)
 	else if self.name->startsWith('add') or self.name->startsWith('insert') then
-		self->accessorFor()->adderNotify(body)
+		self.accessorFor->adderNotify(body)
 	else if self.name->startsWith('set') then
-		self->accessorFor()->setterNotify(body)
+		self.accessorFor->setterNotify(body)
 	else
 		body
 	endif endif endif;
 
 helper context UML2!"uml::Property" def : setterNotify(body : String) : String =
 	self.name->setterNotifyBody(
-		self.type->qualifiedName('separator'->value()), body, false);
+		self.type->qualifiedName(thisModule.separator), body, false);
 	
 helper context UML2!"uml::Property" def : adderNotify(body : String) : String =
 	self.name->adderNotifyBody(
-		self.type->qualifiedName('separator'->value()), body, self.isUnique, false);
+		self.type->qualifiedName(thisModule.separator), body, self.isUnique, false);
 	
 helper context UML2!"uml::Property" def : removerNotify(body : String) : String =
 	self.name->removerNotifyBody(
-		self.type->qualifiedName('separator'->value()), body, false);
+		self.type->qualifiedName(thisModule.separator), body, false);
 
 helper context UML2!"uml::Operation" def : subscribe(body : String) : String =
 	if self.name->startsWith('remove') then
-		self->accessorFor().name->removerSubscribeBody(body, false)
+		self.accessorFor.name->removerSubscribeBody(body, false)
 	else if self.name->startsWith('add') or self.name->startsWith('insert') then
-		self->accessorFor().name->adderSubscribeBody(body)
+		self.accessorFor.name->adderSubscribeBody(body)
 	else if self.name->startsWith('set') then
-		self->accessorFor().name->setterSubscribeBody(body, false)
+		self.accessorFor.name->setterSubscribeBody(body, false)
 	else
 		body
 	endif endif endif;
@@ -155,7 +158,7 @@ rule Class {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
 			s->oclIsTypeOf(UML2!"uml::Class") and
-			not s->isObservable()
+			not s.isObservable
 		else false endif)
     to t : UML2!"uml::Class" mapsTo s (
         name <- s.name,
@@ -184,7 +187,7 @@ rule Class {
         ownedAttribute <- s.ownedAttribute,
         ownedConnector <- s.ownedConnector,
         ownedBehavior <- s.ownedBehavior
-			->union(if s->isObserver() then Set{thisModule->ObserverClass(s)} else Set{} endif),
+			->union(if s.isObserver then Set{thisModule->ObserverClass(s)} else Set{} endif),
         classifierBehavior <- s.classifierBehavior,
         interfaceRealization <- s.interfaceRealization,
         ownedTrigger <- s.ownedTrigger,
@@ -197,7 +200,7 @@ rule ObservableClass {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
 			s->oclIsTypeOf(UML2!"uml::Class") and
-			s->isObservable()
+			s.isObservable
 		else false endif)
     to t : UML2!"uml::Class" mapsTo s (
         name <- s.name->debug('ObservableClass'),
@@ -227,7 +230,7 @@ rule ObservableClass {
         ownedConnector <- s.ownedConnector,
         ownedBehavior <- s.ownedBehavior
 			->union(Set{getBehavior, addBehavior, removeBehavior, notifyBehavior})
-			->union(if s->isObserver() then Set{thisModule->ObserverClass(s)} else Set{} endif),
+			->union(if s.isObserver then Set{thisModule->ObserverClass(s)} else Set{} endif),
         classifierBehavior <- s.classifierBehavior,
         interfaceRealization <- s.interfaceRealization,
         ownedTrigger <- s.ownedTrigger,
@@ -268,7 +271,7 @@ rule ObservableClass {
 	   getBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{observers.name->multiGetterBody()}),
 	-- Add --
 	   addOp : UML2!"uml::Operation" (
@@ -285,7 +288,7 @@ rule ObservableClass {
 	   addBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- addOp,
 		name <- addOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{observers.name->adderBody(observers.isUnique)}),
 	-- Remove --
 	   removeOp : UML2!"uml::Operation" (
@@ -302,7 +305,7 @@ rule ObservableClass {
 	   removeBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- removeOp,
 		name <- removeOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{observers.name->removerBody()}),
 	-- Notify --
 	   notifyOp : UML2!"uml::Operation" (
@@ -324,7 +327,7 @@ rule ObservableClass {
 	   notifyBehavior : UML2!"uml::OpaqueBehavior" (
 		specification <- notifyOp,
 		name <- notifyOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{thisModule.ObserverName->notifyObserversBody()})
 }
 
@@ -352,7 +355,7 @@ rule ObserverClass(s : UML2!"uml::Class") {
 	   updateBehavior : UML2!"uml::OpaqueBehavior" (
 		specification <- updateOp,
 		name <- updateOp.name + 'Behavior',
-		language <- Sequence{'language'->value()},
+		language <- Sequence{thisModule.language},
 		body <- Sequence{s->update()})
 	do {
 		updateBehavior;
@@ -372,14 +375,14 @@ rule OpaqueBehavior {
         isActive <- s.isActive,
         isReentrant <- s.isReentrant,
         body <- 
-			if s->isNotifyMethod() then
-				if s->isSubscribeMethod() then
+			if s.isNotifyMethod then
+				if s.isSubscribeMethod then
 					s.body->collect(b|s.specification->notify(s.specification->subscribe(b)))
 				else
 					s.body->collect(b|s.specification->notify(b))
 				endif
 			else
-				if s->isSubscribeMethod() then
+				if s.isSubscribeMethod then
 					s.body->collect(b|s.specification->subscribe(b))
 				else
 					s.body

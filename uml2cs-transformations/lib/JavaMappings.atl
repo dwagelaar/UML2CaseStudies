@@ -207,7 +207,7 @@ helper context String def : javaRemoverNotifyBody(type : String, body : String, 
 	endif;
 
 helper context String def : notifyStanza(type : String) : String =
-	'    notifyObservers("' + self->firstToUpper() + '", ' + self.javaBoxing(type) + ');\n';
+	'    notifyObservers("' + self.firstToUpper + '", ' + self.javaBoxing(type) + ');\n';
 
 helper context String def : setterSubscribeBody(body : String, reflective : Boolean) : String =
 	if reflective then
@@ -262,13 +262,13 @@ helper context String def : reflectiveUpdateBody() : String =
 	'    setChanged();\n' +
 	'    java.util.Hashtable e = new java.util.Hashtable();\n' +
 	if self = self->javaBoxing(type) then
-		'    e.put("name", "' + self->firstToUpper() + '");\n' +
+		'    e.put("name", "' + self.firstToUpper + '");\n' +
 		'    e.put("class", ' + type->javaBoxedType() + '.class);\n' +
 		'    if (' + self + ' != null) {\n' +
 		'        e.put("value", ' + self + ');\n' +
 		'    }\n'
 	else
-		'    e.put("name", "' + self.firstToUpper() + '");\n' +
+		'    e.put("name", "' + self.firstToUpper + '");\n' +
 		'    e.put("class", ' + type->javaBoxedType() + '.class);\n' +
 		'    e.put("value", ' + self->javaBoxing(type) + ');\n'
 	endif

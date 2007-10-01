@@ -16,7 +16,7 @@ uses Mappings;
 helper def : language : String = 'language'->value();
 helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton"->allInstances();
 
-helper context UML2!"uml::Classifier" def : isSingleton() : Boolean =
+helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
 	thisModule.singletons->select(o|o.base_Classifier=self)->notEmpty();
 
 -- ======================================================================
@@ -31,7 +31,7 @@ rule SingletonClass {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
 			s->oclIsTypeOf(UML2!"uml::Class") and
-			s->isSingleton()
+			s.isSingleton
 		else false endif)
     to t : UML2!"uml::Class" mapsTo s (
         name <- s.name->debug('SingletonClass'),
@@ -98,7 +98,7 @@ rule Class {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
 			s->oclIsTypeOf(UML2!"uml::Class") and
-			not s->isSingleton()
+			not s.isSingleton
 		else false endif)
     to t : UML2!"uml::Class" mapsTo s (
         name <- s.name,

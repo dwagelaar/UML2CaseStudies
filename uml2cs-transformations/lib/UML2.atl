@@ -1,6 +1,6 @@
 -- @atlcompiler atl2006
 -- $Id$
--- UML2 helper methods
+-- UML2 helpers
 library UML2;
 
 uses Strings;
@@ -17,50 +17,50 @@ helper context String def : stereotype() : UML2!"uml::Stereotype" =
 	UML2!"uml::Stereotype"->allInstances()->select(s|s.name=self)->first();
 
 helper context String def : dataType() : UML2!"uml::DataType" =
-	UML2!"uml::DataType"->allInstances()->select(c|c->umlQualifiedName()=self)->first();
+	UML2!"uml::DataType"->allInstances()->select(c|c.umlQualifiedName=self)->first();
 
 helper context String def : type() : UML2!"uml::Type" =
-	UML2!"uml::Type"->allInstances()->select(c|c->umlQualifiedName()=self)->first();
+	UML2!"uml::Type"->allInstances()->select(c|c.umlQualifiedName=self)->first();
 
 helper context String def : interface() : UML2!"uml::Interface" =
-	UML2!"uml::Interface"->allInstances()->select(c|c->umlQualifiedName()=self)->first();
+	UML2!"uml::Interface"->allInstances()->select(c|c.umlQualifiedName=self)->first();
 
 helper context String def : class() : UML2!"uml::Class" =
-	UML2!"uml::Class"->allInstances()->select(c|c->umlQualifiedName()=self)->first();
+	UML2!"uml::Class"->allInstances()->select(c|c.umlQualifiedName=self)->first();
 
 ------------------------------- BehavioredClassifier -----------------------------------
 
-helper context UML2!"uml::BehavioredClassifier" def : superTypes() : Set(UML2!"uml::Classifier") =
+helper context UML2!"uml::BehavioredClassifier" def : superTypes : Set(UML2!"uml::Classifier") =
 	self.general->union(self.interfaceRealization->collect(i|i.contract));
 
 ------------------------------- Classifier -----------------------------------
 
-helper context UML2!"uml::Classifier" def : superTypes() : Set(UML2!"uml::Classifier") =
+helper context UML2!"uml::Classifier" def : superTypes : Set(UML2!"uml::Classifier") =
 	self.general;
 
 ------------------------------- MultiplicityElement -----------------------------------
 
-helper context UML2!"uml::MultiplicityElement" def : accessorBaseName() : String =
-	self.name->firstToUpper();
+helper context UML2!"uml::MultiplicityElement" def : accessorBaseName : String =
+	self.name.firstToUpper;
 
-helper context UML2!"uml::MultiplicityElement" def : accessorBaseNameS() : String =
-	self->accessorBaseName() + if self->isSingle() then '' else 's' endif;
+helper context UML2!"uml::MultiplicityElement" def : accessorBaseNameS : String =
+	self.accessorBaseName + if self.isSingle then '' else 's' endif;
 
-helper context UML2!"uml::MultiplicityElement" def : isSingle() : Boolean =
+helper context UML2!"uml::MultiplicityElement" def : isSingle : Boolean =
 	if self.upperValue->oclIsUndefined() then true
 	else self.upperValue.value = 1 endif;
 
-helper context UML2!"uml::MultiplicityElement" def : lower() : Integer =
+helper context UML2!"uml::MultiplicityElement" def : lower : Integer =
 	if self.lowerValue->oclIsUndefined() then 1
 	else self.lowerValue.value endif;
 
-helper context UML2!"uml::MultiplicityElement" def : upper() : Integer =
+helper context UML2!"uml::MultiplicityElement" def : upper : Integer =
 	if self.upperValue->oclIsUndefined() then 1
 	else self.upperValue.value endif;
 
 ------------------------------- NamedElement -----------------------------------
 
-helper context UML2!"uml::NamedElement" def : umlQualifiedName() : String =
+helper context UML2!"uml::NamedElement" def : umlQualifiedName : String =
 	self->qualifiedName('::');
 
 helper context UML2!"uml::NamedElement" def : qualifiedName(separator : String) : String =
@@ -80,23 +80,27 @@ helper context UML2!"uml::Package" def : includesProfileName(p : String) : Boole
 
 ------------------------------- PackageableElement -----------------------------------
 
-helper context UML2!"uml::PackageableElement" def : owningPackage() : UML2!"uml::Package" =
+helper context UML2!"uml::PackageableElement" def : owningPackage : UML2!"uml::Package" =
 	if self.owner.oclIsKindOf(UML2!"uml::Package") then self.owner
 	else OclUndefined endif;
 
 ------------------------------- Property -----------------------------------
 
-helper context UML2!"uml::Property" def : isNavigable() : Boolean =
+helper context UML2!"uml::Property" def : isNavigable : Boolean =
 	self.owningAssociation->oclIsUndefined();
 
-helper context UML2!"uml::Property" def : hasAssociatedProperty() : Boolean =
+--helper context UML2!"uml::Property" def : hasAssociatedProperty : Boolean =
+--	if self.association->oclIsUndefined() then
+--		false
+--	else
+--		self.association.memberEnd->select(p|
+--			p<>self and p->isNavigable())->notEmpty()
+--	endif;
+
+helper context UML2!"uml::Property" def : associatedProperty : UML2!"uml::Property" =
 	if self.association->oclIsUndefined() then
-		false
+		OclUndefined
 	else
 		self.association.memberEnd->select(p|
-			p<>self and p->isNavigable())->notEmpty()
+			p<>self and p->isNavigable())->first()
 	endif;
-
-helper context UML2!"uml::Property" def : associatedProperty() : UML2!"uml::Property" =
-	self.association.memberEnd->select(p|
-		p<>self and p->isNavigable())->first();

@@ -46,7 +46,7 @@ public interface LocalNetwork extends EObject {
 	 * @see #setConfig(InstantMessengerConfiguration)
 	 * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getLocalNetwork_Config()
 	 * @see be.ac.vub.uml2cs.instantmessenger.InstantMessengerConfiguration#getLocalNetwork
-	 * @model opposite="localNetwork" required="true"
+	 * @model opposite="localNetwork" required="true" transient="false"
 	 * @generated
 	 */
 	InstantMessengerConfiguration getConfig();

@@ -194,13 +194,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Instant Messenger Configuration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Instant Messenger Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Instant Messenger Configuration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Instant Messenger Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -209,13 +209,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Local Network</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Local Network</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Local Network</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Local Network</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -224,13 +224,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Jabber Network</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Jabber Network</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Jabber Network</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Jabber Network</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -239,13 +239,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Jabber Transport</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Jabber Transport</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Jabber Transport</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Jabber Transport</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -254,13 +254,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Default Jabber Transport</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Default Jabber Transport</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Default Jabber Transport</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Default Jabber Transport</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -269,13 +269,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>ME Jabber Transport</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ME Jabber Transport</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>ME Jabber Transport</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ME Jabber Transport</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -284,13 +284,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>User Interface</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>User Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>User Interface</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>User Interface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -299,13 +299,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>AWT User Interface</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>AWT User Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>AWT User Interface</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>AWT User Interface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -314,13 +314,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Swing User Interface</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Swing User Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Swing User Interface</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Swing User Interface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -329,13 +329,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>LCDUI User Interface</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>LCDUI User Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>LCDUI User Interface</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>LCDUI User Interface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -344,13 +344,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Packaging</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Packaging</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Packaging</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Packaging</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -359,13 +359,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Web Applet Packaging</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Web Applet Packaging</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Web Applet Packaging</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Web Applet Packaging</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -374,13 +374,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Ipkg Applet Packaging</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Ipkg Applet Packaging</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Ipkg Applet Packaging</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Ipkg Applet Packaging</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -389,13 +389,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>MI Dlet Packaging</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>MI Dlet Packaging</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>MI Dlet Packaging</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>MI Dlet Packaging</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -404,13 +404,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Transformation Config</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Transformation Config</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Transformation Config</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Transformation Config</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -419,13 +419,13 @@ public class InstantmessengerSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */

@@ -47,7 +47,7 @@ public interface UML2Observer extends EObject {
 	 * @see #setConfig(TransformationConfig)
 	 * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getUML2Observer_Config()
 	 * @see be.ac.vub.uml2cs.transformations.TransformationConfig#getObserver
-	 * @model opposite="observer" required="true"
+	 * @model opposite="observer" required="true" transient="false"
 	 * @generated
 	 */
 	TransformationConfig getConfig();

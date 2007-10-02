@@ -68,7 +68,6 @@ public interface InstantMessengerConfiguration extends TransformationConfig {
 
 	/**
 	 * Returns the value of the '<em><b>Local Network</b></em>' containment reference.
-	 * The default value is <code>""</code>.
 	 * It is bidirectional and its opposite is '{@link be.ac.vub.uml2cs.instantmessenger.LocalNetwork#getConfig <em>Config</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>

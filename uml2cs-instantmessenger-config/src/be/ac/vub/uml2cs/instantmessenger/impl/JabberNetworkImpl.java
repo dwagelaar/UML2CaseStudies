@@ -52,7 +52,7 @@ public class JabberNetworkImpl extends EObjectImpl implements JabberNetwork {
 	 * @generated
 	 * @ordered
 	 */
-	protected JabberTransport jabberTransport = null;
+	protected JabberTransport jabberTransport;
 
 	/**
 	 * <!-- begin-user-doc -->

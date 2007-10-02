@@ -5,7 +5,7 @@
     modelDirectory="/uml2cs-instantmessenger-config/src" editDirectory="/uml2cs-instantmessenger-config-edit/src"
     editorDirectory="/uml2cs-instantmessenger-config-editor/src" modelPluginID="be.ac.vub.uml2cs.instantmessenger.config"
     modelName="InstantMessenger" testsDirectory="/uml2cs-instantmessenger-config-tests/src"
-    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="../../../plugin/be.ac.vub.uml2cs.transformations.config/model/Transformations.genmodel#//transformations">
+    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="platform:/plugin/be.ac.vub.uml2cs.transformations.config/model/Transformations.genmodel#//transformations">
   <foreignModel>InstantMessenger.ecore</foreignModel>
   <genPackages prefix="Instantmessenger" basePackage="be.ac.vub.uml2cs" disposableProviderFactory="true"
       ecorePackage="InstantMessenger.ecore#/">

@@ -23,6 +23,7 @@ import be.ac.vub.uml2cs.instantmessenger.SwingUserInterface;
 import be.ac.vub.uml2cs.instantmessenger.UserInterface;
 import be.ac.vub.uml2cs.instantmessenger.WebAppletPackaging;
 
+import be.ac.vub.uml2cs.instantmessenger.util.InstantmessengerValidator;
 import be.ac.vub.uml2cs.transformations.TransformationsPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -548,7 +550,7 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		// Initialize classes and features; add operations and parameters
 		initEClass(instantMessengerConfigurationEClass, InstantMessengerConfiguration.class, "InstantMessengerConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInstantMessengerConfiguration_DeploymentTarget(), ecorePackage.getEString(), "deploymentTarget", null, 1, 1, InstantMessengerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInstantMessengerConfiguration_LocalNetwork(), this.getLocalNetwork(), this.getLocalNetwork_Config(), "localNetwork", "", 0, 1, InstantMessengerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstantMessengerConfiguration_LocalNetwork(), this.getLocalNetwork(), this.getLocalNetwork_Config(), "localNetwork", null, 0, 1, InstantMessengerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInstantMessengerConfiguration_JabberNetwork(), this.getJabberNetwork(), this.getJabberNetwork_Config(), "jabberNetwork", null, 0, 1, InstantMessengerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInstantMessengerConfiguration_UserInterface(), this.getUserInterface(), this.getUserInterface_Config(), "userInterface", null, 1, -1, InstantMessengerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInstantMessengerConfiguration_Packaging(), this.getPackaging(), this.getPackaging_Config(), "packaging", null, 1, 1, InstantMessengerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -557,7 +559,7 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		initEReference(getLocalNetwork_Config(), this.getInstantMessengerConfiguration(), this.getInstantMessengerConfiguration_LocalNetwork(), "config", null, 1, 1, LocalNetwork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(jabberNetworkEClass, JabberNetwork.class, "JabberNetwork", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getJabberNetwork_JabberTransport(), this.getJabberTransport(), this.getJabberTransport_JabberNetwork(), "jabberTransport", "", 1, 1, JabberNetwork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getJabberNetwork_JabberTransport(), this.getJabberTransport(), this.getJabberTransport_JabberNetwork(), "jabberTransport", null, 1, 1, JabberNetwork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getJabberNetwork_Config(), this.getInstantMessengerConfiguration(), this.getInstantMessengerConfiguration_JabberNetwork(), "config", null, 1, 1, JabberNetwork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(jabberTransportEClass, JabberTransport.class, "JabberTransport", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

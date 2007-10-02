@@ -47,7 +47,7 @@ public class JavaMappingImpl extends MappingImpl implements JavaMapping {
 	 * @generated
 	 * @ordered
 	 */
-	protected JavaDataTypes dataTypes = null;
+	protected JavaDataTypes dataTypes;
 
 	/**
 	 * <!-- begin-user-doc -->

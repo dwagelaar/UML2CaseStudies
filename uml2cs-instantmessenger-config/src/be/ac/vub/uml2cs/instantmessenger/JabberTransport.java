@@ -45,7 +45,7 @@ public interface JabberTransport extends EObject {
 	 * @see #setJabberNetwork(JabberNetwork)
 	 * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getJabberTransport_JabberNetwork()
 	 * @see be.ac.vub.uml2cs.instantmessenger.JabberNetwork#getJabberTransport
-	 * @model opposite="jabberTransport" required="true"
+	 * @model opposite="jabberTransport" required="true" transient="false"
 	 * @generated
 	 */
 	JabberNetwork getJabberNetwork();

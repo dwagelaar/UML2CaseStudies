@@ -2,7 +2,7 @@
 <feature
       id="be.ac.vub.uml2cs.infrastructure"
       label="UML2 case studies infrastructure feature"
-      version="1.0.12"
+      version="1.0.13"
       provider-name="Vrije Universiteit Brussel"
       plugin="be.ac.vub.uml2cs.instantmessenger.config"
       image="VUB_logo_compact.gif">
@@ -38,6 +38,7 @@ the terms and conditions of the Eclipse Public License Version
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.m2m.atl.engine"/>
+      <import plugin="org.eclipse.emf.validation"/>
    </requires>
 
    <plugin

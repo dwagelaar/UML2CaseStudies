@@ -45,7 +45,7 @@ public interface Packaging extends EObject {
 	 * @see #setConfig(InstantMessengerConfiguration)
 	 * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getPackaging_Config()
 	 * @see be.ac.vub.uml2cs.instantmessenger.InstantMessengerConfiguration#getPackaging
-	 * @model opposite="packaging" required="true"
+	 * @model opposite="packaging" required="true" transient="false"
 	 * @generated
 	 */
 	InstantMessengerConfiguration getConfig();

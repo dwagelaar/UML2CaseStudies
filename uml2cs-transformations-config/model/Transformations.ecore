@@ -14,7 +14,7 @@
       <details key="documentation" value="Root node for a transformation configuration model"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="buildPath" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true">
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="GenModel">
         <details key="documentation" value="Path to store the generated build files"/>
       </eAnnotations>

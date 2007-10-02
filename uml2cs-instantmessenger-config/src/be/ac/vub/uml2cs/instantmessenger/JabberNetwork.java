@@ -36,7 +36,6 @@ public interface JabberNetwork extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Jabber Transport</b></em>' containment reference.
-	 * The default value is <code>""</code>.
 	 * It is bidirectional and its opposite is '{@link be.ac.vub.uml2cs.instantmessenger.JabberTransport#getJabberNetwork <em>Jabber Network</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -76,7 +75,7 @@ public interface JabberNetwork extends EObject {
 	 * @see #setConfig(InstantMessengerConfiguration)
 	 * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getJabberNetwork_Config()
 	 * @see be.ac.vub.uml2cs.instantmessenger.InstantMessengerConfiguration#getJabberNetwork
-	 * @model opposite="jabberNetwork" required="true"
+	 * @model opposite="jabberNetwork" required="true" transient="false"
 	 * @generated
 	 */
 	InstantMessengerConfiguration getConfig();

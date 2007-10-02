@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getSaveModelType()
- * @model
+ * @model annotation="GenModel documentation='Save all intermediate models, only the last model or no models (generate code only)'"
  * @generated
  */
 public final class SaveModelType extends AbstractEnumerator {
@@ -169,7 +169,7 @@ public final class SaveModelType extends AbstractEnumerator {
 			case LAST: return LAST_LITERAL;
 			case ALL: return ALL_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

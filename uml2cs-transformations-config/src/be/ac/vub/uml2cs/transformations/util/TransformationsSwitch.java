@@ -164,13 +164,13 @@ public class TransformationsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Transformation Config</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Transformation Config</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Transformation Config</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Transformation Config</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -179,13 +179,13 @@ public class TransformationsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Mapping</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Mapping</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Mapping</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -194,13 +194,13 @@ public class TransformationsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Java Mapping</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Java Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Java Mapping</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Java Mapping</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -209,13 +209,13 @@ public class TransformationsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Java Data Types</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Java Data Types</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Java Data Types</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Java Data Types</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -224,13 +224,13 @@ public class TransformationsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Java1 Data Types</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Java1 Data Types</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Java1 Data Types</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Java1 Data Types</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -239,13 +239,13 @@ public class TransformationsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Java2 Data Types</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Java2 Data Types</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Java2 Data Types</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Java2 Data Types</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -254,13 +254,13 @@ public class TransformationsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>UML2 Observer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>UML2 Observer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>UML2 Observer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>UML2 Observer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -269,13 +269,13 @@ public class TransformationsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>UML2 Java Observer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>UML2 Java Observer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>UML2 Java Observer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>UML2 Java Observer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -284,13 +284,13 @@ public class TransformationsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>UML2 Applet</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>UML2 Applet</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>UML2 Applet</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>UML2 Applet</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -299,13 +299,13 @@ public class TransformationsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>UML2MI Dlet</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>UML2MI Dlet</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>UML2MI Dlet</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>UML2MI Dlet</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -314,13 +314,13 @@ public class TransformationsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */

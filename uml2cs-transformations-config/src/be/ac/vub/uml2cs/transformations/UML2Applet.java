@@ -47,7 +47,7 @@ public interface UML2Applet extends EObject {
 	 * @see #setConfig(TransformationConfig)
 	 * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getUML2Applet_Config()
 	 * @see be.ac.vub.uml2cs.transformations.TransformationConfig#getApplet
-	 * @model opposite="applet" required="true"
+	 * @model opposite="applet" required="true" transient="false"
 	 * @generated
 	 */
 	TransformationConfig getConfig();

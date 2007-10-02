@@ -9,7 +9,7 @@
   <eAnnotations source="PlatformKit">
     <details key="Ontology" value="InstantMessenger.owl"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="InstantMessengerConfiguration" eSuperTypes="../../../plugin/be.ac.vub.uml2cs.transformations.config/model/Transformations.ecore#//TransformationConfig">
+  <eClassifiers xsi:type="ecore:EClass" name="InstantMessengerConfiguration" eSuperTypes="platform:/plugin/be.ac.vub.uml2cs.transformations.config/model/Transformations.ecore#//TransformationConfig">
     <eAnnotations source="GenModel">
       <details key="documentation" value="Root node for an instant messenger configuration model"/>
     </eAnnotations>
@@ -22,7 +22,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="deploymentTarget" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localNetwork" eType="#//LocalNetwork"
-        defaultValueLiteral="" containment="true" eOpposite="#//LocalNetwork/config"/>
+        containment="true" eOpposite="#//LocalNetwork/config"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="jabberNetwork" eType="#//JabberNetwork"
         containment="true" eOpposite="#//JabberNetwork/config"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="userInterface" lowerBound="1"
@@ -48,7 +48,7 @@
       <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#JabberPlatform"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="jabberTransport" lowerBound="1"
-        eType="#//JabberTransport" defaultValueLiteral="" containment="true" eOpposite="#//JabberTransport/jabberNetwork"/>
+        eType="#//JabberTransport" containment="true" eOpposite="#//JabberTransport/jabberNetwork"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="config" lowerBound="1"
         eType="#//InstantMessengerConfiguration" eOpposite="#//InstantMessengerConfiguration/jabberNetwork"/>
   </eClassifiers>

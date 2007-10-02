@@ -46,7 +46,7 @@ public interface Mapping extends EObject {
 	 * @see #setConfig(TransformationConfig)
 	 * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getMapping_Config()
 	 * @see be.ac.vub.uml2cs.transformations.TransformationConfig#getMapping
-	 * @model opposite="mapping" required="true"
+	 * @model opposite="mapping" required="true" transient="false"
 	 * @generated
 	 */
 	TransformationConfig getConfig();

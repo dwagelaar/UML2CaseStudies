@@ -31,6 +31,69 @@
            source="http://ssel.vub.ac.be/uml2cs/InstantMessenger.owl"
            target="platform:/plugin/be.ac.vub.uml2cs.instantmessenger.config/model/InstantMessenger.owl"/>
   </extension>
+  <extension
+        point="org.eclipse.emf.validation.constraintProviders">
+     <category
+           id="uml2cs-instantmessenger-config.category1"
+           name="%validation.category1.name">
+     </category>
+     <constraintProvider
+           cache="true"
+           mode="Live">
+        <package
+              namespaceUri="http://ssel.vub.ac.be/uml2cs/InstantMessenger">
+        </package>
+        <constraints
+              categories="uml2cs-instantmessenger-config.category1">
+           <constraint
+                 id="uml2cs-instantmessenger-config.constraint1"
+                 lang="OCL"
+                 mode="Live"
+                 name="%validation.constraint1.name"
+                 severity="ERROR"
+                 statusCode="101">
+              <message>
+                 %validation.constraint1.message
+              </message>
+              <![CDATA[
+              	self.userInterface->select(u|u.oclIsKindOf(AWTUserInterface))->size() <= 1 and
+              	self.userInterface->select(u|u.oclIsKindOf(SwingUserInterface))->size() <= 1 and
+              	self.userInterface->select(u|u.oclIsKindOf(LCDUIUserInterface))->size() <= 1
+              ]]>
+           </constraint>
+        </constraints>
+        <target
+              class="InstantMessengerConfiguration">
+           <event
+                 name="Add">
+              <feature
+                    name="userInterface">
+              </feature>
+           </event>
+           <event
+                 name="Add Many">
+              <feature
+                    name="userInterface">
+              </feature>
+           </event>
+        </target>
+     </constraintProvider>
+  </extension>
+  <extension
+        point="org.eclipse.emf.validation.constraintBindings">
+     <clientContext
+           id="uml2cs-instantmessenger-config.clientContext1">
+        <enablement>
+           <instanceof
+                 value="org.eclipse.emf.ecore.EObject">
+           </instanceof>
+        </enablement>
+     </clientContext>
+     <binding
+           category="uml2cs-instantmessenger-config.category1"
+           context="uml2cs-instantmessenger-config.clientContext1">
+     </binding>
+  </extension>
 
 </plugin>
 

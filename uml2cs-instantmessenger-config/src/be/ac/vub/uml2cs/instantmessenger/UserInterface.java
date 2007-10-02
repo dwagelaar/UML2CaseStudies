@@ -45,7 +45,7 @@ public interface UserInterface extends EObject {
 	 * @see #setConfig(InstantMessengerConfiguration)
 	 * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getUserInterface_Config()
 	 * @see be.ac.vub.uml2cs.instantmessenger.InstantMessengerConfiguration#getUserInterface
-	 * @model opposite="userInterface" required="true"
+	 * @model opposite="userInterface" required="true" transient="false"
 	 * @generated
 	 */
 	InstantMessengerConfiguration getConfig();

@@ -96,7 +96,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * @generated
 	 * @ordered
 	 */
-	protected Mapping mapping = null;
+	protected Mapping mapping;
 
 	/**
 	 * The default value of the '{@link #getSaveModels() <em>Save Models</em>}' attribute.
@@ -126,7 +126,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * @generated
 	 * @ordered
 	 */
-	protected UML2Observer observer = null;
+	protected UML2Observer observer;
 
 	/**
 	 * The cached value of the '{@link #getApplet() <em>Applet</em>}' containment reference.
@@ -136,7 +136,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * @generated
 	 * @ordered
 	 */
-	protected UML2Applet applet = null;
+	protected UML2Applet applet;
 
 	/**
 	 * <!-- begin-user-doc -->

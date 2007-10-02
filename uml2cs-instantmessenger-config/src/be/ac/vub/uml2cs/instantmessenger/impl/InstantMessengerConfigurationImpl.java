@@ -83,7 +83,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * @generated
 	 * @ordered
 	 */
-	protected LocalNetwork localNetwork = null;
+	protected LocalNetwork localNetwork;
 
 	/**
 	 * The cached value of the '{@link #getJabberNetwork() <em>Jabber Network</em>}' containment reference.
@@ -93,7 +93,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * @generated
 	 * @ordered
 	 */
-	protected JabberNetwork jabberNetwork = null;
+	protected JabberNetwork jabberNetwork;
 
 	/**
 	 * The cached value of the '{@link #getUserInterface() <em>User Interface</em>}' containment reference list.
@@ -103,7 +103,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList userInterface = null;
+	protected EList userInterface;
 
 	/**
 	 * The cached value of the '{@link #getPackaging() <em>Packaging</em>}' containment reference.
@@ -113,7 +113,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * @generated
 	 * @ordered
 	 */
-	protected Packaging packaging = null;
+	protected Packaging packaging;
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -480,7 +480,7 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(transformationConfigEClass, TransformationConfig.class, "TransformationConfig", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTransformationConfig_BuildPath(), ecorePackage.getEString(), "buildPath", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransformationConfig_BuildPath(), ecorePackage.getEString(), "buildPath", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransformationConfig_TargetPath(), ecorePackage.getEString(), "targetPath", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformationConfig_Mapping(), this.getMapping(), this.getMapping_Config(), "mapping", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransformationConfig_SaveModels(), this.getSaveModelType(), "saveModels", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

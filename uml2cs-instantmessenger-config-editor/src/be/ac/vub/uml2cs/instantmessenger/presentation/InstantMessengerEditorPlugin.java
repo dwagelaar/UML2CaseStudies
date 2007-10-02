@@ -57,9 +57,9 @@ public final class InstantMessengerEditorPlugin extends EMFPlugin {
 	 */
 	public InstantMessengerEditorPlugin() {
 		super
-		  (new ResourceLocator [] {
-		     TransformationsEditPlugin.INSTANCE,
-		   });
+			(new ResourceLocator [] {
+				TransformationsEditPlugin.INSTANCE,
+			});
 	}
 
 	/**
@@ -99,7 +99,7 @@ public final class InstantMessengerEditorPlugin extends EMFPlugin {
 		 */
 		public Implementation() {
 			super();
-
+	
 			// Remember the static instance.
 			//
 			plugin = this;

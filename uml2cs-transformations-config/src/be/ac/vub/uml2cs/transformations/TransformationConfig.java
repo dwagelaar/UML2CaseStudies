@@ -48,7 +48,7 @@ public interface TransformationConfig extends EObject {
 	 * @return the value of the '<em>Build Path</em>' attribute.
 	 * @see #setBuildPath(String)
 	 * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getTransformationConfig_BuildPath()
-	 * @model id="true" required="true"
+	 * @model required="true"
 	 *        annotation="GenModel documentation='Path to store the generated build files'"
 	 * @generated
 	 */

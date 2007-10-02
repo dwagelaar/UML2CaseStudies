@@ -46,7 +46,7 @@ public interface JavaDataTypes extends EObject {
 	 * @see #setMapping(JavaMapping)
 	 * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getJavaDataTypes_Mapping()
 	 * @see be.ac.vub.uml2cs.transformations.JavaMapping#getDataTypes
-	 * @model opposite="dataTypes" required="true"
+	 * @model opposite="dataTypes" required="true" transient="false"
 	 * @generated
 	 */
 	JavaMapping getMapping();

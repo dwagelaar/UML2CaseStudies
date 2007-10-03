@@ -1,6 +1,7 @@
 package be.ac.vub.uml2cs.instantmessenger.popup.actions;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
@@ -15,6 +16,7 @@ import java.util.Map;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -26,7 +28,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.jface.util.Assert;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.m2m.atl.engine.AtlEMFModelHandler;
@@ -128,8 +129,19 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         if (root.findMember(folder) == null) {
         	throw new IOException("build path " + folder + " not found in workspace");
         }
+        IFile commonFile = root.getFile(folder.append("common.xml"));
         IFile buildFile = root.getFile(folder.append("build.xml"));
         IFile parFile = root.getFile(folder.append("parameters.xml"));
+        worked(monitor);
+        monitor.subTask("Copying common.xml...");
+        URL commonURL = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/common.xml");
+        InputStream source = commonURL.openStream();
+        if (!commonFile.exists()) {
+        	commonFile.create(source, true, monitor);
+        } else {
+        	commonFile.setContents(source, true, true, monitor);
+        }
+        source.close();
         worked(monitor);
         monitor.subTask("Loading models...");
         ASMModel cfg = amh.loadModel("CFG", amh.getMof(), "uri:" + InstantmessengerPackage.eNS_URI);

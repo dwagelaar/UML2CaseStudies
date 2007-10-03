@@ -8,6 +8,7 @@
         </delete>
 		<mkdir dir="src"/>
 		<mkdir dir="build"/>
+		<copy todir="build" file="../uml2cs-transformations/common.xml"/>
 		<eclipse.refreshLocal resource="${ant.project.name}"/>
 	</target>
 	

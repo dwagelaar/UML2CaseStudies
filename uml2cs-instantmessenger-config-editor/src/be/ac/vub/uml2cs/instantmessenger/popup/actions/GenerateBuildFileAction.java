@@ -115,7 +115,7 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
      * @throws Exception
      */
     protected void runAction(IProgressMonitor monitor) throws Exception {
-        monitor.beginTask("Generating build.xml file", 4);
+        monitor.beginTask("Generating build.xml file", 6);
         monitor.subTask("Reading input model...");
         InstantMessengerConfiguration object =
         	(InstantMessengerConfiguration) ((IStructuredSelection) selection).getFirstElement();
@@ -137,9 +137,9 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         URL commonURL = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/common.xml");
         InputStream source = commonURL.openStream();
         if (!commonFile.exists()) {
-        	commonFile.create(source, true, monitor);
+        	commonFile.create(source, true, null);
         } else {
-        	commonFile.setContents(source, true, true, monitor);
+        	commonFile.setContents(source, true, true, null);
         }
         source.close();
         worked(monitor);

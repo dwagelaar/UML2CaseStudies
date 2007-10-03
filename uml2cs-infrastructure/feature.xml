@@ -2,7 +2,7 @@
 <feature
       id="be.ac.vub.uml2cs.infrastructure"
       label="UML2 case studies infrastructure feature"
-      version="1.0.13"
+      version="1.0.14"
       provider-name="Vrije Universiteit Brussel"
       plugin="be.ac.vub.uml2cs.instantmessenger.config"
       image="VUB_logo_compact.gif">
@@ -43,8 +43,8 @@ the terms and conditions of the Eclipse Public License Version
 
    <plugin
          id="be.ac.vub.uml2cs.transformations.config"
-         download-size="96"
-         install-size="96"
+         download-size="108"
+         install-size="108"
          version="0.0.0"
          unpack="false"/>
 
@@ -57,8 +57,8 @@ the terms and conditions of the Eclipse Public License Version
 
    <plugin
          id="be.ac.vub.uml2cs.instantmessenger.config.editor"
-         download-size="140"
-         install-size="140"
+         download-size="124"
+         install-size="124"
          version="0.0.0"
          unpack="false"/>
 
@@ -71,8 +71,8 @@ the terms and conditions of the Eclipse Public License Version
 
    <plugin
          id="be.ac.vub.uml2cs.instantmessenger.config"
-         download-size="128"
-         install-size="128"
+         download-size="184"
+         install-size="184"
          version="0.0.0"
          unpack="false"/>
 

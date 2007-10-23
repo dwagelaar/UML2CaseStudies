@@ -1,0 +1,12 @@
+-- @atlcompiler atl2006
+-- $Id: UML2DataTypes.atl 7290 2007-10-01 16:31:26Z dwagelaa $
+-- Filters UML2Copy by redefining inElements.
+module UML2FilteredCopy; --extends UML2Copy
+
+create OUT : UML2 from IN : UML2;
+
+uses UML2Copy;
+
+helper def : inElements : Set(UML2!"ecore::EObject") =
+	UML2!"ecore::EObject"->allInstancesFrom('IN')
+	->select(e|e->oclIsKindOf(UML2!"uml::Package"));

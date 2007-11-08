@@ -5,7 +5,7 @@ module UML2Copy;
 
 create OUT : UML2 from IN : UML2;
 
-helper def : inElements : Set(UML2!"ecore::EObject") = UML2!"ecore::EObject"->allInstancesFrom('IN');
+helper def : inElements : Set(UML2!"ecore::EObject") = UML2!"ecore::EObject".allInstancesFrom('IN');
 
 -- ======================================================================
 -- Ecore copying rules begin
@@ -50,7 +50,7 @@ rule Comment {
 rule Package {
     from s : UML2!"uml::Package" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Package")
+			s.oclIsTypeOf(UML2!"uml::Package")
 		else false endif)
     to t : UML2!"uml::Package" mapsTo s (
         name <- s.name,
@@ -73,7 +73,7 @@ rule Package {
 rule Dependency {
     from s : UML2!"uml::Dependency" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Dependency")
+			s.oclIsTypeOf(UML2!"uml::Dependency")
 		else false endif)
     to t : UML2!"uml::Dependency" mapsTo s (
         name <- s.name,
@@ -109,7 +109,7 @@ rule PackageImport {
 rule Constraint {
     from s : UML2!"uml::Constraint" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Constraint")
+			s.oclIsTypeOf(UML2!"uml::Constraint")
 		else false endif)
     to t : UML2!"uml::Constraint" mapsTo s (
         name <- s.name,
@@ -126,7 +126,7 @@ rule Constraint {
 rule Association {
     from s : UML2!"uml::Association" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Association")
+			s.oclIsTypeOf(UML2!"uml::Association")
 		else false endif)
     to t : UML2!"uml::Association" mapsTo s (
         name <- s.name,
@@ -169,7 +169,7 @@ rule TemplateBinding {
 rule TemplateSignature {
     from s : UML2!"uml::TemplateSignature" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::TemplateSignature")
+			s.oclIsTypeOf(UML2!"uml::TemplateSignature")
 		else false endif)
     to t : UML2!"uml::TemplateSignature" mapsTo s (
         eAnnotations <- s.eAnnotations,
@@ -181,7 +181,7 @@ rule TemplateSignature {
 rule TemplateParameter {
     from s : UML2!"uml::TemplateParameter" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::TemplateParameter")
+			s.oclIsTypeOf(UML2!"uml::TemplateParameter")
 		else false endif)
     to t : UML2!"uml::TemplateParameter" mapsTo s (
         eAnnotations <- s.eAnnotations,
@@ -247,7 +247,7 @@ rule Substitution {
 rule Realization {
     from s : UML2!"uml::Realization" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Realization")
+			s.oclIsTypeOf(UML2!"uml::Realization")
 		else false endif)
     to t : UML2!"uml::Realization" mapsTo s (
         name <- s.name,
@@ -265,7 +265,7 @@ rule Realization {
 rule Abstraction {
     from s : UML2!"uml::Abstraction" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Abstraction")
+			s.oclIsTypeOf(UML2!"uml::Abstraction")
 		else false endif)
     to t : UML2!"uml::Abstraction" mapsTo s (
         name <- s.name,
@@ -336,7 +336,7 @@ rule ConnectorEnd {
 rule Property {
     from s : UML2!"uml::Property" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Property")
+			s.oclIsTypeOf(UML2!"uml::Property")
 		else false endif)
     to t : UML2!"uml::Property" mapsTo s (
         name <- s.name,
@@ -421,7 +421,7 @@ rule DeploymentSpecification {
 rule Artifact {
     from s : UML2!"uml::Artifact" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Artifact")
+			s.oclIsTypeOf(UML2!"uml::Artifact")
 		else false endif)
     to t : UML2!"uml::Artifact" mapsTo s (
         name <- s.name,
@@ -502,7 +502,7 @@ rule Operation {
 rule Class {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Class")
+			s.oclIsTypeOf(UML2!"uml::Class")
 		else false endif)
     to t : UML2!"uml::Class" mapsTo s (
         name <- s.name,
@@ -691,7 +691,7 @@ rule ProtocolStateMachine {
 rule StateMachine {
     from s : UML2!"uml::StateMachine" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::StateMachine")
+			s.oclIsTypeOf(UML2!"uml::StateMachine")
 		else false endif)
     to t : UML2!"uml::StateMachine" mapsTo s (
         name <- s.name,
@@ -760,7 +760,7 @@ rule Region {
 rule Transition {
     from s : UML2!"uml::Transition" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Transition")
+			s.oclIsTypeOf(UML2!"uml::Transition")
 		else false endif)
     to t : UML2!"uml::Transition" mapsTo s (
         name <- s.name,
@@ -834,7 +834,7 @@ rule Port {
 rule State {
     from s : UML2!"uml::State" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::State")
+			s.oclIsTypeOf(UML2!"uml::State")
 		else false endif)
     to t : UML2!"uml::State" mapsTo s (
         name <- s.name,
@@ -1026,7 +1026,7 @@ rule ParameterSet {
 rule DataType {
     from s : UML2!"uml::DataType" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::DataType")
+			s.oclIsTypeOf(UML2!"uml::DataType")
 		else false endif)
     to t : UML2!"uml::DataType" mapsTo s (
         name <- s.name,
@@ -1247,7 +1247,7 @@ rule StringExpression {
 rule Expression {
     from s : UML2!"uml::Expression" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Expression")
+			s.oclIsTypeOf(UML2!"uml::Expression")
 		else false endif)
     to t : UML2!"uml::Expression" mapsTo s (
         name <- s.name,
@@ -1328,7 +1328,7 @@ rule EnumerationLiteral {
 rule InstanceSpecification {
     from s : UML2!"uml::InstanceSpecification" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::InstanceSpecification")
+			s.oclIsTypeOf(UML2!"uml::InstanceSpecification")
 		else false endif)
     to t : UML2!"uml::InstanceSpecification" mapsTo s (
         name <- s.name,
@@ -1468,7 +1468,7 @@ rule LiteralUnlimitedNatural {
 rule OpaqueBehavior {
     from s : UML2!"uml::OpaqueBehavior" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::OpaqueBehavior")
+			s.oclIsTypeOf(UML2!"uml::OpaqueBehavior")
 		else false endif)
     to t : UML2!"uml::OpaqueBehavior" mapsTo s (
         name <- s.name,
@@ -1587,7 +1587,7 @@ rule OpaqueAction {
 rule StructuredActivityNode {
     from s : UML2!"uml::StructuredActivityNode" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::StructuredActivityNode")
+			s.oclIsTypeOf(UML2!"uml::StructuredActivityNode")
 		else false endif)
     to t : UML2!"uml::StructuredActivityNode" mapsTo s (
         name <- s.name,
@@ -1750,7 +1750,7 @@ rule OutputPin {
 rule Pin {
     from s : UML2!"uml::Pin" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Pin")
+			s.oclIsTypeOf(UML2!"uml::Pin")
 		else false endif)
     to t : UML2!"uml::Pin" mapsTo s (
         name <- s.name,
@@ -1781,7 +1781,7 @@ rule Pin {
 rule InputPin {
     from s : UML2!"uml::InputPin" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::InputPin")
+			s.oclIsTypeOf(UML2!"uml::InputPin")
 		else false endif)
     to t : UML2!"uml::InputPin" mapsTo s (
         name <- s.name,
@@ -2116,7 +2116,7 @@ rule PartDecomposition {
 rule InteractionUse {
     from s : UML2!"uml::InteractionUse" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::InteractionUse")
+			s.oclIsTypeOf(UML2!"uml::InteractionUse")
 		else false endif)
     to t : UML2!"uml::InteractionUse" mapsTo s (
         name <- s.name,
@@ -2160,7 +2160,7 @@ rule GeneralOrdering {
 rule OccurrenceSpecification {
     from s : UML2!"uml::OccurrenceSpecification" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::OccurrenceSpecification")
+			s.oclIsTypeOf(UML2!"uml::OccurrenceSpecification")
 		else false endif)
     to t : UML2!"uml::OccurrenceSpecification" mapsTo s (
         name <- s.name,
@@ -2497,7 +2497,7 @@ rule FlowFinalNode {
 rule CentralBufferNode {
     from s : UML2!"uml::CentralBufferNode" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::CentralBufferNode")
+			s.oclIsTypeOf(UML2!"uml::CentralBufferNode")
 		else false endif)
     to t : UML2!"uml::CentralBufferNode" mapsTo s (
         name <- s.name,
@@ -2631,7 +2631,7 @@ rule Component {
 rule Node {
     from s : UML2!"uml::Node" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Node")
+			s.oclIsTypeOf(UML2!"uml::Node")
 		else false endif)
     to t : UML2!"uml::Node" mapsTo s (
         name <- s.name,
@@ -2782,7 +2782,7 @@ rule CommunicationPath {
 rule CombinedFragment {
     from s : UML2!"uml::CombinedFragment" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::CombinedFragment")
+			s.oclIsTypeOf(UML2!"uml::CombinedFragment")
 		else false endif)
     to t : UML2!"uml::CombinedFragment" mapsTo s (
         name <- s.name,
@@ -3016,7 +3016,7 @@ rule AddStructuralFeatureValueAction {
 rule LinkEndData {
     from s : UML2!"uml::LinkEndData" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::LinkEndData")
+			s.oclIsTypeOf(UML2!"uml::LinkEndData")
 		else false endif)
     to t : UML2!"uml::LinkEndData" mapsTo s (
         eAnnotations <- s.eAnnotations,
@@ -3073,7 +3073,7 @@ rule LinkEndCreationData {
 rule CreateLinkAction {
     from s : UML2!"uml::CreateLinkAction" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::CreateLinkAction")
+			s.oclIsTypeOf(UML2!"uml::CreateLinkAction")
 		else false endif)
     to t : UML2!"uml::CreateLinkAction" mapsTo s (
         name <- s.name,
@@ -3268,7 +3268,7 @@ rule DurationInterval {
 rule Interval {
     from s : UML2!"uml::Interval" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Interval")
+			s.oclIsTypeOf(UML2!"uml::Interval")
 		else false endif)
     to t : UML2!"uml::Interval" mapsTo s (
         name <- s.name,
@@ -3301,7 +3301,7 @@ rule TimeConstraint {
 rule IntervalConstraint {
     from s : UML2!"uml::IntervalConstraint" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::IntervalConstraint")
+			s.oclIsTypeOf(UML2!"uml::IntervalConstraint")
 		else false endif)
     to t : UML2!"uml::IntervalConstraint" mapsTo s (
         name <- s.name,
@@ -3765,7 +3765,7 @@ rule CreateLinkObjectAction {
 rule AcceptEventAction {
     from s : UML2!"uml::AcceptEventAction" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::AcceptEventAction")
+			s.oclIsTypeOf(UML2!"uml::AcceptEventAction")
 		else false endif)
     to t : UML2!"uml::AcceptEventAction" mapsTo s (
         name <- s.name,

@@ -8,5 +8,5 @@ create OUT : UML2 from IN : UML2;
 uses UML2Copy;
 
 helper def : inElements : Set(UML2!"ecore::EObject") =
-	UML2!"ecore::EObject"->allInstancesFrom('IN')
-	->select(e|e->oclIsKindOf(UML2!"uml::Package"));
+	UML2!"ecore::EObject".allInstancesFrom('IN')
+	->select(e|e.oclIsKindOf(UML2!"uml::Package"));

@@ -22,7 +22,7 @@ helper context String def : javaInsert() : String =
 	'try {\n' +
 	'    this.' + self + '.add(index, ' + self + ');\n' +
 	'} catch (IndexOutOfBoundsException e) {\n' +
-	'    ' + self->javaAdder() + '\n' +
+	'    ' + self.javaAdder() + '\n' +
 	'}';
 
 helper context String def : javaRemover() : String =

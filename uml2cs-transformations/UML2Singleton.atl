@@ -13,8 +13,8 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : language : String = 'language'->value();
-helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton"->allInstances();
+helper def : language : String = 'language'.value();
+helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton".allInstances();
 
 helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
 	thisModule.singletons->select(o|o.base_Classifier=self)->notEmpty();
@@ -30,11 +30,11 @@ helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
 rule SingletonClass {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Class") and
+			s.oclIsTypeOf(UML2!"uml::Class") and
 			s.isSingleton
 		else false endif)
     to t : UML2!"uml::Class" mapsTo s (
-        name <- s.name->debug('SingletonClass'),
+        name <- s.name.debug('SingletonClass'),
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
         isAbstract <- s.isAbstract,
@@ -91,13 +91,13 @@ rule SingletonClass {
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s.name->singletonBody()})
+		body <- Sequence{s.name.singletonBody()})
 }
 
 rule Class {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Class") and
+			s.oclIsTypeOf(UML2!"uml::Class") and
 			not s.isSingleton
 		else false endif)
     to t : UML2!"uml::Class" mapsTo s (

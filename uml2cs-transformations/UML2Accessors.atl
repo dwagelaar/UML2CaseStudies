@@ -24,79 +24,79 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : accessor : UML2!"uml::Stereotype" = 'accessor'->stereotype();
-helper def : oclInteger : UML2!"uml::PrimitiveType" = 'Integer'->primitiveType();
-helper def : separator : String = 'separator'->value();
-helper def : language : String = 'language'->value();
+helper def : accessor : UML2!"uml::Stereotype" = 'accessor'.stereotype();
+helper def : oclInteger : UML2!"uml::PrimitiveType" = 'Integer'.primitiveType();
+helper def : separator : String = 'separator'.value();
+helper def : language : String = 'language'.value();
 
 helper context UML2!"uml::Property" def : setter() : String =
-	if self.associatedProperty->oclIsUndefined() then
-		self.name->setterBody()
+	if self.associatedProperty.oclIsUndefined() then
+		self.name.setterBody()
 	else
-		self->dualSetter()
+		self.dualSetter()
 	endif;
 
 helper context UML2!"uml::Property" def : dualSetter() : String =
 	if self.associatedProperty.isSingle then
-		self.name->dualSetterBody(
+		self.name.dualSetterBody(
 			self.associatedProperty.name.firstToUpper)
 	else
-		self.name->addRemoveSetterBody(
+		self.name.addRemoveSetterBody(
 			self.associatedProperty.name.firstToUpper)
 	endif;
 	
 helper context UML2!"uml::Property" def : adder() : String =
-	if self.associatedProperty->oclIsUndefined() then
-		self.name->adderBody(self.isUnique)
+	if self.associatedProperty.oclIsUndefined() then
+		self.name.adderBody(self.isUnique)
 	else
-		self->dualAdder()
+		self.dualAdder()
 	endif;
 
 helper context UML2!"uml::Property" def : dualAdder() : String =
 	if self.associatedProperty.isSingle then
-		self.name->setterAdderBody(
+		self.name.setterAdderBody(
 			self.associatedProperty.name.firstToUpper)
 	else
-		self.name->dualAdderBody(
+		self.name.dualAdderBody(
 			self.associatedProperty.name.firstToUpper)
 	endif;
 	
 helper context UML2!"uml::Property" def : insert() : String =
-	if self.associatedProperty->oclIsUndefined() then
-		self.name->insertBody(self.isUnique)
+	if self.associatedProperty.oclIsUndefined() then
+		self.name.insertBody(self.isUnique)
 	else
-		self->dualInsert()
+		self.dualInsert()
 	endif;
 
 helper context UML2!"uml::Property" def : dualInsert() : String =
 	if self.associatedProperty.isSingle then
-		self.name->setterInsertBody(
+		self.name.setterInsertBody(
 			self.associatedProperty.name.firstToUpper)
 	else
-		self.name->dualInsertBody(
+		self.name.dualInsertBody(
 			self.associatedProperty.name.firstToUpper)
 	endif;
 	
 helper context UML2!"uml::Property" def : remover() : String =
-	if self.associatedProperty->oclIsUndefined() then
-		self.name->removerBody()
+	if self.associatedProperty.oclIsUndefined() then
+		self.name.removerBody()
 	else
-		self->dualRemover()
+		self.dualRemover()
 	endif;
 
 helper context UML2!"uml::Property" def : dualRemover() : String =
 	if self.associatedProperty.isSingle then
-		self.name->setterRemoverBody(self.associatedProperty.name.firstToUpper)
+		self.name.setterRemoverBody(self.associatedProperty.name.firstToUpper)
 	else
-		self.name->dualRemoverBody(self.associatedProperty.name.firstToUpper)
+		self.name.dualRemoverBody(self.associatedProperty.name.firstToUpper)
 	endif;
 
 helper context UML2!"uml::Property" def : getter() : String =
-	if self.isSingle then self.name->getterBody()
-	else self.name->multiGetterBody() endif;
+	if self.isSingle then self.name.getterBody()
+	else self.name.multiGetterBody() endif;
 
 helper context UML2!"uml::Property" def : getAt() : String =
-	self.name->getAtBody(self.type->qualifiedName(thisModule.separator));
+	self.name.getAtBody(self.type.qualifiedName(thisModule.separator));
 
 -- ======================================================================
 -- model-specific helpers end
@@ -109,16 +109,16 @@ helper context UML2!"uml::Property" def : getAt() : String =
 rule Package {
     from s : UML2!"uml::Package" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Package")
+			s.oclIsTypeOf(UML2!"uml::Package")
 		else false endif)
 	using { myProperties : Set(UML2!"uml::Property") = 
-		UML2!"uml::Property"->allInstancesFrom('IN')
-				->select(p|p->getNearestPackage()=s)
-				->select(p|p->oclIsTypeOf(UML2!"uml::Property") and 
+		UML2!"uml::Property".allInstancesFrom('IN')
+				->select(p|p.getNearestPackage()=s)
+				->select(p|p.oclIsTypeOf(UML2!"uml::Property") and 
 					       (p.visibility=#public) and 
 						   p.isNavigable); }
     to t : UML2!"uml::Package" mapsTo s (
-        name <- s.name->debug('Package'),
+        name <- s.name.debug('Package'),
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
@@ -133,29 +133,29 @@ rule Package {
         packageMerge <- s.packageMerge,
         packagedElement <- s.packagedElement
 			->union(myProperties->collect(p|
-				thisModule->resolveTemp(p, 'getDep')))
+				thisModule.resolveTemp(p, 'getDep')))
 			->union(myProperties->select(p|p.isSingle)->collect(p|
-				thisModule->resolveTemp(p, 'setDep')))
+				thisModule.resolveTemp(p, 'setDep')))
 			->union(myProperties->select(p|not p.isSingle)->collect(p|
-				thisModule->resolveTemp(p, 'addDep')))
+				thisModule.resolveTemp(p, 'addDep')))
 			->union(myProperties->select(p|not p.isSingle)->collect(p|
-				thisModule->resolveTemp(p, 'removeDep')))
+				thisModule.resolveTemp(p, 'removeDep')))
 			->union(myProperties->select(p|not p.isSingle and p.isOrdered)->collect(p|
-				thisModule->resolveTemp(p, 'getAtDep')))
+				thisModule.resolveTemp(p, 'getAtDep')))
 			->union(myProperties->select(p|not p.isSingle and p.isOrdered)->collect(p|
-				thisModule->resolveTemp(p, 'indexOfDep')))
+				thisModule.resolveTemp(p, 'indexOfDep')))
 			->union(myProperties->select(p|not p.isSingle and p.isOrdered)->collect(p|
-				thisModule->resolveTemp(p, 'insertDep'))),
+				thisModule.resolveTemp(p, 'insertDep'))),
 		profileApplication <- s.profileApplication)
 }
 
 rule Class {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Class")
+			s.oclIsTypeOf(UML2!"uml::Class")
 		else false endif)
 	using { myProperties : Set(UML2!"uml::Property") = s.attribute
-				->select(p|p->oclIsTypeOf(UML2!"uml::Property") and 
+				->select(p|p.oclIsTypeOf(UML2!"uml::Property") and 
 					       (p.visibility=#public) and 
 						   p.isNavigable); }
 	to t : UML2!"uml::Class" mapsTo s (
@@ -186,19 +186,19 @@ rule Class {
         ownedConnector <- s.ownedConnector,
         ownedBehavior <- s.ownedBehavior
 			->union(myProperties->collect(p|
-				thisModule->resolveTemp(p, 'getBehavior')))
+				thisModule.resolveTemp(p, 'getBehavior')))
 			->union(myProperties->select(p|p.isSingle)->collect(p|
-				thisModule->resolveTemp(p, 'setBehavior')))
+				thisModule.resolveTemp(p, 'setBehavior')))
 			->union(myProperties->select(p|not p.isSingle)->collect(p|
-				thisModule->resolveTemp(p, 'addBehavior')))
+				thisModule.resolveTemp(p, 'addBehavior')))
 			->union(myProperties->select(p|not p.isSingle)->collect(p|
-				thisModule->resolveTemp(p, 'removeBehavior')))
+				thisModule.resolveTemp(p, 'removeBehavior')))
 			->union(myProperties->select(p|not p.isSingle and p.isOrdered)->collect(p|
-				thisModule->resolveTemp(p, 'getAtBehavior')))
+				thisModule.resolveTemp(p, 'getAtBehavior')))
 			->union(myProperties->select(p|not p.isSingle and p.isOrdered)->collect(p|
-				thisModule->resolveTemp(p, 'indexOfBehavior')))
+				thisModule.resolveTemp(p, 'indexOfBehavior')))
 			->union(myProperties->select(p|not p.isSingle and p.isOrdered)->collect(p|
-				thisModule->resolveTemp(p, 'insertBehavior'))),
+				thisModule.resolveTemp(p, 'insertBehavior'))),
 		classifierBehavior <- s.classifierBehavior,
         interfaceRealization <- s.interfaceRealization,
         ownedTrigger <- s.ownedTrigger,
@@ -210,7 +210,7 @@ rule Class {
 rule Property {
     from s : UML2!"uml::Property" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Property") and
+			s.oclIsTypeOf(UML2!"uml::Property") and
 			not ((s.visibility = #public) and (s.isNavigable))
 		else false endif)
     to t : UML2!"uml::Property" mapsTo s (
@@ -246,7 +246,7 @@ rule Property {
 rule PublicPropertySingle {
 	from s : UML2!"uml::Property" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Property") and
+			s.oclIsTypeOf(UML2!"uml::Property") and
 			(s.visibility = #public) and 
 			s.isNavigable and
 			s.isSingle
@@ -298,7 +298,7 @@ rule PublicPropertySingle {
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
 	   	language <- Sequence{thisModule.language},
-		body <- Sequence{s->getter()}),
+		body <- Sequence{s.getter()}),
 	   getDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor get' + baseNameS + '()',
 		client <- getOp,
@@ -323,7 +323,7 @@ rule PublicPropertySingle {
 	   	specification <- setOp,
 		name <- setOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s->setter()}),
+		body <- Sequence{s.setter()}),
 	   setDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor set' + baseNameS + '()',
 		client <- setOp,
@@ -335,7 +335,7 @@ rule PublicPropertySingle {
 rule PublicPropertyCollection {
 	from s : UML2!"uml::Property" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Property") and
+			s.oclIsTypeOf(UML2!"uml::Property") and
 			(s.visibility = #public) and 
 			s.isNavigable and
 			not s.isSingle and 
@@ -395,7 +395,7 @@ rule PublicPropertyCollection {
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s->getter()}),
+		body <- Sequence{s.getter()}),
 	   getDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor get' + baseNameS + '()',
 		client <- getOp,
@@ -420,7 +420,7 @@ rule PublicPropertyCollection {
 	   	specification <- addOp,
 		name <- addOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s->adder()}),
+		body <- Sequence{s.adder()}),
 	   addDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor add' + baseName + '()',
 		client <- addOp,
@@ -445,7 +445,7 @@ rule PublicPropertyCollection {
 	   	specification <- removeOp,
 		name <- removeOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s->remover()}),
+		body <- Sequence{s.remover()}),
 	   removeDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor remove' + baseName + '()',
 		client <- removeOp,
@@ -457,7 +457,7 @@ rule PublicPropertyCollection {
 rule PublicPropertySequence {
 	from s : UML2!"uml::Property" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Property") and
+			s.oclIsTypeOf(UML2!"uml::Property") and
 			(s.visibility = #public) and 
 			s.isNavigable and
 			not s.isSingle and 
@@ -517,7 +517,7 @@ rule PublicPropertySequence {
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s->getter()}),
+		body <- Sequence{s.getter()}),
 	   getDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor get' + baseNameS + '()',
 		client <- getOp,
@@ -542,7 +542,7 @@ rule PublicPropertySequence {
 	   	specification <- addOp,
 		name <- addOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s->adder()}),
+		body <- Sequence{s.adder()}),
 	   addDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor add' + baseName + '()',
 		client <- addOp,
@@ -567,7 +567,7 @@ rule PublicPropertySequence {
 	   	specification <- removeOp,
 		name <- removeOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s->remover()}),
+		body <- Sequence{s.remover()}),
 	   removeDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor remove' + baseName + '()',
 		client <- removeOp,
@@ -597,7 +597,7 @@ rule PublicPropertySequence {
 	   	specification <- getAtOp,
 		name <- getAtOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s->getAt()}),
+		body <- Sequence{s.getAt()}),
 	   getAtDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor get' + baseName + 'At()',
 		client <- getAtOp,
@@ -627,7 +627,7 @@ rule PublicPropertySequence {
 	   	specification <- indexOfOp,
 		name <- indexOfOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s.name->indexOfBody()}),
+		body <- Sequence{s.name.indexOfBody()}),
 	   indexOfDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor getIndexOf' + baseName + '()',
 		client <- indexOfOp,
@@ -657,7 +657,7 @@ rule PublicPropertySequence {
 	   	specification <- insertOp,
 		name <- insertOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s->insert()}),
+		body <- Sequence{s.insert()}),
 	   insertDep : UML2!"uml::Dependency" (
 	   	name <- 'accessor insert' + baseName + '()',
 		client <- insertOp,

@@ -39,10 +39,10 @@ helper context String def : getterBody() : String =
 	'return ' + self + ';';
 
 helper context String def : multiGetterBody() : String =
-	self->javaMultiGetterBody();
+	self.javaMultiGetterBody();
 	
 helper context String def : getAtBody(type : String) : String =
-	self->javaGetAt(type);
+	self.javaGetAt(type);
 
 helper context String def : indexOfBody() : String =
 	'return this.' + self + '.indexOf(' + self + ');';
@@ -59,8 +59,8 @@ helper context String def : javaOtherEndSetter(otherEnd : String) : String =
 	self + '.set' + otherEnd + '(this);';
 
 helper context String def : adderBody(isUnique : Boolean) : String =
-	if isUnique then self->javaNotContainsCheck('    ' + self->javaAdder())
-	else self->javaAdder() endif;
+	if isUnique then self.javaNotContainsCheck('    ' + self.javaAdder())
+	else self.javaAdder() endif;
 
 helper context String def : javaOtherEndAdder(otherEnd : String) : String =
 	self + '.add' + otherEnd + '(this);';
@@ -72,31 +72,31 @@ helper context String def : javaOtherEndRemover(otherEnd : String) : String =
 	self + '.remove' + otherEnd + '(this);';
 
 helper context String def : setterAdderBody(otherEnd : String) : String =
-	self->javaNotContainsCheck(
-	'    ' + self->javaAdder() + '\n' +
-	'    ' + self->javaOtherEndSetter(otherEnd));
+	self.javaNotContainsCheck(
+	'    ' + self.javaAdder() + '\n' +
+	'    ' + self.javaOtherEndSetter(otherEnd));
 	
 helper context String def : insertBody(isUnique : Boolean) : String =
-	if isUnique then self->javaNotContainsCheck('    ' + self->javaInsert())
-	else self->javaInsert() endif;
+	if isUnique then self.javaNotContainsCheck('    ' + self.javaInsert())
+	else self.javaInsert() endif;
 
 helper context String def : setterInsertBody(otherEnd : String) : String =
-	self->javaNotContainsCheck(
-	'    ' + self->javaInsert() + '\n' +
-	'    ' + self->javaOtherEndSetter(otherEnd));
+	self.javaNotContainsCheck(
+	'    ' + self.javaInsert() + '\n' +
+	'    ' + self.javaOtherEndSetter(otherEnd));
 
 helper context String def : removerBody() : String =
-	self->javaRemover();
+	self.javaRemover();
 
 helper context String def : setterRemoverBody(otherEnd : String) : String =
-	self->javaContainsCheck(
-	'    ' + self->javaRemover() + '\n' +
-	'    ' + self->javaOtherEndResetter(otherEnd));
+	self.javaContainsCheck(
+	'    ' + self.javaRemover() + '\n' +
+	'    ' + self.javaOtherEndResetter(otherEnd));
 
 helper context String def : dualRemoverBody(otherEnd : String) : String =
-	self->javaContainsCheck(
-	'    ' + self->javaRemover() + '\n' +
-	'    ' + self->javaOtherEndRemover(otherEnd));
+	self.javaContainsCheck(
+	'    ' + self.javaRemover() + '\n' +
+	'    ' + self.javaOtherEndRemover(otherEnd));
 
 ------------------------------- DataTypes -----------------------------------
 
@@ -108,7 +108,7 @@ helper context String def : implTypeName() : String =
 	if self = 'String' then 'java::lang::String' else
 	if self = 'OclAny' then 'java::lang::Object' else
 	if self = 'Exception' then 'java::lang::Exception' else
-	self->javaImplTypeName()
+	self.javaImplTypeName()
 	endif endif endif endif endif endif endif;
 
 helper context String def : implCollectionReturnTypeName() : String =
@@ -118,7 +118,7 @@ helper context String def : defaultValueBody() : String =
 	if self = 'java::lang::int' then '0' else
 	if self = 'java::lang::double' then '0.0' else
 	if self = 'java::lang::boolean' then 'false' else
-	self->javaDefaultValueBody()
+	self.javaDefaultValueBody()
 	endif endif endif;
 
 ------------------------------- Observer -----------------------------------
@@ -155,10 +155,10 @@ helper context String def : javaUnboxing(type : String) : String =
 	endif endif endif;
 
 helper context String def : javaTypedValue(type : String) : String =
-	'(' + type->javaBoxedType() + ') ' + self;
+	'(' + type.javaBoxedType() + ') ' + self;
 
 helper context String def : javaUnboxValue(type : String) : String =
-	self->javaTypedValue(type)->javaUnboxing(type);
+	self.javaTypedValue(type).javaUnboxing(type);
 
 helper context String def : notifyObserversBody() : String =
 	'for (java.util.Enumeration os = getObservers(); os.hasMoreElements();) {\n' +
@@ -167,43 +167,43 @@ helper context String def : notifyObserversBody() : String =
 
 helper context String def : updateBody(propertyName : String, parTypeName : String) : String =
 	'\nif (name.equals("' + propertyName + '")) {\n' +
-	'    ' + self + '(' + 'value'->javaUnboxValue(parTypeName) + ');\n' +
+	'    ' + self + '(' + 'value'.javaUnboxValue(parTypeName) + ');\n' +
 	'}';
 
 helper context String def : setterNotifyBody(type : String, body : String, reflective : Boolean) : String =
 	'if (this.' + self + ' != ' + self + ') {\n' +
 	body + '\n' +
 	if reflective then
-		self->reflectiveNotifyStanza(type)
+		self.reflectiveNotifyStanza(type)
 	else
-		self->notifyStanza(type)
+		self.notifyStanza(type)
 	endif + '\n' +
 	'}';
 	
 helper context String def : adderNotifyBody(type : String, body : String, isUnique : Boolean, reflective : Boolean) : String =
 	if isUnique then 
-		self->javaNotContainsCheck(self->javaAdderNotifyBody(type, body, reflective))
+		self.javaNotContainsCheck(self.javaAdderNotifyBody(type, body, reflective))
 	else
-		self->javaAdderNotifyBody(type, body, reflective)
+		self.javaAdderNotifyBody(type, body, reflective)
 	endif;
 	
 helper context String def : javaAdderNotifyBody(type : String, body : String, reflective : Boolean) : String =
 	body + '\n' +
 	if reflective then
-		self->reflectiveNotifyStanza(type)
+		self.reflectiveNotifyStanza(type)
 	else
-		self->notifyStanza(type)
+		self.notifyStanza(type)
 	endif;
 	
 helper context String def : removerNotifyBody(type : String, body : String, reflective : Boolean) : String =
-	self->javaContainsCheck(self->javaRemoverNotifyBody(type, body, reflective));
+	self.javaContainsCheck(self.javaRemoverNotifyBody(type, body, reflective));
 
 helper context String def : javaRemoverNotifyBody(type : String, body : String, reflective : Boolean) : String =
 	body + '\n' +
 	if reflective then
-		self->reflectiveNotifyStanza(type)
+		self.reflectiveNotifyStanza(type)
 	else
-		self->notifyStanza(type)
+		self.notifyStanza(type)
 	endif;
 
 helper context String def : notifyStanza(type : String) : String =
@@ -211,22 +211,22 @@ helper context String def : notifyStanza(type : String) : String =
 
 helper context String def : setterSubscribeBody(body : String, reflective : Boolean) : String =
 	if reflective then
-	    self->reflectiveUnsubscribeStanza()
+	    self.reflectiveUnsubscribeStanza()
 	else
-	    self->unsubscribeStanza()
+	    self.unsubscribeStanza()
 	endif + '\n' +
 	body + '\n' +
-    self->subscribeStanza();
+    self.subscribeStanza();
 	
 helper context String def : adderSubscribeBody(body : String) : String =
 	body + '\n' +
-    self->subscribeStanza();
+    self.subscribeStanza();
 	
 helper context String def : removerSubscribeBody(body : String, reflective : Boolean) : String =
 	if reflective then
-	    self->reflectiveRemoveUnsubscribeStanza()
+	    self.reflectiveRemoveUnsubscribeStanza()
 	else
-		self->removeUnsubscribeStanza()
+		self.removeUnsubscribeStanza()
 	endif + '\n' +
 	body;
 
@@ -261,16 +261,16 @@ helper context String def : reflectiveUpdateBody() : String =
     helper context String def : reflectiveNotifyStanza(type : String) : String =
 	'    setChanged();\n' +
 	'    java.util.Hashtable e = new java.util.Hashtable();\n' +
-	if self = self->javaBoxing(type) then
+	if self = self.javaBoxing(type) then
 		'    e.put("name", "' + self.firstToUpper + '");\n' +
-		'    e.put("class", ' + type->javaBoxedType() + '.class);\n' +
+		'    e.put("class", ' + type.javaBoxedType() + '.class);\n' +
 		'    if (' + self + ' != null) {\n' +
 		'        e.put("value", ' + self + ');\n' +
 		'    }\n'
 	else
 		'    e.put("name", "' + self.firstToUpper + '");\n' +
-		'    e.put("class", ' + type->javaBoxedType() + '.class);\n' +
-		'    e.put("value", ' + self->javaBoxing(type) + ');\n'
+		'    e.put("class", ' + type.javaBoxedType() + '.class);\n' +
+		'    e.put("value", ' + self.javaBoxing(type) + ');\n'
 	endif
 	+ '    notifyObservers(e);';
 

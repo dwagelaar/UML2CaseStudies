@@ -13,18 +13,18 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : language : String = 'language'->value();
-helper def : Applet : UML2!"uml::Class" = 'java::applet::Applet'->class();
-helper def : implString : UML2!"uml::Class" = ('String'->implTypeName())->class();
-helper def : implStringAA : UML2!"uml::Class" = ('String'->implTypeName() + '[][]')->class();
-helper def : applets : Sequence(UML2!"Applet::Applet") = UML2!"Applet::Applet"->allInstances();
-helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton"->allInstances();
+helper def : language : String = 'language'.value();
+helper def : Applet : UML2!"uml::Class" = 'java::applet::Applet'.class();
+helper def : implString : UML2!"uml::Class" = ('String'.implTypeName()).class();
+helper def : implStringAA : UML2!"uml::Class" = ('String'.implTypeName() + '[][]').class();
+helper def : applets : Sequence(UML2!"Applet::Applet") = UML2!"Applet::Applet".allInstances();
+helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton".allInstances();
 
 helper context UML2!"uml::Classifier" def : applet : UML2!"Applet::Applet" =
 	thisModule.applets->select(o|o.base_Classifier=self)->first();
 
 helper context UML2!"uml::Classifier" def : isApplet : Boolean =
-	not self.applet->oclIsUndefined();
+	not self.applet.oclIsUndefined();
 --	thisModule.applets->select(o|o.base_Classifier=self)->notEmpty();
 
 helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
@@ -41,7 +41,7 @@ helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
 rule Class {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Class") and
+			s.oclIsTypeOf(UML2!"uml::Class") and
 			not s.isApplet
 		else false endif)
     to t : UML2!"uml::Class" mapsTo s (
@@ -82,13 +82,13 @@ rule Class {
 rule AppletClass {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Class") and
+			s.oclIsTypeOf(UML2!"uml::Class") and
 			s.isApplet
 		else false endif)
 	using { hasInit : Boolean = s.ownedOperation->select(o|o.name='init')->notEmpty();
 			applet : UML2!"Applet::Applet" = s.applet; }
     to t : UML2!"uml::Class" mapsTo s (
-        name <- s.name->debug('AppletClass'),
+        name <- s.name.debug('AppletClass'),
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
         isAbstract <- s.isAbstract,
@@ -116,13 +116,13 @@ rule AppletClass {
         ownedBehavior <- s.ownedBehavior
 			->union(
         		if hasInit then Set{}
-        		else Set{thisModule->AppletInitOperation(s)} endif)
+        		else Set{thisModule.AppletInitOperation(s)} endif)
 			->union(
-				if (applet.appletInfo->oclIsUndefined()) then Set{}
-				else Set{thisModule->AppletInfoOperation(s, applet)} endif)
+				if (applet.appletInfo.oclIsUndefined()) then Set{}
+				else Set{thisModule.AppletInfoOperation(s, applet)} endif)
 			->union(
-				if (applet.parameterInfo->oclIsUndefined()) then Set{}
-				else Set{thisModule->ParameterInfoOperation(s, applet)} endif),
+				if (applet.parameterInfo.oclIsUndefined()) then Set{}
+				else Set{thisModule.ParameterInfoOperation(s, applet)} endif),
 		classifierBehavior <- s.classifierBehavior,
         interfaceRealization <- s.interfaceRealization,
         ownedTrigger <- s.ownedTrigger,
@@ -138,14 +138,14 @@ rule AppletClass {
 rule AppletInitOperation(s : UML2!"uml::Class") {
 	to initOp : UML2!"uml::Operation" (
 	   	name <- 'init',
-		class <- s->debug('AppletInitOperation'),
+		class <- s.debug('AppletInitOperation'),
 		visibility <- #public,
 		concurrency <- #sequential),
 	   initBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- initOp,
 		name <- initOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s.isSingleton->appletInitBody()})
+		body <- Sequence{s.isSingleton.appletInitBody()})
 	do {
 		initBehavior;
 	}
@@ -154,7 +154,7 @@ rule AppletInitOperation(s : UML2!"uml::Class") {
 rule AppletInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
 	to infoOp : UML2!"uml::Operation" (
 	   	name <- 'getAppletInfo',
-		class <- s->debug('AppletInfoOperation'),
+		class <- s.debug('AppletInfoOperation'),
 		visibility <- #public,
 		ownedParameter <- Sequence{infoPar},
 		concurrency <- #sequential),
@@ -167,7 +167,7 @@ rule AppletInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
 	   	specification <- infoOp,
 		name <- infoOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{a.appletInfo->appletInfoBody()})
+		body <- Sequence{a.appletInfo.appletInfoBody()})
 	do {
 		infoBehavior;
 	}
@@ -176,7 +176,7 @@ rule AppletInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
 rule ParameterInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
 	to infoOp : UML2!"uml::Operation" (
 	   	name <- 'getParameterInfo',
-		class <- s->debug('ParameterInfoOperation'),
+		class <- s.debug('ParameterInfoOperation'),
 		visibility <- #public,
 		ownedParameter <- Sequence{infoPar},
 		concurrency <- #sequential),
@@ -189,7 +189,7 @@ rule ParameterInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
 	   	specification <- infoOp,
 		name <- infoOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{a.parameterInfo->parameterInfoBody()})
+		body <- Sequence{a.parameterInfo.parameterInfoBody()})
 	do {
 		infoBehavior;
 	}
@@ -198,7 +198,7 @@ rule ParameterInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
 rule OpaqueBehavior {
     from s : UML2!"uml::OpaqueBehavior" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::OpaqueBehavior")
+			s.oclIsTypeOf(UML2!"uml::OpaqueBehavior")
 		else false endif)
 	using { isAppletInit : Boolean = 
 		if (s.specification.name = 'init') then
@@ -214,7 +214,7 @@ rule OpaqueBehavior {
         body <-
 			if isAppletInit then
 				s.body->collect(b|s.specification.class
-					.isSingleton->appletInitBody() + '\n' + b)
+					.isSingleton.appletInitBody() + '\n' + b)
 			else
 				s.body
 			endif,

@@ -12,7 +12,7 @@ create OUT : XML from IN : CFG;
 rule ConfigRoot {
 	from s : CFG!"transformations::TransformationConfig"
 	to root : XML!"XML::Root" mapsTo s (
-		name <- thisModule->ConfigHeader(s))
+		name <- thisModule.ConfigHeader(s))
 }
 
 rule ConfigHeader(s : CFG!"transformations::TransformationConfig") {
@@ -33,12 +33,12 @@ rule ConfigHeader(s : CFG!"transformations::TransformationConfig") {
 	   currentpath : XML!"XML::Element" (
 	   	parent <- s,
 		name <- 'property',
-		children <- thisModule->Property('current.path', '/${ant.project.name}')),
+		children <- thisModule.Property('current.path', '/${ant.project.name}')),
 	-- <property name="saveNoModels|saveModels|saveLastModel" value="true"/>
 	   save : XML!"XML::Element" (
 	   	parent <- s,
 		name <- 'property',
-		children <- thisModule->Property(
+		children <- thisModule.Property(
 			if s.saveModels = #none then 'saveNoModels' else
 			if s.saveModels = #all then 'saveModels' else
 			'saveLastModel' endif endif,
@@ -68,7 +68,7 @@ rule Java2DataTypes {
 
 rule UML2Observer {
 	from s : CFG!"transformations::UML2Observer" (
-		s->oclIsTypeOf(CFG!"transformations::UML2Observer"))
+		s.oclIsTypeOf(CFG!"transformations::UML2Observer"))
 	-- <property name="observer" value="true"/>
 	to observer : XML!"XML::Element" mapsTo s (
 		parent <- s.config,
@@ -87,7 +87,7 @@ rule UML2JavaObserver {
 
 rule UML2Applet {
 	from s : CFG!"transformations::UML2Applet" (
-		s->oclIsTypeOf(CFG!"transformations::UML2Applet"))
+		s.oclIsTypeOf(CFG!"transformations::UML2Applet"))
 	-- <property name="applet" value="true"/>
 	to applet : XML!"XML::Element" mapsTo s (
 		parent <- s.config,

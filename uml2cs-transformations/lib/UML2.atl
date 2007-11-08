@@ -8,25 +8,25 @@ uses Strings;
 ------------------------------- General helpers -----------------------------------
 
 helper context String def : primitiveType() : UML2!"uml::PrimitiveType" =
-	UML2!"uml::PrimitiveType"->allInstances()->select(s|s.name=self)->first();
+	UML2!"uml::PrimitiveType".allInstances()->select(s|s.name=self)->first();
 
 helper context String def : profile() : UML2!"uml::Profile" =
-	UML2!"uml::Profile"->allInstances()->select(p|p.name=self)->first();
+	UML2!"uml::Profile".allInstances()->select(p|p.name=self)->first();
 
 helper context String def : stereotype() : UML2!"uml::Stereotype" =
-	UML2!"uml::Stereotype"->allInstances()->select(s|s.name=self)->first();
+	UML2!"uml::Stereotype".allInstances()->select(s|s.name=self)->first();
 
 helper context String def : dataType() : UML2!"uml::DataType" =
-	UML2!"uml::DataType"->allInstances()->select(c|c.umlQualifiedName=self)->first();
+	UML2!"uml::DataType".allInstances()->select(c|c.umlQualifiedName=self)->first();
 
 helper context String def : type() : UML2!"uml::Type" =
-	UML2!"uml::Type"->allInstances()->select(c|c.umlQualifiedName=self)->first();
+	UML2!"uml::Type".allInstances()->select(c|c.umlQualifiedName=self)->first();
 
 helper context String def : interface() : UML2!"uml::Interface" =
-	UML2!"uml::Interface"->allInstances()->select(c|c.umlQualifiedName=self)->first();
+	UML2!"uml::Interface".allInstances()->select(c|c.umlQualifiedName=self)->first();
 
 helper context String def : class() : UML2!"uml::Class" =
-	UML2!"uml::Class"->allInstances()->select(c|c.umlQualifiedName=self)->first();
+	UML2!"uml::Class".allInstances()->select(c|c.umlQualifiedName=self)->first();
 
 ------------------------------- BehavioredClassifier -----------------------------------
 
@@ -47,25 +47,25 @@ helper context UML2!"uml::MultiplicityElement" def : accessorBaseNameS : String 
 	self.accessorBaseName + if self.isSingle then '' else 's' endif;
 
 helper context UML2!"uml::MultiplicityElement" def : isSingle : Boolean =
-	if self.upperValue->oclIsUndefined() then true
+	if self.upperValue.oclIsUndefined() then true
 	else self.upperValue.value = 1 endif;
 
 helper context UML2!"uml::MultiplicityElement" def : lower : Integer =
-	if self.lowerValue->oclIsUndefined() then 1
+	if self.lowerValue.oclIsUndefined() then 1
 	else self.lowerValue.value endif;
 
 helper context UML2!"uml::MultiplicityElement" def : upper : Integer =
-	if self.upperValue->oclIsUndefined() then 1
+	if self.upperValue.oclIsUndefined() then 1
 	else self.upperValue.value endif;
 
 ------------------------------- NamedElement -----------------------------------
 
 helper context UML2!"uml::NamedElement" def : umlQualifiedName : String =
-	self->qualifiedName('::');
+	self.qualifiedName('::');
 
 helper context UML2!"uml::NamedElement" def : qualifiedName(separator : String) : String =
-	if self.owner->oclIsTypeOf(UML2!"uml::Package") then
-		self.owner->qualifiedName(separator) + separator + self.name
+	if self.owner.oclIsTypeOf(UML2!"uml::Package") then
+		self.owner.qualifiedName(separator) + separator + self.name
 	else
 		self.name
 	endif;
@@ -87,20 +87,20 @@ helper context UML2!"uml::PackageableElement" def : owningPackage : UML2!"uml::P
 ------------------------------- Property -----------------------------------
 
 helper context UML2!"uml::Property" def : isNavigable : Boolean =
-	self.owningAssociation->oclIsUndefined();
+	self.owningAssociation.oclIsUndefined();
 
 --helper context UML2!"uml::Property" def : hasAssociatedProperty : Boolean =
---	if self.association->oclIsUndefined() then
+--	if self.association.oclIsUndefined() then
 --		false
 --	else
 --		self.association.memberEnd->select(p|
---			p<>self and p->isNavigable())->notEmpty()
+--			p<>self and p.isNavigable())->notEmpty()
 --	endif;
 
 helper context UML2!"uml::Property" def : associatedProperty : UML2!"uml::Property" =
-	if self.association->oclIsUndefined() then
+	if self.association.oclIsUndefined() then
 		OclUndefined
 	else
 		self.association.memberEnd->select(p|
-			p<>self and p->isNavigable())->first()
+			p<>self and p.isNavigable())->first()
 	endif;

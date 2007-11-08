@@ -12,7 +12,7 @@ uses UML2;
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : accessorsProfile : UML2!"uml::Profile" = 'Accessors'->profile();
+helper def : accessorsProfile : UML2!"uml::Profile" = 'Accessors'.profile();
 
 -- ======================================================================
 -- model-specific helpers end
@@ -25,10 +25,10 @@ helper def : accessorsProfile : UML2!"uml::Profile" = 'Accessors'->profile();
 rule Model {
     from s : UML2!"uml::Model" (
     	if thisModule.inElements->includes(s) then
-			s->includesProfile(thisModule.accessorsProfile)
+			s.includesProfile(thisModule.accessorsProfile)
 		else false endif)
     to t : UML2!"uml::Model" mapsTo s (
-        name <- s.name->debug('Model'),
+        name <- s.name.debug('Model'),
         visibility <- s.visibility,
         viewpoint <- s.viewpoint,
         eAnnotations <- s.eAnnotations,
@@ -49,10 +49,10 @@ rule Model {
 rule ModelProfile {
     from s : UML2!"uml::Model" (
     	if thisModule.inElements->includes(s) then
-			not s->includesProfile(thisModule.accessorsProfile)
+			not s.includesProfile(thisModule.accessorsProfile)
 		else false endif)
     to t : UML2!"uml::Model" mapsTo s (
-        name <- s.name->debug('ModelProfile'),
+        name <- s.name.debug('ModelProfile'),
         visibility <- s.visibility,
         viewpoint <- s.viewpoint,
         eAnnotations <- s.eAnnotations,
@@ -73,8 +73,8 @@ rule ModelProfile {
 		appliedProfile <- thisModule.accessorsProfile),
 	   ref : UML2!"ecore::EAnnotation" (
 	   	eModelElement <- pa,
-		source <- s->eClass().ePackage.nsURI,
-		references <- UML2!"ecore::EPackage"->allInstancesFrom('ACCESSORS')->select(p|p.name='Accessors'))
+		source <- s.eClass().ePackage.nsURI,
+		references <- UML2!"ecore::EPackage".allInstancesFrom('ACCESSORS')->select(p|p.name='Accessors'))
 }
 
 -- ======================================================================

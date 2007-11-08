@@ -15,7 +15,7 @@ uses UML2Copy;
 rule "Observer::Observer" {
     from s : UML2!"Observer::Observer" (thisModule.inElements->includes(s))
     to t : UML2!"Observer::Observer" mapsTo s (
-        base_Classifier <- s.base_Classifier->debug('Observer'))
+        base_Classifier <- s.base_Classifier.debug('Observer'))
 }
 
 rule "Observer::subscribe" {

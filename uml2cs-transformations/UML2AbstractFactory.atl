@@ -13,10 +13,10 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : language : String = 'language'->value();
-helper def : abstractFactories : Sequence(UML2!"AbstractFactory::AbstractFactory") = UML2!"AbstractFactory::AbstractFactory"->allInstances();
-helper def : concreteFactories : Sequence(UML2!"AbstractFactory::ConcreteFactory") = UML2!"AbstractFactory::ConcreteFactory"->allInstances();
-helper def : products : Sequence(UML2!"AbstractFactory::product") = UML2!"AbstractFactory::product"->allInstances();
+helper def : language : String = 'language'.value();
+helper def : abstractFactories : Sequence(UML2!"AbstractFactory::AbstractFactory") = UML2!"AbstractFactory::AbstractFactory".allInstances();
+helper def : concreteFactories : Sequence(UML2!"AbstractFactory::ConcreteFactory") = UML2!"AbstractFactory::ConcreteFactory".allInstances();
+helper def : products : Sequence(UML2!"AbstractFactory::product") = UML2!"AbstractFactory::product".allInstances();
 
 helper context UML2!"uml::Classifier" def : isAbstractFactory : Boolean =
 	thisModule.abstractFactories->select(a|a.base_Classifier=self)->notEmpty();
@@ -38,12 +38,12 @@ helper context UML2!"uml::Dependency" def : isProduct : Boolean =
 rule Class {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Class") and
+			s.oclIsTypeOf(UML2!"uml::Class") and
 			not s.isConcreteFactory
 		else false endif)
 	using { myDependencies : Set(UML2!"uml::Dependency") = 
 		s.clientDependency->select(d|
-			d->oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct); }
+			d.oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct); }
     to t : UML2!"uml::Class" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
@@ -77,19 +77,19 @@ rule Class {
         nestedClassifier <- s.nestedClassifier,
         ownedOperation <- s.ownedOperation
 			->union(myDependencies->collect(d|
-				thisModule->resolveTemp(d, 'createOp'))),
+				thisModule.resolveTemp(d, 'createOp'))),
         ownedReception <- s.ownedReception)
 }
 
 rule ConcreteFactoryClass {
     from s : UML2!"uml::Class" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Class") and
+			s.oclIsTypeOf(UML2!"uml::Class") and
 			s.isConcreteFactory
 		else false endif)
 	using { myDependencies : Set(UML2!"uml::Dependency") = 
 		s.clientDependency->select(d|
-			d->oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct); }
+			d.oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct); }
     to t : UML2!"uml::Class" mapsTo s (
         name <- s.name->debug('ConcreteFactoryClass'),
         visibility <- s.visibility,
@@ -118,14 +118,14 @@ rule ConcreteFactoryClass {
         ownedConnector <- s.ownedConnector,
         ownedBehavior <- s.ownedBehavior
 			->union(myDependencies->collect(d|
-				thisModule->resolveTemp(d, 'createBehavior'))),
+				thisModule.resolveTemp(d, 'createBehavior'))),
         classifierBehavior <- s.classifierBehavior,
         interfaceRealization <- s.interfaceRealization,
         ownedTrigger <- s.ownedTrigger,
         nestedClassifier <- s.nestedClassifier,
         ownedOperation <- s.ownedOperation
 			->union(myDependencies->collect(d|
-				thisModule->resolveTemp(d, 'createOp'))),
+				thisModule.resolveTemp(d, 'createOp'))),
         ownedReception <- s.ownedReception)
 }
 
@@ -133,7 +133,7 @@ rule Interface {
     from s : UML2!"uml::Interface" (thisModule.inElements->includes(s))
 	using { myDependencies : Set(UML2!"uml::Dependency") = 
 		s.clientDependency->select(d|
-			d->oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct); }
+			d.oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct); }
 	to t : UML2!"uml::Interface" mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
@@ -160,7 +160,7 @@ rule Interface {
         ownedAttribute <- s.ownedAttribute,
         ownedOperation <- s.ownedOperation
 			->union(myDependencies->collect(d|
-				thisModule->resolveTemp(d, 'createOp'))),
+				thisModule.resolveTemp(d, 'createOp'))),
         nestedClassifier <- s.nestedClassifier,
         redefinedInterface <- s.redefinedInterface,
         ownedReception <- s.ownedReception,
@@ -170,7 +170,7 @@ rule Interface {
 rule Dependency {
     from s : UML2!"uml::Dependency" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Dependency") and
+			s.oclIsTypeOf(UML2!"uml::Dependency") and
 			not s.isProduct
 		else false endif)
     to t : UML2!"uml::Dependency" mapsTo s (
@@ -188,14 +188,14 @@ rule Dependency {
 rule AbstractProductDependency {
     from s : UML2!"uml::Dependency" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Dependency") and
+			s.oclIsTypeOf(UML2!"uml::Dependency") and
 			if s.isProduct then
 				s.client->select(c|c.isAbstractFactory)->notEmpty()
 			else false endif
 		else false endif)
 	using { supplier : UML2!"uml::Classifier" = s.supplier->first(); }
     to t : UML2!"uml::Dependency" mapsTo s (
-        name <- s.name->debug('AbstractProductDependency'),
+        name <- s.name.debug('AbstractProductDependency'),
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
@@ -221,7 +221,7 @@ rule AbstractProductDependency {
 rule ConcreteProductDependency {
     from s : UML2!"uml::Dependency" (
 		if thisModule.inElements->includes(s) then
-			s->oclIsTypeOf(UML2!"uml::Dependency") and
+			s.oclIsTypeOf(UML2!"uml::Dependency") and
 			if s.isProduct then
 				s.client->select(c|c.isConcreteFactory)->notEmpty()
 			else false endif
@@ -260,7 +260,7 @@ rule ConcreteProductDependency {
 	   	specification <- createOp,
 		name <- createOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s.supplier->first().name->createBody()})
+		body <- Sequence{s.supplier->first().name.createBody()})
 }
 
 -- ======================================================================

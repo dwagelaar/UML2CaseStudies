@@ -112,4 +112,4 @@ helper context String def : isKeyword() : Boolean =
 		'def', 'and', 'or', 'not', 'if', 'then', 'else', 'endif', 'query',
 		'library', 'mapsTo', 'String', 'Boolean', 'Integer', 'Real', 'Bag',
 		'Set', 'OrderedSet', 'Sequence', 'abstract', 'derived', 'refining',
-		'foreach', 'distinct', 'in', 'do', 'uses', 'let'}->includes(self);
+		'foreach', 'distinct', 'in', 'do', 'uses', 'let', 'TupleType'}->includes(self);

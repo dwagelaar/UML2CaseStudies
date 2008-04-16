@@ -198,6 +198,7 @@ rule AllTarget(c : CFG!"instantmessenger::InstantMessengerConfiguration") {
 	   		->union(c.localNetworkDepends())
 			->union(c.jabberNetworkDepends())
 			->union(c.userInterfaceDepends())
+			->append('prettyPrint')
 			->iterate(e; acc : String = '' | acc +
 				if acc = '' then e
 				else ', ' + e endif).debug('All')),

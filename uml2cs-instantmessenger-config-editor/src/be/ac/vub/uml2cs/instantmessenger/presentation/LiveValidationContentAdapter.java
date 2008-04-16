@@ -26,6 +26,7 @@ import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.ILiveValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * A content adapter that performs live validation in response to changes in
@@ -47,7 +48,7 @@ class LiveValidationContentAdapter extends EContentAdapter {
 	public void notifyChanged(final Notification notification) {
 		super.notifyChanged(notification);
 		
-		InstantMessengerEditorPlugin.INSTANCE.getShell().getDisplay().asyncExec(new Runnable() {
+		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
 			public void run() {
 				if (validator == null) {
 					validator = (ILiveValidator) ModelValidationService

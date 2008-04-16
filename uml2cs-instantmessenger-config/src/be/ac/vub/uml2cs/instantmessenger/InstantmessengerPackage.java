@@ -36,7 +36,7 @@ public interface InstantmessengerPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * The package name.
@@ -81,24 +81,6 @@ public interface InstantmessengerPackage extends EPackage {
 	int INSTANT_MESSENGER_CONFIGURATION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Build Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANT_MESSENGER_CONFIGURATION__BUILD_PATH = TransformationsPackage.TRANSFORMATION_CONFIG__BUILD_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Target Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANT_MESSENGER_CONFIGURATION__TARGET_PATH = TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PATH;
-
-	/**
 	 * The feature id for the '<em><b>Mapping</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -133,6 +115,15 @@ public interface InstantmessengerPackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANT_MESSENGER_CONFIGURATION__APPLET = TransformationsPackage.TRANSFORMATION_CONFIG__APPLET;
+
+	/**
+	 * The feature id for the '<em><b>Target Project</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANT_MESSENGER_CONFIGURATION__TARGET_PROJECT = TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PROJECT;
 
 	/**
 	 * The feature id for the '<em><b>Deployment Target</b></em>' attribute.

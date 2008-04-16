@@ -31,7 +31,7 @@ helper context String def : class() : UML2!"uml::Class" =
 ------------------------------- BehavioredClassifier -----------------------------------
 
 helper context UML2!"uml::BehavioredClassifier" def : superTypes : Set(UML2!"uml::Classifier") =
-	self.general->union(self.interfaceRealization->collect(i|i.contract));
+	self.general->union(self.interfaceRealization->collect(i|i.contract)).debug('BehavioredClassifier.superTypes');
 
 ------------------------------- Classifier -----------------------------------
 

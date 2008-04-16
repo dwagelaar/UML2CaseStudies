@@ -12,6 +12,10 @@ package be.ac.vub.uml2cs.transformations;
  * A representation of the model object '<em><b>Java Mapping</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Java language mapping
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -20,8 +24,7 @@ package be.ac.vub.uml2cs.transformations;
  * </p>
  *
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getJavaMapping()
- * @model annotation="GenModel documentation='Java language mapping'"
- *        annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#JavaMappingsPlatform'"
+ * @model annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#JavaMappingsPlatform'"
  *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#JavaMappingsPlatform'"
  * @generated
  */

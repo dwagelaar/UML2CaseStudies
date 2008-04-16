@@ -20,7 +20,7 @@ rule ConfigHeader(s : CFG!"transformations::TransformationConfig") {
 	to name : XML!"XML::Attribute" (
 	   	parent <- s,
 	   	name <- 'name',
-		value <- s.buildPath),
+		value <- s.targetProject + '/build'),
 	-- <import file="common.xml"/>
 	   import : XML!"XML::Element" (
 	   	parent <- s,

@@ -15,13 +15,12 @@
       <genEnumLiterals ecoreEnumLiteral="Transformations.ecore#//SaveModelType/last"/>
       <genEnumLiterals ecoreEnumLiteral="Transformations.ecore#//SaveModelType/all"/>
     </genEnums>
-    <genClasses ecoreClass="Transformations.ecore#//TransformationConfig">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Transformations.ecore#//TransformationConfig/buildPath"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Transformations.ecore#//TransformationConfig/targetPath"/>
+    <genClasses ecoreClass="Transformations.ecore#//TransformationConfig" labelFeature="#//transformations/TransformationConfig/targetProject">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Transformations.ecore#//TransformationConfig/mapping"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Transformations.ecore#//TransformationConfig/saveModels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Transformations.ecore#//TransformationConfig/observer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Transformations.ecore#//TransformationConfig/applet"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Transformations.ecore#//TransformationConfig/targetProject"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Transformations.ecore#//Mapping">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Transformations.ecore#//Mapping/config"/>

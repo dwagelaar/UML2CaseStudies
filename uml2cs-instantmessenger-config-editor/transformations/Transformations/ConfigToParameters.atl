@@ -25,7 +25,7 @@ rule ConfigRoot {
 	   paramValue : XML!"XML::Attribute" (
 	   	parent <- param,
 		name <- 'value',
-		value <- s.targetPath.debug('target path'))
+		value <- (s.targetProject + '/src').debug('target path'))
 	-- </parameters>
 }
 

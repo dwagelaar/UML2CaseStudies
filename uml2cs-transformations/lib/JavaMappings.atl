@@ -102,6 +102,7 @@ helper context String def : dualRemoverBody(otherEnd : String) : String =
 
 helper context String def : implTypeName() : String =
 	if self = 'Integer' then 'java::lang::int' else
+	if self = 'Natural' then 'java::lang::long' else
 	if self = 'UnlimitedNatural' then 'java::lang::int' else
 	if self = 'Real' then 'java::lang::double' else
 	if self = 'Boolean' then 'java::lang::boolean' else
@@ -109,50 +110,63 @@ helper context String def : implTypeName() : String =
 	if self = 'OclAny' then 'java::lang::Object' else
 	if self = 'Exception' then 'java::lang::Exception' else
 	self.javaImplTypeName()
-	endif endif endif endif endif endif endif;
+	endif endif endif endif endif endif endif endif;
 
 helper context String def : implCollectionReturnTypeName() : String =
 	'java::util::Enumeration';
 
 helper context String def : defaultValueBody() : String =
 	if self = 'java::lang::int' then '0' else
+	if self = 'java::lang::long' then '0' else
 	if self = 'java::lang::double' then '0.0' else
 	if self = 'java::lang::boolean' then 'false' else
 	self.javaDefaultValueBody()
-	endif endif endif;
+	endif endif endif endif;
 
 ------------------------------- Observer -----------------------------------
 
 helper context String def : javaBoxedType() : String =
 	if self = 'OclAny' then
 		'Object'
+	else if self = 'Natural' then
+		'Long'
+	else if self = 'UnlimitedNatural' then
+		'Integer'
 	else if self = 'Real' then
 		'Double'
 	else 
 		self
-	endif endif;
+	endif endif endif endif;
 
 helper context String def : javaBoxing(type : String) : String =
 	if type = 'Boolean' then
 		'new Boolean(' + self + ')'
 	else if type = 'Integer' then
 		'new Integer(' + self + ')'
+	else if type = 'Natural' then
+		'new Long(' + self + ')'
+	else if type = 'UnlimitedNatural' then
+		'new Integer(' + self + ')'
 	else if type = 'Real' then
 		'new Double(' + self + ')'
 	else
 		self
-	endif endif endif;
+	endif endif endif endif endif;
 
 helper context String def : javaUnboxing(type : String) : String =
 	if type = 'Boolean' then
 		'(' + self + ').booleanValue()'
 	else if type = 'Integer' then
 		'(' + self + ').intValue()'
+	else if type = 'Natural' then
+		'(' + self + ').longValue()'
+	else if type = 'UnlimitedNatural' then
+		'(' + self + ').intValue()'
 	else if type = 'Real' then
 		'(' + self + ').doubleValue()'
 	else
 		self
-	endif endif endif;
+	endif endif endif endif endif;
 
 helper context String def : javaTypedValue(type : String) : String =
 	'(' + type.javaBoxedType() + ') ' + self;

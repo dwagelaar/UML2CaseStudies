@@ -13,6 +13,10 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>UML2 Observer</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Implements the Observer profile
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -21,8 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getUML2Observer()
- * @model annotation="GenModel documentation='Implements the Observer profile'"
- *        annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#Java1Platform'"
+ * @model annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#Java1Platform'"
  *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#Java1Platform'"
  * @generated
  */

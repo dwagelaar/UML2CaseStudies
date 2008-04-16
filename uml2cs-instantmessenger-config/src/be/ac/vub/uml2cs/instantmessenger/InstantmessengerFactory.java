@@ -22,7 +22,7 @@ public interface InstantmessengerFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * The singleton instance of the factory.

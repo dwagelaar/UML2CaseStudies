@@ -17,8 +17,11 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * A representation of the literals of the enumeration '<em><b>Save Model Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * Save all intermediate models, only the last model or no models (generate code only)
+ * <!-- end-model-doc -->
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getSaveModelType()
- * @model annotation="GenModel documentation='Save all intermediate models, only the last model or no models (generate code only)'"
+ * @model
  * @generated
  */
 public final class SaveModelType extends AbstractEnumerator {

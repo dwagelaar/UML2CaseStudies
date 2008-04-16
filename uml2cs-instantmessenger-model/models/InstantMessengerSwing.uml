@@ -141,6 +141,13 @@
               <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_NTkykEd8Edy_8vCCth3JFA"/>
               <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZCw9kEd8Edy_8vCCth3JFA" value="new DefaultListModel()"/>
             </ownedAttribute>
+            <ownedAttribute xmi:id="_9R-84OrPEdyNAoXCUy3AUQ" name="serialVersionUID" visibility="private" isStatic="true" isReadOnly="true">
+              <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_thVLwOrIEdyKT-jaGOfUdg"/>
+              <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_AZNMgOrQEdyNAoXCUy3AUQ">
+                <language>java</language>
+                <body>-8408366249101913307L</body>
+              </defaultValue>
+            </ownedAttribute>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_PyFWEEPmEdug19jXgM5cew" name="SwingContactListViewBehavior" specification="_4K0f8EPcEdusb52s3APTjA">
               <eAnnotations xmi:id="_t-OkkEPmEdug19jXgM5cew" source="http://www.topcased.org/uuid">
                 <details xmi:id="_t-OkkUPmEdug19jXgM5cew" key="uuid" value="115823441442445"/>
@@ -377,6 +384,13 @@
                 </eAnnotations>
                 <language>java</language>
                 <body>new JScrollPane()</body>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Gkj7gOrQEdyNAoXCUy3AUQ" name="serialVersionUID" visibility="private" isStatic="true" isReadOnly="true">
+              <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_thVLwOrIEdyKT-jaGOfUdg"/>
+              <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_KO104OrQEdyNAoXCUy3AUQ">
+                <language>java</language>
+                <body>-3797649023891518661L</body>
               </defaultValue>
             </ownedAttribute>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_S7Ra8EPuEdug19jXgM5cew" name="SwingConversationViewBehavior" specification="_vCDSsEPeEdusb52s3APTjA">
@@ -1020,6 +1034,13 @@
             <ownedAttribute xmi:id="_WwVEEEeAEdyl5eqQ4RjOpw" name="vgap" visibility="public">
               <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
               <defaultValue xmi:type="uml:LiteralString" xmi:id="_djHmgEeAEdyl5eqQ4RjOpw" value="2"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_xlL-kOrPEdyNAoXCUy3AUQ" name="serialVersionUID" visibility="private" isStatic="true" isReadOnly="true">
+              <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_thVLwOrIEdyKT-jaGOfUdg"/>
+              <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_1eo8YOrPEdyNAoXCUy3AUQ">
+                <language>java</language>
+                <body>-6601853458540392600L</body>
+              </defaultValue>
             </ownedAttribute>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_7Sp8EEeBEdyE8rMHBJO3IA" name="SwingContactCellRendererBehavior" specification="_jwjZIEeAEdyl5eqQ4RjOpw">
               <language>java</language>

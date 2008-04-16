@@ -42,7 +42,7 @@ public class JabberNetworkImpl extends EObjectImpl implements JabberNetwork {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * The cached value of the '{@link #getJabberTransport() <em>Jabber Transport</em>}' containment reference.

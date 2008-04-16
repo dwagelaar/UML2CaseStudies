@@ -11,18 +11,6 @@
     <eAnnotations source="GenModel">
       <details key="documentation" value="Root node for a transformation configuration model"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="buildPath" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true">
-      <eAnnotations source="GenModel">
-        <details key="documentation" value="Path to store the generated build files"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetPath" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="GenModel">
-        <details key="documentation" value="Path to write the generated code to"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" lowerBound="1"
         eType="#//Mapping" containment="true" eOpposite="#//Mapping/config">
       <eAnnotations source="GenModel">
@@ -47,6 +35,8 @@
         <details key="documentation" value="Variant of UML2Applet transformation to use"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetProject" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mapping" abstract="true">
     <eAnnotations source="GenModel">

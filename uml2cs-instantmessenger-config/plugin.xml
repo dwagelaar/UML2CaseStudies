@@ -56,9 +56,7 @@
                  %validation.constraint1.message
               </message>
               <![CDATA[
-              	self.userInterface->select(u|u.oclIsKindOf(AWTUserInterface))->size() <= 1 and
-              	self.userInterface->select(u|u.oclIsKindOf(SwingUserInterface))->size() <= 1 and
-              	self.userInterface->select(u|u.oclIsKindOf(LCDUIUserInterface))->size() <= 1
+              	%validation.constraint1.ocl
               ]]>
            </constraint>
         </constraints>

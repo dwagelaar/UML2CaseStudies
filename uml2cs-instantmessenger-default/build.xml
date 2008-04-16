@@ -8,7 +8,13 @@
         </delete>
 		<mkdir dir="src"/>
 		<mkdir dir="build"/>
-		<copy todir="build" file="../uml2cs-transformations/common.xml"/>
+		<copy todir="build" file="../uml2cs-transformations/ant/common.xml"/>
+		<copy todir="build" file="../uml2cs-transformations/ant/hibernate-tools.jar"/>
+		<echoxml file="build/parameters.xml">
+			<parameters>
+				<param name="path" value="${ant.project.name}/src"/>
+			</parameters>
+		</echoxml>
 		<eclipse.refreshLocal resource="${ant.project.name}"/>
 	</target>
 	
@@ -26,21 +32,21 @@
 			<outmodel name="OUT" model="Build" metamodel="XML" path="${ant.project.name}/build/build.xml"/>
 			<superimpose path="uml2cs-instantmessenger-model/ConfigToBuildFile.asm"/>
 		</am3.atl>
-		<am3.atl path="uml2cs-transformations/ConfigToParameters.atl">
+		<!--am3.atl path="uml2cs-transformations/ConfigToParameters.atl">
 			<inmodel name="CFG" model="ConfigMM"/>
 			<inmodel name="IN" model="Config"/>
 			<inmodel name="XML" model="XML"/>
 			<outmodel name="OUT" model="Parameters" metamodel="XML" path="${ant.project.name}/build/parameters.xml"/>
-		</am3.atl>
+		</am3.atl-->
 	</target>
 	
 	<target name="saveModels" depends="transform">
 		<am3.saveModel model="Build" path="${ant.project.name}/build/build.xml">
 			<extractor name="xml"/>
 		</am3.saveModel>
-		<am3.saveModel model="Parameters" path="${ant.project.name}/build/parameters.xml">
+		<!--am3.saveModel model="Parameters" path="${ant.project.name}/build/parameters.xml">
 			<extractor name="xml"/>
-		</am3.saveModel>
+		</am3.saveModel-->
 		<eclipse.refreshLocal resource="${ant.project.name}"/>
 	</target>
 	

@@ -26,4 +26,6 @@ public interface TransformationConfigValidator {
 	boolean validateSaveModels(SaveModelType value);
 	boolean validateObserver(UML2Observer value);
 	boolean validateApplet(UML2Applet value);
+
+	boolean validateTargetProject(String value);
 }

@@ -12,10 +12,13 @@ package be.ac.vub.uml2cs.transformations;
  * A representation of the model object '<em><b>Java1 Data Types</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Java 1.0 data types
+ * <!-- end-model-doc -->
+ *
  *
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getJava1DataTypes()
- * @model annotation="GenModel documentation='Java 1.0 data types'"
- *        annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#Java1Platform'"
+ * @model annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#Java1Platform'"
  *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#Java1Platform'"
  * @generated
  */

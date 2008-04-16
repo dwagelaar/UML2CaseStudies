@@ -24,6 +24,6 @@ public interface MIDletPackaging extends Packaging {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 } // MIDletPackaging

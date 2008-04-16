@@ -40,7 +40,7 @@ public abstract class UserInterfaceImpl extends EObjectImpl implements UserInter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * <!-- begin-user-doc -->

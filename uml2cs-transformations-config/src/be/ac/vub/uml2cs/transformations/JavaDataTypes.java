@@ -13,6 +13,10 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Java Data Types</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Java language data types
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -22,7 +26,6 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getJavaDataTypes()
  * @model abstract="true"
- *        annotation="GenModel documentation='Java language data types'"
  * @generated
  */
 public interface JavaDataTypes extends EObject {

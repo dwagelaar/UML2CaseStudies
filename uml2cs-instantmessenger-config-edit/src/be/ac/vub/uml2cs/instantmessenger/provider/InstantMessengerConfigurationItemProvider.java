@@ -11,6 +11,7 @@ import be.ac.vub.uml2cs.instantmessenger.InstantMessengerConfiguration;
 import be.ac.vub.uml2cs.instantmessenger.InstantmessengerFactory;
 import be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage;
 
+import be.ac.vub.uml2cs.transformations.SaveModelType;
 import be.ac.vub.uml2cs.transformations.provider.TransformationConfigItemProvider;
 
 import java.util.Collection;
@@ -51,7 +52,7 @@ public class InstantMessengerConfigurationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -148,7 +149,7 @@ public class InstantMessengerConfigurationItemProvider
 	 * @generated
 	 */
 	public String getText(Object object) {
-		String label = ((InstantMessengerConfiguration)object).getBuildPath();
+		String label = ((InstantMessengerConfiguration)object).getTargetProject();
 		return label == null || label.length() == 0 ?
 			getString("_UI_InstantMessengerConfiguration_type") :
 			getString("_UI_InstantMessengerConfiguration_type") + " " + label;

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: be.ac.vub.uml2cs.instantmessenger.config.editor; singleton:=true
-Bundle-Version: 1.0.9
+Bundle-Version: 1.0.10
 Bundle-ClassPath: .
 Bundle-Activator: be.ac.vub.uml2cs.instantmessenger.presentation.InstantMessengerEditorPlugin$Implementation
 Bundle-Vendor: %providerName
@@ -16,5 +16,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.ide;visibility:=reexport,
  be.ac.vub.uml2cs.transformations.config.edit;visibility:=reexport,
  org.eclipse.m2m.atl.engine,
- org.eclipse.emf.validation
+ org.eclipse.emf.validation,
+ org.eclipse.m2m.atl.adt.debug
 Eclipse-LazyStart: true

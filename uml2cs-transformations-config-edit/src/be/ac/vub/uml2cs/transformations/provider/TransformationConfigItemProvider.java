@@ -7,6 +7,7 @@
 package be.ac.vub.uml2cs.transformations.provider;
 
 
+import be.ac.vub.uml2cs.transformations.SaveModelType;
 import be.ac.vub.uml2cs.transformations.TransformationConfig;
 import be.ac.vub.uml2cs.transformations.TransformationsFactory;
 import be.ac.vub.uml2cs.transformations.TransformationsPackage;
@@ -72,55 +73,10 @@ public class TransformationConfigItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addBuildPathPropertyDescriptor(object);
-			addTargetPathPropertyDescriptor(object);
 			addSaveModelsPropertyDescriptor(object);
+			addTargetProjectPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Build Path feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addBuildPathPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TransformationConfig_buildPath_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TransformationConfig_buildPath_feature", "_UI_TransformationConfig_type"),
-				 TransformationsPackage.Literals.TRANSFORMATION_CONFIG__BUILD_PATH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Target Path feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTargetPathPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TransformationConfig_targetPath_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TransformationConfig_targetPath_feature", "_UI_TransformationConfig_type"),
-				 TransformationsPackage.Literals.TRANSFORMATION_CONFIG__TARGET_PATH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -137,6 +93,28 @@ public class TransformationConfigItemProvider
 				 getString("_UI_TransformationConfig_saveModels_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TransformationConfig_saveModels_feature", "_UI_TransformationConfig_type"),
 				 TransformationsPackage.Literals.TRANSFORMATION_CONFIG__SAVE_MODELS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target Project feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetProjectPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TransformationConfig_targetProject_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TransformationConfig_targetProject_feature", "_UI_TransformationConfig_type"),
+				 TransformationsPackage.Literals.TRANSFORMATION_CONFIG__TARGET_PROJECT,
 				 true,
 				 false,
 				 false,
@@ -192,7 +170,7 @@ public class TransformationConfigItemProvider
 	 * @generated
 	 */
 	public String getText(Object object) {
-		String label = ((TransformationConfig)object).getBuildPath();
+		String label = ((TransformationConfig)object).getTargetProject();
 		return label == null || label.length() == 0 ?
 			getString("_UI_TransformationConfig_type") :
 			getString("_UI_TransformationConfig_type") + " " + label;
@@ -209,9 +187,8 @@ public class TransformationConfigItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TransformationConfig.class)) {
-			case TransformationsPackage.TRANSFORMATION_CONFIG__BUILD_PATH:
-			case TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PATH:
 			case TransformationsPackage.TRANSFORMATION_CONFIG__SAVE_MODELS:
+			case TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PROJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING:

@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Assert;
@@ -30,8 +32,8 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.m2m.atl.adt.launching.AtlVM;
 import org.eclipse.m2m.atl.engine.AtlEMFModelHandler;
-import org.eclipse.m2m.atl.engine.AtlLauncher;
 import org.eclipse.m2m.atl.engine.AtlModelHandler;
 import org.eclipse.m2m.atl.engine.extractors.xml.XMLExtractor;
 import org.eclipse.m2m.atl.engine.vm.nativelib.ASMModel;
@@ -44,6 +46,8 @@ import be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage;
 import be.ac.vub.uml2cs.instantmessenger.presentation.InstantMessengerEditorPlugin;
 
 public class GenerateBuildFileAction implements IObjectActionDelegate {
+	
+	public static final String ATL_VM = "EMF-specific VM";
 
     protected ISelection selection;
     protected IAction action;
@@ -115,7 +119,7 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
      * @throws Exception
      */
     protected void runAction(IProgressMonitor monitor) throws Exception {
-        monitor.beginTask("Generating build.xml file", 6);
+        monitor.beginTask("Generating build.xml file", 7);
         monitor.subTask("Reading input model...");
         InstantMessengerConfiguration object =
         	(InstantMessengerConfiguration) ((IStructuredSelection) selection).getFirstElement();
@@ -125,23 +129,28 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         worked(monitor);
         monitor.subTask("Getting output folder...");
         IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-        IPath folder = new Path(object.getBuildPath());
-        if (root.findMember(folder) == null) {
-        	throw new IOException("build path " + folder + " not found in workspace");
+        IPath projectPath = new Path(object.getTargetProject());
+        IResource projectResource = root.findMember(projectPath);
+        if (projectResource == null) {
+        	throw new IOException("project " + projectResource + " not found in workspace");
         }
-        IFile commonFile = root.getFile(folder.append("common.xml"));
-        IFile buildFile = root.getFile(folder.append("build.xml"));
-        IFile parFile = root.getFile(folder.append("parameters.xml"));
+        IPath buildPath = projectPath.append("build");
+        IFolder buildFolder = root.getFolder(buildPath);
+        if (!buildFolder.exists()) {
+        	buildFolder.create(true, true, monitor);
+        }
+        IFile hibtoolsFile = root.getFile(buildPath.append("hibernate-tools.jar"));
+        IFile commonFile = root.getFile(buildPath.append("common.xml"));
+        IFile buildFile = root.getFile(buildPath.append("build.xml"));
+        IFile parFile = root.getFile(buildPath.append("parameters.xml"));
         worked(monitor);
         monitor.subTask("Copying common.xml...");
         URL commonURL = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/common.xml");
-        InputStream source = commonURL.openStream();
-        if (!commonFile.exists()) {
-        	commonFile.create(source, true, null);
-        } else {
-        	commonFile.setContents(source, true, true, null);
-        }
-        source.close();
+        copyURLToFile(commonURL, commonFile);
+        worked(monitor);
+        monitor.subTask("Copying hibernate-tools.jar...");
+        URL hibtoolsURL = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/hibernate-tools.jar");
+        copyURLToFile(hibtoolsURL, hibtoolsFile);
         worked(monitor);
         monitor.subTask("Loading models...");
         ASMModel cfg = amh.loadModel("CFG", amh.getMof(), "uri:" + InstantmessengerPackage.eNS_URI);
@@ -164,8 +173,10 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         URL trans2 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/InstantMessenger/ConfigToBuildFile.asm");
         List superimpose = new ArrayList();
         superimpose.add(trans2);
-        AtlLauncher myLauncher = AtlLauncher.getDefault();
-        myLauncher.launch(trans1, libs, models, params, superimpose);
+//        AtlLauncher myLauncher = AtlLauncher.getDefault();
+		AtlVM atlVM = AtlVM.getVM(ATL_VM);
+		atlVM.launch(trans1, libs, models, params, superimpose, Collections.EMPTY_MAP);
+//        myLauncher.launch(trans1, libs, models, params, superimpose);
         xmlExtraction(out, buildFile);
         buildFile.refreshLocal(0, null);
         worked(monitor);
@@ -177,10 +188,28 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         models.put(in.getName(), in);
         models.put(out.getName(), out);
         URL trans3 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/ConfigToParameters.asm");
-        myLauncher.launch(trans3, libs, models, params, Collections.EMPTY_LIST);
+		atlVM.launch(trans3, libs, models, params, Collections.EMPTY_LIST, Collections.EMPTY_MAP);
+//        myLauncher.launch(trans3, libs, models, params, Collections.EMPTY_LIST);
         xmlExtraction(out, parFile);
         parFile.refreshLocal(0, null);
         worked(monitor);
+    }
+    
+    /**
+     * Copies the contents of "from" to "to".
+     * @param from The URL that points to the contents to copy.
+     * @param to The file to copy the contents to.
+     * @throws IOException
+     * @throws CoreException
+     */
+    private static void copyURLToFile(URL from, IFile to) throws IOException, CoreException {
+        final InputStream source = from.openStream();
+        if (!to.exists()) {
+        	to.create(source, true, null);
+        } else {
+        	to.setContents(source, true, true, null);
+        }
+        source.close();
     }
     
     /**

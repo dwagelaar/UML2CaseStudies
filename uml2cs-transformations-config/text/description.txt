@@ -8,12 +8,11 @@ This can be disabled with -vmargs -Dorg.eclipse.emf.examples.generator.validator
 Package transformations <http://ssel.vub.ac.be/uml2cs/Transformations>
 
   Class TransformationConfig
-    Attribute buildPath : EString<<1..1>>
-    Attribute targetPath : EString<<1..1>>
     Reference mapping : Mapping<<1..1>>
     Attribute saveModels : SaveModelType<<1..1>>
     Reference observer : UML2Observer<<1..1>>
     Reference applet : UML2Applet<<1..1>>
+    Attribute targetProject : EString<<1..1>>
 
   Class Mapping
     Reference config : TransformationConfig<<1..1>>

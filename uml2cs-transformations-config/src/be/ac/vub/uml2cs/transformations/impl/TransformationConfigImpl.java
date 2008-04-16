@@ -6,21 +6,19 @@
  */
 package be.ac.vub.uml2cs.transformations.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import be.ac.vub.uml2cs.transformations.Mapping;
 import be.ac.vub.uml2cs.transformations.SaveModelType;
 import be.ac.vub.uml2cs.transformations.TransformationConfig;
 import be.ac.vub.uml2cs.transformations.TransformationsPackage;
 import be.ac.vub.uml2cs.transformations.UML2Applet;
 import be.ac.vub.uml2cs.transformations.UML2Observer;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,12 +27,11 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link be.ac.vub.uml2cs.transformations.impl.TransformationConfigImpl#getBuildPath <em>Build Path</em>}</li>
- *   <li>{@link be.ac.vub.uml2cs.transformations.impl.TransformationConfigImpl#getTargetPath <em>Target Path</em>}</li>
  *   <li>{@link be.ac.vub.uml2cs.transformations.impl.TransformationConfigImpl#getMapping <em>Mapping</em>}</li>
  *   <li>{@link be.ac.vub.uml2cs.transformations.impl.TransformationConfigImpl#getSaveModels <em>Save Models</em>}</li>
  *   <li>{@link be.ac.vub.uml2cs.transformations.impl.TransformationConfigImpl#getObserver <em>Observer</em>}</li>
  *   <li>{@link be.ac.vub.uml2cs.transformations.impl.TransformationConfigImpl#getApplet <em>Applet</em>}</li>
+ *   <li>{@link be.ac.vub.uml2cs.transformations.impl.TransformationConfigImpl#getTargetProject <em>Target Project</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,46 +44,6 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * @generated
 	 */
 	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
-
-	/**
-	 * The default value of the '{@link #getBuildPath() <em>Build Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBuildPath()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String BUILD_PATH_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getBuildPath() <em>Build Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBuildPath()
-	 * @generated
-	 * @ordered
-	 */
-	protected String buildPath = BUILD_PATH_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getTargetPath() <em>Target Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetPath()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String TARGET_PATH_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getTargetPath() <em>Target Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTargetPath()
-	 * @generated
-	 * @ordered
-	 */
-	protected String targetPath = TARGET_PATH_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getMapping() <em>Mapping</em>}' containment reference.
@@ -139,6 +96,26 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	protected UML2Applet applet;
 
 	/**
+	 * The default value of the '{@link #getTargetProject() <em>Target Project</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetProject()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TARGET_PROJECT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTargetProject() <em>Target Project</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetProject()
+	 * @generated
+	 * @ordered
+	 */
+	protected String targetProject = TARGET_PROJECT_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -154,48 +131,6 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 */
 	protected EClass eStaticClass() {
 		return TransformationsPackage.Literals.TRANSFORMATION_CONFIG;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getBuildPath() {
-		return buildPath;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBuildPath(String newBuildPath) {
-		String oldBuildPath = buildPath;
-		buildPath = newBuildPath;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationsPackage.TRANSFORMATION_CONFIG__BUILD_PATH, oldBuildPath, buildPath));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getTargetPath() {
-		return targetPath;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTargetPath(String newTargetPath) {
-		String oldTargetPath = targetPath;
-		targetPath = newTargetPath;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PATH, oldTargetPath, targetPath));
 	}
 
 	/**
@@ -353,6 +288,27 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getTargetProject() {
+		return targetProject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTargetProject(String newTargetProject) {
+		String oldTargetProject = targetProject;
+		targetProject = newTargetProject;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PROJECT, oldTargetProject, targetProject));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING:
@@ -395,10 +351,6 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TransformationsPackage.TRANSFORMATION_CONFIG__BUILD_PATH:
-				return getBuildPath();
-			case TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PATH:
-				return getTargetPath();
 			case TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING:
 				return getMapping();
 			case TransformationsPackage.TRANSFORMATION_CONFIG__SAVE_MODELS:
@@ -407,6 +359,8 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 				return getObserver();
 			case TransformationsPackage.TRANSFORMATION_CONFIG__APPLET:
 				return getApplet();
+			case TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PROJECT:
+				return getTargetProject();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -418,12 +372,6 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TransformationsPackage.TRANSFORMATION_CONFIG__BUILD_PATH:
-				setBuildPath((String)newValue);
-				return;
-			case TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PATH:
-				setTargetPath((String)newValue);
-				return;
 			case TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING:
 				setMapping((Mapping)newValue);
 				return;
@@ -436,6 +384,9 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 			case TransformationsPackage.TRANSFORMATION_CONFIG__APPLET:
 				setApplet((UML2Applet)newValue);
 				return;
+			case TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PROJECT:
+				setTargetProject((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -447,12 +398,6 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TransformationsPackage.TRANSFORMATION_CONFIG__BUILD_PATH:
-				setBuildPath(BUILD_PATH_EDEFAULT);
-				return;
-			case TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PATH:
-				setTargetPath(TARGET_PATH_EDEFAULT);
-				return;
 			case TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING:
 				setMapping((Mapping)null);
 				return;
@@ -465,6 +410,9 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 			case TransformationsPackage.TRANSFORMATION_CONFIG__APPLET:
 				setApplet((UML2Applet)null);
 				return;
+			case TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PROJECT:
+				setTargetProject(TARGET_PROJECT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -476,10 +424,6 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TransformationsPackage.TRANSFORMATION_CONFIG__BUILD_PATH:
-				return BUILD_PATH_EDEFAULT == null ? buildPath != null : !BUILD_PATH_EDEFAULT.equals(buildPath);
-			case TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PATH:
-				return TARGET_PATH_EDEFAULT == null ? targetPath != null : !TARGET_PATH_EDEFAULT.equals(targetPath);
 			case TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING:
 				return mapping != null;
 			case TransformationsPackage.TRANSFORMATION_CONFIG__SAVE_MODELS:
@@ -488,6 +432,8 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 				return observer != null;
 			case TransformationsPackage.TRANSFORMATION_CONFIG__APPLET:
 				return applet != null;
+			case TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PROJECT:
+				return TARGET_PROJECT_EDEFAULT == null ? targetProject != null : !TARGET_PROJECT_EDEFAULT.equals(targetProject);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -501,12 +447,10 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (buildPath: ");
-		result.append(buildPath);
-		result.append(", targetPath: ");
-		result.append(targetPath);
-		result.append(", saveModels: ");
+		result.append(" (saveModels: ");
 		result.append(saveModels);
+		result.append(", targetProject: ");
+		result.append(targetProject);
 		result.append(')');
 		return result.toString();
 	}

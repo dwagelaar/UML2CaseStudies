@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="_DlLA4GBlEdyQ3v2UkQxt4g" activeDiagram="_DlLn9mBlEdyQ3v2UkQxt4g">
   <model href="InstantMessengerAWT.uml#_qb8akM37EdqwVrslYOdUDA"/>
   <subdiagrams xmi:id="_DlLA4WBlEdyQ3v2UkQxt4g">
@@ -48,7 +48,7 @@
       </diagrams>
       <subdiagrams xmi:id="_DlLn9WBlEdyQ3v2UkQxt4g">
         <model href="InstantMessengerAWT.uml#_QS7tQEPOEdusb52s3APTjA"/>
-        <diagrams xmi:id="_DlLn9mBlEdyQ3v2UkQxt4g" position="0,0" size="100,100" name="im.view.awt" viewport="0,658">
+        <diagrams xmi:id="_DlLn9mBlEdyQ3v2UkQxt4g" position="0,0" size="100,100" name="im.view.awt" viewport="738,0">
           <property xmi:id="_DlLn92BlEdyQ3v2UkQxt4g" key="pageFormatName" value="A3"/>
           <property xmi:id="_DlLn-GBlEdyQ3v2UkQxt4g" key="diagramWidth" value="1188"/>
           <property xmi:id="_DlLn-WBlEdyQ3v2UkQxt4g" key="diagramHeight" value="1680"/>
@@ -145,6 +145,11 @@
                   <element href="InstantMessengerAWT.uml#_E5UZkEPiEdusb52s3APTjA"/>
                 </semanticModel>
               </contained>
+              <contained xsi:type="di:GraphNode" xmi:id="_73li0OrMEdy0s5AULBFEqA" position="0,0" size="-1,-1">
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_73li0erMEdy0s5AULBFEqA" presentation="default">
+                  <element href="InstantMessengerAWT.uml#_73omIOrMEdy0s5AULBFEqA"/>
+                </semanticModel>
+              </contained>
             </contained>
             <contained xsi:type="di:GraphNode" xmi:id="_DlM2EmBlEdyQ3v2UkQxt4g">
               <property xmi:id="_DlM2E2BlEdyQ3v2UkQxt4g" key="eStructuralFeatureID" value="47"/>
@@ -227,6 +232,11 @@
               <contained xsi:type="di:GraphNode" xmi:id="_DlNdIGBlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
                 <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_DlNdIWBlEdyQ3v2UkQxt4g" presentation="default">
                   <element href="InstantMessengerAWT.uml#_oFNbYEPpEdug19jXgM5cew"/>
+                </semanticModel>
+              </contained>
+              <contained xsi:type="di:GraphNode" xmi:id="_M8vs8OrNEdy0s5AULBFEqA" position="0,0" size="-1,-1">
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_M8vs8erNEdy0s5AULBFEqA" presentation="default">
+                  <element href="InstantMessengerAWT.uml#_M8wUAOrNEdy0s5AULBFEqA"/>
                 </semanticModel>
               </contained>
             </contained>
@@ -341,6 +351,11 @@
               <contained xsi:type="di:GraphNode" xmi:id="_DlOrQGBlEdyQ3v2UkQxt4g" position="0,0" size="0,0">
                 <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_DlOrQWBlEdyQ3v2UkQxt4g" presentation="default">
                   <element href="InstantMessengerAWT.uml#_pJtrsEPxEdug19jXgM5cew"/>
+                </semanticModel>
+              </contained>
+              <contained xsi:type="di:GraphNode" xmi:id="_cY9jUOrNEdy0s5AULBFEqA" position="0,0" size="-1,-1">
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_cY-KYOrNEdy0s5AULBFEqA" presentation="default">
+                  <element href="InstantMessengerAWT.uml#_cY-xcOrNEdy0s5AULBFEqA"/>
                 </semanticModel>
               </contained>
             </contained>
@@ -730,6 +745,11 @@
               <contained xsi:type="di:GraphNode" xmi:id="_DlRunWBlEdyQ3v2UkQxt4g" position="0,0" size="-1,-1">
                 <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_DlRunmBlEdyQ3v2UkQxt4g" presentation="default">
                   <element href="InstantMessengerAWT.uml#_JpMdUEkCEdyhz6EQFov9tg"/>
+                </semanticModel>
+              </contained>
+              <contained xsi:type="di:GraphNode" xmi:id="_mXheMOrNEdy0s5AULBFEqA" position="0,0" size="-1,-1">
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_mXheMerNEdy0s5AULBFEqA" presentation="default">
+                  <element href="InstantMessengerAWT.uml#_mXiFQOrNEdy0s5AULBFEqA"/>
                 </semanticModel>
               </contained>
             </contained>

@@ -80,31 +80,13 @@ public interface TransformationsPackage extends EPackage {
 	int TRANSFORMATION_CONFIG = 0;
 
 	/**
-	 * The feature id for the '<em><b>Build Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION_CONFIG__BUILD_PATH = 0;
-
-	/**
-	 * The feature id for the '<em><b>Target Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFORMATION_CONFIG__TARGET_PATH = 1;
-
-	/**
 	 * The feature id for the '<em><b>Mapping</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_CONFIG__MAPPING = 2;
+	int TRANSFORMATION_CONFIG__MAPPING = 0;
 
 	/**
 	 * The feature id for the '<em><b>Save Models</b></em>' attribute.
@@ -113,7 +95,7 @@ public interface TransformationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_CONFIG__SAVE_MODELS = 3;
+	int TRANSFORMATION_CONFIG__SAVE_MODELS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Observer</b></em>' containment reference.
@@ -122,7 +104,7 @@ public interface TransformationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_CONFIG__OBSERVER = 4;
+	int TRANSFORMATION_CONFIG__OBSERVER = 2;
 
 	/**
 	 * The feature id for the '<em><b>Applet</b></em>' containment reference.
@@ -131,7 +113,16 @@ public interface TransformationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_CONFIG__APPLET = 5;
+	int TRANSFORMATION_CONFIG__APPLET = 3;
+
+	/**
+	 * The feature id for the '<em><b>Target Project</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION_CONFIG__TARGET_PROJECT = 4;
 
 	/**
 	 * The number of structural features of the '<em>Transformation Config</em>' class.
@@ -140,7 +131,7 @@ public interface TransformationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_CONFIG_FEATURE_COUNT = 6;
+	int TRANSFORMATION_CONFIG_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link be.ac.vub.uml2cs.transformations.impl.MappingImpl <em>Mapping</em>}' class.
@@ -425,28 +416,6 @@ public interface TransformationsPackage extends EPackage {
 	EClass getTransformationConfig();
 
 	/**
-	 * Returns the meta object for the attribute '{@link be.ac.vub.uml2cs.transformations.TransformationConfig#getBuildPath <em>Build Path</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Build Path</em>'.
-	 * @see be.ac.vub.uml2cs.transformations.TransformationConfig#getBuildPath()
-	 * @see #getTransformationConfig()
-	 * @generated
-	 */
-	EAttribute getTransformationConfig_BuildPath();
-
-	/**
-	 * Returns the meta object for the attribute '{@link be.ac.vub.uml2cs.transformations.TransformationConfig#getTargetPath <em>Target Path</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Target Path</em>'.
-	 * @see be.ac.vub.uml2cs.transformations.TransformationConfig#getTargetPath()
-	 * @see #getTransformationConfig()
-	 * @generated
-	 */
-	EAttribute getTransformationConfig_TargetPath();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link be.ac.vub.uml2cs.transformations.TransformationConfig#getMapping <em>Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -489,6 +458,17 @@ public interface TransformationsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTransformationConfig_Applet();
+
+	/**
+	 * Returns the meta object for the attribute '{@link be.ac.vub.uml2cs.transformations.TransformationConfig#getTargetProject <em>Target Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Target Project</em>'.
+	 * @see be.ac.vub.uml2cs.transformations.TransformationConfig#getTargetProject()
+	 * @see #getTransformationConfig()
+	 * @generated
+	 */
+	EAttribute getTransformationConfig_TargetProject();
 
 	/**
 	 * Returns the meta object for class '{@link be.ac.vub.uml2cs.transformations.Mapping <em>Mapping</em>}'.
@@ -678,22 +658,6 @@ public interface TransformationsPackage extends EPackage {
 		EClass TRANSFORMATION_CONFIG = eINSTANCE.getTransformationConfig();
 
 		/**
-		 * The meta object literal for the '<em><b>Build Path</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSFORMATION_CONFIG__BUILD_PATH = eINSTANCE.getTransformationConfig_BuildPath();
-
-		/**
-		 * The meta object literal for the '<em><b>Target Path</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRANSFORMATION_CONFIG__TARGET_PATH = eINSTANCE.getTransformationConfig_TargetPath();
-
-		/**
 		 * The meta object literal for the '<em><b>Mapping</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -724,6 +688,14 @@ public interface TransformationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSFORMATION_CONFIG__APPLET = eINSTANCE.getTransformationConfig_Applet();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Project</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSFORMATION_CONFIG__TARGET_PROJECT = eINSTANCE.getTransformationConfig_TargetProject();
 
 		/**
 		 * The meta object literal for the '{@link be.ac.vub.uml2cs.transformations.impl.MappingImpl <em>Mapping</em>}' class.

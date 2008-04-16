@@ -201,26 +201,8 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransformationConfig_BuildPath() {
-		return (EAttribute)transformationConfigEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTransformationConfig_TargetPath() {
-		return (EAttribute)transformationConfigEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getTransformationConfig_Mapping() {
-		return (EReference)transformationConfigEClass.getEStructuralFeatures().get(2);
+		return (EReference)transformationConfigEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -229,7 +211,7 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 	 * @generated
 	 */
 	public EAttribute getTransformationConfig_SaveModels() {
-		return (EAttribute)transformationConfigEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)transformationConfigEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -238,7 +220,7 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 	 * @generated
 	 */
 	public EReference getTransformationConfig_Observer() {
-		return (EReference)transformationConfigEClass.getEStructuralFeatures().get(4);
+		return (EReference)transformationConfigEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -247,7 +229,16 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 	 * @generated
 	 */
 	public EReference getTransformationConfig_Applet() {
-		return (EReference)transformationConfigEClass.getEStructuralFeatures().get(5);
+		return (EReference)transformationConfigEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTransformationConfig_TargetProject() {
+		return (EAttribute)transformationConfigEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -414,12 +405,11 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 
 		// Create classes and their features
 		transformationConfigEClass = createEClass(TRANSFORMATION_CONFIG);
-		createEAttribute(transformationConfigEClass, TRANSFORMATION_CONFIG__BUILD_PATH);
-		createEAttribute(transformationConfigEClass, TRANSFORMATION_CONFIG__TARGET_PATH);
 		createEReference(transformationConfigEClass, TRANSFORMATION_CONFIG__MAPPING);
 		createEAttribute(transformationConfigEClass, TRANSFORMATION_CONFIG__SAVE_MODELS);
 		createEReference(transformationConfigEClass, TRANSFORMATION_CONFIG__OBSERVER);
 		createEReference(transformationConfigEClass, TRANSFORMATION_CONFIG__APPLET);
+		createEAttribute(transformationConfigEClass, TRANSFORMATION_CONFIG__TARGET_PROJECT);
 
 		mappingEClass = createEClass(MAPPING);
 		createEReference(mappingEClass, MAPPING__CONFIG);
@@ -480,12 +470,11 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(transformationConfigEClass, TransformationConfig.class, "TransformationConfig", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTransformationConfig_BuildPath(), ecorePackage.getEString(), "buildPath", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTransformationConfig_TargetPath(), ecorePackage.getEString(), "targetPath", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformationConfig_Mapping(), this.getMapping(), this.getMapping_Config(), "mapping", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransformationConfig_SaveModels(), this.getSaveModelType(), "saveModels", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformationConfig_Observer(), this.getUML2Observer(), this.getUML2Observer_Config(), "observer", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformationConfig_Applet(), this.getUML2Applet(), this.getUML2Applet_Config(), "applet", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTransformationConfig_TargetProject(), ecorePackage.getEString(), "targetProject", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mappingEClass, Mapping.class, "Mapping", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMapping_Config(), this.getTransformationConfig(), this.getTransformationConfig_Mapping(), "config", null, 1, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -524,8 +513,6 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		createCDDToolkitAnnotations();
 		// PlatformKit
 		createPlatformKitAnnotations();
-		// GenModel
-		createGenModelAnnotations();
 	}
 
 	/**
@@ -541,7 +528,7 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		   source, 
 		   new String[] {
 			 "Ontology", "Transformations.owl"
-		   });												
+		   });											
 		addAnnotation
 		  (javaMappingEClass, 
 		   source, 
@@ -599,7 +586,7 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		   source, 
 		   new String[] {
 			 "Ontology", "Transformations.owl"
-		   });												
+		   });											
 		addAnnotation
 		  (javaMappingEClass, 
 		   source, 
@@ -642,118 +629,6 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		   new String[] {
 			 "PlatformConstraint", "http://local/Transformations.owl#MIDletPlatform"
 		   });	
-	}
-
-	/**
-	 * Initializes the annotations for <b>GenModel</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createGenModelAnnotations() {
-		String source = "GenModel";				
-		addAnnotation
-		  (transformationConfigEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "Root node for a transformation configuration model"
-		   });		
-		addAnnotation
-		  (getTransformationConfig_BuildPath(), 
-		   source, 
-		   new String[] {
-			 "documentation", "Path to store the generated build files"
-		   });		
-		addAnnotation
-		  (getTransformationConfig_TargetPath(), 
-		   source, 
-		   new String[] {
-			 "documentation", "Path to write the generated code to"
-		   });		
-		addAnnotation
-		  (getTransformationConfig_Mapping(), 
-		   source, 
-		   new String[] {
-			 "documentation", "Programming language mapping to use"
-		   });		
-		addAnnotation
-		  (getTransformationConfig_SaveModels(), 
-		   source, 
-		   new String[] {
-			 "documentation", "Select whether to save all intermediate models, save only the last model or don\'t save models"
-		   });		
-		addAnnotation
-		  (getTransformationConfig_Observer(), 
-		   source, 
-		   new String[] {
-			 "documentation", "Variant of UML2Observer transformation to use"
-		   });		
-		addAnnotation
-		  (getTransformationConfig_Applet(), 
-		   source, 
-		   new String[] {
-			 "documentation", "Variant of UML2Applet transformation to use"
-		   });		
-		addAnnotation
-		  (mappingEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "Programming language mapping"
-		   });		
-		addAnnotation
-		  (javaMappingEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "Java language mapping"
-		   });				
-		addAnnotation
-		  (javaDataTypesEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "Java language data types"
-		   });		
-		addAnnotation
-		  (java1DataTypesEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "Java 1.0 data types"
-		   });				
-		addAnnotation
-		  (java2DataTypesEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "Java 1.2 data types"
-		   });				
-		addAnnotation
-		  (uml2ObserverEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "Implements the Observer profile"
-		   });				
-		addAnnotation
-		  (uml2JavaObserverEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "Implements the Observer profile using the java.util.Observer API"
-		   });				
-		addAnnotation
-		  (uml2AppletEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "Implements the Applet profile using a Java AWT Applet"
-		   });				
-		addAnnotation
-		  (uml2MIDletEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "Implements the Applet profile using a Java MIDP MIDlet"
-		   });				
-		addAnnotation
-		  (saveModelTypeEEnum, 
-		   source, 
-		   new String[] {
-			 "documentation", "Save all intermediate models, only the last model or no models (generate code only)"
-		   });
 	}
 
 } //TransformationsPackageImpl

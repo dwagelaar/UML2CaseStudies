@@ -73,7 +73,7 @@ def : userInterfaceDepends() : Sequence(String) =
 
 rule ConfigRoot {
 	from s : CFG!"instantmessenger::InstantMessengerConfiguration"
-	-- <project name="s.buildPath" default="all">
+	-- <project name="s.targetProject/build" default="all">
 	to root : XML!"XML::Root" mapsTo s (
 		name <- thisModule.ConfigHeader(s)),
 	   default : XML!"XML::Attribute" (

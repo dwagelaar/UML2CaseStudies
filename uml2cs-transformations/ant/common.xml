@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="uml2cs-transformations-common">
 
-	<!-- = = = = = properties = =  = = = -->
+	<!-- = = = = = taskdefs = = = = = -->
+	
+	<path id="anttasks.path">
+		<fileset dir=".">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+	<taskdef name="javaformatter" 
+		classname="org.hibernate.tool.ant.JavaFormatterTask"
+		classpathref="anttasks.path"/>
+
+	<!-- = = = = = properties = = = = = -->
+	
+	<!-- atl.vm = "Regular VM (with debugger)" | "EMF-specific VM" -->
+	<property name="atl.vm" value="Regular VM (with debugger)"/>
 
 	<property name="trans.path" value="/uml2cs-transformations"/>
 	<property name="trans.uml2copy.path" value="${trans.path}/UML2Copy.atl"/>
@@ -36,7 +51,7 @@
 
 	<property name="model.parameters.path" value="${current.path}/parameters.xml"/>
 
-	<!-- = = = = = macros = =  = = = -->
+	<!-- = = = = = macros = = = = = -->
 
 	<!-- = = = = = = = = = = = = = = = = =
 		  macrodef: profiles		  
@@ -46,7 +61,7 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="path" default="MODEL.OUT.PATH" />
 		<sequential>
-			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true" vm="${atl.vm}">
 				<inmodel name="UML2" model="UML2"/>
 				<inmodel name="IN" model="@{in}"/>
 				<inmodel name="ACCESSORS" model="Accessors"/>
@@ -70,7 +85,7 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="path" default="MODEL.OUT.PATH" />
 		<sequential>
-			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true" vm="${atl.vm}">
 				<inmodel name="UML2" model="UML2"/>
 				<inmodel name="ACCESSORS" model="Accessors"/>
 				<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
@@ -98,7 +113,7 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="path" default="MODEL.OUT.PATH" />
 		<sequential>
-			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true" vm="${atl.vm}">
 				<inmodel name="UML2" model="UML2"/>
 				<inmodel name="OBSERVER" model="Observer"/>
 				<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
@@ -126,7 +141,7 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="path" default="MODEL.OUT.PATH" />
 		<sequential>
-			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true" vm="${atl.vm}">
 				<inmodel name="UML2" model="UML2"/>
 				<inmodel name="IMPLTYPES" model="ImplTypes"/>
 				<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
@@ -153,7 +168,7 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="path" default="MODEL.OUT.PATH" />
 		<sequential>
-			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true" vm="${atl.vm}">
 				<inmodel name="UML2" model="UML2"/>
 				<inmodel name="IN" model="@{in}"/>
 				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
@@ -177,7 +192,7 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="path" default="MODEL.OUT.PATH" />
 		<sequential>
-			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true" vm="${atl.vm}">
 				<inmodel name="UML2" model="UML2"/>
 				<inmodel name="IN" model="@{in}"/>
 				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
@@ -202,7 +217,7 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="path" default="MODEL.OUT.PATH" />
 		<sequential>
-			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true" vm="${atl.vm}">
 				<inmodel name="UML2" model="UML2"/>
 				<inmodel name="IN" model="@{in}"/>
 				<inmodel name="IMPLTYPES" model="ImplTypes"/>
@@ -228,7 +243,7 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="path" default="MODEL.OUT.PATH" />
 		<sequential>
-			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true" vm="${atl.vm}">
 				<inmodel name="UML2" model="UML2"/>
 				<inmodel name="IN" model="@{in}"/>
 				<inmodel name="MIDLET" model="MIDlet"/>
@@ -253,7 +268,7 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="path" default="MODEL.OUT.PATH" />
 		<sequential>
-			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true" vm="${atl.vm}">
 				<inmodel name="UML2" model="UML2"/>
 				<inmodel name="IN" model="@{in}"/>
 				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
@@ -276,7 +291,7 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="path" default="MODEL.OUT.PATH" />
 		<sequential>
-			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true" vm="${atl.vm}">
 				<inmodel name="UML2" model="UML2"/>
 				<inmodel name="IMPLTYPES" model="ImplTypes"/>
 				<inmodel name="IN" model="@{in}"/>
@@ -305,7 +320,7 @@
 	<macrodef name="generate">
 		<attribute name="in" default="MODEL.IN" />
 		<sequential>
-			<am3.atl path="${trans.generate.path}" allowInterModelReferences="true">
+			<am3.atl path="${trans.generate.path}" allowInterModelReferences="true" vm="${atl.vm}">
 				<inmodel name="UML2" model="UML2"/>
 				<inmodel name="IN" model="@{in}"/>
 				<inmodel name="XML" model="XML"/>
@@ -516,6 +531,17 @@
         	</fileset>
         </delete>
 	    <eclipse.refreshLocal resource = '${ant.project.name}'/>
+	</target>
+	
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: prettyPrint
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="prettyPrint">
+		<javaformatter>
+			<fileset dir="../src">
+				<include name="**/*.java"/>
+			</fileset>
+		</javaformatter>
 	</target>
 
 </project>

@@ -10,55 +10,49 @@
     <details key="Ontology" value="Transformations.owl"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="TransformationConfig">
-    <eAnnotations source="GenModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Root node for a transformation configuration model"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="buildPath" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="GenModel">
-        <details key="documentation" value="Path to store the generated build files"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetPath" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="GenModel">
-        <details key="documentation" value="Path to write the generated code to"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" lowerBound="1"
         eType="#//Mapping" containment="true" eOpposite="#//Mapping/config">
-      <eAnnotations source="GenModel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Programming language mapping to use"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="saveModels" lowerBound="1"
         eType="#//SaveModelType">
-      <eAnnotations source="GenModel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Select whether to save all intermediate models, save only the last model or don't save models"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="observer" lowerBound="1"
         eType="#//UML2Observer" containment="true" eOpposite="#//UML2Observer/config">
-      <eAnnotations source="GenModel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Variant of UML2Observer transformation to use"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="applet" lowerBound="1"
         eType="#//UML2Applet" containment="true" eOpposite="#//UML2Applet/config">
-      <eAnnotations source="GenModel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Variant of UML2Applet transformation to use"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetProject" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Target Eclipse project in which build files and code will be generated."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mapping" abstract="true">
-    <eAnnotations source="GenModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Programming language mapping"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="config" lowerBound="1"
         eType="#//TransformationConfig" eOpposite="#//TransformationConfig/mapping"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JavaMapping" eSuperTypes="#//Mapping">
-    <eAnnotations source="GenModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Java language mapping"/>
     </eAnnotations>
     <eAnnotations source="CDDToolkit">
@@ -71,14 +65,14 @@
         eType="#//JavaDataTypes" containment="true" eOpposite="#//JavaDataTypes/mapping"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JavaDataTypes" abstract="true">
-    <eAnnotations source="GenModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Java language data types"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" lowerBound="1"
         eType="#//JavaMapping" eOpposite="#//JavaMapping/dataTypes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Java1DataTypes" eSuperTypes="#//JavaDataTypes">
-    <eAnnotations source="GenModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Java 1.0 data types"/>
     </eAnnotations>
     <eAnnotations source="CDDToolkit">
@@ -89,7 +83,7 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Java2DataTypes" eSuperTypes="#//JavaDataTypes">
-    <eAnnotations source="GenModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Java 1.2 data types"/>
     </eAnnotations>
     <eAnnotations source="CDDToolkit">
@@ -100,7 +94,7 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UML2Observer">
-    <eAnnotations source="GenModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Implements the Observer profile"/>
     </eAnnotations>
     <eAnnotations source="CDDToolkit">
@@ -113,7 +107,7 @@
         eType="#//TransformationConfig" eOpposite="#//TransformationConfig/observer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UML2JavaObserver" eSuperTypes="#//UML2Observer">
-    <eAnnotations source="GenModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Implements the Observer profile using the java.util.Observer API"/>
     </eAnnotations>
     <eAnnotations source="CDDToolkit">
@@ -124,7 +118,7 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UML2Applet">
-    <eAnnotations source="GenModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Implements the Applet profile using a Java AWT Applet"/>
     </eAnnotations>
     <eAnnotations source="CDDToolkit">
@@ -137,7 +131,7 @@
         eType="#//TransformationConfig" eOpposite="#//TransformationConfig/applet"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UML2MIDlet" eSuperTypes="#//UML2Applet">
-    <eAnnotations source="GenModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Implements the Applet profile using a Java MIDP MIDlet"/>
     </eAnnotations>
     <eAnnotations source="CDDToolkit">
@@ -148,7 +142,7 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SaveModelType">
-    <eAnnotations source="GenModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Save all intermediate models, only the last model or no models (generate code only)"/>
     </eAnnotations>
     <eLiterals name="none"/>

@@ -12,10 +12,13 @@ package be.ac.vub.uml2cs.transformations;
  * A representation of the model object '<em><b>UML2 Java Observer</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Implements the Observer profile using the java.util.Observer API
+ * <!-- end-model-doc -->
+ *
  *
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getUML2JavaObserver()
- * @model annotation="GenModel documentation='Implements the Observer profile using the java.util.Observer API'"
- *        annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#JavaObserverPlatform'"
+ * @model annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#JavaObserverPlatform'"
  *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#JavaObserverPlatform'"
  * @generated
  */

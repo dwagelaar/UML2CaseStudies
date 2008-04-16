@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AbstractFactory="http:///schemas/AbstractFactory/0" xmlns:Applet="http:///schemas/Applet/1" xmlns:Observer="http:///schemas/Observer/1" xmlns:Singleton="http:///schemas/Singleton/1" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http:///schemas/AbstractFactory/0 ../../uml2cs-transformations/profiles/AbstractFactory.profile.uml#_-a-lgUPTEdusb52s3APTjA http:///schemas/Applet/1 ../../uml2cs-transformations/profiles/Applet.profile.uml#_i8fxgDgqEduNII1tDKqNvA http:///schemas/Observer/1 ../../uml2cs-transformations/profiles/Observer.profile.uml#_g6Z98DgqEduNII1tDKqNvA http:///schemas/Singleton/1 ../../uml2cs-transformations/profiles/Singleton.profile.uml#_eMWcQDgqEduNII1tDKqNvA http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
   <uml:Model xmi:id="_tPOCIaLHEdqkGMDvm75SlQ" name="InstantMessengerModel">
     <eAnnotations xmi:id="_eswR8eQoEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
@@ -78,6 +78,13 @@
               <details xmi:id="__-lrw_yiEdqjP_ILe4Jwkg" key="uuid" value="115039879692496"/>
             </eAnnotations>
           </lowerValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_Dn36MOrLEdyKT-jaGOfUdg" name="serialVersionUID" visibility="private" isStatic="true" isReadOnly="true">
+          <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_thVLwOrIEdyKT-jaGOfUdg"/>
+          <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_d_uXsOrLEdyKT-jaGOfUdg">
+            <language>java</language>
+            <body>-3374609151465534159L</body>
+          </defaultValue>
         </ownedAttribute>
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_FHNzEUMbEduaOpfN-LmTUw" name="InstantMessagingClient_reportBehaviour" specification="_NLLp4OQuEdqD2ZNp93yIAQ">
           <eAnnotations xmi:id="_XurykEMdEduaOpfN-LmTUw" source="http://www.topcased.org/uuid">

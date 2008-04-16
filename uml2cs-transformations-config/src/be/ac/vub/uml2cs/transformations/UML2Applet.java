@@ -13,6 +13,10 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>UML2 Applet</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Implements the Applet profile using a Java AWT Applet
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -21,8 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getUML2Applet()
- * @model annotation="GenModel documentation='Implements the Applet profile using a Java AWT Applet'"
- *        annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#AppletPlatform'"
+ * @model annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#AppletPlatform'"
  *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#AppletPlatform'"
  * @generated
  */

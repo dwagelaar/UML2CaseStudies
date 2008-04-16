@@ -62,6 +62,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 import be.ac.vub.uml2cs.instantmessenger.InstantmessengerFactory;
 import be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage;
 import be.ac.vub.uml2cs.instantmessenger.provider.InstantMessengerEditPlugin;
+import be.ac.vub.uml2cs.transformations.TransformationConfig;
 
 
 /**
@@ -76,7 +77,7 @@ public class InstantmessengerModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * This caches an instance of the model package.
@@ -166,11 +167,15 @@ public class InstantmessengerModelWizard extends Wizard implements INewWizard {
 	 * Create a new model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	protected EObject createInitialModel() {
 		EClass eClass = (EClass)instantmessengerPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
 		EObject rootObject = instantmessengerFactory.create(eClass);
+		// set target project to the project that contains this model
+		if (rootObject instanceof TransformationConfig) {
+			((TransformationConfig)rootObject).setTargetProject(
+					getModelFile().getProject().getName());
+		}
 		return rootObject;
 	}
 

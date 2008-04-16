@@ -12,7 +12,7 @@ uses UML2;
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : accessorsProfile : UML2!"uml::Profile" = 'Accessors'.profile();
+helper def : accessorsProfile : UML2!"uml::Profile" = 'Accessors'.profile().debug('accessorsProfile');
 
 -- ======================================================================
 -- model-specific helpers end
@@ -73,7 +73,7 @@ rule ModelProfile {
 		appliedProfile <- thisModule.accessorsProfile),
 	   ref : UML2!"ecore::EAnnotation" (
 	   	eModelElement <- pa,
-		source <- s.eClass().ePackage.nsURI,
+		source <- s.oclType().ePackage.nsURI,
 		references <- UML2!"ecore::EPackage".allInstancesFrom('ACCESSORS')->select(p|p.name='Accessors'))
 }
 

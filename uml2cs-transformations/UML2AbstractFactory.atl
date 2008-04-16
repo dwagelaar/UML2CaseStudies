@@ -227,14 +227,14 @@ rule ConcreteProductDependency {
 			else false endif
 		else false endif)
 	using { superTypes : Set(UML2!"uml::Classifier") = s.client
-    			->collect(c|c.superTypes)->flatten();
+    			->collect(c|c.superTypes)->flatten().debug('superTypes');
 			clientDependencies : Set(UML2!"uml::Dependency") = superTypes
-				->collect(c|c.clientDependency)->flatten();
+				->collect(c|c.clientDependency)->flatten().debug('clientDependencies');
 			products : Set(UML2!"uml::Classifier") = clientDependencies
-				->collect(d|d.supplier)->flatten();
+				->collect(d|d.supplier)->flatten().debug('products');
 			supplier : UML2!"uml::Classifier" = s.supplier
-				->collect(s|s.superTypes)->flatten()
-				->select(c|products->includes(c))->first(); }
+				->collect(s|s.superTypes)->flatten().debug('supersuppliers')
+				->select(c|products->includes(c))->first().debug('supplier'); }
     to t : UML2!"uml::Dependency" mapsTo s (
         name <- s.name->debug('ConcreteProductDependency'),
         visibility <- s.visibility,
@@ -247,7 +247,7 @@ rule ConcreteProductDependency {
         client <- s.client),
 	-- create
 	   createOp : UML2!"uml::Operation" (
-	   	name <- 'create' + supplier.name,
+	   	name <- 'create' + supplier.name.debug('supplier.name'),
 		visibility <- #public,
 		ownedParameter <- Sequence{createPar},
 		concurrency <- #sequential),

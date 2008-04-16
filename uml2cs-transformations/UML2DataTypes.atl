@@ -19,6 +19,7 @@ helper def : language : String = 'language'.value();
 helper def : voidType : UML2!"uml::Type" = 'OclVoid'.implTypeName().type();
 helper def : anyType : UML2!"uml::Type" = 'OclAny'.implTypeName().type();
 helper def : integerType : UML2!"uml::Type" = 'Integer'.implTypeName().type();
+helper def : naturalType : UML2!"uml::Type" = 'Natural'.implTypeName().type();
 helper def : unlimitedNaturalType : UML2!"uml::Type" = 'UnlimitedNatural'.implTypeName().type();
 helper def : realType : UML2!"uml::Type" = 'Real'.implTypeName().type();
 helper def : booleanType : UML2!"uml::Type" = 'Boolean'.implTypeName().type();
@@ -36,6 +37,7 @@ helper def : bagReturnType : UML2!"uml::Type" = 'Bag'.implCollectionReturnTypeNa
 
 helper context UML2!"uml::PrimitiveType" def : implType : UML2!"uml::Type" =
 	if self.name = 'Integer' then thisModule.integerType else
+	if self.name = 'Natural' then thisModule.naturalType else
 	if self.name = 'UnlimitedNatural' then thisModule.unlimitedNaturalType else
 	if self.name = 'Real' then thisModule.realType else
 	if self.name = 'Boolean' then thisModule.booleanType else
@@ -47,7 +49,7 @@ helper context UML2!"uml::PrimitiveType" def : implType : UML2!"uml::Type" =
 	if self.name = 'Sequence' then thisModule.sequenceType else
 	if self.name = 'Bag' then thisModule.bagType else
 		thisModule.voidType
-	endif endif endif endif	endif endif endif endif endif endif endif;
+	endif endif endif endif	endif endif endif endif endif endif endif endif;
 
 helper context UML2!"uml::Type" def : implType : UML2!"uml::Type" =
 	self;

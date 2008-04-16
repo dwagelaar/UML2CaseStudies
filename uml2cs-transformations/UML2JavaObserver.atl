@@ -16,9 +16,9 @@ uses Mappings;
 
 helper def : language : String = 'language'.value();
 helper def : separator : String = 'separator'.value();
-helper def : Observer : UML2!"uml::Interface" = 'java::util::Observer'.interface();
-helper def : Observable : UML2!"uml::Class" = 'java::util::Observable'.class();
-helper def : ObserverName : String = thisModule.Observer.qualifiedName('separator'.value());
+helper def : Observer : UML2!"uml::Interface" = 'java::util::Observer'.interface().debug('Observer');
+helper def : Observable : UML2!"uml::Class" = 'java::util::Observable'.class().debug('Observable');
+helper def : ObserverName : String = thisModule.Observer.qualifiedName('separator'.value()).debug('ObserveraName');
 helper def : oclString : UML2!"uml::PrimitiveType" = 'String'.primitiveType();
 helper def : oclAny : UML2!"uml::PrimitiveType" = 'OclAny'.primitiveType();
 helper def : observables : Sequence(UML2!"Observer::Observable") = UML2!"Observer::Observable".allInstances();

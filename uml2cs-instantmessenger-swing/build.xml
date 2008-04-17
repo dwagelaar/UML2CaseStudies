@@ -50,5 +50,9 @@
 		<eclipse.refreshLocal resource="${ant.project.name}"/>
 	</target>
 	
-	<target name="all" depends="clean, saveModels"/>
+	<target name="invokeBuild" depends="saveModels">
+		<ant dir="build" antfile="build.xml"></ant>
+	</target>
+
+	<target name="all" depends="clean, invokeBuild"/>
 </project>

@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.ant.core.AntRunner;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
@@ -119,7 +120,8 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
      * @throws Exception
      */
     protected void runAction(IProgressMonitor monitor) throws Exception {
-        monitor.beginTask("Generating build.xml file", 7);
+        monitor.beginTask("Generating code", 8);
+        
         monitor.subTask("Reading input model...");
         InstantMessengerConfiguration object =
         	(InstantMessengerConfiguration) ((IStructuredSelection) selection).getFirstElement();
@@ -144,14 +146,17 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         IFile buildFile = root.getFile(buildPath.append("build.xml"));
         IFile parFile = root.getFile(buildPath.append("parameters.xml"));
         worked(monitor);
+        
         monitor.subTask("Copying common.xml...");
         URL commonURL = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/common.xml");
         copyURLToFile(commonURL, commonFile);
         worked(monitor);
+        
         monitor.subTask("Copying hibernate-tools.jar...");
         URL hibtoolsURL = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/hibernate-tools.jar");
         copyURLToFile(hibtoolsURL, hibtoolsFile);
         worked(monitor);
+        
         monitor.subTask("Loading models...");
         ASMModel cfg = amh.loadModel("CFG", amh.getMof(), "uri:" + InstantmessengerPackage.eNS_URI);
         cfg.setIsTarget(false);
@@ -161,6 +166,7 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         in.setIsTarget(false);
         ASMModel out = amh.newModel("OUT", buildFile.getLocationURI().toString(), xml);
         worked(monitor);
+        
         monitor.subTask("Generating build.xml...");
         Map params = Collections.EMPTY_MAP;
         Map libs = Collections.EMPTY_MAP;
@@ -173,13 +179,12 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         URL trans2 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/InstantMessenger/ConfigToBuildFile.asm");
         List superimpose = new ArrayList();
         superimpose.add(trans2);
-//        AtlLauncher myLauncher = AtlLauncher.getDefault();
 		AtlVM atlVM = AtlVM.getVM(ATL_VM);
 		atlVM.launch(trans1, libs, models, params, superimpose, Collections.EMPTY_MAP);
-//        myLauncher.launch(trans1, libs, models, params, superimpose);
         xmlExtraction(out, buildFile);
         buildFile.refreshLocal(0, null);
         worked(monitor);
+        
         monitor.subTask("Generating parameters.xml...");
         out = amh.newModel("OUT", parFile.getLocationURI().toString(), xml);
         models.clear();
@@ -189,9 +194,15 @@ public class GenerateBuildFileAction implements IObjectActionDelegate {
         models.put(out.getName(), out);
         URL trans3 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/ConfigToParameters.asm");
 		atlVM.launch(trans3, libs, models, params, Collections.EMPTY_LIST, Collections.EMPTY_MAP);
-//        myLauncher.launch(trans3, libs, models, params, Collections.EMPTY_LIST);
         xmlExtraction(out, parFile);
         parFile.refreshLocal(0, null);
+        worked(monitor);
+        
+        monitor.subTask("Running build.xml...");
+        AntRunner build = new AntRunner();
+        build.setBuildFileLocation(buildFile.getLocation().toString());
+        build.setAntHome(buildFile.getParent().getLocation().toString());
+        build.run(monitor);
         worked(monitor);
     }
     

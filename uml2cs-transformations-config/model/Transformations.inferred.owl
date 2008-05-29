@@ -1,0 +1,729 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY owl2 "http://www.w3.org/2006/12/owl2#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://local/platformkit/inferred.owl#"
+     xml:base="http://local/platformkit/inferred.owl"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:owl2="http://www.w3.org/2006/12/owl2#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#">
+    <owl:Ontology rdf:about=""/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary -->
+
+    <owl:ObjectProperty rdf:about="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+    
+
+
+    <!-- http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature -->
+
+    <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://local/Transformations.owl#AppletJRE -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#AppletJRE">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaLangLibrary"/>
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangLibrary"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaAppletLibrary"/>
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaAppletLibrary"/>
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaAppletLibrary"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaAwtLibrary"/>
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaAwtLibrary"/>
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaAwtLibrary"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
+        <rdfs:comment xml:lang="en"
+            >Java Runtime Environment that provides a basic version of java.lang, java.awt and java.applet</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://local/Transformations.owl#AppletPlatform -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#AppletPlatform">
+        <owl:equivalentClass rdf:resource="#transformations::UML2AppletIntersection"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
+                <owl:someValuesFrom rdf:resource="http://local/Transformations.owl#AppletJRE"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/Transformations.owl#BasicJRE -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#BasicJRE">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaLangLibrary"/>
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangLibrary"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaUtilLibrary"/>
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaUtilLibrary"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
+        <rdfs:comment xml:lang="en"
+            >Java Runtime Environment that provides a basic version of java.lang and java.util</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://local/Transformations.owl#Java1Platform -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#Java1Platform">
+        <owl:equivalentClass rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+        <owl:equivalentClass rdf:resource="#transformations::Java1DataTypesIntersection"/>
+        <owl:equivalentClass rdf:resource="#transformations::JavaMappingIntersection"/>
+        <owl:equivalentClass rdf:resource="#transformations::UML2ObserverIntersection"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
+                <owl:someValuesFrom rdf:resource="http://local/Transformations.owl#BasicJRE"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/Transformations.owl#Java2CollectionsJRE -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#Java2CollectionsJRE">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaLangLibrary"/>
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangLibrary"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaUtilLibrary"/>
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2se-1_2-api.owl#JavaUtilLibrary"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#BasicJRE"/>
+        <rdfs:comment xml:lang="en"
+            >Java Runtime Environment that provides a basic version of java.lang and a java.util version that provides the Java 2 Collections framework</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://local/Transformations.owl#Java2Platform -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#Java2Platform">
+        <owl:equivalentClass rdf:resource="#transformations::Java2DataTypesIntersection"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
+                <owl:someValuesFrom rdf:resource="http://local/Transformations.owl#Java2CollectionsJRE"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+        <rdfs:subClassOf rdf:resource="#transformations::Java1DataTypesIntersection"/>
+        <rdfs:subClassOf rdf:resource="#transformations::JavaMappingIntersection"/>
+        <rdfs:subClassOf rdf:resource="#transformations::UML2ObserverIntersection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/Transformations.owl#JavaMappingsPlatform -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#JavaMappingsPlatform">
+        <owl:equivalentClass rdf:resource="#transformations::Java1DataTypesIntersection"/>
+        <owl:equivalentClass rdf:resource="#transformations::JavaMappingIntersection"/>
+        <owl:equivalentClass rdf:resource="#transformations::UML2ObserverIntersection"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
+                <owl:someValuesFrom rdf:resource="http://local/Transformations.owl#BasicJRE"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/Transformations.owl#JavaObserverJRE -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#JavaObserverJRE">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangReflectLibrary"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaLangLibrary"/>
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangLibrary"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaUtilLibrary"/>
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaUtilLibrary"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#BasicJRE"/>
+        <rdfs:comment xml:lang="en"
+            >Java Runtime Environment that provides a basic version of java.lang, java.lang.reflect and a java.util version that provides java.util.Observer and java.util.Observable</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://local/Transformations.owl#JavaObserverPlatform -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#JavaObserverPlatform">
+        <owl:equivalentClass rdf:resource="#transformations::UML2JavaObserverIntersection"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
+                <owl:someValuesFrom rdf:resource="http://local/Transformations.owl#JavaObserverJRE"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+        <rdfs:subClassOf rdf:resource="#transformations::Java1DataTypesIntersection"/>
+        <rdfs:subClassOf rdf:resource="#transformations::JavaMappingIntersection"/>
+        <rdfs:subClassOf rdf:resource="#transformations::UML2ObserverIntersection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/Transformations.owl#MIDletJRE -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#MIDletJRE">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaxMicroeditionMidletLibrary"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
+        <rdfs:comment xml:lang="en"
+            >Java Runtime Environment that provides a basic version of javax.microedition.midlet</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://local/Transformations.owl#MIDletPlatform -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#MIDletPlatform">
+        <owl:equivalentClass rdf:resource="#transformations::UML2MIDletIntersection"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
+                <owl:someValuesFrom rdf:resource="http://local/Transformations.owl#MIDletJRE"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/platformkit/inferred.owl#_intersectionSet_Intersection -->
+
+    <owl:Class rdf:about="#_intersectionSet_Intersection">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#transformations::Java1DataTypesIntersection"/>
+                    <rdf:Description rdf:about="#transformations::Java2DataTypesIntersection"/>
+                    <rdf:Description rdf:about="#transformations::JavaMappingIntersection"/>
+                    <rdf:Description rdf:about="#transformations::UML2AppletIntersection"/>
+                    <rdf:Description rdf:about="#transformations::UML2JavaObserverIntersection"/>
+                    <rdf:Description rdf:about="#transformations::UML2MIDletIntersection"/>
+                    <rdf:Description rdf:about="#transformations::UML2ObserverIntersection"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#AppletPlatform"/>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java2Platform"/>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaObserverPlatform"/>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#MIDletPlatform"/>
+        <rdfs:subClassOf rdf:resource="#transformations::Java2DataTypesIntersection"/>
+        <rdfs:subClassOf rdf:resource="#transformations::UML2AppletIntersection"/>
+        <rdfs:subClassOf rdf:resource="#transformations::UML2JavaObserverIntersection"/>
+        <rdfs:subClassOf rdf:resource="#transformations::UML2MIDletIntersection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/platformkit/inferred.owl#transformations::Java1DataTypesIntersection -->
+
+    <owl:Class rdf:about="#transformations::Java1DataTypesIntersection">
+        <owl:equivalentClass rdf:resource="#transformations::JavaMappingIntersection"/>
+        <owl:equivalentClass rdf:resource="#transformations::UML2ObserverIntersection"/>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://local/Transformations.owl#Java1Platform"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/platformkit/inferred.owl#transformations::Java2DataTypesIntersection -->
+
+    <owl:Class rdf:about="#transformations::Java2DataTypesIntersection">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://local/Transformations.owl#Java2Platform"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+        <rdfs:subClassOf rdf:resource="#transformations::Java1DataTypesIntersection"/>
+        <rdfs:subClassOf rdf:resource="#transformations::JavaMappingIntersection"/>
+        <rdfs:subClassOf rdf:resource="#transformations::UML2ObserverIntersection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/platformkit/inferred.owl#transformations::JavaMappingIntersection -->
+
+    <owl:Class rdf:about="#transformations::JavaMappingIntersection">
+        <owl:equivalentClass rdf:resource="#transformations::UML2ObserverIntersection"/>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://local/Transformations.owl#JavaMappingsPlatform"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/platformkit/inferred.owl#transformations::UML2AppletIntersection -->
+
+    <owl:Class rdf:about="#transformations::UML2AppletIntersection">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://local/Transformations.owl#AppletPlatform"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/platformkit/inferred.owl#transformations::UML2JavaObserverIntersection -->
+
+    <owl:Class rdf:about="#transformations::UML2JavaObserverIntersection">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://local/Transformations.owl#JavaObserverPlatform"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java1Platform"/>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaMappingsPlatform"/>
+        <rdfs:subClassOf rdf:resource="#transformations::Java1DataTypesIntersection"/>
+        <rdfs:subClassOf rdf:resource="#transformations::JavaMappingIntersection"/>
+        <rdfs:subClassOf rdf:resource="#transformations::UML2ObserverIntersection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/platformkit/inferred.owl#transformations::UML2MIDletIntersection -->
+
+    <owl:Class rdf:about="#transformations::UML2MIDletIntersection">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://local/Transformations.owl#MIDletPlatform"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/platformkit/inferred.owl#transformations::UML2ObserverIntersection -->
+
+    <owl:Class rdf:about="#transformations::UML2ObserverIntersection">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://local/Transformations.owl#Java1Platform"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE">
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaLangLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaLangLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaUtilLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaUtilLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaxMicroeditionMidletLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaxMicroeditionMidletLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-2_0-api.owl#JavaUtilLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-2_0-api.owl#JavaUtilLibrary"/>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaAppletLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaAppletLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaAwtLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaAwtLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaUtilLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaUtilLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaUtilLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-2_0-api.owl#JavaUtilLibrary"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2se-1_2-api.owl#JavaUtilLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2se-1_2-api.owl#JavaUtilLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaUtilLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaUtilLibrary"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaAppletLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaAppletLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaAwtLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaAwtLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaLangLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaLangLibrary">
+        <owl:equivalentClass rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangLibrary"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaLangReflectLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaLangReflectLibrary">
+        <owl:equivalentClass rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangReflectLibrary"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaUtilLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaUtilLibrary">
+        <owl:equivalentClass rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaUtilLibrary"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaAppletLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaAppletLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaAwtLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaAwtLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangReflectLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangReflectLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaUtilLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaUtilLibrary">
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JavaLibrary"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature -->
+
+    <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
+    
+
+
+    <!-- http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library -->
+
+    <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
+    
+
+
+    <!-- http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform -->
+
+    <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software -->
+
+    <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+</rdf:RDF>

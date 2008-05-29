@@ -22,6 +22,18 @@
            source="http://ssel.vub.ac.be/uml2cs/Transformations.owl"
            target="platform:/plugin/be.ac.vub.uml2cs.transformations.config/model/Transformations.owl"/>
   </extension>
+  <extension
+        point="org.eclipse.emf.ecore.uri_mapping">
+     <mapping
+           source="http://ssel.vub.ac.be/uml2cs/Transformations.platformkit"
+           target="platform:/plugin/be.ac.vub.uml2cs.transformations.config/model/Transformations.platformkit"/>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecore.uri_mapping">
+     <mapping
+           source="http://ssel.vub.ac.be/uml2cs/Transformations.inferred.owl"
+           target="platform:/plugin/be.ac.vub.uml2cs.transformations.config/model/Transformations.inferred.owl"/>
+  </extension>
 
 </plugin>
 

@@ -272,6 +272,7 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_EdElkEd0Edy_8vCCth3JFA" name="Dimension"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_FWrHEEd0Edy_8vCCth3JFA" name="Point"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_Nu1jcEhGEdycN-x3fEK4ZQ" name="Canvas"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_UF9n4C5kEd2wms9OZLfx4Q" name="datatransfer"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_bUmisETFEdutoZk0i5ZyXw" name="net">
       <eAnnotations xmi:id="_j9UsAETFEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
@@ -297,6 +298,8 @@
           </eAnnotations>
         </generalization>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IGDWoC1vEd2e7od4K9wNBA" name="InputStream" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_JDw8EC1vEd2e7od4K9wNBA" name="OutputStream" isAbstract="true"/>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_G0AOIPfyEdqaqL9wEVL3aA" name="javax">

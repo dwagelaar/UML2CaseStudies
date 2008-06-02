@@ -2,6 +2,7 @@
 <project name="uml2cs-instantmessenger-model/deployment/localhost" default="all">
 	<property name="deploy.path" value="${user.home}/Sites/platformkit/instantmessenger"/>
 	<eclipse.convertPath resourcePath="platformkit-examples/codamos_2007_01" property="example.path"/>
+	<eclipse.convertPath resourcePath="platformkit-discovery-applet/packaging" property="pkda.path"/>
 
 	<target name="clean">
 		<mkdir dir="${deploy.path}"/>
@@ -14,6 +15,9 @@
 		<mkdir dir="${deploy.path}/example"/>
 		<copy todir="${deploy.path}">
 	  		<fileset dir="../data"/>
+			<fileset dir="${pkda.path}">
+				<include name="pkda.jar"/>
+			</fileset>
 	  	</copy>
 		<copy todir="${deploy.path}/example">
 	  		<fileset dir="${example.path}">

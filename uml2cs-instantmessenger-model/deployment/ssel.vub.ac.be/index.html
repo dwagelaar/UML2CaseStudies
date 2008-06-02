@@ -8,7 +8,7 @@
 	<script language="JavaScript">
 	<!-- //
 		document.write("<form name=\"config\" method=\"post\" action=\"http://progxt1.vub.ac.be/platformkitservlet/servlet/options\" enctype=\"multipart/form-data\" onSubmit=\"startCounter();\">");
-        	document.write("<input name=\"baseurl\" type=\"hidden\" value=\"" + location + "InstantMessengerDeployment.platformkit\"/>");
+		document.write("<input name=\"baseurl\" type=\"hidden\" value=\"" + location + "InstantMessengerDeployment.platformkit\"/>");
 	//-->
 	</script>
 	<input name="result" type="hidden" value="mostspecific" />
@@ -16,7 +16,29 @@
 	<table border="0" cellpadding="2" cellspacing="0">
 	<tr>
 		<td>Platform ontology: </td>
-		<td><input name="context" type="file" alt="Specify your OWL platform description here" /></td>
+		<td>
+			<applet 
+				code="be.ac.vub.platformkit.discovery.DiscoveryApplet" 
+				archive="pkda.jar" 
+				width=200 
+				height=100 
+				name="pkda" 
+				title="PlatformKit Discovery Applet"
+				mayscript="mayscript">
+				<param name="Color" value="#FFFFFF" />
+			</applet><br />
+			<textarea 
+				name="context"
+				cols="80"
+				rows="10" 
+				title="Specify your OWL platform description here"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td>...or platform ontology file: </td>
+		<td>
+			<input name="contextfile" type="file" alt="Specify your OWL platform description here" />
+		</td>
 	</tr>
 	<tr>
 		<td></td>
@@ -64,6 +86,15 @@
 	}
 
 	document.config.counter.type = "hidden";
+	
+	function setOWL() {
+		document.config.context.value = document.applets.pkda.getOWL();
+		if (document.config.context.value.indexOf("rdf:RDF") == -1) {
+			setTimeout("setOWL()", 100);
+		}
+	}
+	
+	setTimeout("setOWL()", 100);
 //-->
 </script>
 </html>

@@ -3,6 +3,7 @@
 	<property name="deploy.host" value="dwagelaa@ssel.vub.ac.be"/>
 	<property name="deploy.path" value="/var/www/html/platformkit/instantmessenger"/>
 	<eclipse.convertPath resourcePath="platformkit-examples/codamos_2007_01" property="example.path"/>
+	<eclipse.convertPath resourcePath="platformkit-discovery-applet/packaging" property="pkda.path"/>
 
 	<target name="deploy">
 		<exec dir="../data" executable="rsync" logError="true">
@@ -18,6 +19,11 @@
 			<arg line="-rlvuzC"/>
 			<arg line="."/>
 			<arg line="${deploy.host}:${deploy.path}/example"/>
+		</exec>
+		<exec dir="${pkda.path}" executable="rsync" logError="true">
+			<arg line="-rlvuzC"/>
+			<arg line="pkda.jar"/>
+			<arg line="${deploy.host}:${deploy.path}"/>
 		</exec>
 	</target>
 

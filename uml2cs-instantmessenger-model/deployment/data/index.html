@@ -2,183 +2,40 @@
 <html>
 <head>
 	<title>PlatformKit - Instant Messenger</title>
-	<link rel="stylesheet" media="all" type="text/css" href="style.css" />
 </head>
+<script language="JavaScript">
+<!-- //
+	var servleturl = "http://" + location.hostname + ":8080/platformkitservlet/";
+
+	document.write("<frameset rows=\"*\">");
+	document.write(
+		"<frame frameborder=\"0\" src=\"" +	servleturl + "?" +
+		"baseurl=" + location + "InstantMessengerDeployment.platformkit&" +
+		"result=mostspecific&novalidate=false&hide=true&" +
+		"pagetitle=Instant+Messaging+Client+Configuration\"/>");
+//-->
+</script>
+<noframes>
 <body>
-	<div class="pagebody">
-	
-	<div class="tlc">&nbsp;</div>
-	<div class="trc">&nbsp;</div>
-	
-	<div class="greenbox">
-	
-	<h1>Instant Messaging Client Configuration</h1>
+
 	<script language="JavaScript">
 	<!-- //
-		document.write("<form name=\"config\" method=\"post\" action=\"http://" + location.hostname + ":8080/platformkitservlet/servlet/options\" enctype=\"multipart/form-data\" onSubmit=\"startCounter();\">");
+		document.write("<form name=\"config\" method=\"get\" action=\"" + servleturl + "\">");
 		document.write("<input name=\"baseurl\" type=\"hidden\" value=\"" + location + "InstantMessengerDeployment.platformkit\"/>");
 	//-->
 	</script>
-	<input name="result" type="hidden" value="mostspecific" />
-	<input name="noValidate" type="hidden" value="false" />
+		<input type="hidden" name="result" value="mostspecific" />
+		<input type="hidden" name="novalidate" value="false" />
+		<input type="hidden" name="hide" value="true" />
+		<input type="hidden" name="pagetitle" value="Instant Messaging Client Configuration" />
+	</form>	
 
-	</div>	
-	<div class="whitebox">
-
-	<div class="head">
-		<h2>Automatic platform description</h2>
-	</div>
-	
-	<div class="applet"><applet 
-		code="be.ac.vub.platformkit.discovery.DiscoveryApplet" 
-		archive="pkda.jar" 
-		width=200 
-		height=60 
-		name="pkda" 
-		title="PlatformKit Discovery Applet"
-		mayscript="mayscript">
-		<param name="Color" value="#FFFFFF" />
-	</applet></div>
-	
-	</div>
-	<div class="greenbox">
-
-	<div class="head">
-		<div class="floatright">
-			<a href="javascript:toggleManual()">
-				<img id="toggleManual" src="collapse_tcat.gif">
-			</a>
-		</div>
-		<h2>Manual platform description</h2>
-	</div>
-	
-	<div id="manual">
-		<label for="context">Platform ontology:</label>
-		<textarea 
-			id="context"
-			class="edit"
-			name="context"
-			title="Specify your OWL platform description here"></textarea>
-		<div class="floatright">
-			<input 
-				id="contextfile" 
-				name="contextfile" 
-				type="file" 
-				class="edit" 
-				alt="Specify your OWL platform description here" />
-		</div>
-		<label for="contextfile">...or platform ontology file:<br/><br/>
-		</label>
-	</div>
-	
-	</div>
-	<div class="whitebox">
-
-	<div class="head">
-		<div class="floatright">
-			<input class="edit" name="counter" type="text" size="3" value="0" />	
-			<input type="submit" class="button" alt="Send your request to the reasoner" />
-		</div>
-		<script language="JavaScript">
-		<!-- //
-		document.write("<p><a href=\"http://" + location.hostname + ":8080/platformkitservlet/servlet/options?baseurl=" + location + "InstantMessengerDeployment.platformkit&result=mostspecific&noValidate=false\">");
-       	document.write("Let the server auto-detect your platform</a>.</p>");
-		//-->
-		</script>
-	</div>
-
-	</form>
-
-	</div>
-	<div class="greenbox">
-	
-	<div class="head">
-		<div class="floatright">
-			<a href="javascript:toggleExamples()">
-				<img id="toggleExamples" src="collapse_tcat.gif">
-			</a>
-		</div>
-		<h2>Example platform descriptions</h2>
-	</div>
-		
-	<div class="bottomdrawerBody" id="examples">
-		<ul>
-		<li><a href="example/Generic/JDK1.1PC.owl">Generic PC with JDK 1.1</a></li>
-		<li><a href="example/Generic/JDK1.2PC.owl">Generic PC with JDK 1.2</a></li>
-		<li><a href="example/Generic/JDK1.3PC.owl">Generic PC with JDK 1.3</a></li>
-		<li><a href="example/Generic/JDK1.4PC.owl">Generic PC with JDK 1.4</a></li>
-		<li><a href="example/Generic/JDK1.5PC.owl">Generic PC with JDK 1.5</a></li>
-		<li><a href="example/Generic/JDK1.6PC.owl">Generic PC with JDK 1.6</a></li>
-		<li><a href="example/Generic/PersonalJava1.1PocketPC.owl">Microsoft PocketPC with Personal Java 1.1</a></li>
-		<li><a href="example/Generic/J2MEPP1.0PocketPC.owl">Microsoft PocketPC with J2ME PP 1.0</a></li>
-		<li><a href="example/Generic/J2MEPP1.1PocketPC.owl">Microsoft PocketPC with J2ME PP 1.1</a></li>
-		<li><a href="example/Generic/J2MEMIDP1.0Phone.owl">Mobile phone with J2ME MIDP 1.0</a></li>
-		<li><a href="example/Generic/J2MEMIDP2.0Phone.owl">Mobile phone with J2ME MIDP 2.0</a></li>
-		<li><a href="example/Sharp/ZaurusSL-C1000PP.owl">Sharp Zaurus SL-C1000 PDA with J2ME PP</a></li>
-		<li><a href="example/Sharp/ZaurusSL-C1000Jeode.owl">Sharp Zaurus SL-C1000 PDA with Jeode Personal Java</a></li>
-		<li><a href="example/Siemens/CX70v.owl">Siemens CX70v mobile phone with MIDP 2.0</a></li>
-		</ul>
-	</div>
-
-	</div>
-
-	<div class="blc">&nbsp;</div>
-	<div class="brc">&nbsp;</div>
-	
-	</div>
-	
 </body>
 <script language="JavaScript">
 <!-- //
-	function startCounter() {
-		document.config.counter.type = "text";
-		setTimeout("doCount(0)", 1000);
-	}
-
-	function doCount(count) {
-		count++;
-		document.config.counter.value = count;
-		setTimeout("doCount(" + count + ")", 1000);
-	}
-
-	document.config.counter.type = "hidden";
-	
-	function toggleManual() {
-		var t = document.getElementById('toggleManual');
-		var e = document.getElementById('manual');
-		if (e.style.display == 'none') {
-			e.style.display = '';
-			t.src = 'collapse_tcat.gif';
-		} else {
-			e.style.display = 'none';
-			t.src = 'collapse_tcat_collapsed.gif';
-		}
-	}
-	
-	function setOWL() {
-		document.config.context.value = document.applets.pkda.getOWL();
-		if (document.config.context.value.indexOf("rdf:RDF") == -1) {
-			setTimeout("setOWL()", 100);
-		} else {
-			toggleManual();
-		}		
-	}
-	
-	setTimeout("setOWL()", 100);
-	
-	function toggleExamples() {
-		var t = document.getElementById('toggleExamples');
-		var e = document.getElementById('examples');
-		if (e.style.display == 'none') {
-			e.style.display = '';
-			t.src = 'collapse_tcat.gif';
-		} else {
-			e.style.display = 'none';
-			t.src = 'collapse_tcat_collapsed.gif';
-		}
-	}
-	
-	toggleExamples();
+	document.config.submit();
 //-->
 </script>
+</noframes>
+</frameset>
 </html>

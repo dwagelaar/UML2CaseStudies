@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="MIDlet">
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="MIDlet">
   <eAnnotations xmi:id="_6znM0ET9Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
     <details xmi:id="_6znM0UT9Edu4IL8_POARHA" key="uuid" value="11583543301400"/>
   </eAnnotations>
@@ -7,7 +7,7 @@
     <eAnnotations xmi:id="_6znM0kT9Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
       <details xmi:id="_6znM00T9Edu4IL8_POARHA" key="uuid" value="11583543301411"/>
     </eAnnotations>
-    <packagedElement xmi:type="uml:Class" xmi:id="_xT04oET9Edu4IL8_POARHA" name="AppletMIDlet">
+    <packagedElement xmi:type="uml:Class" xmi:id="_xT04oET9Edu4IL8_POARHA" name="AppletMIDlet" isAbstract="true">
       <eAnnotations xmi:id="_6znM1ET9Edu4IL8_POARHA" source="http://www.topcased.org/uuid">
         <details xmi:id="_6znM1UT9Edu4IL8_POARHA" key="uuid" value="11583543301412"/>
       </eAnnotations>

@@ -66,7 +66,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection supportedTypes = new ArrayList();
+	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
 	 * This constructs an instance.
@@ -96,6 +96,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createTransformationConfigAdapter() {
 		if (transformationConfigItemProvider == null) {
 			transformationConfigItemProvider = new TransformationConfigItemProvider(this);
@@ -118,6 +119,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createJavaMappingAdapter() {
 		if (javaMappingItemProvider == null) {
 			javaMappingItemProvider = new JavaMappingItemProvider(this);
@@ -140,6 +142,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createJava1DataTypesAdapter() {
 		if (java1DataTypesItemProvider == null) {
 			java1DataTypesItemProvider = new Java1DataTypesItemProvider(this);
@@ -162,6 +165,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createJava2DataTypesAdapter() {
 		if (java2DataTypesItemProvider == null) {
 			java2DataTypesItemProvider = new Java2DataTypesItemProvider(this);
@@ -184,6 +188,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createUML2ObserverAdapter() {
 		if (uml2ObserverItemProvider == null) {
 			uml2ObserverItemProvider = new UML2ObserverItemProvider(this);
@@ -206,6 +211,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createUML2JavaObserverAdapter() {
 		if (uml2JavaObserverItemProvider == null) {
 			uml2JavaObserverItemProvider = new UML2JavaObserverItemProvider(this);
@@ -228,6 +234,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createUML2AppletAdapter() {
 		if (uml2AppletItemProvider == null) {
 			uml2AppletItemProvider = new UML2AppletItemProvider(this);
@@ -250,6 +257,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createUML2MIDletAdapter() {
 		if (uml2MIDletItemProvider == null) {
 			uml2MIDletItemProvider = new UML2MIDletItemProvider(this);
@@ -283,6 +291,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object type) {
 		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
@@ -293,6 +302,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter adapt(Notifier notifier, Object type) {
 		return super.adapt(notifier, this);
 	}
@@ -302,10 +312,11 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class)type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

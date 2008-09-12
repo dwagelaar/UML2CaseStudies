@@ -22,7 +22,7 @@ package be.ac.vub.uml2cs.transformations;
  *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#MIDletPlatform'"
  * @generated
  */
-public interface UML2MIDlet extends UML2Applet {
+public interface UML2MIDlet extends Applet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

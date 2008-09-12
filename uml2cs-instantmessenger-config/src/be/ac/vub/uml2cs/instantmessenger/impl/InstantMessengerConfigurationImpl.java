@@ -103,7 +103,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList userInterface;
+	protected EList<UserInterface> userInterface;
 
 	/**
 	 * The cached value of the '{@link #getPackaging() <em>Packaging</em>}' containment reference.
@@ -129,6 +129,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return InstantmessengerPackage.Literals.INSTANT_MESSENGER_CONFIGURATION;
 	}
@@ -245,9 +246,9 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getUserInterface() {
+	public EList<UserInterface> getUserInterface() {
 		if (userInterface == null) {
-			userInterface = new EObjectContainmentWithInverseEList(UserInterface.class, this, InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__USER_INTERFACE, InstantmessengerPackage.USER_INTERFACE__CONFIG);
+			userInterface = new EObjectContainmentWithInverseEList<UserInterface>(UserInterface.class, this, InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__USER_INTERFACE, InstantmessengerPackage.USER_INTERFACE__CONFIG);
 		}
 		return userInterface;
 	}
@@ -300,6 +301,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__LOCAL_NETWORK:
@@ -311,7 +313,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 					msgs = ((InternalEObject)jabberNetwork).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__JABBER_NETWORK, null, msgs);
 				return basicSetJabberNetwork((JabberNetwork)otherEnd, msgs);
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__USER_INTERFACE:
-				return ((InternalEList)getUserInterface()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUserInterface()).basicAdd(otherEnd, msgs);
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__PACKAGING:
 				if (packaging != null)
 					msgs = ((InternalEObject)packaging).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__PACKAGING, null, msgs);
@@ -325,6 +327,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__LOCAL_NETWORK:
@@ -332,7 +335,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__JABBER_NETWORK:
 				return basicSetJabberNetwork(null, msgs);
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__USER_INTERFACE:
-				return ((InternalEList)getUserInterface()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getUserInterface()).basicRemove(otherEnd, msgs);
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__PACKAGING:
 				return basicSetPackaging(null, msgs);
 		}
@@ -344,6 +347,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__DEPLOYMENT_TARGET:
@@ -365,6 +369,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__DEPLOYMENT_TARGET:
@@ -378,7 +383,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 				return;
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__USER_INTERFACE:
 				getUserInterface().clear();
-				getUserInterface().addAll((Collection)newValue);
+				getUserInterface().addAll((Collection<? extends UserInterface>)newValue);
 				return;
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__PACKAGING:
 				setPackaging((Packaging)newValue);
@@ -392,6 +397,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__DEPLOYMENT_TARGET:
@@ -418,6 +424,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__DEPLOYMENT_TARGET:
@@ -439,6 +446,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

@@ -16,7 +16,8 @@
 	<!-- = = = = = properties = = = = = -->
 	
 	<!-- atl.vm = "Regular VM (with debugger)" | "EMF-specific VM" -->
-	<property name="atl.vm" value="Regular VM (with debugger)"/>
+	<!--property name="atl.vm" value="Regular VM (with debugger)"/-->
+	<property name="atl.vm" value="EMF-specific VM"/>
 
 	<property name="trans.path" value="/uml2cs-transformations"/>
 	<property name="trans.uml2copy.path" value="${trans.path}/UML2Copy.atl"/>

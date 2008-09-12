@@ -6,7 +6,8 @@
     editorDirectory="/uml2cs-transformations-config-editor/src" modelPluginID="be.ac.vub.uml2cs.transformations.config"
     modelName="Transformations" editPluginClass="be.ac.vub.uml2cs.transformations.provider.TransformationsEditPlugin"
     editorPluginClass="be.ac.vub.uml2cs.transformations.presentation.TransformationsEditorPlugin"
-    testsDirectory="/uml2cs-transformations-config-tests/src" importerID="org.eclipse.emf.importer.ecore">
+    testsDirectory="/uml2cs-transformations-config-tests/src" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0">
   <foreignModel>Transformations.ecore</foreignModel>
   <genPackages prefix="Transformations" basePackage="be.ac.vub.uml2cs" disposableProviderFactory="true"
       ecorePackage="Transformations.ecore#/">
@@ -37,9 +38,11 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Transformations.ecore#//UML2Observer/config"/>
     </genClasses>
     <genClasses ecoreClass="Transformations.ecore#//UML2JavaObserver"/>
-    <genClasses ecoreClass="Transformations.ecore#//UML2Applet">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Transformations.ecore#//UML2Applet/config"/>
-    </genClasses>
+    <genClasses ecoreClass="Transformations.ecore#//UML2Applet"/>
     <genClasses ecoreClass="Transformations.ecore#//UML2MIDlet"/>
+    <genClasses image="false" ecoreClass="Transformations.ecore#//Applet">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Transformations.ecore#//Applet/config"/>
+    </genClasses>
+    <genClasses ecoreClass="Transformations.ecore#//UML2SWTApplication"/>
   </genPackages>
 </genmodel:GenModel>

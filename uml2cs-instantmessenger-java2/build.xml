@@ -19,8 +19,8 @@
 	</target>
 	
 	<target name="loadModels">
-		<am3.loadModel modelHandler="EMF" name="ConfigMM" metamodel="MOF" path="uml2cs-instantmessenger-model/configuration/InstantMessenger.ecore"/>
-		<am3.loadModel modelHandler="EMF" name="Config" metamodel="ConfigMM" path="${ant.project.name}/config.ecore"/>
+		<am3.loadModel modelHandler="EMF" name="ConfigMM" metamodel="MOF" nsuri="http://ssel.vub.ac.be/uml2cs/InstantMessenger"/>
+		<am3.loadModel modelHandler="EMF" name="Config" metamodel="ConfigMM" path="${ant.project.name}/java2.instantmessenger"/>
 		<am3.loadModel modelHandler="EMF" name="XML" metamodel="MOF" path="uml2cs-transformations/metamodels/XML.ecore"/>
 	</target>
 

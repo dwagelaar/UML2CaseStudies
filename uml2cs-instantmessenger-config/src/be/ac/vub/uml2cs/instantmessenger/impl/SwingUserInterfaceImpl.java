@@ -42,6 +42,7 @@ public class SwingUserInterfaceImpl extends UserInterfaceImpl implements SwingUs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return InstantmessengerPackage.Literals.SWING_USER_INTERFACE;
 	}

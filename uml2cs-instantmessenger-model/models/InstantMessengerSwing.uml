@@ -700,6 +700,10 @@
                 </eAnnotations>
               </lowerValue>
             </ownedAttribute>
+            <ownedAttribute xmi:id="_ctS30G3jEd2R7N4NISzgTg" name="serialVersionUID" visibility="private" isStatic="true" isReadOnly="true">
+              <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_thVLwOrIEdyKT-jaGOfUdg"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_onXdIG3jEd2R7N4NISzgTg" value="-3343924599093574319L"/>
+            </ownedAttribute>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_KL8VgEP9Edug19jXgM5cew" name="SwingNewContactDialogBehavior" specification="_oosckEPhEdusb52s3APTjA">
               <eAnnotations xmi:id="_daGMcEP9Edug19jXgM5cew" source="http://www.topcased.org/uuid">
                 <details xmi:id="_daGMcUP9Edug19jXgM5cew" key="uuid" value="1158244181687288"/>
@@ -746,7 +750,7 @@
                 <type xmi:type="uml:PrimitiveType" href="../../uml2cs-transformations/models/PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
               </ownedParameter>
               <language>java</language>
-              <body>    return passwordField.getText();</body>
+              <body>return new String(passwordField.getPassword());</body>
             </ownedBehavior>
             <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_VVfc0EP9Edug19jXgM5cew" name="SwingNewContactDialog_addNetworkBehavior" specification="_6w-LYEPzEdug19jXgM5cew">
               <eAnnotations xmi:id="_daGzhkP9Edug19jXgM5cew" source="http://www.topcased.org/uuid">

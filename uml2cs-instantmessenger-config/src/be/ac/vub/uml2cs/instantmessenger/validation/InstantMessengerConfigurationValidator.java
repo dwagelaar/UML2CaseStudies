@@ -6,11 +6,12 @@
  */
 package be.ac.vub.uml2cs.instantmessenger.validation;
 
+import org.eclipse.emf.common.util.EList;
+
 import be.ac.vub.uml2cs.instantmessenger.JabberNetwork;
 import be.ac.vub.uml2cs.instantmessenger.LocalNetwork;
 import be.ac.vub.uml2cs.instantmessenger.Packaging;
-
-import org.eclipse.emf.common.util.EList;
+import be.ac.vub.uml2cs.instantmessenger.UserInterface;
 
 /**
  * A sample validator interface for {@link be.ac.vub.uml2cs.instantmessenger.InstantMessengerConfiguration}.
@@ -24,6 +25,6 @@ public interface InstantMessengerConfigurationValidator {
 	boolean validateDeploymentTarget(String value);
 	boolean validateLocalNetwork(LocalNetwork value);
 	boolean validateJabberNetwork(JabberNetwork value);
-	boolean validateUserInterface(EList value);
+	boolean validateUserInterface(EList<UserInterface> value);
 	boolean validatePackaging(Packaging value);
 }

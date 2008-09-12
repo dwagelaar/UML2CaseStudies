@@ -42,6 +42,7 @@ public class IpkgAppletPackagingImpl extends PackagingImpl implements IpkgApplet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return InstantmessengerPackage.Literals.IPKG_APPLET_PACKAGING;
 	}

@@ -42,6 +42,7 @@ public class MEJabberTransportImpl extends JabberTransportImpl implements MEJabb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return InstantmessengerPackage.Literals.ME_JABBER_TRANSPORT;
 	}

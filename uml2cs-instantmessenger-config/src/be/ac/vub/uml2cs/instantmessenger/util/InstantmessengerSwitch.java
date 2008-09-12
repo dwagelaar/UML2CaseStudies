@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage
  * @generated
  */
-public class InstantmessengerSwitch {
+public class InstantmessengerSwitch<T> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,7 +63,7 @@ public class InstantmessengerSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public Object doSwitch(EObject theEObject) {
+	public T doSwitch(EObject theEObject) {
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
@@ -74,16 +74,16 @@ public class InstantmessengerSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(EClass theEClass, EObject theEObject) {
+	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
 		else {
-			List eSuperTypes = theEClass.getESuperTypes();
+			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
 					defaultCase(theEObject) :
-					doSwitch((EClass)eSuperTypes.get(0), theEObject);
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -94,97 +94,97 @@ public class InstantmessengerSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(int classifierID, EObject theEObject) {
+	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION: {
 				InstantMessengerConfiguration instantMessengerConfiguration = (InstantMessengerConfiguration)theEObject;
-				Object result = caseInstantMessengerConfiguration(instantMessengerConfiguration);
+				T result = caseInstantMessengerConfiguration(instantMessengerConfiguration);
 				if (result == null) result = caseTransformationConfig(instantMessengerConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.LOCAL_NETWORK: {
 				LocalNetwork localNetwork = (LocalNetwork)theEObject;
-				Object result = caseLocalNetwork(localNetwork);
+				T result = caseLocalNetwork(localNetwork);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.JABBER_NETWORK: {
 				JabberNetwork jabberNetwork = (JabberNetwork)theEObject;
-				Object result = caseJabberNetwork(jabberNetwork);
+				T result = caseJabberNetwork(jabberNetwork);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.JABBER_TRANSPORT: {
 				JabberTransport jabberTransport = (JabberTransport)theEObject;
-				Object result = caseJabberTransport(jabberTransport);
+				T result = caseJabberTransport(jabberTransport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.DEFAULT_JABBER_TRANSPORT: {
 				DefaultJabberTransport defaultJabberTransport = (DefaultJabberTransport)theEObject;
-				Object result = caseDefaultJabberTransport(defaultJabberTransport);
+				T result = caseDefaultJabberTransport(defaultJabberTransport);
 				if (result == null) result = caseJabberTransport(defaultJabberTransport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.ME_JABBER_TRANSPORT: {
 				MEJabberTransport meJabberTransport = (MEJabberTransport)theEObject;
-				Object result = caseMEJabberTransport(meJabberTransport);
+				T result = caseMEJabberTransport(meJabberTransport);
 				if (result == null) result = caseJabberTransport(meJabberTransport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.USER_INTERFACE: {
 				UserInterface userInterface = (UserInterface)theEObject;
-				Object result = caseUserInterface(userInterface);
+				T result = caseUserInterface(userInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.AWT_USER_INTERFACE: {
 				AWTUserInterface awtUserInterface = (AWTUserInterface)theEObject;
-				Object result = caseAWTUserInterface(awtUserInterface);
+				T result = caseAWTUserInterface(awtUserInterface);
 				if (result == null) result = caseUserInterface(awtUserInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.SWING_USER_INTERFACE: {
 				SwingUserInterface swingUserInterface = (SwingUserInterface)theEObject;
-				Object result = caseSwingUserInterface(swingUserInterface);
+				T result = caseSwingUserInterface(swingUserInterface);
 				if (result == null) result = caseUserInterface(swingUserInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.LCDUI_USER_INTERFACE: {
 				LCDUIUserInterface lcduiUserInterface = (LCDUIUserInterface)theEObject;
-				Object result = caseLCDUIUserInterface(lcduiUserInterface);
+				T result = caseLCDUIUserInterface(lcduiUserInterface);
 				if (result == null) result = caseUserInterface(lcduiUserInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.PACKAGING: {
 				Packaging packaging = (Packaging)theEObject;
-				Object result = casePackaging(packaging);
+				T result = casePackaging(packaging);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.WEB_APPLET_PACKAGING: {
 				WebAppletPackaging webAppletPackaging = (WebAppletPackaging)theEObject;
-				Object result = caseWebAppletPackaging(webAppletPackaging);
+				T result = caseWebAppletPackaging(webAppletPackaging);
 				if (result == null) result = casePackaging(webAppletPackaging);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.IPKG_APPLET_PACKAGING: {
 				IpkgAppletPackaging ipkgAppletPackaging = (IpkgAppletPackaging)theEObject;
-				Object result = caseIpkgAppletPackaging(ipkgAppletPackaging);
+				T result = caseIpkgAppletPackaging(ipkgAppletPackaging);
 				if (result == null) result = casePackaging(ipkgAppletPackaging);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case InstantmessengerPackage.MI_DLET_PACKAGING: {
 				MIDletPackaging miDletPackaging = (MIDletPackaging)theEObject;
-				Object result = caseMIDletPackaging(miDletPackaging);
+				T result = caseMIDletPackaging(miDletPackaging);
 				if (result == null) result = casePackaging(miDletPackaging);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -204,7 +204,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInstantMessengerConfiguration(InstantMessengerConfiguration object) {
+	public T caseInstantMessengerConfiguration(InstantMessengerConfiguration object) {
 		return null;
 	}
 
@@ -219,7 +219,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLocalNetwork(LocalNetwork object) {
+	public T caseLocalNetwork(LocalNetwork object) {
 		return null;
 	}
 
@@ -234,7 +234,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseJabberNetwork(JabberNetwork object) {
+	public T caseJabberNetwork(JabberNetwork object) {
 		return null;
 	}
 
@@ -249,7 +249,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseJabberTransport(JabberTransport object) {
+	public T caseJabberTransport(JabberTransport object) {
 		return null;
 	}
 
@@ -264,7 +264,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDefaultJabberTransport(DefaultJabberTransport object) {
+	public T caseDefaultJabberTransport(DefaultJabberTransport object) {
 		return null;
 	}
 
@@ -279,7 +279,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseMEJabberTransport(MEJabberTransport object) {
+	public T caseMEJabberTransport(MEJabberTransport object) {
 		return null;
 	}
 
@@ -294,7 +294,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUserInterface(UserInterface object) {
+	public T caseUserInterface(UserInterface object) {
 		return null;
 	}
 
@@ -309,7 +309,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAWTUserInterface(AWTUserInterface object) {
+	public T caseAWTUserInterface(AWTUserInterface object) {
 		return null;
 	}
 
@@ -324,7 +324,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSwingUserInterface(SwingUserInterface object) {
+	public T caseSwingUserInterface(SwingUserInterface object) {
 		return null;
 	}
 
@@ -339,7 +339,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLCDUIUserInterface(LCDUIUserInterface object) {
+	public T caseLCDUIUserInterface(LCDUIUserInterface object) {
 		return null;
 	}
 
@@ -354,7 +354,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePackaging(Packaging object) {
+	public T casePackaging(Packaging object) {
 		return null;
 	}
 
@@ -369,7 +369,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseWebAppletPackaging(WebAppletPackaging object) {
+	public T caseWebAppletPackaging(WebAppletPackaging object) {
 		return null;
 	}
 
@@ -384,7 +384,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseIpkgAppletPackaging(IpkgAppletPackaging object) {
+	public T caseIpkgAppletPackaging(IpkgAppletPackaging object) {
 		return null;
 	}
 
@@ -399,7 +399,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseMIDletPackaging(MIDletPackaging object) {
+	public T caseMIDletPackaging(MIDletPackaging object) {
 		return null;
 	}
 
@@ -414,7 +414,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTransformationConfig(TransformationConfig object) {
+	public T caseTransformationConfig(TransformationConfig object) {
 		return null;
 	}
 
@@ -429,7 +429,7 @@ public class InstantmessengerSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public Object defaultCase(EObject object) {
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

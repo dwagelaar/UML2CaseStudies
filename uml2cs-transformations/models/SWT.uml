@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_44TSwEKmEd29fNqekgzB4Q" name="org.eclipse.swt.gtk.linux.x86_64_3.3.2.v3349">
+  <packagedElement xmi:type="uml:Package" xmi:id="_45CSkEKmEd29fNqekgzB4Q" name="org">
+    <packagedElement xmi:type="uml:Package" xmi:id="_45CSkUKmEd29fNqekgzB4Q" name="eclipse">
+      <packagedElement xmi:type="uml:Package" xmi:id="_45C5oEKmEd29fNqekgzB4Q" name="swt">
+        <packagedElement xmi:type="uml:Class" xmi:id="_45C5oUKmEd29fNqekgzB4Q" name="SWT"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_45DgsEKmEd29fNqekgzB4Q" name="SWTError"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_45EHwUKmEd29fNqekgzB4Q" name="SWTException"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_45FV4EKmEd29fNqekgzB4Q" name="accessibility">
+          <packagedElement xmi:type="uml:Class" xmi:id="_45FV4UKmEd29fNqekgzB4Q" name="ACC"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45HLEEKmEd29fNqekgzB4Q" name="Accessible"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45HyIEKmEd29fNqekgzB4Q" name="AccessibleAdapter" clientDependency="_4-h2kUKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4-h2kUKmEd29fNqekgzB4Q" supplier="_45HyIUKmEd29fNqekgzB4Q" client="_45HyIEKmEd29fNqekgzB4Q" contract="_45HyIUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_45HyIUKmEd29fNqekgzB4Q" name="AccessibleListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45HyIkKmEd29fNqekgzB4Q" name="AccessibleControlAdapter" clientDependency="_4-idoUKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4-idoUKmEd29fNqekgzB4Q" supplier="_45IZMEKmEd29fNqekgzB4Q" client="_45HyIkKmEd29fNqekgzB4Q" contract="_45IZMEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_45IZMEKmEd29fNqekgzB4Q" name="AccessibleControlListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45IZMUKmEd29fNqekgzB4Q" name="AccessibleControlEvent"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45JAQUKmEd29fNqekgzB4Q" name="AccessibleEvent"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45NRsEKmEd29fNqekgzB4Q" name="AccessibleTextAdapter" clientDependency="_4-k54EKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4-k54EKmEd29fNqekgzB4Q" supplier="_45NRsUKmEd29fNqekgzB4Q" client="_45NRsEKmEd29fNqekgzB4Q" contract="_45NRsUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_45NRsUKmEd29fNqekgzB4Q" name="AccessibleTextListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45N4wEKmEd29fNqekgzB4Q" name="AccessibleTextEvent"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_45QVAEKmEd29fNqekgzB4Q" name="awt">
+          <packagedElement xmi:type="uml:Class" xmi:id="_45QVAUKmEd29fNqekgzB4Q" name="SWT_AWT"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_45SKMEKmEd29fNqekgzB4Q" name="browser">
+          <packagedElement xmi:type="uml:Class" xmi:id="_45SKMUKmEd29fNqekgzB4Q" name="Browser">
+            <generalization xmi:id="_4-okQEKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_45SxQEKmEd29fNqekgzB4Q" name="CloseWindowListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45gMoEKmEd29fNqekgzB4Q" name="LocationAdapter" clientDependency="_4-s1sEKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4-s1sEKmEd29fNqekgzB4Q" supplier="_45gzsEKmEd29fNqekgzB4Q" client="_45gMoEKmEd29fNqekgzB4Q" contract="_45gzsEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_45gzsEKmEd29fNqekgzB4Q" name="LocationListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45gzsUKmEd29fNqekgzB4Q" name="LocationEvent">
+            <generalization xmi:id="_4-s1skKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_45p9oUKmEd29fNqekgzB4Q" name="OpenWindowListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45qksEKmEd29fNqekgzB4Q" name="ProgressAdapter" clientDependency="_4-wgEEKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4-wgEEKmEd29fNqekgzB4Q" supplier="_45qksUKmEd29fNqekgzB4Q" client="_45qksEKmEd29fNqekgzB4Q" contract="_45qksUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_45qksUKmEd29fNqekgzB4Q" name="ProgressListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45rLwEKmEd29fNqekgzB4Q" name="ProgressEvent">
+            <generalization xmi:id="_4-wgEkKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45vdMEKmEd29fNqekgzB4Q" name="StatusTextEvent">
+            <generalization xmi:id="_4-yVQEKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_45wEQUKmEd29fNqekgzB4Q" name="StatusTextListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45wrUEKmEd29fNqekgzB4Q" name="TitleEvent">
+            <generalization xmi:id="_4-y8UUKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_45xSYEKmEd29fNqekgzB4Q" name="TitleListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45xSYUKmEd29fNqekgzB4Q" name="VisibilityWindowAdapter" clientDependency="_4-zjYUKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4-zjYUKmEd29fNqekgzB4Q" supplier="_45xSYkKmEd29fNqekgzB4Q" client="_45xSYUKmEd29fNqekgzB4Q" contract="_45xSYkKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_45xSYkKmEd29fNqekgzB4Q" name="VisibilityWindowListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45zuoEKmEd29fNqekgzB4Q" name="WindowEvent">
+            <generalization xmi:id="_4-0xgEKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_45SKMkKmEd29fNqekgzB4Q" name="widgets">
+          <packagedElement xmi:type="uml:Class" xmi:id="_45SKM0KmEd29fNqekgzB4Q" name="Composite">
+            <generalization xmi:id="_5BDmIEKmEd29fNqekgzB4Q" general="_4949YEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_451j0UKmEd29fNqekgzB4Q" name="Canvas">
+            <generalization xmi:id="_5BBJ4UKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46HQoUKmEd29fNqekgzB4Q" name="Item" isAbstract="true">
+            <generalization xmi:id="_5BMwEEKmEd29fNqekgzB4Q" general="_46sfcUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46SPwUKmEd29fNqekgzB4Q" name="Layout" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46sfcUKmEd29fNqekgzB4Q" name="Widget" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49eGokKmEd29fNqekgzB4Q" name="Dialog" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_491TAEKmEd29fNqekgzB4Q" name="Button">
+            <generalization xmi:id="_5BBJ4EKmEd29fNqekgzB4Q" general="_4916EEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4916EEKmEd29fNqekgzB4Q" name="Control" clientDependency="_5BE0QEKmEd29fNqekgzB4Q" isAbstract="true">
+            <generalization xmi:id="_5BE0QUKmEd29fNqekgzB4Q" general="_46sfcUKmEd29fNqekgzB4Q"/>
+            <interfaceRealization xmi:id="_5BE0QEKmEd29fNqekgzB4Q" supplier="_47Nc0UKmEd29fNqekgzB4Q" client="_4916EEKmEd29fNqekgzB4Q" contract="_47Nc0UKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_492hIEKmEd29fNqekgzB4Q" name="Caret">
+            <generalization xmi:id="_5BBw8EKmEd29fNqekgzB4Q" general="_46sfcUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_493IMEKmEd29fNqekgzB4Q" name="ColorDialog">
+            <generalization xmi:id="_5BBw8UKmEd29fNqekgzB4Q" general="_49eGokKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_493vQEKmEd29fNqekgzB4Q" name="Combo">
+            <generalization xmi:id="_5BC_EEKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4949YEKmEd29fNqekgzB4Q" name="Scrollable" isAbstract="true">
+            <generalization xmi:id="_5BSPoEKmEd29fNqekgzB4Q" general="_4916EEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_498AsEKmEd29fNqekgzB4Q" name="CoolBar">
+            <generalization xmi:id="_5BFbUEKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_498nwEKmEd29fNqekgzB4Q" name="CoolItem">
+            <generalization xmi:id="_5BGCYEKmEd29fNqekgzB4Q" general="_46HQoUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49914EKmEd29fNqekgzB4Q" name="DateTime">
+            <generalization xmi:id="_5BHQgEKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49-c8EKmEd29fNqekgzB4Q" name="Decorations">
+            <generalization xmi:id="_5BHQgUKmEd29fNqekgzB4Q" general="_451j0UKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49_rEEKmEd29fNqekgzB4Q" name="DirectoryDialog">
+            <generalization xmi:id="_5BH3kUKmEd29fNqekgzB4Q" general="_49eGokKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-BgQEKmEd29fNqekgzB4Q" name="Display">
+            <generalization xmi:id="_5BJFsEKmEd29fNqekgzB4Q" general="_47Nc0EKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-CHUEKmEd29fNqekgzB4Q" name="Event"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-DVcEKmEd29fNqekgzB4Q" name="ExpandBar">
+            <generalization xmi:id="_5BKT0EKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-D8gEKmEd29fNqekgzB4Q" name="ExpandItem">
+            <generalization xmi:id="_5BK64EKmEd29fNqekgzB4Q" general="_46HQoUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-EjkEKmEd29fNqekgzB4Q" name="FileDialog">
+            <generalization xmi:id="_5BLh8EKmEd29fNqekgzB4Q" general="_49eGokKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-EjkUKmEd29fNqekgzB4Q" name="FontDialog">
+            <generalization xmi:id="_5BMJAEKmEd29fNqekgzB4Q" general="_49eGokKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-FKoEKmEd29fNqekgzB4Q" name="Group">
+            <generalization xmi:id="_5BMJAUKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-FxsEKmEd29fNqekgzB4Q" name="Label">
+            <generalization xmi:id="_5BNXIEKmEd29fNqekgzB4Q" general="_4916EEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-G_0EKmEd29fNqekgzB4Q" name="Link">
+            <generalization xmi:id="_5BN-MEKmEd29fNqekgzB4Q" general="_4916EEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-IN8EKmEd29fNqekgzB4Q" name="List">
+            <generalization xmi:id="_5BOlQEKmEd29fNqekgzB4Q" general="_4949YEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_4-I1AUKmEd29fNqekgzB4Q" name="Listener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-JcEEKmEd29fNqekgzB4Q" name="Menu">
+            <generalization xmi:id="_5BPMUEKmEd29fNqekgzB4Q" general="_46sfcUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-KDIEKmEd29fNqekgzB4Q" name="MenuItem">
+            <generalization xmi:id="_5BPzYEKmEd29fNqekgzB4Q" general="_46HQoUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-KqMEKmEd29fNqekgzB4Q" name="MessageBox">
+            <generalization xmi:id="_5BPzYUKmEd29fNqekgzB4Q" general="_49eGokKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-KqMUKmEd29fNqekgzB4Q" name="Monitor" isLeaf="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-L4UEKmEd29fNqekgzB4Q" name="ProgressBar">
+            <generalization xmi:id="_5BQacUKmEd29fNqekgzB4Q" general="_4916EEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-MfYEKmEd29fNqekgzB4Q" name="Sash">
+            <generalization xmi:id="_5BRBgEKmEd29fNqekgzB4Q" general="_4916EEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-NGcEKmEd29fNqekgzB4Q" name="Scale">
+            <generalization xmi:id="_5BRBgUKmEd29fNqekgzB4Q" general="_4916EEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-NtgEKmEd29fNqekgzB4Q" name="ScrollBar">
+            <generalization xmi:id="_5BRokEKmEd29fNqekgzB4Q" general="_46sfcUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-O7oEKmEd29fNqekgzB4Q" name="Shell">
+            <generalization xmi:id="_5BS2sEKmEd29fNqekgzB4Q" general="_49-c8EKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-PisEKmEd29fNqekgzB4Q" name="Slider">
+            <generalization xmi:id="_5BTdwEKmEd29fNqekgzB4Q" general="_4916EEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-Qw0EKmEd29fNqekgzB4Q" name="Spinner">
+            <generalization xmi:id="_5BUE0EKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-Qw0UKmEd29fNqekgzB4Q" name="Synchronizer"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-RX4EKmEd29fNqekgzB4Q" name="TabFolder">
+            <generalization xmi:id="_5BUr4EKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-R-8EKmEd29fNqekgzB4Q" name="TabItem">
+            <generalization xmi:id="_5BVS8EKmEd29fNqekgzB4Q" general="_46HQoUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-T0IEKmEd29fNqekgzB4Q" name="Table">
+            <generalization xmi:id="_5BV6AEKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-VCQEKmEd29fNqekgzB4Q" name="TableColumn">
+            <generalization xmi:id="_5BWhEEKmEd29fNqekgzB4Q" general="_46HQoUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-VpUEKmEd29fNqekgzB4Q" name="TableItem">
+            <generalization xmi:id="_5BXIIEKmEd29fNqekgzB4Q" general="_46HQoUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-W3cEKmEd29fNqekgzB4Q" name="Text">
+            <generalization xmi:id="_5BXvMEKmEd29fNqekgzB4Q" general="_4949YEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-XegEKmEd29fNqekgzB4Q" name="ToolBar">
+            <generalization xmi:id="_5BYWQEKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-YFkEKmEd29fNqekgzB4Q" name="ToolItem">
+            <generalization xmi:id="_5BY9UEKmEd29fNqekgzB4Q" general="_46HQoUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-ZTsEKmEd29fNqekgzB4Q" name="ToolTip">
+            <generalization xmi:id="_5BZkYEKmEd29fNqekgzB4Q" general="_46sfcUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-Z6wEKmEd29fNqekgzB4Q" name="Tracker">
+            <generalization xmi:id="_5BaLcEKmEd29fNqekgzB4Q" general="_46sfcUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-ah0EKmEd29fNqekgzB4Q" name="Tray">
+            <generalization xmi:id="_5BaLcUKmEd29fNqekgzB4Q" general="_46sfcUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-ah0UKmEd29fNqekgzB4Q" name="TrayItem">
+            <generalization xmi:id="_5BaygEKmEd29fNqekgzB4Q" general="_46HQoUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-cXAEKmEd29fNqekgzB4Q" name="Tree">
+            <generalization xmi:id="_5BcAoEKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-c-EEKmEd29fNqekgzB4Q" name="TreeColumn">
+            <generalization xmi:id="_5BcnsEKmEd29fNqekgzB4Q" general="_46HQoUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-dlIEKmEd29fNqekgzB4Q" name="TreeItem">
+            <generalization xmi:id="_5BdOwEKmEd29fNqekgzB4Q" general="_46HQoUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4-eMMEKmEd29fNqekgzB4Q" name="TypedListener" clientDependency="_5BfD8EKmEd29fNqekgzB4Q">
+            <interfaceRealization xmi:id="_5BfD8EKmEd29fNqekgzB4Q" supplier="_4-I1AUKmEd29fNqekgzB4Q" client="_4-eMMEKmEd29fNqekgzB4Q" contract="_4-I1AUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_45gzskKmEd29fNqekgzB4Q" name="events">
+          <packagedElement xmi:type="uml:Class" xmi:id="_45hawEKmEd29fNqekgzB4Q" name="TypedEvent"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_461CUEKmEd29fNqekgzB4Q" name="ArmEvent" isLeaf="true">
+            <generalization xmi:id="_4_W9AUKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_461CUkKmEd29fNqekgzB4Q" name="ArmListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_461pYEKmEd29fNqekgzB4Q" name="ControlAdapter" clientDependency="_4_XkEUKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4_XkEUKmEd29fNqekgzB4Q" supplier="_461pYUKmEd29fNqekgzB4Q" client="_461pYEKmEd29fNqekgzB4Q" contract="_461pYUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_461pYUKmEd29fNqekgzB4Q" name="ControlListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_462QcEKmEd29fNqekgzB4Q" name="ControlEvent" isLeaf="true">
+            <generalization xmi:id="_4_YLIEKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_4623gEKmEd29fNqekgzB4Q" name="DisposeEvent" isLeaf="true">
+            <generalization xmi:id="_4_YyMEKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_463ekUKmEd29fNqekgzB4Q" name="DisposeListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_463ekkKmEd29fNqekgzB4Q" name="DragDetectEvent" isLeaf="true">
+            <generalization xmi:id="_4_YyMkKmEd29fNqekgzB4Q" general="_463ek0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_463ek0KmEd29fNqekgzB4Q" name="MouseEvent">
+            <generalization xmi:id="_4_e40kKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_464FoUKmEd29fNqekgzB4Q" name="DragDetectListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_464ssEKmEd29fNqekgzB4Q" name="ExpandAdapter" clientDependency="_4_ZZQUKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4_ZZQUKmEd29fNqekgzB4Q" supplier="_464ssUKmEd29fNqekgzB4Q" client="_464ssEKmEd29fNqekgzB4Q" contract="_464ssUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_464ssUKmEd29fNqekgzB4Q" name="ExpandListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_464sskKmEd29fNqekgzB4Q" name="ExpandEvent">
+            <generalization xmi:id="_4_aAUEKmEd29fNqekgzB4Q" general="_464ss0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_464ss0KmEd29fNqekgzB4Q" name="SelectionEvent">
+            <generalization xmi:id="_4_h8IEKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_465TwEKmEd29fNqekgzB4Q" name="FocusAdapter" clientDependency="_4_anYEKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4_anYEKmEd29fNqekgzB4Q" supplier="_46560EKmEd29fNqekgzB4Q" client="_465TwEKmEd29fNqekgzB4Q" contract="_46560EKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46560EKmEd29fNqekgzB4Q" name="FocusListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46560UKmEd29fNqekgzB4Q" name="FocusEvent" isLeaf="true">
+            <generalization xmi:id="_4_anYkKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_466h4EKmEd29fNqekgzB4Q" name="HelpEvent" isLeaf="true">
+            <generalization xmi:id="_4_bOcUKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_467I8EKmEd29fNqekgzB4Q" name="HelpListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_467I8UKmEd29fNqekgzB4Q" name="KeyAdapter" clientDependency="_4_b1gEKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4_b1gEKmEd29fNqekgzB4Q" supplier="_467I8kKmEd29fNqekgzB4Q" client="_467I8UKmEd29fNqekgzB4Q" contract="_467I8kKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_467I8kKmEd29fNqekgzB4Q" name="KeyListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46-MQEKmEd29fNqekgzB4Q" name="KeyEvent">
+            <generalization xmi:id="_4_cckEKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46-zUEKmEd29fNqekgzB4Q" name="MenuAdapter" clientDependency="_4_cckkKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4_cckkKmEd29fNqekgzB4Q" supplier="_46-zUUKmEd29fNqekgzB4Q" client="_46-zUEKmEd29fNqekgzB4Q" contract="_46-zUUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46-zUUKmEd29fNqekgzB4Q" name="MenuListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46_aYEKmEd29fNqekgzB4Q" name="MenuDetectEvent" isLeaf="true">
+            <generalization xmi:id="_4_dDoUKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47ABcUKmEd29fNqekgzB4Q" name="MenuDetectListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47AogEKmEd29fNqekgzB4Q" name="MenuEvent" isLeaf="true">
+            <generalization xmi:id="_4_dqsEKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47BPkEKmEd29fNqekgzB4Q" name="ModifyEvent" isLeaf="true">
+            <generalization xmi:id="_4_eRwEKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47B2oUKmEd29fNqekgzB4Q" name="ModifyListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47B2okKmEd29fNqekgzB4Q" name="MouseAdapter" clientDependency="_4_e40EKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4_e40EKmEd29fNqekgzB4Q" supplier="_47CdsEKmEd29fNqekgzB4Q" client="_47B2okKmEd29fNqekgzB4Q" contract="_47CdsEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47CdsEKmEd29fNqekgzB4Q" name="MouseListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47DEwUKmEd29fNqekgzB4Q" name="MouseMoveListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47Dr0EKmEd29fNqekgzB4Q" name="MouseTrackAdapter" clientDependency="_4_gG8EKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4_gG8EKmEd29fNqekgzB4Q" supplier="_47Dr0UKmEd29fNqekgzB4Q" client="_47Dr0EKmEd29fNqekgzB4Q" contract="_47Dr0UKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47Dr0UKmEd29fNqekgzB4Q" name="MouseTrackListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47ES4UKmEd29fNqekgzB4Q" name="MouseWheelListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47E58EKmEd29fNqekgzB4Q" name="PaintEvent" isLeaf="true">
+            <generalization xmi:id="_4_guAUKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47FhAEKmEd29fNqekgzB4Q" name="PaintListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47FhAUKmEd29fNqekgzB4Q" name="SelectionAdapter" clientDependency="_4_hVEEKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4_hVEEKmEd29fNqekgzB4Q" supplier="_47GIEEKmEd29fNqekgzB4Q" client="_47FhAUKmEd29fNqekgzB4Q" contract="_47GIEEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47GIEEKmEd29fNqekgzB4Q" name="SelectionListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47GvIEKmEd29fNqekgzB4Q" name="ShellAdapter" clientDependency="_4_h8IkKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4_h8IkKmEd29fNqekgzB4Q" supplier="_47GvIUKmEd29fNqekgzB4Q" client="_47GvIEKmEd29fNqekgzB4Q" contract="_47GvIUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47GvIUKmEd29fNqekgzB4Q" name="ShellListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47HWMEKmEd29fNqekgzB4Q" name="ShellEvent" isLeaf="true">
+            <generalization xmi:id="_4_ijMUKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47H9QEKmEd29fNqekgzB4Q" name="TraverseEvent" isLeaf="true">
+            <generalization xmi:id="_4_jKQUKmEd29fNqekgzB4Q" general="_46-MQEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47IkUEKmEd29fNqekgzB4Q" name="TraverseListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47IkUUKmEd29fNqekgzB4Q" name="TreeAdapter" clientDependency="_4_jxUEKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4_jxUEKmEd29fNqekgzB4Q" supplier="_47JLYEKmEd29fNqekgzB4Q" client="_47IkUUKmEd29fNqekgzB4Q" contract="_47JLYEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47JLYEKmEd29fNqekgzB4Q" name="TreeListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47JLYUKmEd29fNqekgzB4Q" name="TreeEvent" isLeaf="true">
+            <generalization xmi:id="_4_kYYEKmEd29fNqekgzB4Q" general="_464ss0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47JycEKmEd29fNqekgzB4Q" name="VerifyEvent" isLeaf="true">
+            <generalization xmi:id="_4_k_cEKmEd29fNqekgzB4Q" general="_46-MQEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47KZgUKmEd29fNqekgzB4Q" name="VerifyListener" isAbstract="true"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_4508wEKmEd29fNqekgzB4Q" name="custom">
+          <packagedElement xmi:type="uml:Class" xmi:id="_451j0EKmEd29fNqekgzB4Q" name="AnimatedProgress">
+            <generalization xmi:id="_4-1_oEKmEd29fNqekgzB4Q" general="_451j0UKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_451j0kKmEd29fNqekgzB4Q" name="BidiSegmentEvent">
+            <generalization xmi:id="_4-1_oUKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_452K4UKmEd29fNqekgzB4Q" name="BidiSegmentListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_452x8EKmEd29fNqekgzB4Q" name="Bullet"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_453ZAEKmEd29fNqekgzB4Q" name="BusyIndicator"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_454AEEKmEd29fNqekgzB4Q" name="CBanner">
+            <generalization xmi:id="_4-3NwEKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_457qcEKmEd29fNqekgzB4Q" name="CCombo" isLeaf="true">
+            <generalization xmi:id="_4-4b4EKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_45-GsEKmEd29fNqekgzB4Q" name="CLabel">
+            <generalization xmi:id="_4-5qAEKmEd29fNqekgzB4Q" general="_451j0UKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46ENUEKmEd29fNqekgzB4Q" name="CTabFolder">
+            <generalization xmi:id="_4-7fMEKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46ENUUKmEd29fNqekgzB4Q" name="CTabFolder2Adapter" clientDependency="_4-7fMUKmEd29fNqekgzB4Q">
+            <interfaceRealization xmi:id="_4-7fMUKmEd29fNqekgzB4Q" supplier="_46E0YEKmEd29fNqekgzB4Q" client="_46ENUUKmEd29fNqekgzB4Q" contract="_46E0YEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46E0YEKmEd29fNqekgzB4Q" name="CTabFolder2Listener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46FbcEKmEd29fNqekgzB4Q" name="CTabFolderAdapter" clientDependency="_4-8GQUKmEd29fNqekgzB4Q">
+            <interfaceRealization xmi:id="_4-8GQUKmEd29fNqekgzB4Q" supplier="_46FbcUKmEd29fNqekgzB4Q" client="_46FbcEKmEd29fNqekgzB4Q" contract="_46FbcUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46FbcUKmEd29fNqekgzB4Q" name="CTabFolderListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46FbckKmEd29fNqekgzB4Q" name="CTabFolderEvent">
+            <generalization xmi:id="_4-8tUEKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46HQoEKmEd29fNqekgzB4Q" name="CTabItem">
+            <generalization xmi:id="_4-9UYEKmEd29fNqekgzB4Q" general="_46HQoUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46IewEKmEd29fNqekgzB4Q" name="ControlEditor"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46Js4EKmEd29fNqekgzB4Q" name="ExtendedModifyEvent" isLeaf="true">
+            <generalization xmi:id="_4--igEKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46Js4kKmEd29fNqekgzB4Q" name="ExtendedModifyListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46KT8EKmEd29fNqekgzB4Q" name="LineBackgroundEvent">
+            <generalization xmi:id="_4--igkKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46K7AUKmEd29fNqekgzB4Q" name="LineBackgroundListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46K7AkKmEd29fNqekgzB4Q" name="LineStyleEvent">
+            <generalization xmi:id="_4-_JkUKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46LiEUKmEd29fNqekgzB4Q" name="LineStyleListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46MJIEKmEd29fNqekgzB4Q" name="MovementEvent">
+            <generalization xmi:id="_4-_woUKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46MJIkKmEd29fNqekgzB4Q" name="MovementListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46MwMEKmEd29fNqekgzB4Q" name="PaintObjectEvent">
+            <generalization xmi:id="_4_AXsEKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46NXQUKmEd29fNqekgzB4Q" name="PaintObjectListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46OlYEKmEd29fNqekgzB4Q" name="PopupList"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46PMcEKmEd29fNqekgzB4Q" name="ST"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46PzgEKmEd29fNqekgzB4Q" name="SashForm">
+            <generalization xmi:id="_4_CM4EKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46RosEKmEd29fNqekgzB4Q" name="ScrolledComposite">
+            <generalization xmi:id="_4_Cz8EKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46SPwEKmEd29fNqekgzB4Q" name="StackLayout">
+            <generalization xmi:id="_4_DbAEKmEd29fNqekgzB4Q" general="_46SPwUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46S20EKmEd29fNqekgzB4Q" name="StyleRange" clientDependency="_4_DbAUKmEd29fNqekgzB4Q">
+            <generalization xmi:id="_4_ECEEKmEd29fNqekgzB4Q" general="_46Td4UKmEd29fNqekgzB4Q"/>
+            <interfaceRealization xmi:id="_4_DbAUKmEd29fNqekgzB4Q" client="_46S20EKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46d18EKmEd29fNqekgzB4Q" name="StyledText">
+            <generalization xmi:id="_4_HFYEKmEd29fNqekgzB4Q" general="_451j0UKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46d18kKmEd29fNqekgzB4Q" name="StyledTextContent" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46fEEEKmEd29fNqekgzB4Q" name="StyledTextDropTargetEffect">
+            <generalization xmi:id="_4_HscEKmEd29fNqekgzB4Q" general="_46fEEkKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46frIEKmEd29fNqekgzB4Q" name="StyledTextPrintOptions"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46jVgEKmEd29fNqekgzB4Q" name="TableCursor">
+            <generalization xmi:id="_4_JhoEKmEd29fNqekgzB4Q" general="_451j0UKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46j8kEKmEd29fNqekgzB4Q" name="TableEditor">
+            <generalization xmi:id="_4_KIsEKmEd29fNqekgzB4Q" general="_46IewEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46lKsEKmEd29fNqekgzB4Q" name="TableTree">
+            <generalization xmi:id="_4_KvwEKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46lxwEKmEd29fNqekgzB4Q" name="TableTreeEditor">
+            <generalization xmi:id="_4_LW0EKmEd29fNqekgzB4Q" general="_46IewEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46mY0EKmEd29fNqekgzB4Q" name="TableTreeItem">
+            <generalization xmi:id="_4_L94EKmEd29fNqekgzB4Q" general="_46HQoUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46mY0kKmEd29fNqekgzB4Q" name="TextChangeListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46m_4EKmEd29fNqekgzB4Q" name="TextChangedEvent">
+            <generalization xmi:id="_4_Mk8EKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46m_4UKmEd29fNqekgzB4Q" name="TextChangingEvent">
+            <generalization xmi:id="_4_Mk8UKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46oOAEKmEd29fNqekgzB4Q" name="TreeEditor">
+            <generalization xmi:id="_4_NMAEKmEd29fNqekgzB4Q" general="_46IewEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46o1EEKmEd29fNqekgzB4Q" name="VerifyKeyListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46pcIEKmEd29fNqekgzB4Q" name="ViewForm">
+            <generalization xmi:id="_4_NzEUKmEd29fNqekgzB4Q" general="_45SKM0KmEd29fNqekgzB4Q"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_46Td4EKmEd29fNqekgzB4Q" name="graphics">
+          <packagedElement xmi:type="uml:Class" xmi:id="_46Td4UKmEd29fNqekgzB4Q" name="TextStyle"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47LAkEKmEd29fNqekgzB4Q" name="Color" isLeaf="true">
+            <generalization xmi:id="_4_lmgEKmEd29fNqekgzB4Q" general="_47LnoEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47LnoEKmEd29fNqekgzB4Q" name="Resource" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47MOsEKmEd29fNqekgzB4Q" name="Cursor" isLeaf="true">
+            <generalization xmi:id="_4_mNkEKmEd29fNqekgzB4Q" general="_47LnoEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47Nc0EKmEd29fNqekgzB4Q" name="Device" clientDependency="_4_mNkUKmEd29fNqekgzB4Q" isAbstract="true">
+            <interfaceRealization xmi:id="_4_mNkUKmEd29fNqekgzB4Q" supplier="_47Nc0UKmEd29fNqekgzB4Q" client="_47Nc0EKmEd29fNqekgzB4Q" contract="_47Nc0UKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47Nc0UKmEd29fNqekgzB4Q" name="Drawable" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47Nc0kKmEd29fNqekgzB4Q" name="DeviceData"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47OD4EKmEd29fNqekgzB4Q" name="Font" isLeaf="true">
+            <generalization xmi:id="_4_nbsEKmEd29fNqekgzB4Q" general="_47LnoEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47Oq8EKmEd29fNqekgzB4Q" name="FontData" isLeaf="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47PSAEKmEd29fNqekgzB4Q" name="FontMetrics" isLeaf="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47RHMEKmEd29fNqekgzB4Q" name="GC" isLeaf="true">
+            <generalization xmi:id="_4_pQ4EKmEd29fNqekgzB4Q" general="_47LnoEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47RHMUKmEd29fNqekgzB4Q" name="GCData" isLeaf="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47RuQEKmEd29fNqekgzB4Q" name="GlyphMetrics" isLeaf="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47SVUEKmEd29fNqekgzB4Q" name="Image" clientDependency="_4_qfAEKmEd29fNqekgzB4Q" isLeaf="true">
+            <generalization xmi:id="_4_qfAUKmEd29fNqekgzB4Q" general="_47LnoEKmEd29fNqekgzB4Q"/>
+            <interfaceRealization xmi:id="_4_qfAEKmEd29fNqekgzB4Q" supplier="_47Nc0UKmEd29fNqekgzB4Q" client="_47SVUEKmEd29fNqekgzB4Q" contract="_47Nc0UKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47UKgEKmEd29fNqekgzB4Q" name="ImageData" clientDependency="_4_rtIEKmEd29fNqekgzB4Q" isLeaf="true">
+            <interfaceRealization xmi:id="_4_rtIEKmEd29fNqekgzB4Q" client="_47UKgEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47UxkEKmEd29fNqekgzB4Q" name="ImageLoader"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47UxkUKmEd29fNqekgzB4Q" name="ImageLoaderEvent"/>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_47VYoEKmEd29fNqekgzB4Q" name="ImageLoaderListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47VYoUKmEd29fNqekgzB4Q" name="LineAttributes"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47V_sEKmEd29fNqekgzB4Q" name="PaletteData" isLeaf="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47V_sUKmEd29fNqekgzB4Q" name="Path">
+            <generalization xmi:id="_4_tiUUKmEd29fNqekgzB4Q" general="_47LnoEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47WmwEKmEd29fNqekgzB4Q" name="PathData" isLeaf="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47WmwUKmEd29fNqekgzB4Q" name="Pattern">
+            <generalization xmi:id="_4_uJYUKmEd29fNqekgzB4Q" general="_47LnoEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47XN0EKmEd29fNqekgzB4Q" name="Point" clientDependency="_4_uwcEKmEd29fNqekgzB4Q" isLeaf="true">
+            <interfaceRealization xmi:id="_4_uwcEKmEd29fNqekgzB4Q" client="_47XN0EKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47X04EKmEd29fNqekgzB4Q" name="RGB" clientDependency="_4_vXgEKmEd29fNqekgzB4Q" isLeaf="true">
+            <interfaceRealization xmi:id="_4_vXgEKmEd29fNqekgzB4Q" client="_47X04EKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47X04UKmEd29fNqekgzB4Q" name="Rectangle" clientDependency="_4_vXgkKmEd29fNqekgzB4Q" isLeaf="true">
+            <interfaceRealization xmi:id="_4_vXgkKmEd29fNqekgzB4Q" client="_47X04UKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47Yb8EKmEd29fNqekgzB4Q" name="Region" isLeaf="true">
+            <generalization xmi:id="_4_v-kUKmEd29fNqekgzB4Q" general="_47LnoEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47aRIEKmEd29fNqekgzB4Q" name="TextLayout" isLeaf="true">
+            <generalization xmi:id="_4_xMsEKmEd29fNqekgzB4Q" general="_47LnoEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_47a4MEKmEd29fNqekgzB4Q" name="Transform">
+            <generalization xmi:id="_4_xzwUKmEd29fNqekgzB4Q" general="_47LnoEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_46fEEUKmEd29fNqekgzB4Q" name="dnd">
+          <packagedElement xmi:type="uml:Class" xmi:id="_46fEEkKmEd29fNqekgzB4Q" name="DropTargetEffect">
+            <generalization xmi:id="_4_TSoEKmEd29fNqekgzB4Q" general="_46viwUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46qDMEKmEd29fNqekgzB4Q" name="ByteArrayTransfer" isAbstract="true">
+            <generalization xmi:id="_4_OaIEKmEd29fNqekgzB4Q" general="_46qDMUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46qDMUKmEd29fNqekgzB4Q" name="Transfer" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46qqQEKmEd29fNqekgzB4Q" name="Clipboard"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46rRUEKmEd29fNqekgzB4Q" name="DND"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46sfcEKmEd29fNqekgzB4Q" name="DragSource">
+            <generalization xmi:id="_4_QPUEKmEd29fNqekgzB4Q" general="_46sfcUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46tGgEKmEd29fNqekgzB4Q" name="DragSourceAdapter" clientDependency="_4_QPUUKmEd29fNqekgzB4Q">
+            <interfaceRealization xmi:id="_4_QPUUKmEd29fNqekgzB4Q" supplier="_46tGgUKmEd29fNqekgzB4Q" client="_46tGgEKmEd29fNqekgzB4Q" contract="_46tGgUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46tGgUKmEd29fNqekgzB4Q" name="DragSourceListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46ttkEKmEd29fNqekgzB4Q" name="DragSourceEffect">
+            <generalization xmi:id="_4_Q2YUKmEd29fNqekgzB4Q" general="_46tGgEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46ttkUKmEd29fNqekgzB4Q" name="DragSourceEvent">
+            <generalization xmi:id="_4_RdcEKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46viwEKmEd29fNqekgzB4Q" name="DropTarget">
+            <generalization xmi:id="_4_SEgEKmEd29fNqekgzB4Q" general="_46sfcUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46viwUKmEd29fNqekgzB4Q" name="DropTargetAdapter" clientDependency="_4_SrkEKmEd29fNqekgzB4Q">
+            <interfaceRealization xmi:id="_4_SrkEKmEd29fNqekgzB4Q" supplier="_46viwkKmEd29fNqekgzB4Q" client="_46viwUKmEd29fNqekgzB4Q" contract="_46viwkKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_46viwkKmEd29fNqekgzB4Q" name="DropTargetListener" isAbstract="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46wJ0EKmEd29fNqekgzB4Q" name="DropTargetEvent">
+            <generalization xmi:id="_4_TSoUKmEd29fNqekgzB4Q" general="_45hawEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46ww4EKmEd29fNqekgzB4Q" name="FileTransfer">
+            <generalization xmi:id="_4_T5sUKmEd29fNqekgzB4Q" general="_46qDMEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46xX8EKmEd29fNqekgzB4Q" name="HTMLTransfer">
+            <generalization xmi:id="_4_UgwEKmEd29fNqekgzB4Q" general="_46qDMEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46x_AEKmEd29fNqekgzB4Q" name="RTFTransfer">
+            <generalization xmi:id="_4_UgwUKmEd29fNqekgzB4Q" general="_46qDMEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46ymEEKmEd29fNqekgzB4Q" name="TableDragSourceEffect">
+            <generalization xmi:id="_4_VH0EKmEd29fNqekgzB4Q" general="_46ttkEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46ymEUKmEd29fNqekgzB4Q" name="TableDropTargetEffect">
+            <generalization xmi:id="_4_VH0UKmEd29fNqekgzB4Q" general="_46fEEkKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46zNIEKmEd29fNqekgzB4Q" name="TextTransfer">
+            <generalization xmi:id="_4_Vu4EKmEd29fNqekgzB4Q" general="_46qDMEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46z0MEKmEd29fNqekgzB4Q" name="TransferData"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_46z0MUKmEd29fNqekgzB4Q" name="TreeDragSourceEffect">
+            <generalization xmi:id="_4_WV8UKmEd29fNqekgzB4Q" general="_46ttkEKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_460bQEKmEd29fNqekgzB4Q" name="TreeDropTargetEffect">
+            <generalization xmi:id="_4_W9AEKmEd29fNqekgzB4Q" general="_46fEEkKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_49YAAEKmEd29fNqekgzB4Q" name="layout">
+          <packagedElement xmi:type="uml:Class" xmi:id="_49YAAUKmEd29fNqekgzB4Q" name="FillLayout" isLeaf="true">
+            <generalization xmi:id="_5A7DQEKmEd29fNqekgzB4Q" general="_46SPwUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49YnEEKmEd29fNqekgzB4Q" name="FormAttachment" isLeaf="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49ZOIEKmEd29fNqekgzB4Q" name="FormData" isLeaf="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49Z1MEKmEd29fNqekgzB4Q" name="FormLayout" isLeaf="true">
+            <generalization xmi:id="_5A8RYEKmEd29fNqekgzB4Q" general="_46SPwUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49acQEKmEd29fNqekgzB4Q" name="GridData" isLeaf="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49bDUEKmEd29fNqekgzB4Q" name="GridLayout" isLeaf="true">
+            <generalization xmi:id="_5A84cUKmEd29fNqekgzB4Q" general="_46SPwUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49bqYEKmEd29fNqekgzB4Q" name="RowData" isLeaf="true"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49cRcEKmEd29fNqekgzB4Q" name="RowLayout" isLeaf="true">
+            <generalization xmi:id="_5A9fgUKmEd29fNqekgzB4Q" general="_46SPwUKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_49c4gEKmEd29fNqekgzB4Q" name="opengl">
+          <packagedElement xmi:type="uml:Class" xmi:id="_49c4gUKmEd29fNqekgzB4Q" name="GLCanvas">
+            <generalization xmi:id="_5A-GkEKmEd29fNqekgzB4Q" general="_451j0UKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49dfkEKmEd29fNqekgzB4Q" name="GLData"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_49eGoEKmEd29fNqekgzB4Q" name="printing">
+          <packagedElement xmi:type="uml:Class" xmi:id="_49eGoUKmEd29fNqekgzB4Q" name="PrintDialog">
+            <generalization xmi:id="_5A-toUKmEd29fNqekgzB4Q" general="_49eGokKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49fUwEKmEd29fNqekgzB4Q" name="Printer" isLeaf="true">
+            <generalization xmi:id="_5A_UsEKmEd29fNqekgzB4Q" general="_47Nc0EKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_49f70EKmEd29fNqekgzB4Q" name="PrinterData" isLeaf="true">
+            <generalization xmi:id="_5A_7wEKmEd29fNqekgzB4Q" general="_47Nc0kKmEd29fNqekgzB4Q"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_490r8EKmEd29fNqekgzB4Q" name="program">
+          <packagedElement xmi:type="uml:Class" xmi:id="_490r8UKmEd29fNqekgzB4Q" name="Program" isLeaf="true"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

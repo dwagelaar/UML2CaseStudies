@@ -135,10 +135,10 @@ public interface InstantMessengerConfiguration extends TransformationConfig {
 	 * @return the value of the '<em>User Interface</em>' containment reference list.
 	 * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getInstantMessengerConfiguration_UserInterface()
 	 * @see be.ac.vub.uml2cs.instantmessenger.UserInterface#getConfig
-	 * @model type="be.ac.vub.uml2cs.instantmessenger.UserInterface" opposite="config" containment="true" required="true"
+	 * @model opposite="config" containment="true" required="true"
 	 * @generated
 	 */
-	EList getUserInterface();
+	EList<UserInterface> getUserInterface();
 
 	/**
 	 * Returns the value of the '<em><b>Packaging</b></em>' containment reference.

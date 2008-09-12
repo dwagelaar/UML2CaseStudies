@@ -42,6 +42,7 @@ public class Java1DataTypesImpl extends JavaDataTypesImpl implements Java1DataTy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return TransformationsPackage.Literals.JAVA1_DATA_TYPES;
 	}

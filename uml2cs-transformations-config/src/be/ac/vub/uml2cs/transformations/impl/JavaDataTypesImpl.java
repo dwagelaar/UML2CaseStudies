@@ -56,6 +56,7 @@ public abstract class JavaDataTypesImpl extends EObjectImpl implements JavaDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return TransformationsPackage.Literals.JAVA_DATA_TYPES;
 	}
@@ -106,6 +107,7 @@ public abstract class JavaDataTypesImpl extends EObjectImpl implements JavaDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case TransformationsPackage.JAVA_DATA_TYPES__MAPPING:
@@ -121,6 +123,7 @@ public abstract class JavaDataTypesImpl extends EObjectImpl implements JavaDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case TransformationsPackage.JAVA_DATA_TYPES__MAPPING:
@@ -134,6 +137,7 @@ public abstract class JavaDataTypesImpl extends EObjectImpl implements JavaDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 			case TransformationsPackage.JAVA_DATA_TYPES__MAPPING:
@@ -147,6 +151,7 @@ public abstract class JavaDataTypesImpl extends EObjectImpl implements JavaDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case TransformationsPackage.JAVA_DATA_TYPES__MAPPING:
@@ -160,6 +165,7 @@ public abstract class JavaDataTypesImpl extends EObjectImpl implements JavaDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case TransformationsPackage.JAVA_DATA_TYPES__MAPPING:
@@ -174,6 +180,7 @@ public abstract class JavaDataTypesImpl extends EObjectImpl implements JavaDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case TransformationsPackage.JAVA_DATA_TYPES__MAPPING:
@@ -188,6 +195,7 @@ public abstract class JavaDataTypesImpl extends EObjectImpl implements JavaDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case TransformationsPackage.JAVA_DATA_TYPES__MAPPING:

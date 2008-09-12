@@ -48,7 +48,7 @@
       </diagrams>
       <subdiagrams xmi:id="_wnAb3mBmEdyQ3v2UkQxt4g">
         <model href="InstantMessengerSwing.uml#_QS7tQEPOEdusb52s3APTjA"/>
-        <diagrams xmi:id="_wnAb32BmEdyQ3v2UkQxt4g" position="0,0" size="100,100" name="im.view.swing" viewport="410,294">
+        <diagrams xmi:id="_wnAb32BmEdyQ3v2UkQxt4g" position="0,0" size="100,100" name="im.view.swing" viewport="0,410">
           <property xmi:id="_wnAb4GBmEdyQ3v2UkQxt4g" key="pageFormatName" value="A3"/>
           <property xmi:id="_wnAb4WBmEdyQ3v2UkQxt4g" key="diagramWidth" value="1188"/>
           <property xmi:id="_wnAb4mBmEdyQ3v2UkQxt4g" key="diagramHeight" value="1680"/>
@@ -361,6 +361,11 @@
               <contained xsi:type="di:GraphNode" xmi:id="_wnDfI2BmEdyQ3v2UkQxt4g" position="0,0" size="0,0">
                 <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_wnDfJGBmEdyQ3v2UkQxt4g" presentation="default">
                   <element href="InstantMessengerSwing.uml#_pJtrsEPxEdug19jXgM5cew"/>
+                </semanticModel>
+              </contained>
+              <contained xsi:type="di:GraphNode" xmi:id="_ctPNcG3jEd2R7N4NISzgTg" position="0,0" size="-1,-1">
+                <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ctPNcW3jEd2R7N4NISzgTg" presentation="default">
+                  <element href="InstantMessengerSwing.uml#_ctS30G3jEd2R7N4NISzgTg"/>
                 </semanticModel>
               </contained>
             </contained>

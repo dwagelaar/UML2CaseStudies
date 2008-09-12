@@ -7,30 +7,27 @@
 package be.ac.vub.uml2cs.transformations.provider;
 
 
-import be.ac.vub.uml2cs.transformations.SaveModelType;
-import be.ac.vub.uml2cs.transformations.TransformationConfig;
-import be.ac.vub.uml2cs.transformations.TransformationsFactory;
-import be.ac.vub.uml2cs.transformations.TransformationsPackage;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import be.ac.vub.uml2cs.transformations.TransformationConfig;
+import be.ac.vub.uml2cs.transformations.TransformationsFactory;
+import be.ac.vub.uml2cs.transformations.TransformationsPackage;
 
 /**
  * This is the item provider adapter for a {@link be.ac.vub.uml2cs.transformations.TransformationConfig} object.
@@ -69,7 +66,8 @@ public class TransformationConfigItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object) {
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
@@ -131,7 +129,8 @@ public class TransformationConfigItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object) {
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(TransformationsPackage.Literals.TRANSFORMATION_CONFIG__MAPPING);
@@ -146,6 +145,7 @@ public class TransformationConfigItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
@@ -159,6 +159,7 @@ public class TransformationConfigItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/TransformationConfig"));
 	}
@@ -169,6 +170,7 @@ public class TransformationConfigItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getText(Object object) {
 		String label = ((TransformationConfig)object).getTargetProject();
 		return label == null || label.length() == 0 ?
@@ -183,6 +185,7 @@ public class TransformationConfigItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
@@ -207,7 +210,8 @@ public class TransformationConfigItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -242,6 +246,7 @@ public class TransformationConfigItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ResourceLocator getResourceLocator() {
 		return TransformationsEditPlugin.INSTANCE;
 	}

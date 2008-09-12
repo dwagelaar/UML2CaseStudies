@@ -42,6 +42,7 @@ public class DefaultJabberTransportImpl extends JabberTransportImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return InstantmessengerPackage.Literals.DEFAULT_JABBER_TRANSPORT;
 	}

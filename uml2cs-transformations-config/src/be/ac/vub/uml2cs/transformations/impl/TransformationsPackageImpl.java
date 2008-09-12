@@ -6,6 +6,7 @@
  */
 package be.ac.vub.uml2cs.transformations.impl;
 
+import be.ac.vub.uml2cs.transformations.Applet;
 import be.ac.vub.uml2cs.transformations.Java1DataTypes;
 import be.ac.vub.uml2cs.transformations.Java2DataTypes;
 import be.ac.vub.uml2cs.transformations.JavaDataTypes;
@@ -20,6 +21,7 @@ import be.ac.vub.uml2cs.transformations.UML2JavaObserver;
 import be.ac.vub.uml2cs.transformations.UML2MIDlet;
 import be.ac.vub.uml2cs.transformations.UML2Observer;
 
+import be.ac.vub.uml2cs.transformations.UML2SWTApplication;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -111,6 +113,20 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 	 * @generated
 	 */
 	private EClass uml2MIDletEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass appletEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass uml2SWTApplicationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -354,8 +370,8 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUML2Applet_Config() {
-		return (EReference)uml2AppletEClass.getEStructuralFeatures().get(0);
+	public EClass getUML2MIDlet() {
+		return uml2MIDletEClass;
 	}
 
 	/**
@@ -363,8 +379,26 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUML2MIDlet() {
-		return uml2MIDletEClass;
+	public EClass getApplet() {
+		return appletEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getApplet_Config() {
+		return (EReference)appletEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUML2SWTApplication() {
+		return uml2SWTApplicationEClass;
 	}
 
 	/**
@@ -430,9 +464,13 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		uml2JavaObserverEClass = createEClass(UML2_JAVA_OBSERVER);
 
 		uml2AppletEClass = createEClass(UML2_APPLET);
-		createEReference(uml2AppletEClass, UML2_APPLET__CONFIG);
 
 		uml2MIDletEClass = createEClass(UML2MI_DLET);
+
+		appletEClass = createEClass(APPLET);
+		createEReference(appletEClass, APPLET__CONFIG);
+
+		uml2SWTApplicationEClass = createEClass(UML2SWT_APPLICATION);
 
 		// Create enums
 		saveModelTypeEEnum = createEEnum(SAVE_MODEL_TYPE);
@@ -461,19 +499,25 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Create type parameters
+
+		// Set bounds for type parameters
+
 		// Add supertypes to classes
 		javaMappingEClass.getESuperTypes().add(this.getMapping());
 		java1DataTypesEClass.getESuperTypes().add(this.getJavaDataTypes());
 		java2DataTypesEClass.getESuperTypes().add(this.getJavaDataTypes());
 		uml2JavaObserverEClass.getESuperTypes().add(this.getUML2Observer());
-		uml2MIDletEClass.getESuperTypes().add(this.getUML2Applet());
+		uml2AppletEClass.getESuperTypes().add(this.getApplet());
+		uml2MIDletEClass.getESuperTypes().add(this.getApplet());
+		uml2SWTApplicationEClass.getESuperTypes().add(this.getApplet());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(transformationConfigEClass, TransformationConfig.class, "TransformationConfig", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransformationConfig_Mapping(), this.getMapping(), this.getMapping_Config(), "mapping", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransformationConfig_SaveModels(), this.getSaveModelType(), "saveModels", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformationConfig_Observer(), this.getUML2Observer(), this.getUML2Observer_Config(), "observer", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransformationConfig_Applet(), this.getUML2Applet(), this.getUML2Applet_Config(), "applet", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransformationConfig_Applet(), this.getApplet(), this.getApplet_Config(), "applet", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransformationConfig_TargetProject(), ecorePackage.getEString(), "targetProject", null, 1, 1, TransformationConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mappingEClass, Mapping.class, "Mapping", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -495,9 +539,13 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		initEClass(uml2JavaObserverEClass, UML2JavaObserver.class, "UML2JavaObserver", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(uml2AppletEClass, UML2Applet.class, "UML2Applet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUML2Applet_Config(), this.getTransformationConfig(), this.getTransformationConfig_Applet(), "config", null, 1, 1, UML2Applet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(uml2MIDletEClass, UML2MIDlet.class, "UML2MIDlet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(appletEClass, Applet.class, "Applet", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getApplet_Config(), this.getTransformationConfig(), this.getTransformationConfig_Applet(), "config", null, 1, 1, Applet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(uml2SWTApplicationEClass, UML2SWTApplication.class, "UML2SWTApplication", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(saveModelTypeEEnum, SaveModelType.class, "SaveModelType");
@@ -570,7 +618,13 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		   source, 
 		   new String[] {
 			 "ContextConstraint", "http://local/Transformations.owl#MIDletPlatform"
-		   });		
+		   });						
+		addAnnotation
+		  (uml2SWTApplicationEClass, 
+		   source, 
+		   new String[] {
+			 "ContextConstraint", "http://local/Transformations.owl#Java1Platform"
+		   });	
 	}
 
 	/**
@@ -628,7 +682,13 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		   source, 
 		   new String[] {
 			 "PlatformConstraint", "http://local/Transformations.owl#MIDletPlatform"
-		   });	
+		   });						
+		addAnnotation
+		  (uml2SWTApplicationEClass, 
+		   source, 
+		   new String[] {
+			 "PlatformConstraint", "http://local/Transformations.owl#Java1Platform"
+		   });
 	}
 
 } //TransformationsPackageImpl

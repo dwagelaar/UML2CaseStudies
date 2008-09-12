@@ -42,6 +42,7 @@ public class WebAppletPackagingImpl extends PackagingImpl implements WebAppletPa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return InstantmessengerPackage.Literals.WEB_APPLET_PACKAGING;
 	}

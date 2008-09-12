@@ -64,6 +64,7 @@ public class InstantmessengerFactoryImpl extends EFactoryImpl implements Instant
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION: return createInstantMessengerConfiguration();
@@ -207,6 +208,7 @@ public class InstantmessengerFactoryImpl extends EFactoryImpl implements Instant
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static InstantmessengerPackage getPackage() {
 		return InstantmessengerPackage.eINSTANCE;
 	}

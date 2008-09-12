@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import be.ac.vub.uml2cs.transformations.Applet;
 import be.ac.vub.uml2cs.transformations.Mapping;
 import be.ac.vub.uml2cs.transformations.SaveModelType;
 import be.ac.vub.uml2cs.transformations.TransformationConfig;
 import be.ac.vub.uml2cs.transformations.TransformationsPackage;
-import be.ac.vub.uml2cs.transformations.UML2Applet;
 import be.ac.vub.uml2cs.transformations.UML2Observer;
 
 /**
@@ -93,7 +93,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * @generated
 	 * @ordered
 	 */
-	protected UML2Applet applet;
+	protected Applet applet;
 
 	/**
 	 * The default value of the '{@link #getTargetProject() <em>Target Project</em>}' attribute.
@@ -129,6 +129,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return TransformationsPackage.Literals.TRANSFORMATION_CONFIG;
 	}
@@ -245,7 +246,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UML2Applet getApplet() {
+	public Applet getApplet() {
 		return applet;
 	}
 
@@ -254,8 +255,8 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetApplet(UML2Applet newApplet, NotificationChain msgs) {
-		UML2Applet oldApplet = applet;
+	public NotificationChain basicSetApplet(Applet newApplet, NotificationChain msgs) {
+		Applet oldApplet = applet;
 		applet = newApplet;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TransformationsPackage.TRANSFORMATION_CONFIG__APPLET, oldApplet, newApplet);
@@ -269,13 +270,13 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setApplet(UML2Applet newApplet) {
+	public void setApplet(Applet newApplet) {
 		if (newApplet != applet) {
 			NotificationChain msgs = null;
 			if (applet != null)
-				msgs = ((InternalEObject)applet).eInverseRemove(this, TransformationsPackage.UML2_APPLET__CONFIG, UML2Applet.class, msgs);
+				msgs = ((InternalEObject)applet).eInverseRemove(this, TransformationsPackage.APPLET__CONFIG, Applet.class, msgs);
 			if (newApplet != null)
-				msgs = ((InternalEObject)newApplet).eInverseAdd(this, TransformationsPackage.UML2_APPLET__CONFIG, UML2Applet.class, msgs);
+				msgs = ((InternalEObject)newApplet).eInverseAdd(this, TransformationsPackage.APPLET__CONFIG, Applet.class, msgs);
 			msgs = basicSetApplet(newApplet, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -309,6 +310,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING:
@@ -322,7 +324,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 			case TransformationsPackage.TRANSFORMATION_CONFIG__APPLET:
 				if (applet != null)
 					msgs = ((InternalEObject)applet).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TransformationsPackage.TRANSFORMATION_CONFIG__APPLET, null, msgs);
-				return basicSetApplet((UML2Applet)otherEnd, msgs);
+				return basicSetApplet((Applet)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -332,6 +334,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING:
@@ -349,6 +352,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING:
@@ -370,6 +374,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING:
@@ -382,7 +387,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 				setObserver((UML2Observer)newValue);
 				return;
 			case TransformationsPackage.TRANSFORMATION_CONFIG__APPLET:
-				setApplet((UML2Applet)newValue);
+				setApplet((Applet)newValue);
 				return;
 			case TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PROJECT:
 				setTargetProject((String)newValue);
@@ -396,6 +401,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING:
@@ -408,7 +414,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 				setObserver((UML2Observer)null);
 				return;
 			case TransformationsPackage.TRANSFORMATION_CONFIG__APPLET:
-				setApplet((UML2Applet)null);
+				setApplet((Applet)null);
 				return;
 			case TransformationsPackage.TRANSFORMATION_CONFIG__TARGET_PROJECT:
 				setTargetProject(TARGET_PROJECT_EDEFAULT);
@@ -422,6 +428,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING:
@@ -443,6 +450,7 @@ public class TransformationConfigImpl extends EObjectImpl implements Transformat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

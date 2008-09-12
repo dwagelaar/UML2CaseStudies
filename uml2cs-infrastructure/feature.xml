@@ -2,7 +2,7 @@
 <feature
       id="be.ac.vub.uml2cs.infrastructure"
       label="UML2 case studies infrastructure feature"
-      version="1.0.18"
+      version="1.0.19"
       provider-name="Vrije Universiteit Brussel"
       plugin="be.ac.vub.uml2cs.instantmessenger.config"
       image="VUB_logo_compact.gif">
@@ -26,7 +26,7 @@ the terms and conditions of the Eclipse Public License Version
    </license>
 
    <url>
-      <update label="UML2 case studies infrastructure update site" url="http://ssel.vub.ac.be/tools/uml2cs/update"/>
+      <update label="SSEL update site" url="http://ssel.vub.ac.be/eclipse/update"/>
    </url>
 
    <requires>
@@ -39,40 +39,44 @@ the terms and conditions of the Eclipse Public License Version
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.m2m.atl.engine"/>
       <import plugin="org.eclipse.emf.validation"/>
+      <import plugin="org.eclipse.m2m.atl.adt.debug"/>
+      <import plugin="org.eclipse.ant.core"/>
+      <import plugin="org.eclipse.debug.core"/>
+      <import plugin="org.eclipse.emf.validation.ocl"/>
    </requires>
 
    <plugin
          id="be.ac.vub.uml2cs.transformations.config"
-         download-size="108"
-         install-size="108"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="be.ac.vub.uml2cs.transformations.config.edit"
-         download-size="48"
-         install-size="48"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="be.ac.vub.uml2cs.instantmessenger.config.editor"
          download-size="124"
          install-size="124"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
+         id="be.ac.vub.uml2cs.transformations.config.edit"
+         download-size="60"
+         install-size="60"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="be.ac.vub.uml2cs.instantmessenger.config.editor"
+         download-size="468"
+         install-size="468"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="be.ac.vub.uml2cs.instantmessenger.config.edit"
-         download-size="64"
-         install-size="64"
+         download-size="72"
+         install-size="72"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="be.ac.vub.uml2cs.instantmessenger.config"
-         download-size="184"
-         install-size="184"
+         download-size="152"
+         install-size="152"
          version="0.0.0"
          unpack="false"/>
 

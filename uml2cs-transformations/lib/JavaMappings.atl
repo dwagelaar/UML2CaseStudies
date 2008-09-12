@@ -325,6 +325,10 @@ helper context String def : appletInfoBody() : String =
 helper context String def : parameterInfoBody() : String =
 	'String pinfo[][] = ' + self + ';\nreturn pinfo;';
 
+helper context String def : swtAppMainBody() : String =
+	'try {\n' +
+	self + ' app = new ' + self + '();\ncatch (Throwable t) {\nt.printStackTrace();\n}';
+
 ------------------------------- AbstractFactory -----------------------------------
 
 helper context String def : createBody() : String =

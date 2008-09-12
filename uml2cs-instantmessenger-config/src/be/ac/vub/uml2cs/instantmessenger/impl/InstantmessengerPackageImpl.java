@@ -6,6 +6,12 @@
  */
 package be.ac.vub.uml2cs.instantmessenger.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import be.ac.vub.uml2cs.instantmessenger.AWTUserInterface;
 import be.ac.vub.uml2cs.instantmessenger.DefaultJabberTransport;
 import be.ac.vub.uml2cs.instantmessenger.InstantMessengerConfiguration;
@@ -22,17 +28,7 @@ import be.ac.vub.uml2cs.instantmessenger.Packaging;
 import be.ac.vub.uml2cs.instantmessenger.SwingUserInterface;
 import be.ac.vub.uml2cs.instantmessenger.UserInterface;
 import be.ac.vub.uml2cs.instantmessenger.WebAppletPackaging;
-
-import be.ac.vub.uml2cs.instantmessenger.util.InstantmessengerValidator;
 import be.ac.vub.uml2cs.transformations.TransformationsPackage;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -535,6 +531,10 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 
 		// Obtain other dependent packages
 		TransformationsPackage theTransformationsPackage = (TransformationsPackage)EPackage.Registry.INSTANCE.getEPackage(TransformationsPackage.eNS_URI);
+
+		// Create type parameters
+
+		// Set bounds for type parameters
 
 		// Add supertypes to classes
 		instantMessengerConfigurationEClass.getESuperTypes().add(theTransformationsPackage.getTransformationConfig());

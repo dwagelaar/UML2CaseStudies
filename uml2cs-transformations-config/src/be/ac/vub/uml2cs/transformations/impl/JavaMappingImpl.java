@@ -63,6 +63,7 @@ public class JavaMappingImpl extends MappingImpl implements JavaMapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return TransformationsPackage.Literals.JAVA_MAPPING;
 	}
@@ -115,6 +116,7 @@ public class JavaMappingImpl extends MappingImpl implements JavaMapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case TransformationsPackage.JAVA_MAPPING__DATA_TYPES:
@@ -130,6 +132,7 @@ public class JavaMappingImpl extends MappingImpl implements JavaMapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case TransformationsPackage.JAVA_MAPPING__DATA_TYPES:
@@ -143,6 +146,7 @@ public class JavaMappingImpl extends MappingImpl implements JavaMapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case TransformationsPackage.JAVA_MAPPING__DATA_TYPES:
@@ -156,6 +160,7 @@ public class JavaMappingImpl extends MappingImpl implements JavaMapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case TransformationsPackage.JAVA_MAPPING__DATA_TYPES:
@@ -170,6 +175,7 @@ public class JavaMappingImpl extends MappingImpl implements JavaMapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case TransformationsPackage.JAVA_MAPPING__DATA_TYPES:
@@ -184,6 +190,7 @@ public class JavaMappingImpl extends MappingImpl implements JavaMapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case TransformationsPackage.JAVA_MAPPING__DATA_TYPES:

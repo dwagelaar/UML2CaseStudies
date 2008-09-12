@@ -4,7 +4,7 @@
     <dataTypes xsi:type="transformations:Java2DataTypes"/>
   </mapping>
   <observer xsi:type="transformations:UML2JavaObserver"/>
-  <applet/>
+  <applet xsi:type="transformations:UML2Applet"/>
   <localNetwork/>
   <jabberNetwork>
     <jabberTransport xsi:type="instantmessenger:DefaultJabberTransport"/>

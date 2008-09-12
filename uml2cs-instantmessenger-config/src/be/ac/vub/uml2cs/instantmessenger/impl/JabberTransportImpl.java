@@ -56,6 +56,7 @@ public abstract class JabberTransportImpl extends EObjectImpl implements JabberT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return InstantmessengerPackage.Literals.JABBER_TRANSPORT;
 	}
@@ -106,6 +107,7 @@ public abstract class JabberTransportImpl extends EObjectImpl implements JabberT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case InstantmessengerPackage.JABBER_TRANSPORT__JABBER_NETWORK:
@@ -121,6 +123,7 @@ public abstract class JabberTransportImpl extends EObjectImpl implements JabberT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case InstantmessengerPackage.JABBER_TRANSPORT__JABBER_NETWORK:
@@ -134,6 +137,7 @@ public abstract class JabberTransportImpl extends EObjectImpl implements JabberT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
 			case InstantmessengerPackage.JABBER_TRANSPORT__JABBER_NETWORK:
@@ -147,6 +151,7 @@ public abstract class JabberTransportImpl extends EObjectImpl implements JabberT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case InstantmessengerPackage.JABBER_TRANSPORT__JABBER_NETWORK:
@@ -160,6 +165,7 @@ public abstract class JabberTransportImpl extends EObjectImpl implements JabberT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case InstantmessengerPackage.JABBER_TRANSPORT__JABBER_NETWORK:
@@ -174,6 +180,7 @@ public abstract class JabberTransportImpl extends EObjectImpl implements JabberT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case InstantmessengerPackage.JABBER_TRANSPORT__JABBER_NETWORK:
@@ -188,6 +195,7 @@ public abstract class JabberTransportImpl extends EObjectImpl implements JabberT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case InstantmessengerPackage.JABBER_TRANSPORT__JABBER_NETWORK:

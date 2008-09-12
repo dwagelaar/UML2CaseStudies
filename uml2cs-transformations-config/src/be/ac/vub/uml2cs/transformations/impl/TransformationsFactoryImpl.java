@@ -65,6 +65,7 @@ public class TransformationsFactoryImpl extends EFactoryImpl implements Transfor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case TransformationsPackage.TRANSFORMATION_CONFIG: return createTransformationConfig();
@@ -85,6 +86,7 @@ public class TransformationsFactoryImpl extends EFactoryImpl implements Transfor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case TransformationsPackage.SAVE_MODEL_TYPE:
@@ -99,6 +101,7 @@ public class TransformationsFactoryImpl extends EFactoryImpl implements Transfor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case TransformationsPackage.SAVE_MODEL_TYPE:
@@ -223,6 +226,7 @@ public class TransformationsFactoryImpl extends EFactoryImpl implements Transfor
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static TransformationsPackage getPackage() {
 		return TransformationsPackage.eINSTANCE;
 	}

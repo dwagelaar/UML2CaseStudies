@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage
  * @generated
  */
-public class TransformationsSwitch {
+public class TransformationsSwitch<T> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,7 +61,7 @@ public class TransformationsSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public Object doSwitch(EObject theEObject) {
+	public T doSwitch(EObject theEObject) {
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
@@ -72,16 +72,16 @@ public class TransformationsSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(EClass theEClass, EObject theEObject) {
+	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
 		else {
-			List eSuperTypes = theEClass.getESuperTypes();
+			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
 					defaultCase(theEObject) :
-					doSwitch((EClass)eSuperTypes.get(0), theEObject);
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -92,70 +92,84 @@ public class TransformationsSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(int classifierID, EObject theEObject) {
+	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case TransformationsPackage.TRANSFORMATION_CONFIG: {
 				TransformationConfig transformationConfig = (TransformationConfig)theEObject;
-				Object result = caseTransformationConfig(transformationConfig);
+				T result = caseTransformationConfig(transformationConfig);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TransformationsPackage.MAPPING: {
 				Mapping mapping = (Mapping)theEObject;
-				Object result = caseMapping(mapping);
+				T result = caseMapping(mapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TransformationsPackage.JAVA_MAPPING: {
 				JavaMapping javaMapping = (JavaMapping)theEObject;
-				Object result = caseJavaMapping(javaMapping);
+				T result = caseJavaMapping(javaMapping);
 				if (result == null) result = caseMapping(javaMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TransformationsPackage.JAVA_DATA_TYPES: {
 				JavaDataTypes javaDataTypes = (JavaDataTypes)theEObject;
-				Object result = caseJavaDataTypes(javaDataTypes);
+				T result = caseJavaDataTypes(javaDataTypes);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TransformationsPackage.JAVA1_DATA_TYPES: {
 				Java1DataTypes java1DataTypes = (Java1DataTypes)theEObject;
-				Object result = caseJava1DataTypes(java1DataTypes);
+				T result = caseJava1DataTypes(java1DataTypes);
 				if (result == null) result = caseJavaDataTypes(java1DataTypes);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TransformationsPackage.JAVA2_DATA_TYPES: {
 				Java2DataTypes java2DataTypes = (Java2DataTypes)theEObject;
-				Object result = caseJava2DataTypes(java2DataTypes);
+				T result = caseJava2DataTypes(java2DataTypes);
 				if (result == null) result = caseJavaDataTypes(java2DataTypes);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TransformationsPackage.UML2_OBSERVER: {
 				UML2Observer uml2Observer = (UML2Observer)theEObject;
-				Object result = caseUML2Observer(uml2Observer);
+				T result = caseUML2Observer(uml2Observer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TransformationsPackage.UML2_JAVA_OBSERVER: {
 				UML2JavaObserver uml2JavaObserver = (UML2JavaObserver)theEObject;
-				Object result = caseUML2JavaObserver(uml2JavaObserver);
+				T result = caseUML2JavaObserver(uml2JavaObserver);
 				if (result == null) result = caseUML2Observer(uml2JavaObserver);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TransformationsPackage.UML2_APPLET: {
 				UML2Applet uml2Applet = (UML2Applet)theEObject;
-				Object result = caseUML2Applet(uml2Applet);
+				T result = caseUML2Applet(uml2Applet);
+				if (result == null) result = caseApplet(uml2Applet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case TransformationsPackage.UML2MI_DLET: {
 				UML2MIDlet uml2MIDlet = (UML2MIDlet)theEObject;
-				Object result = caseUML2MIDlet(uml2MIDlet);
-				if (result == null) result = caseUML2Applet(uml2MIDlet);
+				T result = caseUML2MIDlet(uml2MIDlet);
+				if (result == null) result = caseApplet(uml2MIDlet);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TransformationsPackage.APPLET: {
+				Applet applet = (Applet)theEObject;
+				T result = caseApplet(applet);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TransformationsPackage.UML2SWT_APPLICATION: {
+				UML2SWTApplication uml2SWTApplication = (UML2SWTApplication)theEObject;
+				T result = caseUML2SWTApplication(uml2SWTApplication);
+				if (result == null) result = caseApplet(uml2SWTApplication);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -174,7 +188,7 @@ public class TransformationsSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTransformationConfig(TransformationConfig object) {
+	public T caseTransformationConfig(TransformationConfig object) {
 		return null;
 	}
 
@@ -189,7 +203,7 @@ public class TransformationsSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseMapping(Mapping object) {
+	public T caseMapping(Mapping object) {
 		return null;
 	}
 
@@ -204,7 +218,7 @@ public class TransformationsSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseJavaMapping(JavaMapping object) {
+	public T caseJavaMapping(JavaMapping object) {
 		return null;
 	}
 
@@ -219,7 +233,7 @@ public class TransformationsSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseJavaDataTypes(JavaDataTypes object) {
+	public T caseJavaDataTypes(JavaDataTypes object) {
 		return null;
 	}
 
@@ -234,7 +248,7 @@ public class TransformationsSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseJava1DataTypes(Java1DataTypes object) {
+	public T caseJava1DataTypes(Java1DataTypes object) {
 		return null;
 	}
 
@@ -249,7 +263,7 @@ public class TransformationsSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseJava2DataTypes(Java2DataTypes object) {
+	public T caseJava2DataTypes(Java2DataTypes object) {
 		return null;
 	}
 
@@ -264,7 +278,7 @@ public class TransformationsSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2Observer(UML2Observer object) {
+	public T caseUML2Observer(UML2Observer object) {
 		return null;
 	}
 
@@ -279,7 +293,7 @@ public class TransformationsSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2JavaObserver(UML2JavaObserver object) {
+	public T caseUML2JavaObserver(UML2JavaObserver object) {
 		return null;
 	}
 
@@ -294,7 +308,7 @@ public class TransformationsSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2Applet(UML2Applet object) {
+	public T caseUML2Applet(UML2Applet object) {
 		return null;
 	}
 
@@ -309,7 +323,37 @@ public class TransformationsSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUML2MIDlet(UML2MIDlet object) {
+	public T caseUML2MIDlet(UML2MIDlet object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Applet</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Applet</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseApplet(Applet object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>UML2SWT Application</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>UML2SWT Application</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUML2SWTApplication(UML2SWTApplication object) {
 		return null;
 	}
 
@@ -324,7 +368,7 @@ public class TransformationsSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public Object defaultCase(EObject object) {
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

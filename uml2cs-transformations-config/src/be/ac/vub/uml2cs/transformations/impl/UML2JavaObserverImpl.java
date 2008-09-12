@@ -42,6 +42,7 @@ public class UML2JavaObserverImpl extends UML2ObserverImpl implements UML2JavaOb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return TransformationsPackage.Literals.UML2_JAVA_OBSERVER;
 	}

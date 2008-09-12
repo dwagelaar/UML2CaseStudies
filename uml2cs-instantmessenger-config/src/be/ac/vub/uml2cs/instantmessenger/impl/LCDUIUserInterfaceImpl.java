@@ -42,6 +42,7 @@ public class LCDUIUserInterfaceImpl extends UserInterfaceImpl implements LCDUIUs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return InstantmessengerPackage.Literals.LCDUI_USER_INTERFACE;
 	}

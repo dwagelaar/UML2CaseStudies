@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class UML2MIDletImpl extends UML2AppletImpl implements UML2MIDlet {
+public class UML2MIDletImpl extends AppletImpl implements UML2MIDlet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -42,6 +42,7 @@ public class UML2MIDletImpl extends UML2AppletImpl implements UML2MIDlet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return TransformationsPackage.Literals.UML2MI_DLET;
 	}

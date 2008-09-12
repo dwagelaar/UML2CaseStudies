@@ -66,7 +66,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection supportedTypes = new ArrayList();
+	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
 	 * This constructs an instance.
@@ -96,6 +96,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createInstantMessengerConfigurationAdapter() {
 		if (instantMessengerConfigurationItemProvider == null) {
 			instantMessengerConfigurationItemProvider = new InstantMessengerConfigurationItemProvider(this);
@@ -118,6 +119,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createLocalNetworkAdapter() {
 		if (localNetworkItemProvider == null) {
 			localNetworkItemProvider = new LocalNetworkItemProvider(this);
@@ -140,6 +142,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createJabberNetworkAdapter() {
 		if (jabberNetworkItemProvider == null) {
 			jabberNetworkItemProvider = new JabberNetworkItemProvider(this);
@@ -162,6 +165,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createDefaultJabberTransportAdapter() {
 		if (defaultJabberTransportItemProvider == null) {
 			defaultJabberTransportItemProvider = new DefaultJabberTransportItemProvider(this);
@@ -184,6 +188,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createMEJabberTransportAdapter() {
 		if (meJabberTransportItemProvider == null) {
 			meJabberTransportItemProvider = new MEJabberTransportItemProvider(this);
@@ -206,6 +211,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createAWTUserInterfaceAdapter() {
 		if (awtUserInterfaceItemProvider == null) {
 			awtUserInterfaceItemProvider = new AWTUserInterfaceItemProvider(this);
@@ -228,6 +234,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createSwingUserInterfaceAdapter() {
 		if (swingUserInterfaceItemProvider == null) {
 			swingUserInterfaceItemProvider = new SwingUserInterfaceItemProvider(this);
@@ -250,6 +257,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createLCDUIUserInterfaceAdapter() {
 		if (lcduiUserInterfaceItemProvider == null) {
 			lcduiUserInterfaceItemProvider = new LCDUIUserInterfaceItemProvider(this);
@@ -272,6 +280,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createWebAppletPackagingAdapter() {
 		if (webAppletPackagingItemProvider == null) {
 			webAppletPackagingItemProvider = new WebAppletPackagingItemProvider(this);
@@ -294,6 +303,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createIpkgAppletPackagingAdapter() {
 		if (ipkgAppletPackagingItemProvider == null) {
 			ipkgAppletPackagingItemProvider = new IpkgAppletPackagingItemProvider(this);
@@ -316,6 +326,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter createMIDletPackagingAdapter() {
 		if (miDletPackagingItemProvider == null) {
 			miDletPackagingItemProvider = new MIDletPackagingItemProvider(this);
@@ -349,6 +360,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object type) {
 		return supportedTypes.contains(type) || super.isFactoryForType(type);
 	}
@@ -359,6 +371,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Adapter adapt(Notifier notifier, Object type) {
 		return super.adapt(notifier, this);
 	}
@@ -368,10 +381,11 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class)type).isInstance(adapter))) {
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

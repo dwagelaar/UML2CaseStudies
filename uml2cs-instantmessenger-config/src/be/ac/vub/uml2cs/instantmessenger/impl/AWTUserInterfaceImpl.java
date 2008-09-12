@@ -42,6 +42,7 @@ public class AWTUserInterfaceImpl extends UserInterfaceImpl implements AWTUserIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return InstantmessengerPackage.Literals.AWT_USER_INTERFACE;
 	}

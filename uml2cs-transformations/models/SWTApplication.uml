@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="SWTApplication">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="swt">
+      <packagedElement xmi:type="uml:Class" xmi:id="_-TO08EKnEd29fNqekgzB4Q" name="SWTApplication" clientDependency="_J2gOY0KpEd29fNqekgzB4Q" isAbstract="true">
+        <ownedAttribute xmi:id="_Kb6onEKpEd29fNqekgzB4Q" name="shell" aggregation="composite" association="_Kb6omEKpEd29fNqekgzB4Q">
+          <type xmi:type="uml:Class" href="SWT.uml#_4-O7oEKmEd29fNqekgzB4Q"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Kb6onUKpEd29fNqekgzB4Q" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Kb6onkKpEd29fNqekgzB4Q" value="1"/>
+        </ownedAttribute>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_C6DZoEKpEd29fNqekgzB4Q" name="SWTApplication_mainBehavior" specification="_bl76AkKoEd29fNqekgzB4Q">
+          <language>java</language>
+          <body>&#x9;final Display display = new Display();&#xA;&#x9;final Shell shell = new Shell(display));&#xA;&#x9;setShell(shell);&#xA;&#x9;init();&#xA;&#x9;shell.open();&#xA;&#x9;start();&#xA;&#x9;while (!shell.isDisposed()) {&#xA;&#x9;&#x9;if (!display.readAndDispatch()) {&#xA;&#x9;&#x9;&#x9;display.sleep();&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;stop();&#xA;&#x9;display.dispose();</body>
+        </ownedBehavior>
+        <ownedOperation xmi:id="__4Pq8EKnEd29fNqekgzB4Q" name="init"/>
+        <ownedOperation xmi:id="_ArMx4EKoEd29fNqekgzB4Q" name="start"/>
+        <ownedOperation xmi:id="_BdBQYEKoEd29fNqekgzB4Q" name="stop"/>
+        <ownedOperation xmi:id="_bl76AkKoEd29fNqekgzB4Q" name="SWTApplication" method="_C6DZoEKpEd29fNqekgzB4Q"/>
+        <ownedOperation xmi:id="_3ThekkKsEd29fNqekgzB4Q" name="setLayout">
+          <ownedParameter xmi:id="_NbjFoEKtEd29fNqekgzB4Q" name="mgr">
+            <type xmi:type="uml:Interface" href="JavaTypes.uml#_dWd9gEdzEdy_8vCCth3JFA"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_4l-k8EKsEd29fNqekgzB4Q" name="add">
+          <ownedParameter xmi:id="_Ac_kgEKtEd29fNqekgzB4Q" name="comp">
+            <type xmi:type="uml:Class" href="JavaTypes.uml#_anFwUEcqEdyUSvGDYHY1zw"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_Fe5_MEKtEd29fNqekgzB4Q" name="constraints">
+            <type xmi:type="uml:Class" href="JavaTypes.uml#_bjrpkPfvEdqaqL9wEVL3aA"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_J2gOY0KpEd29fNqekgzB4Q" name="SWTApplication_DisplayDependency" client="_-TO08EKnEd29fNqekgzB4Q">
+        <supplier xmi:type="uml:Class" href="SWT.uml#_4-BgQEKmEd29fNqekgzB4Q"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Kb6omEKpEd29fNqekgzB4Q" name="A_SWTApplication_Shell" memberEnd="_Kb6omUKpEd29fNqekgzB4Q _Kb6onEKpEd29fNqekgzB4Q">
+        <ownedEnd xmi:id="_Kb6omUKpEd29fNqekgzB4Q" name="app" type="_-TO08EKnEd29fNqekgzB4Q" association="_Kb6omEKpEd29fNqekgzB4Q">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Kb6omkKpEd29fNqekgzB4Q" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Kb6om0KpEd29fNqekgzB4Q" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_fv71QEKoEd29fNqekgzB4Q">
+      <eAnnotations xmi:id="_fwAtwEKoEd29fNqekgzB4Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Standard:Create xmi:id="_gnH78EKoEd29fNqekgzB4Q" base_BehavioralFeature="_bl76AkKoEd29fNqekgzB4Q"/>
+</xmi:XMI>

@@ -94,7 +94,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map context) {
+	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
 			case InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION:
 				return validateInstantMessengerConfiguration((InstantMessengerConfiguration)value, diagnostics, context);
@@ -134,7 +134,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstantMessengerConfiguration(InstantMessengerConfiguration instantMessengerConfiguration, DiagnosticChain diagnostics, Map context) {
+	public boolean validateInstantMessengerConfiguration(InstantMessengerConfiguration instantMessengerConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		boolean result = validate_EveryMultiplicityConforms(instantMessengerConfiguration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instantMessengerConfiguration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(instantMessengerConfiguration, diagnostics, context);
@@ -154,7 +154,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstantMessengerConfiguration_singletonAWTUI(InstantMessengerConfiguration instantMessengerConfiguration, DiagnosticChain diagnostics, Map context) {
+	public boolean validateInstantMessengerConfiguration_singletonAWTUI(InstantMessengerConfiguration instantMessengerConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -180,7 +180,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstantMessengerConfiguration_singletonSwingUI(InstantMessengerConfiguration instantMessengerConfiguration, DiagnosticChain diagnostics, Map context) {
+	public boolean validateInstantMessengerConfiguration_singletonSwingUI(InstantMessengerConfiguration instantMessengerConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -206,7 +206,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstantMessengerConfiguration_singletonLCDUI(InstantMessengerConfiguration instantMessengerConfiguration, DiagnosticChain diagnostics, Map context) {
+	public boolean validateInstantMessengerConfiguration_singletonLCDUI(InstantMessengerConfiguration instantMessengerConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -231,7 +231,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalNetwork(LocalNetwork localNetwork, DiagnosticChain diagnostics, Map context) {
+	public boolean validateLocalNetwork(LocalNetwork localNetwork, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(localNetwork, diagnostics, context);
 	}
 
@@ -240,7 +240,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateJabberNetwork(JabberNetwork jabberNetwork, DiagnosticChain diagnostics, Map context) {
+	public boolean validateJabberNetwork(JabberNetwork jabberNetwork, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(jabberNetwork, diagnostics, context);
 	}
 
@@ -249,7 +249,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateJabberTransport(JabberTransport jabberTransport, DiagnosticChain diagnostics, Map context) {
+	public boolean validateJabberTransport(JabberTransport jabberTransport, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(jabberTransport, diagnostics, context);
 	}
 
@@ -258,7 +258,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateDefaultJabberTransport(DefaultJabberTransport defaultJabberTransport, DiagnosticChain diagnostics, Map context) {
+	public boolean validateDefaultJabberTransport(DefaultJabberTransport defaultJabberTransport, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(defaultJabberTransport, diagnostics, context);
 	}
 
@@ -267,7 +267,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMEJabberTransport(MEJabberTransport meJabberTransport, DiagnosticChain diagnostics, Map context) {
+	public boolean validateMEJabberTransport(MEJabberTransport meJabberTransport, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(meJabberTransport, diagnostics, context);
 	}
 
@@ -276,7 +276,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateUserInterface(UserInterface userInterface, DiagnosticChain diagnostics, Map context) {
+	public boolean validateUserInterface(UserInterface userInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(userInterface, diagnostics, context);
 	}
 
@@ -285,7 +285,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAWTUserInterface(AWTUserInterface awtUserInterface, DiagnosticChain diagnostics, Map context) {
+	public boolean validateAWTUserInterface(AWTUserInterface awtUserInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(awtUserInterface, diagnostics, context);
 	}
 
@@ -294,7 +294,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSwingUserInterface(SwingUserInterface swingUserInterface, DiagnosticChain diagnostics, Map context) {
+	public boolean validateSwingUserInterface(SwingUserInterface swingUserInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(swingUserInterface, diagnostics, context);
 	}
 
@@ -303,7 +303,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLCDUIUserInterface(LCDUIUserInterface lcduiUserInterface, DiagnosticChain diagnostics, Map context) {
+	public boolean validateLCDUIUserInterface(LCDUIUserInterface lcduiUserInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(lcduiUserInterface, diagnostics, context);
 	}
 
@@ -312,7 +312,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validatePackaging(Packaging packaging, DiagnosticChain diagnostics, Map context) {
+	public boolean validatePackaging(Packaging packaging, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(packaging, diagnostics, context);
 	}
 
@@ -321,7 +321,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateWebAppletPackaging(WebAppletPackaging webAppletPackaging, DiagnosticChain diagnostics, Map context) {
+	public boolean validateWebAppletPackaging(WebAppletPackaging webAppletPackaging, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(webAppletPackaging, diagnostics, context);
 	}
 
@@ -330,7 +330,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateIpkgAppletPackaging(IpkgAppletPackaging ipkgAppletPackaging, DiagnosticChain diagnostics, Map context) {
+	public boolean validateIpkgAppletPackaging(IpkgAppletPackaging ipkgAppletPackaging, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(ipkgAppletPackaging, diagnostics, context);
 	}
 
@@ -339,7 +339,7 @@ public class InstantmessengerValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMIDletPackaging(MIDletPackaging miDletPackaging, DiagnosticChain diagnostics, Map context) {
+	public boolean validateMIDletPackaging(MIDletPackaging miDletPackaging, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(miDletPackaging, diagnostics, context);
 	}
 

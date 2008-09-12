@@ -339,6 +339,34 @@ public interface TransformationsPackage extends EPackage {
 	int UML2_JAVA_OBSERVER_FEATURE_COUNT = UML2_OBSERVER_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link be.ac.vub.uml2cs.transformations.impl.AppletImpl <em>Applet</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see be.ac.vub.uml2cs.transformations.impl.AppletImpl
+	 * @see be.ac.vub.uml2cs.transformations.impl.TransformationsPackageImpl#getApplet()
+	 * @generated
+	 */
+	int APPLET = 10;
+
+	/**
+	 * The feature id for the '<em><b>Config</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLET__CONFIG = 0;
+
+	/**
+	 * The number of structural features of the '<em>Applet</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLET_FEATURE_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link be.ac.vub.uml2cs.transformations.impl.UML2AppletImpl <em>UML2 Applet</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -355,7 +383,7 @@ public interface TransformationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_APPLET__CONFIG = 0;
+	int UML2_APPLET__CONFIG = APPLET__CONFIG;
 
 	/**
 	 * The number of structural features of the '<em>UML2 Applet</em>' class.
@@ -364,7 +392,7 @@ public interface TransformationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2_APPLET_FEATURE_COUNT = 1;
+	int UML2_APPLET_FEATURE_COUNT = APPLET_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link be.ac.vub.uml2cs.transformations.impl.UML2MIDletImpl <em>UML2MI Dlet</em>}' class.
@@ -383,7 +411,7 @@ public interface TransformationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2MI_DLET__CONFIG = UML2_APPLET__CONFIG;
+	int UML2MI_DLET__CONFIG = APPLET__CONFIG;
 
 	/**
 	 * The number of structural features of the '<em>UML2MI Dlet</em>' class.
@@ -392,7 +420,35 @@ public interface TransformationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML2MI_DLET_FEATURE_COUNT = UML2_APPLET_FEATURE_COUNT + 0;
+	int UML2MI_DLET_FEATURE_COUNT = APPLET_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link be.ac.vub.uml2cs.transformations.impl.UML2SWTApplicationImpl <em>UML2SWT Application</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see be.ac.vub.uml2cs.transformations.impl.UML2SWTApplicationImpl
+	 * @see be.ac.vub.uml2cs.transformations.impl.TransformationsPackageImpl#getUML2SWTApplication()
+	 * @generated
+	 */
+	int UML2SWT_APPLICATION = 11;
+
+	/**
+	 * The feature id for the '<em><b>Config</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UML2SWT_APPLICATION__CONFIG = APPLET__CONFIG;
+
+	/**
+	 * The number of structural features of the '<em>UML2SWT Application</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UML2SWT_APPLICATION_FEATURE_COUNT = APPLET_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link be.ac.vub.uml2cs.transformations.SaveModelType <em>Save Model Type</em>}' enum.
@@ -402,7 +458,7 @@ public interface TransformationsPackage extends EPackage {
 	 * @see be.ac.vub.uml2cs.transformations.impl.TransformationsPackageImpl#getSaveModelType()
 	 * @generated
 	 */
-	int SAVE_MODEL_TYPE = 10;
+	int SAVE_MODEL_TYPE = 12;
 
 
 	/**
@@ -595,17 +651,6 @@ public interface TransformationsPackage extends EPackage {
 	EClass getUML2Applet();
 
 	/**
-	 * Returns the meta object for the container reference '{@link be.ac.vub.uml2cs.transformations.UML2Applet#getConfig <em>Config</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Config</em>'.
-	 * @see be.ac.vub.uml2cs.transformations.UML2Applet#getConfig()
-	 * @see #getUML2Applet()
-	 * @generated
-	 */
-	EReference getUML2Applet_Config();
-
-	/**
 	 * Returns the meta object for class '{@link be.ac.vub.uml2cs.transformations.UML2MIDlet <em>UML2MI Dlet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -614,6 +659,37 @@ public interface TransformationsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUML2MIDlet();
+
+	/**
+	 * Returns the meta object for class '{@link be.ac.vub.uml2cs.transformations.Applet <em>Applet</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Applet</em>'.
+	 * @see be.ac.vub.uml2cs.transformations.Applet
+	 * @generated
+	 */
+	EClass getApplet();
+
+	/**
+	 * Returns the meta object for the container reference '{@link be.ac.vub.uml2cs.transformations.Applet#getConfig <em>Config</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Config</em>'.
+	 * @see be.ac.vub.uml2cs.transformations.Applet#getConfig()
+	 * @see #getApplet()
+	 * @generated
+	 */
+	EReference getApplet_Config();
+
+	/**
+	 * Returns the meta object for class '{@link be.ac.vub.uml2cs.transformations.UML2SWTApplication <em>UML2SWT Application</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>UML2SWT Application</em>'.
+	 * @see be.ac.vub.uml2cs.transformations.UML2SWTApplication
+	 * @generated
+	 */
+	EClass getUML2SWTApplication();
 
 	/**
 	 * Returns the meta object for enum '{@link be.ac.vub.uml2cs.transformations.SaveModelType <em>Save Model Type</em>}'.
@@ -810,14 +886,6 @@ public interface TransformationsPackage extends EPackage {
 		EClass UML2_APPLET = eINSTANCE.getUML2Applet();
 
 		/**
-		 * The meta object literal for the '<em><b>Config</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference UML2_APPLET__CONFIG = eINSTANCE.getUML2Applet_Config();
-
-		/**
 		 * The meta object literal for the '{@link be.ac.vub.uml2cs.transformations.impl.UML2MIDletImpl <em>UML2MI Dlet</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -826,6 +894,34 @@ public interface TransformationsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass UML2MI_DLET = eINSTANCE.getUML2MIDlet();
+
+		/**
+		 * The meta object literal for the '{@link be.ac.vub.uml2cs.transformations.impl.AppletImpl <em>Applet</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see be.ac.vub.uml2cs.transformations.impl.AppletImpl
+		 * @see be.ac.vub.uml2cs.transformations.impl.TransformationsPackageImpl#getApplet()
+		 * @generated
+		 */
+		EClass APPLET = eINSTANCE.getApplet();
+
+		/**
+		 * The meta object literal for the '<em><b>Config</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference APPLET__CONFIG = eINSTANCE.getApplet_Config();
+
+		/**
+		 * The meta object literal for the '{@link be.ac.vub.uml2cs.transformations.impl.UML2SWTApplicationImpl <em>UML2SWT Application</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see be.ac.vub.uml2cs.transformations.impl.UML2SWTApplicationImpl
+		 * @see be.ac.vub.uml2cs.transformations.impl.TransformationsPackageImpl#getUML2SWTApplication()
+		 * @generated
+		 */
+		EClass UML2SWT_APPLICATION = eINSTANCE.getUML2SWTApplication();
 
 		/**
 		 * The meta object literal for the '{@link be.ac.vub.uml2cs.transformations.SaveModelType <em>Save Model Type</em>}' enum.

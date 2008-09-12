@@ -1,0 +1,220 @@
+-- @atlcompiler atl2006
+-- $Id: UML2Applet.atl 7380 2007-11-08 09:49:02Z dwagelaa $
+-- Implements the Applet profile using an SWT application
+module UML2SWTApplication; --extends UML2Copy
+
+create OUT : UML2 from IN : UML2, SWTAPP : UML2, IMPLTYPES : UML2;
+
+uses UML2Copy;
+uses UML2;
+uses Mappings;
+
+-- ======================================================================
+-- model-specific helpers begin
+-- ======================================================================
+
+helper def : language : String = 'language'.value();
+helper def : SWTApplication : UML2!"uml::Class" = 'swt::SWTApplication'.class();
+helper def : implStringA : UML2!"uml::Class" = ('String'.implTypeName() + '[]').class();
+helper def : applets : Sequence(UML2!"Applet::Applet") = UML2!"Applet::Applet".allInstances();
+helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton".allInstances();
+
+helper context UML2!"uml::Classifier" def : isApplet : Boolean =
+	thisModule.applets->select(o|o.base_Classifier=self)->notEmpty();
+
+helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
+	thisModule.singletons->select(o|o.base_Classifier=self)->notEmpty();
+
+-- ======================================================================
+-- model-specific helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- transformation rules begin
+-- ======================================================================
+
+rule Class {
+    from s : UML2!"uml::Class" (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!"uml::Class") and
+			not s.isApplet
+		else false endif)
+    to t : UML2!"uml::Class" mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedRule <- s.ownedRule,
+        templateParameter <- s.templateParameter,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        generalization <- s.generalization,
+        powertypeExtent <- s.powertypeExtent,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        representation <- s.representation,
+        collaborationUse <- s.collaborationUse,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        interfaceRealization <- s.interfaceRealization,
+        ownedTrigger <- s.ownedTrigger,
+        nestedClassifier <- s.nestedClassifier,
+        ownedOperation <- s.ownedOperation,
+        ownedReception <- s.ownedReception)
+}
+	
+rule AppletClass {
+    from s : UML2!"uml::Class" (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!"uml::Class") and
+			s.isApplet
+		else false endif)
+	using { hasInit : Boolean = s.ownedOperation->select(o|o.name='init')->notEmpty(); }
+    to t : UML2!"uml::Class" mapsTo s (
+        name <- s.name.debug('AppletClass'),
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedRule <- s.ownedRule,
+        templateParameter <- s.templateParameter,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        generalization <- s.generalization,
+        powertypeExtent <- s.powertypeExtent,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        representation <- s.representation,
+        collaborationUse <- s.collaborationUse,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedBehavior <- s.ownedBehavior
+			->union(
+        		if hasInit then Set{mainBehavior}
+        		else Set{mainBehavior, thisModule.AppletInitOperation(s)} endif),
+		classifierBehavior <- s.classifierBehavior,
+        interfaceRealization <- s.interfaceRealization,
+        ownedTrigger <- s.ownedTrigger,
+        nestedClassifier <- s.nestedClassifier,
+        ownedOperation <- s.ownedOperation,
+        ownedReception <- s.ownedReception),
+	-- SWT application functionality --
+	   g : UML2!"uml::Generalization" (
+	   	general <- thisModule.SWTApplication,
+		specific <- s),
+	   main : UML2!"uml::Operation" (
+	   	name <- 'main',
+		class <- s,
+		visibility <- #public,
+		concurrency <- #sequential,
+		isStatic <- true,
+		ownedParameter <- Sequence{mainArgs}),
+	   mainArgs : UML2!"uml::Parameter" (
+	   	name <- 'args',
+		type <- thisModule.implStringA,
+		effect <- #read,
+		direction <- #"in"),
+	   mainBehavior : UML2!"uml::OpaqueBehavior" (
+	   	specification <- main,
+		name <- main.name + 'Behavior',
+		language <- Sequence{thisModule.language},
+		body <- Sequence{s.name.swtAppMainBody()})
+}
+
+rule AppletInitOperation(s : UML2!"uml::Class") {
+	to initOp : UML2!"uml::Operation" (
+	   	name <- 'init',
+		class <- s.debug('AppletInitOperation'),
+		visibility <- #public,
+		concurrency <- #sequential),
+	   initBehavior : UML2!"uml::OpaqueBehavior" (
+	   	specification <- initOp,
+		name <- initOp.name + 'Behavior',
+		language <- Sequence{thisModule.language},
+		body <- Sequence{s.isSingleton.midletInitBody()})
+	do {
+		initBehavior;
+	}
+}
+
+rule OpaqueBehavior {
+    from s : UML2!"uml::OpaqueBehavior" (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!"uml::OpaqueBehavior")
+		else false endif)
+	using { isAppletInit : Boolean = 
+		if (s.specification.name = 'init') then
+			s.specification.class.isApplet
+		else false endif; }
+    to t : UML2!"uml::OpaqueBehavior" mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        body <-
+			if isAppletInit then
+				s.body->collect(b|s.specification.class
+					.isSingleton.midletInitBody() + '\n' + b)
+			else
+				s.body
+			endif,
+        language <- s.language,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedRule <- s.ownedRule,
+        templateParameter <- s.templateParameter,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        generalization <- s.generalization,
+        powertypeExtent <- s.powertypeExtent,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        representation <- s.representation,
+        collaborationUse <- s.collaborationUse,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        interfaceRealization <- s.interfaceRealization,
+        ownedTrigger <- s.ownedTrigger,
+        nestedClassifier <- s.nestedClassifier,
+        ownedOperation <- s.ownedOperation,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        ownedParameter <- s.ownedParameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        ownedParameterSet <- s.ownedParameterSet,
+        specification <- s.specification)
+}
+
+-- ======================================================================
+-- transformation rules end
+-- ======================================================================

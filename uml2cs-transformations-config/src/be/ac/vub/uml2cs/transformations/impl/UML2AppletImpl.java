@@ -6,35 +6,21 @@
  */
 package be.ac.vub.uml2cs.transformations.impl;
 
-import be.ac.vub.uml2cs.transformations.TransformationConfig;
+import org.eclipse.emf.ecore.EClass;
+
 import be.ac.vub.uml2cs.transformations.TransformationsPackage;
 import be.ac.vub.uml2cs.transformations.UML2Applet;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>UML2 Applet</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link be.ac.vub.uml2cs.transformations.impl.UML2AppletImpl#getConfig <em>Config</em>}</li>
- * </ul>
  * </p>
  *
  * @generated
  */
-public class UML2AppletImpl extends EObjectImpl implements UML2Applet {
+public class UML2AppletImpl extends AppletImpl implements UML2Applet {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,144 +42,9 @@ public class UML2AppletImpl extends EObjectImpl implements UML2Applet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return TransformationsPackage.Literals.UML2_APPLET;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TransformationConfig getConfig() {
-		if (eContainerFeatureID != TransformationsPackage.UML2_APPLET__CONFIG) return null;
-		return (TransformationConfig)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetConfig(TransformationConfig newConfig, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newConfig, TransformationsPackage.UML2_APPLET__CONFIG, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConfig(TransformationConfig newConfig) {
-		if (newConfig != eInternalContainer() || (eContainerFeatureID != TransformationsPackage.UML2_APPLET__CONFIG && newConfig != null)) {
-			if (EcoreUtil.isAncestor(this, newConfig))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newConfig != null)
-				msgs = ((InternalEObject)newConfig).eInverseAdd(this, TransformationsPackage.TRANSFORMATION_CONFIG__APPLET, TransformationConfig.class, msgs);
-			msgs = basicSetConfig(newConfig, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TransformationsPackage.UML2_APPLET__CONFIG, newConfig, newConfig));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TransformationsPackage.UML2_APPLET__CONFIG:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetConfig((TransformationConfig)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TransformationsPackage.UML2_APPLET__CONFIG:
-				return basicSetConfig(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
-			case TransformationsPackage.UML2_APPLET__CONFIG:
-				return eInternalContainer().eInverseRemove(this, TransformationsPackage.TRANSFORMATION_CONFIG__APPLET, TransformationConfig.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TransformationsPackage.UML2_APPLET__CONFIG:
-				return getConfig();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TransformationsPackage.UML2_APPLET__CONFIG:
-				setConfig((TransformationConfig)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TransformationsPackage.UML2_APPLET__CONFIG:
-				setConfig((TransformationConfig)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TransformationsPackage.UML2_APPLET__CONFIG:
-				return getConfig() != null;
-		}
-		return super.eIsSet(featureID);
 	}
 
 } //UML2AppletImpl

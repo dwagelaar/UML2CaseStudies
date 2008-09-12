@@ -42,6 +42,7 @@ public class Java2DataTypesImpl extends JavaDataTypesImpl implements Java2DataTy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return TransformationsPackage.Literals.JAVA2_DATA_TYPES;
 	}

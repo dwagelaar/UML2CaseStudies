@@ -42,6 +42,7 @@ public class MIDletPackagingImpl extends PackagingImpl implements MIDletPackagin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return InstantmessengerPackage.Literals.MI_DLET_PACKAGING;
 	}

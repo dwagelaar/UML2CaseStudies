@@ -136,7 +136,7 @@ public interface TransformationConfig extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Applet</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link be.ac.vub.uml2cs.transformations.UML2Applet#getConfig <em>Config</em>}'.
+	 * It is bidirectional and its opposite is '{@link be.ac.vub.uml2cs.transformations.Applet#getConfig <em>Config</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Applet</em>' containment reference isn't clear,
@@ -147,13 +147,13 @@ public interface TransformationConfig extends EObject {
 	 * Variant of UML2Applet transformation to use
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Applet</em>' containment reference.
-	 * @see #setApplet(UML2Applet)
+	 * @see #setApplet(Applet)
 	 * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getTransformationConfig_Applet()
-	 * @see be.ac.vub.uml2cs.transformations.UML2Applet#getConfig
+	 * @see be.ac.vub.uml2cs.transformations.Applet#getConfig
 	 * @model opposite="config" containment="true" required="true"
 	 * @generated
 	 */
-	UML2Applet getApplet();
+	Applet getApplet();
 
 	/**
 	 * Sets the value of the '{@link be.ac.vub.uml2cs.transformations.TransformationConfig#getApplet <em>Applet</em>}' containment reference.
@@ -163,7 +163,7 @@ public interface TransformationConfig extends EObject {
 	 * @see #getApplet()
 	 * @generated
 	 */
-	void setApplet(UML2Applet value);
+	void setApplet(Applet value);
 
 	/**
 	 * Returns the value of the '<em><b>Target Project</b></em>' attribute.

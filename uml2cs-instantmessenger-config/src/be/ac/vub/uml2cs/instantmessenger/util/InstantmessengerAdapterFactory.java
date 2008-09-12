@@ -61,6 +61,7 @@ public class InstantmessengerAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
@@ -72,59 +73,75 @@ public class InstantmessengerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * The switch the delegates to the <code>createXXX</code> methods.
+	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstantmessengerSwitch modelSwitch =
-		new InstantmessengerSwitch() {
-			public Object caseInstantMessengerConfiguration(InstantMessengerConfiguration object) {
+	protected InstantmessengerSwitch<Adapter> modelSwitch =
+		new InstantmessengerSwitch<Adapter>() {
+			@Override
+			public Adapter caseInstantMessengerConfiguration(InstantMessengerConfiguration object) {
 				return createInstantMessengerConfigurationAdapter();
 			}
-			public Object caseLocalNetwork(LocalNetwork object) {
+			@Override
+			public Adapter caseLocalNetwork(LocalNetwork object) {
 				return createLocalNetworkAdapter();
 			}
-			public Object caseJabberNetwork(JabberNetwork object) {
+			@Override
+			public Adapter caseJabberNetwork(JabberNetwork object) {
 				return createJabberNetworkAdapter();
 			}
-			public Object caseJabberTransport(JabberTransport object) {
+			@Override
+			public Adapter caseJabberTransport(JabberTransport object) {
 				return createJabberTransportAdapter();
 			}
-			public Object caseDefaultJabberTransport(DefaultJabberTransport object) {
+			@Override
+			public Adapter caseDefaultJabberTransport(DefaultJabberTransport object) {
 				return createDefaultJabberTransportAdapter();
 			}
-			public Object caseMEJabberTransport(MEJabberTransport object) {
+			@Override
+			public Adapter caseMEJabberTransport(MEJabberTransport object) {
 				return createMEJabberTransportAdapter();
 			}
-			public Object caseUserInterface(UserInterface object) {
+			@Override
+			public Adapter caseUserInterface(UserInterface object) {
 				return createUserInterfaceAdapter();
 			}
-			public Object caseAWTUserInterface(AWTUserInterface object) {
+			@Override
+			public Adapter caseAWTUserInterface(AWTUserInterface object) {
 				return createAWTUserInterfaceAdapter();
 			}
-			public Object caseSwingUserInterface(SwingUserInterface object) {
+			@Override
+			public Adapter caseSwingUserInterface(SwingUserInterface object) {
 				return createSwingUserInterfaceAdapter();
 			}
-			public Object caseLCDUIUserInterface(LCDUIUserInterface object) {
+			@Override
+			public Adapter caseLCDUIUserInterface(LCDUIUserInterface object) {
 				return createLCDUIUserInterfaceAdapter();
 			}
-			public Object casePackaging(Packaging object) {
+			@Override
+			public Adapter casePackaging(Packaging object) {
 				return createPackagingAdapter();
 			}
-			public Object caseWebAppletPackaging(WebAppletPackaging object) {
+			@Override
+			public Adapter caseWebAppletPackaging(WebAppletPackaging object) {
 				return createWebAppletPackagingAdapter();
 			}
-			public Object caseIpkgAppletPackaging(IpkgAppletPackaging object) {
+			@Override
+			public Adapter caseIpkgAppletPackaging(IpkgAppletPackaging object) {
 				return createIpkgAppletPackagingAdapter();
 			}
-			public Object caseMIDletPackaging(MIDletPackaging object) {
+			@Override
+			public Adapter caseMIDletPackaging(MIDletPackaging object) {
 				return createMIDletPackagingAdapter();
 			}
-			public Object caseTransformationConfig(TransformationConfig object) {
+			@Override
+			public Adapter caseTransformationConfig(TransformationConfig object) {
 				return createTransformationConfigAdapter();
 			}
-			public Object defaultCase(EObject object) {
+			@Override
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -137,8 +154,9 @@ public class InstantmessengerAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
+	@Override
 	public Adapter createAdapter(Notifier target) {
-		return (Adapter)modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 

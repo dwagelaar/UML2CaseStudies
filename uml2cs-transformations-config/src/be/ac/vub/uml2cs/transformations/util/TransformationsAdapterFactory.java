@@ -59,6 +59,7 @@ public class TransformationsAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
@@ -70,44 +71,63 @@ public class TransformationsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * The switch the delegates to the <code>createXXX</code> methods.
+	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TransformationsSwitch modelSwitch =
-		new TransformationsSwitch() {
-			public Object caseTransformationConfig(TransformationConfig object) {
+	protected TransformationsSwitch<Adapter> modelSwitch =
+		new TransformationsSwitch<Adapter>() {
+			@Override
+			public Adapter caseTransformationConfig(TransformationConfig object) {
 				return createTransformationConfigAdapter();
 			}
-			public Object caseMapping(Mapping object) {
+			@Override
+			public Adapter caseMapping(Mapping object) {
 				return createMappingAdapter();
 			}
-			public Object caseJavaMapping(JavaMapping object) {
+			@Override
+			public Adapter caseJavaMapping(JavaMapping object) {
 				return createJavaMappingAdapter();
 			}
-			public Object caseJavaDataTypes(JavaDataTypes object) {
+			@Override
+			public Adapter caseJavaDataTypes(JavaDataTypes object) {
 				return createJavaDataTypesAdapter();
 			}
-			public Object caseJava1DataTypes(Java1DataTypes object) {
+			@Override
+			public Adapter caseJava1DataTypes(Java1DataTypes object) {
 				return createJava1DataTypesAdapter();
 			}
-			public Object caseJava2DataTypes(Java2DataTypes object) {
+			@Override
+			public Adapter caseJava2DataTypes(Java2DataTypes object) {
 				return createJava2DataTypesAdapter();
 			}
-			public Object caseUML2Observer(UML2Observer object) {
+			@Override
+			public Adapter caseUML2Observer(UML2Observer object) {
 				return createUML2ObserverAdapter();
 			}
-			public Object caseUML2JavaObserver(UML2JavaObserver object) {
+			@Override
+			public Adapter caseUML2JavaObserver(UML2JavaObserver object) {
 				return createUML2JavaObserverAdapter();
 			}
-			public Object caseUML2Applet(UML2Applet object) {
+			@Override
+			public Adapter caseUML2Applet(UML2Applet object) {
 				return createUML2AppletAdapter();
 			}
-			public Object caseUML2MIDlet(UML2MIDlet object) {
+			@Override
+			public Adapter caseUML2MIDlet(UML2MIDlet object) {
 				return createUML2MIDletAdapter();
 			}
-			public Object defaultCase(EObject object) {
+			@Override
+			public Adapter caseApplet(Applet object) {
+				return createAppletAdapter();
+			}
+			@Override
+			public Adapter caseUML2SWTApplication(UML2SWTApplication object) {
+				return createUML2SWTApplicationAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -120,8 +140,9 @@ public class TransformationsAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
+	@Override
 	public Adapter createAdapter(Notifier target) {
-		return (Adapter)modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 
@@ -262,6 +283,34 @@ public class TransformationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUML2MIDletAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link be.ac.vub.uml2cs.transformations.Applet <em>Applet</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see be.ac.vub.uml2cs.transformations.Applet
+	 * @generated
+	 */
+	public Adapter createAppletAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link be.ac.vub.uml2cs.transformations.UML2SWTApplication <em>UML2SWT Application</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see be.ac.vub.uml2cs.transformations.UML2SWTApplication
+	 * @generated
+	 */
+	public Adapter createUML2SWTApplicationAdapter() {
 		return null;
 	}
 

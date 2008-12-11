@@ -20,10 +20,10 @@ helper def : applets : Sequence(UML2!"Applet::Applet") = UML2!"Applet::Applet".a
 helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton".allInstances();
 
 helper context UML2!"uml::Classifier" def : isApplet : Boolean =
-	thisModule.applets->select(o|o.base_Classifier=self)->notEmpty();
+	thisModule.applets->exists(o|o.base_Classifier=self);
 
 helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
-	thisModule.singletons->select(o|o.base_Classifier=self)->notEmpty();
+	thisModule.singletons->exists(o|o.base_Classifier=self);
 
 -- ======================================================================
 -- model-specific helpers end
@@ -80,7 +80,7 @@ rule AppletClass {
 			s.oclIsTypeOf(UML2!"uml::Class") and
 			s.isApplet
 		else false endif)
-	using { hasInit : Boolean = s.ownedOperation->select(o|o.name='init')->notEmpty(); }
+	using { hasInit : Boolean = s.ownedOperation->exists(o|o.name='init'); }
     to t : UML2!"uml::Class" mapsTo s (
         name <- s.name.debug('AppletClass'),
         visibility <- s.visibility,

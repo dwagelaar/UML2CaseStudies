@@ -211,8 +211,8 @@ rule Operation {
         packageImport <- s.packageImport,
         ownedRule <- s.ownedRule,
         ownedParameter <- s.ownedParameter
-			->union(if s.ownedParameter->select(p|p.direction=#return)->isEmpty() then
-				Sequence{thisModule.VoidParameter()} else Sequence{} endif),
+			->union(if s.ownedParameter->exists(p|p.direction=#return) then
+				Sequence{} else Sequence{thisModule.VoidParameter()} endif),
         method <- s.method,
         raisedException <- s.raisedException,
         ownedParameterSet <- s.ownedParameterSet,

@@ -26,16 +26,16 @@ helper def : subscribes : Sequence(UML2!"Observer::subscribe") = UML2!"Observer:
 helper def : accessors : Sequence(UML2!"Accessors::accessor") = UML2!"Accessors::accessor".allInstances();
 
 helper context UML2!"uml::Classifier" def : isObservable : Boolean =
-	thisModule.observables->select(o|o.base_Classifier=self)->notEmpty();
+	thisModule.observables->exists(o|o.base_Classifier=self);
 
 helper context UML2!"uml::Classifier" def : isObserver : Boolean =
-	thisModule.observers->select(o|o.base_Classifier=self)->notEmpty();
+	thisModule.observers->exists(o|o.base_Classifier=self);
 
 helper context UML2!"uml::Association" def : isSubscribe : Boolean =
-	thisModule.subscribes->select(s|s.base_Association=self)->notEmpty();
+	thisModule.subscribes->exists(s|s.base_Association=self);
 
 helper context UML2!"uml::Dependency" def : isAccessor : Boolean =
-	thisModule.accessors->select(a|a.base_Dependency=self)->notEmpty();
+	thisModule.accessors->exists(a|a.base_Dependency=self);
 
 helper context UML2!"uml::Class" def : update() : String =
 	self.handlers()->iterate(o; acc : String = ''|acc + o.update());
@@ -74,28 +74,27 @@ helper context UML2!"uml::Behavior" def : isSubscribeMethod : Boolean =
 	endif;
 
 helper context UML2!"uml::Operation" def : accessorFor : UML2!"uml::Property" =
-	self.accessorDependency.supplier->select(p|
-		p.oclIsKindOf(UML2!"uml::Property"))->first();
+	self.accessorDependency.supplier->any(p|
+		p.oclIsKindOf(UML2!"uml::Property"));
 
 helper context UML2!"uml::Operation" def : accessorDependency : UML2!"uml::Dependency" =
-	self.clientDependency->select(d|d.isAccessor)->first();
+	self.clientDependency->any(d|d.isAccessor);
 
 helper context UML2!"uml::Operation" def : isAccessor : Boolean =
 	not self.accessorDependency.oclIsUndefined();
---	self.clientDependency->select(d|d.isAccessor())->notEmpty();
 
 helper context UML2!"uml::Classifier" def : isObservableKind : Boolean =
 	if self.isObservable then
 		true
 	else
-		self.generalization->select(g|g.general.isObservableKind)->notEmpty()
+		self.generalization->exists(g|g.general.isObservableKind)
 	endif;
 
 helper context UML2!"uml::Classifier" def : isObserverKind : Boolean =
 	if self.isObserver then
 		true
 	else
-		self.generalization->select(g|g.general.isObserverKind)->notEmpty()
+		self.generalization->exists(g|g.general.isObserverKind)
 	endif;
 
 helper context UML2!"uml::Operation" def : isSubscriber : Boolean =

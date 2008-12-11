@@ -8,7 +8,7 @@
 <mapEntry key="IN" value="UML2"/>
 </mapAttribute>
 <mapAttribute key="Libs"/>
-<booleanAttribute key="Mode Debug" value="false"/>
+<booleanAttribute key="Mode Debug" value="true"/>
 <mapAttribute key="Model Handler">
 <mapEntry key="UML2" value="EMF"/>
 </mapAttribute>
@@ -27,7 +27,6 @@
 </mapAttribute>
 <stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <listAttribute key="Superimpose">
-<listEntry value="/uml2cs-transformations/UML2FilteredCopy.asm"/>
 <listEntry value="/uml2cs-transformations/UML2ProfileCopy.asm"/>
 </listAttribute>
 <booleanAttribute key="continueAfterError" value="false"/>

@@ -17,18 +17,13 @@ helper context UML2!"uml::NamedElement" def : implQualifiedName : String =
 	self.qualifiedName('.');
 
 helper context String def : parameterValue() : String =
-	XML!"XML::Element".allInstancesFrom('parameters')->select(e |
-		e.name = 'param'
-	)->select(e |
-		e.getAttrVal('name') = self
-	)->first().getAttrVal('value');
+	XML!"XML::Element".allInstancesFrom('parameters')
+	->select(e|e.name = 'param')
+	->any(e|e.getAttrVal('name') = self).getAttrVal('value');
 
 helper context XML!"XML::Element" def : getAttrVal(name : String) : String =
-	self.children->select(n |
-		n.oclIsKindOf(XML!"XML::Attribute")
-	)->select(a |
-		a.name = name
-	)->first().value;
+	self.children->select(n|n.oclIsKindOf(XML!"XML::Attribute"))
+	->any(a|a.name = name).value;
 
 helper context UML2!"uml::Classifier" def : ignore() : Boolean =
 	true;
@@ -71,7 +66,7 @@ helper context UML2!"uml::Feature" def : staticStr : String =
 	else '' endif;
 
 helper context UML2!"uml::Parameter" def : isFinal : Boolean =
-	UML2!"Final::final".allInstances()->select(f|f.base_Parameter=self)->notEmpty();
+	UML2!"Final::final".allInstances()->exists(f|f.base_Parameter=self);
 	
 helper context UML2!"uml::StructuralFeature" def : finalStr : String =
 	if self.isLeaf or self.isReadOnly then 'final ' else '' endif;
@@ -84,7 +79,7 @@ helper context UML2!"uml::Parameter" def : finalStr : String =
 	else '' endif;
 
 helper context UML2!"uml::BehavioralFeature" def : isConstructor : Boolean =
-	UML2!"Standard::Create".allInstances()->select(c|c.base_BehavioralFeature=self)->notEmpty();
+	UML2!"Standard::Create".allInstances()->exists(c|c.base_BehavioralFeature=self);
 
 -- ======================================================================
 -- plumbing helpers end

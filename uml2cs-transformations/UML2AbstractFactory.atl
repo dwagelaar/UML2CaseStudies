@@ -19,13 +19,13 @@ helper def : concreteFactories : Sequence(UML2!"AbstractFactory::ConcreteFactory
 helper def : products : Sequence(UML2!"AbstractFactory::product") = UML2!"AbstractFactory::product".allInstances();
 
 helper context UML2!"uml::Classifier" def : isAbstractFactory : Boolean =
-	thisModule.abstractFactories->select(a|a.base_Classifier=self)->notEmpty();
+	thisModule.abstractFactories->exists(a|a.base_Classifier=self);
 
 helper context UML2!"uml::Class" def : isConcreteFactory : Boolean =
-	thisModule.concreteFactories->select(a|a.base_Class=self)->notEmpty();
+	thisModule.concreteFactories->exists(a|a.base_Class=self);
 
 helper context UML2!"uml::Dependency" def : isProduct : Boolean =
-	thisModule.products->select(a|a.base_Dependency=self)->notEmpty();
+	thisModule.products->exists(a|a.base_Dependency=self);
 
 -- ======================================================================
 -- model-specific helpers end
@@ -190,7 +190,7 @@ rule AbstractProductDependency {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Dependency") and
 			if s.isProduct then
-				s.client->select(c|c.isAbstractFactory)->notEmpty()
+				s.client->exists(c|c.isAbstractFactory)
 			else false endif
 		else false endif)
 	using { supplier : UML2!"uml::Classifier" = s.supplier->first(); }
@@ -223,7 +223,7 @@ rule ConcreteProductDependency {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Dependency") and
 			if s.isProduct then
-				s.client->select(c|c.isConcreteFactory)->notEmpty()
+				s.client->exists(c|c.isConcreteFactory)
 			else false endif
 		else false endif)
 	using { superTypes : Set(UML2!"uml::Classifier") = s.client
@@ -234,7 +234,7 @@ rule ConcreteProductDependency {
 				->collect(d|d.supplier)->flatten().debug('products');
 			supplier : UML2!"uml::Classifier" = s.supplier
 				->collect(s|s.superTypes)->flatten().debug('supersuppliers')
-				->select(c|products->includes(c))->first().debug('supplier'); }
+				->any(c|products->includes(c)).debug('supplier'); }
     to t : UML2!"uml::Dependency" mapsTo s (
         name <- s.name->debug('ConcreteProductDependency'),
         visibility <- s.visibility,

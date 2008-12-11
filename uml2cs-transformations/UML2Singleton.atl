@@ -17,7 +17,7 @@ helper def : language : String = 'language'.value();
 helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton".allInstances();
 
 helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
-	thisModule.singletons->select(o|o.base_Classifier=self)->notEmpty();
+	thisModule.singletons->exists(o|o.base_Classifier=self);
 
 -- ======================================================================
 -- model-specific helpers end

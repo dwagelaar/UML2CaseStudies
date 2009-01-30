@@ -211,7 +211,7 @@ rule Property {
     from s : UML2!"uml::Property" (
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Property") and
-			not ((s.visibility = #public) or (s.isNavigable))
+			not ((s.visibility = #public) and (s.isNavigable))
 		else false endif)
     to t : UML2!"uml::Property" mapsTo s (
         name <- s.name,

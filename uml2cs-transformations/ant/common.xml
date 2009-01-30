@@ -444,31 +444,31 @@
 		<am3.loadModel modelHandler = "EMF" name = "Parameters" metamodel = "XML" path = "${current.path}/parameters.xml">
 			<injector name = "xml"/>
 		</am3.loadModel>
-		<am3.loadModel modelHandler = "EMF" name = "UML2" metamodel = "MOF" path = "${metamodel.uml2.path}"/>
-		<am3.loadModel modelHandler = "EMF" name = "Accessors" metamodel = "UML2" path = "${profile.accessors.path}"/>
-		<am3.loadModel modelHandler = "EMF" name = "PrimitiveTypes" metamodel = "UML2" path = "${model.uml2types.path}"/>
-		<am3.loadModel modelHandler = "EMF" name = "ImplTypes" metamodel = "UML2" path = "${model.impltypes.path}"/>
+		<am3.loadModel modelHandler = "UML2" name = "UML2" metamodel = "MOF" path = "${metamodel.uml2.path}"/>
+		<am3.loadModel modelHandler = "UML2" name = "Accessors" metamodel = "UML2" path = "${profile.accessors.path}"/>
+		<am3.loadModel modelHandler = "UML2" name = "PrimitiveTypes" metamodel = "UML2" path = "${model.uml2types.path}"/>
+		<am3.loadModel modelHandler = "UML2" name = "ImplTypes" metamodel = "UML2" path = "${model.impltypes.path}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
 		  target: loadIteratorEnumerationAdapter
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadIteratorEnumerationAdapter" if="java2" depends = "loadBaseModels">
-		<am3.loadModel modelHandler = "EMF" name = "IteratorEnumerationAdapter" metamodel = "UML2" path = "${model.itenumadapter.path}"/>
+		<am3.loadModel modelHandler = "UML2" name = "IteratorEnumerationAdapter" metamodel = "UML2" path = "${model.itenumadapter.path}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
 		  target: loadObserver
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadObserver" if="observer" depends = "loadBaseModels">
-		<am3.loadModel modelHandler = "EMF" name = "Observer" metamodel = "UML2" path = "${model.obstypes.path}"/>
+		<am3.loadModel modelHandler = "UML2" name = "Observer" metamodel = "UML2" path = "${model.obstypes.path}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
 		  target: loadMIDlet
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadMIDlet" if="midlet" depends = "loadBaseModels">
-		<am3.loadModel modelHandler = "EMF" name = "MIDlet" metamodel = "UML2" path = "${model.midlet.path}"/>
+		<am3.loadModel modelHandler = "UML2" name = "MIDlet" metamodel = "UML2" path = "${model.midlet.path}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =

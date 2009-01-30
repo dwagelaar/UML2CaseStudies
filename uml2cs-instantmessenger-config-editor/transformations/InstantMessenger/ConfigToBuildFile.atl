@@ -222,12 +222,12 @@ rule ModelTarget(name : String, inModel : String, prefix : String, path : String
 	   targetDepends : XML!"XML::Attribute"(
 	   	name <- 'depends',
 		value <- 'allBase'),
-	-- <am3.loadModel modelHandler = 'EMF' name = 'inModel' metamodel = 'UML2' path = 'path'/>
+	-- <am3.loadModel modelHandler = 'UML2' name = 'inModel' metamodel = 'UML2' path = 'path'/>
 	   loadModel : XML!"XML::Element" (
 	   	name <- 'am3.loadModel'),
 	   modelHandler : XML!"XML::Attribute" (
 	   	name <- 'modelHandler',
-		value <- 'EMF',
+		value <- 'UML2',
 		parent <- loadModel),
 	   modelName : XML!"XML::Attribute" (
 	   	name <- 'name',

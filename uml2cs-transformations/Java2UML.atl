@@ -1,0 +1,205 @@
+-- @atlcompiler atl2006
+-- $Id$
+-- Merges back java method bodies into UML2 source model
+module Java2UML; -- extends UML2Copy
+
+create OUT : UML2 from IN : UML2, CODE : JAVA;
+
+uses UML2;
+uses Mappings;
+
+-- ======================================================================
+-- model-specific helpers begin
+-- ======================================================================
+
+helper context UML2!"uml::Classifier" def : typeDeclaration : JAVA!TypeDeclaration =
+	let owner : OclAny = self.refImmediateComposite() in
+	if (owner.oclIsKindOf(UML2!"uml::Classifier")) then
+		owner.typeDeclaration.bodyDeclarations
+			->select(b|b.oclIsKindOf(JAVA!AbstractTypeDeclaration))
+			->any(t|t.name.fullyQualifiedName = self.name)
+	else
+		JAVA!CompilationUnit.allInstances()
+			->select(c|c.package.name.fullyQualifiedName = self.getNearestPackage().qualifiedName('.'))
+			->collect(c|c.types)->flatten()
+			->any(t|t.name.fullyQualifiedName = self.name)
+	endif;
+
+helper context UML2!"uml::BehavioralFeature" def : javaMethodDeclaration : JAVA!MethodDeclaration =
+	let t : JAVA!TypeDeclaration = self.namespace.typeDeclaration in t.bodyDeclarations
+		->select(b|b.oclIsKindOf(JAVA!MethodDeclaration))
+		->select(m|m.name.fullyQualifiedName = self.name)
+		->select(m|
+			if self.getType().oclIsUndefined() then
+				if m.returnType.oclIsUndefined() then
+					true
+				else
+					m.returnType.lexicalForm = 'void'
+				endif
+			else
+				if m.constructor then
+					t.name.lexicalForm = self.getType().name	-- constructors already have naming constraints, so this check is not strictly necessary
+				else
+					if m.returnType.oclIsUndefined() then
+						false
+					else
+						if self.getType().oclIsKindOf(UML2!"uml::PrimitiveType") then
+							let implTypeName : String = self.getType().name.implTypeName().regexReplaceAll('::', '.') in
+							m.returnType.lexicalForm = implTypeName or
+							'java.lang.' + m.returnType.lexicalForm = implTypeName
+						else
+							m.returnType.lexicalForm = self.getType().qualifiedName('.')
+						endif
+					endif
+				endif
+			endif)
+		->any(m|thisModule.equivalentParameters(self.ownedParameter->reject(p|p.direction = #return), m.parameters));
+
+helper def : equivalentParameters(selfpars : Sequence(UML2!"uml::Parameter"), otherpars : Sequence(JAVA!SingleVariableDeclaration)) : Boolean =
+	let selfpar : UML2!"uml::Parameter" = selfpars->first() in
+	let otherpar : JAVA!SingleVariableDeclaration = otherpars->first() in
+	if selfpar.oclIsUndefined() then otherpar.oclIsUndefined()
+	else
+		if selfpar.equivalentTo(otherpar) then
+			thisModule.equivalentParameters(
+				selfpars->excluding(selfpar), 
+				otherpars->excluding(otherpar))
+		else false endif
+	endif;
+
+helper context UML2!"uml::Parameter" def : equivalentTo(v : JAVA!SingleVariableDeclaration) : Boolean =
+	if v.oclIsUndefined() then
+		false
+	else
+		if self.type.oclIsUndefined() then
+			v.type.lexicalForm = 'void'
+		else
+			if self.type.oclIsKindOf(UML2!"uml::PrimitiveType") then
+				let implTypeName : String = self.type.name.implTypeName().regexReplaceAll('::', '.') in
+				v.type.lexicalForm = implTypeName or
+				'java.lang.' + v.type.lexicalForm = implTypeName
+			else
+				v.type.lexicalForm = self.type.qualifiedName('.')
+			endif
+		endif
+	endif;
+
+-- ======================================================================
+-- model-specific helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- transformation rules begin
+-- ======================================================================
+
+rule OpaqueBehavior {
+    from s : UML2!"uml::OpaqueBehavior" (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!"uml::OpaqueBehavior") and
+			if s.language.includes('java') and not s.specification.oclIsUndefined() then
+				s.specification.javaMethodDeclaration.oclIsUndefined()
+			else true endif
+		else false endif)
+    to t : UML2!"uml::OpaqueBehavior" mapsTo s (
+        name <- s.name.debug('OpaqueBehavior'),
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        body <- s.body,
+        language <- s.language,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedRule <- s.ownedRule,
+        templateParameter <- s.templateParameter,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        generalization <- s.generalization,
+        powertypeExtent <- s.powertypeExtent,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        representation <- s.representation,
+        collaborationUse <- s.collaborationUse,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        interfaceRealization <- s.interfaceRealization,
+        ownedTrigger <- s.ownedTrigger,
+        nestedClassifier <- s.nestedClassifier,
+        ownedOperation <- s.ownedOperation,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        ownedParameter <- s.ownedParameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        ownedParameterSet <- s.ownedParameterSet,
+        specification <- s.specification)
+}
+
+rule JavaOpaqueBehavior {
+    from s : UML2!"uml::OpaqueBehavior" (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!"uml::OpaqueBehavior") and
+			if s.language.includes('java') and not s.specification.oclIsUndefined() then
+				not s.specification.javaMethodDeclaration.oclIsUndefined()
+			else false endif
+		else false endif)
+	using { 
+    	javabody : String = s.specification.javaMethodDeclaration.body.lexicalForm;
+		index : Integer = s.language->indexOf('java');
+    }
+    to t : UML2!"uml::OpaqueBehavior" mapsTo s (
+        name <- s.name.debug('JavaOpaqueBehavior'),
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        isReentrant <- s.isReentrant,
+        body <- s.body.excluding(s.body.at(index))->insertAt(index, javabody.substring(2, javabody.size()-1).trim()),
+        language <- s.language,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedRule <- s.ownedRule,
+        templateParameter <- s.templateParameter,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        generalization <- s.generalization,
+        powertypeExtent <- s.powertypeExtent,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        representation <- s.representation,
+        collaborationUse <- s.collaborationUse,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        interfaceRealization <- s.interfaceRealization,
+        ownedTrigger <- s.ownedTrigger,
+        nestedClassifier <- s.nestedClassifier,
+        ownedOperation <- s.ownedOperation,
+        ownedReception <- s.ownedReception,
+        redefinedBehavior <- s.redefinedBehavior,
+        ownedParameter <- s.ownedParameter,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        ownedParameterSet <- s.ownedParameterSet,
+        specification <- s.specification)
+}
+
+-- ======================================================================
+-- transformation rules end
+-- ======================================================================

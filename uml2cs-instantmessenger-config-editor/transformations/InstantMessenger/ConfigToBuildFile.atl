@@ -1,5 +1,5 @@
 -- @atlcompiler atl2006
--- $Id: ConfigToBuildFile.atl 7251 2007-09-11 11:57:29Z dwagelaa $
+-- $Id: ConfigToBuildFile.atl 7633 2009-01-30 14:22:58Z dwagelaa $
 -- Generates a build.xml file from a Transformations.ecore config file
 module ConfigToBuildFile; --extends ConfigToBuildFile from uml2cs-transformations
 
@@ -73,8 +73,8 @@ def : userInterfaceDepends() : Sequence(String) =
 
 rule ConfigRoot {
 	from s : CFG!"instantmessenger::InstantMessengerConfiguration"
-	-- <project name="s.targetProject/build" default="all">
-	to root : XML!"XML::Root" mapsTo s (
+	-- <project name="s.buildPath" default="all">
+	to root : XML!"XML::Root" (
 		name <- thisModule.ConfigHeader(s)),
 	   default : XML!"XML::Attribute" (
 	   	parent <- root,
@@ -85,6 +85,11 @@ rule ConfigRoot {
 	   	name <- 'target',
 		children <- thisModule.AllTarget(s),
 		parent <- root),
+	-- <target name = 'all-feedback' depends = '...'>
+	   allFeedbackTarget : XML!"XML::Element" (
+	   	name <- 'target',
+		children <- thisModule.AllFeedbackTarget(s),
+		parent <- root),
 	-- <target name = 'InstantMessengerModel' depends = 'allBase'>
 	   imTarget : XML!"XML::Element" (
 	   	name <- 'target',
@@ -93,18 +98,36 @@ rule ConfigRoot {
 			'inModel',
 			'im',
 			thisModule.ModelPath + '/InstantMessengerModel.uml'),
+		parent <- root),
+	-- <target name = 'InstantMessengerModel-feedback' depends = 'allBase, loadJAVA'>
+	   imTargetFeedback : XML!"XML::Element" (
+	   	name <- 'target',
+		children <- thisModule.ModelFeedbackTarget(
+			'InstantMessengerModel-feedback',
+			'inModel',
+			s.targetProject,
+			thisModule.ModelPath + '/InstantMessengerModel.uml'),
 		parent <- root)
 }
 
 rule LocalNetwork {
 	from s : CFG!"instantmessenger::LocalNetwork"
 	-- <target name = 'LocalNetwork' depends = 'allBase'>
-	to target : XML!"XML::Element" mapsTo s (
+	to target : XML!"XML::Element" (
 		name <- 'target',
 		children <- thisModule.ModelTarget(
 			'LocalNetwork',
 			'Local',
 			'local',
+			thisModule.ModelPath + '/InstantMessengerLocal.uml'),
+		parent <- s.config),
+	-- <target name = 'LocalNetwork-feedback' depends = 'allBase, loadJAVA'>
+	   targetFeedback : XML!"XML::Element" (
+		name <- 'target',
+		children <- thisModule.ModelFeedbackTarget(
+			'LocalNetwork-feedback',
+			'Local',
+			s.config.targetProject,
 			thisModule.ModelPath + '/InstantMessengerLocal.uml'),
 		parent <- s.config)
 }
@@ -112,12 +135,21 @@ rule LocalNetwork {
 rule JabberNetwork {
 	from s : CFG!"instantmessenger::JabberNetwork"
 	-- <target name = 'JabberNetwork' depends = 'allBase'>
-	to target : XML!"XML::Element" mapsTo s (
+	to target : XML!"XML::Element" (
 		name <- 'target',
 		children <- thisModule.ModelTarget(
 			'JabberNetwork',
 			'Jabber',
 			'jabber',
+			thisModule.ModelPath + '/InstantMessengerJabber.uml'),
+		parent <- s.config),
+	-- <target name = 'JabberNetwork-feedback' depends = 'allBase, loadJAVA'>
+	   targetFeedback : XML!"XML::Element" (
+		name <- 'target',
+		children <- thisModule.ModelFeedbackTarget(
+			'JabberNetwork-feedback',
+			'Jabber',
+			s.config.targetProject,
 			thisModule.ModelPath + '/InstantMessengerJabber.uml'),
 		parent <- s.config)
 }
@@ -125,12 +157,21 @@ rule JabberNetwork {
 rule DefaultJabberTransport {
 	from s : CFG!"instantmessenger::DefaultJabberTransport"
 	-- <target name = 'DefaultJabberTransport' depends = 'allBase'>
-	to target : XML!"XML::Element" mapsTo s (
+	to target : XML!"XML::Element" (
 		name <- 'target',
 		children <- thisModule.ModelTarget(
 			'DefaultJabberTransport',
 			'DefaultJabber',
 			'defaultjabber',
+			thisModule.ModelPath + '/InstantMessengerDefaultJabber.uml'),
+		parent <- s.jabberNetwork.config),
+	-- <target name = 'DefaultJabberTransport-feedback' depends = 'allBase, loadJAVA'>
+	   targetFeedback : XML!"XML::Element" (
+		name <- 'target',
+		children <- thisModule.ModelFeedbackTarget(
+			'DefaultJabberTransport-feedback',
+			'DefaultJabber',
+			s.jabberNetwork.config.targetProject,
 			thisModule.ModelPath + '/InstantMessengerDefaultJabber.uml'),
 		parent <- s.jabberNetwork.config)
 }
@@ -138,12 +179,21 @@ rule DefaultJabberTransport {
 rule MEJabberTransport {
 	from s : CFG!"instantmessenger::MEJabberTransport"
 	-- <target name = 'MEJabberTransport' depends = 'allBase'>
-	to target : XML!"XML::Element" mapsTo s (
+	to target : XML!"XML::Element" (
 		name <- 'target',
 		children <- thisModule.ModelTarget(
 			'MEJabberTransport',
 			'MEJabber',
 			'mejabber',
+			thisModule.ModelPath + '/InstantMessengerMEJabber.uml'),
+		parent <- s.jabberNetwork.config),
+	-- <target name = 'MEJabberTransport-feedback' depends = 'allBase, loadJAVA'>
+	   targetFeedback : XML!"XML::Element" (
+		name <- 'target',
+		children <- thisModule.ModelFeedbackTarget(
+			'MEJabberTransport-feedback',
+			'MEJabber',
+			s.jabberNetwork.config.targetProject,
 			thisModule.ModelPath + '/InstantMessengerMEJabber.uml'),
 		parent <- s.jabberNetwork.config)
 }
@@ -151,12 +201,21 @@ rule MEJabberTransport {
 rule AWTUserInterface {
 	from s : CFG!"instantmessenger::AWTUserInterface"
 	-- <target name = 'AWTUserInterface' depends = 'allBase'>
-	to target : XML!"XML::Element" mapsTo s (
+	to target : XML!"XML::Element" (
 		name <- 'target',
 		children <- thisModule.ModelTarget(
 			'AWTUserInterface',
 			'AWT',
 			'awt',
+			thisModule.ModelPath + '/InstantMessengerAWT.uml'),
+		parent <- s.config),
+	-- <target name = 'AWTUserInterface-feedback' depends = 'allBase, loadJAVA'>
+	   targetFeedback : XML!"XML::Element" (
+		name <- 'target',
+		children <- thisModule.ModelFeedbackTarget(
+			'AWTUserInterface-feedback',
+			'AWT',
+			s.config.targetProject,
 			thisModule.ModelPath + '/InstantMessengerAWT.uml'),
 		parent <- s.config)
 }
@@ -164,12 +223,21 @@ rule AWTUserInterface {
 rule SwingUserInterface {
 	from s : CFG!"instantmessenger::SwingUserInterface"
 	-- <target name = 'SwingUserInterface' depends = 'allBase'>
-	to target : XML!"XML::Element" mapsTo s (
+	to target : XML!"XML::Element" (
 		name <- 'target',
 		children <- thisModule.ModelTarget(
 			'SwingUserInterface',
 			'Swing',
 			'swing',
+			thisModule.ModelPath + '/InstantMessengerSwing.uml'),
+		parent <- s.config),
+	-- <target name = 'SwingUserInterface-feedback' depends = 'allBase, loadJAVA'>
+	   targetFeedback : XML!"XML::Element" (
+		name <- 'target',
+		children <- thisModule.ModelFeedbackTarget(
+			'SwingUserInterface-feedback',
+			'Swing',
+			s.config.targetProject,
 			thisModule.ModelPath + '/InstantMessengerSwing.uml'),
 		parent <- s.config)
 }
@@ -177,12 +245,21 @@ rule SwingUserInterface {
 rule LCDUIUserInterface {
 	from s : CFG!"instantmessenger::LCDUIUserInterface"
 	-- <target name = 'LCDUIUserInterface' depends = 'allBase'>
-	to target : XML!"XML::Element" mapsTo s (
+	to target : XML!"XML::Element" (
 		name <- 'target',
 		children <- thisModule.ModelTarget(
 			'LCDUIUserInterface',
 			'LCDUI',
 			'lcdui',
+			thisModule.ModelPath + '/InstantMessengerLCDUI.uml'),
+		parent <- s.config),
+	-- <target name = 'LCDUIUserInterface-feedback' depends = 'allBase, loadJAVA'>
+	   targetFeedback : XML!"XML::Element" (
+		name <- 'target',
+		children <- thisModule.ModelFeedbackTarget(
+			'LCDUIUserInterface-feedback',
+			'LCDUI',
+			s.config.targetProject,
 			thisModule.ModelPath + '/InstantMessengerLCDUI.uml'),
 		parent <- s.config)
 }
@@ -208,6 +285,32 @@ rule AllTarget(c : CFG!"instantmessenger::InstantMessengerConfiguration") {
 	   refreshResource : XML!"XML::Attribute" (
 	   	name <- 'resource',
 		value <- '${ant.project.name}',
+		parent <- refresh)
+	do {
+		Sequence{targetName, targetDepends, refresh};
+	}
+}
+
+rule AllFeedbackTarget(c : CFG!"instantmessenger::InstantMessengerConfiguration") {
+	-- Sequence{name="all-feedback" depends="..."}
+	to targetName : XML!"XML::Attribute"(
+	   	name <- 'name',
+		value <- 'all-feedback'),
+	   targetDepends : XML!"XML::Attribute"(
+	   	name <- 'depends',
+		value <- Sequence{'InstantMessengerModel-feedback'}
+	   		->union(c.localNetworkDepends()->collect(d|d + '-feedback'))
+			->union(c.jabberNetworkDepends()->collect(d|d + '-feedback'))
+			->union(c.userInterfaceDepends()->collect(d|d + '-feedback'))
+			->iterate(e; acc : String = '' | acc +
+				if acc = '' then e
+				else ', ' + e endif).debug('AllFeedback')),
+	-- 	<eclipse.refreshLocal resource="thisModule.ModelPath"/>
+	   refresh : XML!"XML::Element" (
+	   	name <- 'eclipse.refreshLocal'),
+	   refreshResource : XML!"XML::Attribute" (
+	   	name <- 'resource',
+		value <- thisModule.ModelPath,
 		parent <- refresh)
 	do {
 		Sequence{targetName, targetDepends, refresh};
@@ -264,6 +367,83 @@ rule ModelTarget(name : String, inModel : String, prefix : String, path : String
 		parent <- antcall)
 	do {
 		Sequence{targetName, targetDepends, loadModel, antcall};
+	}
+}
+
+rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String, path : String) {
+	-- Sequence{name = 'name' depends = 'allBase, loadJAVA'}
+	to targetName : XML!"XML::Attribute"(
+	   	name <- 'name',
+		value <- name),
+	   targetDepends : XML!"XML::Attribute"(
+	   	name <- 'depends',
+		value <- 'allBase, loadJAVA'),
+	-- <am3.loadModel modelHandler = 'UML2' name = 'inModel' metamodel = 'UML2' path = 'path'/>
+	   loadModel : XML!"XML::Element" (
+	   	name <- 'am3.loadModel'),
+	   modelHandler : XML!"XML::Attribute" (
+	   	name <- 'modelHandler',
+		value <- 'UML2',
+		parent <- loadModel),
+	   modelName : XML!"XML::Attribute" (
+	   	name <- 'name',
+		value <- inModel,
+		parent <- loadModel),
+	   metamodel : XML!"XML::Attribute" (
+	   	name <- 'metamodel',
+		value <- 'UML2',
+		parent <- loadModel),
+	   modelPath : XML!"XML::Attribute" (
+	   	name <- 'path',
+		value <- path,
+		parent <- loadModel),
+	-- <am3.loadModel modelHandler = 'EMF' name = 'inModelCode' metamodel = 'JAVA' path = 'targetProject/targetProject.javaast'/>
+	   loadCode : XML!"XML::Element" (
+	   	name <- 'am3.loadModel'),
+	   modelHandler : XML!"XML::Attribute" (
+	   	name <- 'modelHandler',
+		value <- 'EMF',
+		parent <- loadCode),
+	   modelName : XML!"XML::Attribute" (
+	   	name <- 'name',
+		value <- inModel + 'Code',
+		parent <- loadCode),
+	   metamodel : XML!"XML::Attribute" (
+	   	name <- 'metamodel',
+		value <- 'JAVA',
+		parent <- loadCode),
+	   modelPath : XML!"XML::Attribute" (
+	   	name <- 'path',
+		value <- '/' + targetProject + '/' + targetProject + '.javaast',
+		parent <- loadCode),
+	-- <antcall target="java2uml" inheritRefs="true">
+	   antcall : XML!"XML::Element" (
+	   	name <- 'antcall'),
+	   antcalltarget : XML!"XML::Attribute" (
+	   	name <- 'target',
+		value <- 'java2uml',
+		parent <- antcall),
+	   inheritRefs : XML!"XML::Attribute" (
+	   	name <- 'inheritRefs',
+		value <- 'true',
+		parent <- antcall),
+	-- <param name="in" value="inModel"/>
+	   paramin : XML!"XML::Element" (
+	   	name <- 'param',
+		children <- thisModule.Property('in', inModel),
+		parent <- antcall),
+	-- <param name="code" value="inModelCode"/>
+	   paramcode : XML!"XML::Element" (
+	   	name <- 'param',
+		children <- thisModule.Property('code', inModel + 'Code'),
+		parent <- antcall),
+	-- <param name="path" value="path"/>
+	   parampath : XML!"XML::Element" (
+	   	name <- 'param',
+		children <- thisModule.Property('path', path),
+		parent <- antcall)
+	do {
+		Sequence{targetName, targetDepends, loadModel, loadCode, antcall};
 	}
 }
 

@@ -128,42 +128,33 @@ public class GenerateBuildFileAction extends ProgressMonitorAction implements IO
         final ASMModel out2 = ml.newModel("OUT", parFile.getLocationURI().toString(), xml);
         worked(monitor);
         
-        try {
-            monitor.subTask("Generating build.xml...");
-            Map<String, ASMModel> models = new HashMap<String, ASMModel>();
-            models.put(cfg.getName(), cfg);
-            models.put(xml.getName(), xml);
-            models.put(in.getName(), in);
-            models.put(out.getName(), out);
-            URL trans1 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/ConfigToBuildFile.asm");
-            URL trans2 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/InstantMessenger/ConfigToBuildFile.asm");
-            List<URL> superimpose = new ArrayList<URL>();
-            superimpose.add(trans2);
-    		AtlVM atlVM = AtlVM.getVM(ATL_VM);
-    		atlVM.launch(trans1, Collections.EMPTY_MAP, models, Collections.EMPTY_MAP, superimpose, Collections.EMPTY_MAP);
-            xmlExtraction(out, buildFile);
-            buildFile.refreshLocal(0, null);
-            worked(monitor);
+        monitor.subTask("Generating build.xml...");
+        Map<String, ASMModel> models = new HashMap<String, ASMModel>();
+        models.put(cfg.getName(), cfg);
+        models.put(xml.getName(), xml);
+        models.put(in.getName(), in);
+        models.put(out.getName(), out);
+        URL trans1 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/ConfigToBuildFile.asm");
+        URL trans2 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/InstantMessenger/ConfigToBuildFile.asm");
+        List<URL> superimpose = new ArrayList<URL>();
+        superimpose.add(trans2);
+		AtlVM atlVM = AtlVM.getVM(ATL_VM);
+		atlVM.launch(trans1, Collections.EMPTY_MAP, models, Collections.EMPTY_MAP, superimpose, Collections.EMPTY_MAP);
+        xmlExtraction(out, buildFile);
+        buildFile.refreshLocal(0, null);
+        worked(monitor);
 
-            monitor.subTask("Generating parameters.xml...");
-            models.clear();
-            models.put(cfg.getName(), cfg);
-            models.put(xml.getName(), xml);
-            models.put(in.getName(), in);
-            models.put(out2.getName(), out2);
-            URL trans3 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/ConfigToParameters.asm");
-    		atlVM.launch(trans3, Collections.EMPTY_MAP, models, Collections.EMPTY_MAP, Collections.EMPTY_LIST, Collections.EMPTY_MAP);
-            xmlExtraction(out2, parFile);
-            parFile.refreshLocal(0, null);
-            worked(monitor);
-        } finally {
-        	//TODO garbage collector should pick up ml
-//        	amh.disposeOfModel(out2);
-//        	amh.disposeOfModel(out);
-//        	amh.disposeOfModel(in);
-//        	amh.disposeOfModel(xml);
-//        	amh.disposeOfModel(cfg);
-        }
+        monitor.subTask("Generating parameters.xml...");
+        models.clear();
+        models.put(cfg.getName(), cfg);
+        models.put(xml.getName(), xml);
+        models.put(in.getName(), in);
+        models.put(out2.getName(), out2);
+        URL trans3 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/ConfigToParameters.asm");
+		atlVM.launch(trans3, Collections.EMPTY_MAP, models, Collections.EMPTY_MAP, Collections.EMPTY_LIST, Collections.EMPTY_MAP);
+        xmlExtraction(out2, parFile);
+        parFile.refreshLocal(0, null);
+        worked(monitor);
         
         monitor.subTask("Running build.xml...");
         RunBuildFileAction runBuildFile = new RunBuildFileAction(buildFile);

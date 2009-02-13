@@ -33,9 +33,11 @@
 	<property name="trans.uml2asyncmethods.path" value="${trans.path}/UML2AsyncMethods.asm"/>
 	<property name="trans.uml2datatypes.path" value="${trans.path}/UML2DataTypes.asm"/>
 	<property name="trans.uml2tojava.path" value="${trans.path}/UML2ToJava.atl"/>
+	<property name="trans.java2uml.path" value="${trans.path}/Java2UML.atl"/>
 
 	<property name="metamodel.uml2.path" value="${trans.path}/metamodels/UML2Profiles.ecore"/>
 	<property name="metamodel.xml.path" value="${trans.path}/metamodels/XML.ecore"/>
+	<property name="metamodel.java.uri" value="http://www.eclipse.org/gmt/modisco/JavaAST"/>
 	<property name="profile.accessors.path" value="${trans.path}/profiles/Accessors.profile.uml"/>
 	<property name="model.uml2types.path" value="${trans.path}/models/PrimitiveTypes.uml"/>
 	<property name="model.javatypes.path" value="${trans.path}/models/JavaTypes.uml"/>
@@ -331,6 +333,30 @@
 		</sequential>
 	</macrodef>
 
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: java2uml		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="java2uml">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="code" default="MODEL.CODE" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="path" default="MODEL.OUT.PATH" />
+		<sequential>
+			<am3.atl path="${trans.uml2copy.path}" allowInterModelReferences="true">
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="JAVA" model="JAVA"/>
+				<inmodel name="IN" model="@{in}"/>
+				<inmodel name="CODE" model="@{code}"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<library name="Java" path="${lib.java.path}"/>
+				<superimpose path="${trans.java2uml.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</am3.atl>
+		</sequential>
+	</macrodef>
+
 	<!-- = = = = = targets = =  = = = -->
 
 	<!-- = = = = = = = = = = = = = = = = =
@@ -437,6 +463,15 @@
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
+		  target: java2uml
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="java2uml">
+		<!-- params: ${in}, ${code}, ${path} -->
+		<java2uml in = "${in}" out = "feedback-${in}" code = "${code}" path = "feedback-${path}"/>
+		<am3.saveModel model="feedback-${in}" path="${path}" derived="false"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
 		  target: loadBaseModels
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadBaseModels">
@@ -469,6 +504,13 @@
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadMIDlet" if="midlet" depends = "loadBaseModels">
 		<am3.loadModel modelHandler = "UML2" name = "MIDlet" metamodel = "UML2" path = "${model.midlet.path}"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: loadJAVA
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "loadJAVA">
+		<am3.loadModel modelHandler = "EMF" name = "JAVA" metamodel = "MOF" nsuri = "${metamodel.java.uri}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =

@@ -145,10 +145,14 @@ rule OpaqueBehavior {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::OpaqueBehavior")
 		else false endif)
-	using { isAppletInit : Boolean = 
-		if (s.specification.name = 'init') then
-			s.specification.class.isApplet
-		else false endif; }
+	using {
+    	isAppletInit : Boolean = 
+			if (s.specification.name = 'init') then
+				s.specification.class.isApplet
+			else false endif;
+		midletInitBody : String =
+			s.specification.class.isSingleton.midletInitBody();
+	}
     to t : UML2!"uml::OpaqueBehavior" (
         __xmiID__ <- s.__xmiID__,
         name <- s.name,
@@ -159,8 +163,7 @@ rule OpaqueBehavior {
         isReentrant <- s.isReentrant,
         body <-
 			if isAppletInit then
-				s.body->collect(b|s.specification.class
-					.isSingleton.midletInitBody() + '\n' + b)
+				s.body->collect(b|midletInitBody + '\n' + b)
 			else
 				s.body
 			endif,

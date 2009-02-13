@@ -219,9 +219,7 @@ rule OpaqueBehavior {
         isReentrant <- s.isReentrant,
         body <-
 			if isAppletInit then
-				s.body->collect(b|
-					if b.startsWith(appletInitBody) then b
-					else appletInitBody + '\n' + b endif)
+				s.body->collect(b|appletInitBody + '\n' + b)
 			else
 				s.body
 			endif,

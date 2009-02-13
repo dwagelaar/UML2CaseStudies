@@ -12,6 +12,15 @@ uses Mappings;
 -- model-specific helpers begin
 -- ======================================================================
 
+helper def : applets : Sequence(UML2!"Applet::Applet") = UML2!"Applet::Applet".allInstances();
+helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton".allInstances();
+
+helper context UML2!"uml::Classifier" def : isApplet : Boolean =
+	thisModule.applets->exists(o|o.base_Classifier=self);
+
+helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
+	thisModule.singletons->exists(o|o.base_Classifier=self);
+
 helper context UML2!"uml::Classifier" def : typeDeclaration : JAVA!TypeDeclaration =
 	let owner : OclAny = self.refImmediateComposite() in
 	if (owner.oclIsKindOf(UML2!"uml::Classifier")) then
@@ -154,8 +163,30 @@ rule JavaOpaqueBehavior {
 			else false endif
 		else false endif)
 	using { 
-    	javabody : String = s.specification.javaMethodDeclaration.body.lexicalForm;
+    	javabody : String =
+    		let javablock : String = s.specification.javaMethodDeclaration.body.lexicalForm
+    		in javablock.substring(2, javablock.size()-1).trim();
 		index : Integer = s.language->indexOf('java');
+    	isAppletInit : Boolean = 
+			if (s.specification.name = 'init') then
+				s.specification.class.isApplet
+			else false endif;
+		appletInitBody : String =
+			s.specification.class.isSingleton.appletInitBody();
+		midletInitBody : String =
+			s.specification.class.isSingleton.midletInitBody();
+		strippedJavaBody : String =
+			if isAppletInit then
+				if javabody.startsWith(appletInitBody) then
+					javabody.substring(appletInitBody.size() + 2, javabody.size())
+				else if javabody.startsWith(midletInitBody) then
+					javabody.substring(midletInitBody.size() + 2, javabody.size())
+				else
+					javabody
+				endif endif
+			else
+				javabody
+			endif;
     }
     to t : UML2!"uml::OpaqueBehavior" (
         __xmiID__ <- s.__xmiID__,
@@ -165,7 +196,7 @@ rule JavaOpaqueBehavior {
         isAbstract <- s.isAbstract,
         isActive <- s.isActive,
         isReentrant <- s.isReentrant,
-        body <- s.body.excluding(s.body.at(index))->insertAt(index, javabody.substring(2, javabody.size()-1).trim()),
+        body <- s.body.excluding(s.body.at(index))->insertAt(index, strippedJavaBody),
         language <- s.language,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,

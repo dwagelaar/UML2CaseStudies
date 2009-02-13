@@ -55,4 +55,8 @@
 	</target>
 
 	<target name="all" depends="clean, invokeBuild"/>
+	
+	<target name="feedback">
+		<ant dir="build" antfile="build.xml" target="all-feedback"></ant>
+	</target>
 </project>

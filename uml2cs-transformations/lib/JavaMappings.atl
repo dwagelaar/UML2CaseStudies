@@ -307,7 +307,7 @@ helper context String def : singletonBody() : String =
 helper context Boolean def : appletInitBody() : String =
 	if self then
 		'instance = this;\n' +
-		'setLayout(new java.awt.BorderLayout());'
+		'\t\tsetLayout(new java.awt.BorderLayout());'
 	else
 		'setLayout(new java.awt.BorderLayout());'
 	endif;

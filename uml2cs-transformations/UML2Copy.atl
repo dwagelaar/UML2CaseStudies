@@ -14,7 +14,8 @@ helper def : inElements : Set(UML2!"ecore::EObject") = UML2!"ecore::EObject".all
 
 rule EAnnotation {
     from s : UML2!"ecore::EAnnotation" (thisModule.inElements->includes(s))
-    to t : UML2!"ecore::EAnnotation" mapsTo s (
+    to t : UML2!"ecore::EAnnotation" (
+        __xmiID__ <- s.__xmiID__,
         source <- s.source,
         eAnnotations <- s.eAnnotations,
         details <- s.details,
@@ -24,7 +25,8 @@ rule EAnnotation {
 
 rule EStringToStringMapEntry {
     from s : UML2!"ecore::EStringToStringMapEntry" (thisModule.inElements->includes(s))
-    to t : UML2!"ecore::EStringToStringMapEntry" mapsTo s (
+    to t : UML2!"ecore::EStringToStringMapEntry" (
+        __xmiID__ <- s.__xmiID__,
         key <- s.key,
         value <- s.value)
 }
@@ -40,7 +42,8 @@ rule EStringToStringMapEntry {
 
 rule Comment {
     from s : UML2!"uml::Comment" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Comment" mapsTo s (
+    to t : UML2!"uml::Comment" (
+        __xmiID__ <- s.__xmiID__,
         body <- s.body,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
@@ -52,7 +55,8 @@ rule Package {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Package")
 		else false endif)
-    to t : UML2!"uml::Package" mapsTo s (
+    to t : UML2!"uml::Package" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -75,7 +79,8 @@ rule Dependency {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Dependency")
 		else false endif)
-    to t : UML2!"uml::Dependency" mapsTo s (
+    to t : UML2!"uml::Dependency" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -89,7 +94,8 @@ rule Dependency {
 
 rule ElementImport {
     from s : UML2!"uml::ElementImport" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ElementImport" mapsTo s (
+    to t : UML2!"uml::ElementImport" (
+        __xmiID__ <- s.__xmiID__,
         visibility <- s.visibility,
         alias <- s.alias,
         eAnnotations <- s.eAnnotations,
@@ -99,7 +105,8 @@ rule ElementImport {
 
 rule PackageImport {
     from s : UML2!"uml::PackageImport" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::PackageImport" mapsTo s (
+    to t : UML2!"uml::PackageImport" (
+        __xmiID__ <- s.__xmiID__,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
@@ -111,7 +118,8 @@ rule Constraint {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Constraint")
 		else false endif)
-    to t : UML2!"uml::Constraint" mapsTo s (
+    to t : UML2!"uml::Constraint" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -128,7 +136,8 @@ rule Association {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Association")
 		else false endif)
-    to t : UML2!"uml::Association" mapsTo s (
+    to t : UML2!"uml::Association" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -159,7 +168,8 @@ rule Association {
 
 rule TemplateBinding {
     from s : UML2!"uml::TemplateBinding" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::TemplateBinding" mapsTo s (
+    to t : UML2!"uml::TemplateBinding" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         signature <- s.signature,
@@ -171,7 +181,8 @@ rule TemplateSignature {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::TemplateSignature")
 		else false endif)
-    to t : UML2!"uml::TemplateSignature" mapsTo s (
+    to t : UML2!"uml::TemplateSignature" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         parameter <- s.parameter,
@@ -183,7 +194,8 @@ rule TemplateParameter {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::TemplateParameter")
 		else false endif)
-    to t : UML2!"uml::TemplateParameter" mapsTo s (
+    to t : UML2!"uml::TemplateParameter" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         parameteredElement <- s.parameteredElement,
@@ -194,7 +206,8 @@ rule TemplateParameter {
 
 rule TemplateParameterSubstitution {
     from s : UML2!"uml::TemplateParameterSubstitution" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::TemplateParameterSubstitution" mapsTo s (
+    to t : UML2!"uml::TemplateParameterSubstitution" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         formal <- s.formal,
@@ -204,7 +217,8 @@ rule TemplateParameterSubstitution {
 
 rule Generalization {
     from s : UML2!"uml::Generalization" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Generalization" mapsTo s (
+    to t : UML2!"uml::Generalization" (
+        __xmiID__ <- s.__xmiID__,
         isSubstitutable <- s.isSubstitutable,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
@@ -214,7 +228,8 @@ rule Generalization {
 
 rule GeneralizationSet {
     from s : UML2!"uml::GeneralizationSet" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::GeneralizationSet" mapsTo s (
+    to t : UML2!"uml::GeneralizationSet" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isCovering <- s.isCovering,
@@ -230,7 +245,8 @@ rule GeneralizationSet {
 
 rule Substitution {
     from s : UML2!"uml::Substitution" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Substitution" mapsTo s (
+    to t : UML2!"uml::Substitution" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -249,7 +265,8 @@ rule Realization {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Realization")
 		else false endif)
-    to t : UML2!"uml::Realization" mapsTo s (
+    to t : UML2!"uml::Realization" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -267,7 +284,8 @@ rule Abstraction {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Abstraction")
 		else false endif)
-    to t : UML2!"uml::Abstraction" mapsTo s (
+    to t : UML2!"uml::Abstraction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -282,7 +300,8 @@ rule Abstraction {
 
 rule OpaqueExpression {
     from s : UML2!"uml::OpaqueExpression" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::OpaqueExpression" mapsTo s (
+    to t : UML2!"uml::OpaqueExpression" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         body <- s.body,
@@ -298,7 +317,8 @@ rule OpaqueExpression {
 
 rule Parameter {
     from s : UML2!"uml::Parameter" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Parameter" mapsTo s (
+    to t : UML2!"uml::Parameter" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isOrdered <- s.isOrdered,
@@ -322,7 +342,8 @@ rule Parameter {
 
 rule ConnectorEnd {
     from s : UML2!"uml::ConnectorEnd" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ConnectorEnd" mapsTo s (
+    to t : UML2!"uml::ConnectorEnd" (
+        __xmiID__ <- s.__xmiID__,
         isOrdered <- s.isOrdered,
         isUnique <- s.isUnique,
         eAnnotations <- s.eAnnotations,
@@ -338,7 +359,8 @@ rule Property {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Property")
 		else false endif)
-    to t : UML2!"uml::Property" mapsTo s (
+    to t : UML2!"uml::Property" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -370,7 +392,8 @@ rule Property {
 
 rule Deployment {
     from s : UML2!"uml::Deployment" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Deployment" mapsTo s (
+    to t : UML2!"uml::Deployment" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -386,7 +409,8 @@ rule Deployment {
 
 rule DeploymentSpecification {
     from s : UML2!"uml::DeploymentSpecification" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::DeploymentSpecification" mapsTo s (
+    to t : UML2!"uml::DeploymentSpecification" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -423,7 +447,8 @@ rule Artifact {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Artifact")
 		else false endif)
-    to t : UML2!"uml::Artifact" mapsTo s (
+    to t : UML2!"uml::Artifact" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -455,7 +480,8 @@ rule Artifact {
 
 rule Manifestation {
     from s : UML2!"uml::Manifestation" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Manifestation" mapsTo s (
+    to t : UML2!"uml::Manifestation" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -471,7 +497,8 @@ rule Manifestation {
 
 rule Operation {
     from s : UML2!"uml::Operation" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Operation" mapsTo s (
+    to t : UML2!"uml::Operation" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -504,7 +531,8 @@ rule Class {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Class")
 		else false endif)
-    to t : UML2!"uml::Class" mapsTo s (
+    to t : UML2!"uml::Class" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -541,7 +569,8 @@ rule Class {
 
 rule InterfaceRealization {
     from s : UML2!"uml::InterfaceRealization" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::InterfaceRealization" mapsTo s (
+    to t : UML2!"uml::InterfaceRealization" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -557,7 +586,8 @@ rule InterfaceRealization {
 
 rule Interface {
     from s : UML2!"uml::Interface" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Interface" mapsTo s (
+    to t : UML2!"uml::Interface" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -590,7 +620,8 @@ rule Interface {
 
 rule Reception {
     from s : UML2!"uml::Reception" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Reception" mapsTo s (
+    to t : UML2!"uml::Reception" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -613,7 +644,8 @@ rule Reception {
 
 rule Signal {
     from s : UML2!"uml::Signal" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Signal" mapsTo s (
+    to t : UML2!"uml::Signal" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -641,7 +673,8 @@ rule Signal {
 
 rule ProtocolStateMachine {
     from s : UML2!"uml::ProtocolStateMachine" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ProtocolStateMachine" mapsTo s (
+    to t : UML2!"uml::ProtocolStateMachine" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -693,7 +726,8 @@ rule StateMachine {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::StateMachine")
 		else false endif)
-    to t : UML2!"uml::StateMachine" mapsTo s (
+    to t : UML2!"uml::StateMachine" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -741,7 +775,8 @@ rule StateMachine {
 
 rule Region {
     from s : UML2!"uml::Region" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Region" mapsTo s (
+    to t : UML2!"uml::Region" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -762,7 +797,8 @@ rule Transition {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Transition")
 		else false endif)
-    to t : UML2!"uml::Transition" mapsTo s (
+    to t : UML2!"uml::Transition" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -784,7 +820,8 @@ rule Transition {
 
 rule Trigger {
     from s : UML2!"uml::Trigger" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Trigger" mapsTo s (
+    to t : UML2!"uml::Trigger" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -797,7 +834,8 @@ rule Trigger {
 
 rule Port {
     from s : UML2!"uml::Port" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Port" mapsTo s (
+    to t : UML2!"uml::Port" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -836,7 +874,8 @@ rule State {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::State")
 		else false endif)
-    to t : UML2!"uml::State" mapsTo s (
+    to t : UML2!"uml::State" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -863,7 +902,8 @@ rule State {
 
 rule ConnectionPointReference {
     from s : UML2!"uml::ConnectionPointReference" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ConnectionPointReference" mapsTo s (
+    to t : UML2!"uml::ConnectionPointReference" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -878,7 +918,8 @@ rule ConnectionPointReference {
 
 rule Pseudostate {
     from s : UML2!"uml::Pseudostate" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Pseudostate" mapsTo s (
+    to t : UML2!"uml::Pseudostate" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         kind <- s.kind,
@@ -892,7 +933,8 @@ rule Pseudostate {
 
 rule ProtocolConformance {
     from s : UML2!"uml::ProtocolConformance" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ProtocolConformance" mapsTo s (
+    to t : UML2!"uml::ProtocolConformance" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         generalMachine <- s.generalMachine)
@@ -900,7 +942,8 @@ rule ProtocolConformance {
 
 rule Connector {
     from s : UML2!"uml::Connector" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Connector" mapsTo s (
+    to t : UML2!"uml::Connector" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -918,7 +961,8 @@ rule Connector {
 
 rule Extension {
     from s : UML2!"uml::Extension" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Extension" mapsTo s (
+    to t : UML2!"uml::Extension" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -949,7 +993,8 @@ rule Extension {
 
 rule ExtensionEnd {
     from s : UML2!"uml::ExtensionEnd" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ExtensionEnd" mapsTo s (
+    to t : UML2!"uml::ExtensionEnd" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -981,7 +1026,8 @@ rule ExtensionEnd {
 
 rule Image {
     from s : UML2!"uml::Image" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Image" mapsTo s (
+    to t : UML2!"uml::Image" (
+        __xmiID__ <- s.__xmiID__,
         content <- s.content,
         location <- s.location,
         format <- s.format,
@@ -991,7 +1037,8 @@ rule Image {
 
 rule Model {
     from s : UML2!"uml::Model" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Model" mapsTo s (
+    to t : UML2!"uml::Model" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         viewpoint <- s.viewpoint,
@@ -1012,7 +1059,8 @@ rule Model {
 
 rule ParameterSet {
     from s : UML2!"uml::ParameterSet" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ParameterSet" mapsTo s (
+    to t : UML2!"uml::ParameterSet" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -1028,7 +1076,8 @@ rule DataType {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::DataType")
 		else false endif)
-    to t : UML2!"uml::DataType" mapsTo s (
+    to t : UML2!"uml::DataType" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1057,7 +1106,8 @@ rule DataType {
 
 rule OperationTemplateParameter {
     from s : UML2!"uml::OperationTemplateParameter" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::OperationTemplateParameter" mapsTo s (
+    to t : UML2!"uml::OperationTemplateParameter" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         parameteredElement <- s.parameteredElement,
@@ -1068,7 +1118,8 @@ rule OperationTemplateParameter {
 
 rule ConnectableElementTemplateParameter {
     from s : UML2!"uml::ConnectableElementTemplateParameter" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ConnectableElementTemplateParameter" mapsTo s (
+    to t : UML2!"uml::ConnectableElementTemplateParameter" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         parameteredElement <- s.parameteredElement,
@@ -1079,7 +1130,8 @@ rule ConnectableElementTemplateParameter {
 
 rule CollaborationUse {
     from s : UML2!"uml::CollaborationUse" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::CollaborationUse" mapsTo s (
+    to t : UML2!"uml::CollaborationUse" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -1092,7 +1144,8 @@ rule CollaborationUse {
 
 rule Collaboration {
     from s : UML2!"uml::Collaboration" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Collaboration" mapsTo s (
+    to t : UML2!"uml::Collaboration" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1126,7 +1179,8 @@ rule Collaboration {
 
 rule UseCase {
     from s : UML2!"uml::UseCase" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::UseCase" mapsTo s (
+    to t : UML2!"uml::UseCase" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1161,7 +1215,8 @@ rule UseCase {
 
 rule Include {
     from s : UML2!"uml::Include" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Include" mapsTo s (
+    to t : UML2!"uml::Include" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -1173,7 +1228,8 @@ rule Include {
 
 rule Extend {
     from s : UML2!"uml::Extend" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Extend" mapsTo s (
+    to t : UML2!"uml::Extend" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -1187,7 +1243,8 @@ rule Extend {
 
 rule ExtensionPoint {
     from s : UML2!"uml::ExtensionPoint" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ExtensionPoint" mapsTo s (
+    to t : UML2!"uml::ExtensionPoint" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1199,7 +1256,8 @@ rule ExtensionPoint {
 
 rule RedefinableTemplateSignature {
     from s : UML2!"uml::RedefinableTemplateSignature" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::RedefinableTemplateSignature" mapsTo s (
+    to t : UML2!"uml::RedefinableTemplateSignature" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1214,7 +1272,8 @@ rule RedefinableTemplateSignature {
 
 rule ClassifierTemplateParameter {
     from s : UML2!"uml::ClassifierTemplateParameter" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ClassifierTemplateParameter" mapsTo s (
+    to t : UML2!"uml::ClassifierTemplateParameter" (
+        __xmiID__ <- s.__xmiID__,
         allowSubstitutable <- s.allowSubstitutable,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
@@ -1228,7 +1287,8 @@ rule ClassifierTemplateParameter {
 
 rule StringExpression {
     from s : UML2!"uml::StringExpression" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::StringExpression" mapsTo s (
+    to t : UML2!"uml::StringExpression" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         symbol <- s.symbol,
@@ -1249,7 +1309,8 @@ rule Expression {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Expression")
 		else false endif)
-    to t : UML2!"uml::Expression" mapsTo s (
+    to t : UML2!"uml::Expression" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         symbol <- s.symbol,
@@ -1264,7 +1325,8 @@ rule Expression {
 
 rule PackageMerge {
     from s : UML2!"uml::PackageMerge" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::PackageMerge" mapsTo s (
+    to t : UML2!"uml::PackageMerge" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         mergedPackage <- s.mergedPackage)
@@ -1272,7 +1334,8 @@ rule PackageMerge {
 
 rule ProfileApplication {
     from s : UML2!"uml::ProfileApplication" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ProfileApplication" mapsTo s (
+    to t : UML2!"uml::ProfileApplication" (
+        __xmiID__ <- s.__xmiID__,
         isStrict <- s.isStrict,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
@@ -1281,7 +1344,8 @@ rule ProfileApplication {
 
 rule Enumeration {
     from s : UML2!"uml::Enumeration" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Enumeration" mapsTo s (
+    to t : UML2!"uml::Enumeration" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1311,7 +1375,8 @@ rule Enumeration {
 
 rule EnumerationLiteral {
     from s : UML2!"uml::EnumerationLiteral" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::EnumerationLiteral" mapsTo s (
+    to t : UML2!"uml::EnumerationLiteral" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -1330,7 +1395,8 @@ rule InstanceSpecification {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::InstanceSpecification")
 		else false endif)
-    to t : UML2!"uml::InstanceSpecification" mapsTo s (
+    to t : UML2!"uml::InstanceSpecification" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -1346,7 +1412,8 @@ rule InstanceSpecification {
 
 rule Slot {
     from s : UML2!"uml::Slot" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Slot" mapsTo s (
+    to t : UML2!"uml::Slot" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         definingFeature <- s.definingFeature,
@@ -1355,7 +1422,8 @@ rule Slot {
 
 rule PrimitiveType {
     from s : UML2!"uml::PrimitiveType" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::PrimitiveType" mapsTo s (
+    to t : UML2!"uml::PrimitiveType" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1384,7 +1452,8 @@ rule PrimitiveType {
 
 rule LiteralInteger {
     from s : UML2!"uml::LiteralInteger" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::LiteralInteger" mapsTo s (
+    to t : UML2!"uml::LiteralInteger" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         value <- s.value,
@@ -1398,7 +1467,8 @@ rule LiteralInteger {
 
 rule LiteralString {
     from s : UML2!"uml::LiteralString" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::LiteralString" mapsTo s (
+    to t : UML2!"uml::LiteralString" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         value <- s.value,
@@ -1412,7 +1482,8 @@ rule LiteralString {
 
 rule LiteralBoolean {
     from s : UML2!"uml::LiteralBoolean" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::LiteralBoolean" mapsTo s (
+    to t : UML2!"uml::LiteralBoolean" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         value <- s.value,
@@ -1426,7 +1497,8 @@ rule LiteralBoolean {
 
 rule LiteralNull {
     from s : UML2!"uml::LiteralNull" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::LiteralNull" mapsTo s (
+    to t : UML2!"uml::LiteralNull" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -1439,7 +1511,8 @@ rule LiteralNull {
 
 rule InstanceValue {
     from s : UML2!"uml::InstanceValue" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::InstanceValue" mapsTo s (
+    to t : UML2!"uml::InstanceValue" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -1453,7 +1526,8 @@ rule InstanceValue {
 
 rule LiteralUnlimitedNatural {
     from s : UML2!"uml::LiteralUnlimitedNatural" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::LiteralUnlimitedNatural" mapsTo s (
+    to t : UML2!"uml::LiteralUnlimitedNatural" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         value <- s.value,
@@ -1470,7 +1544,8 @@ rule OpaqueBehavior {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::OpaqueBehavior")
 		else false endif)
-    to t : UML2!"uml::OpaqueBehavior" mapsTo s (
+    to t : UML2!"uml::OpaqueBehavior" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1516,7 +1591,8 @@ rule OpaqueBehavior {
 
 rule FunctionBehavior {
     from s : UML2!"uml::FunctionBehavior" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::FunctionBehavior" mapsTo s (
+    to t : UML2!"uml::FunctionBehavior" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1562,7 +1638,8 @@ rule FunctionBehavior {
 
 rule OpaqueAction {
     from s : UML2!"uml::OpaqueAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::OpaqueAction" mapsTo s (
+    to t : UML2!"uml::OpaqueAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1589,7 +1666,8 @@ rule StructuredActivityNode {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::StructuredActivityNode")
 		else false endif)
-    to t : UML2!"uml::StructuredActivityNode" mapsTo s (
+    to t : UML2!"uml::StructuredActivityNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1616,7 +1694,8 @@ rule StructuredActivityNode {
 
 rule Activity {
     from s : UML2!"uml::Activity" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Activity" mapsTo s (
+    to t : UML2!"uml::Activity" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1667,7 +1746,8 @@ rule Activity {
 
 rule Variable {
     from s : UML2!"uml::Variable" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Variable" mapsTo s (
+    to t : UML2!"uml::Variable" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isOrdered <- s.isOrdered,
@@ -1685,7 +1765,8 @@ rule Variable {
 
 rule ActivityPartition {
     from s : UML2!"uml::ActivityPartition" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ActivityPartition" mapsTo s (
+    to t : UML2!"uml::ActivityPartition" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isDimension <- s.isDimension,
@@ -1702,7 +1783,8 @@ rule ActivityPartition {
 
 rule InterruptibleActivityRegion {
     from s : UML2!"uml::InterruptibleActivityRegion" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::InterruptibleActivityRegion" mapsTo s (
+    to t : UML2!"uml::InterruptibleActivityRegion" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         node <- s.node,
@@ -1711,7 +1793,8 @@ rule InterruptibleActivityRegion {
 
 rule ExceptionHandler {
     from s : UML2!"uml::ExceptionHandler" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ExceptionHandler" mapsTo s (
+    to t : UML2!"uml::ExceptionHandler" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         handlerBody <- s.handlerBody,
@@ -1721,7 +1804,8 @@ rule ExceptionHandler {
 
 rule OutputPin {
     from s : UML2!"uml::OutputPin" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::OutputPin" mapsTo s (
+    to t : UML2!"uml::OutputPin" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1752,7 +1836,8 @@ rule Pin {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Pin")
 		else false endif)
-    to t : UML2!"uml::Pin" mapsTo s (
+    to t : UML2!"uml::Pin" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1783,7 +1868,8 @@ rule InputPin {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::InputPin")
 		else false endif)
-    to t : UML2!"uml::InputPin" mapsTo s (
+    to t : UML2!"uml::InputPin" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1811,7 +1897,8 @@ rule InputPin {
 
 rule SendSignalAction {
     from s : UML2!"uml::SendSignalAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::SendSignalAction" mapsTo s (
+    to t : UML2!"uml::SendSignalAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1835,7 +1922,8 @@ rule SendSignalAction {
 
 rule CallOperationAction {
     from s : UML2!"uml::CallOperationAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::CallOperationAction" mapsTo s (
+    to t : UML2!"uml::CallOperationAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1861,7 +1949,8 @@ rule CallOperationAction {
 
 rule CallBehaviorAction {
     from s : UML2!"uml::CallBehaviorAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::CallBehaviorAction" mapsTo s (
+    to t : UML2!"uml::CallBehaviorAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1886,7 +1975,8 @@ rule CallBehaviorAction {
 
 rule SequenceNode {
     from s : UML2!"uml::SequenceNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::SequenceNode" mapsTo s (
+    to t : UML2!"uml::SequenceNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1914,7 +2004,8 @@ rule SequenceNode {
 
 rule Usage {
     from s : UML2!"uml::Usage" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Usage" mapsTo s (
+    to t : UML2!"uml::Usage" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -1928,7 +2019,8 @@ rule Usage {
 
 rule ControlFlow {
     from s : UML2!"uml::ControlFlow" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ControlFlow" mapsTo s (
+    to t : UML2!"uml::ControlFlow" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1947,7 +2039,8 @@ rule ControlFlow {
 
 rule InitialNode {
     from s : UML2!"uml::InitialNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::InitialNode" mapsTo s (
+    to t : UML2!"uml::InitialNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1964,7 +2057,8 @@ rule InitialNode {
 
 rule ActivityParameterNode {
     from s : UML2!"uml::ActivityParameterNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ActivityParameterNode" mapsTo s (
+    to t : UML2!"uml::ActivityParameterNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -1988,7 +2082,8 @@ rule ActivityParameterNode {
 
 rule ValuePin {
     from s : UML2!"uml::ValuePin" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ValuePin" mapsTo s (
+    to t : UML2!"uml::ValuePin" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2017,7 +2112,8 @@ rule ValuePin {
 
 rule Message {
     from s : UML2!"uml::Message" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Message" mapsTo s (
+    to t : UML2!"uml::Message" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         messageSort <- s.messageSort,
@@ -2033,7 +2129,8 @@ rule Message {
 
 rule Interaction {
     from s : UML2!"uml::Interaction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Interaction" mapsTo s (
+    to t : UML2!"uml::Interaction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2084,7 +2181,8 @@ rule Interaction {
 
 rule Lifeline {
     from s : UML2!"uml::Lifeline" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Lifeline" mapsTo s (
+    to t : UML2!"uml::Lifeline" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2099,7 +2197,8 @@ rule Lifeline {
 
 rule PartDecomposition {
     from s : UML2!"uml::PartDecomposition" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::PartDecomposition" mapsTo s (
+    to t : UML2!"uml::PartDecomposition" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2118,7 +2217,8 @@ rule InteractionUse {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::InteractionUse")
 		else false endif)
-    to t : UML2!"uml::InteractionUse" mapsTo s (
+    to t : UML2!"uml::InteractionUse" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2134,7 +2234,8 @@ rule InteractionUse {
 
 rule Gate {
     from s : UML2!"uml::Gate" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Gate" mapsTo s (
+    to t : UML2!"uml::Gate" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2146,7 +2247,8 @@ rule Gate {
 
 rule GeneralOrdering {
     from s : UML2!"uml::GeneralOrdering" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::GeneralOrdering" mapsTo s (
+    to t : UML2!"uml::GeneralOrdering" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2162,7 +2264,8 @@ rule OccurrenceSpecification {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::OccurrenceSpecification")
 		else false endif)
-    to t : UML2!"uml::OccurrenceSpecification" mapsTo s (
+    to t : UML2!"uml::OccurrenceSpecification" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2178,7 +2281,8 @@ rule OccurrenceSpecification {
 
 rule InteractionOperand {
     from s : UML2!"uml::InteractionOperand" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::InteractionOperand" mapsTo s (
+    to t : UML2!"uml::InteractionOperand" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2196,7 +2300,8 @@ rule InteractionOperand {
 
 rule InteractionConstraint {
     from s : UML2!"uml::InteractionConstraint" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::InteractionConstraint" mapsTo s (
+    to t : UML2!"uml::InteractionConstraint" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2212,7 +2317,8 @@ rule InteractionConstraint {
 
 rule StateInvariant {
     from s : UML2!"uml::StateInvariant" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::StateInvariant" mapsTo s (
+    to t : UML2!"uml::StateInvariant" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2226,7 +2332,8 @@ rule StateInvariant {
 
 rule ActionExecutionSpecification {
     from s : UML2!"uml::ActionExecutionSpecification" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ActionExecutionSpecification" mapsTo s (
+    to t : UML2!"uml::ActionExecutionSpecification" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2242,7 +2349,8 @@ rule ActionExecutionSpecification {
 
 rule BehaviorExecutionSpecification {
     from s : UML2!"uml::BehaviorExecutionSpecification" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::BehaviorExecutionSpecification" mapsTo s (
+    to t : UML2!"uml::BehaviorExecutionSpecification" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2258,7 +2366,8 @@ rule BehaviorExecutionSpecification {
 
 rule ExecutionEvent {
     from s : UML2!"uml::ExecutionEvent" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ExecutionEvent" mapsTo s (
+    to t : UML2!"uml::ExecutionEvent" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2270,7 +2379,8 @@ rule ExecutionEvent {
 
 rule CreationEvent {
     from s : UML2!"uml::CreationEvent" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::CreationEvent" mapsTo s (
+    to t : UML2!"uml::CreationEvent" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2282,7 +2392,8 @@ rule CreationEvent {
 
 rule DestructionEvent {
     from s : UML2!"uml::DestructionEvent" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::DestructionEvent" mapsTo s (
+    to t : UML2!"uml::DestructionEvent" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2294,7 +2405,8 @@ rule DestructionEvent {
 
 rule SendOperationEvent {
     from s : UML2!"uml::SendOperationEvent" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::SendOperationEvent" mapsTo s (
+    to t : UML2!"uml::SendOperationEvent" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2307,7 +2419,8 @@ rule SendOperationEvent {
 
 rule SendSignalEvent {
     from s : UML2!"uml::SendSignalEvent" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::SendSignalEvent" mapsTo s (
+    to t : UML2!"uml::SendSignalEvent" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2320,7 +2433,8 @@ rule SendSignalEvent {
 
 rule MessageOccurrenceSpecification {
     from s : UML2!"uml::MessageOccurrenceSpecification" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::MessageOccurrenceSpecification" mapsTo s (
+    to t : UML2!"uml::MessageOccurrenceSpecification" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2337,7 +2451,8 @@ rule MessageOccurrenceSpecification {
 
 rule ExecutionOccurrenceSpecification {
     from s : UML2!"uml::ExecutionOccurrenceSpecification" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ExecutionOccurrenceSpecification" mapsTo s (
+    to t : UML2!"uml::ExecutionOccurrenceSpecification" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2354,7 +2469,8 @@ rule ExecutionOccurrenceSpecification {
 
 rule ReceiveOperationEvent {
     from s : UML2!"uml::ReceiveOperationEvent" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReceiveOperationEvent" mapsTo s (
+    to t : UML2!"uml::ReceiveOperationEvent" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2367,7 +2483,8 @@ rule ReceiveOperationEvent {
 
 rule ReceiveSignalEvent {
     from s : UML2!"uml::ReceiveSignalEvent" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReceiveSignalEvent" mapsTo s (
+    to t : UML2!"uml::ReceiveSignalEvent" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2380,7 +2497,8 @@ rule ReceiveSignalEvent {
 
 rule Actor {
     from s : UML2!"uml::Actor" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Actor" mapsTo s (
+    to t : UML2!"uml::Actor" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2411,7 +2529,8 @@ rule Actor {
 
 rule CallEvent {
     from s : UML2!"uml::CallEvent" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::CallEvent" mapsTo s (
+    to t : UML2!"uml::CallEvent" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2424,7 +2543,8 @@ rule CallEvent {
 
 rule ChangeEvent {
     from s : UML2!"uml::ChangeEvent" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ChangeEvent" mapsTo s (
+    to t : UML2!"uml::ChangeEvent" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2437,7 +2557,8 @@ rule ChangeEvent {
 
 rule SignalEvent {
     from s : UML2!"uml::SignalEvent" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::SignalEvent" mapsTo s (
+    to t : UML2!"uml::SignalEvent" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2450,7 +2571,8 @@ rule SignalEvent {
 
 rule AnyReceiveEvent {
     from s : UML2!"uml::AnyReceiveEvent" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::AnyReceiveEvent" mapsTo s (
+    to t : UML2!"uml::AnyReceiveEvent" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2462,7 +2584,8 @@ rule AnyReceiveEvent {
 
 rule ForkNode {
     from s : UML2!"uml::ForkNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ForkNode" mapsTo s (
+    to t : UML2!"uml::ForkNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2479,7 +2602,8 @@ rule ForkNode {
 
 rule FlowFinalNode {
     from s : UML2!"uml::FlowFinalNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::FlowFinalNode" mapsTo s (
+    to t : UML2!"uml::FlowFinalNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2499,7 +2623,8 @@ rule CentralBufferNode {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::CentralBufferNode")
 		else false endif)
-    to t : UML2!"uml::CentralBufferNode" mapsTo s (
+    to t : UML2!"uml::CentralBufferNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2522,7 +2647,8 @@ rule CentralBufferNode {
 
 rule MergeNode {
     from s : UML2!"uml::MergeNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::MergeNode" mapsTo s (
+    to t : UML2!"uml::MergeNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2539,7 +2665,8 @@ rule MergeNode {
 
 rule DecisionNode {
     from s : UML2!"uml::DecisionNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::DecisionNode" mapsTo s (
+    to t : UML2!"uml::DecisionNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2557,7 +2684,8 @@ rule DecisionNode {
 
 rule ActivityFinalNode {
     from s : UML2!"uml::ActivityFinalNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ActivityFinalNode" mapsTo s (
+    to t : UML2!"uml::ActivityFinalNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2574,7 +2702,8 @@ rule ActivityFinalNode {
 
 rule ComponentRealization {
     from s : UML2!"uml::ComponentRealization" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ComponentRealization" mapsTo s (
+    to t : UML2!"uml::ComponentRealization" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -2590,7 +2719,8 @@ rule ComponentRealization {
 
 rule Component {
     from s : UML2!"uml::Component" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Component" mapsTo s (
+    to t : UML2!"uml::Component" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2633,7 +2763,8 @@ rule Node {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Node")
 		else false endif)
-    to t : UML2!"uml::Node" mapsTo s (
+    to t : UML2!"uml::Node" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2672,7 +2803,8 @@ rule Node {
 
 rule Device {
     from s : UML2!"uml::Device" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Device" mapsTo s (
+    to t : UML2!"uml::Device" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2711,7 +2843,8 @@ rule Device {
 
 rule ExecutionEnvironment {
     from s : UML2!"uml::ExecutionEnvironment" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ExecutionEnvironment" mapsTo s (
+    to t : UML2!"uml::ExecutionEnvironment" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2750,7 +2883,8 @@ rule ExecutionEnvironment {
 
 rule CommunicationPath {
     from s : UML2!"uml::CommunicationPath" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::CommunicationPath" mapsTo s (
+    to t : UML2!"uml::CommunicationPath" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2784,7 +2918,8 @@ rule CombinedFragment {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::CombinedFragment")
 		else false endif)
-    to t : UML2!"uml::CombinedFragment" mapsTo s (
+    to t : UML2!"uml::CombinedFragment" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         interactionOperator <- s.interactionOperator,
@@ -2800,7 +2935,8 @@ rule CombinedFragment {
 
 rule Continuation {
     from s : UML2!"uml::Continuation" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Continuation" mapsTo s (
+    to t : UML2!"uml::Continuation" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         setting <- s.setting,
@@ -2814,7 +2950,8 @@ rule Continuation {
 
 rule ConsiderIgnoreFragment {
     from s : UML2!"uml::ConsiderIgnoreFragment" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ConsiderIgnoreFragment" mapsTo s (
+    to t : UML2!"uml::ConsiderIgnoreFragment" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         interactionOperator <- s.interactionOperator,
@@ -2831,7 +2968,8 @@ rule ConsiderIgnoreFragment {
 
 rule CreateObjectAction {
     from s : UML2!"uml::CreateObjectAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::CreateObjectAction" mapsTo s (
+    to t : UML2!"uml::CreateObjectAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2853,7 +2991,8 @@ rule CreateObjectAction {
 
 rule DestroyObjectAction {
     from s : UML2!"uml::DestroyObjectAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::DestroyObjectAction" mapsTo s (
+    to t : UML2!"uml::DestroyObjectAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2876,7 +3015,8 @@ rule DestroyObjectAction {
 
 rule TestIdentityAction {
     from s : UML2!"uml::TestIdentityAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::TestIdentityAction" mapsTo s (
+    to t : UML2!"uml::TestIdentityAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2899,7 +3039,8 @@ rule TestIdentityAction {
 
 rule ReadSelfAction {
     from s : UML2!"uml::ReadSelfAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReadSelfAction" mapsTo s (
+    to t : UML2!"uml::ReadSelfAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2920,7 +3061,8 @@ rule ReadSelfAction {
 
 rule ReadStructuralFeatureAction {
     from s : UML2!"uml::ReadStructuralFeatureAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReadStructuralFeatureAction" mapsTo s (
+    to t : UML2!"uml::ReadStructuralFeatureAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2943,7 +3085,8 @@ rule ReadStructuralFeatureAction {
 
 rule ClearStructuralFeatureAction {
     from s : UML2!"uml::ClearStructuralFeatureAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ClearStructuralFeatureAction" mapsTo s (
+    to t : UML2!"uml::ClearStructuralFeatureAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2965,7 +3108,8 @@ rule ClearStructuralFeatureAction {
 
 rule RemoveStructuralFeatureValueAction {
     from s : UML2!"uml::RemoveStructuralFeatureValueAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::RemoveStructuralFeatureValueAction" mapsTo s (
+    to t : UML2!"uml::RemoveStructuralFeatureValueAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -2990,7 +3134,8 @@ rule RemoveStructuralFeatureValueAction {
 
 rule AddStructuralFeatureValueAction {
     from s : UML2!"uml::AddStructuralFeatureValueAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::AddStructuralFeatureValueAction" mapsTo s (
+    to t : UML2!"uml::AddStructuralFeatureValueAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3018,7 +3163,8 @@ rule LinkEndData {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::LinkEndData")
 		else false endif)
-    to t : UML2!"uml::LinkEndData" mapsTo s (
+    to t : UML2!"uml::LinkEndData" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         value <- s.value,
@@ -3028,7 +3174,8 @@ rule LinkEndData {
 
 rule QualifierValue {
     from s : UML2!"uml::QualifierValue" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::QualifierValue" mapsTo s (
+    to t : UML2!"uml::QualifierValue" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         qualifier <- s.qualifier,
@@ -3037,7 +3184,8 @@ rule QualifierValue {
 
 rule ReadLinkAction {
     from s : UML2!"uml::ReadLinkAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReadLinkAction" mapsTo s (
+    to t : UML2!"uml::ReadLinkAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3060,7 +3208,8 @@ rule ReadLinkAction {
 
 rule LinkEndCreationData {
     from s : UML2!"uml::LinkEndCreationData" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::LinkEndCreationData" mapsTo s (
+    to t : UML2!"uml::LinkEndCreationData" (
+        __xmiID__ <- s.__xmiID__,
         isReplaceAll <- s.isReplaceAll,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
@@ -3075,7 +3224,8 @@ rule CreateLinkAction {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::CreateLinkAction")
 		else false endif)
-    to t : UML2!"uml::CreateLinkAction" mapsTo s (
+    to t : UML2!"uml::CreateLinkAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3097,7 +3247,8 @@ rule CreateLinkAction {
 
 rule DestroyLinkAction {
     from s : UML2!"uml::DestroyLinkAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::DestroyLinkAction" mapsTo s (
+    to t : UML2!"uml::DestroyLinkAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3119,7 +3270,8 @@ rule DestroyLinkAction {
 
 rule LinkEndDestructionData {
     from s : UML2!"uml::LinkEndDestructionData" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::LinkEndDestructionData" mapsTo s (
+    to t : UML2!"uml::LinkEndDestructionData" (
+        __xmiID__ <- s.__xmiID__,
         isDestroyDuplicates <- s.isDestroyDuplicates,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
@@ -3131,7 +3283,8 @@ rule LinkEndDestructionData {
 
 rule ClearAssociationAction {
     from s : UML2!"uml::ClearAssociationAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ClearAssociationAction" mapsTo s (
+    to t : UML2!"uml::ClearAssociationAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3153,7 +3306,8 @@ rule ClearAssociationAction {
 
 rule BroadcastSignalAction {
     from s : UML2!"uml::BroadcastSignalAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::BroadcastSignalAction" mapsTo s (
+    to t : UML2!"uml::BroadcastSignalAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3176,7 +3330,8 @@ rule BroadcastSignalAction {
 
 rule SendObjectAction {
     from s : UML2!"uml::SendObjectAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::SendObjectAction" mapsTo s (
+    to t : UML2!"uml::SendObjectAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3200,7 +3355,8 @@ rule SendObjectAction {
 
 rule ValueSpecificationAction {
     from s : UML2!"uml::ValueSpecificationAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ValueSpecificationAction" mapsTo s (
+    to t : UML2!"uml::ValueSpecificationAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3222,7 +3378,8 @@ rule ValueSpecificationAction {
 
 rule TimeExpression {
     from s : UML2!"uml::TimeExpression" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::TimeExpression" mapsTo s (
+    to t : UML2!"uml::TimeExpression" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -3237,7 +3394,8 @@ rule TimeExpression {
 
 rule Duration {
     from s : UML2!"uml::Duration" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Duration" mapsTo s (
+    to t : UML2!"uml::Duration" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -3252,7 +3410,8 @@ rule Duration {
 
 rule DurationInterval {
     from s : UML2!"uml::DurationInterval" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::DurationInterval" mapsTo s (
+    to t : UML2!"uml::DurationInterval" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -3270,7 +3429,8 @@ rule Interval {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Interval")
 		else false endif)
-    to t : UML2!"uml::Interval" mapsTo s (
+    to t : UML2!"uml::Interval" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -3285,7 +3445,8 @@ rule Interval {
 
 rule TimeConstraint {
     from s : UML2!"uml::TimeConstraint" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::TimeConstraint" mapsTo s (
+    to t : UML2!"uml::TimeConstraint" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         firstEvent <- s.firstEvent,
@@ -3303,7 +3464,8 @@ rule IntervalConstraint {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::IntervalConstraint")
 		else false endif)
-    to t : UML2!"uml::IntervalConstraint" mapsTo s (
+    to t : UML2!"uml::IntervalConstraint" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -3317,7 +3479,8 @@ rule IntervalConstraint {
 
 rule TimeInterval {
     from s : UML2!"uml::TimeInterval" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::TimeInterval" mapsTo s (
+    to t : UML2!"uml::TimeInterval" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -3332,7 +3495,8 @@ rule TimeInterval {
 
 rule DurationConstraint {
     from s : UML2!"uml::DurationConstraint" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::DurationConstraint" mapsTo s (
+    to t : UML2!"uml::DurationConstraint" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         firstEvent <- s.firstEvent,
@@ -3347,7 +3511,8 @@ rule DurationConstraint {
 
 rule TimeObservation {
     from s : UML2!"uml::TimeObservation" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::TimeObservation" mapsTo s (
+    to t : UML2!"uml::TimeObservation" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         firstEvent <- s.firstEvent,
@@ -3361,7 +3526,8 @@ rule TimeObservation {
 
 rule DurationObservation {
     from s : UML2!"uml::DurationObservation" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::DurationObservation" mapsTo s (
+    to t : UML2!"uml::DurationObservation" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         firstEvent <- s.firstEvent,
@@ -3375,7 +3541,8 @@ rule DurationObservation {
 
 rule FinalState {
     from s : UML2!"uml::FinalState" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::FinalState" mapsTo s (
+    to t : UML2!"uml::FinalState" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3402,7 +3569,8 @@ rule FinalState {
 
 rule TimeEvent {
     from s : UML2!"uml::TimeEvent" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::TimeEvent" mapsTo s (
+    to t : UML2!"uml::TimeEvent" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isRelative <- s.isRelative,
@@ -3416,7 +3584,8 @@ rule TimeEvent {
 
 rule ReadVariableAction {
     from s : UML2!"uml::ReadVariableAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReadVariableAction" mapsTo s (
+    to t : UML2!"uml::ReadVariableAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3438,7 +3607,8 @@ rule ReadVariableAction {
 
 rule ClearVariableAction {
     from s : UML2!"uml::ClearVariableAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ClearVariableAction" mapsTo s (
+    to t : UML2!"uml::ClearVariableAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3459,7 +3629,8 @@ rule ClearVariableAction {
 
 rule AddVariableValueAction {
     from s : UML2!"uml::AddVariableValueAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::AddVariableValueAction" mapsTo s (
+    to t : UML2!"uml::AddVariableValueAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3483,7 +3654,8 @@ rule AddVariableValueAction {
 
 rule RemoveVariableValueAction {
     from s : UML2!"uml::RemoveVariableValueAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::RemoveVariableValueAction" mapsTo s (
+    to t : UML2!"uml::RemoveVariableValueAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3507,7 +3679,8 @@ rule RemoveVariableValueAction {
 
 rule RaiseExceptionAction {
     from s : UML2!"uml::RaiseExceptionAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::RaiseExceptionAction" mapsTo s (
+    to t : UML2!"uml::RaiseExceptionAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3528,7 +3701,8 @@ rule RaiseExceptionAction {
 
 rule ActionInputPin {
     from s : UML2!"uml::ActionInputPin" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ActionInputPin" mapsTo s (
+    to t : UML2!"uml::ActionInputPin" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3557,7 +3731,8 @@ rule ActionInputPin {
 
 rule InformationItem {
     from s : UML2!"uml::InformationItem" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::InformationItem" mapsTo s (
+    to t : UML2!"uml::InformationItem" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3585,7 +3760,8 @@ rule InformationItem {
 
 rule InformationFlow {
     from s : UML2!"uml::InformationFlow" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::InformationFlow" mapsTo s (
+    to t : UML2!"uml::InformationFlow" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -3604,7 +3780,8 @@ rule InformationFlow {
 
 rule ReadExtentAction {
     from s : UML2!"uml::ReadExtentAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReadExtentAction" mapsTo s (
+    to t : UML2!"uml::ReadExtentAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3626,7 +3803,8 @@ rule ReadExtentAction {
 
 rule ReclassifyObjectAction {
     from s : UML2!"uml::ReclassifyObjectAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReclassifyObjectAction" mapsTo s (
+    to t : UML2!"uml::ReclassifyObjectAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3650,7 +3828,8 @@ rule ReclassifyObjectAction {
 
 rule ReadIsClassifiedObjectAction {
     from s : UML2!"uml::ReadIsClassifiedObjectAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReadIsClassifiedObjectAction" mapsTo s (
+    to t : UML2!"uml::ReadIsClassifiedObjectAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3674,7 +3853,8 @@ rule ReadIsClassifiedObjectAction {
 
 rule StartClassifierBehaviorAction {
     from s : UML2!"uml::StartClassifierBehaviorAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::StartClassifierBehaviorAction" mapsTo s (
+    to t : UML2!"uml::StartClassifierBehaviorAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3695,7 +3875,8 @@ rule StartClassifierBehaviorAction {
 
 rule ReadLinkObjectEndAction {
     from s : UML2!"uml::ReadLinkObjectEndAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReadLinkObjectEndAction" mapsTo s (
+    to t : UML2!"uml::ReadLinkObjectEndAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3718,7 +3899,8 @@ rule ReadLinkObjectEndAction {
 
 rule ReadLinkObjectEndQualifierAction {
     from s : UML2!"uml::ReadLinkObjectEndQualifierAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReadLinkObjectEndQualifierAction" mapsTo s (
+    to t : UML2!"uml::ReadLinkObjectEndQualifierAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3741,7 +3923,8 @@ rule ReadLinkObjectEndQualifierAction {
 
 rule CreateLinkObjectAction {
     from s : UML2!"uml::CreateLinkObjectAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::CreateLinkObjectAction" mapsTo s (
+    to t : UML2!"uml::CreateLinkObjectAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3767,7 +3950,8 @@ rule AcceptEventAction {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::AcceptEventAction")
 		else false endif)
-    to t : UML2!"uml::AcceptEventAction" mapsTo s (
+    to t : UML2!"uml::AcceptEventAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3790,7 +3974,8 @@ rule AcceptEventAction {
 
 rule AcceptCallAction {
     from s : UML2!"uml::AcceptCallAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::AcceptCallAction" mapsTo s (
+    to t : UML2!"uml::AcceptCallAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3814,7 +3999,8 @@ rule AcceptCallAction {
 
 rule ReplyAction {
     from s : UML2!"uml::ReplyAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReplyAction" mapsTo s (
+    to t : UML2!"uml::ReplyAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3837,7 +4023,8 @@ rule ReplyAction {
 
 rule UnmarshallAction {
     from s : UML2!"uml::UnmarshallAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::UnmarshallAction" mapsTo s (
+    to t : UML2!"uml::UnmarshallAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3860,7 +4047,8 @@ rule UnmarshallAction {
 
 rule ReduceAction {
     from s : UML2!"uml::ReduceAction" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ReduceAction" mapsTo s (
+    to t : UML2!"uml::ReduceAction" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3884,7 +4072,8 @@ rule ReduceAction {
 
 rule JoinNode {
     from s : UML2!"uml::JoinNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::JoinNode" mapsTo s (
+    to t : UML2!"uml::JoinNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3903,7 +4092,8 @@ rule JoinNode {
 
 rule DataStoreNode {
     from s : UML2!"uml::DataStoreNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::DataStoreNode" mapsTo s (
+    to t : UML2!"uml::DataStoreNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3926,7 +4116,8 @@ rule DataStoreNode {
 
 rule ObjectFlow {
     from s : UML2!"uml::ObjectFlow" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ObjectFlow" mapsTo s (
+    to t : UML2!"uml::ObjectFlow" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3949,7 +4140,8 @@ rule ObjectFlow {
 
 rule ConditionalNode {
     from s : UML2!"uml::ConditionalNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ConditionalNode" mapsTo s (
+    to t : UML2!"uml::ConditionalNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -3980,7 +4172,8 @@ rule ConditionalNode {
 
 rule Clause {
     from s : UML2!"uml::Clause" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Clause" mapsTo s (
+    to t : UML2!"uml::Clause" (
+        __xmiID__ <- s.__xmiID__,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,
         test <- s.test,
@@ -3993,7 +4186,8 @@ rule Clause {
 
 rule LoopNode {
     from s : UML2!"uml::LoopNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::LoopNode" mapsTo s (
+    to t : UML2!"uml::LoopNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -4029,7 +4223,8 @@ rule LoopNode {
 
 rule ExpansionNode {
     from s : UML2!"uml::ExpansionNode" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ExpansionNode" mapsTo s (
+    to t : UML2!"uml::ExpansionNode" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -4054,7 +4249,8 @@ rule ExpansionNode {
 
 rule ExpansionRegion {
     from s : UML2!"uml::ExpansionRegion" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ExpansionRegion" mapsTo s (
+    to t : UML2!"uml::ExpansionRegion" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -4084,7 +4280,8 @@ rule ExpansionRegion {
 
 rule ProtocolTransition {
     from s : UML2!"uml::ProtocolTransition" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::ProtocolTransition" mapsTo s (
+    to t : UML2!"uml::ProtocolTransition" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -4108,7 +4305,8 @@ rule ProtocolTransition {
 
 rule AssociationClass {
     from s : UML2!"uml::AssociationClass" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::AssociationClass" mapsTo s (
+    to t : UML2!"uml::AssociationClass" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,

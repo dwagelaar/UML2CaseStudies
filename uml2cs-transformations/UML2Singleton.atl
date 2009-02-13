@@ -33,7 +33,8 @@ rule SingletonClass {
 			s.oclIsTypeOf(UML2!"uml::Class") and
 			s.isSingleton
 		else false endif)
-    to t : UML2!"uml::Class" mapsTo s (
+    to t : UML2!"uml::Class" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name.debug('SingletonClass'),
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -100,7 +101,8 @@ rule Class {
 			s.oclIsTypeOf(UML2!"uml::Class") and
 			not s.isSingleton
 		else false endif)
-    to t : UML2!"uml::Class" mapsTo s (
+    to t : UML2!"uml::Class" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,

@@ -117,7 +117,8 @@ rule Package {
 				->select(p|p.oclIsTypeOf(UML2!"uml::Property") and 
 					       (p.visibility=#public) and 
 						   p.isNavigable); }
-    to t : UML2!"uml::Package" mapsTo s (
+    to t : UML2!"uml::Package" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name.debug('Package'),
         visibility <- s.visibility,
         eAnnotations <- s.eAnnotations,
@@ -158,7 +159,8 @@ rule Class {
 				->select(p|p.oclIsTypeOf(UML2!"uml::Property") and 
 					       (p.visibility=#public) and 
 						   p.isNavigable); }
-	to t : UML2!"uml::Class" mapsTo s (
+	to t : UML2!"uml::Class"  (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -213,7 +215,8 @@ rule Property {
 			s.oclIsTypeOf(UML2!"uml::Property") and
 			not ((s.visibility = #public) and (s.isNavigable))
 		else false endif)
-    to t : UML2!"uml::Property" mapsTo s (
+    to t : UML2!"uml::Property" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -252,7 +255,8 @@ rule PublicPropertySingle {
 			s.isSingle
 		else false endif)
 	using { baseNameS : String = s.accessorBaseNameS; }
-    to t : UML2!"uml::Property" mapsTo s (
+    to t : UML2!"uml::Property" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- #private,
         isLeaf <- s.isLeaf,
@@ -343,7 +347,8 @@ rule PublicPropertyCollection {
 		else false endif)
 	using { baseNameS : String = s.accessorBaseNameS;
 			baseName : String = s.accessorBaseName; }
-    to t : UML2!"uml::Property" mapsTo s (
+    to t : UML2!"uml::Property" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- #private,
         isLeaf <- s.isLeaf,
@@ -465,7 +470,8 @@ rule PublicPropertySequence {
 		else false endif)
 	using { baseNameS : String = s.accessorBaseNameS;
 			baseName : String = s.accessorBaseName; }
-    to t : UML2!"uml::Property" mapsTo s (
+    to t : UML2!"uml::Property" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- #private,
         isLeaf <- s.isLeaf,

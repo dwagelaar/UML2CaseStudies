@@ -28,7 +28,8 @@ rule Model {
 			s.includesProfile(thisModule.accessorsProfile)
 		else false endif)
     to t : UML2!"uml::Model" mapsTo s (
-        name <- s.name.debug('Model'),
+        __xmiID__ <- s.__xmiID__,
+		name <- s.name.debug('Model'),
         visibility <- s.visibility,
         viewpoint <- s.viewpoint,
         eAnnotations <- s.eAnnotations,
@@ -52,7 +53,8 @@ rule ModelProfile {
 			not s.includesProfile(thisModule.accessorsProfile)
 		else false endif)
     to t : UML2!"uml::Model" mapsTo s (
-        name <- s.name.debug('ModelProfile'),
+        __xmiID__ <- s.__xmiID__,
+		name <- s.name.debug('ModelProfile'),
         visibility <- s.visibility,
         viewpoint <- s.viewpoint,
         eAnnotations <- s.eAnnotations,

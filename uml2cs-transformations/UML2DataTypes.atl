@@ -129,7 +129,8 @@ rule Property {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::Property")
 		else false endif)
-    to t : UML2!"uml::Property" mapsTo s (
+    to t : UML2!"uml::Property" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -171,7 +172,8 @@ rule DefVal(s : UML2!"uml::Property") {
 
 rule Parameter {
     from s : UML2!"uml::Parameter" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Parameter" mapsTo s (
+    to t : UML2!"uml::Parameter" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isOrdered <- s.isOrdered,
@@ -195,7 +197,8 @@ rule Parameter {
 
 rule Operation {
     from s : UML2!"uml::Operation" (thisModule.inElements->includes(s))
-    to t : UML2!"uml::Operation" mapsTo s (
+    to t : UML2!"uml::Operation" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,

@@ -39,7 +39,8 @@ rule Class {
 			s.oclIsTypeOf(UML2!"uml::Class") and
 			not s.isApplet
 		else false endif)
-    to t : UML2!"uml::Class" mapsTo s (
+    to t : UML2!"uml::Class" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -81,7 +82,8 @@ rule AppletClass {
 			s.isApplet
 		else false endif)
 	using { hasInit : Boolean = s.ownedOperation->exists(o|o.name='init'); }
-    to t : UML2!"uml::Class" mapsTo s (
+    to t : UML2!"uml::Class" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name.debug('AppletClass'),
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -165,7 +167,8 @@ rule OpaqueBehavior {
 		if (s.specification.name = 'init') then
 			s.specification.class.isApplet
 		else false endif; }
-    to t : UML2!"uml::OpaqueBehavior" mapsTo s (
+    to t : UML2!"uml::OpaqueBehavior" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,

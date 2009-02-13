@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
 <stringAttribute key="ATL File Name" value="/uml2cs-transformations/EModelCopyGenerator.atl"/>
 <stringAttribute key="ATL VM" value="Regular VM (with debugger)"/>
@@ -15,13 +15,13 @@
 <mapEntry key="ECORE" value="EMF"/>
 </mapAttribute>
 <mapAttribute key="ModelType">
-<mapEntry key="ECORE" value="METAMODELINPUT"/>
 <mapEntry key="IN" value="MODELINPUT"/>
+<mapEntry key="ECORE" value="METAMODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Output"/>
 <mapAttribute key="Path">
+<mapEntry key="IN" value="uri:http://www.eclipse.org/uml2/2.1.0/UML"/>
 <mapEntry key="ECORE" value="#EMF"/>
-<mapEntry key="IN" value="/uml2cs-transformations/metamodels/UML.ecore"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <listAttribute key="Superimpose"/>

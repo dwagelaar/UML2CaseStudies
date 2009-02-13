@@ -11,7 +11,7 @@ create OUT : XML from IN : CFG;
 
 rule ConfigRoot {
 	from s : CFG!"transformations::TransformationConfig"
-	to root : XML!"XML::Root" mapsTo s (
+	to root : XML!"XML::Root" (
 		name <- thisModule.ConfigHeader(s))
 }
 
@@ -51,7 +51,7 @@ rule ConfigHeader(s : CFG!"transformations::TransformationConfig") {
 rule Java1DataTypes {
 	from s : CFG!"transformations::Java1DataTypes"
 	-- <property name="java1" value="true"/>
-	to java1 : XML!"XML::Element" mapsTo s (
+	to java1 : XML!"XML::Element" (
 		parent <- s.mapping.config,
 		name <- 'property',
 		children <- thisModule.Property('java1', 'true'))
@@ -60,7 +60,7 @@ rule Java1DataTypes {
 rule Java2DataTypes {
 	from s : CFG!"transformations::Java2DataTypes"
 	-- <property name="java1" value="true"/>
-	to java2 : XML!"XML::Element" mapsTo s (
+	to java2 : XML!"XML::Element" (
 		parent <- s.mapping.config,
 		name <- 'property',
 		children <- thisModule.Property('java2', 'true'))
@@ -70,7 +70,7 @@ rule UML2Observer {
 	from s : CFG!"transformations::UML2Observer" (
 		s.oclIsTypeOf(CFG!"transformations::UML2Observer"))
 	-- <property name="observer" value="true"/>
-	to observer : XML!"XML::Element" mapsTo s (
+	to observer : XML!"XML::Element" (
 		parent <- s.config,
 		name <- 'property',
 		children <- thisModule.Property('observer', 'true'))
@@ -79,7 +79,7 @@ rule UML2Observer {
 rule UML2JavaObserver {
 	from s : CFG!"transformations::UML2JavaObserver"
 	-- <property name="javaobserver" value="true"/>
-	to javaobserver : XML!"XML::Element" mapsTo s (
+	to javaobserver : XML!"XML::Element" (
 		parent <- s.config,
 		name <- 'property',
 		children <- thisModule.Property('javaobserver', 'true'))
@@ -89,7 +89,7 @@ rule UML2Applet {
 	from s : CFG!"transformations::UML2Applet" (
 		s.oclIsTypeOf(CFG!"transformations::UML2Applet"))
 	-- <property name="applet" value="true"/>
-	to applet : XML!"XML::Element" mapsTo s (
+	to applet : XML!"XML::Element" (
 		parent <- s.config,
 		name <- 'property',
 		children <- thisModule.Property('applet', 'true'))
@@ -98,7 +98,7 @@ rule UML2Applet {
 rule UML2MIDlet {
 	from s : CFG!"transformations::UML2MIDlet"
 	-- <property name="midlet" value="true"/>
-	to midlet : XML!"XML::Element" mapsTo s (
+	to midlet : XML!"XML::Element" (
 		parent <- s.config,
 		name <- 'property',
 		children <- thisModule.Property('midlet', 'true'))

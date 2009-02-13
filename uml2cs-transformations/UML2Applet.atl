@@ -43,7 +43,8 @@ rule Class {
 			s.oclIsTypeOf(UML2!"uml::Class") and
 			not s.isApplet
 		else false endif)
-    to t : UML2!"uml::Class" mapsTo s (
+    to t : UML2!"uml::Class" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -86,7 +87,8 @@ rule AppletClass {
 		else false endif)
 	using { hasInit : Boolean = s.ownedOperation->exists(o|o.name='init');
 			applet : UML2!"Applet::Applet" = s.applet; }
-    to t : UML2!"uml::Class" mapsTo s (
+    to t : UML2!"uml::Class" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name.debug('AppletClass'),
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -199,11 +201,16 @@ rule OpaqueBehavior {
 		if thisModule.inElements->includes(s) then
 			s.oclIsTypeOf(UML2!"uml::OpaqueBehavior")
 		else false endif)
-	using { isAppletInit : Boolean = 
-		if (s.specification.name = 'init') then
-			s.specification.class.isApplet
-		else false endif; }
-    to t : UML2!"uml::OpaqueBehavior" mapsTo s (
+	using {
+    	isAppletInit : Boolean = 
+			if (s.specification.name = 'init') then
+				s.specification.class.isApplet
+			else false endif;
+		appletInitBody : String =
+			s.specification.class.isSingleton.appletInitBody();
+	}
+    to t : UML2!"uml::OpaqueBehavior" (
+        __xmiID__ <- s.__xmiID__,
         name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
@@ -212,8 +219,9 @@ rule OpaqueBehavior {
         isReentrant <- s.isReentrant,
         body <-
 			if isAppletInit then
-				s.body->collect(b|s.specification.class
-					.isSingleton.appletInitBody() + '\n' + b)
+				s.body->collect(b|
+					if b.startsWith(appletInitBody) then b
+					else appletInitBody + '\n' + b endif)
 			else
 				s.body
 			endif,

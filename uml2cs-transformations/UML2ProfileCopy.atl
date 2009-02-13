@@ -14,31 +14,36 @@ uses UML2Copy;
 
 rule "Observer::Observer" {
     from s : UML2!"Observer::Observer" (thisModule.inElements->includes(s))
-    to t : UML2!"Observer::Observer" mapsTo s (
+    to t : UML2!"Observer::Observer" (
+        __xmiID__ <- s.__xmiID__,
         base_Classifier <- s.base_Classifier.debug('Observer'))
 }
 
 rule "Observer::subscribe" {
     from s : UML2!"Observer::subscribe" (thisModule.inElements->includes(s))
-    to t : UML2!"Observer::subscribe" mapsTo s (
+    to t : UML2!"Observer::subscribe" (
+        __xmiID__ <- s.__xmiID__,
         base_Association <- s.base_Association)
 }
 
 rule "Observer::Observable" {
     from s : UML2!"Observer::Observable" (thisModule.inElements->includes(s))
-    to t : UML2!"Observer::Observable" mapsTo s (
+    to t : UML2!"Observer::Observable" (
+        __xmiID__ <- s.__xmiID__,
         base_Classifier <- s.base_Classifier)
 }
 
 rule "Accessors::accessor" {
     from s : UML2!"Accessors::accessor" (thisModule.inElements->includes(s))
-    to t : UML2!"Accessors::accessor" mapsTo s (
+    to t : UML2!"Accessors::accessor" (
+        __xmiID__ <- s.__xmiID__,
         base_Dependency <- s.base_Dependency)
 }
 
 rule "Applet::Applet" {
     from s : UML2!"Applet::Applet" (thisModule.inElements->includes(s))
-    to t : UML2!"Applet::Applet" mapsTo s (
+    to t : UML2!"Applet::Applet" (
+        __xmiID__ <- s.__xmiID__,
         appletInfo <- s.appletInfo,
         parameterInfo <- s.parameterInfo,
         base_Classifier <- s.base_Classifier)
@@ -46,50 +51,58 @@ rule "Applet::Applet" {
 
 rule "Final::final" {
     from s : UML2!"Final::final" (thisModule.inElements->includes(s))
-    to t : UML2!"Final::final" mapsTo s (
+    to t : UML2!"Final::final" (
+        __xmiID__ <- s.__xmiID__,
         base_Parameter <- s.base_Parameter)
 }
 
 rule "Singleton::initializer" {
     from s : UML2!"Singleton::initializer" (thisModule.inElements->includes(s))
-    to t : UML2!"Singleton::initializer" mapsTo s (
+    to t : UML2!"Singleton::initializer" (
+        __xmiID__ <- s.__xmiID__,
         base_Operation <- s.base_Operation)
 }
 
 rule "Singleton::Singleton" {
     from s : UML2!"Singleton::Singleton" (thisModule.inElements->includes(s))
-    to t : UML2!"Singleton::Singleton" mapsTo s (
+    to t : UML2!"Singleton::Singleton" (
+        __xmiID__ <- s.__xmiID__,
         base_Classifier <- s.base_Classifier)
 }
 
 rule "Standard::Create" {
     from s : UML2!"Standard::Create" (thisModule.inElements->includes(s))
-    to t : UML2!"Standard::Create" mapsTo s (
+    to t : UML2!"Standard::Create" (
+        __xmiID__ <- s.__xmiID__,
         base_BehavioralFeature <- s.base_BehavioralFeature,
 		base_Usage <- s.base_Usage)
 }
 
 rule "AbstractFactory::AbstractFactory" {
     from s : UML2!"AbstractFactory::AbstractFactory" (thisModule.inElements->includes(s))
-    to t : UML2!"AbstractFactory::AbstractFactory" mapsTo s (
+    to t : UML2!"AbstractFactory::AbstractFactory" (
+        __xmiID__ <- s.__xmiID__,
         base_Classifier <- s.base_Classifier)
 }
 
 rule "AbstractFactory::ConcreteFactory" {
     from s : UML2!"AbstractFactory::ConcreteFactory" (thisModule.inElements->includes(s))
-    to t : UML2!"AbstractFactory::ConcreteFactory" mapsTo s (
+    to t : UML2!"AbstractFactory::ConcreteFactory" (
+        __xmiID__ <- s.__xmiID__,
         base_Class <- s.base_Class)
 }
 
 rule "AbstractFactory::product" {
     from s : UML2!"AbstractFactory::product" (thisModule.inElements->includes(s))
-    to t : UML2!"AbstractFactory::product" mapsTo s (
+    to t : UML2!"AbstractFactory::product" (
+        __xmiID__ <- s.__xmiID__,
         base_Dependency <- s.base_Dependency)
 }
 
 rule "Async::asynchronous" {
     from s : UML2!"Async::asynchronous" (thisModule.inElements->includes(s))
-    to t : UML2!"Async::asynchronous" mapsTo s (
+    to t : UML2!"Async::asynchronous" (
+        __xmiID__ <- s.__xmiID__,
         base_Operation <- s.base_Operation)
 }
 

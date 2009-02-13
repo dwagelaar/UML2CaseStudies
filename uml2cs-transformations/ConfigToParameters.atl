@@ -12,7 +12,7 @@ create OUT : XML from IN : CFG;
 rule ConfigRoot {
 	from s : CFG!"transformations::TransformationConfig"
 	-- <parameters>
-	to root : XML!"XML::Root" mapsTo s (
+	to root : XML!"XML::Root" (
 		name <- 'parameters'),
 	-- <param name="path" value="s.targetPath"/>
 	   param : XML!"XML::Element" (

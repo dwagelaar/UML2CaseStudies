@@ -337,8 +337,6 @@ helper context String def : createBody() : String =
 ------------------------------- AsyncMethods -----------------------------------
 
 helper context String def : asynchronousBody() : String =
-	'new Thread() {\n' +
-	'    public void run() {\n' +
-	self + '\n' +
-	'    }\n' +
-	'}.start();';
+	'new Thread() {\n    public void run() {\n' +
+	self +
+	'\n    }\n}.start();';

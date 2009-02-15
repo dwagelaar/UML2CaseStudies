@@ -14,12 +14,16 @@ uses Mappings;
 
 helper def : applets : Sequence(UML2!"Applet::Applet") = UML2!"Applet::Applet".allInstances();
 helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton".allInstances();
+helper def : asyncs : Sequence(UML2!"Async::asynchronous") = UML2!"Async::asynchronous".allInstances();
 
 helper context UML2!"uml::Classifier" def : isApplet : Boolean =
 	thisModule.applets->exists(o|o.base_Classifier=self);
 
 helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
 	thisModule.singletons->exists(o|o.base_Classifier=self);
+
+helper context UML2!"uml::Operation" def : isAsynchronous : Boolean =
+	thisModule.asyncs->exists(a|a.base_Operation=self);
 
 helper context UML2!"uml::Classifier" def : typeDeclaration : JAVA!TypeDeclaration =
 	let owner : OclAny = self.refImmediateComposite() in
@@ -93,6 +97,57 @@ helper context UML2!"uml::Parameter" def : equivalentTo(v : JAVA!SingleVariableD
 		endif
 	endif;
 
+helper context UML2!"uml::Operation" def : filteredBody() : Sequence(JAVA!Statement) =
+	self.appletFilteredBody(
+		self.asyncFilteredBody(
+			self.javaMethodDeclaration.body.statements))
+	->iterate(e; acc : String = '' |
+		if acc = '' then
+			acc + e.lexicalForm
+		else
+			acc + '\n' + e.lexicalForm
+		endif);
+
+helper context UML2!"uml::Operation" def : asyncFilteredBody(statements : Sequence(JAVA!Statement)) : Sequence(JAVA!Statement) =
+	if self.isAsynchronous then
+		statements->first() -- JAVA!ExpressionStatement ("new Thread() {public void run() {...}}.start();")
+			.expression -- JAVA!MethodInvocation ("new Thread() {public void run() {...}}.start()")
+			.expression -- JAVA!ClassInstanceCreation ("new Thread() {public void run() {...}}")
+			.anonymousClassDeclaration -- JAVA!AnonymousClassDeclaration ("{public void run() {...}}")
+			.bodyDeclarations.first() -- JAVA!MethodDeclaration ("public void run() {...}")
+			.body -- JAVA!Block ("{...}")
+			.statements -- Sequence(JAVA!Statement) ("...")
+	else
+		statements
+	endif;
+
+helper context UML2!"uml::Operation" def : appletFilteredBody(statements : Sequence(JAVA!Statement)) : Sequence(JAVA!Statement) =
+	if self.isAppletInit then
+		let fStatements : Sequence(JAVA!Statement) =
+			if self.class.isSingleton then
+				statements->excluding(statements->first()) -- JAVA!ExpressionStatement ("instance = this;")
+			else
+				statements
+			endif
+		in
+			if self.class.isJavaAppletApplet.debug(self.class.toString() + '.isJavaAppletApplet') then
+				fStatements->excluding(fStatements->first()) -- JAVA!ExpressionStatement ("setLayout(new java.awt.BorderLayout());")
+			else
+				fStatements
+			endif
+	else
+		statements
+	endif;
+
+helper context UML2!"uml::Operation" def : isAppletInit : Boolean = 
+	if (self.name = 'init') then
+		self.class.isApplet
+	else false endif;
+
+helper context UML2!"uml::Classifier" def : isJavaAppletApplet : Boolean =
+	self.typeDeclaration.superclassType.name.fullyQualifiedName = 'java.applet.Applet';
+--	self.allParents().debug('allParents')->exists(p|p.umlQualifiedName = 'java::applet::Applet');
+
 -- ======================================================================
 -- model-specific helpers end
 -- ======================================================================
@@ -162,32 +217,7 @@ rule JavaOpaqueBehavior {
 				not s.specification.javaMethodDeclaration.oclIsUndefined()
 			else false endif
 		else false endif)
-	using { 
-    	javabody : String =
-    		let javablock : String = s.specification.javaMethodDeclaration.body.lexicalForm
-    		in javablock.substring(2, javablock.size()-1).trim();
-		index : Integer = s.language->indexOf('java');
-    	isAppletInit : Boolean = 
-			if (s.specification.name = 'init') then
-				s.specification.class.isApplet
-			else false endif;
-		appletInitBody : String =
-			s.specification.class.isSingleton.appletInitBody();
-		midletInitBody : String =
-			s.specification.class.isSingleton.midletInitBody();
-		strippedJavaBody : String =
-			if isAppletInit then
-				if javabody.startsWith(appletInitBody) then
-					javabody.substring(appletInitBody.size() + 2, javabody.size())
-				else if javabody.startsWith(midletInitBody) then
-					javabody.substring(midletInitBody.size() + 2, javabody.size())
-				else
-					javabody
-				endif endif
-			else
-				javabody
-			endif;
-    }
+	using { index : Integer = s.language->indexOf('java'); }
     to t : UML2!"uml::OpaqueBehavior" (
         __xmiID__ <- s.__xmiID__,
 		name <- s.name.debug('JavaOpaqueBehavior'),
@@ -196,7 +226,7 @@ rule JavaOpaqueBehavior {
         isAbstract <- s.isAbstract,
         isActive <- s.isActive,
         isReentrant <- s.isReentrant,
-        body <- s.body.excluding(s.body.at(index))->insertAt(index, strippedJavaBody),
+        body <- s.body.excluding(s.body.at(index))->insertAt(index, s.specification.filteredBody()),
         language <- s.language,
         eAnnotations <- s.eAnnotations,
         ownedComment <- s.ownedComment,

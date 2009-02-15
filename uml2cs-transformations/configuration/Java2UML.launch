@@ -1,38 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.m2m.atl.adt.launching.atlTransformation">
 <stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Copy.atl"/>
 <stringAttribute key="ATL VM" value="Regular VM (with debugger)"/>
 <booleanAttribute key="AllowInterModelReferences" value="true"/>
 <mapAttribute key="Input">
-<mapEntry key="CODE" value="JAVA"/>
 <mapEntry key="IN" value="UML2"/>
+<mapEntry key="CODE" value="JAVA"/>
 </mapAttribute>
 <mapAttribute key="Libs">
-<mapEntry key="Java" value="/uml2cs-transformations/lib/Java1.asm"/>
-<mapEntry key="UML2" value="/uml2cs-transformations/lib/UML2.asm"/>
 <mapEntry key="Mappings" value="/uml2cs-transformations/lib/JavaMappings.asm"/>
+<mapEntry key="UML2" value="/uml2cs-transformations/lib/UML2.asm"/>
+<mapEntry key="Java" value="/uml2cs-transformations/lib/Java1.asm"/>
 </mapAttribute>
 <booleanAttribute key="Mode Debug" value="false"/>
 <mapAttribute key="Model Handler">
-<mapEntry key="JAVA" value="EMF"/>
 <mapEntry key="UML2" value="UML2"/>
+<mapEntry key="JAVA" value="EMF"/>
 </mapAttribute>
 <mapAttribute key="ModelType">
+<mapEntry key="IN" value="MODELINPUT"/>
+<mapEntry key="UML2" value="METAMODELOUTPUT"/>
 <mapEntry key="OUT" value="MODELOUTPUT"/>
 <mapEntry key="JAVA" value="METAMODELINPUT"/>
 <mapEntry key="CODE" value="MODELINPUT"/>
-<mapEntry key="UML2" value="METAMODELOUTPUT"/>
-<mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Output">
 <mapEntry key="OUT" value="UML2"/>
 </mapAttribute>
 <mapAttribute key="Path">
+<mapEntry key="IN" value="/uml2cs-instantmessenger-model/models/InstantMessengerModel.uml"/>
+<mapEntry key="UML2" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
 <mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/InstantMessengerModelFromJava.uml"/>
 <mapEntry key="JAVA" value="uri:http://www.eclipse.org/gmt/modisco/JavaAST"/>
 <mapEntry key="CODE" value="/uml2cs-instantmessenger-default/uml2cs-instantmessenger-default.javaast"/>
-<mapEntry key="UML2" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
-<mapEntry key="IN" value="/uml2cs-instantmessenger-model/models/InstantMessengerModel.uml"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <listAttribute key="Superimpose">

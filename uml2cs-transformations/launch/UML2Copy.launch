@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
 <stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Copy.atl"/>
 <stringAttribute key="ATL VM" value="Regular VM (with debugger)"/>
@@ -10,20 +10,20 @@
 <mapAttribute key="Libs"/>
 <booleanAttribute key="Mode Debug" value="true"/>
 <mapAttribute key="Model Handler">
-<mapEntry key="UML2" value="EMF"/>
+<mapEntry key="UML2" value="UML2"/>
 </mapAttribute>
 <mapAttribute key="ModelType">
-<mapEntry key="OUT" value="MODELOUTPUT"/>
-<mapEntry key="UML2" value="METAMODELOUTPUT"/>
 <mapEntry key="IN" value="MODELINPUT"/>
+<mapEntry key="UML2" value="METAMODELOUTPUT"/>
+<mapEntry key="OUT" value="MODELOUTPUT"/>
 </mapAttribute>
 <mapAttribute key="Output">
 <mapEntry key="OUT" value="UML2"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/im-copy.uml"/>
-<mapEntry key="UML2" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
 <mapEntry key="IN" value="/uml2cs-instantmessenger-model/models/InstantMessengerModel.uml"/>
+<mapEntry key="UML2" value="/uml2cs-transformations/metamodels/UML2Profiles.ecore"/>
+<mapEntry key="OUT" value="/uml2cs-instantmessenger-model/outmodels/test/im-copy.uml"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="uml2cs-transformations"/>
 <listAttribute key="Superimpose">

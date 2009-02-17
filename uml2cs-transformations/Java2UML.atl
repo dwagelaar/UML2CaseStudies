@@ -15,6 +15,7 @@ uses Mappings;
 helper def : applets : Sequence(UML2!"Applet::Applet") = UML2!"Applet::Applet".allInstances();
 helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton".allInstances();
 helper def : asyncs : Sequence(UML2!"Async::asynchronous") = UML2!"Async::asynchronous".allInstances();
+helper def : language : String = 'language'.value();
 
 helper context UML2!"uml::Classifier" def : isApplet : Boolean =
 	thisModule.applets->exists(o|o.base_Classifier=self);
@@ -97,10 +98,11 @@ helper context UML2!"uml::Parameter" def : equivalentTo(v : JAVA!SingleVariableD
 		endif
 	endif;
 
-helper context UML2!"uml::Operation" def : filteredBody() : Sequence(JAVA!Statement) =
+helper context UML2!"uml::Operation" def : filteredBody() : String =
 	self.appletFilteredBody(
 		self.asyncFilteredBody(
-			self.javaMethodDeclaration.body.statements))
+			let jmd : JAVA!MethodDeclaration = self.javaMethodDeclaration
+			in jmd.body.statements))
 	->iterate(e; acc : String = '' |
 		if acc = '' then
 			acc + e.lexicalForm
@@ -146,7 +148,13 @@ helper context UML2!"uml::Operation" def : isAppletInit : Boolean =
 
 helper context UML2!"uml::Classifier" def : isJavaAppletApplet : Boolean =
 	self.typeDeclaration.superclassType.name.fullyQualifiedName = 'java.applet.Applet';
---	self.allParents().debug('allParents')->exists(p|p.umlQualifiedName = 'java::applet::Applet');
+
+helper context UML2!"uml::Operation" def : hasJavaBody : Boolean =
+	if not self.javaMethodDeclaration.oclIsUndefined() then
+		if not self.javaMethodDeclaration.body.oclIsUndefined() then
+			self.javaMethodDeclaration.body.statements->notEmpty()
+		else false endif
+	else false endif;
 
 -- ======================================================================
 -- model-specific helpers end
@@ -155,6 +163,147 @@ helper context UML2!"uml::Classifier" def : isJavaAppletApplet : Boolean =
 -- ======================================================================
 -- transformation rules begin
 -- ======================================================================
+
+rule Class {
+    from s : UML2!"uml::Class" (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!"uml::Class")
+		else false endif)
+	using { myOperations : Set(UML2!"uml::Operation") = s.ownedOperation
+				->select(o|o.method->isEmpty() and o.hasJavaBody); }
+	to t : UML2!"uml::Class"  (
+        __xmiID__ <- s.__xmiID__,
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedRule <- s.ownedRule,
+        templateParameter <- s.templateParameter,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        generalization <- s.generalization,
+        powertypeExtent <- s.powertypeExtent,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        representation <- s.representation,
+        collaborationUse <- s.collaborationUse,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedBehavior <- s.ownedBehavior
+			->union(myOperations->collect(o|
+				thisModule.resolveTemp(o, 'javaMethod'))),
+		classifierBehavior <- s.classifierBehavior,
+        interfaceRealization <- s.interfaceRealization,
+        ownedTrigger <- s.ownedTrigger,
+        nestedClassifier <- s.nestedClassifier,
+        ownedOperation <- s.ownedOperation,
+        ownedReception <- s.ownedReception)
+}
+
+rule Operation {
+    from s : UML2!"uml::Operation" (
+    	if thisModule.inElements->includes(s) then
+			s.method->notEmpty() or
+			not s.hasJavaBody
+		else false endif)
+    to t : UML2!"uml::Operation" (
+        __xmiID__ <- s.__xmiID__,
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isStatic <- s.isStatic,
+        isAbstract <- s.isAbstract,
+        concurrency <- s.concurrency,
+        isQuery <- s.isQuery,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedRule <- s.ownedRule,
+        ownedParameter <- s.ownedParameter,
+        method <- s.method,
+        raisedException <- s.raisedException,
+        ownedParameterSet <- s.ownedParameterSet,
+        templateParameter <- s.templateParameter,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        redefinedOperation <- s.redefinedOperation,
+        bodyCondition <- s.bodyCondition)
+}
+
+rule EmptyOperation {
+    from s : UML2!"uml::Operation" (
+    	if thisModule.inElements->includes(s) then
+			s.method->isEmpty() and
+			s.hasJavaBody
+		else false endif)
+    to t : UML2!"uml::Operation" (
+        __xmiID__ <- s.__xmiID__,
+        name <- s.name.debug('EmptyOperation'),
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isStatic <- s.isStatic,
+        isAbstract <- s.isAbstract,
+        concurrency <- s.concurrency,
+        isQuery <- s.isQuery,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedRule <- s.ownedRule,
+        ownedParameter <- s.ownedParameter,
+        method <- s.method,
+        raisedException <- s.raisedException,
+        ownedParameterSet <- s.ownedParameterSet,
+        templateParameter <- s.templateParameter,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        precondition <- s.precondition,
+        postcondition <- s.postcondition,
+        redefinedOperation <- s.redefinedOperation,
+        bodyCondition <- s.bodyCondition),
+	-- Java method body
+	   javaMethod : UML2!"uml::OpaqueBehavior" (
+	   	specification <- s,
+		name <- s.name + 'Behavior',
+		language <- Sequence{thisModule.language},
+		body <- Sequence{s.filteredBody()},
+		ownedParameter <- s.ownedParameter->collect(p|thisModule.CopyParameter(p)))
+}
+
+rule CopyParameter(s : UML2!"uml::Parameter") {
+    to t : UML2!"uml::Parameter" (
+        name <- s.name,
+        visibility <- s.visibility,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        direction <- s.direction,
+        isException <- s.isException,
+        isStream <- s.isStream,
+        effect <- s.effect,
+        clientDependency <- s.clientDependency,
+        type <- s.type)
+	do {
+		t.setLower(s.getLower());
+		t.setUpper(s.getUpper());
+		t;
+	}
+}
 
 rule OpaqueBehavior {
     from s : UML2!"uml::OpaqueBehavior" (

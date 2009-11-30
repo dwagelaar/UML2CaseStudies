@@ -29,11 +29,11 @@ rule ConfigHeader(s : CFG!"transformations::TransformationConfig") {
 	   	parent <- import,
 		name <- 'file',
 		value <- 'common.xml'),
-	-- <property name="current.path" value="/${ant.project.name}"/>
+	-- <property name="current.path" value="platform:/resource/${ant.project.name}"/>
 	   currentpath : XML!"XML::Element" (
 	   	parent <- s,
 		name <- 'property',
-		children <- thisModule.Property('current.path', '/${ant.project.name}')),
+		children <- thisModule.Property('current.uri', 'platform:/resource/${ant.project.name}')),
 	-- <property name="saveNoModels|saveModels|saveLastModel" value="true"/>
 	   save : XML!"XML::Element" (
 	   	parent <- s,
@@ -105,7 +105,7 @@ rule UML2MIDlet {
 }
 
 rule Property(name : String, value : String) {
-	-- Sequence{name="name" value="value"}
+	-- Sequence{name="name", value="value"}
 	to propertyname : XML!"XML::Attribute" (
 	   	name <- 'name',
 		value <- name),
@@ -114,6 +114,19 @@ rule Property(name : String, value : String) {
 		value <- value)
 	do {
 		Sequence{propertyname, propertyvalue};
+	}
+}
+
+rule ConvertResourceToPath(resource : String, path : String) {
+	-- Sequence{resourcepath="resource", property="path"}
+	to resourcepath : XML!"XML::Attribute" (
+	   	name <- 'resourcepath',
+		value <- resource),
+	   property : XML!"XML::Attribute" (
+	   	name <- 'property',
+		value <- path)
+	do {
+		Sequence{resourcepath, property};
 	}
 }
 

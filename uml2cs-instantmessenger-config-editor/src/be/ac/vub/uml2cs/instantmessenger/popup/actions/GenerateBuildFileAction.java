@@ -6,10 +6,8 @@ import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.ant.core.AntRunner;
@@ -25,10 +23,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.m2m.atl.adt.launching.AtlVM;
-import org.eclipse.m2m.atl.drivers.emf4atl.EMFModelLoader;
-import org.eclipse.m2m.atl.engine.AtlEMFModelHandler;
-import org.eclipse.m2m.atl.engine.AtlModelHandler;
+import org.eclipse.m2m.atl.core.IModel;
+import org.eclipse.m2m.atl.core.IReferenceModel;
+import org.eclipse.m2m.atl.core.launch.ILauncher;
+import org.eclipse.m2m.atl.core.ui.vm.asm.ASMModelWrapper;
 import org.eclipse.m2m.atl.engine.extractors.xml.XMLExtractor;
 import org.eclipse.m2m.atl.engine.vm.nativelib.ASMModel;
 import org.eclipse.ui.IObjectActionDelegate;
@@ -36,6 +34,7 @@ import org.eclipse.ui.IObjectActionDelegate;
 import be.ac.vub.uml2cs.instantmessenger.InstantMessengerConfiguration;
 import be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage;
 import be.ac.vub.uml2cs.instantmessenger.presentation.InstantMessengerEditorPlugin;
+import be.ac.vub.uml2cs.instantmessenger.util.ATLUtil;
 
 /**
  * Popup action for generating and running the instant messenger build file from a configuration model.
@@ -44,8 +43,16 @@ import be.ac.vub.uml2cs.instantmessenger.presentation.InstantMessengerEditorPlug
  */
 public class GenerateBuildFileAction extends ProgressMonitorAction implements IObjectActionDelegate {
 	
-	public static final String ATL_VM = "EMF-specific VM";
-	
+	public static final String ATL_VM = "Regular VM (with debugger)";
+	public static final String MODEL_HANDLER = "EMF";
+
+    public static final URL COMMON_URL = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/common.xml");
+    public static final URL HIBTOOLS_URL = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/hibernate-tools.jar");
+
+    public static final URL TRANS1 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/ConfigToBuildFile.asm");
+    public static final URL TRANS2 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/InstantMessenger/ConfigToBuildFile.asm");
+    public static final URL TRANS3 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/ConfigToParameters.asm");
+
 	/**
 	 * Sub-action for running the build file.
 	 * @author dennis
@@ -71,7 +78,6 @@ public class GenerateBuildFileAction extends ProgressMonitorAction implements IO
 	}
 
     private URL xmlResource = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("metamodels/XML.ecore");
-    protected AtlEMFModelHandler amh = (AtlEMFModelHandler) AtlModelHandler.getDefault(AtlModelHandler.AMH_EMF);
 
     /**
      * Invoked when the action is executed.
@@ -82,83 +88,91 @@ public class GenerateBuildFileAction extends ProgressMonitorAction implements IO
         monitor.beginTask("Generating code", 8);
         
         monitor.subTask("Reading input model...");
-        InstantMessengerConfiguration object =
+        final InstantMessengerConfiguration object =
         	(InstantMessengerConfiguration) ((IStructuredSelection) selection).getFirstElement();
         Assert.isNotNull(object);
-        Resource res = object.eResource();
+        final Resource res = object.eResource();
         Assert.isNotNull(res);
+        //
+        // 1
+        //
         worked(monitor);
         monitor.subTask("Getting output folder...");
-        IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-        IPath projectPath = new Path(object.getTargetProject());
-        IResource projectResource = root.findMember(projectPath);
+        final IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+        final IPath projectPath = new Path(object.getTargetProject());
+        final IResource projectResource = root.findMember(projectPath);
         if (projectResource == null) {
         	throw new IOException("project " + projectResource + " not found in workspace");
         }
-        IPath buildPath = projectPath.append("build");
-        IFolder buildFolder = root.getFolder(buildPath);
-        if (!buildFolder.exists()) {
-        	buildFolder.create(true, true, monitor);
+        final IPath buildPath = projectPath.append("build");
+        final IFolder buildFolder = root.getFolder(buildPath);
+        if (buildFolder.exists()) {
+        	buildFolder.delete(true, true, monitor);
         }
-        IFile hibtoolsFile = root.getFile(buildPath.append("hibernate-tools.jar"));
-        IFile commonFile = root.getFile(buildPath.append("common.xml"));
-        IFile buildFile = root.getFile(buildPath.append("build.xml"));
-        IFile parFile = root.getFile(buildPath.append("parameters.xml"));
+    	buildFolder.create(true, true, monitor);
+        final IFile hibtoolsFile = root.getFile(buildPath.append("hibernate-tools.jar"));
+        final IFile commonFile = root.getFile(buildPath.append("common.xml"));
+        final IFile buildFile = root.getFile(buildPath.append("build.xml"));
+        final IFile parFile = root.getFile(buildPath.append("parameters.xml"));
+        final IFile parXMIFile = root.getFile(buildPath.append("parameters.xmi"));
+        //
+        // 2
+        //
         worked(monitor);
-        
         monitor.subTask("Copying common.xml...");
-        URL commonURL = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/common.xml");
-        copyURLToFile(commonURL, commonFile);
+        copyURLToFile(COMMON_URL, commonFile);
+        //
+        // 3
+        //
         worked(monitor);
-        
         monitor.subTask("Copying hibernate-tools.jar...");
-        URL hibtoolsURL = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/hibernate-tools.jar");
-        copyURLToFile(hibtoolsURL, hibtoolsFile);
+        copyURLToFile(HIBTOOLS_URL, hibtoolsFile);
+        //
+        // 4
+        //
         worked(monitor);
-        
         monitor.subTask("Loading models...");
-        final EMFModelLoader ml = (EMFModelLoader) amh.createModelLoader();
-        final ASMModel cfg = ml.loadModel("CFG", ml.getMOF(), "uri:" + InstantmessengerPackage.eNS_URI);
-        cfg.setIsTarget(false);
-        final ASMModel xml = ml.loadModel("XML", ml.getMOF(), xmlResource.openStream());
-        xml.setIsTarget(false);
-        final ASMModel in = ml.loadModel("IN", cfg, res.getURI());
-        in.setIsTarget(false);
-        final ASMModel out = ml.newModel("OUT", buildFile.getLocationURI().toString(), xml);
-        final ASMModel out2 = ml.newModel("OUT", parFile.getLocationURI().toString(), xml);
+		final ATLUtil atlUtil = new ATLUtil(ATL_VM);
+		final IReferenceModel cfg = atlUtil.loadRefModel(InstantmessengerPackage.eNS_URI, "CFG", MODEL_HANDLER);
+		final IReferenceModel xml = atlUtil.loadRefModel(xmlResource.openStream(), "XML", xmlResource.toString(), MODEL_HANDLER);
+		final IModel in = atlUtil.loadModel(cfg, res.getURI().toString(), "IN");
+		final IModel out = atlUtil.newModel(xml, "OUT", buildFile.getLocationURI().toString());
+		final IModel out2 = atlUtil.newModel(xml, "OUT", parFile.getLocationURI().toString());
+        //
+        // 5
+        //
         worked(monitor);
-        
         monitor.subTask("Generating build.xml...");
-        Map<String, ASMModel> models = new HashMap<String, ASMModel>();
-        models.put(cfg.getName(), cfg);
-        models.put(xml.getName(), xml);
-        models.put(in.getName(), in);
-        models.put(out.getName(), out);
-        URL trans1 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/ConfigToBuildFile.asm");
-        URL trans2 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/InstantMessenger/ConfigToBuildFile.asm");
-        List<URL> superimpose = new ArrayList<URL>();
-        superimpose.add(trans2);
-		AtlVM atlVM = AtlVM.getVM(ATL_VM);
-		atlVM.launch(trans1, Collections.EMPTY_MAP, models, Collections.EMPTY_MAP, superimpose, Collections.EMPTY_MAP);
-        xmlExtraction(out, buildFile);
+        final Map<String, Object> vmoptions = new HashMap<String, Object>();
+        vmoptions.put("printExecutionTime", "true");
+        ILauncher launcher = atlUtil.getLauncher();
+        launcher.addInModel(in, "IN", "CFG");
+        launcher.addOutModel(out, "OUT", "XML");
+        launcher.launch(ILauncher.RUN_MODE, monitor, vmoptions, TRANS1.openStream(), TRANS2.openStream());
+        xmlExtraction(((ASMModelWrapper)out).getAsmModel(), buildFile);
         buildFile.refreshLocal(0, null);
+        //
+        // 6
+        //
         worked(monitor);
-
         monitor.subTask("Generating parameters.xml...");
-        models.clear();
-        models.put(cfg.getName(), cfg);
-        models.put(xml.getName(), xml);
-        models.put(in.getName(), in);
-        models.put(out2.getName(), out2);
-        URL trans3 = InstantMessengerEditorPlugin.getPlugin().getBundle().getResource("transformations/Transformations/ConfigToParameters.asm");
-		atlVM.launch(trans3, Collections.EMPTY_MAP, models, Collections.EMPTY_MAP, Collections.EMPTY_LIST, Collections.EMPTY_MAP);
-        xmlExtraction(out2, parFile);
+        launcher = atlUtil.newLauncher();
+        launcher.addInModel(in, "IN", "CFG");
+        launcher.addOutModel(out2, "OUT", "XML");
+        launcher.launch(ILauncher.RUN_MODE, monitor, vmoptions, TRANS3.openStream());
+        atlUtil.getExtractor().extract(out2, "file:/" + parXMIFile.getLocation().toString());
+        xmlExtraction(((ASMModelWrapper)out2).getAsmModel(), parFile);
         parFile.refreshLocal(0, null);
+        //
+        // 7
+        //
         worked(monitor);
-        
         monitor.subTask("Running build.xml...");
-        RunBuildFileAction runBuildFile = new RunBuildFileAction(buildFile);
+        final RunBuildFileAction runBuildFile = new RunBuildFileAction(buildFile);
         InstantMessengerEditorPlugin.getPlugin().getWorkbench().getDisplay().syncExec(runBuildFile);
+        //
+        // 8
+        //
         worked(monitor);
     }
     

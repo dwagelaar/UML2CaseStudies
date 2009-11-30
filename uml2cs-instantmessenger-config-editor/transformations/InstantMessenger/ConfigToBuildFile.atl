@@ -9,7 +9,7 @@ create OUT : XML from IN : CFG;
 -- helper attributes begin
 -- ======================================================================
 
-helper def : ModelPath : String = '/uml2cs-instantmessenger-model/models';
+helper def : ModelPath : String = '../../uml2cs-instantmessenger-model/models';
 
 -- ======================================================================
 -- helper attributes end
@@ -325,9 +325,9 @@ rule ModelTarget(name : String, inModel : String, prefix : String, path : String
 	   targetDepends : XML!"XML::Attribute"(
 	   	name <- 'depends',
 		value <- 'allBase'),
-	-- <am3.loadModel modelHandler = 'UML2' name = 'inModel' metamodel = 'UML2' path = 'path'/>
+	-- <atl.loadModel modelHandler = 'UML2' name = 'inModel' metamodel = 'UML2' path = 'path'/>
 	   loadModel : XML!"XML::Element" (
-	   	name <- 'am3.loadModel'),
+	   	name <- 'atl.loadModel'),
 	   modelHandler : XML!"XML::Attribute" (
 	   	name <- 'modelHandler',
 		value <- 'UML2',
@@ -378,9 +378,9 @@ rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String
 	   targetDepends : XML!"XML::Attribute"(
 	   	name <- 'depends',
 		value <- 'allBase, loadJAVA'),
-	-- <am3.loadModel modelHandler = 'UML2' name = 'inModel' metamodel = 'UML2' path = 'path'/>
+	-- <atl.loadModel modelHandler = 'UML2' name = 'inModel' metamodel = 'UML2' path = 'path'/>
 	   loadModel : XML!"XML::Element" (
-	   	name <- 'am3.loadModel'),
+	   	name <- 'atl.loadModel'),
 	   modelHandler : XML!"XML::Attribute" (
 	   	name <- 'modelHandler',
 		value <- 'UML2',
@@ -397,9 +397,9 @@ rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String
 	   	name <- 'path',
 		value <- path,
 		parent <- loadModel),
-	-- <am3.loadModel modelHandler = 'EMF' name = 'inModelCode' metamodel = 'JAVA' path = 'targetProject/targetProject.javaast'/>
+	-- <atl.loadModel modelHandler = 'EMF' name = 'inModelCode' metamodel = 'JAVA' path = 'targetProject/targetProject.javaast'/>
 	   loadCode : XML!"XML::Element" (
-	   	name <- 'am3.loadModel'),
+	   	name <- 'atl.loadModel'),
 	   modelHandler : XML!"XML::Attribute" (
 	   	name <- 'modelHandler',
 		value <- 'EMF',
@@ -414,7 +414,7 @@ rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String
 		parent <- loadCode),
 	   modelPath : XML!"XML::Attribute" (
 	   	name <- 'path',
-		value <- '/' + targetProject + '/' + targetProject + '.javaast',
+		value <- '../' + targetProject + '.javaast',
 		parent <- loadCode),
 	-- <antcall target="java2uml" inheritRefs="true">
 	   antcall : XML!"XML::Element" (

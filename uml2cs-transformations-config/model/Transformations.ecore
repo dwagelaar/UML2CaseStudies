@@ -154,16 +154,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="config" lowerBound="1"
         eType="#//TransformationConfig" eOpposite="#//TransformationConfig/applet"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UML2SWTApplication" abstract="true"
-      eSuperTypes="#//Applet">
+  <eClassifiers xsi:type="ecore:EClass" name="UML2SWTApplication" eSuperTypes="#//Applet">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Implements the Applet profile using an SWT application. Disabled for now."/>
+      <details key="documentation" value="Implements the Applet profile using an SWT application."/>
     </eAnnotations>
     <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/Transformations.owl#Java1Platform"/>
+      <details key="ContextConstraint" value="http://local/Transformations.owl#SWTPlatform"/>
     </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/Transformations.owl#Java1Platform"/>
+      <details key="PlatformConstraint" value="http://local/Transformations.owl#SWTPlatform"/>
     </eAnnotations>
   </eClassifiers>
 </ecore:EPackage>

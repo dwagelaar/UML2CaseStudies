@@ -345,6 +345,52 @@
     
 
 
+    <!-- http://local/Transformations.owl#SWTJRE -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#SWTJRE">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/platformkit/2009/01/swt-3_0#OrgEclipseSwtWidgetsLibrary"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaLangLibrary"/>
+                                    <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangLibrary"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
+        <rdfs:comment xml:lang="en"
+            >Java Runtime Environment that provides a basic version of java.lang and org.eclipse.swt.widgets</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://local/Transformations.owl#SWTPlatform -->
+
+    <owl:Class rdf:about="http://local/Transformations.owl#SWTPlatform">
+        <owl:equivalentClass rdf:resource="#transformations::UML2SWTApplicationIntersection"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
+                <owl:someValuesFrom rdf:resource="http://local/Transformations.owl#SWTJRE"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
+    </owl:Class>
+    
+
+
     <!-- http://local/platformkit/inferred.owl#_intersectionSet_Intersection -->
 
     <owl:Class rdf:about="#_intersectionSet_Intersection">
@@ -358,6 +404,7 @@
                     <rdf:Description rdf:about="#transformations::UML2JavaObserverIntersection"/>
                     <rdf:Description rdf:about="#transformations::UML2MIDletIntersection"/>
                     <rdf:Description rdf:about="#transformations::UML2ObserverIntersection"/>
+                    <rdf:Description rdf:about="#transformations::UML2SWTApplicationIntersection"/>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
@@ -365,10 +412,12 @@
         <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#Java2Platform"/>
         <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#JavaObserverPlatform"/>
         <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#MIDletPlatform"/>
+        <rdfs:subClassOf rdf:resource="http://local/Transformations.owl#SWTPlatform"/>
         <rdfs:subClassOf rdf:resource="#transformations::Java2DataTypesIntersection"/>
         <rdfs:subClassOf rdf:resource="#transformations::UML2AppletIntersection"/>
         <rdfs:subClassOf rdf:resource="#transformations::UML2JavaObserverIntersection"/>
         <rdfs:subClassOf rdf:resource="#transformations::UML2MIDletIntersection"/>
+        <rdfs:subClassOf rdf:resource="#transformations::UML2SWTApplicationIntersection"/>
     </owl:Class>
     
 
@@ -481,6 +530,21 @@
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://local/Transformations.owl#Java1Platform"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://local/platformkit/inferred.owl#transformations::UML2SWTApplicationIntersection -->
+
+    <owl:Class rdf:about="#transformations::UML2SWTApplicationIntersection">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://local/Transformations.owl#SWTPlatform"/>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
@@ -692,6 +756,14 @@
         <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Feature"/>
         <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Library"/>
         <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://ssel.vub.ac.be/platformkit/2009/01/swt-3_0#OrgEclipseSwtWidgetsLibrary -->
+
+    <owl:Class rdf:about="http://ssel.vub.ac.be/platformkit/2009/01/swt-3_0#OrgEclipseSwtWidgetsLibrary">
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
     </owl:Class>
     

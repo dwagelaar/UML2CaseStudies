@@ -229,6 +229,40 @@
       </owl:Restriction>
     </owl:equivalentClass>
   </owl:Class>
+  <owl:Class rdf:ID="SWTPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature"/>
+        <owl:someValuesFrom rdf:resource="#SWTJRE"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="SWTJRE">
+    <rdfs:comment xml:lang="en">Java Runtime Environment that provides a basic version of java.lang and org.eclipse.swt.widgets</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/platformkit/2009/01/swt-3_0#OrgEclipseSwtWidgetsLibrary"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                  <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaLangLibrary"/>
+                  <rdf:Description rdf:about="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangLibrary"/>
+                </owl:unionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
 </rdf:RDF>
 
 <!-- Created with Protege (with OWL Plugin 3.2.1, Build 365)  http://protege.stanford.edu -->

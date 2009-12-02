@@ -22,4 +22,7 @@
   <constraintSet name="transformations::UML2MIDlet">
     <constraint ontClassURI="http://local/Transformations.owl#MIDletPlatform"/>
   </constraintSet>
+  <constraintSet name="transformations::UML2SWTApplication">
+    <constraint ontClassURI="http://local/Transformations.owl#SWTPlatform"/>
+  </constraintSet>
 </platformkit:ConstraintSpace>

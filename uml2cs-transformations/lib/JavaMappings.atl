@@ -319,6 +319,9 @@ helper context Boolean def : midletInitBody() : String =
 		''
 	endif;
 
+helper context Boolean def : swtAppInitBody() : String =
+	self.midletInitBody();
+
 helper context String def : appletInfoBody() : String =
 	'return "' + self + '";';
 

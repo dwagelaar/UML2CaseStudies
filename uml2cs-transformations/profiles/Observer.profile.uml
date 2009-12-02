@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_jn7CcI8YEdq-Os5Rz1ENIw" name="Observer" metaclassReference="_g6VsgDgqEduNII1tDKqNvA _g6W6oDgqEduNII1tDKqNvA _g6YIwDgqEduNII1tDKqNvA">
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_jn7CcI8YEdq-Os5Rz1ENIw" name="Observer" metaclassReference="_g6VsgDgqEduNII1tDKqNvA _g6W6oDgqEduNII1tDKqNvA _g6YIwDgqEduNII1tDKqNvA">
   <eAnnotations xmi:id="_lwMVgI8jEdq-Os5Rz1ENIw" source="http://www.eclipse.org/uml2/2.0.0/UML">
     <contents xmi:type="ecore:EPackage" xmi:id="_g6Z98DgqEduNII1tDKqNvA" name="Observer" nsURI="http:///schemas/Observer/1" nsPrefix="Observer">
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_g6Z98TgqEduNII1tDKqNvA" name="Observer">
         <eAnnotations xmi:id="_g6Z98jgqEduNII1tDKqNvA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qfv14I8YEdq-Os5Rz1ENIw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_g6Z98zgqEduNII1tDKqNvA" name="base_Classifier" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Classifier"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Classifier"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_g6Z99DgqEduNII1tDKqNvA" name="Observable">
         <eAnnotations xmi:id="_g6Z99TgqEduNII1tDKqNvA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_wcycEI8YEdq-Os5Rz1ENIw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_g6Z99jgqEduNII1tDKqNvA" name="base_Classifier" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Classifier"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Classifier"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_g6Z99zgqEduNII1tDKqNvA" name="subscribe">
         <eAnnotations xmi:id="_g6Z9-DgqEduNII1tDKqNvA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_yHlJ8I8YEdq-Os5Rz1ENIw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_g6Z9-TgqEduNII1tDKqNvA" name="base_Association" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Association"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Association"/>
         </eStructuralFeatures>
       </eClassifiers>
     </contents>
@@ -25,19 +25,19 @@
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_lwPY0Y8jEdq-Os5Rz1ENIw" name="Observer__Observer">
         <eAnnotations xmi:id="_lwPY0o8jEdq-Os5Rz1ENIw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_qfv14I8YEdq-Os5Rz1ENIw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Mln2IDgqEduNII1tDKqNvA" name="base_Classifier">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Classifier"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Classifier"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_lwPY048jEdq-Os5Rz1ENIw" name="Observer__Observable">
         <eAnnotations xmi:id="_lwPY1I8jEdq-Os5Rz1ENIw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_wcycEI8YEdq-Os5Rz1ENIw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_MlodMDgqEduNII1tDKqNvA" name="base_Classifier">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Classifier"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Classifier"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_lwPY1Y8jEdq-Os5Rz1ENIw" name="Observer__subscribe">
         <eAnnotations xmi:id="_lwPY1o8jEdq-Os5Rz1ENIw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_yHlJ8I8YEdq-Os5Rz1ENIw"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_MlodMTgqEduNII1tDKqNvA" name="base_Association">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Association"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Association"/>
         </eStructuralFeatures>
       </eClassifiers>
     </contents>

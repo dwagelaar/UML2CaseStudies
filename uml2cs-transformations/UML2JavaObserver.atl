@@ -38,6 +38,9 @@ helper context UML2!"uml::Association" def : isSubscribe : Boolean =
 helper context UML2!"uml::Dependency" def : isAccessor : Boolean =
 	thisModule.accessors->exists(a|a.base_Dependency=self);
 
+helper context UML2!"uml::Dependency" def : accessor : Boolean =
+	thisModule.accessors->any(a|a.base_Dependency=self);
+
 helper context UML2!"uml::Behavior" def : isNotifyMethod : Boolean =
 	if self.specification.isAccessor then
 		self.owner.isObservableKind
@@ -95,11 +98,12 @@ helper context UML2!"uml::Property" def : hasSubscribesAssociation : Boolean =
 	endif;
 
 helper context UML2!"uml::Operation" def : notify(body : String) : String =
-	if self.name.startsWith('remove') then
+	let acc : UML2!"Accessor::accessor" = self.accessorDependency.accessor in
+	if acc.kind = #remove then
 		self.accessorFor.removerNotify(body)
-	else if self.name.startsWith('add') or self.name.startsWith('insert') then
+	else if acc.kind = #add or acc.kind = #insert then
 		self.accessorFor.adderNotify(body)
-	else if self.name.startsWith('set') then
+	else if acc.kind = #set then
 		self.accessorFor.setterNotify(body)
 	else
 		body
@@ -118,11 +122,12 @@ helper context UML2!"uml::Property" def : removerNotify(body : String) : String 
 		self.type.qualifiedName(thisModule.separator), body, true);
 
 helper context UML2!"uml::Operation" def : subscribe(body : String) : String =
-	if self.name.startsWith('remove') then
+	let acc : UML2!"Accessor::accessor" = self.accessorDependency.accessor in
+	if acc.kind = #remove then
 		self.accessorFor.name.removerSubscribeBody(body, true)
-	else if self.name.startsWith('add') or self.name.startsWith('insert') then
+	else if acc.kind = #add or acc.kind = #insert then
 		self.accessorFor.name.adderSubscribeBody(body)
-	else if self.name.startsWith('set') then
+	else if acc.kind = #set then
 		self.accessorFor.name.setterSubscribeBody(body, true)
 	else
 		body
@@ -250,8 +255,19 @@ rule ObserverClass(s : UML2!"uml::Class") {
 	   updateBehavior : UML2!"uml::OpaqueBehavior" (
 		specification <- updateOp,
 		name <- updateOp.name + 'Behavior',
+		ownedParameter <- Sequence{updateBPar1, updateBPar2},
 		language <- Sequence{thisModule.language},
-		body <- Sequence{'arg'.reflectiveUpdateBody()})
+		body <- Sequence{'arg'.reflectiveUpdateBody()}),
+	   updateBPar1 : UML2!"uml::Parameter" (
+	   	name <- 'o',
+		type <- thisModule.Observable,
+		effect <- #read,
+		direction <- #"in"),
+	   updateBPar2 : UML2!"uml::Parameter" (
+	   	name <- 'arg',
+		type <- thisModule.oclAny,
+		effect <- #update,
+		direction <- #"in")
 	do {
 		updateBehavior;
 	}

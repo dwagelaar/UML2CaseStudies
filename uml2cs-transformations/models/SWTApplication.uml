@@ -8,7 +8,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Kb6onUKpEd29fNqekgzB4Q" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Kb6onkKpEd29fNqekgzB4Q" value="1"/>
         </ownedAttribute>
-        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_C6DZoEKpEd29fNqekgzB4Q" name="SWTApplication_mainBehavior" specification="_bl76AkKoEd29fNqekgzB4Q">
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_C6DZoEKpEd29fNqekgzB4Q" name="SWTApplicationBehavior" specification="_bl76AkKoEd29fNqekgzB4Q">
           <language>java</language>
           <body>&#x9;final Display display = new Display();&#xA;&#x9;final Shell shell = new Shell(display));&#xA;&#x9;setShell(shell);&#xA;&#x9;init();&#xA;&#x9;shell.open();&#xA;&#x9;start();&#xA;&#x9;while (!shell.isDisposed()) {&#xA;&#x9;&#x9;if (!display.readAndDispatch()) {&#xA;&#x9;&#x9;&#x9;display.sleep();&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;stop();&#xA;&#x9;display.dispose();</body>
         </ownedBehavior>

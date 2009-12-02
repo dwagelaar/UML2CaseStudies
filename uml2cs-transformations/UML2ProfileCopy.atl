@@ -37,6 +37,7 @@ rule "Accessors::accessor" {
     from s : UML2!"Accessors::accessor" (thisModule.inElements->includes(s))
     to t : UML2!"Accessors::accessor" (
         __xmiID__ <- s.__xmiID__,
+		kind <- s.kind,
         base_Dependency <- s.base_Dependency)
 }
 

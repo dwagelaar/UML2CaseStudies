@@ -167,8 +167,14 @@ rule AppletInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
 	   infoBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- infoOp,
 		name <- infoOp.name + 'Behavior',
+		ownedParameter <- Sequence{infoBPar},
 		language <- Sequence{thisModule.language},
-		body <- Sequence{a.appletInfo.appletInfoBody()})
+		body <- Sequence{a.appletInfo.appletInfoBody()}),
+	   infoBPar : UML2!"uml::Parameter" (
+	   	name <- 'return',
+		type <- thisModule.implString,
+		effect <- #read,
+		direction <- #return)
 	do {
 		infoBehavior;
 	}
@@ -189,8 +195,14 @@ rule ParameterInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
 	   infoBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- infoOp,
 		name <- infoOp.name + 'Behavior',
+		ownedParameter <- Sequence{infoBPar},
 		language <- Sequence{thisModule.language},
-		body <- Sequence{a.parameterInfo.parameterInfoBody()})
+		body <- Sequence{a.parameterInfo.parameterInfoBody()}),
+	   infoBPar : UML2!"uml::Parameter" (
+	   	name <- 'return',
+		type <- thisModule.implStringAA,
+		effect <- #read,
+		direction <- #return)
 	do {
 		infoBehavior;
 	}

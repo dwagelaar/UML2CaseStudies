@@ -152,7 +152,7 @@ rule AppletInitOperation(s : UML2!"uml::Class") {
 	   	specification <- initOp,
 		name <- initOp.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s.isSingleton.midletInitBody()})
+		body <- Sequence{s.isSingleton.swtAppInitBody()})
 	do {
 		initBehavior;
 	}

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="Interpreter">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="interpreter">
+      <packagedElement xmi:type="uml:Class" xmi:id="_cqnGUHzZEd6ZuPM5TspYjQ" name="Expression" isAbstract="true">
+        <ownedAttribute xmi:id="_3DKHYHzZEd6ZuPM5TspYjQ" name="expression">
+          <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_g1n4wHzaEd6ZuPM5TspYjQ" name="interpret" isAbstract="true" raisedException="_MDcqUHzaEd6ZuPM5TspYjQ">
+          <ownedComment xmi:id="_EaffcHzbEd6ZuPM5TspYjQ" annotatedElement="_g1n4wHzaEd6ZuPM5TspYjQ">
+            <body>Interprets given expression at starting position.
+@param position starting position.
+@return the position after parsing.
+@throws ParseException</body>
+          </ownedComment>
+          <ownedParameter xmi:id="_jBt84HzaEd6ZuPM5TspYjQ" name="position">
+            <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_nENh8HzaEd6ZuPM5TspYjQ" name="return" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_MDcqUHzaEd6ZuPM5TspYjQ" name="ParseException">
+        <generalization xmi:id="_cg57Q3zaEd6ZuPM5TspYjQ">
+          <general xmi:type="uml:Class" href="JavaTypes.uml#_vYhkAETFEdutoZk0i5ZyXw"/>
+        </generalization>
+        <ownedAttribute xmi:id="_py118HzbEd6ZuPM5TspYjQ" name="position">
+          <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
+        </ownedAttribute>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MWsrkHzcEd6ZuPM5TspYjQ" name="ParseExceptionBehavior1" specification="_tOBjYHzbEd6ZuPM5TspYjQ">
+          <language>java</language>
+          <body>super();&#xA;this.position = position;</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_vLgHQHzcEd6ZuPM5TspYjQ" name="ParseExceptionBehavior2" specification="_TA5SsHzcEd6ZuPM5TspYjQ">
+          <language>Java</language>
+          <body>super(message, cause);&#xA;this.position = position;</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_91EYsHzcEd6ZuPM5TspYjQ" name="ParseExceptionBehavior3" specification="_y9JM4nzcEd6ZuPM5TspYjQ">
+          <language>Java</language>
+          <body>super(message);&#xA;this.position = position;</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_KctOoHzdEd6ZuPM5TspYjQ" name="ParseExceptionBehavior4" specification="_BtvTYHzdEd6ZuPM5TspYjQ">
+          <language>Java</language>
+          <body>super(cause);&#xA;this.position = position;</body>
+        </ownedBehavior>
+        <ownedOperation xmi:id="_tOBjYHzbEd6ZuPM5TspYjQ" name="ParseException" method="_MWsrkHzcEd6ZuPM5TspYjQ">
+          <ownedParameter xmi:id="_9ontkHzbEd6ZuPM5TspYjQ" name="return" type="_MDcqUHzaEd6ZuPM5TspYjQ" direction="return"/>
+          <ownedParameter xmi:id="_BOVQAHzcEd6ZuPM5TspYjQ" name="position">
+            <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_TA5SsHzcEd6ZuPM5TspYjQ" name="ParseException" method="_vLgHQHzcEd6ZuPM5TspYjQ">
+          <ownedParameter xmi:id="_aqbP4HzcEd6ZuPM5TspYjQ" name="return" type="_MDcqUHzaEd6ZuPM5TspYjQ" direction="return"/>
+          <ownedParameter xmi:id="_dYv3UHzcEd6ZuPM5TspYjQ" name="message">
+            <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_gEuVYHzcEd6ZuPM5TspYjQ" name="cause">
+            <type xmi:type="uml:Interface" href="JavaTypes.uml#_zqsj0ETFEdutoZk0i5ZyXw"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_itGs4HzcEd6ZuPM5TspYjQ" name="position">
+            <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_y9JM4nzcEd6ZuPM5TspYjQ" name="ParseException" method="_91EYsHzcEd6ZuPM5TspYjQ">
+          <ownedParameter xmi:id="_18sHMHzcEd6ZuPM5TspYjQ" name="return" type="_MDcqUHzaEd6ZuPM5TspYjQ" direction="return"/>
+          <ownedParameter xmi:id="_3cg7MHzcEd6ZuPM5TspYjQ" name="message">
+            <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_8jw3kPyKEdqlTr7ZXrCGhQ"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_4oMrMHzcEd6ZuPM5TspYjQ" name="position">
+            <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_BtvTYHzdEd6ZuPM5TspYjQ" name="ParseException" method="_KctOoHzdEd6ZuPM5TspYjQ">
+          <ownedParameter xmi:id="_DMYboHzdEd6ZuPM5TspYjQ" name="return" type="_MDcqUHzaEd6ZuPM5TspYjQ" direction="return"/>
+          <ownedParameter xmi:id="_EdBkIHzdEd6ZuPM5TspYjQ" name="cause">
+            <type xmi:type="uml:Interface" href="JavaTypes.uml#_zqsj0ETFEdutoZk0i5ZyXw"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_F1hoIHzdEd6ZuPM5TspYjQ" name="position">
+            <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#_zcuakPyKEdqlTr7ZXrCGhQ"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_0Sd2gHzbEd6ZuPM5TspYjQ">
+      <eAnnotations xmi:id="_0Sg50HzbEd6ZuPM5TspYjQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Standard:Create xmi:id="_1anKUHzbEd6ZuPM5TspYjQ" base_BehavioralFeature="_tOBjYHzbEd6ZuPM5TspYjQ"/>
+  <Standard:Create xmi:id="_oe5sYHzcEd6ZuPM5TspYjQ" base_BehavioralFeature="_TA5SsHzcEd6ZuPM5TspYjQ"/>
+  <Standard:Create xmi:id="_6_WIwHzcEd6ZuPM5TspYjQ" base_BehavioralFeature="_y9JM4nzcEd6ZuPM5TspYjQ"/>
+  <Standard:Create xmi:id="_ISuqYHzdEd6ZuPM5TspYjQ" base_BehavioralFeature="_BtvTYHzdEd6ZuPM5TspYjQ"/>
+</xmi:XMI>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="_78cDEOrLEdyKT-jaGOfUdg" activeDiagram="_78iw4OrLEdyKT-jaGOfUdg">
+<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="_78cDEOrLEdyKT-jaGOfUdg" activeDiagram="_78fGberLEdyKT-jaGOfUdg">
   <model href="JavaTypes.uml#_tPOCIaLHEdqkGMDvm75SlQ"/>
   <diagrams xmi:id="_78cDEerLEdyKT-jaGOfUdg" position="0,0" size="100,100" name="JavaTypes" viewport="0,0">
     <property xmi:id="_78cDEurLEdyKT-jaGOfUdg" key="pageFormatName" value="A4"/>
@@ -328,9 +328,9 @@
     <subdiagrams xmi:id="_78fGbOrLEdyKT-jaGOfUdg">
       <model href="JavaTypes.uml#_6Kkv0PfuEdqaqL9wEVL3aA"/>
       <diagrams xmi:id="_78fGberLEdyKT-jaGOfUdg" position="0,0" size="100,100" name="java.util" viewport="0,0">
-        <property xmi:id="_78fGburLEdyKT-jaGOfUdg" key="pageFormatName" value="A4"/>
-        <property xmi:id="_78fGb-rLEdyKT-jaGOfUdg" key="diagramWidth" value="840"/>
-        <property xmi:id="_78fGcOrLEdyKT-jaGOfUdg" key="diagramHeight" value="1188"/>
+        <property xmi:id="_78fGburLEdyKT-jaGOfUdg" key="pageFormatName" value="newPageFormat2"/>
+        <property xmi:id="_78fGb-rLEdyKT-jaGOfUdg" key="diagramWidth" value="650"/>
+        <property xmi:id="_78fGcOrLEdyKT-jaGOfUdg" key="diagramHeight" value="450"/>
         <property xmi:id="_78fGcerLEdyKT-jaGOfUdg" key="pageMarginName" value="Small Margin"/>
         <property xmi:id="_78fGcurLEdyKT-jaGOfUdg" key="diagramTopMargin" value="20"/>
         <property xmi:id="_78fGc-rLEdyKT-jaGOfUdg" key="diagramBottomMargin" value="20"/>
@@ -340,7 +340,7 @@
         <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78fGd-rLEdyKT-jaGOfUdg" presentation="org.topcased.modeler.uml.classdiagram">
           <element href="JavaTypes.uml#_6Kkv0PfuEdqaqL9wEVL3aA"/>
         </semanticModel>
-        <contained xsi:type="di:GraphNode" xmi:id="_78fGeOrLEdyKT-jaGOfUdg" position="28,288" size="50,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78fGeOrLEdyKT-jaGOfUdg" position="8,252" size="50,-1">
           <property xmi:id="_78fGeerLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <anchorage xmi:id="_78fGeurLEdyKT-jaGOfUdg" graphEdge="_78ftfOrLEdyKT-jaGOfUdg"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78fGe-rLEdyKT-jaGOfUdg" presentation="default">
@@ -359,7 +359,7 @@
             </semanticModel>
           </contained>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78ftcurLEdyKT-jaGOfUdg" position="54,155" size="86,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78ftcurLEdyKT-jaGOfUdg" position="34,119" size="86,-1">
           <property xmi:id="_78ftc-rLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <anchorage xmi:id="_78ftdOrLEdyKT-jaGOfUdg" graphEdge="_78ftfOrLEdyKT-jaGOfUdg _78ftiOrLEdyKT-jaGOfUdg _78g7lerLEdyKT-jaGOfUdg"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78ftderLEdyKT-jaGOfUdg" presentation="default">
@@ -383,7 +383,7 @@
             <element href="JavaTypes.uml#_NdWLkPfwEdqaqL9wEVL3aA"/>
           </semanticModel>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78ftfurLEdyKT-jaGOfUdg" position="153,41" size="86,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78ftfurLEdyKT-jaGOfUdg" position="133,5" size="86,-1">
           <property xmi:id="_78ftf-rLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <anchorage xmi:id="_78ftgOrLEdyKT-jaGOfUdg" graphEdge="_78ftiOrLEdyKT-jaGOfUdg _78gUiOrLEdyKT-jaGOfUdg"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78ftgerLEdyKT-jaGOfUdg" presentation="default">
@@ -407,7 +407,7 @@
             <element href="JavaTypes.uml#_vMZVkPfvEdqaqL9wEVL3aA"/>
           </semanticModel>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78ftiurLEdyKT-jaGOfUdg" position="249,155" size="86,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78ftiurLEdyKT-jaGOfUdg" position="229,119" size="86,-1">
           <property xmi:id="_78fti-rLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <anchorage xmi:id="_78gUgOrLEdyKT-jaGOfUdg" graphEdge="_78gUiOrLEdyKT-jaGOfUdg _78gUlOrLEdyKT-jaGOfUdg _78g7oerLEdyKT-jaGOfUdg"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78gUgerLEdyKT-jaGOfUdg" presentation="default">
@@ -431,7 +431,7 @@
             <element href="JavaTypes.uml#_zgIboPfvEdqaqL9wEVL3aA"/>
           </semanticModel>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78gUiurLEdyKT-jaGOfUdg" position="305,288" size="86,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78gUiurLEdyKT-jaGOfUdg" position="285,252" size="86,-1">
           <property xmi:id="_78gUi-rLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <anchorage xmi:id="_78gUjOrLEdyKT-jaGOfUdg" graphEdge="_78gUlOrLEdyKT-jaGOfUdg _78hioOrLEdyKT-jaGOfUdg"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78gUjerLEdyKT-jaGOfUdg" presentation="default">
@@ -455,7 +455,7 @@
             <element href="JavaTypes.uml#_zMV88PfvEdqaqL9wEVL3aA"/>
           </semanticModel>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78gUlurLEdyKT-jaGOfUdg" position="103,288" size="61,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78gUlurLEdyKT-jaGOfUdg" position="83,252" size="61,-1">
           <property xmi:id="_78gUl-rLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <anchorage xmi:id="_78gUmOrLEdyKT-jaGOfUdg" graphEdge="_78g7lerLEdyKT-jaGOfUdg"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78gUmerLEdyKT-jaGOfUdg" presentation="default">
@@ -479,7 +479,7 @@
             <element href="JavaTypes.uml#_QkYN8PfwEdqaqL9wEVL3aA"/>
           </semanticModel>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78g7l-rLEdyKT-jaGOfUdg" position="202,288" size="56,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78g7l-rLEdyKT-jaGOfUdg" position="182,252" size="56,-1">
           <property xmi:id="_78g7mOrLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <anchorage xmi:id="_78g7merLEdyKT-jaGOfUdg" graphEdge="_78g7oerLEdyKT-jaGOfUdg"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78g7murLEdyKT-jaGOfUdg" presentation="default">
@@ -503,7 +503,7 @@
             <element href="JavaTypes.uml#_ZJEy4PfwEdqaqL9wEVL3aA"/>
           </semanticModel>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78g7o-rLEdyKT-jaGOfUdg" position="346,388" size="51,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78g7o-rLEdyKT-jaGOfUdg" position="310,335" size="51,-1">
           <property xmi:id="_78g7pOrLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <anchorage xmi:id="_78g7perLEdyKT-jaGOfUdg" graphEdge="_78hioOrLEdyKT-jaGOfUdg"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78g7purLEdyKT-jaGOfUdg" presentation="default">
@@ -527,7 +527,7 @@
             <element href="JavaTypes.uml#_ryV0EPfwEdqaqL9wEVL3aA"/>
           </semanticModel>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78hiourLEdyKT-jaGOfUdg" position="545,288" size="74,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78hiourLEdyKT-jaGOfUdg" position="509,251" size="74,-1">
           <property xmi:id="_78hio-rLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78hipOrLEdyKT-jaGOfUdg" presentation="default">
             <element href="JavaTypes.uml#_IE_xYPfxEdqaqL9wEVL3aA"/>
@@ -545,7 +545,7 @@
             </semanticModel>
           </contained>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78hiq-rLEdyKT-jaGOfUdg" position="429,288" size="86,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78hiq-rLEdyKT-jaGOfUdg" position="395,251" size="86,-1">
           <property xmi:id="_78hirOrLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78hirerLEdyKT-jaGOfUdg" presentation="default">
             <element href="JavaTypes.uml#_LmJj8PfxEdqaqL9wEVL3aA"/>
@@ -563,7 +563,7 @@
             </semanticModel>
           </contained>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78hitOrLEdyKT-jaGOfUdg" position="435,41" size="86,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78hitOrLEdyKT-jaGOfUdg" position="415,5" size="86,-1">
           <property xmi:id="_78hiterLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <anchorage xmi:id="_78hiturLEdyKT-jaGOfUdg" graphEdge="_78iJuerLEdyKT-jaGOfUdg _78iJxerLEdyKT-jaGOfUdg"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78hit-rLEdyKT-jaGOfUdg" presentation="default">
@@ -582,7 +582,7 @@
             </semanticModel>
           </contained>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78hivurLEdyKT-jaGOfUdg" position="506,155" size="62,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78hivurLEdyKT-jaGOfUdg" position="486,119" size="62,-1">
           <property xmi:id="_78iJsOrLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <anchorage xmi:id="_78iJserLEdyKT-jaGOfUdg" graphEdge="_78iJuerLEdyKT-jaGOfUdg"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78iJsurLEdyKT-jaGOfUdg" presentation="default">
@@ -606,7 +606,7 @@
             <element href="JavaTypes.uml#_fFcOMPfxEdqaqL9wEVL3aA"/>
           </semanticModel>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78iJu-rLEdyKT-jaGOfUdg" position="399,155" size="66,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78iJu-rLEdyKT-jaGOfUdg" position="379,119" size="66,-1">
           <property xmi:id="_78iJvOrLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <anchorage xmi:id="_78iJverLEdyKT-jaGOfUdg" graphEdge="_78iJxerLEdyKT-jaGOfUdg"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78iJvurLEdyKT-jaGOfUdg" presentation="default">
@@ -630,7 +630,7 @@
             <element href="JavaTypes.uml#_ey33gPfxEdqaqL9wEVL3aA"/>
           </semanticModel>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78iJx-rLEdyKT-jaGOfUdg" position="670,93" size="86,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78iJx-rLEdyKT-jaGOfUdg" position="395,180" size="86,-1">
           <property xmi:id="_78iJyOrLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78iJyerLEdyKT-jaGOfUdg" presentation="default">
             <element href="JavaTypes.uml#_OB3wAPxFEdqPCPYQWc94YQ"/>
@@ -648,7 +648,7 @@
             </semanticModel>
           </contained>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_78iwwerLEdyKT-jaGOfUdg" position="670,208" size="86,-1">
+        <contained xsi:type="di:GraphNode" xmi:id="_78iwwerLEdyKT-jaGOfUdg" position="509,180" size="86,-1">
           <property xmi:id="_78iwwurLEdyKT-jaGOfUdg" key="backgroundColor" value="255,255,255"/>
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_78iww-rLEdyKT-jaGOfUdg" presentation="default">
             <element href="JavaTypes.uml#_PDpWEPxFEdqPCPYQWc94YQ"/>
@@ -705,7 +705,7 @@
     </subdiagrams>
     <subdiagrams xmi:id="_78iw3-rLEdyKT-jaGOfUdg">
       <model href="JavaTypes.uml#_dK7VkEPdEdusb52s3APTjA"/>
-      <diagrams xmi:id="_78iw4OrLEdyKT-jaGOfUdg" position="0,0" size="100,100" name="java.awt" viewport="0,42">
+      <diagrams xmi:id="_78iw4OrLEdyKT-jaGOfUdg" position="0,0" size="100,100" name="java.awt" viewport="-4,-4">
         <property xmi:id="_78jX0OrLEdyKT-jaGOfUdg" key="pageFormatName" value="A4"/>
         <property xmi:id="_78jX0erLEdyKT-jaGOfUdg" key="diagramWidth" value="840"/>
         <property xmi:id="_78jX0urLEdyKT-jaGOfUdg" key="diagramHeight" value="1188"/>

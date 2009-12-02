@@ -4,7 +4,7 @@ library Config;
 
 -- adapt the following helper to reflect your file path
 helper context String def : path : String =
-	'uml2cs-transformations/' + self;
+	'/uml2cs-transformations/' + self;
 
 -- adapt the following inclusion condition for your specific model
 helper context ECORE!"ecore::EClass" def : inclusionCondition : Boolean =

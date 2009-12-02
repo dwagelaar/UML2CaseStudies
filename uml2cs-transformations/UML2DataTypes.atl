@@ -106,13 +106,6 @@ helper context UML2!"uml::MultiplicityElement" def : implCollectionReturnType : 
 helper context UML2!"uml::TypedElement" def : defaultValueBody() : String =
 	self.implType.defaultValueBody();
 
---helper context UML2!"uml::Property" def : defaultValueBody() : String =
---	if self.isSingle then
---		self.implType.defaultValueBody()
---	else
---		self.implCollectionType.defaultValueBody()
---	endif;
-
 helper context UML2!"uml::Type" def : defaultValueBody() : String =
 	self.umlQualifiedName.defaultValueBody();
 
@@ -149,10 +142,7 @@ rule Property {
         upperValue <- s.upperValue,
         lowerValue <- s.lowerValue,
         templateParameter <- s.templateParameter,
-        end <- s.end,
         deployment <- s.deployment,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
         redefinedProperty <- s.redefinedProperty,
         defaultValue <- if s.defaultValue.oclIsUndefined() then
 			thisModule.DefVal(s) else s.defaultValue endif,

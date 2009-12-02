@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_02pEgOc5EdqWbZ4NdHyPMQ" name="Accessors" metaclassReference="_F7AUEDgxEduNII1tDKqNvA">
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_02pEgOc5EdqWbZ4NdHyPMQ" name="Accessors" metaclassReference="_F7AUEDgxEduNII1tDKqNvA">
   <eAnnotations xmi:id="_jVHckOc7EdqWbZ4NdHyPMQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-    <contents xmi:type="ecore:EPackage" xmi:id="_F7BiMTgxEduNII1tDKqNvA" name="Accessors" nsURI="http:///schemas/Accessors/1" nsPrefix="Accessors">
+    <contents xmi:type="ecore:EPackage" xmi:id="_PhpOIKOrEd64oN4qPjmMtw" name="Accessors" nsURI="http:///schemas/Accessors/_PhonEKOrEd64oN4qPjmMtw/2" nsPrefix="Accessors">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_PhpOIaOrEd64oN4qPjmMtw" name="accessor">
+        <eAnnotations xmi:id="_PhpOIqOrEd64oN4qPjmMtw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_4U-MkOc5EdqWbZ4NdHyPMQ"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_PhpOI6OrEd64oN4qPjmMtw" name="base_Dependency" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Dependency"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_PhpOJaOrEd64oN4qPjmMtw" name="kind" ordered="false" lowerBound="1" eType="_PhpOJ6OrEd64oN4qPjmMtw"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_PhpOJ6OrEd64oN4qPjmMtw" name="AccessorKind">
+        <eAnnotations xmi:id="_PhpOKKOrEd64oN4qPjmMtw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_72lqsKOoEd64oN4qPjmMtw"/>
+        <eLiterals xmi:id="_PhpOKaOrEd64oN4qPjmMtw" name="undefined"/>
+        <eLiterals xmi:id="_PhpOKqOrEd64oN4qPjmMtw" name="get" value="1"/>
+        <eLiterals xmi:id="_PhpOK6OrEd64oN4qPjmMtw" name="set" value="2"/>
+        <eLiterals xmi:id="_PhpOLKOrEd64oN4qPjmMtw" name="add" value="3"/>
+        <eLiterals xmi:id="_PhpOLaOrEd64oN4qPjmMtw" name="remove" value="4"/>
+        <eLiterals xmi:id="_PhpOLqOrEd64oN4qPjmMtw" name="insert" value="5"/>
+        <eLiterals xmi:id="_PhpOL6OrEd64oN4qPjmMtw" name="indexOf" value="6"/>
+        <eLiterals xmi:id="_PhpOMKOrEd64oN4qPjmMtw" name="removeAll" value="7"/>
+        <eLiterals xmi:id="_PhpOMaOrEd64oN4qPjmMtw" name="getAt" value="8"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_F7BiMTgxEduNII1tDKqNvA" name="Accessors_1" nsURI="http:///schemas/Accessors/1" nsPrefix="Accessors">
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_F7CJQDgxEduNII1tDKqNvA" name="accessor">
         <eAnnotations xmi:id="_F7CJQTgxEduNII1tDKqNvA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_4U-MkOc5EdqWbZ4NdHyPMQ"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_F7CJQjgxEduNII1tDKqNvA" name="base_Dependency" ordered="false" lowerBound="1">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Dependency"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Dependency"/>
         </eStructuralFeatures>
       </eClassifiers>
     </contents>
@@ -13,7 +34,7 @@
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_jVSbsec7EdqWbZ4NdHyPMQ" name="Accessors__accessor">
         <eAnnotations xmi:id="_jVSbsuc7EdqWbZ4NdHyPMQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_4U-MkOc5EdqWbZ4NdHyPMQ"/>
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ERqXsDgxEduNII1tDKqNvA" name="base_Dependency">
-          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Dependency"/>
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Dependency"/>
         </eStructuralFeatures>
       </eClassifiers>
     </contents>
@@ -25,8 +46,20 @@
     <ownedAttribute xmi:id="_F7BiMDgxEduNII1tDKqNvA" name="base_Dependency" association="_F7A7IDgxEduNII1tDKqNvA">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Dependency"/>
     </ownedAttribute>
+    <ownedAttribute xmi:id="_-UIrMKOoEd64oN4qPjmMtw" name="kind" type="_72lqsKOoEd64oN4qPjmMtw"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Extension" xmi:id="_F7A7IDgxEduNII1tDKqNvA" name="Dependency_accessor" memberEnd="_F7A7ITgxEduNII1tDKqNvA _F7BiMDgxEduNII1tDKqNvA">
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_F7A7ITgxEduNII1tDKqNvA" name="extension_accessor" type="_4U-MkOc5EdqWbZ4NdHyPMQ" aggregation="composite" association="_F7A7IDgxEduNII1tDKqNvA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_72lqsKOoEd64oN4qPjmMtw" name="AccessorKind">
+    <ownedLiteral xmi:id="_I1UgEKOrEd64oN4qPjmMtw" name="undefined"/>
+    <ownedLiteral xmi:id="_UwzFgKOpEd64oN4qPjmMtw" name="get"/>
+    <ownedLiteral xmi:id="_citioKOpEd64oN4qPjmMtw" name="set"/>
+    <ownedLiteral xmi:id="_f7W5cKOpEd64oN4qPjmMtw" name="add"/>
+    <ownedLiteral xmi:id="_hJZZ4KOpEd64oN4qPjmMtw" name="remove"/>
+    <ownedLiteral xmi:id="_jKnDsKOpEd64oN4qPjmMtw" name="insert"/>
+    <ownedLiteral xmi:id="_krDiwKOpEd64oN4qPjmMtw" name="indexOf"/>
+    <ownedLiteral xmi:id="_Kyo90KOqEd64oN4qPjmMtw" name="removeAll"/>
+    <ownedLiteral xmi:id="_QZqQsKOqEd64oN4qPjmMtw" name="getAt"/>
   </packagedElement>
 </uml:Profile>

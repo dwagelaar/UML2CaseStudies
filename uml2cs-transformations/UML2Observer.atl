@@ -37,6 +37,9 @@ helper context UML2!"uml::Association" def : isSubscribe : Boolean =
 helper context UML2!"uml::Dependency" def : isAccessor : Boolean =
 	thisModule.accessors->exists(a|a.base_Dependency=self);
 
+helper context UML2!"uml::Dependency" def : accessor : Boolean =
+	thisModule.accessors->any(a|a.base_Dependency=self);
+
 helper context UML2!"uml::Class" def : update() : String =
 	self.handlers()->iterate(o; acc : String = ''|acc + o.update());
 
@@ -112,11 +115,12 @@ helper context UML2!"uml::Property" def : hasSubscribesAssociation : Boolean =
 	endif;
 
 helper context UML2!"uml::Operation" def : notify(body : String) : String =
-	if self.name.startsWith('remove') then
+	let acc : UML2!"Accessor::accessor" = self.accessorDependency.accessor in
+	if acc.kind = #remove then
 		self.accessorFor.removerNotify(body)
-	else if self.name.startsWith('add') or self.name.startsWith('insert') then
+	else if acc.kind = #add or acc.kind = #insert then
 		self.accessorFor.adderNotify(body)
-	else if self.name.startsWith('set') then
+	else if acc.kind = #set then
 		self.accessorFor.setterNotify(body)
 	else
 		body
@@ -135,11 +139,12 @@ helper context UML2!"uml::Property" def : removerNotify(body : String) : String 
 		self.type.qualifiedName(thisModule.separator), body, false);
 
 helper context UML2!"uml::Operation" def : subscribe(body : String) : String =
-	if self.name.startsWith('remove') then
+	let acc : UML2!"Accessor::accessor" = self.accessorDependency.accessor in
+	if acc.kind = #remove then
 		self.accessorFor.name.removerSubscribeBody(body, false)
-	else if self.name.startsWith('add') or self.name.startsWith('insert') then
+	else if acc.kind = #add or acc.kind = #insert then
 		self.accessorFor.name.adderSubscribeBody(body)
-	else if self.name.startsWith('set') then
+	else if acc.kind = #set then
 		self.accessorFor.name.setterSubscribeBody(body, false)
 	else
 		body
@@ -272,8 +277,20 @@ rule ObservableClass {
 	   getBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- getOp,
 		name <- getOp.name + 'Behavior',
+		ownedParameter <- Sequence{getBPar},
 		language <- Sequence{thisModule.language},
 		body <- Sequence{observers.name.multiGetterBody()}),
+	   getBPar : UML2!"uml::Parameter" (
+	   	name <- 'return',
+        lowerValue <- getBParLow,
+        upperValue <- getBParUp,
+		type <- observers.type,
+		effect <- #read,
+		direction <- #return),
+	   getBParLow : UML2!"uml::LiteralInteger" (
+	   	value <- 0),
+	   getBParUp : UML2!"uml::LiteralUnlimitedNatural" (
+	   	value <- 0-1),
 	-- Add --
 	   addOp : UML2!"uml::Operation" (
 	   	name <- 'addObserver',
@@ -289,8 +306,14 @@ rule ObservableClass {
 	   addBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- addOp,
 		name <- addOp.name + 'Behavior',
+		ownedParameter <- Sequence{addBPar},
 		language <- Sequence{thisModule.language},
 		body <- Sequence{observers.name.adderBody(observers.isUnique)}),
+	   addBPar : UML2!"uml::Parameter" (
+	   	name <- observers.name,
+		type <- observers.type,
+		effect <- #update,
+		direction <- #"in"),
 	-- Remove --
 	   removeOp : UML2!"uml::Operation" (
 	   	name <- 'removeObserver',
@@ -306,8 +329,14 @@ rule ObservableClass {
 	   removeBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- removeOp,
 		name <- removeOp.name + 'Behavior',
+		ownedParameter <- Sequence{removeBPar},
 		language <- Sequence{thisModule.language},
 		body <- Sequence{observers.name.removerBody()}),
+	   removeBPar : UML2!"uml::Parameter" (
+	   	name <- observers.name,
+		type <- observers.type,
+		effect <- #update,
+		direction <- #"in"),
 	-- Notify --
 	   notifyOp : UML2!"uml::Operation" (
 	   	name <- 'notifyObservers',
@@ -328,8 +357,19 @@ rule ObservableClass {
 	   notifyBehavior : UML2!"uml::OpaqueBehavior" (
 		specification <- notifyOp,
 		name <- notifyOp.name + 'Behavior',
+		ownedParameter <- Sequence{notifyBPar1, notifyBPar2},
 		language <- Sequence{thisModule.language},
-		body <- Sequence{thisModule.ObserverName.notifyObserversBody()})
+		body <- Sequence{thisModule.ObserverName.notifyObserversBody()}),
+	   notifyBPar1 : UML2!"uml::Parameter" (
+	   	name <- 'name',
+		type <- thisModule.oclString,
+		effect <- #read,
+		direction <- #"in"),
+	   notifyBPar2 : UML2!"uml::Parameter" (
+	   	name <- 'value',
+		type <- thisModule.oclAny,
+		effect <- #update,
+		direction <- #"in")
 }
 
 rule ObserverClass(s : UML2!"uml::Class") {
@@ -356,8 +396,19 @@ rule ObserverClass(s : UML2!"uml::Class") {
 	   updateBehavior : UML2!"uml::OpaqueBehavior" (
 		specification <- updateOp,
 		name <- updateOp.name + 'Behavior',
+		ownedParameter <- Sequence{updateBPar1, updateBPar2},
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s.update()})
+		body <- Sequence{s.update()}),
+	   updateBPar1 : UML2!"uml::Parameter" (
+	   	name <- 'name',
+		type <- thisModule.oclString,
+		effect <- #read,
+		direction <- #"in"),
+	   updateBPar2 : UML2!"uml::Parameter" (
+	   	name <- 'value',
+		type <- thisModule.oclAny,
+		effect <- #update,
+		direction <- #"in")
 	do {
 		updateBehavior;
 	}

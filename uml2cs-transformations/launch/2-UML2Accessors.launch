@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.m2m.atl.adt.launching.atlTransformation">
 <stringAttribute key="ATL File Name" value="/uml2cs-transformations/UML2Copy.atl"/>
-<stringAttribute key="ATL VM" value="Regular VM (with debugger)"/>
+<stringAttribute key="ATL VM" value="Regular VM"/>
 <stringAttribute key="ATL_COMPILER" value="atl2006"/>
 <booleanAttribute key="AllowInterModelReferences" value="false"/>
 <booleanAttribute key="IS_REFINING" value="false"/>
@@ -35,7 +35,6 @@
 <mapEntry key="OPTION_CLEAR" value="true"/>
 <mapEntry key="OPTION_DERIVED" value="true"/>
 <mapEntry key="allowInterModelReferences" value="true"/>
-<mapEntry key="disassemblyMode" value="false"/>
 <mapEntry key="step" value="false"/>
 <mapEntry key="profile" value="false"/>
 </mapAttribute>

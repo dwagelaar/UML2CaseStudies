@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CompatibilityReport="http:///schemas/CompatibilityReport/_8ysJQAGwEd-7lPPHWgc7ZQ/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/CompatibilityReport/_8ysJQAGwEd-7lPPHWgc7ZQ/0 http://soft.vub.ac.be/platformkit-java/CompatibilityReport.uml#_8yswUQGwEd-7lPPHWgc7ZQ">
+  <uml:Model xmi:id="_EaFIoAT3Ed-nyZkcid7ohw" name="jdk-1_1 + swt-3_0 provides instantmessengerDeps">
+    <eAnnotations xmi:id="_EaD6gAT3Ed-nyZkcid7ohw" source="Jar2UML">
+      <details xmi:id="_EaD6ggT3Ed-nyZkcid7ohw" key="majorBytecodeFormatVersion" value="45"/>
+      <details xmi:id="_EaD6gwT3Ed-nyZkcid7ohw" key="minorBytecodeFormatVersion" value="3"/>
+      <details xmi:id="_EaD6hAT3Ed-nyZkcid7ohw" key="preverified" value="true"/>
+    </eAnnotations>
+    <packagedElement xmi:type="uml:Package" xmi:id="_EaD6hQT3Ed-nyZkcid7ohw" name="javax"/>
+    <profileApplication xmi:id="_EaFIoQT3Ed-nyZkcid7ohw">
+      <eAnnotations xmi:id="_EaD6gQT3Ed-nyZkcid7ohw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://soft.vub.ac.be/platformkit-java/CompatibilityReport.uml#_8yswUQGwEd-7lPPHWgc7ZQ"/>
+      </eAnnotations>
+      <appliedProfile href="http://soft.vub.ac.be/platformkit-java/CompatibilityReport.uml#_qgBIIH2jEd6LzqIqzRhtXg"/>
+    </profileApplication>
+  </uml:Model>
+  <CompatibilityReport:CompatibilityReport xmi:id="_EaIzAAT3Ed-nyZkcid7ohw" base_Model="_EaFIoAT3Ed-nyZkcid7ohw"/>
+  <CompatibilityReport:Missing xmi:id="_EaIzAQT3Ed-nyZkcid7ohw" base_Element="_EaD6hQT3Ed-nyZkcid7ohw"/>
+</xmi:XMI>

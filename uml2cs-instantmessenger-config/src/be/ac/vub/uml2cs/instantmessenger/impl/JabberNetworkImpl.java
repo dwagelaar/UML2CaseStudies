@@ -42,7 +42,7 @@ public class JabberNetworkImpl extends EObjectImpl implements JabberNetwork {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * The cached value of the '{@link #getJabberTransport() <em>Jabber Transport</em>}' containment reference.
@@ -122,7 +122,7 @@ public class JabberNetworkImpl extends EObjectImpl implements JabberNetwork {
 	 * @generated
 	 */
 	public InstantMessengerConfiguration getConfig() {
-		if (eContainerFeatureID != InstantmessengerPackage.JABBER_NETWORK__CONFIG) return null;
+		if (eContainerFeatureID() != InstantmessengerPackage.JABBER_NETWORK__CONFIG) return null;
 		return (InstantMessengerConfiguration)eContainer();
 	}
 
@@ -142,7 +142,7 @@ public class JabberNetworkImpl extends EObjectImpl implements JabberNetwork {
 	 * @generated
 	 */
 	public void setConfig(InstantMessengerConfiguration newConfig) {
-		if (newConfig != eInternalContainer() || (eContainerFeatureID != InstantmessengerPackage.JABBER_NETWORK__CONFIG && newConfig != null)) {
+		if (newConfig != eInternalContainer() || (eContainerFeatureID() != InstantmessengerPackage.JABBER_NETWORK__CONFIG && newConfig != null)) {
 			if (EcoreUtil.isAncestor(this, newConfig))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -200,7 +200,7 @@ public class JabberNetworkImpl extends EObjectImpl implements JabberNetwork {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case InstantmessengerPackage.JABBER_NETWORK__CONFIG:
 				return eInternalContainer().eInverseRemove(this, InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__JABBER_NETWORK, InstantMessengerConfiguration.class, msgs);
 		}

@@ -33,6 +33,7 @@
 	<property name="trans.uml2singleton.path" value="${trans.path}/UML2Singleton.asm"/>
 	<property name="trans.uml2applet.path" value="${trans.path}/UML2Applet.asm"/>
 	<property name="trans.uml2midlet.path" value="${trans.path}/UML2MIDlet.asm"/>
+	<property name="trans.uml2swtapplication.path" value="${trans.path}/UML2SWTApplication.asm"/>
 	<property name="trans.uml2asyncmethods.path" value="${trans.path}/UML2AsyncMethods.asm"/>
 	<property name="trans.uml2datatypes.path" value="${trans.path}/UML2DataTypes.asm"/>
 	<property name="trans.uml2tojava.path" value="${trans.path}/UML2ToJava.asm"/>
@@ -47,6 +48,7 @@
 	<property name="model.obstypes.uri" value="${trans.uri}/models/Observer.uml"/>
 	<property name="model.itenumadapter.uri" value="${trans.uri}/models/IteratorEnumerationAdapter.uml"/>
 	<property name="model.midlet.uri" value="${trans.uri}/models/MIDlet.uml"/>
+	<property name="model.swtapplication.uri" value="${trans.uri}/models/SWTApplication.uml"/>
 
 	<property name="lib.path" value="${trans.path}/lib"/>
 	<property name="lib.javamappings.path" value="${lib.path}/JavaMappings.asm"/>
@@ -275,6 +277,33 @@
 	</macrodef>
 
 	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: swtapplication		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="swtapplication">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="IN" model="@{in}"/>
+				<inmodel name="SWTAPP" model="SWTApplication"/>
+				<inmodel name="IMPLTYPES" model="ImplTypes"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<superimpose path="${trans.uml2swtapplication.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+			<antcall target="saveModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
 		  macrodef: asyncmethods		  
 		 = = = = = = = = = = = = = = = = = -->
 	<macrodef name="asyncmethods">
@@ -440,7 +469,7 @@
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
-		  target: applet, midlet
+		  target: applet, midlet, swt-application
 		 = = = = = = = = = = = = = = = = = -->
 	<target name="applet" if="applet" depends="singleton">
 		<!-- params: ${in}, ${prefix} -->
@@ -452,10 +481,15 @@
 		<midlet in = "${prefix}-singleton" out = "${prefix}-applet" uri = "${current.uri}/${prefix}-applet.uml"/>
 	</target>
 
+	<target name="swtapplication" if="swt-application" depends="singleton">
+		<!-- params: ${in}, ${prefix} -->
+		<swtapplication in = "${prefix}-singleton" out = "${prefix}-applet" uri = "${current.uri}/${prefix}-applet.uml"/>
+	</target>
+
 	<!-- = = = = = = = = = = = = = = = = =
 		  target: asyncmethods
 		 = = = = = = = = = = = = = = = = = -->
-	<target name="asyncmethods" depends="applet, midlet">
+	<target name="asyncmethods" depends="applet, midlet, swtapplication">
 		<!-- params: ${in}, ${prefix} -->
 		<asyncmethods in = "${prefix}-applet" out = "${prefix}-asyncmethods" uri = "${current.uri}/${prefix}-asyncmethods.uml"/>
 	</target>
@@ -480,9 +514,9 @@
 		  target: java2uml
 		 = = = = = = = = = = = = = = = = = -->
 	<target name="java2uml">
-		<!-- params: ${in}, ${code}, ${path} -->
-		<java2uml in = "${in}" out = "feedback-${in}" code = "${code}" path = "feedback-${path}"/>
-		<atl.saveModel model="feedback-${in}" path="${path}" derived="false"/>
+		<!-- params: ${in}, ${code}, ${uri} -->
+		<java2uml in = "${in}" out = "feedback-${in}" code = "${code}" path = "feedback-${uri}"/>
+		<atl.saveModel model="feedback-${in}" uri="${uri}" derived="false"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
@@ -518,6 +552,13 @@
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadMIDlet" if = "midlet" depends = "loadBaseModels">
 		<atl.loadModel modelHandler = "UML2" name = "MIDlet" metamodel = "UML2" uri = "${model.midlet.uri}"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: loadSWTApplication
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "loadSWTApplication" if = "swt-application" depends = "loadBaseModels">
+		<atl.loadModel modelHandler = "UML2" name = "SWTApplication" metamodel = "UML2" uri = "${model.swtapplication.uri}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
@@ -574,9 +615,19 @@
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
+		  target: SWTApplication
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "SWTApplication" if = "swt-application" depends = "loadBaseModels, loadIteratorEnumerationAdapter, loadObserver, loadSWTApplication">
+		<antcall target = 'generate' inheritRefs = 'true'>
+			<param name = 'in' value = 'SWTApplication'/>
+			<param name = 'prefix' value = 'swtapp'/>
+		</antcall>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
 		  target: allBase
 		 = = = = = = = = = = = = = = = = = -->
-	<target name = "allBase" depends = "defineProperties, loadBaseModels, loadIteratorEnumerationAdapter, loadObserver, loadMIDlet, IteratorEnumerationAdapter, Observer, MIDlet"/>
+	<target name = "allBase" depends = "defineProperties, loadBaseModels, loadIteratorEnumerationAdapter, loadObserver, loadMIDlet, loadSWTApplication, IteratorEnumerationAdapter, Observer, MIDlet, SWTApplication"/>
 
 	<!-- = = = = = = = = = = = = = = = = =
 		  target: clean

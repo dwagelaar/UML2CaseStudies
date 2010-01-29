@@ -53,7 +53,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * The default value of the '{@link #getDeploymentTarget() <em>Deployment Target</em>}' attribute.
@@ -301,6 +301,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -369,6 +370,7 @@ public class InstantMessengerConfigurationImpl extends TransformationConfigImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

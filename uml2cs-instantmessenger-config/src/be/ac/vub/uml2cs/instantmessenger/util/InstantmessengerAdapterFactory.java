@@ -31,7 +31,7 @@ public class InstantmessengerAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * The cached model package.
@@ -109,6 +109,10 @@ public class InstantmessengerAdapterFactory extends AdapterFactoryImpl {
 				return createUserInterfaceAdapter();
 			}
 			@Override
+			public Adapter caseSWTUserInterface(SWTUserInterface object) {
+				return createSWTUserInterfaceAdapter();
+			}
+			@Override
 			public Adapter caseAWTUserInterface(AWTUserInterface object) {
 				return createAWTUserInterfaceAdapter();
 			}
@@ -135,6 +139,10 @@ public class InstantmessengerAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMIDletPackaging(MIDletPackaging object) {
 				return createMIDletPackagingAdapter();
+			}
+			@Override
+			public Adapter caseMaemoPackaging(MaemoPackaging object) {
+				return createMaemoPackagingAdapter();
 			}
 			@Override
 			public Adapter caseTransformationConfig(TransformationConfig object) {
@@ -259,6 +267,20 @@ public class InstantmessengerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link be.ac.vub.uml2cs.instantmessenger.SWTUserInterface <em>SWT User Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see be.ac.vub.uml2cs.instantmessenger.SWTUserInterface
+	 * @generated
+	 */
+	public Adapter createSWTUserInterfaceAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link be.ac.vub.uml2cs.instantmessenger.AWTUserInterface <em>AWT User Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -353,6 +375,20 @@ public class InstantmessengerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMIDletPackagingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link be.ac.vub.uml2cs.instantmessenger.MaemoPackaging <em>Maemo Packaging</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see be.ac.vub.uml2cs.instantmessenger.MaemoPackaging
+	 * @generated
+	 */
+	public Adapter createMaemoPackagingAdapter() {
 		return null;
 	}
 

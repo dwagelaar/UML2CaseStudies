@@ -76,6 +76,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="config" lowerBound="1"
         eType="#//InstantMessengerConfiguration" eOpposite="#//InstantMessengerConfiguration/userInterface"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SWTUserInterface" eSuperTypes="#//UserInterface">
+    <eAnnotations source="PlatformKit">
+      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#SWTPlatform"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AWTUserInterface" eSuperTypes="#//UserInterface">
     <eAnnotations source="CDDToolkit">
       <details key="ContextConstraint" value="http://local/InstantMessenger.owl#AWTPlatform"/>
@@ -126,6 +131,11 @@
     </eAnnotations>
     <eAnnotations source="PlatformKit">
       <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#MIDletPlatform"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MaemoPackaging" eSuperTypes="#//Packaging">
+    <eAnnotations source="PlatformKit">
+      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#MaemoPlatform"/>
     </eAnnotations>
   </eClassifiers>
 </ecore:EPackage>

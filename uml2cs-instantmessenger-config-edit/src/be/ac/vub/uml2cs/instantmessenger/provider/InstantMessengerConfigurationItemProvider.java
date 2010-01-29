@@ -48,7 +48,7 @@ public class InstantMessengerConfigurationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -205,6 +205,11 @@ public class InstantMessengerConfigurationItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(InstantmessengerPackage.Literals.INSTANT_MESSENGER_CONFIGURATION__USER_INTERFACE,
+				 InstantmessengerFactory.eINSTANCE.createSWTUserInterface()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(InstantmessengerPackage.Literals.INSTANT_MESSENGER_CONFIGURATION__USER_INTERFACE,
 				 InstantmessengerFactory.eINSTANCE.createAWTUserInterface()));
 
 		newChildDescriptors.add
@@ -231,6 +236,11 @@ public class InstantMessengerConfigurationItemProvider
 			(createChildParameter
 				(InstantmessengerPackage.Literals.INSTANT_MESSENGER_CONFIGURATION__PACKAGING,
 				 InstantmessengerFactory.eINSTANCE.createMIDletPackaging()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(InstantmessengerPackage.Literals.INSTANT_MESSENGER_CONFIGURATION__PACKAGING,
+				 InstantmessengerFactory.eINSTANCE.createMaemoPackaging()));
 	}
 
 	/**

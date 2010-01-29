@@ -19,13 +19,13 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class UML2SWTApplicationImpl extends AppletImpl implements UML2SWTApplication {
+public class UML2SWTApplicationImpl extends AppletImpl implements UML2SWTApplication {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * <!-- begin-user-doc -->

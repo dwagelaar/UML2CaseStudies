@@ -1,5 +1,5 @@
 -- @atlcompiler atl2006
--- $Id: UML2Applet.atl 7380 2007-11-08 09:49:02Z dwagelaa $
+-- $Id$
 -- Implements the Applet profile using an SWT application
 module UML2SWTApplication; --extends UML2Copy
 
@@ -139,7 +139,7 @@ rule AppletClass {
 	   	specification <- main,
 		name <- main.name + 'Behavior',
 		language <- Sequence{thisModule.language},
-		body <- Sequence{s.name.swtAppMainBody()})
+		body <- Sequence{s.name.swtAppMainBody(s.isSingleton)})
 }
 
 rule AppletInitOperation(s : UML2!"uml::Class") {
@@ -178,7 +178,7 @@ rule OpaqueBehavior {
         body <-
 			if isAppletInit then
 				s.body->collect(b|s.specification.class
-					.isSingleton.midletInitBody() + '\n' + b)
+					.isSingleton.swtAppInitBody() + '\n' + b)
 			else
 				s.body
 			endif,

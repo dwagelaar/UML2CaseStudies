@@ -22,7 +22,7 @@ public interface InstantmessengerFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * The singleton instance of the factory.
@@ -78,6 +78,15 @@ public interface InstantmessengerFactory extends EFactory {
 	MEJabberTransport createMEJabberTransport();
 
 	/**
+	 * Returns a new object of class '<em>SWT User Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>SWT User Interface</em>'.
+	 * @generated
+	 */
+	SWTUserInterface createSWTUserInterface();
+
+	/**
 	 * Returns a new object of class '<em>AWT User Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,6 +139,15 @@ public interface InstantmessengerFactory extends EFactory {
 	 * @generated
 	 */
 	MIDletPackaging createMIDletPackaging();
+
+	/**
+	 * Returns a new object of class '<em>Maemo Packaging</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Maemo Packaging</em>'.
+	 * @generated
+	 */
+	MaemoPackaging createMaemoPackaging();
 
 	/**
 	 * Returns the package supported by this factory.

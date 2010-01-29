@@ -37,7 +37,7 @@ public class JavaMappingImpl extends MappingImpl implements JavaMapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * The cached value of the '{@link #getDataTypes() <em>Data Types</em>}' containment reference.

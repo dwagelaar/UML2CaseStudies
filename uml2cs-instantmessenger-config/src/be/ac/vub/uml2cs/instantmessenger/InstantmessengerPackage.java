@@ -36,7 +36,7 @@ public interface InstantmessengerPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * The package name.
@@ -357,6 +357,34 @@ public interface InstantmessengerPackage extends EPackage {
 	int USER_INTERFACE_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link be.ac.vub.uml2cs.instantmessenger.impl.SWTUserInterfaceImpl <em>SWT User Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see be.ac.vub.uml2cs.instantmessenger.impl.SWTUserInterfaceImpl
+	 * @see be.ac.vub.uml2cs.instantmessenger.impl.InstantmessengerPackageImpl#getSWTUserInterface()
+	 * @generated
+	 */
+	int SWT_USER_INTERFACE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Config</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWT_USER_INTERFACE__CONFIG = USER_INTERFACE__CONFIG;
+
+	/**
+	 * The number of structural features of the '<em>SWT User Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SWT_USER_INTERFACE_FEATURE_COUNT = USER_INTERFACE_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link be.ac.vub.uml2cs.instantmessenger.impl.AWTUserInterfaceImpl <em>AWT User Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -364,7 +392,7 @@ public interface InstantmessengerPackage extends EPackage {
 	 * @see be.ac.vub.uml2cs.instantmessenger.impl.InstantmessengerPackageImpl#getAWTUserInterface()
 	 * @generated
 	 */
-	int AWT_USER_INTERFACE = 7;
+	int AWT_USER_INTERFACE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Config</b></em>' container reference.
@@ -392,7 +420,7 @@ public interface InstantmessengerPackage extends EPackage {
 	 * @see be.ac.vub.uml2cs.instantmessenger.impl.InstantmessengerPackageImpl#getSwingUserInterface()
 	 * @generated
 	 */
-	int SWING_USER_INTERFACE = 8;
+	int SWING_USER_INTERFACE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Config</b></em>' container reference.
@@ -420,7 +448,7 @@ public interface InstantmessengerPackage extends EPackage {
 	 * @see be.ac.vub.uml2cs.instantmessenger.impl.InstantmessengerPackageImpl#getLCDUIUserInterface()
 	 * @generated
 	 */
-	int LCDUI_USER_INTERFACE = 9;
+	int LCDUI_USER_INTERFACE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Config</b></em>' container reference.
@@ -448,7 +476,7 @@ public interface InstantmessengerPackage extends EPackage {
 	 * @see be.ac.vub.uml2cs.instantmessenger.impl.InstantmessengerPackageImpl#getPackaging()
 	 * @generated
 	 */
-	int PACKAGING = 10;
+	int PACKAGING = 11;
 
 	/**
 	 * The feature id for the '<em><b>Config</b></em>' container reference.
@@ -476,7 +504,7 @@ public interface InstantmessengerPackage extends EPackage {
 	 * @see be.ac.vub.uml2cs.instantmessenger.impl.InstantmessengerPackageImpl#getWebAppletPackaging()
 	 * @generated
 	 */
-	int WEB_APPLET_PACKAGING = 11;
+	int WEB_APPLET_PACKAGING = 12;
 
 	/**
 	 * The feature id for the '<em><b>Config</b></em>' container reference.
@@ -504,7 +532,7 @@ public interface InstantmessengerPackage extends EPackage {
 	 * @see be.ac.vub.uml2cs.instantmessenger.impl.InstantmessengerPackageImpl#getIpkgAppletPackaging()
 	 * @generated
 	 */
-	int IPKG_APPLET_PACKAGING = 12;
+	int IPKG_APPLET_PACKAGING = 13;
 
 	/**
 	 * The feature id for the '<em><b>Config</b></em>' container reference.
@@ -532,7 +560,7 @@ public interface InstantmessengerPackage extends EPackage {
 	 * @see be.ac.vub.uml2cs.instantmessenger.impl.InstantmessengerPackageImpl#getMIDletPackaging()
 	 * @generated
 	 */
-	int MI_DLET_PACKAGING = 13;
+	int MI_DLET_PACKAGING = 14;
 
 	/**
 	 * The feature id for the '<em><b>Config</b></em>' container reference.
@@ -551,6 +579,35 @@ public interface InstantmessengerPackage extends EPackage {
 	 * @ordered
 	 */
 	int MI_DLET_PACKAGING_FEATURE_COUNT = PACKAGING_FEATURE_COUNT + 0;
+
+
+	/**
+	 * The meta object id for the '{@link be.ac.vub.uml2cs.instantmessenger.impl.MaemoPackagingImpl <em>Maemo Packaging</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see be.ac.vub.uml2cs.instantmessenger.impl.MaemoPackagingImpl
+	 * @see be.ac.vub.uml2cs.instantmessenger.impl.InstantmessengerPackageImpl#getMaemoPackaging()
+	 * @generated
+	 */
+	int MAEMO_PACKAGING = 15;
+
+	/**
+	 * The feature id for the '<em><b>Config</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAEMO_PACKAGING__CONFIG = PACKAGING__CONFIG;
+
+	/**
+	 * The number of structural features of the '<em>Maemo Packaging</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAEMO_PACKAGING_FEATURE_COUNT = PACKAGING_FEATURE_COUNT + 0;
 
 
 	/**
@@ -734,6 +791,16 @@ public interface InstantmessengerPackage extends EPackage {
 	EReference getUserInterface_Config();
 
 	/**
+	 * Returns the meta object for class '{@link be.ac.vub.uml2cs.instantmessenger.SWTUserInterface <em>SWT User Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>SWT User Interface</em>'.
+	 * @see be.ac.vub.uml2cs.instantmessenger.SWTUserInterface
+	 * @generated
+	 */
+	EClass getSWTUserInterface();
+
+	/**
 	 * Returns the meta object for class '{@link be.ac.vub.uml2cs.instantmessenger.AWTUserInterface <em>AWT User Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -813,6 +880,16 @@ public interface InstantmessengerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getMIDletPackaging();
+
+	/**
+	 * Returns the meta object for class '{@link be.ac.vub.uml2cs.instantmessenger.MaemoPackaging <em>Maemo Packaging</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Maemo Packaging</em>'.
+	 * @see be.ac.vub.uml2cs.instantmessenger.MaemoPackaging
+	 * @generated
+	 */
+	EClass getMaemoPackaging();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -987,6 +1064,16 @@ public interface InstantmessengerPackage extends EPackage {
 		EReference USER_INTERFACE__CONFIG = eINSTANCE.getUserInterface_Config();
 
 		/**
+		 * The meta object literal for the '{@link be.ac.vub.uml2cs.instantmessenger.impl.SWTUserInterfaceImpl <em>SWT User Interface</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see be.ac.vub.uml2cs.instantmessenger.impl.SWTUserInterfaceImpl
+		 * @see be.ac.vub.uml2cs.instantmessenger.impl.InstantmessengerPackageImpl#getSWTUserInterface()
+		 * @generated
+		 */
+		EClass SWT_USER_INTERFACE = eINSTANCE.getSWTUserInterface();
+
+		/**
 		 * The meta object literal for the '{@link be.ac.vub.uml2cs.instantmessenger.impl.AWTUserInterfaceImpl <em>AWT User Interface</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1063,6 +1150,16 @@ public interface InstantmessengerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MI_DLET_PACKAGING = eINSTANCE.getMIDletPackaging();
+
+		/**
+		 * The meta object literal for the '{@link be.ac.vub.uml2cs.instantmessenger.impl.MaemoPackagingImpl <em>Maemo Packaging</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see be.ac.vub.uml2cs.instantmessenger.impl.MaemoPackagingImpl
+		 * @see be.ac.vub.uml2cs.instantmessenger.impl.InstantmessengerPackageImpl#getMaemoPackaging()
+		 * @generated
+		 */
+		EClass MAEMO_PACKAGING = eINSTANCE.getMaemoPackaging();
 
 	}
 

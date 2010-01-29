@@ -32,7 +32,7 @@ public interface JabberNetwork extends EObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * Returns the value of the '<em><b>Jabber Transport</b></em>' containment reference.

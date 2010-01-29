@@ -24,7 +24,9 @@ import be.ac.vub.uml2cs.instantmessenger.LCDUIUserInterface;
 import be.ac.vub.uml2cs.instantmessenger.LocalNetwork;
 import be.ac.vub.uml2cs.instantmessenger.MEJabberTransport;
 import be.ac.vub.uml2cs.instantmessenger.MIDletPackaging;
+import be.ac.vub.uml2cs.instantmessenger.MaemoPackaging;
 import be.ac.vub.uml2cs.instantmessenger.Packaging;
+import be.ac.vub.uml2cs.instantmessenger.SWTUserInterface;
 import be.ac.vub.uml2cs.instantmessenger.SwingUserInterface;
 import be.ac.vub.uml2cs.instantmessenger.UserInterface;
 import be.ac.vub.uml2cs.instantmessenger.WebAppletPackaging;
@@ -42,7 +44,7 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -98,6 +100,13 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass swtUserInterfaceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass awtUserInterfaceEClass = null;
 
 	/**
@@ -143,6 +152,13 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 	private EClass miDletPackagingEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass maemoPackagingEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -169,20 +185,10 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * 
+	 * <p>This method is used to initialize {@link InstantmessengerPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -194,7 +200,7 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		if (isInited) return (InstantmessengerPackage)EPackage.Registry.INSTANCE.getEPackage(InstantmessengerPackage.eNS_URI);
 
 		// Obtain or create and register package
-		InstantmessengerPackageImpl theInstantmessengerPackage = (InstantmessengerPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof InstantmessengerPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new InstantmessengerPackageImpl());
+		InstantmessengerPackageImpl theInstantmessengerPackage = (InstantmessengerPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof InstantmessengerPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new InstantmessengerPackageImpl());
 
 		isInited = true;
 
@@ -210,6 +216,9 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		// Mark meta-data to indicate it can't be changed
 		theInstantmessengerPackage.freeze();
 
+  
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(InstantmessengerPackage.eNS_URI, theInstantmessengerPackage);
 		return theInstantmessengerPackage;
 	}
 
@@ -371,6 +380,15 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSWTUserInterface() {
+		return swtUserInterfaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAWTUserInterface() {
 		return awtUserInterfaceEClass;
 	}
@@ -443,6 +461,15 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMaemoPackaging() {
+		return maemoPackagingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public InstantmessengerFactory getInstantmessengerFactory() {
 		return (InstantmessengerFactory)getEFactoryInstance();
 	}
@@ -490,6 +517,8 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		userInterfaceEClass = createEClass(USER_INTERFACE);
 		createEReference(userInterfaceEClass, USER_INTERFACE__CONFIG);
 
+		swtUserInterfaceEClass = createEClass(SWT_USER_INTERFACE);
+
 		awtUserInterfaceEClass = createEClass(AWT_USER_INTERFACE);
 
 		swingUserInterfaceEClass = createEClass(SWING_USER_INTERFACE);
@@ -504,6 +533,8 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		ipkgAppletPackagingEClass = createEClass(IPKG_APPLET_PACKAGING);
 
 		miDletPackagingEClass = createEClass(MI_DLET_PACKAGING);
+
+		maemoPackagingEClass = createEClass(MAEMO_PACKAGING);
 	}
 
 	/**
@@ -540,12 +571,14 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		instantMessengerConfigurationEClass.getESuperTypes().add(theTransformationsPackage.getTransformationConfig());
 		defaultJabberTransportEClass.getESuperTypes().add(this.getJabberTransport());
 		meJabberTransportEClass.getESuperTypes().add(this.getJabberTransport());
+		swtUserInterfaceEClass.getESuperTypes().add(this.getUserInterface());
 		awtUserInterfaceEClass.getESuperTypes().add(this.getUserInterface());
 		swingUserInterfaceEClass.getESuperTypes().add(this.getUserInterface());
 		lcduiUserInterfaceEClass.getESuperTypes().add(this.getUserInterface());
 		webAppletPackagingEClass.getESuperTypes().add(this.getPackaging());
 		ipkgAppletPackagingEClass.getESuperTypes().add(this.getPackaging());
 		miDletPackagingEClass.getESuperTypes().add(this.getPackaging());
+		maemoPackagingEClass.getESuperTypes().add(this.getPackaging());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(instantMessengerConfigurationEClass, InstantMessengerConfiguration.class, "InstantMessengerConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -572,6 +605,8 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		initEClass(userInterfaceEClass, UserInterface.class, "UserInterface", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserInterface_Config(), this.getInstantMessengerConfiguration(), this.getInstantMessengerConfiguration_UserInterface(), "config", null, 1, 1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(swtUserInterfaceEClass, SWTUserInterface.class, "SWTUserInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(awtUserInterfaceEClass, AWTUserInterface.class, "AWTUserInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(swingUserInterfaceEClass, SwingUserInterface.class, "SwingUserInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -586,6 +621,8 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		initEClass(ipkgAppletPackagingEClass, IpkgAppletPackaging.class, "IpkgAppletPackaging", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(miDletPackagingEClass, MIDletPackaging.class, "MIDletPackaging", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(maemoPackagingEClass, MaemoPackaging.class, "MaemoPackaging", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

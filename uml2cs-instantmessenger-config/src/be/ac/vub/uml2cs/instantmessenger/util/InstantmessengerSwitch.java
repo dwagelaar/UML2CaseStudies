@@ -34,7 +34,7 @@ public class InstantmessengerSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * The cached model package
@@ -141,6 +141,13 @@ public class InstantmessengerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case InstantmessengerPackage.SWT_USER_INTERFACE: {
+				SWTUserInterface swtUserInterface = (SWTUserInterface)theEObject;
+				T result = caseSWTUserInterface(swtUserInterface);
+				if (result == null) result = caseUserInterface(swtUserInterface);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case InstantmessengerPackage.AWT_USER_INTERFACE: {
 				AWTUserInterface awtUserInterface = (AWTUserInterface)theEObject;
 				T result = caseAWTUserInterface(awtUserInterface);
@@ -186,6 +193,13 @@ public class InstantmessengerSwitch<T> {
 				MIDletPackaging miDletPackaging = (MIDletPackaging)theEObject;
 				T result = caseMIDletPackaging(miDletPackaging);
 				if (result == null) result = casePackaging(miDletPackaging);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case InstantmessengerPackage.MAEMO_PACKAGING: {
+				MaemoPackaging maemoPackaging = (MaemoPackaging)theEObject;
+				T result = caseMaemoPackaging(maemoPackaging);
+				if (result == null) result = casePackaging(maemoPackaging);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -299,6 +313,21 @@ public class InstantmessengerSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>SWT User Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>SWT User Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSWTUserInterface(SWTUserInterface object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>AWT User Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -400,6 +429,21 @@ public class InstantmessengerSwitch<T> {
 	 * @generated
 	 */
 	public T caseMIDletPackaging(MIDletPackaging object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Maemo Packaging</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Maemo Packaging</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMaemoPackaging(MaemoPackaging object) {
 		return null;
 	}
 

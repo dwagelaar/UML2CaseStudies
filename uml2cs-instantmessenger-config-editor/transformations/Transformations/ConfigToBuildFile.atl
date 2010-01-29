@@ -104,6 +104,15 @@ rule UML2MIDlet {
 		children <- thisModule.Property('midlet', 'true'))
 }
 
+rule UML2SWTApplication {
+	from s : CFG!"transformations::UML2SWTApplication"
+	-- <property name="swt-application" value="true"/>
+	to midlet : XML!"XML::Element" (
+		parent <- s.config,
+		name <- 'property',
+		children <- thisModule.Property('swt-application', 'true'))
+}
+
 rule Property(name : String, value : String) {
 	-- Sequence{name="name", value="value"}
 	to propertyname : XML!"XML::Attribute" (

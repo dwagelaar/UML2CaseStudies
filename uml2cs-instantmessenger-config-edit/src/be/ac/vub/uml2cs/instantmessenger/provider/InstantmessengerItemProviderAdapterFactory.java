@@ -42,7 +42,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -198,6 +198,29 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link be.ac.vub.uml2cs.instantmessenger.SWTUserInterface} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SWTUserInterfaceItemProvider swtUserInterfaceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link be.ac.vub.uml2cs.instantmessenger.SWTUserInterface}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSWTUserInterfaceAdapter() {
+		if (swtUserInterfaceItemProvider == null) {
+			swtUserInterfaceItemProvider = new SWTUserInterfaceItemProvider(this);
+		}
+
+		return swtUserInterfaceItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link be.ac.vub.uml2cs.instantmessenger.AWTUserInterface} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -336,6 +359,29 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link be.ac.vub.uml2cs.instantmessenger.MaemoPackaging} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MaemoPackagingItemProvider maemoPackagingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link be.ac.vub.uml2cs.instantmessenger.MaemoPackaging}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMaemoPackagingAdapter() {
+		if (maemoPackagingItemProvider == null) {
+			maemoPackagingItemProvider = new MaemoPackagingItemProvider(this);
+		}
+
+		return maemoPackagingItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -385,7 +431,7 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -439,12 +485,14 @@ public class InstantmessengerItemProviderAdapterFactory extends Instantmessenger
 		if (jabberNetworkItemProvider != null) jabberNetworkItemProvider.dispose();
 		if (defaultJabberTransportItemProvider != null) defaultJabberTransportItemProvider.dispose();
 		if (meJabberTransportItemProvider != null) meJabberTransportItemProvider.dispose();
+		if (swtUserInterfaceItemProvider != null) swtUserInterfaceItemProvider.dispose();
 		if (awtUserInterfaceItemProvider != null) awtUserInterfaceItemProvider.dispose();
 		if (swingUserInterfaceItemProvider != null) swingUserInterfaceItemProvider.dispose();
 		if (lcduiUserInterfaceItemProvider != null) lcduiUserInterfaceItemProvider.dispose();
 		if (webAppletPackagingItemProvider != null) webAppletPackagingItemProvider.dispose();
 		if (ipkgAppletPackagingItemProvider != null) ipkgAppletPackagingItemProvider.dispose();
 		if (miDletPackagingItemProvider != null) miDletPackagingItemProvider.dispose();
+		if (maemoPackagingItemProvider != null) maemoPackagingItemProvider.dispose();
 	}
 
 }

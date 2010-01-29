@@ -39,7 +39,7 @@ public abstract class AppletImpl extends EObjectImpl implements Applet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public abstract class AppletImpl extends EObjectImpl implements Applet {
 	 * @generated
 	 */
 	public TransformationConfig getConfig() {
-		if (eContainerFeatureID != TransformationsPackage.APPLET__CONFIG) return null;
+		if (eContainerFeatureID() != TransformationsPackage.APPLET__CONFIG) return null;
 		return (TransformationConfig)eContainer();
 	}
 
@@ -86,7 +86,7 @@ public abstract class AppletImpl extends EObjectImpl implements Applet {
 	 * @generated
 	 */
 	public void setConfig(TransformationConfig newConfig) {
-		if (newConfig != eInternalContainer() || (eContainerFeatureID != TransformationsPackage.APPLET__CONFIG && newConfig != null)) {
+		if (newConfig != eInternalContainer() || (eContainerFeatureID() != TransformationsPackage.APPLET__CONFIG && newConfig != null)) {
 			if (EcoreUtil.isAncestor(this, newConfig))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -138,7 +138,7 @@ public abstract class AppletImpl extends EObjectImpl implements Applet {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case TransformationsPackage.APPLET__CONFIG:
 				return eInternalContainer().eInverseRemove(this, TransformationsPackage.TRANSFORMATION_CONFIG__APPLET, TransformationConfig.class, msgs);
 		}

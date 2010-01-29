@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_IZBZgQTuEd-nyZkcid7ohw" name="instantmessengerDeps">
+  <eAnnotations xmi:id="_Jbx3AATuEd-nyZkcid7ohw" source="Jar2UML">
+    <details xmi:id="_JcBuoATuEd-nyZkcid7ohw" key="majorBytecodeFormatVersion" value="45"/>
+    <details xmi:id="_JcBuoQTuEd-nyZkcid7ohw" key="minorBytecodeFormatVersion" value="3"/>
+    <details xmi:id="_JcCVsATuEd-nyZkcid7ohw" key="preverified" value="true"/>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Package" xmi:id="_IgfTcATuEd-nyZkcid7ohw" name="java">
+    <packagedElement xmi:type="uml:Package" xmi:id="_IgfTcQTuEd-nyZkcid7ohw" name="lang">
+      <packagedElement xmi:type="uml:Class" xmi:id="_IgfTcwTuEd-nyZkcid7ohw" name="StringBuffer">
+        <ownedOperation xmi:id="_I1XXQATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true"/>
+        <ownedOperation xmi:id="_I1XXQQTuEd-nyZkcid7ohw" name="append" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I1X-UATuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I1X-UQTuEd-nyZkcid7ohw" name="return" type="_IgfTcwTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I1YlYATuEd-nyZkcid7ohw" name="toString" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I1YlYQTuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I6a2YATuEd-nyZkcid7ohw" name="append" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I6a2YQTuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I6a2YgTuEd-nyZkcid7ohw" name="return" type="_IgfTcwTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I6crkATuEd-nyZkcid7ohw" name="append" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I6crkQTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I6crkgTuEd-nyZkcid7ohw" name="return" type="_IgfTcwTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JJMSMATuEd-nyZkcid7ohw" name="append" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JJOHYATuEd-nyZkcid7ohw" name="arg0" type="_JI8akATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JJOHYQTuEd-nyZkcid7ohw" name="return" type="_IgfTcwTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JJcJ0ATuEd-nyZkcid7ohw" name="append" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JJcw4ATuEd-nyZkcid7ohw" name="arg0" type="_I1dd4ATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JJcw4QTuEd-nyZkcid7ohw" name="return" type="_IgfTcwTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JNzFYATuEd-nyZkcid7ohw" name="charAt" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JNzFYQTuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JNzFYgTuEd-nyZkcid7ohw" name="return" type="_JI8akATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JRBYgATuEd-nyZkcid7ohw" name="append" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JRBYgQTuEd-nyZkcid7ohw" name="arg0" type="_JLjpswTuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JRBYggTuEd-nyZkcid7ohw" name="arg1" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JRCmoATuEd-nyZkcid7ohw" name="arg2" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JRCmoQTuEd-nyZkcid7ohw" name="return" type="_IgfTcwTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Igf6gQTuEd-nyZkcid7ohw" name="String">
+        <ownedOperation xmi:id="_I1bosQTuEd-nyZkcid7ohw" name="getBytes" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I1bosgTuEd-nyZkcid7ohw" name="return" type="_I1bosATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I1mn0ATuEd-nyZkcid7ohw" name="equals" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I1mn0QTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I1n18ATuEd-nyZkcid7ohw" name="return" type="_I1TF0ATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JC6rEATuEd-nyZkcid7ohw" name="length" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JC6rEQTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JI9BoATuEd-nyZkcid7ohw" name="charAt" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JI9BoQTuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JI9BogTuEd-nyZkcid7ohw" name="return" type="_JI8akATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JLibkQTuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+          <ownedParameter xmi:id="_JLibkgTuEd-nyZkcid7ohw" name="arg0" type="_I1bosATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JLkQwATuEd-nyZkcid7ohw" name="toCharArray" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JLkQwQTuEd-nyZkcid7ohw" name="return" type="_JLjpswTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JLnUEQTuEd-nyZkcid7ohw" name="indexOf" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JLnUEgTuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JLoiMATuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JLpJQATuEd-nyZkcid7ohw" name="substring" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JLqXYATuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JLqXYQTuEd-nyZkcid7ohw" name="arg1" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JLq-cATuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JLq-cQTuEd-nyZkcid7ohw" name="indexOf" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JLrlgATuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JLsMkATuEd-nyZkcid7ohw" name="arg1" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JLsMkQTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JLsMkgTuEd-nyZkcid7ohw" name="substring" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JLszoATuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JLszoQTuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JOwHoATuEd-nyZkcid7ohw" name="trim" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JOwHoQTuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JRAKYATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+          <ownedParameter xmi:id="_JRAKYQTuEd-nyZkcid7ohw" name="arg0" type="_JLjpswTuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JRAKYgTuEd-nyZkcid7ohw" name="arg1" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JRAKYwTuEd-nyZkcid7ohw" name="arg2" type="_IvupUATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IghIoQTuEd-nyZkcid7ohw" name="System" isAbstract="true">
+        <ownedAttribute xmi:id="_I6Wk8ATuEd-nyZkcid7ohw" name="err" isLeaf="true" isStatic="true" type="_IhpxEQTuEd-nyZkcid7ohw" isReadOnly="true"/>
+        <ownedAttribute xmi:id="_JJYfcATuEd-nyZkcid7ohw" name="out" isLeaf="true" isStatic="true" type="_IhpxEQTuEd-nyZkcid7ohw" isReadOnly="true"/>
+        <ownedOperation xmi:id="_I1dd4QTuEd-nyZkcid7ohw" name="currentTimeMillis" isLeaf="true" isStatic="true">
+          <ownedParameter xmi:id="_I1dd4gTuEd-nyZkcid7ohw" name="return" type="_I1dd4ATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IghvsATuEd-nyZkcid7ohw" name="Thread" isAbstract="true">
+        <ownedOperation xmi:id="_I1eE8ATuEd-nyZkcid7ohw" name="sleep" isLeaf="true" isStatic="true">
+          <ownedParameter xmi:id="_I1eE8QTuEd-nyZkcid7ohw" name="arg0" type="_I1dd4ATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I33RoQTuEd-nyZkcid7ohw" name="&lt;init>" visibility="protected" isLeaf="true"/>
+        <ownedOperation xmi:id="_I36U8QTuEd-nyZkcid7ohw" name="start" visibility="protected" isLeaf="true" isAbstract="true"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IgsHwQTuEd-nyZkcid7ohw" name="Throwable" isAbstract="true">
+        <ownedOperation xmi:id="_I2IMQATuEd-nyZkcid7ohw" name="printStackTrace" isLeaf="true" isAbstract="true"/>
+        <ownedOperation xmi:id="_JP3h8QTuEd-nyZkcid7ohw" name="getMessage" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JP3h8gTuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JYFCwATuEd-nyZkcid7ohw" name="toString" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JYFCwQTuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Ig_pwATuEd-nyZkcid7ohw" name="Object" isLeaf="true" isAbstract="true">
+        <ownedOperation xmi:id="_I23MEATuEd-nyZkcid7ohw" name="&lt;init>" visibility="protected"/>
+        <ownedOperation xmi:id="_I47ooATuEd-nyZkcid7ohw" name="wait" visibility="protected" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I47ooQTuEd-nyZkcid7ohw" name="arg0" type="_I1dd4ATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I5DkcATuEd-nyZkcid7ohw" name="notifyAll" visibility="protected" isLeaf="true" isAbstract="true"/>
+        <ownedOperation xmi:id="_I6ZoQATuEd-nyZkcid7ohw" name="getClass" visibility="protected" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I6ZoQQTuEd-nyZkcid7ohw" name="return" type="_IhFwYATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JCM5YATuEd-nyZkcid7ohw" name="equals" visibility="protected" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JCM5YQTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JCM5YgTuEd-nyZkcid7ohw" name="return" type="_I1TF0ATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JVmWgATuEd-nyZkcid7ohw" name="toString" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JVmWgQTuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IhCtEQTuEd-nyZkcid7ohw" name="NullPointerException">
+        <ownedOperation xmi:id="_I24aMATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+          <ownedParameter xmi:id="_I24aMQTuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IhFwYATuEd-nyZkcid7ohw" name="Class" isAbstract="true">
+        <ownedOperation xmi:id="_I3MjQATuEd-nyZkcid7ohw" name="newInstance" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I3MjQQTuEd-nyZkcid7ohw" name="return" type="_Ig_pwATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I3bMwATuEd-nyZkcid7ohw" name="forName" isLeaf="true" isStatic="true">
+          <ownedParameter xmi:id="_I3bz0ATuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I3bz0QTuEd-nyZkcid7ohw" name="return" type="_IhFwYATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I6aPUATuEd-nyZkcid7ohw" name="getName" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I6aPUQTuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_IhLP8ATuEd-nyZkcid7ohw" name="Runnable" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Ih3zgQTuEd-nyZkcid7ohw" name="Integer" isAbstract="true">
+        <ownedOperation xmi:id="_I7LrYATuEd-nyZkcid7ohw" name="toHexString" isLeaf="true" isStatic="true">
+          <ownedParameter xmi:id="_I7MScATuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I7MScQTuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I8QpcATuEd-nyZkcid7ohw" name="toString" isLeaf="true" isStatic="true">
+          <ownedParameter xmi:id="_I8RQgATuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I8RQgQTuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ImsCEATuEd-nyZkcid7ohw" name="Exception" isLeaf="true" isAbstract="true">
+        <ownedOperation xmi:id="_JL0vcATuEd-nyZkcid7ohw" name="&lt;init>" visibility="protected"/>
+        <ownedOperation xmi:id="_JL1WgATuEd-nyZkcid7ohw" name="&lt;init>" visibility="protected">
+          <ownedParameter xmi:id="_JL1WgQTuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IoqYAQTuEd-nyZkcid7ohw" name="Long" isAbstract="true">
+        <ownedOperation xmi:id="_JOpZ8ATuEd-nyZkcid7ohw" name="toString" isLeaf="true" isStatic="true">
+          <ownedParameter xmi:id="_JOpZ8QTuEd-nyZkcid7ohw" name="arg0" type="_I1dd4ATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JOpZ8gTuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JOwusATuEd-nyZkcid7ohw" name="parseLong" isLeaf="true" isStatic="true">
+          <ownedParameter xmi:id="_JOwusQTuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JOxVwATuEd-nyZkcid7ohw" name="return" type="_I1dd4ATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_IvupUATuEd-nyZkcid7ohw" name="int"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_I1TF0ATuEd-nyZkcid7ohw" name="boolean"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_I1ZMcATuEd-nyZkcid7ohw" name="byte"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_I1bosATuEd-nyZkcid7ohw" name="byte[]" isLeaf="true" isAbstract="true"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_I1dd4ATuEd-nyZkcid7ohw" name="long"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_JIqtwATuEd-nyZkcid7ohw" name="short"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_JI0ewATuEd-nyZkcid7ohw" name="short[]" isLeaf="true" isAbstract="true"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_JI1s4ATuEd-nyZkcid7ohw" name="int[]" isLeaf="true" isAbstract="true"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_JI2T8ATuEd-nyZkcid7ohw" name="long[]" isLeaf="true" isAbstract="true"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_JI8akATuEd-nyZkcid7ohw" name="char"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_JLjpswTuEd-nyZkcid7ohw" name="char[]" isLeaf="true" isAbstract="true"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_JQzWEQTuEd-nyZkcid7ohw" name="String[]" isLeaf="true" isAbstract="true"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_IgghkATuEd-nyZkcid7ohw" name="io">
+      <packagedElement xmi:type="uml:Class" xmi:id="_IgghkgTuEd-nyZkcid7ohw" name="OutputStream" isAbstract="true">
+        <ownedOperation xmi:id="_I1cPwATuEd-nyZkcid7ohw" name="write" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I1cPwQTuEd-nyZkcid7ohw" name="arg0" type="_I1bosATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I1c20ATuEd-nyZkcid7ohw" name="flush" isLeaf="true" isAbstract="true"/>
+        <ownedOperation xmi:id="_I1jkgATuEd-nyZkcid7ohw" name="close" isLeaf="true" isAbstract="true"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Igjk4ATuEd-nyZkcid7ohw" name="Reader" isAbstract="true">
+        <ownedOperation xmi:id="_I1i9cATuEd-nyZkcid7ohw" name="close" isLeaf="true" isAbstract="true"/>
+        <ownedOperation xmi:id="_JOAgwATuEd-nyZkcid7ohw" name="read" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JOAgwQTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IhUZ4gTuEd-nyZkcid7ohw" name="InputStreamReader">
+        <ownedOperation xmi:id="_I4b5YATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+          <ownedParameter xmi:id="_I4b5YQTuEd-nyZkcid7ohw" name="arg0" type="_IlnrEATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I4cgcATuEd-nyZkcid7ohw" name="arg1" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I4dukATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+          <ownedParameter xmi:id="_I4dukQTuEd-nyZkcid7ohw" name="arg0" type="_IlnrEATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IhVA8QTuEd-nyZkcid7ohw" name="OutputStreamWriter">
+        <ownedOperation xmi:id="_I4eVoATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+          <ownedParameter xmi:id="_I4e8sATuEd-nyZkcid7ohw" name="arg0" type="_IgghkgTuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IhZSYQTuEd-nyZkcid7ohw" name="IOException">
+        <ownedOperation xmi:id="_I4p70ATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+          <ownedParameter xmi:id="_I4qi4ATuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IhZ5cQTuEd-nyZkcid7ohw" name="Writer" isAbstract="true">
+        <ownedOperation xmi:id="_I4s_IATuEd-nyZkcid7ohw" name="flush" isLeaf="true" isAbstract="true"/>
+        <ownedOperation xmi:id="_JQX4QATuEd-nyZkcid7ohw" name="write" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JQel8ATuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JQfNAATuEd-nyZkcid7ohw" name="write" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JQfNAQTuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IhpxEQTuEd-nyZkcid7ohw" name="PrintStream">
+        <ownedOperation xmi:id="_I6d5sATuEd-nyZkcid7ohw" name="println" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I6d5sQTuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JJDIQATuEd-nyZkcid7ohw" name="write" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JJDIQQTuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JJHZsATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+          <ownedParameter xmi:id="_JJHZsQTuEd-nyZkcid7ohw" name="arg0" type="_IgghkgTuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JJIAwATuEd-nyZkcid7ohw" name="print" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JJIn0ATuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JJKdAATuEd-nyZkcid7ohw" name="println" isLeaf="true" isAbstract="true"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IlnrEATuEd-nyZkcid7ohw" name="InputStream" isAbstract="true">
+        <ownedOperation xmi:id="_JJAsAATuEd-nyZkcid7ohw" name="read" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JJAsAQTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IlqHUQTuEd-nyZkcid7ohw" name="ByteArrayOutputStream">
+        <ownedOperation xmi:id="_JJGyoATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true"/>
+        <ownedOperation xmi:id="_JJKdAQTuEd-nyZkcid7ohw" name="toString" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JJLEEATuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_IgkL8ATuEd-nyZkcid7ohw" name="util">
+      <packagedElement xmi:type="uml:Class" xmi:id="_IgmoMATuEd-nyZkcid7ohw" name="Hashtable">
+        <ownedOperation xmi:id="_I1odAATuEd-nyZkcid7ohw" name="get" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I1odAQTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I1odAgTuEd-nyZkcid7ohw" name="return" type="_Ig_pwATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I23MEQTuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+          <ownedParameter xmi:id="_I23zIATuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I25oUATuEd-nyZkcid7ohw" name="keys" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I25oUQTuEd-nyZkcid7ohw" name="return" type="_IhDUIATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I27dgATuEd-nyZkcid7ohw" name="put" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I27dgQTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I27dggTuEd-nyZkcid7ohw" name="arg1" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I27dgwTuEd-nyZkcid7ohw" name="return" type="_Ig_pwATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I29SsATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true"/>
+        <ownedOperation xmi:id="_I3L8MATuEd-nyZkcid7ohw" name="containsKey" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I3L8MQTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I3L8MgTuEd-nyZkcid7ohw" name="return" type="_I1TF0ATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I4x3oATuEd-nyZkcid7ohw" name="remove" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I4x3oQTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I4x3ogTuEd-nyZkcid7ohw" name="return" type="_Ig_pwATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I6JJkATuEd-nyZkcid7ohw" name="size" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I6JJkQTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_IhDUIATuEd-nyZkcid7ohw" name="Enumeration" isAbstract="true">
+        <ownedOperation xmi:id="_I25oUgTuEd-nyZkcid7ohw" name="hasMoreElements" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I25oUwTuEd-nyZkcid7ohw" name="return" type="_I1TF0ATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I26PYATuEd-nyZkcid7ohw" name="nextElement" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I26PYQTuEd-nyZkcid7ohw" name="return" type="_Ig_pwATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IhNsMATuEd-nyZkcid7ohw" name="Vector">
+        <ownedOperation xmi:id="_I3sSgATuEd-nyZkcid7ohw" name="elementAt" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I3sSgQTuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I3sSggTuEd-nyZkcid7ohw" name="return" type="_Ig_pwATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I3s5kATuEd-nyZkcid7ohw" name="removeElementAt" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I301YATuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I4gx4gTuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+          <ownedParameter xmi:id="_I4hY8ATuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I6ThoATuEd-nyZkcid7ohw" name="addElement" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I6ThoQTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JLnUEATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true"/>
+        <ownedOperation xmi:id="_JLtasgTuEd-nyZkcid7ohw" name="elements" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JLuBwATuEd-nyZkcid7ohw" name="return" type="_IhDUIATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JPGs8ATuEd-nyZkcid7ohw" name="removeElement" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JPGs8QTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JPHUAATuEd-nyZkcid7ohw" name="return" type="_I1TF0ATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JPaO8ATuEd-nyZkcid7ohw" name="setElementAt" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JPaO8QTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JPbdEATuEd-nyZkcid7ohw" name="arg1" type="_IvupUATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JPdSQATuEd-nyZkcid7ohw" name="size" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JPegYATuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JSKA8ATuEd-nyZkcid7ohw" name="contains" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JSKA8QTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JSKA8gTuEd-nyZkcid7ohw" name="return" type="_I1TF0ATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JSPggQTuEd-nyZkcid7ohw" name="indexOf" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JSPgggTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JSPggwTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JSQuoATuEd-nyZkcid7ohw" name="insertElementAt" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JSQuoQTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_JSQuogTuEd-nyZkcid7ohw" name="arg1" type="_IvupUATuEd-nyZkcid7ohw"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IhUZ4ATuEd-nyZkcid7ohw" name="Stack">
+        <ownedOperation xmi:id="_I4bSUATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true"/>
+        <ownedOperation xmi:id="_I5FZoATuEd-nyZkcid7ohw" name="peek" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I5FZoQTuEd-nyZkcid7ohw" name="return" type="_Ig_pwATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I54q4ATuEd-nyZkcid7ohw" name="push" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I54q4QTuEd-nyZkcid7ohw" name="arg0" type="_Ig_pwATuEd-nyZkcid7ohw"/>
+          <ownedParameter xmi:id="_I54q4gTuEd-nyZkcid7ohw" name="return" type="_Ig_pwATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_I6BNwATuEd-nyZkcid7ohw" name="pop" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_I6BNwQTuEd-nyZkcid7ohw" name="return" type="_Ig_pwATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Ilu_0QTuEd-nyZkcid7ohw" name="Random">
+        <ownedOperation xmi:id="_JJXRUATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true"/>
+        <ownedOperation xmi:id="_JJX4YATuEd-nyZkcid7ohw" name="nextInt" isLeaf="true" isAbstract="true">
+          <ownedParameter xmi:id="_JJX4YQTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_It2aAATuEd-nyZkcid7ohw" name="javax">
+    <packagedElement xmi:type="uml:Package" xmi:id="_It3oIATuEd-nyZkcid7ohw" name="microedition">
+      <packagedElement xmi:type="uml:Package" xmi:id="_It4PMATuEd-nyZkcid7ohw" name="io">
+        <packagedElement xmi:type="uml:Interface" xmi:id="_It4PMgTuEd-nyZkcid7ohw" name="InputConnection" isAbstract="true">
+          <ownedOperation xmi:id="_JX9G8wTuEd-nyZkcid7ohw" name="openInputStream" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JX9G9ATuEd-nyZkcid7ohw" name="return" type="_IlnrEATuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_It42QQTuEd-nyZkcid7ohw" name="OutputConnection" isAbstract="true">
+          <ownedOperation xmi:id="_JX9uAATuEd-nyZkcid7ohw" name="openOutputStream" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JX9uAQTuEd-nyZkcid7ohw" name="return" type="_IgghkgTuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_It6EYQTuEd-nyZkcid7ohw" name="Connector" isAbstract="true">
+          <ownedOperation xmi:id="_JYBYYATuEd-nyZkcid7ohw" name="open" isLeaf="true" isStatic="true">
+            <ownedParameter xmi:id="_JYBYYQTuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JYBYYgTuEd-nyZkcid7ohw" name="return" type="_JYAxUATuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_JX4OcATuEd-nyZkcid7ohw" name="StreamConnection" isLeaf="true" isAbstract="true"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_JYAxUATuEd-nyZkcid7ohw" name="Connection" isLeaf="true" isAbstract="true"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_IuGRogTuEd-nyZkcid7ohw" name="lcdui">
+        <packagedElement xmi:type="uml:Interface" xmi:id="_IuGRowTuEd-nyZkcid7ohw" name="CommandListener" isAbstract="true"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_IuViMATuEd-nyZkcid7ohw" name="List" isLeaf="true" isAbstract="true">
+          <ownedOperation xmi:id="_JYddQgTuEd-nyZkcid7ohw" name="&lt;init>" visibility="protected" isLeaf="true">
+            <ownedParameter xmi:id="_JYeEUATuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JYeEUQTuEd-nyZkcid7ohw" name="arg1" type="_IvupUATuEd-nyZkcid7ohw"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JYhHogTuEd-nyZkcid7ohw" name="insert" visibility="protected" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JYhHowTuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JYhHpATuEd-nyZkcid7ohw" name="arg1" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JYhHpQTuEd-nyZkcid7ohw" name="arg2" type="_IuvK0ATuEd-nyZkcid7ohw"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JYhusgTuEd-nyZkcid7ohw" name="delete" visibility="protected" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JYhuswTuEd-nyZkcid7ohw" name="arg0" type="_IvupUATuEd-nyZkcid7ohw"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JYiVwATuEd-nyZkcid7ohw" name="getSelectedIndex" visibility="protected" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JYiVwQTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_IuZzoQTuEd-nyZkcid7ohw" name="Command">
+          <ownedOperation xmi:id="_JYeEUgTuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+            <ownedParameter xmi:id="_JYeEUwTuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JYeEVATuEd-nyZkcid7ohw" name="arg1" type="_IvupUATuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JYeEVQTuEd-nyZkcid7ohw" name="arg2" type="_IvupUATuEd-nyZkcid7ohw"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_IubBwATuEd-nyZkcid7ohw" name="Displayable" isAbstract="true">
+          <ownedOperation xmi:id="_JYfScATuEd-nyZkcid7ohw" name="addCommand" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JYfScQTuEd-nyZkcid7ohw" name="arg0" type="_IuZzoQTuEd-nyZkcid7ohw"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JYf5gATuEd-nyZkcid7ohw" name="setCommandListener" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JYf5gQTuEd-nyZkcid7ohw" name="arg0" type="_IuGRowTuEd-nyZkcid7ohw"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_Iubo0QTuEd-nyZkcid7ohw" name="Display" isAbstract="true">
+          <ownedOperation xmi:id="_JYf5ggTuEd-nyZkcid7ohw" name="getDisplay" isLeaf="true" isStatic="true">
+            <ownedParameter xmi:id="_JYf5gwTuEd-nyZkcid7ohw" name="arg0" type="_IuRQwgTuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JYf5hATuEd-nyZkcid7ohw" name="return" type="_Iubo0QTuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JYf5hQTuEd-nyZkcid7ohw" name="setCurrent" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JYf5hgTuEd-nyZkcid7ohw" name="arg0" type="_IubBwATuEd-nyZkcid7ohw"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JY8lcgTuEd-nyZkcid7ohw" name="getCurrent" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JY9MgATuEd-nyZkcid7ohw" name="return" type="_IubBwATuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_IuvK0ATuEd-nyZkcid7ohw" name="Image" isAbstract="true">
+          <ownedOperation xmi:id="_JYst0ATuEd-nyZkcid7ohw" name="createImage" isLeaf="true" isStatic="true">
+            <ownedParameter xmi:id="_JYst0QTuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JYst0gTuEd-nyZkcid7ohw" name="return" type="_IuvK0ATuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_Iu3tsATuEd-nyZkcid7ohw" name="Form" isLeaf="true" isAbstract="true">
+          <ownedOperation xmi:id="_JY6wQwTuEd-nyZkcid7ohw" name="&lt;init>" visibility="protected" isLeaf="true">
+            <ownedParameter xmi:id="_JY7XUATuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JY7-YQTuEd-nyZkcid7ohw" name="append" visibility="protected" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JY8lcATuEd-nyZkcid7ohw" name="arg0" type="_JY7-YATuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JY8lcQTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JZBd8ATuEd-nyZkcid7ohw" name="append" visibility="protected" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JZCFAATuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JZCFAQTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JZCFAgTuEd-nyZkcid7ohw" name="append" visibility="protected" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JZCsEATuEd-nyZkcid7ohw" name="arg0" type="_IuvK0ATuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JZCsEQTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_Iu470QTuEd-nyZkcid7ohw" name="TextField">
+          <ownedOperation xmi:id="_JY7XUQTuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+            <ownedParameter xmi:id="_JY7XUgTuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JY7XUwTuEd-nyZkcid7ohw" name="arg1" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JY7XVATuEd-nyZkcid7ohw" name="arg2" type="_IvupUATuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JY7XVQTuEd-nyZkcid7ohw" name="arg3" type="_IvupUATuEd-nyZkcid7ohw"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JY9MgwTuEd-nyZkcid7ohw" name="getString" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JY9zkATuEd-nyZkcid7ohw" name="return" type="_Igf6gQTuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JZEhQATuEd-nyZkcid7ohw" name="setString" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JZEhQQTuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_IvagQQTuEd-nyZkcid7ohw" name="ChoiceGroup">
+          <ownedOperation xmi:id="_JZTKwATuEd-nyZkcid7ohw" name="&lt;init>" isLeaf="true">
+            <ownedParameter xmi:id="_JZTKwQTuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JZTx0ATuEd-nyZkcid7ohw" name="arg1" type="_IvupUATuEd-nyZkcid7ohw"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JZeJ4gTuEd-nyZkcid7ohw" name="getSelectedIndex" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JZeJ4wTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+          <ownedOperation xmi:id="_JZew8gTuEd-nyZkcid7ohw" name="append" isLeaf="true" isAbstract="true">
+            <ownedParameter xmi:id="_JZew8wTuEd-nyZkcid7ohw" name="arg0" type="_Igf6gQTuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JZfYAATuEd-nyZkcid7ohw" name="arg1" type="_IuvK0ATuEd-nyZkcid7ohw"/>
+            <ownedParameter xmi:id="_JZfYAQTuEd-nyZkcid7ohw" name="return" type="_IvupUATuEd-nyZkcid7ohw" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_JY7-YATuEd-nyZkcid7ohw" name="Item" isLeaf="true" isAbstract="true"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_IuRQwATuEd-nyZkcid7ohw" name="midlet">
+        <packagedElement xmi:type="uml:Class" xmi:id="_IuRQwgTuEd-nyZkcid7ohw" name="MIDlet" isAbstract="true">
+          <ownedOperation xmi:id="_JYcPIgTuEd-nyZkcid7ohw" name="notifyDestroyed" isLeaf="true" isAbstract="true"/>
+          <ownedOperation xmi:id="_JZjpcQTuEd-nyZkcid7ohw" name="&lt;init>" visibility="protected"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

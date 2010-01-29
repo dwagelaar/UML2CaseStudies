@@ -28,7 +28,7 @@ public class InstantmessengerFactoryImpl extends EFactoryImpl implements Instant
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * Creates the default factory implementation.
@@ -72,12 +72,14 @@ public class InstantmessengerFactoryImpl extends EFactoryImpl implements Instant
 			case InstantmessengerPackage.JABBER_NETWORK: return createJabberNetwork();
 			case InstantmessengerPackage.DEFAULT_JABBER_TRANSPORT: return createDefaultJabberTransport();
 			case InstantmessengerPackage.ME_JABBER_TRANSPORT: return createMEJabberTransport();
+			case InstantmessengerPackage.SWT_USER_INTERFACE: return createSWTUserInterface();
 			case InstantmessengerPackage.AWT_USER_INTERFACE: return createAWTUserInterface();
 			case InstantmessengerPackage.SWING_USER_INTERFACE: return createSwingUserInterface();
 			case InstantmessengerPackage.LCDUI_USER_INTERFACE: return createLCDUIUserInterface();
 			case InstantmessengerPackage.WEB_APPLET_PACKAGING: return createWebAppletPackaging();
 			case InstantmessengerPackage.IPKG_APPLET_PACKAGING: return createIpkgAppletPackaging();
 			case InstantmessengerPackage.MI_DLET_PACKAGING: return createMIDletPackaging();
+			case InstantmessengerPackage.MAEMO_PACKAGING: return createMaemoPackaging();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -138,6 +140,16 @@ public class InstantmessengerFactoryImpl extends EFactoryImpl implements Instant
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SWTUserInterface createSWTUserInterface() {
+		SWTUserInterfaceImpl swtUserInterface = new SWTUserInterfaceImpl();
+		return swtUserInterface;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public AWTUserInterface createAWTUserInterface() {
 		AWTUserInterfaceImpl awtUserInterface = new AWTUserInterfaceImpl();
 		return awtUserInterface;
@@ -191,6 +203,16 @@ public class InstantmessengerFactoryImpl extends EFactoryImpl implements Instant
 	public MIDletPackaging createMIDletPackaging() {
 		MIDletPackagingImpl miDletPackaging = new MIDletPackagingImpl();
 		return miDletPackaging;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MaemoPackaging createMaemoPackaging() {
+		MaemoPackagingImpl maemoPackaging = new MaemoPackagingImpl();
+		return maemoPackaging;
 	}
 
 	/**

@@ -29,7 +29,7 @@ public class TransformationsFactoryImpl extends EFactoryImpl implements Transfor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * Creates the default factory implementation.
@@ -76,6 +76,7 @@ public class TransformationsFactoryImpl extends EFactoryImpl implements Transfor
 			case TransformationsPackage.UML2_JAVA_OBSERVER: return createUML2JavaObserver();
 			case TransformationsPackage.UML2_APPLET: return createUML2Applet();
 			case TransformationsPackage.UML2MI_DLET: return createUML2MIDlet();
+			case TransformationsPackage.UML2SWT_APPLICATION: return createUML2SWTApplication();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -189,6 +190,16 @@ public class TransformationsFactoryImpl extends EFactoryImpl implements Transfor
 	public UML2MIDlet createUML2MIDlet() {
 		UML2MIDletImpl uml2MIDlet = new UML2MIDletImpl();
 		return uml2MIDlet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UML2SWTApplication createUML2SWTApplication() {
+		UML2SWTApplicationImpl uml2SWTApplication = new UML2SWTApplicationImpl();
+		return uml2SWTApplication;
 	}
 
 	/**

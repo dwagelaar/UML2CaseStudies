@@ -9,7 +9,7 @@ create OUT : XML from IN : CFG;
 -- helper attributes begin
 -- ======================================================================
 
-helper def : ModelPath : String = '../../uml2cs-instantmessenger-model/models';
+helper def : ModelPath : String = 'platform:/resource/uml2cs-instantmessenger-model/models';
 
 -- ======================================================================
 -- helper attributes end
@@ -61,8 +61,15 @@ def : userInterfaceDepends() : Sequence(String) =
 		Sequence{'LCDUIUserInterface'}
 	else
 		Sequence{}
+	endif)
+	->union(
+	if self.userInterface->select(u|u.oclIsKindOf(
+		CFG!"instantmessenger::SWTUserInterface"))->notEmpty() then
+		Sequence{'SWTUserInterface'}
+	else
+		Sequence{}
 	endif);
-	
+
 -- ======================================================================
 -- helper methods end
 -- ======================================================================
@@ -264,6 +271,28 @@ rule LCDUIUserInterface {
 		parent <- s.config)
 }
 
+rule SWTUserInterface {
+	from s : CFG!"instantmessenger::SWTUserInterface"
+	-- <target name = 'SWTUserInterface' depends = 'allBase'>
+	to target : XML!"XML::Element" (
+		name <- 'target',
+		children <- thisModule.ModelTarget(
+			'SWTUserInterface',
+			'SWT',
+			'swt',
+			thisModule.ModelPath + '/InstantMessengerSWT.uml'),
+		parent <- s.config),
+	-- <target name = 'SWTUserInterface-feedback' depends = 'allBase, loadJAVA'>
+	   targetFeedback : XML!"XML::Element" (
+		name <- 'target',
+		children <- thisModule.ModelFeedbackTarget(
+			'SWTUserInterface-feedback',
+			'SWT',
+			s.config.targetProject,
+			thisModule.ModelPath + '/InstantMessengerSWT.uml'),
+		parent <- s.config)
+}
+
 rule AllTarget(c : CFG!"instantmessenger::InstantMessengerConfiguration") {
 	-- Sequence{name="all" depends="..."}
 	to targetName : XML!"XML::Attribute"(
@@ -325,7 +354,7 @@ rule ModelTarget(name : String, inModel : String, prefix : String, path : String
 	   targetDepends : XML!"XML::Attribute"(
 	   	name <- 'depends',
 		value <- 'allBase'),
-	-- <atl.loadModel modelHandler = 'UML2' name = 'inModel' metamodel = 'UML2' path = 'path'/>
+	-- <atl.loadModel modelHandler = 'UML2' name = 'inModel' metamodel = 'UML2' uri = 'path'/>
 	   loadModel : XML!"XML::Element" (
 	   	name <- 'atl.loadModel'),
 	   modelHandler : XML!"XML::Attribute" (
@@ -341,7 +370,7 @@ rule ModelTarget(name : String, inModel : String, prefix : String, path : String
 		value <- 'UML2',
 		parent <- loadModel),
 	   modelPath : XML!"XML::Attribute" (
-	   	name <- 'path',
+	   	name <- 'uri',
 		value <- path,
 		parent <- loadModel),
 	-- <antcall target="generate" inheritRefs="true">
@@ -371,14 +400,14 @@ rule ModelTarget(name : String, inModel : String, prefix : String, path : String
 }
 
 rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String, path : String) {
-	-- Sequence{name = 'name' depends = 'allBase, loadJAVA'}
+	-- Sequence{name = 'name' depends = 'defineProperties, loadBaseModels, loadJAVA'}
 	to targetName : XML!"XML::Attribute"(
 	   	name <- 'name',
 		value <- name),
 	   targetDepends : XML!"XML::Attribute"(
 	   	name <- 'depends',
-		value <- 'allBase, loadJAVA'),
-	-- <atl.loadModel modelHandler = 'UML2' name = 'inModel' metamodel = 'UML2' path = 'path'/>
+		value <- 'defineProperties, loadBaseModels, loadJAVA'),
+	-- <atl.loadModel modelHandler = 'UML2' name = 'inModel' metamodel = 'UML2' uri = 'path'/>
 	   loadModel : XML!"XML::Element" (
 	   	name <- 'atl.loadModel'),
 	   modelHandler : XML!"XML::Attribute" (
@@ -394,7 +423,7 @@ rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String
 		value <- 'UML2',
 		parent <- loadModel),
 	   modelPath : XML!"XML::Attribute" (
-	   	name <- 'path',
+	   	name <- 'uri',
 		value <- path,
 		parent <- loadModel),
 	-- <atl.loadModel modelHandler = 'EMF' name = 'inModelCode' metamodel = 'JAVA' path = 'targetProject/targetProject.javaast'/>
@@ -437,10 +466,10 @@ rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String
 	   	name <- 'param',
 		children <- thisModule.Property('code', inModel + 'Code'),
 		parent <- antcall),
-	-- <param name="path" value="path"/>
+	-- <param name="uri" value="path"/>
 	   parampath : XML!"XML::Element" (
 	   	name <- 'param',
-		children <- thisModule.Property('path', path),
+		children <- thisModule.Property('uri', path),
 		parent <- antcall)
 	do {
 		Sequence{targetName, targetDepends, loadModel, loadCode, antcall};

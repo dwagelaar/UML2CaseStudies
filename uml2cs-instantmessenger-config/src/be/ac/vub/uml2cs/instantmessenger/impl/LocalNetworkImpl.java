@@ -40,7 +40,7 @@ public class LocalNetworkImpl extends EObjectImpl implements LocalNetwork {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class LocalNetworkImpl extends EObjectImpl implements LocalNetwork {
 	 * @generated
 	 */
 	public InstantMessengerConfiguration getConfig() {
-		if (eContainerFeatureID != InstantmessengerPackage.LOCAL_NETWORK__CONFIG) return null;
+		if (eContainerFeatureID() != InstantmessengerPackage.LOCAL_NETWORK__CONFIG) return null;
 		return (InstantMessengerConfiguration)eContainer();
 	}
 
@@ -87,7 +87,7 @@ public class LocalNetworkImpl extends EObjectImpl implements LocalNetwork {
 	 * @generated
 	 */
 	public void setConfig(InstantMessengerConfiguration newConfig) {
-		if (newConfig != eInternalContainer() || (eContainerFeatureID != InstantmessengerPackage.LOCAL_NETWORK__CONFIG && newConfig != null)) {
+		if (newConfig != eInternalContainer() || (eContainerFeatureID() != InstantmessengerPackage.LOCAL_NETWORK__CONFIG && newConfig != null)) {
 			if (EcoreUtil.isAncestor(this, newConfig))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -139,7 +139,7 @@ public class LocalNetworkImpl extends EObjectImpl implements LocalNetwork {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case InstantmessengerPackage.LOCAL_NETWORK__CONFIG:
 				return eInternalContainer().eInverseRemove(this, InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__LOCAL_NETWORK, InstantMessengerConfiguration.class, msgs);
 		}

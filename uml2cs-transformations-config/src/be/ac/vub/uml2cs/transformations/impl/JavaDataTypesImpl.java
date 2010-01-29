@@ -40,7 +40,7 @@ public abstract class JavaDataTypesImpl extends EObjectImpl implements JavaDataT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public abstract class JavaDataTypesImpl extends EObjectImpl implements JavaDataT
 	 * @generated
 	 */
 	public JavaMapping getMapping() {
-		if (eContainerFeatureID != TransformationsPackage.JAVA_DATA_TYPES__MAPPING) return null;
+		if (eContainerFeatureID() != TransformationsPackage.JAVA_DATA_TYPES__MAPPING) return null;
 		return (JavaMapping)eContainer();
 	}
 
@@ -87,7 +87,7 @@ public abstract class JavaDataTypesImpl extends EObjectImpl implements JavaDataT
 	 * @generated
 	 */
 	public void setMapping(JavaMapping newMapping) {
-		if (newMapping != eInternalContainer() || (eContainerFeatureID != TransformationsPackage.JAVA_DATA_TYPES__MAPPING && newMapping != null)) {
+		if (newMapping != eInternalContainer() || (eContainerFeatureID() != TransformationsPackage.JAVA_DATA_TYPES__MAPPING && newMapping != null)) {
 			if (EcoreUtil.isAncestor(this, newMapping))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -139,7 +139,7 @@ public abstract class JavaDataTypesImpl extends EObjectImpl implements JavaDataT
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case TransformationsPackage.JAVA_DATA_TYPES__MAPPING:
 				return eInternalContainer().eInverseRemove(this, TransformationsPackage.JAVA_MAPPING__DATA_TYPES, JavaMapping.class, msgs);
 		}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="%project%/packaging/maemo" default="all">
+	<property name="deployment.target" value="maemo"/>
+	<property name="jabberwookie.path" value="../../../uml2cs-microjabberwookie/src"/>
+	<property name="deployment.path" value="../../../uml2cs-instantmessenger-model/deployment/data"/>
+	<property name="src.path" value="../../src"/>
+	<property name="src.path" value="../../resources"/>
+	<property name="certificate.path" value="${user.home}/certificate"/>
+	<property name="bin.path" value="../../bin"/>
+	<property name="main.class" value="im.InstantMessagingClient"/>
+
+	<property name="deb.name" value="instantmessenger"/>
+	<property name="deb.title" value="Instant Messenger"/>
+	<property name="deb.version" value="1.2-0"/>
+	<property name="deb.arch" value="all"/>
+	<property name="deb.depends" value="java2-runtime, libswt3.4-gtk-java"/>
+	<property name="deb.maintainer" value="Dennis Wagelaar &lt;dennis.wagelaar@vub.ac.be&gt;"/>
+	<property name="deb.priority" value="optional"/>
+	<property name="deb.section" value="user/other"/>
+	<property name="deb.description" value="Instant Messenger case study for MDE."/>
+	
+	<property name="maemo.uri" value="http://soft.vub.ac.be/platformkit/instantmessenger/maemo"/>
+	<property name="maemo.dist" value="maemo4.0"/>
+	<property name="maemo.components" value="user"/>
+
+	<property file="${certificate.path}/certificate.properties"/>
+	
+	<import file="../../../uml2cs-instantmessenger-model/packaging/maemo/build.xml"/>
+</project>

@@ -8,8 +8,17 @@
   <constraintSet name="instantmessenger::MEJabberTransport">
     <constraint ontClassURI="http://local/InstantMessenger.owl#MEJabberPlatform"/>
   </constraintSet>
+  <constraintSet name="instantmessenger::JabberNetwork">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#JabberPlatform"/>
+  </constraintSet>
+  <constraintSet name="instantmessenger::SWTUserInterface">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#SWTPlatform"/>
+  </constraintSet>
   <constraintSet name="instantmessenger::SwingUserInterface">
     <constraint ontClassURI="http://local/InstantMessenger.owl#SwingPlatform"/>
+  </constraintSet>
+  <constraintSet name="instantmessenger::AWTUserInterface">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#AWTPlatform"/>
   </constraintSet>
   <constraintSet name="instantmessenger::LCDUIUserInterface">
     <constraint ontClassURI="http://local/InstantMessenger.owl#LCDUIPlatform"/>
@@ -23,23 +32,17 @@
   <constraintSet name="instantmessenger::MIDletPackaging">
     <constraint ontClassURI="http://local/InstantMessenger.owl#MIDletPlatform"/>
   </constraintSet>
+  <constraintSet name="instantmessenger::MaemoPackaging">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#MaemoPlatform"/>
+  </constraintSet>
   <constraintSet name="transformations::Java2DataTypes">
     <constraint ontClassURI="http://local/Transformations.owl#Java2Platform"/>
   </constraintSet>
   <constraintSet name="transformations::UML2JavaObserver">
     <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
   </constraintSet>
-  <constraintSet name="transformations::UML2Applet">
-    <constraint ontClassURI="http://local/Transformations.owl#AppletPlatform"/>
-  </constraintSet>
-  <constraintSet name="transformations::UML2MIDlet">
-    <constraint ontClassURI="http://local/Transformations.owl#MIDletPlatform"/>
-  </constraintSet>
-  <constraintSet name="instantmessenger::JabberNetwork">
-    <constraint ontClassURI="http://local/InstantMessenger.owl#JabberPlatform"/>
-  </constraintSet>
-  <constraintSet name="instantmessenger::AWTUserInterface">
-    <constraint ontClassURI="http://local/InstantMessenger.owl#AWTPlatform"/>
+  <constraintSet name="instantmessenger::InstantMessengerConfiguration">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
   </constraintSet>
   <constraintSet name="transformations::JavaMapping">
     <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
@@ -50,10 +53,16 @@
   <constraintSet name="transformations::UML2Observer">
     <constraint ontClassURI="http://local/Transformations.owl#Java1Platform"/>
   </constraintSet>
-  <constraintSet name="instantmessenger::InstantMessengerConfiguration">
-    <constraint ontClassURI="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+  <constraintSet name="transformations::UML2Applet">
+    <constraint ontClassURI="http://local/Transformations.owl#AppletPlatform"/>
   </constraintSet>
   <constraintSet name="instantmessenger::LocalNetwork">
     <constraint ontClassURI="http://local/InstantMessenger.owl#LocalPlatform"/>
+  </constraintSet>
+  <constraintSet name="transformations::UML2MIDlet">
+    <constraint ontClassURI="http://local/Transformations.owl#MIDletPlatform"/>
+  </constraintSet>
+  <constraintSet name="transformations::UML2SWTApplication">
+    <constraint ontClassURI="http://local/Transformations.owl#SWTPlatform"/>
   </constraintSet>
 </platformkit:ConstraintSpace>

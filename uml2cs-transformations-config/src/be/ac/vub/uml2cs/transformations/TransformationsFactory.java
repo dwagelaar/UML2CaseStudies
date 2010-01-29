@@ -22,7 +22,7 @@ public interface TransformationsFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * The singleton instance of the factory.
@@ -103,6 +103,15 @@ public interface TransformationsFactory extends EFactory {
 	 * @generated
 	 */
 	UML2MIDlet createUML2MIDlet();
+
+	/**
+	 * Returns a new object of class '<em>UML2SWT Application</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>UML2SWT Application</em>'.
+	 * @generated
+	 */
+	UML2SWTApplication createUML2SWTApplication();
 
 	/**
 	 * Returns the package supported by this factory.

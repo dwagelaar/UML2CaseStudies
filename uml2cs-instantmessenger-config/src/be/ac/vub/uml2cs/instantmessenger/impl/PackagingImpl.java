@@ -40,7 +40,7 @@ public abstract class PackagingImpl extends EObjectImpl implements Packaging {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, 2008, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public abstract class PackagingImpl extends EObjectImpl implements Packaging {
 	 * @generated
 	 */
 	public InstantMessengerConfiguration getConfig() {
-		if (eContainerFeatureID != InstantmessengerPackage.PACKAGING__CONFIG) return null;
+		if (eContainerFeatureID() != InstantmessengerPackage.PACKAGING__CONFIG) return null;
 		return (InstantMessengerConfiguration)eContainer();
 	}
 
@@ -87,7 +87,7 @@ public abstract class PackagingImpl extends EObjectImpl implements Packaging {
 	 * @generated
 	 */
 	public void setConfig(InstantMessengerConfiguration newConfig) {
-		if (newConfig != eInternalContainer() || (eContainerFeatureID != InstantmessengerPackage.PACKAGING__CONFIG && newConfig != null)) {
+		if (newConfig != eInternalContainer() || (eContainerFeatureID() != InstantmessengerPackage.PACKAGING__CONFIG && newConfig != null)) {
 			if (EcoreUtil.isAncestor(this, newConfig))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -139,7 +139,7 @@ public abstract class PackagingImpl extends EObjectImpl implements Packaging {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case InstantmessengerPackage.PACKAGING__CONFIG:
 				return eInternalContainer().eInverseRemove(this, InstantmessengerPackage.INSTANT_MESSENGER_CONFIGURATION__PACKAGING, InstantMessengerConfiguration.class, msgs);
 		}

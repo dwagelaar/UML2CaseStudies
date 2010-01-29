@@ -40,7 +40,7 @@ public class UML2ObserverImpl extends EObjectImpl implements UML2Observer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class UML2ObserverImpl extends EObjectImpl implements UML2Observer {
 	 * @generated
 	 */
 	public TransformationConfig getConfig() {
-		if (eContainerFeatureID != TransformationsPackage.UML2_OBSERVER__CONFIG) return null;
+		if (eContainerFeatureID() != TransformationsPackage.UML2_OBSERVER__CONFIG) return null;
 		return (TransformationConfig)eContainer();
 	}
 
@@ -87,7 +87,7 @@ public class UML2ObserverImpl extends EObjectImpl implements UML2Observer {
 	 * @generated
 	 */
 	public void setConfig(TransformationConfig newConfig) {
-		if (newConfig != eInternalContainer() || (eContainerFeatureID != TransformationsPackage.UML2_OBSERVER__CONFIG && newConfig != null)) {
+		if (newConfig != eInternalContainer() || (eContainerFeatureID() != TransformationsPackage.UML2_OBSERVER__CONFIG && newConfig != null)) {
 			if (EcoreUtil.isAncestor(this, newConfig))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -139,7 +139,7 @@ public class UML2ObserverImpl extends EObjectImpl implements UML2Observer {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case TransformationsPackage.UML2_OBSERVER__CONFIG:
 				return eInternalContainer().eInverseRemove(this, TransformationsPackage.TRANSFORMATION_CONFIG__OBSERVER, TransformationConfig.class, msgs);
 		}

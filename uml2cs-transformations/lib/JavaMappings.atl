@@ -320,7 +320,7 @@ helper context Boolean def : midletInitBody() : String =
 	endif;
 
 helper context Boolean def : swtAppInitBody() : String =
-	self.midletInitBody();
+	'getShell().setLayout(new org.eclipse.swt.layout.FormLayout());';
 
 helper context String def : appletInfoBody() : String =
 	'return "' + self + '";';
@@ -328,9 +328,17 @@ helper context String def : appletInfoBody() : String =
 helper context String def : parameterInfoBody() : String =
 	'String pinfo[][] = ' + self + ';\nreturn pinfo;';
 
-helper context String def : swtAppMainBody() : String =
-	'try {\n' +
-	self + ' app = new ' + self + '();\ncatch (Throwable t) {\nt.printStackTrace();\n}';
+helper context String def : swtAppMainBody(singleton : Boolean) : String =
+	self +
+	if singleton then ' app = getInstance' else ' app = new ' + self endif + 
+	'();\napp.setRunning(true);\n' +
+	'final org.eclipse.swt.widgets.Shell shell = app.getShell();\n' + 
+	'final org.eclipse.swt.widgets.Display display = shell.getDisplay();\n' +
+	'app.init();\nshell.pack();\nshell.open();\napp.start();' +
+	'while (!shell.isDisposed()) {\n' +
+	'if (!display.readAndDispatch()) {\n' +
+	'display.sleep();\n}\n}\n' +
+	'app.stop();\napp.destroy();\ndisplay.dispose();';
 
 ------------------------------- AbstractFactory -----------------------------------
 

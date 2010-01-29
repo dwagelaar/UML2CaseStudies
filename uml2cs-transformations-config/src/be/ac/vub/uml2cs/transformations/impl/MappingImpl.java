@@ -40,7 +40,7 @@ public abstract class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public abstract class MappingImpl extends EObjectImpl implements Mapping {
 	 * @generated
 	 */
 	public TransformationConfig getConfig() {
-		if (eContainerFeatureID != TransformationsPackage.MAPPING__CONFIG) return null;
+		if (eContainerFeatureID() != TransformationsPackage.MAPPING__CONFIG) return null;
 		return (TransformationConfig)eContainer();
 	}
 
@@ -87,7 +87,7 @@ public abstract class MappingImpl extends EObjectImpl implements Mapping {
 	 * @generated
 	 */
 	public void setConfig(TransformationConfig newConfig) {
-		if (newConfig != eInternalContainer() || (eContainerFeatureID != TransformationsPackage.MAPPING__CONFIG && newConfig != null)) {
+		if (newConfig != eInternalContainer() || (eContainerFeatureID() != TransformationsPackage.MAPPING__CONFIG && newConfig != null)) {
 			if (EcoreUtil.isAncestor(this, newConfig))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -139,7 +139,7 @@ public abstract class MappingImpl extends EObjectImpl implements Mapping {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case TransformationsPackage.MAPPING__CONFIG:
 				return eInternalContainer().eInverseRemove(this, TransformationsPackage.TRANSFORMATION_CONFIG__MAPPING, TransformationConfig.class, msgs);
 		}

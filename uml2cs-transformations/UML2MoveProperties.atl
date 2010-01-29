@@ -1,0 +1,137 @@
+-- @atlcompiler atl2006
+-- @nsURI UML2 http://www.eclipse.org/uml2/2.1.0/UML
+-- $Id$
+-- Moves properties owned by associations into classes where possible.
+--
+module UML2MoveProperties; --extends UML2Copy
+
+create OUT : UML2 from IN : UML2;
+
+-- ======================================================================
+-- model-specific helpers begin
+-- ======================================================================
+
+helper context UML2!"uml::Property" def : isNavigableAssociationEnd : UML2!"uml::Property" =
+	let otherEnd : UML2!"uml::Property" = self.getOtherEnd() in
+	if otherEnd.oclIsUndefined() then false
+	else
+		self.isNavigable()
+		and not self.owningAssociation.oclIsUndefined()
+		and otherEnd.type.oclIsKindOf(UML2!"uml::Class")
+	endif;
+
+-- ======================================================================
+-- model-specific helpers end
+-- ======================================================================
+	
+-- ======================================================================
+-- transformation rules begin
+-- ======================================================================
+
+rule Property {
+    from s : UML2!"uml::Property" (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!"uml::Property") and
+			not s.isNavigableAssociationEnd
+		else false endif)
+    to t : UML2!"uml::Property" (
+        __xmiID__ <- s.__xmiID__,
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isStatic <- s.isStatic,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        isReadOnly <- s.isReadOnly,
+        isDerived <- s.isDerived,
+        isDerivedUnion <- s.isDerivedUnion,
+        aggregation <- s.aggregation,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue,
+        templateParameter <- s.templateParameter,
+        deployment <- s.deployment,
+        redefinedProperty <- s.redefinedProperty,
+        subsettedProperty <- s.subsettedProperty,
+        association <- s.association,
+        defaultValue <- s.defaultValue,
+        qualifier <- s.qualifier)
+}
+
+rule NavigableAssociationEndProperty {
+	from s : UML2!"uml::Property" (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!"uml::Property") and
+			s.isNavigableAssociationEnd
+		else false endif)
+    to t : UML2!"uml::Property" (
+        __xmiID__ <- s.__xmiID__,
+        name <- s.name.debug('NavigableAssociationEndProperty'),
+		class <- s.getOtherEnd().type,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isStatic <- s.isStatic,
+        isOrdered <- s.isOrdered,
+        isUnique <- s.isUnique,
+        isReadOnly <- s.isReadOnly,
+        isDerived <- s.isDerived,
+        isDerivedUnion <- s.isDerivedUnion,
+        aggregation <- s.aggregation,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        type <- s.type,
+        upperValue <- s.upperValue,
+        lowerValue <- s.lowerValue,
+        templateParameter <- s.templateParameter,
+        deployment <- s.deployment,
+        redefinedProperty <- s.redefinedProperty,
+        subsettedProperty <- s.subsettedProperty,
+        association <- s.association,
+        defaultValue <- s.defaultValue,
+        qualifier <- s.qualifier)
+}
+
+rule Association {
+    from s : UML2!"uml::Association" (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML2!"uml::Association")
+		else false endif)
+    to t : UML2!"uml::Association" (
+        __xmiID__ <- s.__xmiID__,
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isDerived <- s.isDerived,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedRule <- s.ownedRule,
+        templateParameter <- s.templateParameter,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        generalization <- s.generalization,
+        powertypeExtent <- s.powertypeExtent,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        representation <- s.representation,
+        collaborationUse <- s.collaborationUse,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        ownedEnd <- s.ownedEnd->reject(p|p.isNavigableAssociationEnd),
+        memberEnd <- s.memberEnd,
+        navigableOwnedEnd <- s.navigableOwnedEnd->reject(p|p.isNavigableAssociationEnd))
+}
+
+-- ======================================================================
+-- transformation rules end
+-- ======================================================================

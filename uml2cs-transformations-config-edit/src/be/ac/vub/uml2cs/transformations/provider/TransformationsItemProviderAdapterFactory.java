@@ -42,7 +42,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "(C) 2007, Dennis Wagelaar, Vrije Universiteit Brussel";
+	public static final String copyright = "(C) 2007-2009, Dennis Wagelaar, Vrije Universiteit Brussel";
 
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -267,6 +267,29 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link be.ac.vub.uml2cs.transformations.UML2SWTApplication} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UML2SWTApplicationItemProvider uml2SWTApplicationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link be.ac.vub.uml2cs.transformations.UML2SWTApplication}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUML2SWTApplicationAdapter() {
+		if (uml2SWTApplicationItemProvider == null) {
+			uml2SWTApplicationItemProvider = new UML2SWTApplicationItemProvider(this);
+		}
+
+		return uml2SWTApplicationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -316,7 +339,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -373,6 +396,7 @@ public class TransformationsItemProviderAdapterFactory extends TransformationsAd
 		if (uml2JavaObserverItemProvider != null) uml2JavaObserverItemProvider.dispose();
 		if (uml2AppletItemProvider != null) uml2AppletItemProvider.dispose();
 		if (uml2MIDletItemProvider != null) uml2MIDletItemProvider.dispose();
+		if (uml2SWTApplicationItemProvider != null) uml2SWTApplicationItemProvider.dispose();
 	}
 
 }

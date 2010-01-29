@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Accessors="http:///schemas/Accessors/_PhonEKOrEd64oN4qPjmMtw/2" xmlns:Async="http:///schemas/Async/0" xmlns:Final="http:///schemas/Final/1" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/Accessors/_PhonEKOrEd64oN4qPjmMtw/2 ../../uml2cs-transformations/profiles/Accessors.profile.uml#_PhpOIKOrEd64oN4qPjmMtw http:///schemas/Async/0 ../../uml2cs-transformations/profiles/Async.profile.uml#_5nnlIUSMEduP3ua-vE3IKQ http:///schemas/Final/1 ../../uml2cs-transformations/profiles/Final.profile.uml#_4InvEDntEduHCOb_wCU8nA http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="InstantMessengerJabber">
+    <eAnnotations xmi:id="_AZ1qkESzEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+      <details xmi:id="_AZ1qkUSzEduo0qgZQXhZYA" key="uuid" value="11583221554490"/>
+    </eAnnotations>
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="im">
+      <eAnnotations xmi:id="_AZ1qkkSzEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+        <details xmi:id="_AZ2RoESzEduo0qgZQXhZYA" key="uuid" value="11583221554491"/>
+      </eAnnotations>
+      <packagedElement xmi:type="uml:Package" xmi:id="_2zsPsESyEduo0qgZQXhZYA" name="networking">
+        <eAnnotations xmi:id="_AZ2RoUSzEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_AZ2RokSzEduo0qgZQXhZYA" key="uuid" value="11583221554502"/>
+        </eAnnotations>
+        <packagedElement xmi:type="uml:Package" xmi:id="_5YAmkESyEduo0qgZQXhZYA" name="jabber">
+          <eAnnotations xmi:id="_AZ2Ro0SzEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+            <details xmi:id="_AZ2RpESzEduo0qgZQXhZYA" key="uuid" value="11583221554503"/>
+          </eAnnotations>
+          <ownedComment xmi:id="_5KLJcESzEduo0qgZQXhZYA" annotatedElement="_xuxH0ESzEduo0qgZQXhZYA _06qcEESzEduo0qgZQXhZYA _2fx_wESzEduo0qgZQXhZYA">
+            <eAnnotations xmi:id="_Oi2XMES0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+              <details xmi:id="_Oi2XMUS0Eduo0qgZQXhZYA" key="uuid" value="115832267984212"/>
+            </eAnnotations>
+            <body>From Jabber</body>
+          </ownedComment>
+          <packagedElement xmi:type="uml:Class" xmi:id="_Ax4-MESzEduo0qgZQXhZYA" name="Jabber" clientDependency="_6rPjgETHEdutoZk0i5ZyXw _68vjMETHEdutoZk0i5ZyXw _7Jb7YETHEdutoZk0i5ZyXw _BfAagETBEduo0qgZQXhZYA _B1MF4ETBEduo0qgZQXhZYA _CdHBgETBEduo0qgZQXhZYA" isAbstract="true">
+            <eAnnotations xmi:id="_Bw2g0ESzEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+              <details xmi:id="_Bw2g0USzEduo0qgZQXhZYA" key="uuid" value="115832216457312"/>
+            </eAnnotations>
+            <generalization xmi:id="_KDcCEESzEduo0qgZQXhZYA" isSubstitutable="false">
+              <eAnnotations xmi:id="_Lmcs8ESzEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_Lmcs8USzEduo0qgZQXhZYA" key="uuid" value="115832223059115"/>
+              </eAnnotations>
+              <general xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_49VF8OQsEdqD2ZNp93yIAQ"/>
+            </generalization>
+            <ownedAttribute xmi:id="_C-SH0ES0Eduo0qgZQXhZYA" name="state" visibility="private" type="_xuxH0ESzEduo0qgZQXhZYA" aggregation="composite" association="_C-PrkES0Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_Oi3lVkS0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_Oi3lV0S0Eduo0qgZQXhZYA" key="uuid" value="115832267984528"/>
+              </eAnnotations>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_C-ZckES0Eduo0qgZQXhZYA" value="1">
+                <eAnnotations xmi:id="_Oi3lWES0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_Oi3lWUS0Eduo0qgZQXhZYA" key="uuid" value="115832267984529"/>
+                </eAnnotations>
+              </upperValue>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_C-Y1gES0Eduo0qgZQXhZYA" value="1">
+                <eAnnotations xmi:id="_Oi3lWkS0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_Oi3lW0S0Eduo0qgZQXhZYA" key="uuid" value="115832267984530"/>
+                </eAnnotations>
+              </lowerValue>
+              <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_zim4cES9Eduo0qgZQXhZYA" name="">
+                <eAnnotations xmi:id="_3JW8sES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JW8sUS9Eduo0qgZQXhZYA" key="uuid" value="115832681778730"/>
+                </eAnnotations>
+                <language>java</language>
+                <body>new DisconnectedState()</body>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_K6WBoETDEduo0qgZQXhZYA" name="uid" visibility="private">
+              <eAnnotations xmi:id="_gGFmoETDEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_gGFmoUTDEduo0qgZQXhZYA" key="uuid" value="115832924007433"/>
+              </eAnnotations>
+              <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_FYyusOmPEd6_SfpJDurjzA">
+                <language>java</language>
+                <body>null</body>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_nWPP8ETCEduo0qgZQXhZYA" name="connection" visibility="private" aggregation="shared" association="_nWLlkETCEduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_gGG0xkTDEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_gGG0x0TDEduo0qgZQXhZYA" key="uuid" value="1158329240076284"/>
+              </eAnnotations>
+              <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_T8PIoESyEduo0qgZQXhZYA"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nWRFIETCEduo0qgZQXhZYA" value="1">
+                <eAnnotations xmi:id="_gGG0yETDEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_gGG0yUTDEduo0qgZQXhZYA" key="uuid" value="1158329240076285"/>
+                </eAnnotations>
+              </upperValue>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nWQeEUTCEduo0qgZQXhZYA" value="1">
+                <eAnnotations xmi:id="_gGG0ykTDEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_gGG0y0TDEduo0qgZQXhZYA" key="uuid" value="1158329240076286"/>
+                </eAnnotations>
+              </lowerValue>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_Swv9wGBmEdyQ3v2UkQxt4g" value=""/>
+            </ownedAttribute>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_G0WlAES1Eduo0qgZQXhZYA" name="JabberBehavior" specification="_xGSWEES0Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_7LcO4ES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_7LcO4US5Eduo0qgZQXhZYA" key="uuid" value="115832512686230"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_DgnFoEVgEdu1R4x2hFmiHQ" name="return" visibility="public" type="_Ax4-MESzEduo0qgZQXhZYA" direction="return" effect="create">
+                <eAnnotations xmi:id="_w5s_cEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5s_cUVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384748"/>
+                </eAnnotations>
+              </ownedParameter>
+              <language>java</language>
+              <body>setName(&quot;Jabber&quot;);</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_s4PBQES0Eduo0qgZQXhZYA" name="Jabber_loginBehavior" specification="_i0FbwES0Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_7Lc18ES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_7Lc18US5Eduo0qgZQXhZYA" key="uuid" value="115832512686331"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_FA5zsEVgEdu1R4x2hFmiHQ" name="uid" visibility="public" effect="create">
+                <eAnnotations xmi:id="_w5s_ckVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5s_c0VgEdu1R4x2hFmiHQ" key="uuid" value="115839678384752"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_FA5zs0VgEdu1R4x2hFmiHQ" name="pwd" visibility="public" effect="create">
+                <eAnnotations xmi:id="_w5s_dEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmgEVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384753"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>this.uid = uid;&#xA;state.login(uid, pwd);</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MdIycES1Eduo0qgZQXhZYA" name="Jabber_logoutBehaviorBehavior" specification="_pRTW0ES0Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_7Lc18kS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_7Lc180S5Eduo0qgZQXhZYA" key="uuid" value="115832512686332"/>
+              </eAnnotations>
+              <language>java</language>
+              <body>state.logout();</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_PHKIsES1Eduo0qgZQXhZYA" name="Jabber_addContactBehavior" specification="_pRTW00S0Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_7Lc19ES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_7Lc19US5Eduo0qgZQXhZYA" key="uuid" value="115832512686333"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_HGUBAEVgEdu1R4x2hFmiHQ" name="c" visibility="public" effect="create">
+                <eAnnotations xmi:id="_w5tmgUVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmgkVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384860"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>state.addContact(c);</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_RpC2oES1Eduo0qgZQXhZYA" name="Jabber_removeContactBehavior" specification="_pRT94ES0Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_7Lc19kS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_7Lc190S5Eduo0qgZQXhZYA" key="uuid" value="115832512686334"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_IpRBgEVgEdu1R4x2hFmiHQ" name="c" visibility="public" effect="create">
+                <eAnnotations xmi:id="_w5tmg0VgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmhEVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384864"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>state.removeContact(c);</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_T6BawES1Eduo0qgZQXhZYA" name="Jabber_sendBehavior" specification="_pRT95kS0Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_7Lc1-ES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_7Lc1-US5Eduo0qgZQXhZYA" key="uuid" value="115832512686335"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_KckyMEVgEdu1R4x2hFmiHQ" name="msg" visibility="public" effect="create">
+                <eAnnotations xmi:id="_w5tmhUVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmhkVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384868"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_c0hoMOQsEdqD2ZNp93yIAQ"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>state.send(msg);</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_wexwgES8Eduo0qgZQXhZYA" name="Jabber_registerUserBehavior" specification="_8vnh8ES6Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_3JW8skS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_3JW8s0S9Eduo0qgZQXhZYA" key="uuid" value="115832681778749"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Mf-0YEVgEdu1R4x2hFmiHQ" name="user" visibility="public" effect="create">
+                <eAnnotations xmi:id="_w5tmh0VgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmiEVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384872"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Mf-0Y0VgEdu1R4x2hFmiHQ" name="pwd" visibility="public" effect="create">
+                <eAnnotations xmi:id="_w5tmiUVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmikVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384873"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Mf_bcEVgEdu1R4x2hFmiHQ" name="return" visibility="public" direction="return" effect="create">
+                <eAnnotations xmi:id="_w5tmi0VgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmjEVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384874"/>
+                </eAnnotations>
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_OO4ysPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>System.out.println(&quot;Registering &quot; + user + &quot; at &quot;&#xA;&#x9;&#x9;&#x9;&#x9;+ getConnection().getServerName());&#xA;try {&#xA;&#x9;&#x9;&#x9;java.util.Hashtable info = IQRegister&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;.getRequiredRegInfo(getConnection());&#xA;&#x9;&#x9;&#x9;String key;&#xA;&#x9;&#x9;&#x9;for (java.util.Enumeration e = info.keys(); e.hasMoreElements();) {&#xA;&#x9;&#x9;&#x9;&#x9;key = (String) e.nextElement();&#xA;&#x9;&#x9;&#x9;&#x9;if (key.equals(Const.USERNAME))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;info.put(key, user);&#xA;&#x9;&#x9;&#x9;&#x9;else if (key.equals(Const.PASSWORD))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;info.put(key, pwd);&#xA;&#x9;&#x9;&#x9;&#x9;else if (key.equals(Const.EMAIL))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;info.put(key, user + &quot;@&quot; + getConnection().getServerName());&#xA;&#x9;&#x9;&#x9;&#x9;else if (key.equals(Const.INSTRUCTIONS))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;;&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;System.err&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.println(&quot;Unknown registration parameter: &quot; + key);&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;Chunk chunk = getConnection().send(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;IQRegister.createSetRequest(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().getServerName(), info), 30000);&#xA;&#x9;&#x9;&#x9;return (chunk != null &amp;&amp; chunk.getType().equals(Const.RESULT));&#xA;&#x9;&#x9;} catch (java.io.IOException e) {&#xA;&#x9;&#x9;&#x9;im.InstantMessagingClient.getInstance().report(e);&#xA;&#x9;&#x9;}&#xA;return false;</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_zB1jIES8Eduo0qgZQXhZYA" name="Jabber_stripResourceBehavior" specification="_ox6n8ES7Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_3JXjwES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_3JXjwUS9Eduo0qgZQXhZYA" key="uuid" value="115832681778750"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_OpNxwEVgEdu1R4x2hFmiHQ" name="jid" visibility="public" effect="read">
+                <eAnnotations xmi:id="_w5tmjUVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmjkVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384878"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_OpNxw0VgEdu1R4x2hFmiHQ" name="return" visibility="public" direction="return" effect="update">
+                <eAnnotations xmi:id="_w5tmj0VgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5tmkEVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384879"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>if (uid.equals(jid)) {&#xA;&#x9;&#x9;&#x9;return jid;&#xA;&#x9;&#x9;} else { // strip resource bit if remote user&#xA;&#x9;&#x9;&#x9;java.util.Vector strip = com.ssttr.util.Strings.tokenize(jid, '/');&#xA;&#x9;&#x9;&#x9;return (String) strip.elementAt(0);&#xA;&#x9;&#x9;}</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ztOpgES8Eduo0qgZQXhZYA" name="Jabber_incomingIQBehavior" specification="_JuJYcES8Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_3JXjwkS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_3JXjw0S9Eduo0qgZQXhZYA" key="uuid" value="115832681778851"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_QrEUwEVgEdu1R4x2hFmiHQ" name="iq" visibility="public" effect="read">
+                <eAnnotations xmi:id="_w5uNkEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5uNkUVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384883"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_k0ll0ESyEduo0qgZQXhZYA"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>java.util.Enumeration children = iq.getChildren().elements();&#xA;while (children.hasMoreElements()) {&#xA;&#x9;&#x9;&#x9;com.ssttr.xml.XMLElement el = (com.ssttr.xml.XMLElement) children&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;.nextElement();&#xA;&#x9;&#x9;&#x9;if (el instanceof IQRoster) {&#xA;&#x9;&#x9;&#x9;&#x9;for (java.util.Enumeration items = el.enumerateChildren(); items&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.hasMoreElements();) {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;IQRoster.Item item = (IQRoster.Item) items.nextElement();&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;Roster Item: &quot; + item);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;im.model.Contact c = new im.model.Contact();&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;c.setNetwork(this);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;c.setUserId(item.getJID());&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;c.setName(item.getItemName());&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;setRecvContact(c);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if (item.getSubscription().equals(Const.NONE)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&amp;&amp; (item.getAsk() == null)) {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;addContact(c);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;} else {&#xA;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;Unknown iq element: &quot; + el);&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_0AUkoES8Eduo0qgZQXhZYA" name="Jabber_incomingMessageBehavior" specification="_T8y9wES8Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_3JXjxES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_3JXjxUS9Eduo0qgZQXhZYA" key="uuid" value="115832681778852"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_SfNy8EVgEdu1R4x2hFmiHQ" name="message" visibility="public" effect="read">
+                <eAnnotations xmi:id="_w5uNkkVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5uNk0VgEdu1R4x2hFmiHQ" key="uuid" value="115839678384987"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_j_iNIESyEduo0qgZQXhZYA"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>System.out.println(&quot;Message: &quot; + message);&#xA;if (message.getBody() == null) {&#xA;&#x9;&#x9;&#x9;return;&#xA;&#x9;&#x9;}&#xA;im.model.Message msg = new im.model.Message();&#xA;msg.setSender(stripResource(message.getFrom()));&#xA;msg.setRecipient(message.getTo());&#xA;msg.setContent(message.getBody());&#xA;setRecvMsg(msg);</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_0SYlAES8Eduo0qgZQXhZYA" name="Jabber_incomingPresenceBehavior" specification="_UlhxsES8Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_3JXjxkS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_3JXjx0S9Eduo0qgZQXhZYA" key="uuid" value="115832681778853"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_UP6UgEVgEdu1R4x2hFmiHQ" name="presence" visibility="public" effect="read">
+                <eAnnotations xmi:id="_w5uNlEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_w5uNlUVgEdu1R4x2hFmiHQ" key="uuid" value="115839678384991"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_ijH5gESyEduo0qgZQXhZYA"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>String type = presence.getType();&#xA;if (type == null)&#xA;&#x9;&#x9;&#x9;type = &quot;&quot;;&#xA;if (type.equals(Const.SUBSCRIBE)) {&#xA;&#x9;&#x9;&#x9;// someone wants to subscribe to our presence&#xA;&#x9;&#x9;&#x9;// so we slightly re-write the packet to send back&#xA;&#x9;&#x9;&#x9;presence.setType(Const.SUBSCRIBED);&#xA;&#x9;&#x9;&#x9;System.out.println(presence.getFrom()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;+ &quot; wants to subscribe to your presence, allowing.&quot;);&#xA;&#x9;&#x9;} else if (type.equals(Const.UNSUBSCRIBE)) {&#xA;&#x9;&#x9;&#x9;// someone wants to unsubscribe from our presence&#xA;&#x9;&#x9;&#x9;// so we slightly re-write the packet to send back&#xA;&#x9;&#x9;&#x9;presence.setType(Const.UNSUBSCRIBED);&#xA;&#x9;&#x9;&#x9;System.out.println(presence.getFrom()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;+ &quot; wants to unsubscribe from your presence, allowing.&quot;);&#xA;&#x9;&#x9;} else if (type.equals(Const.SUBSCRIBED)) {&#xA;&#x9;&#x9;&#x9;System.out.println(&quot;Subscribed to: &quot; + presence);&#xA;&#x9;&#x9;} else if (type.equals(Const.UNSUBSCRIBED)) {&#xA;&#x9;&#x9;&#x9;System.out.println(&quot;Unsubscribed from: &quot; + presence);&#xA;&#x9;&#x9;} else if (type.equals(Const.UNAVAILABLE)) {&#xA;&#x9;&#x9;&#x9;im.model.Contact c = new im.model.Contact();&#xA;&#x9;&#x9;&#x9;c.setNetwork(this);&#xA;&#x9;&#x9;&#x9;c.setUserId(stripResource(presence.getFrom()));&#xA;&#x9;&#x9;&#x9;c.setStatus(&quot;offline&quot;);&#xA;&#x9;&#x9;&#x9;setRecvContact(c);&#xA;&#x9;&#x9;&#x9;return;&#xA;&#x9;&#x9;} else {&#xA;&#x9;&#x9;&#x9;System.out.println(&quot;Received presence: &quot; + presence);&#xA;&#x9;&#x9;&#x9;im.model.Contact c = new im.model.Contact();&#xA;&#x9;&#x9;&#x9;c.setNetwork(this);&#xA;&#x9;&#x9;&#x9;c.setUserId(stripResource(presence.getFrom()));&#xA;&#x9;&#x9;&#x9;if (presence.getShow() != null)&#xA;&#x9;&#x9;&#x9;&#x9;c.setStatus(presence.getShow());&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;c.setStatus(Const.AVAILABLE);&#xA;&#x9;&#x9;&#x9;setRecvContact(c);&#xA;&#x9;&#x9;&#x9;return;&#xA;&#x9;&#x9;}&#xA;String from = presence.getTo();&#xA;presence.setTo(presence.getFrom());&#xA;presence.setFrom(from);&#xA;try {&#xA;&#x9;&#x9;&#x9;getConnection().send(presence);&#xA;&#x9;&#x9;} catch (java.io.IOException e) {&#xA;&#x9;&#x9;&#x9;im.InstantMessagingClient.getInstance().report(e);&#xA;&#x9;&#x9;}</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_EyHwROmPEd6_SfpJDurjzA" name="getUidBehavior" specification="_EyHwQOmPEd6_SfpJDurjzA">
+              <ownedParameter xmi:id="_EyHwRemPEd6_SfpJDurjzA" name="return" visibility="public" direction="return" effect="read">
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EyHwR-mPEd6_SfpJDurjzA" value="1"/>
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EyHwRumPEd6_SfpJDurjzA" value="1"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>return uid;</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_EyHwVemPEd6_SfpJDurjzA" name="getConnectionBehavior" specification="_EyHwUemPEd6_SfpJDurjzA">
+              <ownedParameter xmi:id="_EyHwVumPEd6_SfpJDurjzA" name="return" visibility="public" direction="return" effect="read">
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_T8PIoESyEduo0qgZQXhZYA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EyHwWOmPEd6_SfpJDurjzA" value="1"/>
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EyHwV-mPEd6_SfpJDurjzA" value="1"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>return connection;</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_EyHwTOmPEd6_SfpJDurjzA" name="setUidBehavior" specification="_EyHwSumPEd6_SfpJDurjzA">
+              <ownedParameter xmi:id="_EyHwTemPEd6_SfpJDurjzA" name="uid" visibility="public" effect="update">
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>this.uid = uid;</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_EyHwXemPEd6_SfpJDurjzA" name="setConnectionBehavior" specification="_EyHwW-mPEd6_SfpJDurjzA">
+              <ownedParameter xmi:id="_EyHwXumPEd6_SfpJDurjzA" name="connection" visibility="public" effect="update">
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_T8PIoESyEduo0qgZQXhZYA"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>this.connection = connection;</body>
+            </ownedBehavior>
+            <interfaceRealization xmi:id="_BfAagETBEduo0qgZQXhZYA" name="InterfaceRealization1" client="_Ax4-MESzEduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_DwAz0ETBEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_DwAz0UTBEduo0qgZQXhZYA" key="uuid" value="115832819086166"/>
+              </eAnnotations>
+              <supplier xmi:type="uml:Interface" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_YgIKkESyEduo0qgZQXhZYA"/>
+              <contract href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_YgIKkESyEduo0qgZQXhZYA"/>
+            </interfaceRealization>
+            <interfaceRealization xmi:id="_B1MF4ETBEduo0qgZQXhZYA" name="InterfaceRealization2" client="_Ax4-MESzEduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_DwAz0kTBEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_DwAz00TBEduo0qgZQXhZYA" key="uuid" value="115832819086167"/>
+              </eAnnotations>
+              <supplier xmi:type="uml:Interface" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_aBtSEESyEduo0qgZQXhZYA"/>
+              <contract href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_aBtSEESyEduo0qgZQXhZYA"/>
+            </interfaceRealization>
+            <interfaceRealization xmi:id="_CdHBgETBEduo0qgZQXhZYA" name="InterfaceRealization3" client="_Ax4-MESzEduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_DwAz1ETBEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_DwAz1UTBEduo0qgZQXhZYA" key="uuid" value="115832819086168"/>
+              </eAnnotations>
+              <supplier xmi:type="uml:Interface" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_bkALQESyEduo0qgZQXhZYA"/>
+              <contract href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_bkALQESyEduo0qgZQXhZYA"/>
+            </interfaceRealization>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_xuxH0ESzEduo0qgZQXhZYA" name="State" isAbstract="true">
+              <eAnnotations xmi:id="_Oi2XMkS0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_Oi2XM0S0Eduo0qgZQXhZYA" key="uuid" value="115832267984319"/>
+              </eAnnotations>
+              <ownedOperation xmi:id="_EA8z0ES2Eduo0qgZQXhZYA" name="login" visibility="public">
+                <eAnnotations xmi:id="_7Lc1-kS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LddAES5Eduo0qgZQXhZYA" key="uuid" value="115832512686339"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_EA8z00S2Eduo0qgZQXhZYA" name="uid" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LddAUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LddAkS5Eduo0qgZQXhZYA" key="uuid" value="115832512686440"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_EA8z1kS2Eduo0qgZQXhZYA" name="pwd" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LddA0S5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LddBES5Eduo0qgZQXhZYA" key="uuid" value="115832512686441"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_FYzVwumPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_BOi9oES2Eduo0qgZQXhZYA" name="logout" visibility="public">
+                <eAnnotations xmi:id="_7LddBUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LddBkS5Eduo0qgZQXhZYA" key="uuid" value="115832512686442"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_FYz80OmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_BOjksES2Eduo0qgZQXhZYA" name="addContact" visibility="public">
+                <eAnnotations xmi:id="_7LddB0S5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LddCES5Eduo0qgZQXhZYA" key="uuid" value="115832512686443"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_BOjks0S2Eduo0qgZQXhZYA" name="c" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LddCUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LddCkS5Eduo0qgZQXhZYA" key="uuid" value="115832512686444"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_FYz80emPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_BOkLwES2Eduo0qgZQXhZYA" name="removeContact" visibility="public">
+                <eAnnotations xmi:id="_7LddC0S5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LddDES5Eduo0qgZQXhZYA" key="uuid" value="115832512686445"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_BOkLw0S2Eduo0qgZQXhZYA" name="c" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LddDUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LeEEES5Eduo0qgZQXhZYA" key="uuid" value="115832512686446"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_FYz80umPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_BOky0ES2Eduo0qgZQXhZYA" name="send" visibility="public">
+                <eAnnotations xmi:id="_7LeEEUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LeEEkS5Eduo0qgZQXhZYA" key="uuid" value="115832512686547"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_BOky00S2Eduo0qgZQXhZYA" name="msg" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LeEE0S5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LeEFES5Eduo0qgZQXhZYA" key="uuid" value="115832512686548"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_c0hoMOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_FY0j4OmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+            </nestedClassifier>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_06qcEESzEduo0qgZQXhZYA" name="ConnectedState">
+              <eAnnotations xmi:id="_Oi2XNES0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_Oi2XNUS0Eduo0qgZQXhZYA" key="uuid" value="115832267984320"/>
+              </eAnnotations>
+              <generalization xmi:id="__92csESzEduo0qgZQXhZYA" isSubstitutable="false" general="_xuxH0ESzEduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_Oi2-QES0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_Oi2-QUS0Eduo0qgZQXhZYA" key="uuid" value="115832267984421"/>
+                </eAnnotations>
+              </generalization>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_fubAcES2Eduo0qgZQXhZYA" name="ConnectedState_logoutBehavior" specification="_Zja2wES2Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_7LeEFUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LeEFkS5Eduo0qgZQXhZYA" key="uuid" value="115832512686555"/>
+                </eAnnotations>
+                <language>java</language>
+                <body>new Thread() {&#xA;    public void run() {&#xA;try {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;Closing connection for &quot;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;+ getConnection().getServerName());&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Presence p = new Presence();&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;p.setType(Const.UNAVAILABLE);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().send(p);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().close();&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;synchronized (Jabber.this) {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Jabber.this.state = new DisconnectedState();&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;} catch (java.io.IOException e) {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;im.InstantMessagingClient.getInstance().report(e);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;    }&#xA;}.start();</body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jIIHMES2Eduo0qgZQXhZYA" name="ConnectedState_addContactBehavior" specification="_Zjbd0ES2Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_7LeEF0S5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LeEGES5Eduo0qgZQXhZYA" key="uuid" value="115832512686556"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_YOrQIEVgEdu1R4x2hFmiHQ" name="c" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_w5uNlkVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5uNl0VgEdu1R4x2hFmiHQ" key="uuid" value="1158396783849146"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>if (!getConnection().isConnected()) {&#xA;&#x9;&#x9;&#x9;&#x9;Jabber.this.state = new DisconnectedState();&#xA;&#x9;&#x9;&#x9;&#x9;return;&#xA;&#x9;&#x9;&#x9;}&#xA;addContactAsync(c);</body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jab_MES2Eduo0qgZQXhZYA" name="ConnectedState_removeContactBehavior" specification="_Zjbd0kS2Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_7LeEGUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LeEGkS5Eduo0qgZQXhZYA" key="uuid" value="115832512686557"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_ZS-lwEVgEdu1R4x2hFmiHQ" name="c" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_w5uNmEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5uNmUVgEdu1R4x2hFmiHQ" key="uuid" value="1158396783849150"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>if (!getConnection().isConnected()) {&#xA;&#x9;&#x9;&#x9;&#x9;Jabber.this.state = new DisconnectedState();&#xA;&#x9;&#x9;&#x9;&#x9;return;&#xA;&#x9;&#x9;&#x9;}&#xA;removeContactAsync(c);</body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jr3GYES2Eduo0qgZQXhZYA" name="ConnectedState_sendBehavior" specification="_ZjcE4US2Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_7LeEG0S5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LeEHES5Eduo0qgZQXhZYA" key="uuid" value="115832512686558"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_ag80wEVgEdu1R4x2hFmiHQ" name="msg" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_w5uNmkVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5uNm0VgEdu1R4x2hFmiHQ" key="uuid" value="1158396783849154"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_c0hoMOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>if (!getConnection().isConnected()) {&#xA;&#x9;&#x9;&#x9;&#x9;Jabber.this.state = new DisconnectedState();&#xA;&#x9;&#x9;&#x9;&#x9;return;&#xA;&#x9;&#x9;&#x9;}&#xA;sendAsync(msg);</body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_LINNkES6Eduo0qgZQXhZYA" name="ConnectedState_addContactAsyncBehavior" specification="_HfC14ES3Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_3JXjyES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JXjyUS9Eduo0qgZQXhZYA" key="uuid" value="1158326817788105"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_b2CYYEVgEdu1R4x2hFmiHQ" name="c" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_w5uNnEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5uNnUVgEdu1R4x2hFmiHQ" key="uuid" value="1158396783849158"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>new Thread() {&#xA;    public void run() {&#xA;try {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Presence presence = new Presence(c.getUserId(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Const.SUBSCRIBE);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;Adding contact &quot; + presence);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().send(presence);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;IQRoster roster = new IQRoster();&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;roster.addItem(c.getUserId(), c.getName());&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;IQ iq = new IQ(Const.SET);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;iq.addChild(roster);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().send(iq);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;} catch (java.io.IOException e) {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;im.InstantMessagingClient.getInstance().report(e);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;    }&#xA;}.start();</body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_LINNk0S6Eduo0qgZQXhZYA" name="ConnectedState_removeContactAsyncBehavior" specification="_HfDc8ES3Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_3JXjykS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JYK0ES9Eduo0qgZQXhZYA" key="uuid" value="1158326817788106"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_eA9X0EVgEdu1R4x2hFmiHQ" name="c" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_w5u0oEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5u0oUVgEdu1R4x2hFmiHQ" key="uuid" value="1158396783850162"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>new Thread() {&#xA;    public void run() {&#xA;try {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;IQRoster roster = new IQRoster();&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;roster.addItem(c.getUserId());&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;((IQRoster.Item) roster.getChild(0))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.setSubscription(Const.REMOVE);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;IQ iq = new IQ(Const.SET);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;iq.addChild(roster);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().send(iq);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Presence presence = new Presence(c.getUserId(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Const.UNSUBSCRIBE);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;Removing contact &quot; + presence);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().send(presence);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;} catch (java.io.IOException e) {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;im.InstantMessagingClient.getInstance().report(e);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;    }&#xA;}.start();</body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_LIQ38ES6Eduo0qgZQXhZYA" name="ConnectedState_sendAsyncBehavior" specification="_HfDc8kS3Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_3JYK0US9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JYK0kS9Eduo0qgZQXhZYA" key="uuid" value="1158326817789107"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_gRUQ4EVgEdu1R4x2hFmiHQ" name="msg" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_w5u0okVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5u0o0VgEdu1R4x2hFmiHQ" key="uuid" value="1158396783850166"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_c0hoMOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>new Thread() {&#xA;    public void run() {&#xA;try {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Message message = new Message();&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;message.setTo(msg.getRecipient());&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;message.setFrom(msg.getSender());&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;message.setBody(msg.getContent().toString());&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;Sending &quot; + msg + &quot;: &quot; + message);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().send(message);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;} catch (java.io.IOException e) {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;im.InstantMessagingClient.getInstance().report(e);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;    }&#xA;}.start();</body>
+              </ownedBehavior>
+              <ownedOperation xmi:id="_Zja2wES2Eduo0qgZQXhZYA" name="logout" visibility="public" method="_fubAcES2Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_7LeEHUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LeEHkS5Eduo0qgZQXhZYA" key="uuid" value="115832512686559"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_FY0j4emPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_Zjbd0ES2Eduo0qgZQXhZYA" name="addContact" visibility="public" method="_jIIHMES2Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_7LeEH0S5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LeEIES5Eduo0qgZQXhZYA" key="uuid" value="115832512686560"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_Zjbd0US2Eduo0qgZQXhZYA" name="c" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LeEIUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LeEIkS5Eduo0qgZQXhZYA" key="uuid" value="115832512686561"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_FY1K8OmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_Zjbd0kS2Eduo0qgZQXhZYA" name="removeContact" visibility="public" method="_jab_MES2Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_7LerIES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LerIUS5Eduo0qgZQXhZYA" key="uuid" value="115832512686562"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_ZjcE4ES2Eduo0qgZQXhZYA" name="c" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LerIkS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LerI0S5Eduo0qgZQXhZYA" key="uuid" value="115832512686663"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_FY1K8emPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_ZjcE4US2Eduo0qgZQXhZYA" name="send" visibility="public" method="_jr3GYES2Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_7LerJES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LerJUS5Eduo0qgZQXhZYA" key="uuid" value="115832512686664"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_ZjcE4kS2Eduo0qgZQXhZYA" name="msg" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LerJkS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LerJ0S5Eduo0qgZQXhZYA" key="uuid" value="115832512686665"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_c0hoMOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_FY1K8umPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_HfC14ES3Eduo0qgZQXhZYA" name="addContactAsync" visibility="private" method="_LINNkES6Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_7LerKES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LerKUS5Eduo0qgZQXhZYA" key="uuid" value="115832512686666"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_HfC14US3Eduo0qgZQXhZYA" name="c" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LerKkS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LerK0S5Eduo0qgZQXhZYA" key="uuid" value="115832512686667"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_FY1yAOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_HfDc8ES3Eduo0qgZQXhZYA" name="removeContactAsync" visibility="private" method="_LINNk0S6Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_7LerLES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LerLUS5Eduo0qgZQXhZYA" key="uuid" value="115832512686668"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_HfDc8US3Eduo0qgZQXhZYA" name="c" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LerLkS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LerL0S5Eduo0qgZQXhZYA" key="uuid" value="115832512686669"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_FY1yAemPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_HfDc8kS3Eduo0qgZQXhZYA" name="sendAsync" visibility="private" method="_LIQ38ES6Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_7LfSMES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LfSMUS5Eduo0qgZQXhZYA" key="uuid" value="115832512686670"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_HfDc80S3Eduo0qgZQXhZYA" name="msg" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LfSMkS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LfSM0S5Eduo0qgZQXhZYA" key="uuid" value="115832512686771"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_c0hoMOQsEdqD2ZNp93yIAQ"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_FY3nMOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+            </nestedClassifier>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_2fx_wESzEduo0qgZQXhZYA" name="DisconnectedState">
+              <eAnnotations xmi:id="_Oi2-QkS0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_Oi2-Q0S0Eduo0qgZQXhZYA" key="uuid" value="115832267984422"/>
+              </eAnnotations>
+              <generalization xmi:id="_AUKq8ES0Eduo0qgZQXhZYA" isSubstitutable="false" general="_xuxH0ESzEduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_Oi2-RES0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_Oi2-RUS0Eduo0qgZQXhZYA" key="uuid" value="115832267984423"/>
+                </eAnnotations>
+              </generalization>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_gzCiUES6Eduo0qgZQXhZYA" name="DisconnectedState_loginBehavior" specification="_aJxFEES2Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_3JYK00S9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JYK1ES9Eduo0qgZQXhZYA" key="uuid" value="1158326817789153"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_n7XLcEVgEdu1R4x2hFmiHQ" name="uid" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_w5u0pEVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5u0pUVgEdu1R4x2hFmiHQ" key="uuid" value="1158396783850215"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_n7XLc0VgEdu1R4x2hFmiHQ" name="pwd" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_w5u0pkVgEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_w5u0p0VgEdu1R4x2hFmiHQ" key="uuid" value="1158396783850216"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>new Thread() {&#xA;    public void run() {&#xA;try {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;java.util.Vector address = com.ssttr.util.Strings&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.tokenize(uid, '@');&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;String user = (String) address.elementAt(0);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;String server = (String) address.elementAt(1);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;address = com.ssttr.util.Strings.tokenize(server, '/');&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;server = (String) address.elementAt(0);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;String resource = (String) address.elementAt(1);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;connect(server);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().setMessageListener(Jabber.this);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().setIQListener(Jabber.this);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().setPresenceListener(Jabber.this);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;boolean try_again;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;do {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;try_again = false;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;Logging in &quot; + uid);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;switch (getConnection().loginAny(user, resource,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;pwd, 30000)) {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case Client2Server.LOGIN_BAD_PASS :&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;throw new java.io.IOException(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;Bad password for &quot; + uid);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case Client2Server.LOGIN_BAD_UID :&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if (!registerUser(user, pwd))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;throw new java.io.IOException(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;Could not register user for &quot;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;+ uid);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;try_again = true;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case Client2Server.LOGIN_FAILED :&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;throw new java.io.IOException(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;Login failed: unknown: &quot; + uid);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case Client2Server.LOGIN_PASS_EXP :&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.println(&quot;Your password has expired for &quot;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;+ uid);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case Client2Server.LOGIN_OK :&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;} while (try_again);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Presence pres = new Presence(Const.AVAILABLE,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;Available&quot;, 1);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;pres.setFrom(uid);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().send(pres);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;incomingPresence(pres);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;getConnection().send(IQRoster.createGetRequest());&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;synchronized (Jabber.this) {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Jabber.this.state = new ConnectedState();&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;} catch (Exception e) {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;im.InstantMessagingClient.getInstance().report(e);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xA;    }&#xA;}.start();</body>
+              </ownedBehavior>
+              <ownedOperation xmi:id="_aJxFEES2Eduo0qgZQXhZYA" name="login" visibility="public" method="_gzCiUES6Eduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_7LfSNES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LfSNUS5Eduo0qgZQXhZYA" key="uuid" value="115832512686778"/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_aJxFEUS2Eduo0qgZQXhZYA" name="uid" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LhucES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LhucUS5Eduo0qgZQXhZYA" key="uuid" value="115832512687179"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_aJxFEkS2Eduo0qgZQXhZYA" name="pwd" visibility="public" effect="create">
+                  <eAnnotations xmi:id="_7LiVgES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                    <details xmi:id="_7LiVgUS5Eduo0qgZQXhZYA" key="uuid" value="115832512687280"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_FY3nMemPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                  <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+                </ownedParameter>
+              </ownedOperation>
+            </nestedClassifier>
+            <ownedOperation xmi:id="_xGSWEES0Eduo0qgZQXhZYA" name="Jabber" visibility="public" method="_G0WlAES1Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_7LiVgkS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_7LiVg0S5Eduo0qgZQXhZYA" key="uuid" value="115832512687281"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_4djekES0Eduo0qgZQXhZYA" name="return" visibility="public" type="_Ax4-MESzEduo0qgZQXhZYA" direction="return" effect="create">
+                <eAnnotations xmi:id="_7LiVhES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LiVhUS5Eduo0qgZQXhZYA" key="uuid" value="115832512687282"/>
+                </eAnnotations>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_i0FbwES0Eduo0qgZQXhZYA" name="login" visibility="public" method="_s4PBQES0Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_7LiVhkS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_7LiVh0S5Eduo0qgZQXhZYA" key="uuid" value="115832512687283"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_i0Fbw0S0Eduo0qgZQXhZYA" name="uid" visibility="public" effect="create">
+                <eAnnotations xmi:id="_7LiViES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LiViUS5Eduo0qgZQXhZYA" key="uuid" value="115832512687284"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_i0FbxkS0Eduo0qgZQXhZYA" name="pwd" visibility="public" effect="create">
+                <eAnnotations xmi:id="_7LiVikS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LjjoES5Eduo0qgZQXhZYA" key="uuid" value="115832512687285"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_FZNlcOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_pRTW0ES0Eduo0qgZQXhZYA" name="logout" visibility="public" method="_MdIycES1Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_7LjjoUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_7LjjokS5Eduo0qgZQXhZYA" key="uuid" value="115832512687486"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_FZNlcemPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_pRTW00S0Eduo0qgZQXhZYA" name="addContact" visibility="public" method="_PHKIsES1Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_7Ljjo0S5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_7LjjpES5Eduo0qgZQXhZYA" key="uuid" value="115832512687487"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_pRTW1kS0Eduo0qgZQXhZYA" name="c" visibility="public" effect="create">
+                <eAnnotations xmi:id="_7LjjpUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LjjpkS5Eduo0qgZQXhZYA" key="uuid" value="115832512687488"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_FZOMgOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_pRT94ES0Eduo0qgZQXhZYA" name="removeContact" visibility="public" method="_RpC2oES1Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_7Ljjp0S5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_7LjjqES5Eduo0qgZQXhZYA" key="uuid" value="115832512687489"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_pRT940S0Eduo0qgZQXhZYA" name="c" visibility="public" effect="create">
+                <eAnnotations xmi:id="_7LjjqUS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LjjqkS5Eduo0qgZQXhZYA" key="uuid" value="115832512687490"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_Xxa6sOQsEdqD2ZNp93yIAQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_FZOMgemPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_pRT95kS0Eduo0qgZQXhZYA" name="send" visibility="public" method="_T6BawES1Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_7Ljjq0S5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_7LjjrES5Eduo0qgZQXhZYA" key="uuid" value="115832512687491"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_pRT96US0Eduo0qgZQXhZYA" name="msg" visibility="public" effect="create">
+                <eAnnotations xmi:id="_7LkKsES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_7LkKsUS5Eduo0qgZQXhZYA" key="uuid" value="115832512687592"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_c0hoMOQsEdqD2ZNp93yIAQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_FZOzkOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_8vnh8ES6Eduo0qgZQXhZYA" name="registerUser" visibility="private" method="_wexwgES8Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_3JYx4ES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_3JYx4US9Eduo0qgZQXhZYA" key="uuid" value="1158326817790199"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_8vnh80S6Eduo0qgZQXhZYA" name="user" visibility="public" effect="create">
+                <eAnnotations xmi:id="_3JYx4kS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JYx40S9Eduo0qgZQXhZYA" key="uuid" value="1158326817790200"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_8vnh9kS6Eduo0qgZQXhZYA" name="pwd" visibility="public" effect="create">
+                <eAnnotations xmi:id="_3JYx5ES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JYx5US9Eduo0qgZQXhZYA" key="uuid" value="1158326817790201"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_ajv5EES7Eduo0qgZQXhZYA" name="return" visibility="public" direction="return" effect="create">
+                <eAnnotations xmi:id="_3JYx5kS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JYx50S9Eduo0qgZQXhZYA" key="uuid" value="1158326817790202"/>
+                </eAnnotations>
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_OO4ysPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_ox6n8ES7Eduo0qgZQXhZYA" name="stripResource" visibility="private" method="_zB1jIES8Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_3JYx6ES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_3JYx6US9Eduo0qgZQXhZYA" key="uuid" value="1158326817790203"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_ox7PAES7Eduo0qgZQXhZYA" name="jid" visibility="public" effect="read">
+                <eAnnotations xmi:id="_3JYx6kS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JYx60S9Eduo0qgZQXhZYA" key="uuid" value="1158326817790204"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_ox7PAkS7Eduo0qgZQXhZYA" name="return" visibility="public" direction="return" effect="update">
+                <eAnnotations xmi:id="_3JZY8ES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JZY8US9Eduo0qgZQXhZYA" key="uuid" value="1158326817791205"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_JuJYcES8Eduo0qgZQXhZYA" name="incomingIQ" visibility="public" method="_ztOpgES8Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_3JZY8kS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_3JZY80S9Eduo0qgZQXhZYA" key="uuid" value="1158326817791206"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_R2ib4ES8Eduo0qgZQXhZYA" name="iq" visibility="public" effect="read">
+                <eAnnotations xmi:id="_3JZY9ES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JZY9US9Eduo0qgZQXhZYA" key="uuid" value="1158326817791207"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_k0ll0ESyEduo0qgZQXhZYA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_FZPaoOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_T8y9wES8Eduo0qgZQXhZYA" name="incomingMessage" visibility="public" method="_0AUkoES8Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_3JZY9kS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_3JZY90S9Eduo0qgZQXhZYA" key="uuid" value="1158326817791208"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_T8y9wUS8Eduo0qgZQXhZYA" name="message" visibility="public" effect="read">
+                <eAnnotations xmi:id="_3JZY-ES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JZY-US9Eduo0qgZQXhZYA" key="uuid" value="1158326817791209"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_j_iNIESyEduo0qgZQXhZYA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_FZPaoemPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_UlhxsES8Eduo0qgZQXhZYA" name="incomingPresence" visibility="public" method="_0SYlAES8Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_3JZY-kS9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_3JZY-0S9Eduo0qgZQXhZYA" key="uuid" value="1158326817791210"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_UlhxsUS8Eduo0qgZQXhZYA" name="presence" visibility="public" effect="read">
+                <eAnnotations xmi:id="_3JZY_ES9Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_3JZY_US9Eduo0qgZQXhZYA" key="uuid" value="1158326817791211"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_ijH5gESyEduo0qgZQXhZYA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_FZPaoumPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Ad1xEETEEdutoZk0i5ZyXw" name="connect" visibility="protected" isAbstract="true">
+              <eAnnotations xmi:id="_bPufMETEEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
+                <details xmi:id="_bPufMUTEEdutoZk0i5ZyXw" key="uuid" value="1158329637026270"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_JcH6sETEEdutoZk0i5ZyXw" name="host" visibility="public" effect="create">
+                <eAnnotations xmi:id="_bPvGQETEEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_bPvtUETEEdutoZk0i5ZyXw" key="uuid" value="1158329637028271"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_FZPao-mPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <raisedException xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_qxYZwETFEdutoZk0i5ZyXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_EyHwQOmPEd6_SfpJDurjzA" name="getUid" visibility="public" clientDependency="_EyHwSOmPEd6_SfpJDurjzA" method="_EyHwROmPEd6_SfpJDurjzA">
+              <ownedParameter xmi:id="_EyHwQemPEd6_SfpJDurjzA" name="return" visibility="public" direction="return" effect="read">
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EyHwQ-mPEd6_SfpJDurjzA" value="1"/>
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EyHwQumPEd6_SfpJDurjzA" value="1"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_EyHwSumPEd6_SfpJDurjzA" name="setUid" visibility="public" clientDependency="_EyHwTumPEd6_SfpJDurjzA" method="_EyHwTOmPEd6_SfpJDurjzA">
+              <ownedParameter xmi:id="_EyHwS-mPEd6_SfpJDurjzA" name="uid" visibility="public" effect="update">
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_VW1FwPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_FZQBsOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_EyHwUemPEd6_SfpJDurjzA" name="getConnection" visibility="public" clientDependency="_EyHwWemPEd6_SfpJDurjzA" method="_EyHwVemPEd6_SfpJDurjzA">
+              <ownedParameter xmi:id="_EyHwUumPEd6_SfpJDurjzA" name="return" visibility="public" direction="return" effect="read">
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_T8PIoESyEduo0qgZQXhZYA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EyHwVOmPEd6_SfpJDurjzA" value="1"/>
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EyHwU-mPEd6_SfpJDurjzA" value="1"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_EyHwW-mPEd6_SfpJDurjzA" name="setConnection" visibility="public" clientDependency="_EyHwX-mPEd6_SfpJDurjzA" method="_EyHwXemPEd6_SfpJDurjzA">
+              <ownedParameter xmi:id="_EyHwXOmPEd6_SfpJDurjzA" name="connection" visibility="public" effect="update">
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_T8PIoESyEduo0qgZQXhZYA"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_FZQowOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_C-PrkES0Eduo0qgZQXhZYA" name="A_jabber_state" memberEnd="_C-RgwES0Eduo0qgZQXhZYA _C-SH0ES0Eduo0qgZQXhZYA">
+            <eAnnotations xmi:id="_Oi2-RkS0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+              <details xmi:id="_Oi2-R0S0Eduo0qgZQXhZYA" key="uuid" value="115832267984424"/>
+            </eAnnotations>
+            <ownedEnd xmi:id="_C-RgwES0Eduo0qgZQXhZYA" name="jabber" visibility="private" type="_Ax4-MESzEduo0qgZQXhZYA" association="_C-PrkES0Eduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_Oi3lUES0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_Oi3lUUS0Eduo0qgZQXhZYA" key="uuid" value="115832267984525"/>
+              </eAnnotations>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_C-XnYES0Eduo0qgZQXhZYA" value="1">
+                <eAnnotations xmi:id="_Oi3lUkS0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_Oi3lU0S0Eduo0qgZQXhZYA" key="uuid" value="115832267984526"/>
+                </eAnnotations>
+              </upperValue>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_C-WZQES0Eduo0qgZQXhZYA" value="1">
+                <eAnnotations xmi:id="_Oi3lVES0Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_Oi3lVUS0Eduo0qgZQXhZYA" key="uuid" value="115832267984527"/>
+                </eAnnotations>
+              </lowerValue>
+              <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_FYzVwOmPEd6_SfpJDurjzA">
+                <language>java</language>
+                <body>null</body>
+              </defaultValue>
+            </ownedEnd>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_nWLlkETCEduo0qgZQXhZYA" name="A_jabber_connection" memberEnd="_nWMMoETCEduo0qgZQXhZYA _nWPP8ETCEduo0qgZQXhZYA">
+            <eAnnotations xmi:id="_gGGNsETDEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+              <details xmi:id="_gGGNsUTDEduo0qgZQXhZYA" key="uuid" value="1158329240075280"/>
+            </eAnnotations>
+            <ownedEnd xmi:id="_nWMMoETCEduo0qgZQXhZYA" name="jabber" visibility="public" type="_Ax4-MESzEduo0qgZQXhZYA" association="_nWLlkETCEduo0qgZQXhZYA">
+              <eAnnotations xmi:id="_gGG0wETDEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                <details xmi:id="_gGG0wUTDEduo0qgZQXhZYA" key="uuid" value="1158329240076281"/>
+              </eAnnotations>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nWQeEETCEduo0qgZQXhZYA" value="1">
+                <eAnnotations xmi:id="_gGG0wkTDEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_gGG0w0TDEduo0qgZQXhZYA" key="uuid" value="1158329240076282"/>
+                </eAnnotations>
+              </upperValue>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nWP3AETCEduo0qgZQXhZYA">
+                <eAnnotations xmi:id="_gGG0xETDEduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_gGG0xUTDEduo0qgZQXhZYA" key="uuid" value="1158329240076283"/>
+                </eAnnotations>
+              </lowerValue>
+              <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_FYzVwemPEd6_SfpJDurjzA">
+                <language>java</language>
+                <body>null</body>
+              </defaultValue>
+            </ownedEnd>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_6rPjgETHEdutoZk0i5ZyXw" name="Dependency1" client="_Ax4-MESzEduo0qgZQXhZYA">
+            <eAnnotations xmi:id="_9Tn7AETHEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
+              <details xmi:id="_9Tn7AUTHEdutoZk0i5ZyXw" key="uuid" value="1158331154096309"/>
+            </eAnnotations>
+            <supplier xmi:type="uml:Package" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_bAJFsESxEduo0qgZQXhZYA"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_68vjMETHEdutoZk0i5ZyXw" name="Dependency2" client="_Ax4-MESzEduo0qgZQXhZYA">
+            <eAnnotations xmi:id="_9Tn7AkTHEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
+              <details xmi:id="_9Tn7A0THEdutoZk0i5ZyXw" key="uuid" value="1158331154096310"/>
+            </eAnnotations>
+            <supplier xmi:type="uml:Package" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_fU6GgESxEduo0qgZQXhZYA"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_7Jb7YETHEdutoZk0i5ZyXw" name="Dependency3" client="_Ax4-MESzEduo0qgZQXhZYA">
+            <eAnnotations xmi:id="_9Tn7BETHEdutoZk0i5ZyXw" source="http://www.topcased.org/uuid">
+              <details xmi:id="_9ToiEETHEdutoZk0i5ZyXw" key="uuid" value="1158331154096311"/>
+            </eAnnotations>
+            <supplier xmi:type="uml:Package" href="../../uml2cs-instantmessenger-model/models/JabberWookie.uml#_OQUHoESyEduo0qgZQXhZYA"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_EyHwSOmPEd6_SfpJDurjzA" name="accessor getUid()" supplier="_K6WBoETDEduo0qgZQXhZYA" client="_EyHwQOmPEd6_SfpJDurjzA"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_EyHwWemPEd6_SfpJDurjzA" name="accessor getConnection()" supplier="_nWPP8ETCEduo0qgZQXhZYA" client="_EyHwUemPEd6_SfpJDurjzA"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_EyHwTumPEd6_SfpJDurjzA" name="accessor setUid()" supplier="_K6WBoETDEduo0qgZQXhZYA" client="_EyHwSumPEd6_SfpJDurjzA"/>
+          <packagedElement xmi:type="uml:Dependency" xmi:id="_EyHwX-mPEd6_SfpJDurjzA" name="accessor setConnection()" supplier="_nWPP8ETCEduo0qgZQXhZYA" client="_EyHwW-mPEd6_SfpJDurjzA"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_Dgr4AES5Eduo0qgZQXhZYA">
+      <eAnnotations xmi:id="_DhAoIES5Eduo0qgZQXhZYA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <eAnnotations xmi:id="_7LkKtES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_7LkKtUS5Eduo0qgZQXhZYA" key="uuid" value="1158325126875106"/>
+        </eAnnotations>
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_7LkKskS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+        <details xmi:id="_7LkKs0S5Eduo0qgZQXhZYA" key="uuid" value="1158325126875105"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_DhCdUES5Eduo0qgZQXhZYA">
+      <eAnnotations xmi:id="_DhGHsES5Eduo0qgZQXhZYA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <eAnnotations xmi:id="_7LkKuES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_7LkKuUS5Eduo0qgZQXhZYA" key="uuid" value="1158325126875108"/>
+        </eAnnotations>
+        <references xmi:type="ecore:EPackage" href="../../uml2cs-transformations/profiles/Async.profile.uml#_5nnlIUSMEduP3ua-vE3IKQ"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_7LkKtkS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+        <details xmi:id="_7LkKt0S5Eduo0qgZQXhZYA" key="uuid" value="1158325126875107"/>
+      </eAnnotations>
+      <appliedProfile href="../../uml2cs-transformations/profiles/Async.profile.uml#_wPvPwUSMEduP3ua-vE3IKQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_DhH84ES5Eduo0qgZQXhZYA">
+      <eAnnotations xmi:id="_DhLnQES5Eduo0qgZQXhZYA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <eAnnotations xmi:id="_7LkKvES5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+          <details xmi:id="_7LkKvUS5Eduo0qgZQXhZYA" key="uuid" value="1158325126875110"/>
+        </eAnnotations>
+        <references xmi:type="ecore:EPackage" href="../../uml2cs-transformations/profiles/Final.profile.uml#_4InvEDntEduHCOb_wCU8nA"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_7LkKukS5Eduo0qgZQXhZYA" source="http://www.topcased.org/uuid">
+        <details xmi:id="_7LkKu0S5Eduo0qgZQXhZYA" key="uuid" value="1158325126875109"/>
+      </eAnnotations>
+      <appliedProfile href="../../uml2cs-transformations/profiles/Final.profile.uml#_eb5C0PrOEdq0MPWKkoLgDQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_EqOYgemPEd6_SfpJDurjzA">
+      <eAnnotations xmi:id="_EqOYgumPEd6_SfpJDurjzA" source="http://www.eclipse.org/uml2/3.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../../uml2cs-transformations/profiles/Accessors.profile.uml#_PhpOIKOrEd64oN4qPjmMtw"/>
+      </eAnnotations>
+      <appliedProfile href="../../uml2cs-transformations/profiles/Accessors.profile.uml#_02pEgOc5EdqWbZ4NdHyPMQ"/>
+    </profileApplication>
+  </uml:Model>
+  <Accessors:accessor xmi:id="_EyHwSemPEd6_SfpJDurjzA" base_Dependency="_EyHwSOmPEd6_SfpJDurjzA" kind="get"/>
+  <Accessors:accessor xmi:id="_EyHwT-mPEd6_SfpJDurjzA" base_Dependency="_EyHwTumPEd6_SfpJDurjzA" kind="set"/>
+  <Accessors:accessor xmi:id="_EyHwWumPEd6_SfpJDurjzA" base_Dependency="_EyHwWemPEd6_SfpJDurjzA" kind="get"/>
+  <Accessors:accessor xmi:id="_EyHwYOmPEd6_SfpJDurjzA" base_Dependency="_EyHwX-mPEd6_SfpJDurjzA" kind="set"/>
+  <Final:final xmi:id="_Hr7JYES5Eduo0qgZQXhZYA" base_Parameter="_HfC14US3Eduo0qgZQXhZYA"/>
+  <Final:final xmi:id="_ImetIES5Eduo0qgZQXhZYA" base_Parameter="_HfDc8US3Eduo0qgZQXhZYA"/>
+  <Final:final xmi:id="_JaMpEES5Eduo0qgZQXhZYA" base_Parameter="_HfDc80S3Eduo0qgZQXhZYA"/>
+  <Final:final xmi:id="_RlTCQES5Eduo0qgZQXhZYA" base_Parameter="_aJxFEUS2Eduo0qgZQXhZYA"/>
+  <Final:final xmi:id="_Sg2EgES5Eduo0qgZQXhZYA" base_Parameter="_aJxFEkS2Eduo0qgZQXhZYA"/>
+  <Final:final xmi:id="_dEFf4EVgEdu1R4x2hFmiHQ" base_Parameter="_b2CYYEVgEdu1R4x2hFmiHQ"/>
+  <Final:final xmi:id="_fRXPwEVgEdu1R4x2hFmiHQ" base_Parameter="_eA9X0EVgEdu1R4x2hFmiHQ"/>
+  <Final:final xmi:id="_hjIeEEVgEdu1R4x2hFmiHQ" base_Parameter="_gRUQ4EVgEdu1R4x2hFmiHQ"/>
+  <Final:final xmi:id="_pktH0EVgEdu1R4x2hFmiHQ" base_Parameter="_n7XLcEVgEdu1R4x2hFmiHQ"/>
+  <Final:final xmi:id="_qS64sEVgEdu1R4x2hFmiHQ" base_Parameter="_n7XLc0VgEdu1R4x2hFmiHQ"/>
+  <Standard:Create xmi:id="_e2OyMETMEdufqYn5Bpo1pQ" base_BehavioralFeature="_xGSWEES0Eduo0qgZQXhZYA"/>
+  <Async:asynchronous xmi:id="_E4vQEES5Eduo0qgZQXhZYA" base_Operation="_HfC14ES3Eduo0qgZQXhZYA"/>
+  <Async:asynchronous xmi:id="_Ftqs8ES5Eduo0qgZQXhZYA" base_Operation="_HfDc8ES3Eduo0qgZQXhZYA"/>
+  <Async:asynchronous xmi:id="_GfOswES5Eduo0qgZQXhZYA" base_Operation="_HfDc8kS3Eduo0qgZQXhZYA"/>
+  <Async:asynchronous xmi:id="_MK2LwES5Eduo0qgZQXhZYA" base_Operation="_Zja2wES2Eduo0qgZQXhZYA"/>
+  <Async:asynchronous xmi:id="_P38voES5Eduo0qgZQXhZYA" base_Operation="_aJxFEES2Eduo0qgZQXhZYA"/>
+</xmi:XMI>

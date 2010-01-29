@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uml2cs-transformations-common">
+
+	<!-- = = = = = taskdefs = = = = = -->
+	
+	<path id="anttasks.path">
+		<fileset dir=".">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+	<taskdef name="javaformatter" 
+		classname="org.hibernate.tool.ant.JavaFormatterTask"
+		classpathref="anttasks.path"/>
+
+	<!-- = = = = = properties = = = = = -->
+	
+	<!-- atl.vm = "Regular VM (with debugger)" | "EMF-specific VM" -->
+	<!--property name="atl.launcher" value="Regular VM (with debugger)"/-->
+	<property name="atl.launcher" value="EMF-specific VM"/>
+
+	<eclipse.convertPath resourcepath="/uml2cs-transformations" property="trans.path"/>
+	<!-- property name="trans.path" value="../../uml2cs-transformations"/ -->
+	<property name="trans.uri" value="platform:/resource/uml2cs-transformations"/>
+
+	<property name="trans.uml2copy.path" value="${trans.path}/UML2Copy.asm"/>
+	<property name="trans.uml2profilecopy.path" value="${trans.path}/UML2ProfileCopy.asm"/>
+	<property name="trans.uml2profiles.path" value="${trans.path}/UML2Profiles.asm"/>
+	<property name="trans.uml2accessors.path" value="${trans.path}/UML2Accessors.asm"/>
+	<property name="trans.uml2observer.path" value="${trans.path}/UML2Observer.asm"/>
+	<property name="trans.uml2javaobserver.path" value="${trans.path}/UML2JavaObserver.asm"/>
+	<property name="trans.uml2abstractfactory.path" value="${trans.path}/UML2AbstractFactory.asm"/>
+	<property name="trans.uml2singleton.path" value="${trans.path}/UML2Singleton.asm"/>
+	<property name="trans.uml2applet.path" value="${trans.path}/UML2Applet.asm"/>
+	<property name="trans.uml2midlet.path" value="${trans.path}/UML2MIDlet.asm"/>
+	<property name="trans.uml2swtapplication.path" value="${trans.path}/UML2SWTApplication.asm"/>
+	<property name="trans.uml2asyncmethods.path" value="${trans.path}/UML2AsyncMethods.asm"/>
+	<property name="trans.uml2datatypes.path" value="${trans.path}/UML2DataTypes.asm"/>
+	<property name="trans.uml2tojava.path" value="${trans.path}/UML2ToJava.asm"/>
+	<property name="trans.java2uml.path" value="${trans.path}/Java2UML.asm"/>
+
+	<property name="metamodel.uml2.uri" value="${trans.uri}/metamodels/UML2Profiles.ecore"/>
+	<property name="metamodel.xml.uri" value="${trans.uri}/metamodels/XML.ecore"/>
+	<property name="metamodel.java.nsuri" value="http://www.eclipse.org/gmt/modisco/JavaAST"/>
+	<property name="profile.accessors.uri" value="${trans.uri}/profiles/Accessors.profile.uml"/>
+	<property name="model.uml2types.uri" value="${trans.uri}/models/PrimitiveTypes.uml"/>
+	<property name="model.javatypes.uri" value="${trans.uri}/models/JavaTypes.uml"/>
+	<property name="model.obstypes.uri" value="${trans.uri}/models/Observer.uml"/>
+	<property name="model.itenumadapter.uri" value="${trans.uri}/models/IteratorEnumerationAdapter.uml"/>
+	<property name="model.midlet.uri" value="${trans.uri}/models/MIDlet.uml"/>
+	<property name="model.swtapplication.uri" value="${trans.uri}/models/SWTApplication.uml"/>
+
+	<property name="lib.path" value="${trans.path}/lib"/>
+	<property name="lib.javamappings.path" value="${lib.path}/JavaMappings.asm"/>
+	<property name="lib.java1.path" value="${lib.path}/Java1.asm"/>
+	<property name="lib.java2.path" value="${lib.path}/Java2.asm"/>
+	<property name="lib.strings.path" value="${lib.path}/Strings.asm"/>
+	<property name="lib.uml2.path" value="${lib.path}/UML2.asm"/>
+
+	<property name="model.parameters.path" value="parameters.xmi"/>
+
+	<!-- = = = = = macros = = = = = -->
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: profiles		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="profiles">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="IN" model="@{in}"/>
+				<inmodel name="ACCESSORS" model="Accessors"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<superimpose path="${trans.uml2profiles.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+			<antcall target="saveModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: accessors		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="accessors">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="ACCESSORS" model="Accessors"/>
+				<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
+				<inmodel name="IN" model="@{in}"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
+				<library name="Strings" path="${lib.strings.path}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<library name="Java" path="${lib.java.path}"/>
+				<superimpose path="${trans.uml2accessors.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+			<antcall target="saveModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: observer		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="observer">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="OBSERVER" model="Observer"/>
+				<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
+				<inmodel name="IN" model="@{in}"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
+				<library name="Strings" path="${lib.strings.path}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<library name="Java" path="${lib.java.path}"/>
+				<superimpose path="${trans.uml2observer.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+			<antcall target="saveModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: javaobserver		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="javaobserver">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="IMPLTYPES" model="ImplTypes"/>
+				<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
+				<inmodel name="IN" model="@{in}"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
+				<library name="Strings" path="${lib.strings.path}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<superimpose path="${trans.uml2javaobserver.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+			<antcall target="saveModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: abstractfactory		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="abstractfactory">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="IN" model="@{in}"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<superimpose path="${trans.uml2abstractfactory.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+			<antcall target="saveModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+		</sequential>
+	</macrodef>
+	
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: singleton		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="singleton">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="IN" model="@{in}"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<library name="Java" path="${lib.java.path}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<superimpose path="${trans.uml2singleton.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+			<antcall target="saveModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+		</sequential>
+	</macrodef>
+	
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: applet		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="applet">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="IN" model="@{in}"/>
+				<inmodel name="IMPLTYPES" model="ImplTypes"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<library name="Java" path="${lib.java.path}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<superimpose path="${trans.uml2applet.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+			<antcall target="saveModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: midlet		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="midlet">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="IN" model="@{in}"/>
+				<inmodel name="MIDLET" model="MIDlet"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<superimpose path="${trans.uml2midlet.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+			<antcall target="saveModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: swtapplication		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="swtapplication">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="IN" model="@{in}"/>
+				<inmodel name="SWTAPP" model="SWTApplication"/>
+				<inmodel name="IMPLTYPES" model="ImplTypes"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<superimpose path="${trans.uml2swtapplication.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+			<antcall target="saveModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: asyncmethods		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="asyncmethods">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="IN" model="@{in}"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<superimpose path="${trans.uml2asyncmethods.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+			<antcall target="saveModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: datatypes		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="datatypes">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="IMPLTYPES" model="ImplTypes"/>
+				<inmodel name="IN" model="@{in}"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
+				<library name="Strings" path="${lib.strings.path}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<library name="Java" path="${lib.java.path}"/>
+				<superimpose path="${trans.uml2datatypes.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+			<antcall target="saveModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+			<antcall target="saveLastModel" inheritRefs="true">
+				<param name="model" value="@{out}"/>
+				<param name="uri" value="@{uri}"/>
+			</antcall>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: generate		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="generate">
+		<attribute name="in" default="MODEL.IN" />
+		<sequential>
+			<atl.launch path="${trans.generate.path}">
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="IN" model="@{in}"/>
+				<inmodel name="XML" model="XML"/>
+				<inmodel name="parameters" model="Parameters"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+			</atl.launch>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: java2uml		  
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name="java2uml">
+		<attribute name="in" default="MODEL.IN" />
+		<attribute name="code" default="MODEL.CODE" />
+		<attribute name="out" default="MODEL.OUT" />
+		<attribute name="path" default="MODEL.OUT.PATH" />
+		<sequential>
+			<atl.launch path="${trans.uml2copy.path}">
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name="UML2" model="UML2"/>
+				<inmodel name="JAVA" model="JAVA"/>
+				<inmodel name="IN" model="@{in}"/>
+				<inmodel name="CODE" model="@{code}"/>
+				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
+				<library name="UML2" path="${lib.uml2.path}"/>
+				<library name="Mappings" path="${lib.mappings.path}"/>
+				<library name="Java" path="${lib.java.path}"/>
+				<superimpose path="${trans.java2uml.path}"/>
+				<superimpose path="${trans.uml2profilecopy.path}"/>
+			</atl.launch>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = targets = =  = = = -->
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: defineProperties, defineJava1Properties, defineJava2Properties
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "defineProperties" depends = "defineJava1Properties, defineJava2Properties"/>
+
+	<target name = "defineJava1Properties" if = "java1">
+		<echo>Java1 selected</echo>
+		<property name="lib.mappings.path" value="${lib.javamappings.path}"/>
+		<property name="lib.java.path" value="${lib.java1.path}"/>
+		<property name="model.impltypes.uri" value="${model.javatypes.uri}"/>
+		<property name="trans.generate.path" value="${trans.uml2tojava.path}"/>
+	</target>
+
+	<target name = "defineJava2Properties" if = "java2">
+		<echo>Java2 selected</echo>
+		<property name="lib.mappings.path" value="${lib.javamappings.path}"/>
+		<property name="lib.java.path" value="${lib.java2.path}"/>
+		<property name="model.impltypes.uri" value="${model.javatypes.uri}"/>
+		<property name="trans.generate.path" value="${trans.uml2tojava.path}"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: profiles
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="profiles">
+		<!-- params: ${in}, ${prefix} -->
+		<profiles in = "${in}" out = "${prefix}-profiles" uri = "${current.uri}/${prefix}-profiles.uml"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: accessors
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="accessors" depends="profiles">
+		<!-- params: ${in}, ${prefix} -->
+		<accessors in = "${prefix}-profiles" out = "${prefix}-accessors" uri = "${current.uri}/${prefix}-accessors.uml"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: observer, javaobserver
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="observer" if="observer" depends="accessors">
+		<!-- params: ${in}, ${prefix} -->
+		<observer in = "${prefix}-accessors" out = "${prefix}-observer" uri = "${current.uri}/${prefix}-observer.uml"/>
+	</target>
+
+	<target name="javaobserver" if="javaobserver" depends="accessors">
+		<!-- params: ${in}, ${prefix} -->
+		<javaobserver in = "${prefix}-accessors" out = "${prefix}-observer" uri = "${current.uri}/${prefix}-observer.uml"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: abstractfactory
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="abstractfactory" depends="observer, javaobserver">
+		<!-- params: ${in}, ${prefix} -->
+		<abstractfactory in = "${prefix}-observer" out = "${prefix}-abstractfactory" uri = "${current.uri}/${prefix}-abstractfactory.uml"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: singleton
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="singleton" depends="abstractfactory">
+		<!-- params: ${in}, ${prefix} -->
+		<singleton in = "${prefix}-abstractfactory" out = "${prefix}-singleton" uri = "${current.uri}/${prefix}-singleton.uml"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: applet, midlet, swt-application
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="applet" if="applet" depends="singleton">
+		<!-- params: ${in}, ${prefix} -->
+		<applet in = "${prefix}-singleton" out = "${prefix}-applet" uri = "${current.uri}/${prefix}-applet.uml"/>
+	</target>
+
+	<target name="midlet" if="midlet" depends="singleton">
+		<!-- params: ${in}, ${prefix} -->
+		<midlet in = "${prefix}-singleton" out = "${prefix}-applet" uri = "${current.uri}/${prefix}-applet.uml"/>
+	</target>
+
+	<target name="swtapplication" if="swt-application" depends="singleton">
+		<!-- params: ${in}, ${prefix} -->
+		<swtapplication in = "${prefix}-singleton" out = "${prefix}-applet" uri = "${current.uri}/${prefix}-applet.uml"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: asyncmethods
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="asyncmethods" depends="applet, midlet, swtapplication">
+		<!-- params: ${in}, ${prefix} -->
+		<asyncmethods in = "${prefix}-applet" out = "${prefix}-asyncmethods" uri = "${current.uri}/${prefix}-asyncmethods.uml"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: datatypes
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="datatypes" depends="asyncmethods">
+		<!-- params: ${in}, ${prefix} -->
+		<datatypes in = "${prefix}-asyncmethods" out = "${prefix}-datatypes" uri = "${current.uri}/${prefix}-datatypes.uml"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: generate
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="generate" depends="datatypes">
+		<!-- params: ${in}, ${prefix} -->
+		<generate in = "${prefix}-datatypes"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: java2uml
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="java2uml">
+		<!-- params: ${in}, ${code}, ${uri} -->
+		<java2uml in = "${in}" out = "feedback-${in}" code = "${code}" path = "feedback-${uri}"/>
+		<atl.saveModel model="feedback-${in}" uri="${uri}" derived="false"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: loadBaseModels
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "loadBaseModels">
+		<atl.loadModel modelHandler = "EMF" name = "XML" metamodel = "MOF" uri = "${metamodel.xml.uri}"/>
+		<atl.loadModel modelHandler = "EMF" name = "Parameters" metamodel = "XML" path = "${model.parameters.path}">
+			<!--injector name = "xml"/-->
+		</atl.loadModel>
+		<atl.loadModel modelHandler = "UML2" name = "UML2" metamodel = "MOF" uri = "${metamodel.uml2.uri}"/>
+		<atl.loadModel modelHandler = "UML2" name = "Accessors" metamodel = "UML2" uri = "${profile.accessors.uri}"/>
+		<atl.loadModel modelHandler = "UML2" name = "PrimitiveTypes" metamodel = "UML2" uri = "${model.uml2types.uri}"/>
+		<atl.loadModel modelHandler = "UML2" name = "ImplTypes" metamodel = "UML2" uri = "${model.impltypes.uri}"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: loadIteratorEnumerationAdapter
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "loadIteratorEnumerationAdapter" if = "java2" depends = "loadBaseModels">
+		<atl.loadModel modelHandler = "UML2" name = "IteratorEnumerationAdapter" metamodel = "UML2" uri = "${model.itenumadapter.uri}"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: loadObserver
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "loadObserver" if = "observer" depends = "loadBaseModels">
+		<atl.loadModel modelHandler = "UML2" name = "Observer" metamodel = "UML2" uri = "${model.obstypes.uri}"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: loadMIDlet
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "loadMIDlet" if = "midlet" depends = "loadBaseModels">
+		<atl.loadModel modelHandler = "UML2" name = "MIDlet" metamodel = "UML2" uri = "${model.midlet.uri}"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: loadSWTApplication
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "loadSWTApplication" if = "swt-application" depends = "loadBaseModels">
+		<atl.loadModel modelHandler = "UML2" name = "SWTApplication" metamodel = "UML2" uri = "${model.swtapplication.uri}"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: loadJAVA
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "loadJAVA">
+		<atl.loadModel modelHandler = "EMF" name = "JAVA" metamodel = "MOF" nsuri = "${metamodel.java.nsuri}"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: saveModel
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "saveModel" if = "saveModels">
+	<!-- params: ${model}, ${uri} -->
+   		<atl.saveModel model = "${model}" uri = "${uri}"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: saveLastModel
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "saveLastModel" if = "saveLastModel">
+	<!-- params: ${model}, ${uri} -->
+   		<atl.saveModel model = "${model}" uri = "${uri}"/>
+	</target>
+	
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: IteratorEnumerationAdapter
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "IteratorEnumerationAdapter" if = "java2" depends = "loadBaseModels, loadIteratorEnumerationAdapter, loadObserver, loadMIDlet">
+		<antcall target = 'generate' inheritRefs = 'true'>
+			<param name = 'in' value = 'IteratorEnumerationAdapter'/>
+			<param name = 'prefix' value = 'enum'/>
+		</antcall>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: Observer
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "Observer" if = "observer" depends = "loadBaseModels, loadIteratorEnumerationAdapter, loadObserver, loadMIDlet">
+		<antcall target = 'generate' inheritRefs = 'true'>
+			<param name = 'in' value = 'Observer'/>
+			<param name = 'prefix' value = 'observer'/>
+		</antcall>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: MIDlet
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "MIDlet" if = "midlet" depends = "loadBaseModels, loadIteratorEnumerationAdapter, loadObserver, loadMIDlet">
+		<antcall target = 'generate' inheritRefs = 'true'>
+			<param name = 'in' value = 'MIDlet'/>
+			<param name = 'prefix' value = 'midlet'/>
+		</antcall>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: SWTApplication
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "SWTApplication" if = "swt-application" depends = "loadBaseModels, loadIteratorEnumerationAdapter, loadObserver, loadSWTApplication">
+		<antcall target = 'generate' inheritRefs = 'true'>
+			<param name = 'in' value = 'SWTApplication'/>
+			<param name = 'prefix' value = 'swtapp'/>
+		</antcall>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: allBase
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "allBase" depends = "defineProperties, loadBaseModels, loadIteratorEnumerationAdapter, loadObserver, loadMIDlet, loadSWTApplication, IteratorEnumerationAdapter, Observer, MIDlet, SWTApplication"/>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: clean
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "clean">
+        <delete>
+            <fileset dir = ".">
+            	<include name = "*.uml"/>
+        	</fileset>
+        </delete>
+	    <eclipse.refreshLocal resource = '${ant.project.name}'/>
+	</target>
+	
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: prettyPrint
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="prettyPrint">
+		<javaformatter>
+			<fileset dir="../src">
+				<include name="**/*.java"/>
+			</fileset>
+		</javaformatter>
+	</target>
+
+</project>

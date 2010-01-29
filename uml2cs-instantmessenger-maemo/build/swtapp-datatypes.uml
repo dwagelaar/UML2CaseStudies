@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Accessors="http:///schemas/Accessors/_PhonEKOrEd64oN4qPjmMtw/2" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/Accessors/_PhonEKOrEd64oN4qPjmMtw/2 ../../uml2cs-transformations/profiles/Accessors.profile.uml#_PhpOIKOrEd64oN4qPjmMtw http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="SWTApplication">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="swt">
+      <packagedElement xmi:type="uml:Class" xmi:id="_-TO08EKnEd29fNqekgzB4Q" name="SWTApplication" clientDependency="_J2gOY0KpEd29fNqekgzB4Q _59lVMOTkEd6SlP80xOVB_A" isAbstract="true">
+        <ownedAttribute xmi:id="_Kb6onEKpEd29fNqekgzB4Q" name="shell" visibility="private" aggregation="composite" association="_Kb6omEKpEd29fNqekgzB4Q">
+          <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/SWT.uml#_4-O7oEKmEd29fNqekgzB4Q"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Kb6onUKpEd29fNqekgzB4Q" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Kb6onkKpEd29fNqekgzB4Q" value="1"/>
+          <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_BXKFQOmPEd6_SfpJDurjzA">
+            <language>java</language>
+            <body>null</body>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_JjNbsOTkEd6SlP80xOVB_A" name="running" visibility="private">
+          <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_OO4ysPfvEdqaqL9wEVL3aA"/>
+          <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_BXKsUOmPEd6_SfpJDurjzA">
+            <language>java</language>
+            <body>false</body>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_C6DZoEKpEd29fNqekgzB4Q" specification="_bl76AkKoEd29fNqekgzB4Q">
+          <language>java</language>
+          <body>&#x9;final Display display = new Display();&#xA;&#x9;final Shell shell = new Shell(display);&#xA;&#x9;setShell(shell);</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_A-wMVemPEd6_SfpJDurjzA" name="getShellBehavior" specification="_A-wMUemPEd6_SfpJDurjzA">
+          <ownedParameter xmi:id="_A-wMVumPEd6_SfpJDurjzA" name="return" visibility="public" direction="return" effect="read">
+            <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/SWT.uml#_4-O7oEKmEd29fNqekgzB4Q"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_A-wMWOmPEd6_SfpJDurjzA" value="1"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_A-wMV-mPEd6_SfpJDurjzA" value="1"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>return shell;</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_A-wMZumPEd6_SfpJDurjzA" name="getRunningBehavior" specification="_A-wMYumPEd6_SfpJDurjzA">
+          <ownedParameter xmi:id="_A-wMZ-mPEd6_SfpJDurjzA" name="return" visibility="public" direction="return" effect="read">
+            <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_OO4ysPfvEdqaqL9wEVL3aA"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_A-wMaemPEd6_SfpJDurjzA" value="1"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_A-wMaOmPEd6_SfpJDurjzA" value="1"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>return running;</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_A-wMXemPEd6_SfpJDurjzA" name="setShellBehavior" specification="_A-wMW-mPEd6_SfpJDurjzA">
+          <ownedParameter xmi:id="_A-wMXumPEd6_SfpJDurjzA" name="shell" visibility="public" effect="update">
+            <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/SWT.uml#_4-O7oEKmEd29fNqekgzB4Q"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>this.shell = shell;</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_A-wMbumPEd6_SfpJDurjzA" name="setRunningBehavior" specification="_A-wMbOmPEd6_SfpJDurjzA">
+          <ownedParameter xmi:id="_A-wMb-mPEd6_SfpJDurjzA" name="running" visibility="public" effect="update">
+            <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_OO4ysPfvEdqaqL9wEVL3aA"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>this.running = running;</body>
+        </ownedBehavior>
+        <ownedOperation xmi:id="__4Pq8EKnEd29fNqekgzB4Q" name="init" visibility="public">
+          <ownedParameter xmi:id="_BXLTYOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+            <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ArMx4EKoEd29fNqekgzB4Q" name="start" visibility="public">
+          <ownedParameter xmi:id="_BXLTYemPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+            <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_BdBQYEKoEd29fNqekgzB4Q" name="stop" visibility="public">
+          <ownedParameter xmi:id="_BXLTYumPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+            <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_bl76AkKoEd29fNqekgzB4Q" name="SWTApplication" visibility="public" method="_C6DZoEKpEd29fNqekgzB4Q">
+          <ownedParameter xmi:id="_BXLTY-mPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+            <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_2nFI4OTjEd6SlP80xOVB_A" name="destroy" visibility="public">
+          <ownedParameter xmi:id="_BXL6cOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+            <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_A-wMUemPEd6_SfpJDurjzA" name="getShell" visibility="public" clientDependency="_A-wMWemPEd6_SfpJDurjzA" method="_A-wMVemPEd6_SfpJDurjzA">
+          <ownedParameter xmi:id="_A-wMUumPEd6_SfpJDurjzA" name="return" visibility="public" direction="return" effect="read">
+            <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/SWT.uml#_4-O7oEKmEd29fNqekgzB4Q"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_A-wMVOmPEd6_SfpJDurjzA" value="1"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_A-wMU-mPEd6_SfpJDurjzA" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_A-wMW-mPEd6_SfpJDurjzA" name="setShell" visibility="public" clientDependency="_A-wMX-mPEd6_SfpJDurjzA" method="_A-wMXemPEd6_SfpJDurjzA">
+          <ownedParameter xmi:id="_A-wMXOmPEd6_SfpJDurjzA" name="shell" visibility="public" effect="update">
+            <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/SWT.uml#_4-O7oEKmEd29fNqekgzB4Q"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_BXL6cemPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+            <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_A-wMYumPEd6_SfpJDurjzA" name="getRunning" visibility="public" clientDependency="_A-wMaumPEd6_SfpJDurjzA" method="_A-wMZumPEd6_SfpJDurjzA">
+          <ownedParameter xmi:id="_A-wMY-mPEd6_SfpJDurjzA" name="return" visibility="public" direction="return" effect="read">
+            <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_OO4ysPfvEdqaqL9wEVL3aA"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_A-wMZemPEd6_SfpJDurjzA" value="1"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_A-wMZOmPEd6_SfpJDurjzA" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_A-wMbOmPEd6_SfpJDurjzA" name="setRunning" visibility="public" clientDependency="_A-wMcOmPEd6_SfpJDurjzA" method="_A-wMbumPEd6_SfpJDurjzA">
+          <ownedParameter xmi:id="_A-wMbemPEd6_SfpJDurjzA" name="running" visibility="public" effect="update">
+            <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_OO4ysPfvEdqaqL9wEVL3aA"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_BXMhgOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+            <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_J2gOY0KpEd29fNqekgzB4Q" name="SWTApplication_DisplayDependency" client="_-TO08EKnEd29fNqekgzB4Q">
+        <supplier xmi:type="uml:Class" href="../../uml2cs-transformations/models/SWT.uml#_4-BgQEKmEd29fNqekgzB4Q"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Kb6omEKpEd29fNqekgzB4Q" name="A_SWTApplication_Shell" memberEnd="_Kb6omUKpEd29fNqekgzB4Q _Kb6onEKpEd29fNqekgzB4Q">
+        <ownedEnd xmi:id="_Kb6omUKpEd29fNqekgzB4Q" name="app" visibility="public" type="_-TO08EKnEd29fNqekgzB4Q" association="_Kb6omEKpEd29fNqekgzB4Q">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Kb6omkKpEd29fNqekgzB4Q" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Kb6om0KpEd29fNqekgzB4Q" value="1"/>
+          <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_BXKsUemPEd6_SfpJDurjzA">
+            <language>java</language>
+            <body>null</body>
+          </defaultValue>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_59lVMOTkEd6SlP80xOVB_A" name="Dependency1" client="_-TO08EKnEd29fNqekgzB4Q">
+        <supplier xmi:type="uml:Class" href="../../uml2cs-transformations/models/SWT.uml#_4-O7oEKmEd29fNqekgzB4Q"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_A-wMWemPEd6_SfpJDurjzA" name="accessor getShell()" supplier="_Kb6onEKpEd29fNqekgzB4Q" client="_A-wMUemPEd6_SfpJDurjzA"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_A-wMaumPEd6_SfpJDurjzA" name="accessor getRunning()" supplier="_JjNbsOTkEd6SlP80xOVB_A" client="_A-wMYumPEd6_SfpJDurjzA"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_A-wMX-mPEd6_SfpJDurjzA" name="accessor setShell()" supplier="_Kb6onEKpEd29fNqekgzB4Q" client="_A-wMW-mPEd6_SfpJDurjzA"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_A-wMcOmPEd6_SfpJDurjzA" name="accessor setRunning()" supplier="_JjNbsOTkEd6SlP80xOVB_A" client="_A-wMbOmPEd6_SfpJDurjzA"/>
+    </packagedElement>
+    <profileApplication xmi:id="_fv71QEKoEd29fNqekgzB4Q">
+      <eAnnotations xmi:id="_fwAtwEKoEd29fNqekgzB4Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_A7QMYemPEd6_SfpJDurjzA">
+      <eAnnotations xmi:id="_A7QMYumPEd6_SfpJDurjzA" source="http://www.eclipse.org/uml2/3.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../../uml2cs-transformations/profiles/Accessors.profile.uml#_PhpOIKOrEd64oN4qPjmMtw"/>
+      </eAnnotations>
+      <appliedProfile href="../../uml2cs-transformations/profiles/Accessors.profile.uml#_02pEgOc5EdqWbZ4NdHyPMQ"/>
+    </profileApplication>
+  </uml:Model>
+  <Accessors:accessor xmi:id="_A-wMWumPEd6_SfpJDurjzA" base_Dependency="_A-wMWemPEd6_SfpJDurjzA" kind="get"/>
+  <Accessors:accessor xmi:id="_A-wMYOmPEd6_SfpJDurjzA" base_Dependency="_A-wMX-mPEd6_SfpJDurjzA" kind="set"/>
+  <Accessors:accessor xmi:id="_A-wMa-mPEd6_SfpJDurjzA" base_Dependency="_A-wMaumPEd6_SfpJDurjzA" kind="get"/>
+  <Accessors:accessor xmi:id="_A-wMcemPEd6_SfpJDurjzA" base_Dependency="_A-wMcOmPEd6_SfpJDurjzA" kind="set"/>
+  <Standard:Create xmi:id="_gnH78EKoEd29fNqekgzB4Q" base_BehavioralFeature="_bl76AkKoEd29fNqekgzB4Q"/>
+</xmi:XMI>

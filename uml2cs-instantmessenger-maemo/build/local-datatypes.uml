@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="InstantMessengerLocal">
+    <eAnnotations xmi:id="_wDTOMEM3EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
+      <details xmi:id="_wDTOMUM3EduvwfpPI_uz7A" key="uuid" value="11581592664510"/>
+    </eAnnotations>
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="im">
+      <eAnnotations xmi:id="_wDTOMkM3EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
+        <details xmi:id="_wDTOM0M3EduvwfpPI_uz7A" key="uuid" value="11581592664511"/>
+      </eAnnotations>
+      <packagedElement xmi:type="uml:Package" xmi:id="_YGB8wEM3EduvwfpPI_uz7A" name="networking">
+        <eAnnotations xmi:id="_wDTONEM3EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
+          <details xmi:id="_wDTONUM3EduvwfpPI_uz7A" key="uuid" value="11581592664512"/>
+        </eAnnotations>
+        <packagedElement xmi:type="uml:Package" xmi:id="_fztaIEM3EduvwfpPI_uz7A" name="local">
+          <eAnnotations xmi:id="_wDTONkM3EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
+            <details xmi:id="_wDTON0M3EduvwfpPI_uz7A" key="uuid" value="11581592664513"/>
+          </eAnnotations>
+          <packagedElement xmi:type="uml:Class" xmi:id="_jjPm8EM3EduvwfpPI_uz7A" name="Local" clientDependency="_ufIFsEM3EduvwfpPI_uz7A">
+            <eAnnotations xmi:id="_wDTOOEM3EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
+              <details xmi:id="_wDTOOUM3EduvwfpPI_uz7A" key="uuid" value="11581592664514"/>
+            </eAnnotations>
+            <generalization xmi:id="_yL-x8EM3EduvwfpPI_uz7A" isSubstitutable="false">
+              <eAnnotations xmi:id="_2VgMEEM3EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
+                <details xmi:id="_2VgMEUM3EduvwfpPI_uz7A" key="uuid" value="115815930862515"/>
+              </eAnnotations>
+              <general xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_49VF8OQsEdqD2ZNp93yIAQ"/>
+            </generalization>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_B8bWcEM5EduBYMzEGhzLZQ" name="LocalBehavior" specification="_4P-7wEM3EduvwfpPI_uz7A">
+              <eAnnotations xmi:id="_jgYOQEM5EduBYMzEGhzLZQ" source="http://www.topcased.org/uuid">
+                <details xmi:id="_jgYOQUM5EduBYMzEGhzLZQ" key="uuid" value="115816004125218"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bar1wPhdEd2tmcyNNYmsTg" name="return" visibility="public" type="_jjPm8EM3EduvwfpPI_uz7A" direction="return" effect="create">
+                <eAnnotations xmi:id="_Bar1wfhdEd2tmcyNNYmsTg" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_Bar1wvhdEd2tmcyNNYmsTg" key="uuid" value="115815942554722"/>
+                </eAnnotations>
+              </ownedParameter>
+              <language>java</language>
+              <body>setName(&quot;Local&quot;);</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_PiZc4EM5EduBYMzEGhzLZQ" name="Local_sendBehavior" specification="_V9yocEM4EduvwfpPI_uz7A">
+              <eAnnotations xmi:id="_jgYOQkM5EduBYMzEGhzLZQ" source="http://www.topcased.org/uuid">
+                <details xmi:id="_jgYOQ0M5EduBYMzEGhzLZQ" key="uuid" value="115816004125219"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_AEs6QPhdEd2tmcyNNYmsTg" name="msg" visibility="public" effect="read">
+                <eAnnotations xmi:id="_AEs6QfhdEd2tmcyNNYmsTg" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_AEs6QvhdEd2tmcyNNYmsTg" key="uuid" value="115815978855830"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_c0hoMOQsEdqD2ZNp93yIAQ"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>msg.setRecipient(msg.getSender());&#xA;setRecvMsg(msg);</body>
+            </ownedBehavior>
+            <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ZhCQQEM5EduBYMzEGhzLZQ" name="Local_reportBehavior" specification="_xqLP8EM4EduBYMzEGhzLZQ">
+              <eAnnotations xmi:id="_jgYOREM5EduBYMzEGhzLZQ" source="http://www.topcased.org/uuid">
+                <details xmi:id="_jgY1UEM5EduBYMzEGhzLZQ" key="uuid" value="115816004125220"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_CfgIwPhdEd2tmcyNNYmsTg" name="e" visibility="public" effect="read">
+                <eAnnotations xmi:id="_CfgIwfhdEd2tmcyNNYmsTg" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_CfgIwvhdEd2tmcyNNYmsTg" key="uuid" value="115815978855932"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_vYhkAETFEdutoZk0i5ZyXw"/>
+              </ownedParameter>
+              <language>java</language>
+              <body>im.model.Message msg = new im.model.Message();&#xA;msg.setSender(&quot;System&quot;);&#xA;msg.setContent(e.toString());&#xA;send(msg);&#xA;e.printStackTrace();</body>
+            </ownedBehavior>
+            <interfaceRealization xmi:id="_ufIFsEM3EduvwfpPI_uz7A" name="InterfaceRealization1" client="_jjPm8EM3EduvwfpPI_uz7A">
+              <eAnnotations xmi:id="_wDTOOkM3EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
+                <details xmi:id="_wDTOO0M3EduvwfpPI_uz7A" key="uuid" value="11581592664515"/>
+              </eAnnotations>
+              <supplier xmi:type="uml:Interface" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_EzvlMOQrEdqD2ZNp93yIAQ"/>
+              <contract href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_EzvlMOQrEdqD2ZNp93yIAQ"/>
+            </interfaceRealization>
+            <ownedOperation xmi:id="_4P-7wEM3EduvwfpPI_uz7A" name="Local" visibility="public" method="_B8bWcEM5EduBYMzEGhzLZQ">
+              <eAnnotations xmi:id="_HwjtsEM4EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
+                <details xmi:id="_HwjtsUM4EduvwfpPI_uz7A" key="uuid" value="115815942554721"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_7UwUUEM3EduvwfpPI_uz7A" name="return" visibility="public" type="_jjPm8EM3EduvwfpPI_uz7A" direction="return" effect="create">
+                <eAnnotations xmi:id="_HwkUwEM4EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_HwkUwUM4EduvwfpPI_uz7A" key="uuid" value="115815942554722"/>
+                </eAnnotations>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_V9yocEM4EduvwfpPI_uz7A" name="send" visibility="public" method="_PiZc4EM5EduBYMzEGhzLZQ">
+              <eAnnotations xmi:id="_a-h-cEM4EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
+                <details xmi:id="_a-h-cUM4EduvwfpPI_uz7A" key="uuid" value="115815955451827"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_omisQEM4EduBYMzEGhzLZQ" name="msg" visibility="public" effect="read">
+                <eAnnotations xmi:id="_92gC4EM4EduBYMzEGhzLZQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_92gp8EM4EduBYMzEGhzLZQ" key="uuid" value="115815978855830"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-instantmessenger-model/models/InstantMessengerModel.uml#_c0hoMOQsEdqD2ZNp93yIAQ"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_EktmYOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_xqLP8EM4EduBYMzEGhzLZQ" name="report" visibility="public" method="_ZhCQQEM5EduBYMzEGhzLZQ">
+              <eAnnotations xmi:id="_92gp8UM4EduBYMzEGhzLZQ" source="http://www.topcased.org/uuid">
+                <details xmi:id="_92gp8kM4EduBYMzEGhzLZQ" key="uuid" value="115815978855931"/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_3IqR4EM4EduBYMzEGhzLZQ" name="e" visibility="public" effect="read">
+                <eAnnotations xmi:id="_92gp80M4EduBYMzEGhzLZQ" source="http://www.topcased.org/uuid">
+                  <details xmi:id="_92gp9EM4EduBYMzEGhzLZQ" key="uuid" value="115815978855932"/>
+                </eAnnotations>
+                <type xmi:type="uml:Class" href="../../uml2cs-transformations/models/JavaTypes.uml#_vYhkAETFEdutoZk0i5ZyXw"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_EkuNcOmPEd6_SfpJDurjzA" name="return" direction="return" effect="read">
+                <type xmi:type="uml:DataType" href="../../uml2cs-transformations/models/JavaTypes.uml#_NNuQoPfvEdqaqL9wEVL3aA"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_J2BlYEM4EduvwfpPI_uz7A">
+      <eAnnotations xmi:id="_J3RikEM4EduvwfpPI_uz7A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <eAnnotations xmi:id="_Kxr8YkM4EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
+          <details xmi:id="_Kxr8Y0M4EduvwfpPI_uz7A" key="uuid" value="115815944579828"/>
+        </eAnnotations>
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_Kxr8YEM4EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
+        <details xmi:id="_Kxr8YUM4EduvwfpPI_uz7A" key="uuid" value="115815944579827"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_EEQksemPEd6_SfpJDurjzA">
+      <eAnnotations xmi:id="_EEQksumPEd6_SfpJDurjzA" source="http://www.eclipse.org/uml2/3.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../../uml2cs-transformations/profiles/Accessors.profile.uml#_PhpOIKOrEd64oN4qPjmMtw"/>
+      </eAnnotations>
+      <appliedProfile href="../../uml2cs-transformations/profiles/Accessors.profile.uml#_02pEgOc5EdqWbZ4NdHyPMQ"/>
+    </profileApplication>
+  </uml:Model>
+  <Standard:Create xmi:id="_X9fUUPhdEd2tmcyNNYmsTg" base_BehavioralFeature="_4P-7wEM3EduvwfpPI_uz7A"/>
+</xmi:XMI>

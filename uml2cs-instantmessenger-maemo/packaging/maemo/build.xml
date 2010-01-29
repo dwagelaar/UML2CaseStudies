@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="uml2cs-instantmessenger-maemo/packaging/maemo" default="all">
-	<property name="deployment.target" value="maemo"/>
+	<property name="deployment.target" value="swt/maemo"/>
 	<property name="jabberwookie.path" value="../../../uml2cs-microjabberwookie/jar"/>
 	<property name="deployment.path" value="../../../uml2cs-instantmessenger-model/deployment/data"/>
 	<property name="src.path" value="../../src"/>

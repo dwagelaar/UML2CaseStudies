@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>PlatformKit - Instant Messenger</title>
+</head>
+<script language="JavaScript">
+<!-- //
+	var servleturl = "http://softsrv3.vub.ac.be/platformkitservlet/";
+
+	document.write("<frameset rows=\"*\">");
+	document.write(
+		"<frame frameborder=\"0\" src=\"" +	servleturl + "?" +
+		"baseurl=" + location + "InstantMessengerDeployment.platformkit&" +
+		"result=mostspecific&novalidate=false&hide=true&" +
+		"pagetitle=Instant+Messaging+Client+Configuration\"/>");
+//-->
+</script>
+<noframes>
+<body>
+
+	<script language="JavaScript">
+	<!-- //
+		document.write("<form name=\"config\" method=\"get\" action=\"" + servleturl + "\">");
+		document.write("<input name=\"baseurl\" type=\"hidden\" value=\"" + location + "InstantMessengerDeployment.platformkit\"/>");
+	//-->
+	</script>
+		<input type="hidden" name="result" value="mostspecific" />
+		<input type="hidden" name="novalidate" value="false" />
+		<input type="hidden" name="hide" value="true" />
+		<input type="hidden" name="pagetitle" value="Instant Messaging Client Configuration" />
+	</form>	
+
+</body>
+<script language="JavaScript">
+<!-- //
+	document.config.submit();
+//-->
+</script>
+</noframes>
+</frameset>
+</html>

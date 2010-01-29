@@ -679,7 +679,7 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		   source, 
 		   new String[] {
 			 "ContextConstraint", "http://local/InstantMessenger.owl#MEJabberPlatform"
-		   });			
+		   });				
 		addAnnotation
 		  (awtUserInterfaceEClass, 
 		   source, 
@@ -715,7 +715,7 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		   source, 
 		   new String[] {
 			 "ContextConstraint", "http://local/InstantMessenger.owl#MIDletPlatform"
-		   });	
+		   });		
 	}
 
 	/**
@@ -761,6 +761,12 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		   source, 
 		   new String[] {
 			 "PlatformConstraint", "http://local/InstantMessenger.owl#MEJabberPlatform"
+		   });		
+		addAnnotation
+		  (swtUserInterfaceEClass, 
+		   source, 
+		   new String[] {
+			 "PlatformConstraint", "http://local/InstantMessenger.owl#SWTPlatform"
 		   });			
 		addAnnotation
 		  (awtUserInterfaceEClass, 
@@ -797,6 +803,12 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		   source, 
 		   new String[] {
 			 "PlatformConstraint", "http://local/InstantMessenger.owl#MIDletPlatform"
+		   });		
+		addAnnotation
+		  (maemoPackagingEClass, 
+		   source, 
+		   new String[] {
+			 "PlatformConstraint", "http://local/InstantMessenger.owl#MaemoPlatform"
 		   });
 	}
 
@@ -813,7 +825,7 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		   source, 
 		   new String[] {
 			 "documentation", "Root node for an instant messenger configuration model"
-		   });																						
+		   });																								
 	}
 
 } //InstantmessengerPackageImpl

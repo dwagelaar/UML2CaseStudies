@@ -38,6 +38,18 @@
     <constraint ontClassURI="http://local/InstantMessenger.owl#AWTPlatform"/>
     <constraint ontClassURI="http://local/InstantMessenger.owl#WebAppletPlatform"/>
   </constraintSet>
+  <constraintSet name="swt/maemo">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#Java2Platform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <constraint ontClassURI="http://local/Transformations.owl#SWTPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#LocalPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#JabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#SWTPlatform"/>
+    <constraint ontClassURI="http://local/InstantMessenger.owl#MaemoPlatform"/>
+  </constraintSet>
   <constraintSet name="java2/ipkg/instantmessenger-j2me-pp_1.3-0_noarch.ipk">
     <constraint ontClassURI="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
     <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>

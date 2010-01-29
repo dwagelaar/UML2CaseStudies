@@ -2,7 +2,7 @@
 <feature
       id="be.ac.vub.uml2cs.infrastructure"
       label="UML2 case studies infrastructure feature"
-      version="1.0.22"
+      version="1.1.0"
       provider-name="Vrije Universiteit Brussel"
       plugin="be.ac.vub.uml2cs.instantmessenger.config"
       image="VUB_logo_compact.gif">
@@ -37,12 +37,14 @@ the terms and conditions of the Eclipse Public License Version
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.m2m.atl.engine"/>
       <import plugin="org.eclipse.emf.validation"/>
-      <import plugin="org.eclipse.m2m.atl.adt.debug"/>
       <import plugin="org.eclipse.ant.core"/>
       <import plugin="org.eclipse.debug.core"/>
       <import plugin="org.eclipse.emf.validation.ocl"/>
+      <import plugin="org.eclipse.m2m.atl.core" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.junit"/>
+      <import plugin="org.eclipse.m2m.atl.core.ui.vm" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.m2m.atl.engine.vm" version="3.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -61,22 +63,22 @@ the terms and conditions of the Eclipse Public License Version
 
    <plugin
          id="be.ac.vub.uml2cs.instantmessenger.config.editor"
-         download-size="468"
-         install-size="468"
+         download-size="480"
+         install-size="480"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="be.ac.vub.uml2cs.instantmessenger.config.edit"
-         download-size="72"
-         install-size="72"
+         download-size="80"
+         install-size="80"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="be.ac.vub.uml2cs.instantmessenger.config"
-         download-size="152"
-         install-size="152"
+         download-size="156"
+         install-size="156"
          version="0.0.0"
          unpack="false"/>
 

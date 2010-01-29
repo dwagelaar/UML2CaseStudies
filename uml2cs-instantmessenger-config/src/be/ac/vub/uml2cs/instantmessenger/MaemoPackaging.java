@@ -13,7 +13,7 @@ package be.ac.vub.uml2cs.instantmessenger;
  *
  *
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getMaemoPackaging()
- * @model
+ * @model annotation="PlatformKit PlatformConstraint='http://local/InstantMessenger.owl#MaemoPlatform'"
  * @generated
  */
 public interface MaemoPackaging extends Packaging {

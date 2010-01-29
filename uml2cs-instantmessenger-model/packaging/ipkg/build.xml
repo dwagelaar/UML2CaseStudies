@@ -62,15 +62,7 @@ $JAVA -XappName=$0 -Djava.security.policy=java.policy.applet $EXTRA_ARGS -applet
         </jar>
     </target>
 	
-	<target name="jar-sign" depends="jar">
-		<signjar jar="build/data/opt/QtPalmtop/java/${ipk.name}/im.jar"
-			alias="${certificate.alias}"
-			keystore="${certificate.path}/${certificate.name}"
-			storetype="pkcs12"
-			storepass="${certificate.passphrase}"/>
-	</target>
-	
-	<target name="data" depends="jar-sign">
+	<target name="data" depends="jar">
 		<tar destfile="build/data.tar.gz" compression="gzip">
 			<tarfileset dir="build/data" prefix="./" username="root" group="qpe" uid="0" gid="500">
 				<exclude name="**/bin/**"/>

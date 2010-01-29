@@ -27,7 +27,7 @@
 		<signjar jar="${deployment.path}/${deployment.target}/im.jar"
 			alias="${certificate.alias}"
 			keystore="${certificate.path}/${certificate.name}"
-			storetype="pkcs12"
+			storetype="${certificate.type}"
 			storepass="${certificate.passphrase}"/>
 	</target>
 	

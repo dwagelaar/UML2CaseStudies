@@ -83,15 +83,7 @@ exec ${JAVA}  ${VMARGS} ${BOOTCLASSPATH_ARG} ${CLASSPATH_ARG} ${LIBRARY_PATH_ARG
         </jar>
     </target>
 	
-	<target name="jar-sign" depends="jar">
-		<signjar jar="build/data/usr/share/java/${deb.name}.jar"
-			alias="${certificate.alias}"
-			keystore="${certificate.path}/${certificate.name}"
-			storetype="pkcs12"
-			storepass="${certificate.passphrase}"/>
-	</target>
-	
-	<target name="data" depends="jar-sign">
+	<target name="data" depends="jar">
 		<tar destfile="build/data.tar.gz" compression="gzip">
 			<tarfileset dir="build/data" prefix="./" username="root" group="maemo" uid="0" gid="500">
 				<exclude name="**/bin/**"/>

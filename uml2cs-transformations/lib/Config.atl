@@ -20,6 +20,8 @@ helper context ECORE!"ecore::EClass" def : inclusionCondition : Boolean =
 		self.name = 'EPackage' or
 		self.name = 'EParameter' or
 		self.name = 'EReference' or
+		self.name = 'EGenericType' or
+		self.name = 'ETypeParameter' or
 		self.name = 'Profile' or
 		self.name = 'Stereotype'
 	);
@@ -35,3 +37,8 @@ helper context ECORE!"ecore::ENamedElement" def : useQualifiedRuleName : Boolean
 -- select whether or not to copy the __xmiid__ attribute
 helper context ECORE!"ecore::EClass" def : copyXmiID : Boolean =
 	true;
+
+-- select whether or not to use an intermediate s.isInElement helper attribute,
+-- or use thisModule.isElements->includes(s) straight away.
+helper context ECORE!"ecore::EClass" def : useIsInElementHelper : Boolean =
+	false;

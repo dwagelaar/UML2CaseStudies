@@ -38,10 +38,12 @@
 	<property name="trans.uml2datatypes.path" value="${trans.path}/UML2DataTypes.asm"/>
 	<property name="trans.uml2tojava.path" value="${trans.path}/UML2ToJava.asm"/>
 	<property name="trans.java2uml.path" value="${trans.path}/Java2UML.asm"/>
+	<property name="trans.generatehbm.path" value="${trans.path}/GenerateHibernateMapping.asm"/>
 
 	<property name="metamodel.uml2.uri" value="${trans.uri}/metamodels/UML2Profiles.ecore"/>
 	<property name="metamodel.xml.uri" value="${trans.uri}/metamodels/XML.ecore"/>
 	<property name="metamodel.java.nsuri" value="http://www.eclipse.org/gmt/modisco/JavaAST"/>
+	<property name="metamodel.hbm.nsuri" value="http://hibernate.sourceforge.net/hibernate-mapping-3.0.xsd"/>
 	<property name="profile.accessors.uri" value="${trans.uri}/profiles/Accessors.profile.uml"/>
 	<property name="model.uml2types.uri" value="${trans.uri}/models/PrimitiveTypes.uml"/>
 	<property name="model.javatypes.uri" value="${trans.uri}/models/JavaTypes.uml"/>
@@ -376,6 +378,26 @@
 	</macrodef>
 
 	<!-- = = = = = = = = = = = = = = = = =
+		  macrodef: generateHBM
+		 = = = = = = = = = = = = = = = = = -->
+	<macrodef name = 'generateHBM'>
+		<attribute name = 'in' default = 'MODEL.IN'/>
+		<attribute name = 'out' default = 'MODEL.OUT'/>
+		<attribute name = 'uri' default = 'MODEL.OUT.URI'/>
+		<sequential>
+			<atl.launch path = '${trans.generatehbm.path}'>
+				<option name="allowInterModelReferences" value="true"/>
+				<inmodel name = 'HBM' model = 'HBM'/>
+				<inmodel name = 'UML2' model = 'UML2'/>
+				<inmodel name = 'IN' model = '@{in}'/>
+				<outmodel name = 'OUT' model = '@{out}' metamodel = 'HBM' path = '@{uri}'/>
+				<library name = 'UML2' path = '${lib.uml2.path}'/>
+			</atl.launch>
+			<atl.saveModel model = '@{out}' uri = '@{uri}'/>
+		</sequential>
+	</macrodef>
+
+	<!-- = = = = = = = = = = = = = = = = =
 		  macrodef: java2uml		  
 		 = = = = = = = = = = = = = = = = = -->
 	<macrodef name="java2uml">
@@ -511,6 +533,14 @@
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
+		  target: generateWithHBM
+		 = = = = = = = = = = = = = = = = = -->
+	<target name="generateWithHBM" depends="generate, loadHBM">
+		<!-- params: ${in}, ${prefix}, ${outHBM}, ${uriHBM} -->
+		<generateHBM in = "${in}" out = "${outHBM}" uri = "${uriHBM}"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
 		  target: java2uml
 		 = = = = = = = = = = = = = = = = = -->
 	<target name="java2uml">
@@ -566,6 +596,13 @@
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadJAVA">
 		<atl.loadModel modelHandler = "EMF" name = "JAVA" metamodel = "MOF" nsuri = "${metamodel.java.nsuri}"/>
+	</target>
+
+	<!-- = = = = = = = = = = = = = = = = =
+		  target: loadHBM
+		 = = = = = = = = = = = = = = = = = -->
+	<target name = "loadHBM">
+		<atl.loadModel modelHandler = "EMF" name = "HBM" metamodel = "MOF" nsuri = "${metamodel.hbm.nsuri}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =

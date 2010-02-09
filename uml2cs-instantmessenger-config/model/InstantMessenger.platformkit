@@ -56,13 +56,13 @@
   <constraintSet name="transformations::UML2Applet">
     <constraint ontClassURI="http://local/Transformations.owl#AppletPlatform"/>
   </constraintSet>
-  <constraintSet name="instantmessenger::LocalNetwork">
-    <constraint ontClassURI="http://local/InstantMessenger.owl#LocalPlatform"/>
-  </constraintSet>
   <constraintSet name="transformations::UML2MIDlet">
     <constraint ontClassURI="http://local/Transformations.owl#MIDletPlatform"/>
   </constraintSet>
   <constraintSet name="transformations::UML2SWTApplication">
     <constraint ontClassURI="http://local/Transformations.owl#SWTPlatform"/>
+  </constraintSet>
+  <constraintSet name="instantmessenger::LocalNetwork">
+    <constraint ontClassURI="http://local/InstantMessenger.owl#LocalPlatform"/>
   </constraintSet>
 </platformkit:ConstraintSpace>

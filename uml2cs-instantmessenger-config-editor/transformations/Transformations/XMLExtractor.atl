@@ -1,0 +1,44 @@
+-- @atlcompiler atl2006
+-- $Id$
+query XMLExtractor = XML!"XML::Root".allInstancesFrom('IN')
+	->collect(root|root.toFileString(0).writeTo(thisModule.pathName()));
+
+helper def : pathName() : String =
+	'path'.parameterValue();
+
+helper context String def : parameterValue() : String =
+	XML!"XML::Element".allInstancesFrom('parameters')
+	->select(e|e.name = 'param')
+	->any(e|e.getAttrVal('name') = self).getAttrVal('value');
+
+helper context XML!"XML::Element" def : getAttrVal(name : String) : String =
+	self.children->select(n|n.oclIsKindOf(XML!"XML::Attribute"))
+	->any(a|a.name = name).value;
+
+helper context String def : openStartTag(level : Integer) : String =
+	if (level > 0) then '  ' + self.openStartTag(level - 1)
+	else '<' + self endif;
+
+helper context Boolean def : closeTag() : String =
+	if self then '>' else '/>\n' endif;
+
+helper context String def : endTag(level : Integer) : String =
+	if (level > 0) then '  ' + self.endTag(level - 1)
+	else '</' + self + '>\n' endif;
+
+helper context XML!"XML::Element" def :  toFileString(level : Integer) : String =
+	let attributes : Sequence(XML!"XML::Attribute") = self.children->select(c|c.oclIsKindOf(XML!"XML::Attribute")) in
+	let elements : Sequence(XML!"XML::Element") = self.children->select(c|c.oclIsKindOf(XML!"XML::Element")) in
+	self.name.openStartTag(level) + 
+	attributes->iterate(e; acc : String = '' | acc + e.toFileString(level)) +
+	if elements->isEmpty() then
+		if self.value.oclIsUndefined() then false.closeTag()
+		else true.closeTag() + self.value + self.name.endTag(level) endif
+	else
+		true.closeTag() +
+		elements->iterate(e; acc : String = '\n' | acc + e.toFileString(level + 1)) +
+		self.name.endTag(level)
+	endif;
+
+helper context XML!"XML::Attribute" def :  toFileString(level : Integer) : String =
+	' ' + self.name + '="' + self.value + '"';

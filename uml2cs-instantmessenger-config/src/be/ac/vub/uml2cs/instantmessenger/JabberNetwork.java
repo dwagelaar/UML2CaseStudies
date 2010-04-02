@@ -22,8 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getJabberNetwork()
- * @model annotation="CDDToolkit ContextConstraint='http://local/InstantMessenger.owl#JabberPlatform'"
- *        annotation="PlatformKit PlatformConstraint='http://local/InstantMessenger.owl#JabberPlatform'"
+ * @model annotation="PlatformKit PlatformConstraint='http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#JabberPlatform'"
  * @generated
  */
 public interface JabberNetwork extends EObject {

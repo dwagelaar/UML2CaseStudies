@@ -2,10 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="transformations"
-    nsURI="http://ssel.vub.ac.be/uml2cs/Transformations" nsPrefix="transformations">
-  <eAnnotations source="CDDToolkit">
-    <details key="Ontology" value="Transformations.owl"/>
-  </eAnnotations>
+    nsURI="http://soft.vub.ac.be/uml2cs/Transformations" nsPrefix="transformations">
   <eAnnotations source="PlatformKit">
     <details key="Ontology" value="Transformations.owl"/>
   </eAnnotations>
@@ -55,11 +52,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Java language mapping"/>
     </eAnnotations>
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/Transformations.owl#JavaMappingsPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/Transformations.owl#JavaMappingsPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#JavaMappingsPlatform"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataTypes" lowerBound="1"
         eType="#//JavaDataTypes" containment="true" eOpposite="#//JavaDataTypes/mapping"/>
@@ -75,33 +69,24 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Java 1.0 data types"/>
     </eAnnotations>
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/Transformations.owl#Java1Platform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/Transformations.owl#Java1Platform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java1Platform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Java2DataTypes" eSuperTypes="#//JavaDataTypes">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Java 1.2 data types"/>
     </eAnnotations>
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/Transformations.owl#Java2Platform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/Transformations.owl#Java2Platform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java2Platform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UML2Observer">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Implements the Observer profile"/>
     </eAnnotations>
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/Transformations.owl#Java1Platform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/Transformations.owl#Java1Platform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java1Platform"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="config" lowerBound="1"
         eType="#//TransformationConfig" eOpposite="#//TransformationConfig/observer"/>
@@ -110,33 +95,24 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Implements the Observer profile using the java.util.Observer API"/>
     </eAnnotations>
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/Transformations.owl#JavaObserverPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/Transformations.owl#JavaObserverPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#JavaObserverPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UML2Applet" eSuperTypes="#//Applet">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Implements the Applet profile using a Java AWT Applet"/>
     </eAnnotations>
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/Transformations.owl#AppletPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/Transformations.owl#AppletPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#AppletPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UML2MIDlet" eSuperTypes="#//Applet">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Implements the Applet profile using a Java MIDP MIDlet"/>
     </eAnnotations>
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/Transformations.owl#MIDletPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/Transformations.owl#MIDletPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#MIDletPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SaveModelType">
@@ -158,11 +134,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Implements the Applet profile using an SWT application."/>
     </eAnnotations>
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/Transformations.owl#SWTPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/Transformations.owl#SWTPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#SWTPlatform"/>
     </eAnnotations>
   </eClassifiers>
 </ecore:EPackage>

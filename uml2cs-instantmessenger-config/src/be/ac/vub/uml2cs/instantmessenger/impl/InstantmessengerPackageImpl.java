@@ -628,94 +628,10 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 		createResource(eNS_URI);
 
 		// Create annotations
-		// CDDToolkit
-		createCDDToolkitAnnotations();
 		// PlatformKit
 		createPlatformKitAnnotations();
 		// GenModel
 		createGenModelAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>CDDToolkit</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createCDDToolkitAnnotations() {
-		String source = "CDDToolkit";		
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] {
-			 "Ontology", "InstantMessenger.owl"
-		   });				
-		addAnnotation
-		  (instantMessengerConfigurationEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/InstantMessenger.owl#InstantMessengerPlatform"
-		   });			
-		addAnnotation
-		  (localNetworkEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/InstantMessenger.owl#LocalPlatform"
-		   });			
-		addAnnotation
-		  (jabberNetworkEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/InstantMessenger.owl#JabberPlatform"
-		   });			
-		addAnnotation
-		  (defaultJabberTransportEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/InstantMessenger.owl#DefaultJabberPlatform"
-		   });			
-		addAnnotation
-		  (meJabberTransportEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/InstantMessenger.owl#MEJabberPlatform"
-		   });				
-		addAnnotation
-		  (awtUserInterfaceEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/InstantMessenger.owl#AWTPlatform"
-		   });			
-		addAnnotation
-		  (swingUserInterfaceEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/InstantMessenger.owl#SwingPlatform"
-		   });			
-		addAnnotation
-		  (lcduiUserInterfaceEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/InstantMessenger.owl#LCDUIPlatform"
-		   });			
-		addAnnotation
-		  (webAppletPackagingEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/InstantMessenger.owl#WebAppletPlatform"
-		   });			
-		addAnnotation
-		  (ipkgAppletPackagingEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/InstantMessenger.owl#IpkgAppletPlatform"
-		   });			
-		addAnnotation
-		  (miDletPackagingEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/InstantMessenger.owl#MIDletPlatform"
-		   });		
 	}
 
 	/**
@@ -725,90 +641,90 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 	 * @generated
 	 */
 	protected void createPlatformKitAnnotations() {
-		String source = "PlatformKit";			
+		String source = "PlatformKit";		
 		addAnnotation
 		  (this, 
 		   source, 
 		   new String[] {
 			 "Ontology", "InstantMessenger.owl"
-		   });				
+		   });			
 		addAnnotation
 		  (instantMessengerConfigurationEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#InstantMessengerPlatform"
-		   });			
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#InstantMessengerPlatform"
+		   });		
 		addAnnotation
 		  (localNetworkEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#LocalPlatform"
-		   });			
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#LocalPlatform"
+		   });		
 		addAnnotation
 		  (jabberNetworkEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#JabberPlatform"
-		   });			
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#JabberPlatform"
+		   });		
 		addAnnotation
 		  (defaultJabberTransportEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#DefaultJabberPlatform"
-		   });			
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#DefaultJabberPlatform"
+		   });		
 		addAnnotation
 		  (meJabberTransportEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#MEJabberPlatform"
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#MEJabberPlatform"
 		   });		
 		addAnnotation
 		  (swtUserInterfaceEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#SWTPlatform"
-		   });			
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#SWTPlatform"
+		   });		
 		addAnnotation
 		  (awtUserInterfaceEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#AWTPlatform"
-		   });			
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#AWTPlatform"
+		   });		
 		addAnnotation
 		  (swingUserInterfaceEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#SwingPlatform"
-		   });			
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#SwingPlatform"
+		   });		
 		addAnnotation
 		  (lcduiUserInterfaceEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#LCDUIPlatform"
-		   });			
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#LCDUIPlatform"
+		   });		
 		addAnnotation
 		  (webAppletPackagingEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#WebAppletPlatform"
-		   });			
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#WebAppletPlatform"
+		   });		
 		addAnnotation
 		  (ipkgAppletPackagingEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#IpkgAppletPlatform"
-		   });			
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#IpkgAppletPlatform"
+		   });		
 		addAnnotation
 		  (miDletPackagingEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#MIDletPlatform"
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#MIDletPlatform"
 		   });		
 		addAnnotation
 		  (maemoPackagingEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/InstantMessenger.owl#MaemoPlatform"
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#MaemoPlatform"
 		   });
 	}
 
@@ -819,13 +735,13 @@ public class InstantmessengerPackageImpl extends EPackageImpl implements Instant
 	 * @generated
 	 */
 	protected void createGenModelAnnotations() {
-		String source = "GenModel";				
+		String source = "GenModel";			
 		addAnnotation
 		  (instantMessengerConfigurationEClass, 
 		   source, 
 		   new String[] {
 			 "documentation", "Root node for an instant messenger configuration model"
-		   });																								
+		   });													
 	}
 
 } //InstantmessengerPackageImpl

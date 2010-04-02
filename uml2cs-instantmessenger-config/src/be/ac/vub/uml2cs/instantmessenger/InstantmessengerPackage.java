@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerFactory
  * @model kind="package"
- *        annotation="CDDToolkit Ontology='InstantMessenger.owl'"
  *        annotation="PlatformKit Ontology='InstantMessenger.owl'"
  * @generated
  */
@@ -52,7 +51,7 @@ public interface InstantmessengerPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://ssel.vub.ac.be/uml2cs/InstantMessenger";
+	String eNS_URI = "http://soft.vub.ac.be/uml2cs/InstantMessenger";
 
 	/**
 	 * The package namespace name.

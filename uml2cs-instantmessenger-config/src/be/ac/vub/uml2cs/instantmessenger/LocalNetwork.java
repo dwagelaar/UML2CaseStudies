@@ -21,8 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getLocalNetwork()
- * @model annotation="CDDToolkit ContextConstraint='http://local/InstantMessenger.owl#LocalPlatform'"
- *        annotation="PlatformKit PlatformConstraint='http://local/InstantMessenger.owl#LocalPlatform'"
+ * @model annotation="PlatformKit PlatformConstraint='http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#LocalPlatform'"
  * @generated
  */
 public interface LocalNetwork extends EObject {

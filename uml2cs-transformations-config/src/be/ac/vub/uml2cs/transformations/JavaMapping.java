@@ -24,8 +24,7 @@ package be.ac.vub.uml2cs.transformations;
  * </p>
  *
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getJavaMapping()
- * @model annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#JavaMappingsPlatform'"
- *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#JavaMappingsPlatform'"
+ * @model annotation="PlatformKit PlatformConstraint='http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#JavaMappingsPlatform'"
  * @generated
  */
 public interface JavaMapping extends Mapping {

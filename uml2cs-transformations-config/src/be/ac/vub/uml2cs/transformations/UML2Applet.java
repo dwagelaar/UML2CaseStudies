@@ -18,8 +18,7 @@ package be.ac.vub.uml2cs.transformations;
  *
  *
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getUML2Applet()
- * @model annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#AppletPlatform'"
- *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#AppletPlatform'"
+ * @model annotation="PlatformKit PlatformConstraint='http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#AppletPlatform'"
  * @generated
  */
 public interface UML2Applet extends Applet {

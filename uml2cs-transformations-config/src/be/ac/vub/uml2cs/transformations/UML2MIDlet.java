@@ -18,8 +18,7 @@ package be.ac.vub.uml2cs.transformations;
  *
  *
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getUML2MIDlet()
- * @model annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#MIDletPlatform'"
- *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#MIDletPlatform'"
+ * @model annotation="PlatformKit PlatformConstraint='http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#MIDletPlatform'"
  * @generated
  */
 public interface UML2MIDlet extends Applet {

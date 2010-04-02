@@ -12,23 +12,20 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://ssel.vub.ac.be/uml2cs/InstantMessenger" 
+       uri = "http://soft.vub.ac.be/uml2cs/InstantMessenger" 
        class = "be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage"
        genModel = "model/InstantMessenger.genmodel" /> 
   </extension>
   <extension
         point="org.eclipse.emf.ecore.uri_mapping">
      <mapping
-           source="http://ssel.vub.ac.be/uml2cs/InstantMessenger.platformkit"
+           source="http://soft.vub.ac.be/uml2cs/InstantMessenger.platformkit"
            target="platform:/plugin/be.ac.vub.uml2cs.instantmessenger.config/model/InstantMessenger.platformkit"/>
      <mapping
-           source="http://ssel.vub.ac.be/uml2cs/InstantMessenger.cddconfig"
-           target="platform:/plugin/be.ac.vub.uml2cs.instantmessenger.config/model/InstantMessenger.cddconfig"/>
-     <mapping
-           source="http://ssel.vub.ac.be/uml2cs/InstantMessenger.inferred.owl"
+           source="http://soft.vub.ac.be/uml2cs/InstantMessenger.inferred.owl"
            target="platform:/plugin/be.ac.vub.uml2cs.instantmessenger.config/model/InstantMessenger.inferred.owl"/>
      <mapping
-           source="http://ssel.vub.ac.be/uml2cs/InstantMessenger.owl"
+           source="http://soft.vub.ac.be/uml2cs/InstantMessenger.owl"
            target="platform:/plugin/be.ac.vub.uml2cs.instantmessenger.config/model/InstantMessenger.owl"/>
   </extension>
   <extension
@@ -41,7 +38,7 @@
            cache="true"
            mode="Live">
         <package
-              namespaceUri="http://ssel.vub.ac.be/uml2cs/InstantMessenger">
+              namespaceUri="http://soft.vub.ac.be/uml2cs/InstantMessenger">
         </package>
         <constraints
               categories="uml2cs-instantmessenger-config.category1">

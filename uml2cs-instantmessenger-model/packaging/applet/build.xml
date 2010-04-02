@@ -28,6 +28,7 @@
 			alias="${certificate.alias}"
 			keystore="${certificate.path}/${certificate.name}"
 			storetype="${certificate.type}"
+			keypass="${certificate.passphrase}"
 			storepass="${certificate.passphrase}"/>
 	</target>
 	

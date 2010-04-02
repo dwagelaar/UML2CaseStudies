@@ -39,7 +39,7 @@ public class TransformationsFactoryImpl extends EFactoryImpl implements Transfor
 	 */
 	public static TransformationsFactory init() {
 		try {
-			TransformationsFactory theTransformationsFactory = (TransformationsFactory)EPackage.Registry.INSTANCE.getEFactory("http://ssel.vub.ac.be/uml2cs/Transformations"); 
+			TransformationsFactory theTransformationsFactory = (TransformationsFactory)EPackage.Registry.INSTANCE.getEFactory("http://soft.vub.ac.be/uml2cs/Transformations"); 
 			if (theTransformationsFactory != null) {
 				return theTransformationsFactory;
 			}

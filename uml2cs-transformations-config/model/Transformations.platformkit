@@ -2,27 +2,27 @@
 <platformkit:ConstraintSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:platformkit="http://ssel.vub.ac.be/platformkit">
   <ontology>Transformations.owl</ontology>
   <constraintSet name="transformations::Java2DataTypes">
-    <constraint ontClassURI="http://local/Transformations.owl#Java2Platform"/>
+    <constraint ontClassURI="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java2Platform"/>
   </constraintSet>
   <constraintSet name="transformations::UML2JavaObserver">
-    <constraint ontClassURI="http://local/Transformations.owl#JavaObserverPlatform"/>
+    <constraint ontClassURI="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#JavaObserverPlatform"/>
   </constraintSet>
   <constraintSet name="transformations::JavaMapping">
-    <constraint ontClassURI="http://local/Transformations.owl#JavaMappingsPlatform"/>
+    <constraint ontClassURI="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#JavaMappingsPlatform"/>
   </constraintSet>
   <constraintSet name="transformations::Java1DataTypes">
-    <constraint ontClassURI="http://local/Transformations.owl#Java1Platform"/>
+    <constraint ontClassURI="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java1Platform"/>
   </constraintSet>
   <constraintSet name="transformations::UML2Observer">
-    <constraint ontClassURI="http://local/Transformations.owl#Java1Platform"/>
+    <constraint ontClassURI="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java1Platform"/>
   </constraintSet>
   <constraintSet name="transformations::UML2Applet">
-    <constraint ontClassURI="http://local/Transformations.owl#AppletPlatform"/>
+    <constraint ontClassURI="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#AppletPlatform"/>
   </constraintSet>
   <constraintSet name="transformations::UML2MIDlet">
-    <constraint ontClassURI="http://local/Transformations.owl#MIDletPlatform"/>
+    <constraint ontClassURI="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#MIDletPlatform"/>
   </constraintSet>
   <constraintSet name="transformations::UML2SWTApplication">
-    <constraint ontClassURI="http://local/Transformations.owl#SWTPlatform"/>
+    <constraint ontClassURI="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#SWTPlatform"/>
   </constraintSet>
 </platformkit:ConstraintSpace>

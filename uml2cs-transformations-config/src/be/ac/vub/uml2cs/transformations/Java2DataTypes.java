@@ -18,8 +18,7 @@ package be.ac.vub.uml2cs.transformations;
  *
  *
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getJava2DataTypes()
- * @model annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#Java2Platform'"
- *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#Java2Platform'"
+ * @model annotation="PlatformKit PlatformConstraint='http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java2Platform'"
  * @generated
  */
 public interface Java2DataTypes extends JavaDataTypes {

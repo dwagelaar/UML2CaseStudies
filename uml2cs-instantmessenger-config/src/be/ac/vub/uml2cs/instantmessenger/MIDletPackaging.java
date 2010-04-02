@@ -14,8 +14,7 @@ package be.ac.vub.uml2cs.instantmessenger;
  *
  *
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getMIDletPackaging()
- * @model annotation="CDDToolkit ContextConstraint='http://local/InstantMessenger.owl#MIDletPlatform'"
- *        annotation="PlatformKit PlatformConstraint='http://local/InstantMessenger.owl#MIDletPlatform'"
+ * @model annotation="PlatformKit PlatformConstraint='http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#MIDletPlatform'"
  * @generated
  */
 public interface MIDletPackaging extends Packaging {

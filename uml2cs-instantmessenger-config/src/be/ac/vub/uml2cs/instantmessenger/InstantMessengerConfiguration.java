@@ -28,8 +28,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getInstantMessengerConfiguration()
  * @model annotation="GenModel documentation='Root node for an instant messenger configuration model'"
- *        annotation="CDDToolkit ContextConstraint='http://local/InstantMessenger.owl#InstantMessengerPlatform'"
- *        annotation="PlatformKit PlatformConstraint='http://local/InstantMessenger.owl#InstantMessengerPlatform'"
+ *        annotation="PlatformKit PlatformConstraint='http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#InstantMessengerPlatform'"
  * @generated
  */
 public interface InstantMessengerConfiguration extends TransformationConfig {

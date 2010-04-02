@@ -17,8 +17,7 @@ package be.ac.vub.uml2cs.transformations;
  *
  *
  * @see be.ac.vub.uml2cs.transformations.TransformationsPackage#getUML2SWTApplication()
- * @model annotation="CDDToolkit ContextConstraint='http://local/Transformations.owl#SWTPlatform'"
- *        annotation="PlatformKit PlatformConstraint='http://local/Transformations.owl#SWTPlatform'"
+ * @model annotation="PlatformKit PlatformConstraint='http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#SWTPlatform'"
  * @generated
  */
 public interface UML2SWTApplication extends Applet {

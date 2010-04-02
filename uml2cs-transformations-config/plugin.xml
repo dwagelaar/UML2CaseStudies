@@ -12,26 +12,26 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://ssel.vub.ac.be/uml2cs/Transformations" 
+       uri = "http://soft.vub.ac.be/uml2cs/Transformations" 
        class = "be.ac.vub.uml2cs.transformations.TransformationsPackage"
        genModel = "model/Transformations.genmodel" /> 
   </extension>
   <extension
         point="org.eclipse.emf.ecore.uri_mapping">
      <mapping
-           source="http://ssel.vub.ac.be/uml2cs/Transformations.owl"
+           source="http://soft.vub.ac.be/uml2cs/Transformations.owl"
            target="platform:/plugin/be.ac.vub.uml2cs.transformations.config/model/Transformations.owl"/>
   </extension>
   <extension
         point="org.eclipse.emf.ecore.uri_mapping">
      <mapping
-           source="http://ssel.vub.ac.be/uml2cs/Transformations.platformkit"
+           source="http://soft.vub.ac.be/uml2cs/Transformations.platformkit"
            target="platform:/plugin/be.ac.vub.uml2cs.transformations.config/model/Transformations.platformkit"/>
   </extension>
   <extension
         point="org.eclipse.emf.ecore.uri_mapping">
      <mapping
-           source="http://ssel.vub.ac.be/uml2cs/Transformations.inferred.owl"
+           source="http://soft.vub.ac.be/uml2cs/Transformations.inferred.owl"
            target="platform:/plugin/be.ac.vub.uml2cs.transformations.config/model/Transformations.inferred.owl"/>
   </extension>
 

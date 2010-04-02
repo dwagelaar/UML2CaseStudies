@@ -3,49 +3,70 @@
 
 <!DOCTYPE rdf:RDF [
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
-    <!ENTITY Transformations "http://local/Transformations.owl#" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY Java "http://ssel.vub.ac.be/codamos/2007/01/Java.owl#" >
-    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
-    <!ENTITY java-api "http://ssel.vub.ac.be/codamos/2007/01/JavaAPI.owl#" >
-    <!ENTITY swt-3_0 "http://ssel.vub.ac.be/platformkit/2009/01/swt-3_0#" >
-    <!ENTITY jdk-1_1-api "http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#" >
-    <!ENTITY j2se-1_2-api "http://ssel.vub.ac.be/codamos/2007/01/j2se-1_2-api.owl#" >
-    <!ENTITY j2me-pp-1_0-api "http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#" >
-    <!ENTITY j2me-midp-1_0-api "http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#" >
-    <!ENTITY personaljava-1_1-api "http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#" >
-    <!ENTITY Platform "http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#" >
+    <!ENTITY swt "http://soft.vub.ac.be/platformkit/2010/1/swt.owl#" >
+    <!ENTITY isa "http://soft.vub.ac.be/platformkit/2010/1/isa.owl#" >
+    <!ENTITY java "http://soft.vub.ac.be/platformkit/2010/1/java.owl#" >
+    <!ENTITY java-re "http://soft.vub.ac.be/platformkit/2010/1/java-re.owl#" >
+    <!ENTITY swt-3_0 "http://soft.vub.ac.be/platformkit/2010/1/swt-3_0.owl#" >
+    <!ENTITY jdk-1_1 "http://soft.vub.ac.be/platformkit/2010/1/jdk-1_1.owl#" >
+    <!ENTITY platform "http://soft.vub.ac.be/platformkit/2010/1/platform.owl#" >
+    <!ENTITY j2se-1_2 "http://soft.vub.ac.be/platformkit/2010/1/j2se-1_2.owl#" >
+    <!ENTITY j2me-pp-1_0 "http://soft.vub.ac.be/platformkit/2010/1/j2me-pp-1_0.owl#" >
+    <!ENTITY j2me-midp-1_0 "http://soft.vub.ac.be/platformkit/2010/1/j2me-midp-1_0.owl#" >
+    <!ENTITY personaljava-1_1 "http://soft.vub.ac.be/platformkit/2010/1/personaljava-1_1.owl#" >
 ]>
 
 
-<rdf:RDF xmlns="http://local/Transformations.owl#"
-     xml:base="http://local/Transformations.owl"
-     xmlns:jdk-1_1-api="http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#"
-     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
-     xmlns:Transformations="http://local/Transformations.owl#"
-     xmlns:personaljava-1_1-api="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#"
-     xmlns:Java="http://ssel.vub.ac.be/codamos/2007/01/Java.owl#"
+<rdf:RDF xmlns="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#"
+     xml:base="http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:platform="http://soft.vub.ac.be/platformkit/2010/1/platform.owl#"
+     xmlns:j2me-pp-1_0="http://soft.vub.ac.be/platformkit/2010/1/j2me-pp-1_0.owl#"
+     xmlns:j2me-midp-1_0="http://soft.vub.ac.be/platformkit/2010/1/j2me-midp-1_0.owl#"
+     xmlns:java-re="http://soft.vub.ac.be/platformkit/2010/1/java-re.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:jdk-1_1="http://soft.vub.ac.be/platformkit/2010/1/jdk-1_1.owl#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:j2me-midp-1_0-api="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#"
-     xmlns:j2se-1_2-api="http://ssel.vub.ac.be/codamos/2007/01/j2se-1_2-api.owl#"
-     xmlns:j2me-pp-1_0-api="http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:isa="http://soft.vub.ac.be/platformkit/2010/1/isa.owl#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:swt-3_0="http://ssel.vub.ac.be/platformkit/2009/01/swt-3_0#"
-     xmlns:Platform="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#"
-     xmlns:java-api="http://ssel.vub.ac.be/codamos/2007/01/JavaAPI.owl#">
+     xmlns:java="http://soft.vub.ac.be/platformkit/2010/1/java.owl#"
+     xmlns:swt-3_0="http://soft.vub.ac.be/platformkit/2010/1/swt-3_0.owl#"
+     xmlns:j2se-1_2="http://soft.vub.ac.be/platformkit/2010/1/j2se-1_2.owl#"
+     xmlns:personaljava-1_1="http://soft.vub.ac.be/platformkit/2010/1/personaljava-1_1.owl#"
+     xmlns:swt="http://soft.vub.ac.be/platformkit/2010/1/swt.owl#">
     <owl:Ontology rdf:about="">
-        <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/Java.owl"/>
-        <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/JavaAPI.owl"/>
-        <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl"/>
-        <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl"/>
-        <owl:imports rdf:resource="http://ssel.vub.ac.be/platformkit/2009/01/SWTAPI"/>
+        <rdfs:label xml:lang="en"
+            >UML2 case studies Transformations platform dependencies.</rdfs:label>
+        <owl:versionInfo>$Id$</owl:versionInfo>
+        <dc:rights xml:lang="en"
+            >&#169; 2010, Vrije Universiteit Brussel. All rights reserved.</dc:rights>
+        <dc:creator
+            >Dennis Wagelaar &lt;dennis.wagelaar@vub.ac.be&gt;</dc:creator>
+        <rdfs:comment xml:lang="en"
+            >PlatformKit platform dependencies for UML2 case studies Transformations.ecore configuration language.</rdfs:comment>
+        <owl:imports rdf:resource="http://soft.vub.ac.be/platformkit/2010/1/java-re.owl"/>
+        <owl:imports rdf:resource="http://soft.vub.ac.be/platformkit/2010/1/swt.owl"/>
     </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&dc;creator"/>
+    <owl:AnnotationProperty rdf:about="&dc;rights"/>
     
 
 
@@ -60,15 +81,9 @@
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/Java.owl#providesBuiltinJavaLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/platform.owl#providesFeature -->
 
-    <owl:ObjectProperty rdf:about="&Java;providesBuiltinJavaLibrary"/>
-    
-
-
-    <!-- http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#providesFeature -->
-
-    <owl:ObjectProperty rdf:about="&Platform;providesFeature"/>
+    <owl:ObjectProperty rdf:about="&platform;providesFeature"/>
     
 
 
@@ -83,43 +98,43 @@
     
 
 
-    <!-- http://local/Transformations.owl#AppletJRE -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#AppletJRE -->
 
     <owl:Class rdf:about="#AppletJRE">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Java;providesBuiltinJavaLibrary"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&j2me-midp-1_0-api;JavaLangLibrary"/>
-                                    <rdf:Description rdf:about="&personaljava-1_1-api;JavaLangLibrary"/>
+                                    <rdf:Description rdf:about="&j2me-midp-1_0;JavaLangClassLibrary"/>
+                                    <rdf:Description rdf:about="&personaljava-1_1;JavaLangClassLibrary"/>
                                 </owl:unionOf>
                             </owl:Class>
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Java;providesBuiltinJavaLibrary"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&j2me-pp-1_0-api;JavaAppletLibrary"/>
-                                    <rdf:Description rdf:about="&jdk-1_1-api;JavaAppletLibrary"/>
-                                    <rdf:Description rdf:about="&personaljava-1_1-api;JavaAppletLibrary"/>
+                                    <rdf:Description rdf:about="&j2me-pp-1_0;JavaAppletClassLibrary"/>
+                                    <rdf:Description rdf:about="&jdk-1_1;JavaAppletClassLibrary"/>
+                                    <rdf:Description rdf:about="&personaljava-1_1;JavaAppletClassLibrary"/>
                                 </owl:unionOf>
                             </owl:Class>
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Java;providesBuiltinJavaLibrary"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&j2me-pp-1_0-api;JavaAwtLibrary"/>
-                                    <rdf:Description rdf:about="&jdk-1_1-api;JavaAwtLibrary"/>
-                                    <rdf:Description rdf:about="&personaljava-1_1-api;JavaAwtLibrary"/>
+                                    <rdf:Description rdf:about="&j2me-pp-1_0;JavaAwtClassLibrary"/>
+                                    <rdf:Description rdf:about="&jdk-1_1;JavaAwtClassLibrary"/>
+                                    <rdf:Description rdf:about="&personaljava-1_1;JavaAwtClassLibrary"/>
                                 </owl:unionOf>
                             </owl:Class>
                         </owl:someValuesFrom>
@@ -127,51 +142,51 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Java;JRE"/>
+        <rdfs:subClassOf rdf:resource="&java;JRE"/>
         <rdfs:comment xml:lang="en"
             >Java Runtime Environment that provides a basic version of java.lang, java.awt and java.applet</rdfs:comment>
     </owl:Class>
     
 
 
-    <!-- http://local/Transformations.owl#AppletPlatform -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#AppletPlatform -->
 
     <owl:Class rdf:about="#AppletPlatform">
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&Platform;providesFeature"/>
+                <owl:onProperty rdf:resource="&platform;providesFeature"/>
                 <owl:someValuesFrom rdf:resource="#AppletJRE"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Platform;Platform"/>
+        <rdfs:subClassOf rdf:resource="&platform;Platform"/>
     </owl:Class>
     
 
 
-    <!-- http://local/Transformations.owl#BasicJRE -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#BasicJRE -->
 
     <owl:Class rdf:about="#BasicJRE">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Java;providesBuiltinJavaLibrary"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&j2me-midp-1_0-api;JavaLangLibrary"/>
-                                    <rdf:Description rdf:about="&personaljava-1_1-api;JavaLangLibrary"/>
+                                    <rdf:Description rdf:about="&j2me-midp-1_0;JavaLangClassLibrary"/>
+                                    <rdf:Description rdf:about="&personaljava-1_1;JavaLangClassLibrary"/>
                                 </owl:unionOf>
                             </owl:Class>
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Java;providesBuiltinJavaLibrary"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&j2me-midp-1_0-api;JavaUtilLibrary"/>
-                                    <rdf:Description rdf:about="&personaljava-1_1-api;JavaUtilLibrary"/>
+                                    <rdf:Description rdf:about="&j2me-midp-1_0;JavaUtilClassLibrary"/>
+                                    <rdf:Description rdf:about="&personaljava-1_1;JavaUtilClassLibrary"/>
                                 </owl:unionOf>
                             </owl:Class>
                         </owl:someValuesFrom>
@@ -179,51 +194,51 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Java;JRE"/>
+        <rdfs:subClassOf rdf:resource="&java;JRE"/>
         <rdfs:comment xml:lang="en"
             >Java Runtime Environment that provides a basic version of java.lang and java.util</rdfs:comment>
     </owl:Class>
     
 
 
-    <!-- http://local/Transformations.owl#Java1Platform -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java1Platform -->
 
     <owl:Class rdf:about="#Java1Platform">
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&Platform;providesFeature"/>
+                <owl:onProperty rdf:resource="&platform;providesFeature"/>
                 <owl:someValuesFrom rdf:resource="#BasicJRE"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Platform;Platform"/>
+        <rdfs:subClassOf rdf:resource="&platform;Platform"/>
     </owl:Class>
     
 
 
-    <!-- http://local/Transformations.owl#Java2CollectionsJRE -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java2CollectionsJRE -->
 
     <owl:Class rdf:about="#Java2CollectionsJRE">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Java;providesBuiltinJavaLibrary"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&j2me-midp-1_0-api;JavaLangLibrary"/>
-                                    <rdf:Description rdf:about="&personaljava-1_1-api;JavaLangLibrary"/>
+                                    <rdf:Description rdf:about="&j2me-midp-1_0;JavaLangClassLibrary"/>
+                                    <rdf:Description rdf:about="&personaljava-1_1;JavaLangClassLibrary"/>
                                 </owl:unionOf>
                             </owl:Class>
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Java;providesBuiltinJavaLibrary"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&j2me-pp-1_0-api;JavaUtilLibrary"/>
-                                    <rdf:Description rdf:about="&j2se-1_2-api;JavaUtilLibrary"/>
+                                    <rdf:Description rdf:about="&j2me-pp-1_0;JavaUtilClassLibrary"/>
+                                    <rdf:Description rdf:about="&j2se-1_2;JavaUtilClassLibrary"/>
                                 </owl:unionOf>
                             </owl:Class>
                         </owl:someValuesFrom>
@@ -231,69 +246,69 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Java;JRE"/>
+        <rdfs:subClassOf rdf:resource="&java;JRE"/>
         <rdfs:comment xml:lang="en"
             >Java Runtime Environment that provides a basic version of java.lang and a java.util version that provides the Java 2 Collections framework</rdfs:comment>
     </owl:Class>
     
 
 
-    <!-- http://local/Transformations.owl#Java2Platform -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java2Platform -->
 
     <owl:Class rdf:about="#Java2Platform">
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&Platform;providesFeature"/>
+                <owl:onProperty rdf:resource="&platform;providesFeature"/>
                 <owl:someValuesFrom rdf:resource="#Java2CollectionsJRE"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Platform;Platform"/>
+        <rdfs:subClassOf rdf:resource="&platform;Platform"/>
     </owl:Class>
     
 
 
-    <!-- http://local/Transformations.owl#JavaMappingsPlatform -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#JavaMappingsPlatform -->
 
     <owl:Class rdf:about="#JavaMappingsPlatform">
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&Platform;providesFeature"/>
+                <owl:onProperty rdf:resource="&platform;providesFeature"/>
                 <owl:someValuesFrom rdf:resource="#BasicJRE"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Platform;Platform"/>
+        <rdfs:subClassOf rdf:resource="&platform;Platform"/>
     </owl:Class>
     
 
 
-    <!-- http://local/Transformations.owl#JavaObserverJRE -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#JavaObserverJRE -->
 
     <owl:Class rdf:about="#JavaObserverJRE">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Java;providesBuiltinJavaLibrary"/>
-                        <owl:someValuesFrom rdf:resource="&personaljava-1_1-api;JavaLangReflectLibrary"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
+                        <owl:someValuesFrom rdf:resource="&personaljava-1_1;JavaLangReflectClassLibrary"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Java;providesBuiltinJavaLibrary"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&j2me-midp-1_0-api;JavaLangLibrary"/>
-                                    <rdf:Description rdf:about="&personaljava-1_1-api;JavaLangLibrary"/>
+                                    <rdf:Description rdf:about="&j2me-midp-1_0;JavaLangClassLibrary"/>
+                                    <rdf:Description rdf:about="&personaljava-1_1;JavaLangClassLibrary"/>
                                 </owl:unionOf>
                             </owl:Class>
                         </owl:someValuesFrom>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Java;providesBuiltinJavaLibrary"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:unionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&j2me-midp-1_0-api;JavaUtilLibrary"/>
-                                    <rdf:Description rdf:about="&personaljava-1_1-api;JavaUtilLibrary"/>
+                                    <rdf:Description rdf:about="&j2me-midp-1_0;JavaUtilClassLibrary"/>
+                                    <rdf:Description rdf:about="&personaljava-1_1;JavaUtilClassLibrary"/>
                                 </owl:unionOf>
                             </owl:Class>
                         </owl:someValuesFrom>
@@ -301,210 +316,210 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Java;JRE"/>
+        <rdfs:subClassOf rdf:resource="&java;JRE"/>
         <rdfs:comment xml:lang="en"
             >Java Runtime Environment that provides a basic version of java.lang, java.lang.reflect and a java.util version that provides java.util.Observer and java.util.Observable</rdfs:comment>
     </owl:Class>
     
 
 
-    <!-- http://local/Transformations.owl#JavaObserverPlatform -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#JavaObserverPlatform -->
 
     <owl:Class rdf:about="#JavaObserverPlatform">
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&Platform;providesFeature"/>
+                <owl:onProperty rdf:resource="&platform;providesFeature"/>
                 <owl:someValuesFrom rdf:resource="#JavaObserverJRE"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Platform;Platform"/>
+        <rdfs:subClassOf rdf:resource="&platform;Platform"/>
     </owl:Class>
     
 
 
-    <!-- http://local/Transformations.owl#MIDletJRE -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#MIDletJRE -->
 
     <owl:Class rdf:about="#MIDletJRE">
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&Java;providesBuiltinJavaLibrary"/>
-                <owl:someValuesFrom rdf:resource="&j2me-midp-1_0-api;JavaxMicroeditionMidletLibrary"/>
+                <owl:onProperty rdf:resource="&platform;providesFeature"/>
+                <owl:someValuesFrom rdf:resource="&j2me-midp-1_0;JavaxMicroeditionMidletClassLibrary"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Java;JRE"/>
+        <rdfs:subClassOf rdf:resource="&java;JRE"/>
         <rdfs:comment xml:lang="en"
             >Java Runtime Environment that provides a basic version of javax.microedition.midlet</rdfs:comment>
     </owl:Class>
     
 
 
-    <!-- http://local/Transformations.owl#MIDletPlatform -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#MIDletPlatform -->
 
     <owl:Class rdf:about="#MIDletPlatform">
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&Platform;providesFeature"/>
+                <owl:onProperty rdf:resource="&platform;providesFeature"/>
                 <owl:someValuesFrom rdf:resource="#MIDletJRE"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Platform;Platform"/>
+        <rdfs:subClassOf rdf:resource="&platform;Platform"/>
     </owl:Class>
     
 
 
-    <!-- http://local/Transformations.owl#SWTJRE -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#SWTJRE -->
 
     <owl:Class rdf:about="#SWTJRE">
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&Java;providesBuiltinJavaLibrary"/>
-                <owl:someValuesFrom rdf:resource="&j2se-1_2-api;JavaLangLibrary"/>
+                <owl:onProperty rdf:resource="&platform;providesFeature"/>
+                <owl:someValuesFrom rdf:resource="&j2se-1_2;JavaLangClassLibrary"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Java;JRE"/>
+        <rdfs:subClassOf rdf:resource="&java;JRE"/>
         <rdfs:comment xml:lang="en"
             >Java Runtime Environment that provides a basic version of java.lang and org.eclipse.swt.widgets</rdfs:comment>
     </owl:Class>
     
 
 
-    <!-- http://local/Transformations.owl#SWTPlatform -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#SWTPlatform -->
 
     <owl:Class rdf:about="#SWTPlatform">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Platform;providesFeature"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
                         <owl:someValuesFrom rdf:resource="#SWTJRE"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Platform;providesFeature"/>
-                        <owl:someValuesFrom rdf:resource="&swt-3_0;OrgEclipseSwtLayoutLibrary"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
+                        <owl:someValuesFrom rdf:resource="&swt-3_0;OrgEclipseSwtLayoutClassLibrary"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&Platform;providesFeature"/>
-                        <owl:someValuesFrom rdf:resource="&swt-3_0;OrgEclipseSwtWidgetsLibrary"/>
+                        <owl:onProperty rdf:resource="&platform;providesFeature"/>
+                        <owl:someValuesFrom rdf:resource="&swt-3_0;OrgEclipseSwtWidgetsClassLibrary"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&Platform;Platform"/>
+        <rdfs:subClassOf rdf:resource="&platform;Platform"/>
     </owl:Class>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/Java.owl#JRE -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/j2me-midp-1_0.owl#JavaLangClassLibrary -->
 
-    <owl:Class rdf:about="&Java;JRE"/>
+    <owl:Class rdf:about="&j2me-midp-1_0;JavaLangClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaLangLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/j2me-midp-1_0.owl#JavaUtilClassLibrary -->
 
-    <owl:Class rdf:about="&j2me-midp-1_0-api;JavaLangLibrary"/>
+    <owl:Class rdf:about="&j2me-midp-1_0;JavaUtilClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaUtilLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/j2me-midp-1_0.owl#JavaxMicroeditionMidletClassLibrary -->
 
-    <owl:Class rdf:about="&j2me-midp-1_0-api;JavaUtilLibrary"/>
+    <owl:Class rdf:about="&j2me-midp-1_0;JavaxMicroeditionMidletClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-midp-1_0-api.owl#JavaxMicroeditionMidletLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/j2me-pp-1_0.owl#JavaAppletClassLibrary -->
 
-    <owl:Class rdf:about="&j2me-midp-1_0-api;JavaxMicroeditionMidletLibrary"/>
+    <owl:Class rdf:about="&j2me-pp-1_0;JavaAppletClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaAppletLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/j2me-pp-1_0.owl#JavaAwtClassLibrary -->
 
-    <owl:Class rdf:about="&j2me-pp-1_0-api;JavaAppletLibrary"/>
+    <owl:Class rdf:about="&j2me-pp-1_0;JavaAwtClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaAwtLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/j2me-pp-1_0.owl#JavaUtilClassLibrary -->
 
-    <owl:Class rdf:about="&j2me-pp-1_0-api;JavaAwtLibrary"/>
+    <owl:Class rdf:about="&j2me-pp-1_0;JavaUtilClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2me-pp-1_0-api.owl#JavaUtilLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/j2se-1_2.owl#JavaLangClassLibrary -->
 
-    <owl:Class rdf:about="&j2me-pp-1_0-api;JavaUtilLibrary"/>
+    <owl:Class rdf:about="&j2se-1_2;JavaLangClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2se-1_2-api.owl#JavaLangLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/j2se-1_2.owl#JavaUtilClassLibrary -->
 
-    <owl:Class rdf:about="&j2se-1_2-api;JavaLangLibrary"/>
+    <owl:Class rdf:about="&j2se-1_2;JavaUtilClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/j2se-1_2-api.owl#JavaUtilLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/java.owl#JRE -->
 
-    <owl:Class rdf:about="&j2se-1_2-api;JavaUtilLibrary"/>
+    <owl:Class rdf:about="&java;JRE"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaAppletLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/jdk-1_1.owl#JavaAppletClassLibrary -->
 
-    <owl:Class rdf:about="&jdk-1_1-api;JavaAppletLibrary"/>
+    <owl:Class rdf:about="&jdk-1_1;JavaAppletClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/jdk-1_1-api.owl#JavaAwtLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/jdk-1_1.owl#JavaAwtClassLibrary -->
 
-    <owl:Class rdf:about="&jdk-1_1-api;JavaAwtLibrary"/>
+    <owl:Class rdf:about="&jdk-1_1;JavaAwtClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaAppletLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/personaljava-1_1.owl#JavaAppletClassLibrary -->
 
-    <owl:Class rdf:about="&personaljava-1_1-api;JavaAppletLibrary"/>
+    <owl:Class rdf:about="&personaljava-1_1;JavaAppletClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaAwtLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/personaljava-1_1.owl#JavaAwtClassLibrary -->
 
-    <owl:Class rdf:about="&personaljava-1_1-api;JavaAwtLibrary"/>
+    <owl:Class rdf:about="&personaljava-1_1;JavaAwtClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/personaljava-1_1.owl#JavaLangClassLibrary -->
 
-    <owl:Class rdf:about="&personaljava-1_1-api;JavaLangLibrary"/>
+    <owl:Class rdf:about="&personaljava-1_1;JavaLangClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaLangReflectLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/personaljava-1_1.owl#JavaLangReflectClassLibrary -->
 
-    <owl:Class rdf:about="&personaljava-1_1-api;JavaLangReflectLibrary"/>
+    <owl:Class rdf:about="&personaljava-1_1;JavaLangReflectClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/codamos/2007/01/personaljava-1_1-api.owl#JavaUtilLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/personaljava-1_1.owl#JavaUtilClassLibrary -->
 
-    <owl:Class rdf:about="&personaljava-1_1-api;JavaUtilLibrary"/>
+    <owl:Class rdf:about="&personaljava-1_1;JavaUtilClassLibrary"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/platformkit/2009/01/swt-3_0#OrgEclipseSwtLayoutLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/platform.owl#Platform -->
 
-    <owl:Class rdf:about="&swt-3_0;OrgEclipseSwtLayoutLibrary"/>
+    <owl:Class rdf:about="&platform;Platform"/>
     
 
 
-    <!-- http://ssel.vub.ac.be/platformkit/2009/01/swt-3_0#OrgEclipseSwtWidgetsLibrary -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/swt-3_0.owl#OrgEclipseSwtLayoutClassLibrary -->
 
-    <owl:Class rdf:about="&swt-3_0;OrgEclipseSwtWidgetsLibrary"/>
+    <owl:Class rdf:about="&swt-3_0;OrgEclipseSwtLayoutClassLibrary"/>
     
 
 
-    <!-- http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2007/01/Platform.owl#Platform -->
+    <!-- http://soft.vub.ac.be/platformkit/2010/1/swt-3_0.owl#OrgEclipseSwtWidgetsClassLibrary -->
 
-    <owl:Class rdf:about="&Platform;Platform"/>
+    <owl:Class rdf:about="&swt-3_0;OrgEclipseSwtWidgetsClassLibrary"/>
 </rdf:RDF>
 
 

@@ -550,74 +550,8 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 		createResource(eNS_URI);
 
 		// Create annotations
-		// CDDToolkit
-		createCDDToolkitAnnotations();
 		// PlatformKit
 		createPlatformKitAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>CDDToolkit</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createCDDToolkitAnnotations() {
-		String source = "CDDToolkit";		
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] {
-			 "Ontology", "Transformations.owl"
-		   });											
-		addAnnotation
-		  (javaMappingEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#JavaMappingsPlatform"
-		   });					
-		addAnnotation
-		  (java1DataTypesEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#Java1Platform"
-		   });				
-		addAnnotation
-		  (java2DataTypesEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#Java2Platform"
-		   });				
-		addAnnotation
-		  (uml2ObserverEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#Java1Platform"
-		   });				
-		addAnnotation
-		  (uml2JavaObserverEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#JavaObserverPlatform"
-		   });				
-		addAnnotation
-		  (uml2AppletEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#AppletPlatform"
-		   });				
-		addAnnotation
-		  (uml2MIDletEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#MIDletPlatform"
-		   });						
-		addAnnotation
-		  (uml2SWTApplicationEClass, 
-		   source, 
-		   new String[] {
-			 "ContextConstraint", "http://local/Transformations.owl#SWTPlatform"
-		   });	
 	}
 
 	/**
@@ -627,60 +561,60 @@ public class TransformationsPackageImpl extends EPackageImpl implements Transfor
 	 * @generated
 	 */
 	protected void createPlatformKitAnnotations() {
-		String source = "PlatformKit";			
+		String source = "PlatformKit";		
 		addAnnotation
 		  (this, 
 		   source, 
 		   new String[] {
 			 "Ontology", "Transformations.owl"
-		   });											
+		   });										
 		addAnnotation
 		  (javaMappingEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/Transformations.owl#JavaMappingsPlatform"
-		   });					
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#JavaMappingsPlatform"
+		   });				
 		addAnnotation
 		  (java1DataTypesEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/Transformations.owl#Java1Platform"
-		   });				
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java1Platform"
+		   });			
 		addAnnotation
 		  (java2DataTypesEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/Transformations.owl#Java2Platform"
-		   });				
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java2Platform"
+		   });			
 		addAnnotation
 		  (uml2ObserverEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/Transformations.owl#Java1Platform"
-		   });				
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#Java1Platform"
+		   });			
 		addAnnotation
 		  (uml2JavaObserverEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/Transformations.owl#JavaObserverPlatform"
-		   });				
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#JavaObserverPlatform"
+		   });			
 		addAnnotation
 		  (uml2AppletEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/Transformations.owl#AppletPlatform"
-		   });				
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#AppletPlatform"
+		   });			
 		addAnnotation
 		  (uml2MIDletEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/Transformations.owl#MIDletPlatform"
-		   });						
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#MIDletPlatform"
+		   });					
 		addAnnotation
 		  (uml2SWTApplicationEClass, 
 		   source, 
 		   new String[] {
-			 "PlatformConstraint", "http://local/Transformations.owl#SWTPlatform"
+			 "PlatformConstraint", "http://soft.vub.ac.be/platformkit/2010/1/dependencies/Transformations.owl#SWTPlatform"
 		   });
 	}
 

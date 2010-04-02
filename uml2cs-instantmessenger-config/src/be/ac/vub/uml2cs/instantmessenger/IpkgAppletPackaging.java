@@ -14,8 +14,7 @@ package be.ac.vub.uml2cs.instantmessenger;
  *
  *
  * @see be.ac.vub.uml2cs.instantmessenger.InstantmessengerPackage#getIpkgAppletPackaging()
- * @model annotation="CDDToolkit ContextConstraint='http://local/InstantMessenger.owl#IpkgAppletPlatform'"
- *        annotation="PlatformKit PlatformConstraint='http://local/InstantMessenger.owl#IpkgAppletPlatform'"
+ * @model annotation="PlatformKit PlatformConstraint='http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#IpkgAppletPlatform'"
  * @generated
  */
 public interface IpkgAppletPackaging extends Packaging {

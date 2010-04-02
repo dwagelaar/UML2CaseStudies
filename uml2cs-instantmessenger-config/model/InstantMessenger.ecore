@@ -2,10 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="instantmessenger"
-    nsURI="http://ssel.vub.ac.be/uml2cs/InstantMessenger" nsPrefix="instantmessenger">
-  <eAnnotations source="CDDToolkit">
-    <details key="Ontology" value="InstantMessenger.owl"/>
-  </eAnnotations>
+    nsURI="http://soft.vub.ac.be/uml2cs/InstantMessenger" nsPrefix="instantmessenger">
   <eAnnotations source="PlatformKit">
     <details key="Ontology" value="InstantMessenger.owl"/>
   </eAnnotations>
@@ -13,11 +10,8 @@
     <eAnnotations source="GenModel">
       <details key="documentation" value="Root node for an instant messenger configuration model"/>
     </eAnnotations>
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#InstantMessengerPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#InstantMessengerPlatform"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="deploymentTarget" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
@@ -31,21 +25,15 @@
         eType="#//Packaging" containment="true" eOpposite="#//Packaging/config"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LocalNetwork">
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#LocalPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#LocalPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#LocalPlatform"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="config" lowerBound="1"
         eType="#//InstantMessengerConfiguration" eOpposite="#//InstantMessengerConfiguration/localNetwork"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JabberNetwork">
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#JabberPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#JabberPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#JabberPlatform"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="jabberTransport" lowerBound="1"
         eType="#//JabberTransport" containment="true" eOpposite="#//JabberTransport/jabberNetwork"/>
@@ -57,19 +45,13 @@
         eType="#//JabberNetwork" eOpposite="#//JabberNetwork/jabberTransport"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DefaultJabberTransport" eSuperTypes="#//JabberTransport">
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#DefaultJabberPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#DefaultJabberPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MEJabberTransport" eSuperTypes="#//JabberTransport">
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#MEJabberPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#MEJabberPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#MEJabberPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserInterface" abstract="true">
@@ -78,31 +60,22 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SWTUserInterface" eSuperTypes="#//UserInterface">
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#SWTPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#SWTPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AWTUserInterface" eSuperTypes="#//UserInterface">
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#AWTPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#AWTPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#AWTPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SwingUserInterface" eSuperTypes="#//UserInterface">
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#SwingPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#SwingPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#SwingPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LCDUIUserInterface" eSuperTypes="#//UserInterface">
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#LCDUIPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#LCDUIPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#LCDUIPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Packaging" abstract="true">
@@ -110,32 +83,23 @@
         eType="#//InstantMessengerConfiguration" eOpposite="#//InstantMessengerConfiguration/packaging"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WebAppletPackaging" eSuperTypes="#//Packaging">
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#WebAppletPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#WebAppletPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#WebAppletPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IpkgAppletPackaging" eSuperTypes="#//Packaging">
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#IpkgAppletPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#IpkgAppletPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MIDletPackaging" eSuperTypes="#//Packaging">
-    <eAnnotations source="CDDToolkit">
-      <details key="ContextConstraint" value="http://local/InstantMessenger.owl#MIDletPlatform"/>
-    </eAnnotations>
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#MIDletPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#MIDletPlatform"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MaemoPackaging" eSuperTypes="#//Packaging">
     <eAnnotations source="PlatformKit">
-      <details key="PlatformConstraint" value="http://local/InstantMessenger.owl#MaemoPlatform"/>
+      <details key="PlatformConstraint" value="http://soft.vub.ac.be/platformkit/2010/1/dependencies/InstantMessenger.owl#MaemoPlatform"/>
     </eAnnotations>
   </eClassifiers>
 </ecore:EPackage>

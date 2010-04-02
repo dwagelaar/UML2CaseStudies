@@ -38,7 +38,7 @@ public class InstantmessengerFactoryImpl extends EFactoryImpl implements Instant
 	 */
 	public static InstantmessengerFactory init() {
 		try {
-			InstantmessengerFactory theInstantmessengerFactory = (InstantmessengerFactory)EPackage.Registry.INSTANCE.getEFactory("http://ssel.vub.ac.be/uml2cs/InstantMessenger"); 
+			InstantmessengerFactory theInstantmessengerFactory = (InstantmessengerFactory)EPackage.Registry.INSTANCE.getEFactory("http://soft.vub.ac.be/uml2cs/InstantMessenger"); 
 			if (theInstantmessengerFactory != null) {
 				return theInstantmessengerFactory;
 			}

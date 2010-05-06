@@ -429,19 +429,19 @@ rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String
 	-- <atl.loadModel modelHandler = 'EMF' name = 'inModelCode' metamodel = 'JAVA' path = 'targetProject/targetProject.javaast'/>
 	   loadCode : XML!"XML::Element" (
 	   	name <- 'atl.loadModel'),
-	   modelHandler : XML!"XML::Attribute" (
+	   cmodelHandler : XML!"XML::Attribute" (
 	   	name <- 'modelHandler',
 		value <- 'EMF',
 		parent <- loadCode),
-	   modelName : XML!"XML::Attribute" (
+	   cmodelName : XML!"XML::Attribute" (
 	   	name <- 'name',
 		value <- inModel + 'Code',
 		parent <- loadCode),
-	   metamodel : XML!"XML::Attribute" (
+	   cmetamodel : XML!"XML::Attribute" (
 	   	name <- 'metamodel',
 		value <- 'JAVA',
 		parent <- loadCode),
-	   modelPath : XML!"XML::Attribute" (
+	   cmodelPath : XML!"XML::Attribute" (
 	   	name <- 'path',
 		value <- '../' + targetProject + '.javaast',
 		parent <- loadCode),

@@ -38,6 +38,11 @@ helper context ECORE!"ecore::ENamedElement" def : useQualifiedRuleName : Boolean
 helper context ECORE!"ecore::EClass" def : copyXmiID : Boolean =
 	true;
 
+-- select whether or not to use an intermediate s.inElements helper attribute,
+-- or use 'in IN' directly.
+helper context ECORE!"ecore::EClass" def : useInElementsHelper : Boolean =
+	true;
+
 -- select whether or not to use an intermediate s.isInElement helper attribute,
 -- or use thisModule.isElements->includes(s) straight away.
 helper context ECORE!"ecore::EClass" def : useIsInElementHelper : Boolean =

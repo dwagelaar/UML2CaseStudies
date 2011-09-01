@@ -1,5 +1,6 @@
 -- @atlcompiler emftvm
 -- @nsURI UML2=http://www.eclipse.org/uml2/3.0.0/UML
+-- @nsURI JAVA=http://www.eclipse.org/gmt/modisco/JavaAST
 -- $Id$
 -- Merges back java method bodies into UML2 source model
 module Java2UML;
@@ -9,25 +10,21 @@ create OUT : UML2 from IN : UML2, CODE : JAVA;
 uses "lib::UML2";
 uses "lib::Mappings";
 uses UML2Copy;
-uses UML2ProfileCopy;
 
 -- ======================================================================
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : applets : Sequence(UML2!"Applet::Applet") = UML2!"Applet::Applet".allInstances();
-helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton".allInstances();
-helper def : asyncs : Sequence(UML2!"Async::asynchronous") = UML2!"Async::asynchronous".allInstances();
 helper def : language : String = 'language'.value();
 
 helper context UML2!"uml::Classifier" def : isApplet : Boolean =
-	thisModule.applets->exists(o|o.base_Classifier=self);
+	not self.getAppliedStereotype('Applet::Applet').oclIsUndefined();
 
 helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
-	thisModule.singletons->exists(o|o.base_Classifier=self);
+	not self.getAppliedStereotype('Singleton::Singleton').oclIsUndefined();
 
 helper context UML2!"uml::Operation" def : isAsynchronous : Boolean =
-	thisModule.asyncs->exists(a|a.base_Operation=self);
+	not self.getAppliedStereotype('Async::asynchronous').oclIsUndefined();
 
 helper context UML2!"uml::Classifier" def : typeDeclaration : JAVA!TypeDeclaration =
 	let owner : OclAny = self.refImmediateComposite() in
@@ -61,7 +58,7 @@ helper context UML2!"uml::BehavioralFeature" def : javaMethodDeclaration : JAVA!
 						false
 					else
 						if self.getType().oclIsKindOf(UML2!"uml::PrimitiveType") then
-							let implTypeName : String = self.getType().name.implTypeName().regexReplaceAll('::', '.') in
+							let implTypeName : String = self.getType().name.implTypeName().replaceAll('::', '.') in
 							m.returnType.lexicalForm = implTypeName or
 							'java.lang.' + m.returnType.lexicalForm = implTypeName
 						else
@@ -73,14 +70,18 @@ helper context UML2!"uml::BehavioralFeature" def : javaMethodDeclaration : JAVA!
 		->any(m|thisModule.equivalentParameters(self.ownedParameter->reject(p|p.direction = #return), m.parameters));
 
 helper def : equivalentParameters(selfpars : Sequence(UML2!"uml::Parameter"), otherpars : Sequence(JAVA!SingleVariableDeclaration)) : Boolean =
-	let selfpar : UML2!"uml::Parameter" = selfpars->first() in
-	let otherpar : JAVA!SingleVariableDeclaration = otherpars->first() in
-	if selfpar.oclIsUndefined() then otherpar.oclIsUndefined()
+	if selfpars.isEmpty() or otherpars.isEmpty() then
+		selfpars.isEmpty() and otherpars.isEmpty()
 	else
-		selfpar.equivalentTo(otherpar) and
-		thisModule.equivalentParameters(
-			selfpars->excluding(selfpar), 
-			otherpars->excluding(otherpar))
+		let selfpar : UML2!"uml::Parameter" = selfpars->first() in
+		let otherpar : JAVA!SingleVariableDeclaration = otherpars->first() in
+		if selfpar.oclIsUndefined() then otherpar.oclIsUndefined()
+		else
+			selfpar.equivalentTo(otherpar) and
+			thisModule.equivalentParameters(
+				selfpars->excluding(selfpar), 
+				otherpars->excluding(otherpar))
+		endif
 	endif;
 
 helper context UML2!"uml::Parameter" def : equivalentTo(v : JAVA!SingleVariableDeclaration) : Boolean =
@@ -89,7 +90,7 @@ helper context UML2!"uml::Parameter" def : equivalentTo(v : JAVA!SingleVariableD
 		v.type.lexicalForm = 'void'
 	else
 		if self.type.oclIsKindOf(UML2!"uml::PrimitiveType") then
-			let implTypeName : String = self.type.name.implTypeName().regexReplaceAll('::', '.') in
+			let implTypeName : String = self.type.name.implTypeName().replaceAll('::', '.') in
 			v.type.lexicalForm = implTypeName or
 			'java.lang.' + v.type.lexicalForm = implTypeName
 		else

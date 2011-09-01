@@ -1,11 +1,12 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
+-- @nsURI UML2=http://www.eclipse.org/uml2/3.0.0/UML
 -- $Id$
-query UML2toJava = UML2!"uml::Classifier".allInstances()->collect(e |
-	if e.ignore() then true
-	else e.toFileString().writeTo(e.pathName())
-	endif);
+query UML2ToJava = UML2!"uml::Classifier".allInstances()->iterate(e; acc : Boolean = true |
+	if e.ignore() then acc
+	else acc and e.toFileString().writeTo(e.pathName())
+	endif).debug('UML2ToJava ok');
 
-uses UML2;
+uses "lib::UML2";
 
 -- ======================================================================
 -- plumbing helpers begin
@@ -66,7 +67,7 @@ helper context UML2!"uml::Feature" def : staticStr : String =
 	else '' endif;
 
 helper context UML2!"uml::Parameter" def : isFinal : Boolean =
-	UML2!"Final::final".allInstances()->exists(f|f.base_Parameter=self);
+	not self.getAppliedStereotype('Final::final').oclIsUndefined();
 	
 helper context UML2!"uml::StructuralFeature" def : finalStr : String =
 	if self.isLeaf or self.isReadOnly then 'final ' else '' endif;
@@ -79,7 +80,7 @@ helper context UML2!"uml::Parameter" def : finalStr : String =
 	else '' endif;
 
 helper context UML2!"uml::BehavioralFeature" def : isConstructor : Boolean =
-	UML2!"Standard::Create".allInstances()->exists(c|c.base_BehavioralFeature=self);
+	not self.getAppliedStereotype('Standard::Create').oclIsUndefined();
 
 -- ======================================================================
 -- plumbing helpers end

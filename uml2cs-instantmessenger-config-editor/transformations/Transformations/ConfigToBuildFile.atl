@@ -1,7 +1,9 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
+-- @path CFG=/uml2cs-transformations-config/model/Transformations.ecore
+-- @path XML=/uml2cs-instantmessenger-config-editor/metamodels/XML.ecore
 -- $Id: ConfigToBuildFile.atl 7429 2008-04-16 13:31:17Z dwagelaa $
 -- Generates a build.xml file from a Transformations.ecore config file
-module ConfigToBuildFile;
+module "Transformations::ConfigToBuildFile";
 
 create OUT : XML from IN : CFG;
 
@@ -15,7 +17,8 @@ rule ConfigRoot {
 		name <- thisModule.ConfigHeader(s))
 }
 
-rule ConfigHeader(s : CFG!"transformations::TransformationConfig") {
+lazy rule ConfigHeader {
+	from s : CFG!"transformations::TransformationConfig"
 	-- <project name="s.buildPath">
 	to name : XML!"XML::Attribute" (
 	   	parent <- s,
@@ -29,7 +32,7 @@ rule ConfigHeader(s : CFG!"transformations::TransformationConfig") {
 	   	parent <- import,
 		name <- 'file',
 		value <- 'common.xml'),
-	-- <property name="current.path" value="platform:/resource/${ant.project.name}"/>
+	-- <property name="current.uri" value="platform:/resource/${ant.project.name}"/>
 	   currentpath : XML!"XML::Element" (
 	   	parent <- s,
 		name <- 'property',
@@ -123,19 +126,6 @@ rule Property(name : String, value : String) {
 		value <- value)
 	do {
 		Sequence{propertyname, propertyvalue};
-	}
-}
-
-rule ConvertResourceToPath(resource : String, path : String) {
-	-- Sequence{resourcepath="resource", property="path"}
-	to resourcepath : XML!"XML::Attribute" (
-	   	name <- 'resourcepath',
-		value <- resource),
-	   property : XML!"XML::Attribute" (
-	   	name <- 'property',
-		value <- path)
-	do {
-		Sequence{resourcepath, property};
 	}
 }
 

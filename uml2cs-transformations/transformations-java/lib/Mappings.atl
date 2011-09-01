@@ -1,10 +1,10 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
 -- $Id$
 -- Java all versions code generation helpers
-library JavaMappings;
+library "lib::Mappings";
 
-uses Java; -- Java1 or Java2
-uses Strings;
+uses "lib::Java"; -- Java1 or Java2
+uses "lib::Strings";
 
 ------------------------------- General -----------------------------------
 

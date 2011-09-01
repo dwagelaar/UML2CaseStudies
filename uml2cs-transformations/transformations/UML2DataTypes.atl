@@ -1,14 +1,15 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
+-- @nsURI UML2=http://www.eclipse.org/uml2/3.0.0/UML
 -- $Id$
 -- Transforms all UML2-specific data types to programming language types.
 module UML2DataTypes; --extends UML2Copy
 
 create OUT : UML2 from IN : UML2, IMPLTYPES : UML2;
 
+uses "lib::Strings";
+uses "lib::UML2";
+uses "lib::Mappings";
 uses UML2Copy;
-uses Strings;
-uses UML2;
-uses Mappings;
 
 -- ======================================================================
 -- model-specific helpers begin
@@ -118,10 +119,8 @@ helper context UML2!"uml::Type" def : defaultValueBody() : String =
 -- ======================================================================
 
 rule Property {
-    from s : UML2!"uml::Property" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::Property")
-		else false endif)
+    from s : UML2!"uml::Property" in IN (
+		s.oclIsTypeOf(UML2!"uml::Property"))
     to t : UML2!"uml::Property" (
         __xmiID__ <- s.__xmiID__,
         name <- s.name,
@@ -151,7 +150,8 @@ rule Property {
         qualifier <- s.qualifier)
 }
 
-rule DefVal(s : UML2!"uml::Property") {
+lazy rule DefVal {
+	from s : UML2!"uml::Property"
     to defVal : UML2!"uml::OpaqueExpression" (
 		language <- Sequence{thisModule.language},
 		body <- Sequence{s.defaultValueBody()})
@@ -161,7 +161,7 @@ rule DefVal(s : UML2!"uml::Property") {
 }
 
 rule Parameter {
-    from s : UML2!"uml::Parameter" (thisModule.inElements->includes(s))
+    from s : UML2!"uml::Parameter" in IN
     to t : UML2!"uml::Parameter" (
         __xmiID__ <- s.__xmiID__,
         name <- s.name,
@@ -186,7 +186,7 @@ rule Parameter {
 }
 
 rule Operation {
-    from s : UML2!"uml::Operation" (thisModule.inElements->includes(s))
+    from s : UML2!"uml::Operation" in IN
     to t : UML2!"uml::Operation" (
         __xmiID__ <- s.__xmiID__,
         name <- s.name,

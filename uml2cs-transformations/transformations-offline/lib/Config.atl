@@ -1,10 +1,10 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
 -- $Id$
-library Config;
+library "lib::Config";
 
 -- adapt the following helper to reflect your file path
 helper context String def : path : String =
-	'/uml2cs-transformations/' + self;
+	'/uml2cs-transformations/transformations-offline/' + self;
 
 -- adapt the following inclusion condition for your specific model
 helper context ECORE!"ecore::EClass" def : inclusionCondition : Boolean =
@@ -41,7 +41,7 @@ helper context ECORE!"ecore::EClass" def : copyXmiID : Boolean =
 -- select whether or not to use an intermediate s.inElements helper attribute,
 -- or use 'in IN' directly.
 helper context ECORE!"ecore::EClass" def : useInElementsHelper : Boolean =
-	true;
+	false;
 
 -- select whether or not to use an intermediate s.isInElement helper attribute,
 -- or use thisModule.isElements->includes(s) straight away.

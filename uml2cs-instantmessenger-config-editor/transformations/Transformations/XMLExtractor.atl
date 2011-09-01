@@ -1,7 +1,9 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
+-- @path XML=/uml2cs-instantmessenger-config-editor/metamodels/XML.ecore
 -- $Id$
-query XMLExtractor = XML!"XML::Root".allInstancesFrom('IN')
-	->collect(root|root.toFileString(0).writeTo(thisModule.pathName()));
+query "Transformations::XMLExtractor" = XML!"XML::Root".allInstancesFrom('IN')
+	->collect(root|root.toFileString(0).writeTo(thisModule.pathName()))
+	->toString();
 
 helper def : pathName() : String =
 	'path'.parameterValue();

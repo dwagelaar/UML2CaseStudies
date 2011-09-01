@@ -1,9 +1,13 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
+-- @path CFG=/uml2cs-instantmessenger-config/model/InstantMessenger.ecore
+-- @path XML=/uml2cs-instantmessenger-config-editor/metamodels/XML.ecore
 -- $Id: ConfigToBuildFile.atl 7633 2009-01-30 14:22:58Z dwagelaa $
 -- Generates a build.xml file from a Transformations.ecore config file
-module ConfigToBuildFile; --extends ConfigToBuildFile from uml2cs-transformations
+module "InstantMessenger::ConfigToBuildFile";
 
 create OUT : XML from IN : CFG;
+
+uses "Transformations::ConfigToBuildFile";
 
 -- ======================================================================
 -- helper attributes begin
@@ -293,7 +297,8 @@ rule SWTUserInterface {
 		parent <- s.config)
 }
 
-rule AllTarget(c : CFG!"instantmessenger::InstantMessengerConfiguration") {
+lazy rule AllTarget {
+	from c : CFG!"instantmessenger::InstantMessengerConfiguration"
 	-- Sequence{name="all" depends="..."}
 	to targetName : XML!"XML::Attribute"(
 	   	name <- 'name',
@@ -307,20 +312,14 @@ rule AllTarget(c : CFG!"instantmessenger::InstantMessengerConfiguration") {
 			->append('prettyPrint')
 			->iterate(e; acc : String = '' | acc +
 				if acc = '' then e
-				else ', ' + e endif).debug('All')),
-	-- 	<eclipse.refreshLocal resource="${ant.project.name}"/>
-	   refresh : XML!"XML::Element" (
-	   	name <- 'eclipse.refreshLocal'),
-	   refreshResource : XML!"XML::Attribute" (
-	   	name <- 'resource',
-		value <- '${ant.project.name}',
-		parent <- refresh)
+				else ', ' + e endif).debug('All'))
 	do {
-		Sequence{targetName, targetDepends, refresh};
+		Sequence{targetName, targetDepends};
 	}
 }
 
-rule AllFeedbackTarget(c : CFG!"instantmessenger::InstantMessengerConfiguration") {
+lazy rule AllFeedbackTarget {
+	from c : CFG!"instantmessenger::InstantMessengerConfiguration"
 	-- Sequence{name="all-feedback" depends="..."}
 	to targetName : XML!"XML::Attribute"(
 	   	name <- 'name',
@@ -346,7 +345,7 @@ rule AllFeedbackTarget(c : CFG!"instantmessenger::InstantMessengerConfiguration"
 	}
 }
 
-rule ModelTarget(name : String, inModel : String, prefix : String, path : String) {
+rule ModelTarget(name : String, inModel : String, prefix : String, uri : String) {
 	-- Sequence{name = 'name' depends = 'allBase'}
 	to targetName : XML!"XML::Attribute"(
 	   	name <- 'name',
@@ -354,24 +353,16 @@ rule ModelTarget(name : String, inModel : String, prefix : String, path : String
 	   targetDepends : XML!"XML::Attribute"(
 	   	name <- 'depends',
 		value <- 'allBase'),
-	-- <atl.loadModel modelHandler = 'UML2' name = 'inModel' metamodel = 'UML2' uri = 'path'/>
+	-- <emftvm.loadModel name = 'inModel' uri = 'uri'/>
 	   loadModel : XML!"XML::Element" (
-	   	name <- 'atl.loadModel'),
-	   modelHandler : XML!"XML::Attribute" (
-	   	name <- 'modelHandler',
-		value <- 'UML2',
-		parent <- loadModel),
+	   	name <- 'emftvm.loadModel'),
 	   modelName : XML!"XML::Attribute" (
 	   	name <- 'name',
 		value <- inModel,
 		parent <- loadModel),
-	   metamodel : XML!"XML::Attribute" (
-	   	name <- 'metamodel',
-		value <- 'UML2',
-		parent <- loadModel),
 	   modelPath : XML!"XML::Attribute" (
 	   	name <- 'uri',
-		value <- path,
+		value <- uri,
 		parent <- loadModel),
 	-- <antcall target="generate" inheritRefs="true">
 	   antcall : XML!"XML::Element" (
@@ -399,7 +390,7 @@ rule ModelTarget(name : String, inModel : String, prefix : String, path : String
 	}
 }
 
-rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String, path : String) {
+rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String, uri : String) {
 	-- Sequence{name = 'name' depends = 'defineProperties, loadBaseModels, loadJAVA'}
 	to targetName : XML!"XML::Attribute"(
 	   	name <- 'name',
@@ -407,43 +398,27 @@ rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String
 	   targetDepends : XML!"XML::Attribute"(
 	   	name <- 'depends',
 		value <- 'defineProperties, loadBaseModels, loadJAVA'),
-	-- <atl.loadModel modelHandler = 'UML2' name = 'inModel' metamodel = 'UML2' uri = 'path'/>
+	-- <emftvm.loadModel name = 'inModel' uri = 'uri'/>
 	   loadModel : XML!"XML::Element" (
-	   	name <- 'atl.loadModel'),
-	   modelHandler : XML!"XML::Attribute" (
-	   	name <- 'modelHandler',
-		value <- 'UML2',
-		parent <- loadModel),
+	   	name <- 'emftvm.loadModel'),
 	   modelName : XML!"XML::Attribute" (
 	   	name <- 'name',
 		value <- inModel,
 		parent <- loadModel),
-	   metamodel : XML!"XML::Attribute" (
-	   	name <- 'metamodel',
-		value <- 'UML2',
-		parent <- loadModel),
 	   modelPath : XML!"XML::Attribute" (
 	   	name <- 'uri',
-		value <- path,
+		value <- uri,
 		parent <- loadModel),
-	-- <atl.loadModel modelHandler = 'EMF' name = 'inModelCode' metamodel = 'JAVA' path = 'targetProject/targetProject.javaast'/>
+	-- <emftvm.loadModel name = 'inModelCode' path = 'targetProject/targetProject.javaxmi'/>
 	   loadCode : XML!"XML::Element" (
-	   	name <- 'atl.loadModel'),
-	   cmodelHandler : XML!"XML::Attribute" (
-	   	name <- 'modelHandler',
-		value <- 'EMF',
-		parent <- loadCode),
+	   	name <- 'emftvm.loadModel'),
 	   cmodelName : XML!"XML::Attribute" (
 	   	name <- 'name',
 		value <- inModel + 'Code',
 		parent <- loadCode),
-	   cmetamodel : XML!"XML::Attribute" (
-	   	name <- 'metamodel',
-		value <- 'JAVA',
-		parent <- loadCode),
 	   cmodelPath : XML!"XML::Attribute" (
 	   	name <- 'path',
-		value <- '../' + targetProject + '.javaast',
+		value <- '../' + targetProject + '.javaxmi',
 		parent <- loadCode),
 	-- <antcall target="java2uml" inheritRefs="true">
 	   antcall : XML!"XML::Element" (
@@ -466,10 +441,10 @@ rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String
 	   	name <- 'param',
 		children <- thisModule.Property('code', inModel + 'Code'),
 		parent <- antcall),
-	-- <param name="uri" value="path"/>
+	-- <param name="uri" value="uri"/>
 	   parampath : XML!"XML::Element" (
 	   	name <- 'param',
-		children <- thisModule.Property('uri', path),
+		children <- thisModule.Property('uri', uri),
 		parent <- antcall)
 	do {
 		Sequence{targetName, targetDepends, loadModel, loadCode, antcall};

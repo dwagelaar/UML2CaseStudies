@@ -1,31 +1,33 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
+-- @nsURI UML2=http://www.eclipse.org/uml2/3.0.0/UML
 -- $Id$
 -- Implements the AbstractFactory profile.
-module UML2AbstractFactory; --extends UML2Copy
+module UML2AbstractFactory;
 
 create OUT : UML2 from IN : UML2;
 
+uses "lib::UML2";
+uses "lib::Mappings";
 uses UML2Copy;
-uses UML2;
-uses Mappings;
 
 -- ======================================================================
 -- model-specific helpers begin
 -- ======================================================================
 
 helper def : language : String = 'language'.value();
-helper def : abstractFactories : Sequence(UML2!"AbstractFactory::AbstractFactory") = UML2!"AbstractFactory::AbstractFactory".allInstances();
-helper def : concreteFactories : Sequence(UML2!"AbstractFactory::ConcreteFactory") = UML2!"AbstractFactory::ConcreteFactory".allInstances();
-helper def : products : Sequence(UML2!"AbstractFactory::product") = UML2!"AbstractFactory::product".allInstances();
 
 helper context UML2!"uml::Classifier" def : isAbstractFactory : Boolean =
-	thisModule.abstractFactories->exists(a|a.base_Classifier=self);
+	not self.getAppliedStereotype('AbstractFactory::AbstractFactory').oclIsUndefined();
 
 helper context UML2!"uml::Class" def : isConcreteFactory : Boolean =
-	thisModule.concreteFactories->exists(a|a.base_Class=self);
+	not self.getAppliedStereotype('AbstractFactory::ConcreteFactory').oclIsUndefined();
 
 helper context UML2!"uml::Dependency" def : isProduct : Boolean =
-	thisModule.products->exists(a|a.base_Dependency=self);
+	not self.getAppliedStereotype('AbstractFactory::product').oclIsUndefined();
+
+helper context UML2!"uml::NamedElement" def : productDependencies : Sequence(UML2!"uml::Dependency") =
+	self.clientDependency->select(d|
+		d.oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct);
 
 -- ======================================================================
 -- model-specific helpers end
@@ -36,14 +38,8 @@ helper context UML2!"uml::Dependency" def : isProduct : Boolean =
 -- ======================================================================
 
 rule Class {
-    from s : UML2!"uml::Class" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::Class") and
-			not s.isConcreteFactory
-		else false endif)
-	using { myDependencies : Set(UML2!"uml::Dependency") = 
-		s.clientDependency->select(d|
-			d.oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct); }
+    from s : UML2!"uml::Class" in IN (
+		s.oclIsTypeOf(UML2!"uml::Class"))
     to t : UML2!"uml::Class" (
         __xmiID__ <- s.__xmiID__,
         name <- s.name,
@@ -77,65 +73,23 @@ rule Class {
         ownedTrigger <- s.ownedTrigger,
         nestedClassifier <- s.nestedClassifier,
         ownedOperation <- s.ownedOperation
-			->union(myDependencies->collect(d|
+			->union(s.productDependencies->collect(d|
 				thisModule.resolveTemp(d, 'createOp'))),
         ownedReception <- s.ownedReception)
 }
 
-rule ConcreteFactoryClass {
-    from s : UML2!"uml::Class" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::Class") and
-			s.isConcreteFactory
-		else false endif)
-	using { myDependencies : Set(UML2!"uml::Dependency") = 
-		s.clientDependency->select(d|
-			d.oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct); }
+rule ConcreteFactoryClass extends Class {
+    from s : UML2!"uml::Class" in IN (
+		s.isConcreteFactory)
     to t : UML2!"uml::Class" (
-        __xmiID__ <- s.__xmiID__,
         name <- s.name->debug('ConcreteFactoryClass'),
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        ownedRule <- s.ownedRule,
-        templateParameter <- s.templateParameter,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        generalization <- s.generalization,
-        powertypeExtent <- s.powertypeExtent,
-        redefinedClassifier <- s.redefinedClassifier,
-        substitution <- s.substitution,
-        representation <- s.representation,
-        collaborationUse <- s.collaborationUse,
-        ownedUseCase <- s.ownedUseCase,
-        useCase <- s.useCase,
-        ownedAttribute <- s.ownedAttribute,
-        ownedConnector <- s.ownedConnector,
         ownedBehavior <- s.ownedBehavior
-			->union(myDependencies->collect(d|
-				thisModule.resolveTemp(d, 'createBehavior'))),
-        classifierBehavior <- s.classifierBehavior,
-        interfaceRealization <- s.interfaceRealization,
-        ownedTrigger <- s.ownedTrigger,
-        nestedClassifier <- s.nestedClassifier,
-        ownedOperation <- s.ownedOperation
-			->union(myDependencies->collect(d|
-				thisModule.resolveTemp(d, 'createOp'))),
-        ownedReception <- s.ownedReception)
+			->union(s.productDependencies->collect(d|
+				thisModule.resolveTemp(d, 'createBehavior'))))
 }
 
 rule Interface {
-    from s : UML2!"uml::Interface" (thisModule.inElements->includes(s))
-	using { myDependencies : Set(UML2!"uml::Dependency") = 
-		s.clientDependency->select(d|
-			d.oclIsTypeOf(UML2!"uml::Dependency") and d.isProduct); }
+    from s : UML2!"uml::Interface" in IN
 	to t : UML2!"uml::Interface" (
         __xmiID__ <- s.__xmiID__,
         name <- s.name,
@@ -162,7 +116,7 @@ rule Interface {
         useCase <- s.useCase,
         ownedAttribute <- s.ownedAttribute,
         ownedOperation <- s.ownedOperation
-			->union(myDependencies->collect(d|
+			->union(s.productDependencies->collect(d|
 				thisModule.resolveTemp(d, 'createOp'))),
         nestedClassifier <- s.nestedClassifier,
         redefinedInterface <- s.redefinedInterface,
@@ -171,11 +125,8 @@ rule Interface {
 }
 
 rule Dependency {
-    from s : UML2!"uml::Dependency" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::Dependency") and
-			not s.isProduct
-		else false endif)
+    from s : UML2!"uml::Dependency" in IN (
+		s.oclIsTypeOf(UML2!"uml::Dependency"))
     to t : UML2!"uml::Dependency" (
         __xmiID__ <- s.__xmiID__,
         name <- s.name,
@@ -189,26 +140,13 @@ rule Dependency {
         client <- s.client)
 }
 
-rule AbstractProductDependency {
-    from s : UML2!"uml::Dependency" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::Dependency") and
-			if s.isProduct then
-				s.client->exists(c|c.isAbstractFactory)
-			else false endif
-		else false endif)
+rule AbstractProductDependency extends Dependency {
+    from s : UML2!"uml::Dependency" in IN (
+		s.isProduct and
+		s.client->exists(c|c.isAbstractFactory))
 	using { supplier : UML2!"uml::Classifier" = s.supplier->first(); }
     to t : UML2!"uml::Dependency" (
-        __xmiID__ <- s.__xmiID__,
-        name <- s.name.debug('AbstractProductDependency'),
-        visibility <- s.visibility,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        templateParameter <- s.templateParameter,
-        supplier <- s.supplier,
-        client <- s.client),
+        name <- s.name.debug('AbstractProductDependency')),
 	-- create
 	   createOp : UML2!"uml::Operation" (
 	   	name <- 'create' + supplier.name,
@@ -223,14 +161,10 @@ rule AbstractProductDependency {
 		direction <- #return)
 }
 
-rule ConcreteProductDependency {
-    from s : UML2!"uml::Dependency" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::Dependency") and
-			if s.isProduct then
-				s.client->exists(c|c.isConcreteFactory)
-			else false endif
-		else false endif)
+rule ConcreteProductDependency extends Dependency {
+    from s : UML2!"uml::Dependency" in IN (
+		s.isProduct and
+		s.client->exists(c|c.isConcreteFactory))
 	using { superTypes : Set(UML2!"uml::Classifier") = s.client
     			->collect(c|c.superTypes)->flatten().debug('superTypes');
 			clientDependencies : Set(UML2!"uml::Dependency") = superTypes
@@ -239,21 +173,13 @@ rule ConcreteProductDependency {
 				->collect(d|d.supplier)->flatten().debug('products');
 			supplier : UML2!"uml::Classifier" = s.supplier
 				->collect(s|s.superTypes)->flatten().debug('supersuppliers')
-				->any(c|products->includes(c)).debug('supplier'); }
+				->any(c|products->includes(c)).debug('supplier');
+			createOpName : String = 'create' + supplier.name.debug('supplier.name'); }
     to t : UML2!"uml::Dependency" (
-        __xmiID__ <- s.__xmiID__,
-        name <- s.name->debug('ConcreteProductDependency'),
-        visibility <- s.visibility,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        templateParameter <- s.templateParameter,
-        supplier <- s.supplier,
-        client <- s.client),
+        name <- s.name->debug('ConcreteProductDependency')),
 	-- create
 	   createOp : UML2!"uml::Operation" (
-	   	name <- 'create' + supplier.name.debug('supplier.name'),
+	   	name <- createOpName,
 		visibility <- #public,
 		ownedParameter <- Sequence{createPar},
 		concurrency <- #sequential),
@@ -264,7 +190,7 @@ rule ConcreteProductDependency {
 		direction <- #return),
 	   createBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- createOp,
-		name <- createOp.name + 'Behavior',
+		name <- createOpName + 'Behavior',
 		language <- Sequence{thisModule.language},
 		body <- Sequence{s.supplier->first().name.createBody()})
 }

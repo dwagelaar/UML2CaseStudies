@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.m2m.atl.adt.launching.atlTransformation">
 <stringAttribute key="ATL File Name" value="/uml2cs-transformations/EModelCopyGenerator.atl"/>
 <stringAttribute key="ATL VM" value="EMF-specific VM"/>
@@ -16,21 +16,26 @@
 <mapEntry key="ECORE" value="EMF"/>
 </mapAttribute>
 <mapAttribute key="ModelType">
-<mapEntry key="ECORE" value="METAMODELINPUT"/>
 <mapEntry key="IN" value="MODELINPUT"/>
+<mapEntry key="ECORE" value="METAMODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Options">
-<mapEntry key="OPTION_CLEAR" value="true"/>
+<mapEntry key="supportUML2Stereotypes" value="false"/>
 <mapEntry key="printExecutionTime" value="true"/>
+<mapEntry key="OPTION_CLEAR" value="true"/>
+<mapEntry key="OPTION_CONTENT_TYPE" value="false"/>
 <mapEntry key="OPTION_DERIVED" value="true"/>
 <mapEntry key="allowInterModelReferences" value="false"/>
-<mapEntry key="supportUML2Stereotypes" value="false"/>
 <mapEntry key="step" value="false"/>
 </mapAttribute>
+<listAttribute key="OrderedInput">
+<listEntry value="IN"/>
+</listAttribute>
+<listAttribute key="OrderedOutput"/>
 <mapAttribute key="Output"/>
 <mapAttribute key="Path">
-<mapEntry key="ECORE" value="#EMF"/>
 <mapEntry key="IN" value="uri:http://www.eclipse.org/emf/2002/Ecore"/>
+<mapEntry key="ECORE" value="#EMF"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value=""/>
 <listAttribute key="Superimpose"/>

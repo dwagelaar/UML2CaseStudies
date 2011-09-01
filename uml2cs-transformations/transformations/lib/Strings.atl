@@ -1,7 +1,7 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
 -- $Id$
 -- String manipulation helpers
-library Strings;
+library "lib::Strings";
 
 helper context String def: firstToUpper : String =
 	self.substring(1, 1).toUpper() + self.substring(2, self.size());

@@ -1,7 +1,7 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
 -- $Id$
 -- Java >= 1.0 code generation helpers
-library Java1;
+library "lib::Java";
 
 ------------------------------- Accessors -----------------------------------
 

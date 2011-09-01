@@ -1,7 +1,9 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
+-- @path CFG=/uml2cs-instantmessenger-config/model/InstantMessenger.ecore
+-- @path XML=/uml2cs-instantmessenger-config-editor/metamodels/XML.ecore
 -- $Id: ConfigToParameters.atl 7429 2008-04-16 13:31:17Z dwagelaa $
 -- Generates a parameters.xml file from a Transformations.ecore config file
-module ConfigToParameters;
+module "Transformations::ConfigToParameters";
 
 create OUT : XML from IN : CFG;
 

@@ -1,0 +1,112 @@
+-- @atlcompiler emftvm
+-- @nsURI UML2=http://www.eclipse.org/uml2/3.0.0/UML
+-- $Id$
+-- Implements the Singleton stereotype.
+module UML2Singleton;
+
+create OUT : UML2 from IN : UML2;
+
+uses "lib::UML2";
+uses "lib::Mappings";
+uses UML2Copy;
+
+-- ======================================================================
+-- model-specific helpers begin
+-- ======================================================================
+
+helper def : language : String = 'language'.value();
+
+helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
+	not self.getAppliedStereotype('Singleton::Singleton').oclIsUndefined();
+
+-- ======================================================================
+-- model-specific helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- transformation rules begin
+-- ======================================================================
+
+rule Class {
+    from s : UML2!"uml::Class" in IN (
+		s.oclIsTypeOf(UML2!"uml::Class"))
+    to t : UML2!"uml::Class" (
+        __xmiID__ <- s.__xmiID__,
+        name <- s.name,
+        visibility <- s.visibility,
+        isLeaf <- s.isLeaf,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        eAnnotations <- s.eAnnotations,
+        ownedComment <- s.ownedComment,
+        clientDependency <- s.clientDependency,
+        nameExpression <- s.nameExpression,
+        elementImport <- s.elementImport,
+        packageImport <- s.packageImport,
+        ownedRule <- s.ownedRule,
+        templateParameter <- s.templateParameter,
+        templateBinding <- s.templateBinding,
+        ownedTemplateSignature <- s.ownedTemplateSignature,
+        generalization <- s.generalization,
+        powertypeExtent <- s.powertypeExtent,
+        redefinedClassifier <- s.redefinedClassifier,
+        substitution <- s.substitution,
+        representation <- s.representation,
+        collaborationUse <- s.collaborationUse,
+        ownedUseCase <- s.ownedUseCase,
+        useCase <- s.useCase,
+        ownedAttribute <- s.ownedAttribute,
+        ownedConnector <- s.ownedConnector,
+        ownedBehavior <- s.ownedBehavior,
+        classifierBehavior <- s.classifierBehavior,
+        interfaceRealization <- s.interfaceRealization,
+        ownedTrigger <- s.ownedTrigger,
+        nestedClassifier <- s.nestedClassifier,
+        ownedOperation <- s.ownedOperation,
+        ownedReception <- s.ownedReception)
+}
+
+rule SingletonClass extends Class {
+    from s : UML2!"uml::Class" in IN (
+		s.isSingleton)
+    to t : UML2!"uml::Class" (
+        name <- s.name.debug('SingletonClass'),
+        ownedAttribute <- s.ownedAttribute->union(Sequence{instance}),
+        ownedBehavior <- s.ownedBehavior->union(Sequence{getBehavior})),
+	-- instance property --
+	   instance : UML2!"uml::Property" (
+	   	name <- 'instance',
+		type <- s,
+		visibility <- #private,
+		isStatic <- true,
+		isUnique <- true,
+		isOrdered <- true),
+	-- getInstance() operation --
+	   getOp : UML2!"uml::Operation" (
+	   	name <- 'getInstance',
+		class <- s,
+		visibility <- #public,
+		isStatic <- true,
+		ownedParameter <- Sequence{getPar},
+		concurrency <- #sequential),
+	   getPar : UML2!"uml::Parameter" (
+	   	name <- 'return',
+		type <- s,
+		effect <- #"create",
+		direction <- #return),
+	   getBehavior : UML2!"uml::OpaqueBehavior" (
+	   	specification <- getOp,
+		name <- 'getInstanceBehavior',
+		ownedParameter <- Sequence{getBPar},
+		language <- Sequence{thisModule.language},
+		body <- Sequence{s.name.singletonBody()}),
+	   getBPar : UML2!"uml::Parameter" (
+	   	name <- 'return',
+		type <- s,
+		effect <- #"create",
+		direction <- #return)
+}
+
+-- ======================================================================
+-- transformation rules end
+-- ======================================================================

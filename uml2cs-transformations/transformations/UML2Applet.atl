@@ -1,13 +1,14 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
+-- @nsURI UML2=http://www.eclipse.org/uml2/3.0.0/UML
 -- $Id$
 -- Implements the Applet profile using a Java AWT Applet
-module UML2Applet; --extends UML2Copy
+module UML2Applet;
 
 create OUT : UML2 from IN : UML2, IMPLTYPES : UML2;
 
+uses "lib::UML2";
+uses "lib::Mappings";
 uses UML2Copy;
-uses UML2;
-uses Mappings;
 
 -- ======================================================================
 -- model-specific helpers begin
@@ -17,17 +18,15 @@ helper def : language : String = 'language'.value();
 helper def : Applet : UML2!"uml::Class" = 'java::applet::Applet'.class();
 helper def : implString : UML2!"uml::Class" = ('String'.implTypeName()).class();
 helper def : implStringAA : UML2!"uml::Class" = ('String'.implTypeName() + '[][]').class();
-helper def : applets : Sequence(UML2!"Applet::Applet") = UML2!"Applet::Applet".allInstances();
-helper def : singletons : Sequence(UML2!"Singleton::Singleton") = UML2!"Singleton::Singleton".allInstances();
 
-helper context UML2!"uml::Classifier" def : applet : UML2!"Applet::Applet" =
-	thisModule.applets->any(o|o.base_Classifier=self);
+helper context UML2!"uml::Classifier" def : applet : UML2!"uml::Stereotype" =
+	self.getAppliedStereotype('Applet::Applet');
 
 helper context UML2!"uml::Classifier" def : isApplet : Boolean =
-	not self.applet.oclIsUndefined();
+	not self.getAppliedStereotype('Applet::Applet').oclIsUndefined();
 
 helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
-	thisModule.singletons->exists(o|o.base_Classifier=self);
+	not self.getAppliedStereotype('Singleton::Singleton').oclIsUndefined();
 
 -- ======================================================================
 -- model-specific helpers end
@@ -38,11 +37,8 @@ helper context UML2!"uml::Classifier" def : isSingleton : Boolean =
 -- ======================================================================
 
 rule Class {
-    from s : UML2!"uml::Class" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::Class") and
-			not s.isApplet
-		else false endif)
+    from s : UML2!"uml::Class" in IN (
+		s.oclIsTypeOf(UML2!"uml::Class"))
     to t : UML2!"uml::Class" (
         __xmiID__ <- s.__xmiID__,
         name <- s.name,
@@ -79,64 +75,32 @@ rule Class {
         ownedReception <- s.ownedReception)
 }
 	
-rule AppletClass {
-    from s : UML2!"uml::Class" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::Class") and
-			s.isApplet
-		else false endif)
+rule AppletClass extends Class {
+    from s : UML2!"uml::Class" in IN (
+		s.isApplet)
 	using { hasInit : Boolean = s.ownedOperation->exists(o|o.name='init');
-			applet : UML2!"Applet::Applet" = s.applet; }
+			hasAppletInfo : Boolean = s.hasValue(s.applet, 'appletInfo');
+			hasParameterInfo : Boolean = s.hasValue(s.applet, 'parameterInfo'); }
     to t : UML2!"uml::Class" (
-        __xmiID__ <- s.__xmiID__,
         name <- s.name.debug('AppletClass'),
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        ownedRule <- s.ownedRule,
-        templateParameter <- s.templateParameter,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        generalization <- s.generalization,
-        powertypeExtent <- s.powertypeExtent,
-        redefinedClassifier <- s.redefinedClassifier,
-        substitution <- s.substitution,
-        representation <- s.representation,
-        collaborationUse <- s.collaborationUse,
-        ownedUseCase <- s.ownedUseCase,
-        useCase <- s.useCase,
-        ownedAttribute <- s.ownedAttribute,
-        ownedConnector <- s.ownedConnector,
         ownedBehavior <- s.ownedBehavior
 			->union(
-        		if hasInit then Set{}
-        		else Set{thisModule.AppletInitOperation(s)} endif)
+        		if hasInit then Sequence{}
+        		else Sequence{thisModule.AppletInitOperation(s)} endif)
 			->union(
-				if (applet.appletInfo.oclIsUndefined()) then Set{}
-				else Set{thisModule.AppletInfoOperation(s, applet)} endif)
+				if hasAppletInfo then Sequence{thisModule.AppletInfoOperation(s)}
+				else Sequence{} endif)
 			->union(
-				if (applet.parameterInfo.oclIsUndefined()) then Set{}
-				else Set{thisModule.ParameterInfoOperation(s, applet)} endif),
-		classifierBehavior <- s.classifierBehavior,
-        interfaceRealization <- s.interfaceRealization,
-        ownedTrigger <- s.ownedTrigger,
-        nestedClassifier <- s.nestedClassifier,
-        ownedOperation <- s.ownedOperation,
-        ownedReception <- s.ownedReception),
+				if hasParameterInfo then Sequence{thisModule.ParameterInfoOperation(s)}
+				else Sequence{} endif)),
 	-- Applet functionality --
 	   g : UML2!"uml::Generalization" (
 	   	general <- thisModule.Applet,
 		specific <- s)
 }
 
-rule AppletInitOperation(s : UML2!"uml::Class") {
+lazy rule AppletInitOperation {
+	from s : UML2!"uml::Class"
 	to initOp : UML2!"uml::Operation" (
 	   	name <- 'init',
 		class <- s.debug('AppletInitOperation'),
@@ -152,7 +116,10 @@ rule AppletInitOperation(s : UML2!"uml::Class") {
 	}
 }
 
-rule AppletInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
+lazy rule AppletInfoOperation {
+	from s : UML2!"uml::Class"
+	using {
+		appletInfo : String = s.getValue(s.applet, 'appletInfo'); }
 	to infoOp : UML2!"uml::Operation" (
 	   	name <- 'getAppletInfo',
 		class <- s.debug('AppletInfoOperation'),
@@ -166,10 +133,10 @@ rule AppletInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
 		direction <- #return),
 	   infoBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- infoOp,
-		name <- infoOp.name + 'Behavior',
+		name <- 'getAppletInfoBehavior',
 		ownedParameter <- Sequence{infoBPar},
 		language <- Sequence{thisModule.language},
-		body <- Sequence{a.appletInfo.appletInfoBody()}),
+		body <- Sequence{appletInfo.appletInfoBody()}),
 	   infoBPar : UML2!"uml::Parameter" (
 	   	name <- 'return',
 		type <- thisModule.implString,
@@ -180,7 +147,10 @@ rule AppletInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
 	}
 }
 
-rule ParameterInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
+lazy rule ParameterInfoOperation {
+	from s : UML2!"uml::Class"
+	using {
+		parameterInfo : String = s.getValue(s.applet, 'parameterInfo'); }
 	to infoOp : UML2!"uml::Operation" (
 	   	name <- 'getParameterInfo',
 		class <- s.debug('ParameterInfoOperation'),
@@ -194,10 +164,10 @@ rule ParameterInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
 		direction <- #return),
 	   infoBehavior : UML2!"uml::OpaqueBehavior" (
 	   	specification <- infoOp,
-		name <- infoOp.name + 'Behavior',
+		name <- 'getParameterInfoBehavior',
 		ownedParameter <- Sequence{infoBPar},
 		language <- Sequence{thisModule.language},
-		body <- Sequence{a.parameterInfo.parameterInfoBody()}),
+		body <- Sequence{parameterInfo.parameterInfoBody()}),
 	   infoBPar : UML2!"uml::Parameter" (
 	   	name <- 'return',
 		type <- thisModule.implStringAA,
@@ -209,15 +179,12 @@ rule ParameterInfoOperation(s : UML2!"uml::Class", a : UML2!"Applet::Applet") {
 }
 
 rule OpaqueBehavior {
-    from s : UML2!"uml::OpaqueBehavior" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::OpaqueBehavior")
-		else false endif)
+    from s : UML2!"uml::OpaqueBehavior" in IN (
+		s.oclIsTypeOf(UML2!"uml::OpaqueBehavior"))
 	using {
     	isAppletInit : Boolean = 
-			if (s.specification.name = 'init') then
-				s.specification.class.isApplet
-			else false endif;
+			s.specification.name = 'init' and
+			s.specification.class.isApplet;
 		appletInitBody : String =
 			s.specification.class.isSingleton.appletInitBody();
 	}

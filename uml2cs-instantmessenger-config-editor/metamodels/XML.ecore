@@ -28,8 +28,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="Root" eSuperTypes="#/0/Element"/>
   </ecore:EPackage>
   <ecore:EPackage name="PrimitiveTypes" nsURI="PrimitiveTypes" nsPrefix="PrimitiveTypes">
-    <eClassifiers xsi:type="ecore:EDataType" name="Boolean"/>
-    <eClassifiers xsi:type="ecore:EDataType" name="Integer"/>
-    <eClassifiers xsi:type="ecore:EDataType" name="String"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="boolean"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="int"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
   </ecore:EPackage>
 </xmi:XMI>

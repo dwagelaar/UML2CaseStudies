@@ -1,14 +1,15 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
+-- @nsURI UML2=http://www.eclipse.org/uml2/3.0.0/UML
 -- $Id$
 -- Implements the Observer profile.
-module UML2JavaObserver; --extends UML2Copy
+module UML2JavaObserver;
 
 create OUT : UML2 from IN : UML2, IMPLTYPES : UML2, UML2TYPES : UML2;
 
+uses "lib::Strings";
+uses "lib::UML2";
+uses "lib::Mappings";
 uses UML2Copy;
-uses Strings;
-uses UML2;
-uses Mappings;
 
 -- ======================================================================
 -- model-specific helpers begin
@@ -21,43 +22,30 @@ helper def : Observable : UML2!"uml::Class" = 'java::util::Observable'.class().d
 helper def : ObserverName : String = thisModule.Observer.qualifiedName('separator'.value()).debug('ObserverName');
 helper def : oclString : UML2!"uml::PrimitiveType" = 'String'.primitiveType();
 helper def : oclAny : UML2!"uml::PrimitiveType" = 'OclAny'.primitiveType();
-helper def : observables : Sequence(UML2!"Observer::Observable") = UML2!"Observer::Observable".allInstances();
-helper def : observers : Sequence(UML2!"Observer::Observer") = UML2!"Observer::Observer".allInstances();
-helper def : subscribes : Sequence(UML2!"Observer::subscribe") = UML2!"Observer::subscribe".allInstances();
-helper def : accessors : Sequence(UML2!"Accessors::accessor") = UML2!"Accessors::accessor".allInstances();
 
 helper context UML2!"uml::Classifier" def : isObservable : Boolean =
-	thisModule.observables->exists(o|o.base_Classifier=self);
+	not self.getAppliedStereotype('Observer::Observable').oclIsUndefined();
 
 helper context UML2!"uml::Classifier" def : isObserver : Boolean =
-	thisModule.observers->exists(o|o.base_Classifier=self);
+	not self.getAppliedStereotype('Observer::Observer').oclIsUndefined();
 
 helper context UML2!"uml::Association" def : isSubscribe : Boolean =
-	thisModule.subscribes->exists(s|s.base_Association=self);
+	not self.getAppliedStereotype('Observer::subscribe').oclIsUndefined();
 
 helper context UML2!"uml::Dependency" def : isAccessor : Boolean =
-	thisModule.accessors->exists(a|a.base_Dependency=self);
+	not self.getAppliedStereotype('Accessors::accessor').oclIsUndefined();
 
-helper context UML2!"uml::Dependency" def : accessor : Boolean =
-	thisModule.accessors->any(a|a.base_Dependency=self);
+helper context UML2!"uml::Dependency" def : accessor : UML2!"uml::Stereotype" =
+	self.getAppliedStereotype('Accessors::accessor');
 
 helper context UML2!"uml::Behavior" def : isNotifyMethod : Boolean =
-	if self.specification.isAccessor then
-		self.owner.isObservableKind
-	else
-		false
-	endif;
+	self.specification.isAccessor and
+	self.owner.isObservableKind;
 	
 helper context UML2!"uml::Behavior" def : isSubscribeMethod : Boolean =
-	if self.specification.isAccessor then
-		if self.owner.isObserverKind then
-			self.specification.isSubscriber
-		else
-			false
-		endif
-	else
-		false
-	endif;
+	self.specification.isAccessor and
+	self.owner.isObserverKind and
+	self.specification.isSubscriber;
 
 helper context UML2!"uml::Operation" def : accessorFor : UML2!"uml::Property" =
 	self.accessorDependency.supplier->any(p|
@@ -67,43 +55,32 @@ helper context UML2!"uml::Operation" def : accessorDependency : UML2!"uml::Depen
 	self.clientDependency->any(d|d.isAccessor);
 
 helper context UML2!"uml::Operation" def : isAccessor : Boolean =
-	not self.accessorDependency.oclIsUndefined();
+	self.clientDependency->exists(d|d.isAccessor);
 
 helper context UML2!"uml::Classifier" def : isObservableKind : Boolean =
-	if self.isObservable then
-		true
-	else
-		self.generalization->exists(g|g.general.isObservableKind)
-	endif;
+	self.isObservable or
+	self.generalization->exists(g|g.general.isObservableKind);
 
 helper context UML2!"uml::Classifier" def : isObserverKind : Boolean =
-	if self.isObserver then
-		true
-	else
-		self.generalization->exists(g|g.general.isObserverKind)
-	endif;
+	self.isObserver or
+	self.generalization->exists(g|g.general.isObserverKind);
 
 helper context UML2!"uml::Operation" def : isSubscriber : Boolean =
-	if self.isAccessor then
-		self.accessorFor.hasSubscribesAssociation
-	else
-		false
-	endif;
+	self.isAccessor and
+	self.accessorFor.hasSubscribesAssociation;
 
 helper context UML2!"uml::Property" def : hasSubscribesAssociation : Boolean =
-	if self.association.oclIsUndefined() then
-		false
-	else
-		self.association.isSubscribe
-	endif;
+	not self.association.oclIsUndefined() and
+	self.association.isSubscribe;
 
 helper context UML2!"uml::Operation" def : notify(body : String) : String =
-	let acc : UML2!"Accessor::accessor" = self.accessorDependency.accessor in
-	if acc.kind = #remove then
+	let d : UML2!"uml::Dependency" = self.accessorDependency in
+	let kind : OclAny = d.getValue(d.accessor, 'kind') in
+	if kind = #remove then
 		self.accessorFor.removerNotify(body)
-	else if acc.kind = #add or acc.kind = #insert then
+	else if kind = #add or kind = #insert then
 		self.accessorFor.adderNotify(body)
-	else if acc.kind = #set then
+	else if kind = #set then
 		self.accessorFor.setterNotify(body)
 	else
 		body
@@ -122,12 +99,13 @@ helper context UML2!"uml::Property" def : removerNotify(body : String) : String 
 		self.type.qualifiedName(thisModule.separator), body, true);
 
 helper context UML2!"uml::Operation" def : subscribe(body : String) : String =
-	let acc : UML2!"Accessor::accessor" = self.accessorDependency.accessor in
-	if acc.kind = #remove then
+	let d : UML2!"uml::Dependency" = self.accessorDependency in
+	let kind : OclAny = d.getValue(d.accessor, 'kind') in
+	if kind = #remove then
 		self.accessorFor.name.removerSubscribeBody(body, true)
-	else if acc.kind = #add or acc.kind = #insert then
+	else if kind = #add or kind = #insert then
 		self.accessorFor.name.adderSubscribeBody(body)
-	else if acc.kind = #set then
+	else if kind = #set then
 		self.accessorFor.name.setterSubscribeBody(body, true)
 	else
 		body
@@ -142,11 +120,8 @@ helper context UML2!"uml::Operation" def : subscribe(body : String) : String =
 -- ======================================================================
 
 rule Class {
-    from s : UML2!"uml::Class" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::Class") and
-			not s.isObservable
-		else false endif)
+    from s : UML2!"uml::Class" in IN (
+		s.oclIsTypeOf(UML2!"uml::Class"))
     to t : UML2!"uml::Class" (
         __xmiID__ <- s.__xmiID__,
         name <- s.name,
@@ -174,64 +149,35 @@ rule Class {
         useCase <- s.useCase,
         ownedAttribute <- s.ownedAttribute,
         ownedConnector <- s.ownedConnector,
-        ownedBehavior <- s.ownedBehavior
-			->union(if s.isObserver then Set{thisModule.ObserverClass(s)} else Set{} endif),
-        classifierBehavior <- s.classifierBehavior,
         interfaceRealization <- s.interfaceRealization,
+		ownedOperation <- s.ownedOperation,
+		ownedBehavior <- s.ownedBehavior
+			->union(if s.isObserver
+				then Sequence{thisModule.ObserverClass(s)} 
+				else Sequence{} endif),
+        classifierBehavior <- s.classifierBehavior,
         ownedTrigger <- s.ownedTrigger,
         nestedClassifier <- s.nestedClassifier,
-        ownedOperation <- s.ownedOperation,
         ownedReception <- s.ownedReception)
 }
 
-rule ObservableClass {
-    from s : UML2!"uml::Class" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::Class") and
-			s.isObservable
-		else false endif)
+rule ObservableClass extends Class {
+    from s : UML2!"uml::Class" in IN (
+		s.isObservable)
     to t : UML2!"uml::Class" (
-        __xmiID__ <- s.__xmiID__,
         name <- s.name.debug('ObservableClass'),
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        ownedRule <- s.ownedRule,
-        templateParameter <- s.templateParameter,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        generalization <- s.generalization,
-        powertypeExtent <- s.powertypeExtent,
-        redefinedClassifier <- s.redefinedClassifier,
-        substitution <- s.substitution,
-        representation <- s.representation,
-        collaborationUse <- s.collaborationUse,
-        ownedUseCase <- s.ownedUseCase,
-        useCase <- s.useCase,
-        ownedAttribute <- s.ownedAttribute,
-        ownedConnector <- s.ownedConnector,
         ownedBehavior <- s.ownedBehavior
-			->union(if s.isObserver then Set{thisModule.ObserverClass(s)} else Set{} endif),
-        classifierBehavior <- s.classifierBehavior,
-        interfaceRealization <- s.interfaceRealization,
-        ownedTrigger <- s.ownedTrigger,
-        nestedClassifier <- s.nestedClassifier,
-        ownedOperation <- s.ownedOperation,
-        ownedReception <- s.ownedReception),
+			->union(if s.isObserver
+				then Sequence{thisModule.ObserverClass(s)}
+				else Sequence{} endif)),
 	-- Observable functionality --
 	   gen : UML2!"uml::Generalization" (
 	   	general <- thisModule.Observable,
 		specific <- s)
 }
 
-rule ObserverClass(s : UML2!"uml::Class") {
+lazy rule ObserverClass {
+	from s : UML2!"uml::Class"
 	to real : UML2!"uml::InterfaceRealization" (
 	   	contract <- thisModule.Observer,
 		implementingClassifier <- s),
@@ -254,7 +200,7 @@ rule ObserverClass(s : UML2!"uml::Class") {
 		direction <- #"in"),
 	   updateBehavior : UML2!"uml::OpaqueBehavior" (
 		specification <- updateOp,
-		name <- updateOp.name + 'Behavior',
+		name <- 'updateBehavior',
 		ownedParameter <- Sequence{updateBPar1, updateBPar2},
 		language <- Sequence{thisModule.language},
 		body <- Sequence{'arg'.reflectiveUpdateBody()}),
@@ -274,10 +220,8 @@ rule ObserverClass(s : UML2!"uml::Class") {
 }
 
 rule OpaqueBehavior {
-    from s : UML2!"uml::OpaqueBehavior" (
-    	if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::OpaqueBehavior")
-		else false endif)
+    from s : UML2!"uml::OpaqueBehavior" in IN (
+    	s.oclIsTypeOf(UML2!"uml::OpaqueBehavior"))
     to t : UML2!"uml::OpaqueBehavior" (
         __xmiID__ <- s.__xmiID__,
         name <- s.name,

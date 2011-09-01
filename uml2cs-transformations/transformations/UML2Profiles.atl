@@ -1,12 +1,13 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
+-- @nsURI UML2=http://www.eclipse.org/uml2/3.0.0/UML
 -- $Id$
 -- Applies all necessary profiles.
-module UML2Profiles; --extends UML2Copy
+module UML2Profiles;
 
 create OUT : UML2 from IN : UML2, ACCESSORS : UML2;
 
+uses "lib::UML2";
 uses UML2Copy;
-uses UML2;
 
 -- ======================================================================
 -- model-specific helpers begin
@@ -23,10 +24,7 @@ helper def : accessorsProfile : UML2!"uml::Profile" = 'Accessors'.profile().debu
 -- ======================================================================
 
 rule Model {
-    from s : UML2!"uml::Model" (
-    	if thisModule.inElements->includes(s) then
-			s.includesProfile(thisModule.accessorsProfile)
-		else false endif)
+    from s : UML2!"uml::Model" in IN
     to t : UML2!"uml::Model" (
         __xmiID__ <- s.__xmiID__,
 		name <- s.name.debug('Model'),
@@ -47,36 +45,14 @@ rule Model {
         profileApplication <- s.profileApplication)
 }
 
-rule ModelProfile {
-    from s : UML2!"uml::Model" (
-    	if thisModule.inElements->includes(s) then
-			not s.includesProfile(thisModule.accessorsProfile)
-		else false endif)
+rule ModelProfile extends Model {
+    from s : UML2!"uml::Model" in IN (
+    	not s.includesProfile(thisModule.accessorsProfile))
     to t : UML2!"uml::Model" (
-        __xmiID__ <- s.__xmiID__,
-		name <- s.name.debug('ModelProfile'),
-        visibility <- s.visibility,
-        viewpoint <- s.viewpoint,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        ownedRule <- s.ownedRule,
-        templateParameter <- s.templateParameter,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        packageMerge <- s.packageMerge,
-        packagedElement <- s.packagedElement,
-        profileApplication <- s.profileApplication),
-	   pa : UML2!"uml::ProfileApplication" (
-	   	applyingPackage <- s,
-		appliedProfile <- thisModule.accessorsProfile),
-	   ref : UML2!"ecore::EAnnotation" (
-	   	eModelElement <- pa,
-		source <- s.oclType().ePackage.nsURI,
-		references <- UML2!"ecore::EPackage".allInstancesFrom('ACCESSORS')->select(p|p.name='Accessors'))
+		name <- s.name.debug('ModelProfile'))
+	do {
+		t.applyProfile(thisModule.accessorsProfile);
+	}
 }
 
 -- ======================================================================

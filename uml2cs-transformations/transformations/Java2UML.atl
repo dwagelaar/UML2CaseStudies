@@ -1,12 +1,15 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
+-- @nsURI UML2=http://www.eclipse.org/uml2/3.0.0/UML
 -- $Id$
 -- Merges back java method bodies into UML2 source model
-module Java2UML; -- extends UML2Copy
+module Java2UML;
 
 create OUT : UML2 from IN : UML2, CODE : JAVA;
 
-uses UML2;
-uses Mappings;
+uses "lib::UML2";
+uses "lib::Mappings";
+uses UML2Copy;
+uses UML2ProfileCopy;
 
 -- ======================================================================
 -- model-specific helpers begin
@@ -74,27 +77,23 @@ helper def : equivalentParameters(selfpars : Sequence(UML2!"uml::Parameter"), ot
 	let otherpar : JAVA!SingleVariableDeclaration = otherpars->first() in
 	if selfpar.oclIsUndefined() then otherpar.oclIsUndefined()
 	else
-		if selfpar.equivalentTo(otherpar) then
-			thisModule.equivalentParameters(
-				selfpars->excluding(selfpar), 
-				otherpars->excluding(otherpar))
-		else false endif
+		selfpar.equivalentTo(otherpar) and
+		thisModule.equivalentParameters(
+			selfpars->excluding(selfpar), 
+			otherpars->excluding(otherpar))
 	endif;
 
 helper context UML2!"uml::Parameter" def : equivalentTo(v : JAVA!SingleVariableDeclaration) : Boolean =
-	if v.oclIsUndefined() then
-		false
+	not v.oclIsUndefined() and
+	if self.type.oclIsUndefined() then
+		v.type.lexicalForm = 'void'
 	else
-		if self.type.oclIsUndefined() then
-			v.type.lexicalForm = 'void'
+		if self.type.oclIsKindOf(UML2!"uml::PrimitiveType") then
+			let implTypeName : String = self.type.name.implTypeName().regexReplaceAll('::', '.') in
+			v.type.lexicalForm = implTypeName or
+			'java.lang.' + v.type.lexicalForm = implTypeName
 		else
-			if self.type.oclIsKindOf(UML2!"uml::PrimitiveType") then
-				let implTypeName : String = self.type.name.implTypeName().regexReplaceAll('::', '.') in
-				v.type.lexicalForm = implTypeName or
-				'java.lang.' + v.type.lexicalForm = implTypeName
-			else
-				v.type.lexicalForm = self.type.qualifiedName('.')
-			endif
+			v.type.lexicalForm = self.type.qualifiedName('.')
 		endif
 	endif;
 
@@ -142,19 +141,16 @@ helper context UML2!"uml::Operation" def : appletFilteredBody(statements : Seque
 	endif;
 
 helper context UML2!"uml::Operation" def : isAppletInit : Boolean = 
-	if (self.name = 'init') then
-		self.class.isApplet
-	else false endif;
+	self.name = 'init' and
+	self.class.isApplet;
 
 helper context UML2!"uml::Classifier" def : isJavaAppletApplet : Boolean =
 	self.typeDeclaration.superclassType.name.fullyQualifiedName = 'java.applet.Applet';
 
 helper context UML2!"uml::Operation" def : hasJavaBody : Boolean =
-	if not self.javaMethodDeclaration.oclIsUndefined() then
-		if not self.javaMethodDeclaration.body.oclIsUndefined() then
-			self.javaMethodDeclaration.body.statements->notEmpty()
-		else false endif
-	else false endif;
+	not self.javaMethodDeclaration.oclIsUndefined() and
+	not self.javaMethodDeclaration.body.oclIsUndefined() and
+	self.javaMethodDeclaration.body.statements->notEmpty();
 
 -- ======================================================================
 -- model-specific helpers end
@@ -165,10 +161,8 @@ helper context UML2!"uml::Operation" def : hasJavaBody : Boolean =
 -- ======================================================================
 
 rule Class {
-    from s : UML2!"uml::Class" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::Class")
-		else false endif)
+    from s : UML2!"uml::Class" in IN (
+		s.oclIsTypeOf(UML2!"uml::Class"))
 	using { myOperations : Set(UML2!"uml::Operation") = s.ownedOperation
 				->select(o|o.method->isEmpty() and o.hasJavaBody); }
 	to t : UML2!"uml::Class"  (
@@ -210,11 +204,7 @@ rule Class {
 }
 
 rule Operation {
-    from s : UML2!"uml::Operation" (
-    	if thisModule.inElements->includes(s) then
-			s.method->notEmpty() or
-			not s.hasJavaBody
-		else false endif)
+    from s : UML2!"uml::Operation" in IN
     to t : UML2!"uml::Operation" (
         __xmiID__ <- s.__xmiID__,
         name <- s.name,
@@ -244,39 +234,12 @@ rule Operation {
         bodyCondition <- s.bodyCondition)
 }
 
-rule EmptyOperation {
-    from s : UML2!"uml::Operation" (
-    	if thisModule.inElements->includes(s) then
-			s.method->isEmpty() and
-			s.hasJavaBody
-		else false endif)
+rule EmptyOperation extends Operation {
+    from s : UML2!"uml::Operation" in IN (
+    	s.method->isEmpty() and
+		s.hasJavaBody)
     to t : UML2!"uml::Operation" (
-        __xmiID__ <- s.__xmiID__,
-        name <- s.name.debug('EmptyOperation'),
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isStatic <- s.isStatic,
-        isAbstract <- s.isAbstract,
-        concurrency <- s.concurrency,
-        isQuery <- s.isQuery,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        ownedRule <- s.ownedRule,
-        ownedParameter <- s.ownedParameter,
-        method <- s.method,
-        raisedException <- s.raisedException,
-        ownedParameterSet <- s.ownedParameterSet,
-        templateParameter <- s.templateParameter,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        precondition <- s.precondition,
-        postcondition <- s.postcondition,
-        redefinedOperation <- s.redefinedOperation,
-        bodyCondition <- s.bodyCondition),
+        name <- s.name.debug('EmptyOperation')),
 	-- Java method body
 	   javaMethod : UML2!"uml::OpaqueBehavior" (
 	   	specification <- s,
@@ -286,7 +249,8 @@ rule EmptyOperation {
 		ownedParameter <- s.ownedParameter->collect(p|thisModule.CopyParameter(p)))
 }
 
-rule CopyParameter(s : UML2!"uml::Parameter") {
+lazy rule CopyParameter {
+	from s : UML2!"uml::Parameter"
     to t : UML2!"uml::Parameter" (
         name <- s.name,
         visibility <- s.visibility,
@@ -306,16 +270,11 @@ rule CopyParameter(s : UML2!"uml::Parameter") {
 }
 
 rule OpaqueBehavior {
-    from s : UML2!"uml::OpaqueBehavior" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::OpaqueBehavior") and
-			if s.language.includes('java') and not s.specification.oclIsUndefined() then
-				s.specification.javaMethodDeclaration.oclIsUndefined()
-			else true endif
-		else false endif)
+    from s : UML2!"uml::OpaqueBehavior" in IN (
+		s.oclIsTypeOf(UML2!"uml::OpaqueBehavior"))
     to t : UML2!"uml::OpaqueBehavior" (
         __xmiID__ <- s.__xmiID__,
-		name <- s.name.debug('OpaqueBehavior'),
+		name <- s.name,
         visibility <- s.visibility,
         isLeaf <- s.isLeaf,
         isAbstract <- s.isAbstract,
@@ -358,58 +317,16 @@ rule OpaqueBehavior {
         specification <- s.specification)
 }
 
-rule JavaOpaqueBehavior {
-    from s : UML2!"uml::OpaqueBehavior" (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML2!"uml::OpaqueBehavior") and
-			if s.language.includes('java') and not s.specification.oclIsUndefined() then
-				not s.specification.javaMethodDeclaration.oclIsUndefined()
-			else false endif
-		else false endif)
+rule JavaOpaqueBehavior extends OpaqueBehavior {
+    from s : UML2!"uml::OpaqueBehavior" in IN (
+		s.language.includes('java') and
+		not s.specification.oclIsUndefined() and
+		not s.specification.javaMethodDeclaration.oclIsUndefined())
 	using { index : Integer = s.language->indexOf('java'); }
     to t : UML2!"uml::OpaqueBehavior" (
-        __xmiID__ <- s.__xmiID__,
 		name <- s.name.debug('JavaOpaqueBehavior'),
-        visibility <- s.visibility,
-        isLeaf <- s.isLeaf,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        isReentrant <- s.isReentrant,
-        body <- s.body.excluding(s.body.at(index))->insertAt(index, s.specification.filteredBody()),
-        language <- s.language,
-        eAnnotations <- s.eAnnotations,
-        ownedComment <- s.ownedComment,
-        clientDependency <- s.clientDependency,
-        nameExpression <- s.nameExpression,
-        elementImport <- s.elementImport,
-        packageImport <- s.packageImport,
-        ownedRule <- s.ownedRule,
-        templateParameter <- s.templateParameter,
-        templateBinding <- s.templateBinding,
-        ownedTemplateSignature <- s.ownedTemplateSignature,
-        generalization <- s.generalization,
-        powertypeExtent <- s.powertypeExtent,
-        redefinedClassifier <- s.redefinedClassifier,
-        substitution <- s.substitution,
-        representation <- s.representation,
-        collaborationUse <- s.collaborationUse,
-        ownedUseCase <- s.ownedUseCase,
-        useCase <- s.useCase,
-        ownedAttribute <- s.ownedAttribute,
-        ownedConnector <- s.ownedConnector,
-        ownedBehavior <- s.ownedBehavior,
-        classifierBehavior <- s.classifierBehavior,
-        interfaceRealization <- s.interfaceRealization,
-        ownedTrigger <- s.ownedTrigger,
-        nestedClassifier <- s.nestedClassifier,
-        ownedOperation <- s.ownedOperation,
-        ownedReception <- s.ownedReception,
-        redefinedBehavior <- s.redefinedBehavior,
-        ownedParameter <- s.ownedParameter,
-        precondition <- s.precondition,
-        postcondition <- s.postcondition,
-        ownedParameterSet <- s.ownedParameterSet,
-        specification <- s.specification)
+        body <- s.body->excluding(s.body->at(index))
+			->insertAt(index, s.specification.filteredBody()))
 }
 
 -- ======================================================================

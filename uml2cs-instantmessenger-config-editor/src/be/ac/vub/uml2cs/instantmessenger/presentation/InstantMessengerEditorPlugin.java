@@ -6,18 +6,16 @@
  */
 package be.ac.vub.uml2cs.instantmessenger.presentation;
 
-import be.ac.vub.uml2cs.instantmessenger.util.ErrorDialogRunnable;
-import be.ac.vub.uml2cs.transformations.provider.TransformationsEditPlugin;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+
+import be.ac.vub.uml2cs.instantmessenger.util.ErrorDialogRunnable;
+import be.ac.vub.uml2cs.transformations.provider.TransformationsEditPlugin;
 
 /**
  * This is the central singleton for the InstantMessenger editor plugin.

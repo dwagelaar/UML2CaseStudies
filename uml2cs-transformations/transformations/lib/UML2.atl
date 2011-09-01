@@ -1,9 +1,10 @@
--- @atlcompiler atl2006
+-- @atlcompiler emftvm
+-- @nsURI UML2=http://www.eclipse.org/uml2/3.0.0/UML
 -- $Id$
 -- UML2 helpers
-library UML2;
+library "lib::UML2";
 
-uses Strings;
+uses "lib::Strings";
 
 ------------------------------- General helpers -----------------------------------
 
@@ -93,6 +94,11 @@ helper context UML2!"uml::Property" def : associatedProperty : UML2!"uml::Proper
 	if self.association.oclIsUndefined() then
 		OclUndefined
 	else
-		self.association.memberEnd->any(p|
-			p<>self and p.isNavigable)
+		let ends : Sequence(UML2!"uml::Property") =
+			self.association.memberEnd->select(p|p<>self and p.isNavigable) in
+		if ends->isEmpty() then
+			OclUndefined
+		else
+			ends->first()
+		endif
 	endif;

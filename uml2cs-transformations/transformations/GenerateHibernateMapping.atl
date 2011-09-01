@@ -1,0 +1,94 @@
+-- @atlcompiler emftvm
+-- @nsURI UML2=http://www.eclipse.org/uml2/3.0.0/UML
+-- @nsURI HBM=http://hibernate.sourceforge.net/hibernate-mapping-3.0.xsd
+-- Generates a test hibernate mapping 3.0 model from a uml2 model
+-- $Id: GenerateHibernateMapping.atl 7469 2008-05-29 07:44:19Z dwagelaa $
+module GenerateHibernateMapping;
+
+create OUT : HBM from IN : UML2;
+
+uses "lib::UML2";
+
+-- ======================================================================
+-- helpers begin
+-- ======================================================================
+
+helper context UML2!"uml::Class" def : isPersistent : Boolean =
+	not self.getAppliedStereotype('Persistence::Persistent').oclIsUndefined();
+
+helper context UML2!"uml::Class" def : persistent : UML2!"uml::Stereotype" =
+	self.getAppliedStereotype('Persistence::Persistent');
+
+helper context UML2!"uml::Property" def : isMapped : Boolean =
+	not self.getAppliedStereotype('Persistence::mapped').oclIsUndefined();
+
+helper context UML2!"uml::Property" def : mapped : UML2!"uml::Stereotype" =
+	self.getAppliedStereotype('Persistence::mapped');
+
+helper context UML2!"uml::PrimitiveType" def : generatorClass : String =
+	if self.name = 'Integer' or self.name = 'UnlimitedNatural' or self.name = 'Real'
+	then 'native' else 'assigned' endif;
+
+helper context UML2!"uml::Type" def : generatorClass : String =
+	'assigned';
+
+-- ======================================================================
+-- helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- transformation rules begin
+-- ======================================================================
+
+rule HibernateMapping {
+	from s : UML2!"uml::Model" in IN
+	to hm : HBM!HibernateMappingType (
+		class <- UML2!Class.allInstancesFrom('IN')->select(c|c.isPersistent)),
+	   dr : HBM!DocumentRoot (
+		hibernateMapping <- hm)
+}
+
+rule Class {
+	from s : UML2!"uml::Class" in IN (s.isPersistent)
+	using {
+		persistent_id : UML2!"uml::Property" = s.getValue(s.persistent, 'id');
+	}
+	to c : HBM!ClassType (
+		name <- s.qualifiedName('.').debug('PersistentClass'),
+		table <- s.name,
+		property <- s.attribute->reject(a|a = persistent_id),
+		id <- id),
+	   id : HBM!IdType (
+	   	name <- persistent_id.name,
+		column1 <- persistent_id.name + '_ID',
+		generator <- gen),
+	   gen : HBM!GeneratorType (
+	   	class <- persistent_id.type.generatorClass)
+}
+
+rule Property {
+	from s : UML2!"uml::Property" in IN (
+		not s.class.oclIsUndefined() and
+		s.class.isPersistent and
+		s.class.getValue(s.class.persistent, 'id') <> s)
+	to t : HBM!PropertyType (
+		name <- s.name)
+}
+
+rule MappedProperty extends Property {
+	from s : UML2!"uml::Property" in IN (
+		s.isMapped)
+	to t : HBM!PropertyType (
+		type1 <- s.getValue(s.mapped, 'type'))
+}
+
+rule MappedPropertyWithLength extends MappedProperty {
+	from s : UML2!"uml::Property" in IN (
+		s.getValue(s.mapped, 'length') > 0)
+	to t : HBM!PropertyType (
+		length <- s.getValue(s.mapped, 'length'))
+}
+
+-- ======================================================================
+-- transformation rules end
+-- ======================================================================

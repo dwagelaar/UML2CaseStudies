@@ -14,35 +14,16 @@
 		classpathref="anttasks.path"/>
 
 	<!-- = = = = = properties = = = = = -->
-	
-	<!-- atl.vm = "Regular VM (with debugger)" | "EMF-specific VM" -->
-	<!--property name="atl.launcher" value="Regular VM (with debugger)"/-->
-	<property name="atl.launcher" value="EMF-specific VM"/>
 
-	<eclipse.convertPath resourcepath="/uml2cs-transformations" property="trans.path"/>
-	<!-- property name="trans.path" value="../../uml2cs-transformations"/ -->
 	<property name="trans.uri" value="platform:/resource/uml2cs-transformations"/>
 
-	<property name="trans.uml2copy.path" value="${trans.path}/UML2Copy.asm"/>
-	<property name="trans.uml2profilecopy.path" value="${trans.path}/UML2ProfileCopy.asm"/>
-	<property name="trans.uml2profiles.path" value="${trans.path}/UML2Profiles.asm"/>
-	<property name="trans.uml2accessors.path" value="${trans.path}/UML2Accessors.asm"/>
-	<property name="trans.uml2observer.path" value="${trans.path}/UML2Observer.asm"/>
-	<property name="trans.uml2javaobserver.path" value="${trans.path}/UML2JavaObserver.asm"/>
-	<property name="trans.uml2abstractfactory.path" value="${trans.path}/UML2AbstractFactory.asm"/>
-	<property name="trans.uml2singleton.path" value="${trans.path}/UML2Singleton.asm"/>
-	<property name="trans.uml2applet.path" value="${trans.path}/UML2Applet.asm"/>
-	<property name="trans.uml2midlet.path" value="${trans.path}/UML2MIDlet.asm"/>
-	<property name="trans.uml2swtapplication.path" value="${trans.path}/UML2SWTApplication.asm"/>
-	<property name="trans.uml2asyncmethods.path" value="${trans.path}/UML2AsyncMethods.asm"/>
-	<property name="trans.uml2datatypes.path" value="${trans.path}/UML2DataTypes.asm"/>
-	<property name="trans.uml2tojava.path" value="${trans.path}/UML2ToJava.asm"/>
-	<property name="trans.java2uml.path" value="${trans.path}/Java2UML.asm"/>
-	<property name="trans.generatehbm.path" value="${trans.path}/GenerateHibernateMapping.asm"/>
+	<property name="trans.default.path" value="${trans.uri}/transformations/"/>
+	<property name="trans.java.path" value="${trans.uri}/transformations-java/"/>
+	<property name="trans.java2.path" value="${trans.uri}/transformations-java2/"/>
 
-	<property name="metamodel.uml2.uri" value="${trans.uri}/metamodels/UML2Profiles.ecore"/>
+	<property name="metamodel.uml2.uri" value="http://www.eclipse.org/uml2/3.0.0/UML"/>
 	<property name="metamodel.xml.uri" value="${trans.uri}/metamodels/XML.ecore"/>
-	<property name="metamodel.java.nsuri" value="http://www.eclipse.org/gmt/modisco/JavaAST"/>
+	<property name="metamodel.java.nsuri" value="java.xmi"/>
 	<property name="metamodel.hbm.nsuri" value="http://hibernate.sourceforge.net/hibernate-mapping-3.0.xsd"/>
 	<property name="profile.accessors.uri" value="${trans.uri}/profiles/Accessors.profile.uml"/>
 	<property name="model.uml2types.uri" value="${trans.uri}/models/PrimitiveTypes.uml"/>
@@ -52,14 +33,7 @@
 	<property name="model.midlet.uri" value="${trans.uri}/models/MIDlet.uml"/>
 	<property name="model.swtapplication.uri" value="${trans.uri}/models/SWTApplication.uml"/>
 
-	<property name="lib.path" value="${trans.path}/lib"/>
-	<property name="lib.javamappings.path" value="${lib.path}/JavaMappings.asm"/>
-	<property name="lib.java1.path" value="${lib.path}/Java1.asm"/>
-	<property name="lib.java2.path" value="${lib.path}/Java2.asm"/>
-	<property name="lib.strings.path" value="${lib.path}/Strings.asm"/>
-	<property name="lib.uml2.path" value="${lib.path}/UML2.asm"/>
-
-	<property name="model.parameters.path" value="parameters.xmi"/>
+	<property name="model.parameters.uri" value="${current.uri}/parameters.xmi"/>
 
 	<!-- = = = = = macros = = = = = -->
 
@@ -71,16 +45,12 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="uri" default="MODEL.OUT.URI" />
 		<sequential>
-			<atl.launch path="${trans.uml2copy.path}">
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="IN" model="@{in}"/>
-				<inmodel name="ACCESSORS" model="Accessors"/>
-				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
-				<library name="UML2" path="${lib.uml2.path}"/>
-				<superimpose path="${trans.uml2profiles.path}"/>
-				<superimpose path="${trans.uml2profilecopy.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="UML2Profiles">
+				<metamodel name="UML2"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<inputmodel name="Accessors" as="ACCESSORS"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
 			<antcall target="saveModel" inheritRefs="true">
 				<param name="model" value="@{out}"/>
 				<param name="uri" value="@{uri}"/>
@@ -96,20 +66,13 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="uri" default="MODEL.OUT.URI" />
 		<sequential>
-			<atl.launch path="${trans.uml2copy.path}">
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="ACCESSORS" model="Accessors"/>
-				<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
-				<inmodel name="IN" model="@{in}"/>
-				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
-				<library name="Strings" path="${lib.strings.path}"/>
-				<library name="UML2" path="${lib.uml2.path}"/>
-				<library name="Mappings" path="${lib.mappings.path}"/>
-				<library name="Java" path="${lib.java.path}"/>
-				<superimpose path="${trans.uml2accessors.path}"/>
-				<superimpose path="${trans.uml2profilecopy.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="UML2Accessors">
+				<metamodel name="UML2"/>
+				<inputmodel name="Accessors" as="ACCESSORS"/>
+				<inputmodel name="PrimitiveTypes" as="UML2TYPES"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
 			<antcall target="saveModel" inheritRefs="true">
 				<param name="model" value="@{out}"/>
 				<param name="uri" value="@{uri}"/>
@@ -125,20 +88,13 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="uri" default="MODEL.OUT.URI" />
 		<sequential>
-			<atl.launch path="${trans.uml2copy.path}">
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="OBSERVER" model="Observer"/>
-				<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
-				<inmodel name="IN" model="@{in}"/>
-				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
-				<library name="Strings" path="${lib.strings.path}"/>
-				<library name="UML2" path="${lib.uml2.path}"/>
-				<library name="Mappings" path="${lib.mappings.path}"/>
-				<library name="Java" path="${lib.java.path}"/>
-				<superimpose path="${trans.uml2observer.path}"/>
-				<superimpose path="${trans.uml2profilecopy.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="UML2Observer">
+				<metamodel name="UML2"/>
+				<inputmodel name="Observer" as="OBSERVER"/>
+				<inputmodel name="PrimitiveTypes" as="UML2TYPES"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
 			<antcall target="saveModel" inheritRefs="true">
 				<param name="model" value="@{out}"/>
 				<param name="uri" value="@{uri}"/>
@@ -154,19 +110,13 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="uri" default="MODEL.OUT.URI" />
 		<sequential>
-			<atl.launch path="${trans.uml2copy.path}">
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="IMPLTYPES" model="ImplTypes"/>
-				<inmodel name="UML2TYPES" model="PrimitiveTypes"/>
-				<inmodel name="IN" model="@{in}"/>
-				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
-				<library name="Strings" path="${lib.strings.path}"/>
-				<library name="UML2" path="${lib.uml2.path}"/>
-				<library name="Mappings" path="${lib.mappings.path}"/>
-				<superimpose path="${trans.uml2javaobserver.path}"/>
-				<superimpose path="${trans.uml2profilecopy.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="UML2JavaObserver">
+				<metamodel name="UML2"/>
+				<inputmodel name="ImplTypes" as="IMPLTYPES"/>
+				<inputmodel name="PrimitiveTypes" as="UML2TYPES"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
 			<antcall target="saveModel" inheritRefs="true">
 				<param name="model" value="@{out}"/>
 				<param name="uri" value="@{uri}"/>
@@ -182,16 +132,11 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="uri" default="MODEL.OUT.URI" />
 		<sequential>
-			<atl.launch path="${trans.uml2copy.path}">
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="IN" model="@{in}"/>
-				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
-				<library name="UML2" path="${lib.uml2.path}"/>
-				<library name="Mappings" path="${lib.mappings.path}"/>
-				<superimpose path="${trans.uml2abstractfactory.path}"/>
-				<superimpose path="${trans.uml2profilecopy.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="UML2AbstractFactory">
+				<metamodel name="UML2"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
 			<antcall target="saveModel" inheritRefs="true">
 				<param name="model" value="@{out}"/>
 				<param name="uri" value="@{uri}"/>
@@ -207,17 +152,11 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="uri" default="MODEL.OUT.URI" />
 		<sequential>
-			<atl.launch path="${trans.uml2copy.path}">
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="IN" model="@{in}"/>
-				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
-				<library name="UML2" path="${lib.uml2.path}"/>
-				<library name="Java" path="${lib.java.path}"/>
-				<library name="Mappings" path="${lib.mappings.path}"/>
-				<superimpose path="${trans.uml2singleton.path}"/>
-				<superimpose path="${trans.uml2profilecopy.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="UML2Singleton">
+				<metamodel name="UML2"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
 			<antcall target="saveModel" inheritRefs="true">
 				<param name="model" value="@{out}"/>
 				<param name="uri" value="@{uri}"/>
@@ -233,18 +172,12 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="uri" default="MODEL.OUT.URI" />
 		<sequential>
-			<atl.launch path="${trans.uml2copy.path}">
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="IN" model="@{in}"/>
-				<inmodel name="IMPLTYPES" model="ImplTypes"/>
-				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
-				<library name="UML2" path="${lib.uml2.path}"/>
-				<library name="Java" path="${lib.java.path}"/>
-				<library name="Mappings" path="${lib.mappings.path}"/>
-				<superimpose path="${trans.uml2applet.path}"/>
-				<superimpose path="${trans.uml2profilecopy.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="UML2Applet">
+				<metamodel name="UML2"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<inputmodel name="ImplTypes" as="IMPLTYPES"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
 			<antcall target="saveModel" inheritRefs="true">
 				<param name="model" value="@{out}"/>
 				<param name="uri" value="@{uri}"/>
@@ -260,17 +193,12 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="uri" default="MODEL.OUT.URI" />
 		<sequential>
-			<atl.launch path="${trans.uml2copy.path}">
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="IN" model="@{in}"/>
-				<inmodel name="MIDLET" model="MIDlet"/>
-				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
-				<library name="UML2" path="${lib.uml2.path}"/>
-				<library name="Mappings" path="${lib.mappings.path}"/>
-				<superimpose path="${trans.uml2midlet.path}"/>
-				<superimpose path="${trans.uml2profilecopy.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="UML2MIDlet">
+				<metamodel name="UML2"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<inputmodel name="MIDlet" as="MIDLET"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
 			<antcall target="saveModel" inheritRefs="true">
 				<param name="model" value="@{out}"/>
 				<param name="uri" value="@{uri}"/>
@@ -286,18 +214,13 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="uri" default="MODEL.OUT.URI" />
 		<sequential>
-			<atl.launch path="${trans.uml2copy.path}">
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="IN" model="@{in}"/>
-				<inmodel name="SWTAPP" model="SWTApplication"/>
-				<inmodel name="IMPLTYPES" model="ImplTypes"/>
-				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
-				<library name="UML2" path="${lib.uml2.path}"/>
-				<library name="Mappings" path="${lib.mappings.path}"/>
-				<superimpose path="${trans.uml2swtapplication.path}"/>
-				<superimpose path="${trans.uml2profilecopy.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="UML2SWTApplication">
+				<metamodel name="UML2"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<inputmodel name="SWTApplication" as="SWTAPP"/>
+				<inputmodel name="ImplTypes" as="IMPLTYPES"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
 			<antcall target="saveModel" inheritRefs="true">
 				<param name="model" value="@{out}"/>
 				<param name="uri" value="@{uri}"/>
@@ -313,15 +236,11 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="uri" default="MODEL.OUT.URI" />
 		<sequential>
-			<atl.launch path="${trans.uml2copy.path}">
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="IN" model="@{in}"/>
-				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
-				<library name="Mappings" path="${lib.mappings.path}"/>
-				<superimpose path="${trans.uml2asyncmethods.path}"/>
-				<superimpose path="${trans.uml2profilecopy.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="UML2AsyncMethods">
+				<metamodel name="UML2"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
 			<antcall target="saveModel" inheritRefs="true">
 				<param name="model" value="@{out}"/>
 				<param name="uri" value="@{uri}"/>
@@ -337,19 +256,12 @@
 		<attribute name="out" default="MODEL.OUT" />
 		<attribute name="uri" default="MODEL.OUT.URI" />
 		<sequential>
-			<atl.launch path="${trans.uml2copy.path}">
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="IMPLTYPES" model="ImplTypes"/>
-				<inmodel name="IN" model="@{in}"/>
-				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{uri}"/>
-				<library name="Strings" path="${lib.strings.path}"/>
-				<library name="UML2" path="${lib.uml2.path}"/>
-				<library name="Mappings" path="${lib.mappings.path}"/>
-				<library name="Java" path="${lib.java.path}"/>
-				<superimpose path="${trans.uml2datatypes.path}"/>
-				<superimpose path="${trans.uml2profilecopy.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="UML2DataTypes">
+				<metamodel name="UML2"/>
+				<inputmodel name="ImplTypes" as="IMPLTYPES"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
 			<antcall target="saveModel" inheritRefs="true">
 				<param name="model" value="@{out}"/>
 				<param name="uri" value="@{uri}"/>
@@ -367,13 +279,12 @@
 	<macrodef name="generate">
 		<attribute name="in" default="MODEL.IN" />
 		<sequential>
-			<atl.launch path="${trans.generate.path}">
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="IN" model="@{in}"/>
-				<inmodel name="XML" model="XML"/>
-				<inmodel name="parameters" model="Parameters"/>
-				<library name="UML2" path="${lib.uml2.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="${trans.generate}">
+				<metamodel name="UML2"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<metamodel name="XML"/>
+				<inputmodel name="Parameters" as="parameters"/>
+			</emftvm.run>
 		</sequential>
 	</macrodef>
 
@@ -385,15 +296,13 @@
 		<attribute name = 'out' default = 'MODEL.OUT'/>
 		<attribute name = 'uri' default = 'MODEL.OUT.URI'/>
 		<sequential>
-			<atl.launch path = '${trans.generatehbm.path}'>
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name = 'HBM' model = 'HBM'/>
-				<inmodel name = 'UML2' model = 'UML2'/>
-				<inmodel name = 'IN' model = '@{in}'/>
-				<outmodel name = 'OUT' model = '@{out}' metamodel = 'HBM' path = '@{uri}'/>
-				<library name = 'UML2' path = '${lib.uml2.path}'/>
-			</atl.launch>
-			<atl.saveModel model = '@{out}' uri = '@{uri}'/>
+			<emftvm.run modulepath="${trans.path}" module="GenerateHibernateMapping">
+				<metamodel name="HBM"/>
+				<metamodel name="UML2"/>
+				<inputmodel name="@{in}" as ="IN"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
+			<emftvm.saveModel name="@{out}" uri="@{uri}" derived="true"/>
 		</sequential>
 	</macrodef>
 
@@ -404,21 +313,15 @@
 		<attribute name="in" default="MODEL.IN" />
 		<attribute name="code" default="MODEL.CODE" />
 		<attribute name="out" default="MODEL.OUT" />
-		<attribute name="path" default="MODEL.OUT.PATH" />
+		<attribute name="uri" default="MODEL.OUT.URI" />
 		<sequential>
-			<atl.launch path="${trans.uml2copy.path}">
-				<option name="allowInterModelReferences" value="true"/>
-				<inmodel name="UML2" model="UML2"/>
-				<inmodel name="JAVA" model="JAVA"/>
-				<inmodel name="IN" model="@{in}"/>
-				<inmodel name="CODE" model="@{code}"/>
-				<outmodel name="OUT" model="@{out}" metamodel="UML2" path="@{path}"/>
-				<library name="UML2" path="${lib.uml2.path}"/>
-				<library name="Mappings" path="${lib.mappings.path}"/>
-				<library name="Java" path="${lib.java.path}"/>
-				<superimpose path="${trans.java2uml.path}"/>
-				<superimpose path="${trans.uml2profilecopy.path}"/>
-			</atl.launch>
+			<emftvm.run modulepath="${trans.path}" module="Java2UML">
+				<metamodel name="UML2"/>
+				<metamodel name="JAVA"/>
+				<inputmodel name="@{in}" as="IN"/>
+				<inputmodel name="@{code}" as="CODE"/>
+				<outputmodel name="@{out}" as="OUT" uri="@{uri}"/>
+			</emftvm.run>
 		</sequential>
 	</macrodef>
 
@@ -431,18 +334,16 @@
 
 	<target name = "defineJava1Properties" if = "java1">
 		<echo>Java1 selected</echo>
-		<property name="lib.mappings.path" value="${lib.javamappings.path}"/>
-		<property name="lib.java.path" value="${lib.java1.path}"/>
+		<property name="trans.path" value="${trans.java.path},${trans.default.path}"/>
 		<property name="model.impltypes.uri" value="${model.javatypes.uri}"/>
-		<property name="trans.generate.path" value="${trans.uml2tojava.path}"/>
+		<property name="trans.generate" value="UML2ToJava"/>
 	</target>
 
 	<target name = "defineJava2Properties" if = "java2">
 		<echo>Java2 selected</echo>
-		<property name="lib.mappings.path" value="${lib.javamappings.path}"/>
-		<property name="lib.java.path" value="${lib.java2.path}"/>
+		<property name="trans.path" value="${trans.java2.path},${trans.java.path},${trans.default.path}"/>
 		<property name="model.impltypes.uri" value="${model.javatypes.uri}"/>
-		<property name="trans.generate.path" value="${trans.uml2tojava.path}"/>
+		<property name="trans.generate" value="UML2ToJava"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
@@ -546,63 +447,63 @@
 	<target name="java2uml">
 		<!-- params: ${in}, ${code}, ${uri} -->
 		<java2uml in = "${in}" out = "feedback-${in}" code = "${code}" path = "feedback-${uri}"/>
-		<atl.saveModel model="feedback-${in}" uri="${uri}" derived="false"/>
+		<emftvm.saveModel name="feedback-${in}" uri="${uri}" derived="false"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
 		  target: loadBaseModels
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadBaseModels">
-		<atl.loadModel modelHandler = "EMF" name = "XML" metamodel = "MOF" uri = "${metamodel.xml.uri}"/>
-		<atl.loadModel modelHandler = "EMF" name = "Parameters" metamodel = "XML" path = "${model.parameters.path}">
+		<emftvm.loadMetamodel name="XML" uri="${metamodel.xml.uri}"/>
+		<emftvm.loadModel name="Parameters" uri="${current.uri}/parameters.xmi">
 			<!--injector name = "xml"/-->
-		</atl.loadModel>
-		<atl.loadModel modelHandler = "UML2" name = "UML2" metamodel = "MOF" uri = "${metamodel.uml2.uri}"/>
-		<atl.loadModel modelHandler = "UML2" name = "Accessors" metamodel = "UML2" uri = "${profile.accessors.uri}"/>
-		<atl.loadModel modelHandler = "UML2" name = "PrimitiveTypes" metamodel = "UML2" uri = "${model.uml2types.uri}"/>
-		<atl.loadModel modelHandler = "UML2" name = "ImplTypes" metamodel = "UML2" uri = "${model.impltypes.uri}"/>
+		</emftvm.loadModel>
+		<emftvm.loadMetamodel name="UML2" uri="${metamodel.uml2.uri}"/>
+		<emftvm.loadModel name="Accessors" uri="${profile.accessors.uri}"/>
+		<emftvm.loadModel name="PrimitiveTypes" uri="${model.uml2types.uri}"/>
+		<emftvm.loadModel name="ImplTypes" uri="${model.impltypes.uri}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
 		  target: loadIteratorEnumerationAdapter
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadIteratorEnumerationAdapter" if = "java2" depends = "loadBaseModels">
-		<atl.loadModel modelHandler = "UML2" name = "IteratorEnumerationAdapter" metamodel = "UML2" uri = "${model.itenumadapter.uri}"/>
+		<emftvm.loadModel name="IteratorEnumerationAdapter" uri="${model.itenumadapter.uri}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
 		  target: loadObserver
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadObserver" if = "observer" depends = "loadBaseModels">
-		<atl.loadModel modelHandler = "UML2" name = "Observer" metamodel = "UML2" uri = "${model.obstypes.uri}"/>
+		<emftvm.loadModel name="Observer" uri="${model.obstypes.uri}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
 		  target: loadMIDlet
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadMIDlet" if = "midlet" depends = "loadBaseModels">
-		<atl.loadModel modelHandler = "UML2" name = "MIDlet" metamodel = "UML2" uri = "${model.midlet.uri}"/>
+		<emftvm.loadModel name="MIDlet" uri="${model.midlet.uri}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
 		  target: loadSWTApplication
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadSWTApplication" if = "swt-application" depends = "loadBaseModels">
-		<atl.loadModel modelHandler = "UML2" name = "SWTApplication" metamodel = "UML2" uri = "${model.swtapplication.uri}"/>
+		<emftvm.loadModel name="SWTApplication" uri="${model.swtapplication.uri}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
 		  target: loadJAVA
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadJAVA">
-		<atl.loadModel modelHandler = "EMF" name = "JAVA" metamodel = "MOF" nsuri = "${metamodel.java.nsuri}"/>
+		<emftvm.loadMetamodel name="JAVA" uri="${metamodel.java.nsuri}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
 		  target: loadHBM
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "loadHBM">
-		<atl.loadModel modelHandler = "EMF" name = "HBM" metamodel = "MOF" nsuri = "${metamodel.hbm.nsuri}"/>
+		<emftvm.loadMetamodel name="HBM" uri="${metamodel.hbm.nsuri}"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
@@ -610,7 +511,7 @@
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "saveModel" if = "saveModels">
 	<!-- params: ${model}, ${uri} -->
-   		<atl.saveModel model = "${model}" uri = "${uri}"/>
+   		<emftvm.saveModel name="${model}" uri="${uri}" derived="true"/>
 	</target>
 
 	<!-- = = = = = = = = = = = = = = = = =
@@ -618,7 +519,7 @@
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "saveLastModel" if = "saveLastModel">
 	<!-- params: ${model}, ${uri} -->
-   		<atl.saveModel model = "${model}" uri = "${uri}"/>
+   		<emftvm.saveModel name="${model}" uri="${uri}" derived="true"/>
 	</target>
 	
 	<!-- = = = = = = = = = = = = = = = = =
@@ -670,12 +571,15 @@
 		  target: clean
 		 = = = = = = = = = = = = = = = = = -->
 	<target name = "clean">
-        <delete>
+        <delete includeemptydirs="true">
             <fileset dir = ".">
             	<include name = "*.uml"/>
         	</fileset>
+        	<fileset dir="../src">
+        		<include name="**/*"/>
+        	</fileset>
         </delete>
-	    <eclipse.refreshLocal resource = '${ant.project.name}'/>
+	    <eclipse.refreshLocal resource = '${ant.project.name}/..'/>
 	</target>
 	
 	<!-- = = = = = = = = = = = = = = = = =
@@ -687,6 +591,7 @@
 				<include name="**/*.java"/>
 			</fileset>
 		</javaformatter>
+		<eclipse.refreshLocal resource="${ant.project.name}/.."/>
 	</target>
 
 </project>

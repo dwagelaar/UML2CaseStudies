@@ -2,7 +2,7 @@
 <feature
       id="be.ac.vub.uml2cs.infrastructure"
       label="UML2 case studies infrastructure feature"
-      version="1.2.1"
+      version="1.3.0"
       provider-name="Vrije Universiteit Brussel"
       plugin="be.ac.vub.uml2cs.instantmessenger.config"
       image="VUB_logo_compact.gif">
@@ -15,7 +15,7 @@
    </description>
 
    <copyright url="about.html">
-      © Copyright 2007-2010 Dennis Wagelaar, Vrije Universiteit Brussel
+      © Copyright 2007-2011 Dennis Wagelaar, Vrije Universiteit Brussel
    </copyright>
 
    <license url="about.html">
@@ -49,8 +49,8 @@ the terms and conditions of the Eclipse Public License Version
 
    <plugin
          id="be.ac.vub.uml2cs.transformations.config"
-         download-size="132"
-         install-size="132"
+         download-size="248"
+         install-size="248"
          version="0.0.0"
          unpack="false"/>
 
@@ -63,22 +63,22 @@ the terms and conditions of the Eclipse Public License Version
 
    <plugin
          id="be.ac.vub.uml2cs.instantmessenger.config.editor"
-         download-size="532"
-         install-size="532"
+         download-size="520"
+         install-size="520"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="be.ac.vub.uml2cs.instantmessenger.config.edit"
-         download-size="80"
-         install-size="80"
+         download-size="128"
+         install-size="128"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="be.ac.vub.uml2cs.instantmessenger.config"
-         download-size="168"
-         install-size="168"
+         download-size="136"
+         install-size="136"
          version="0.0.0"
          unpack="false"/>
 

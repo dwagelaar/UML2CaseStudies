@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AbstractFactory="http:///schemas/AbstractFactory/0" xmlns:Applet="http:///schemas/Applet/1" xmlns:Observer="http:///schemas/Observer/1" xmlns:Singleton="http:///schemas/Singleton/1" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/AbstractFactory/0 ../../uml2cs-transformations/profiles/AbstractFactory.profile.uml#_-a-lgUPTEdusb52s3APTjA http:///schemas/Applet/1 ../../uml2cs-transformations/profiles/Applet.profile.uml#_i8fxgDgqEduNII1tDKqNvA http:///schemas/Observer/1 ../../uml2cs-transformations/profiles/Observer.profile.uml#_g6Z98DgqEduNII1tDKqNvA http:///schemas/Singleton/1 ../../uml2cs-transformations/profiles/Singleton.profile.uml#_eMWcQDgqEduNII1tDKqNvA http://www.eclipse.org/uml2/schemas/Standard/1 pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w">
   <uml:Model xmi:id="_tPOCIaLHEdqkGMDvm75SlQ" name="InstantMessengerModel">
     <eAnnotations xmi:id="_eswR8eQoEdqD2ZNp93yIAQ" source="http://www.topcased.org/uuid">
@@ -1100,10 +1100,11 @@
             <language>java</language>
             <body>setModel(c);&#xA;im.InstantMessagingClient client = im.InstantMessagingClient&#xA;&#x9;&#x9;&#x9;&#x9;.getInstance();&#xA;setView(client.getViewFactory().createConversationView());&#xA;getView().addListener(this);</body>
           </ownedBehavior>
-          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MQNiIEMzEduvwfpPI_uz7A" name="ConversationEdit_onMessageChangeBehavior" specification="_eSR90DKHEdukjIB5UbodVA">
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MQNiIEMzEduvwfpPI_uz7A" specification="_eSR90DKHEdukjIB5UbodVA">
             <eAnnotations xmi:id="_TiY50kM0EduvwfpPI_uz7A" source="http://www.topcased.org/uuid">
               <details xmi:id="_TiY500M0EduvwfpPI_uz7A" key="uuid" value="1158157786605547"/>
             </eAnnotations>
+            <name xsi:nil="true"/>
             <ownedParameter xmi:id="_Hr0pMEVdEdu1R4x2hFmiHQ" name="m" visibility="public" type="_c0hoMOQsEdqD2ZNp93yIAQ" effect="create">
               <eAnnotations xmi:id="_1xxpBkVdEdu1R4x2hFmiHQ" source="http://www.topcased.org/uuid">
                 <details xmi:id="_1xxpB0VdEdu1R4x2hFmiHQ" key="uuid" value="1158395528080573"/>

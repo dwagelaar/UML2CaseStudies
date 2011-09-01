@@ -23,7 +23,7 @@
 
 	<property name="metamodel.uml2.uri" value="http://www.eclipse.org/uml2/3.0.0/UML"/>
 	<property name="metamodel.xml.uri" value="${trans.uri}/metamodels/XML.ecore"/>
-	<property name="metamodel.java.nsuri" value="java.xmi"/>
+	<property name="metamodel.java.nsuri" value="http://www.eclipse.org/gmt/modisco/JavaAST"/>
 	<property name="metamodel.hbm.nsuri" value="http://hibernate.sourceforge.net/hibernate-mapping-3.0.xsd"/>
 	<property name="profile.accessors.uri" value="${trans.uri}/profiles/Accessors.profile.uml"/>
 	<property name="model.uml2types.uri" value="${trans.uri}/models/PrimitiveTypes.uml"/>
@@ -446,7 +446,7 @@
 		 = = = = = = = = = = = = = = = = = -->
 	<target name="java2uml">
 		<!-- params: ${in}, ${code}, ${uri} -->
-		<java2uml in = "${in}" out = "feedback-${in}" code = "${code}" path = "feedback-${uri}"/>
+		<java2uml in = "${in}" out = "feedback-${in}" code = "${code}" uri = "${uri}"/>
 		<emftvm.saveModel name="feedback-${in}" uri="${uri}" derived="false"/>
 	</target>
 

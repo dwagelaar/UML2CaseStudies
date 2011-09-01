@@ -409,7 +409,7 @@ rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String
 	   	name <- 'uri',
 		value <- uri,
 		parent <- loadModel),
-	-- <emftvm.loadModel name = 'inModelCode' path = 'targetProject/targetProject.javaxmi'/>
+	-- <emftvm.loadModel name = 'inModelCode' wspath = '/targetProject/targetProject.javaast'/>
 	   loadCode : XML!"XML::Element" (
 	   	name <- 'emftvm.loadModel'),
 	   cmodelName : XML!"XML::Attribute" (
@@ -417,8 +417,8 @@ rule ModelFeedbackTarget(name : String, inModel : String, targetProject : String
 		value <- inModel + 'Code',
 		parent <- loadCode),
 	   cmodelPath : XML!"XML::Attribute" (
-	   	name <- 'path',
-		value <- '../' + targetProject + '.javaxmi',
+	   	name <- 'wspath',
+		value <- '/' + targetProject + '/' + targetProject + '.javaast',
 		parent <- loadCode),
 	-- <antcall target="java2uml" inheritRefs="true">
 	   antcall : XML!"XML::Element" (

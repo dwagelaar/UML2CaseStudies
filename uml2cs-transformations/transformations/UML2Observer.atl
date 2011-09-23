@@ -121,11 +121,11 @@ helper context UML2!"uml::Operation" def : subscribe(body : String) : String =
 	-- UML has its own enumeration literal implementations, which are NamedElements
 	let kind : String = d.getValue(d.accessor, 'kind').name in
 	if kind = 'remove' then
-		self.accessorFor.name.removerSubscribeBody(body, true)
+		self.accessorFor.name.removerSubscribeBody(body, false)
 	else if kind = 'add' or kind = 'insert' then
 		self.accessorFor.name.adderSubscribeBody(body)
 	else if kind = 'set' then
-		self.accessorFor.name.setterSubscribeBody(body, true)
+		self.accessorFor.name.setterSubscribeBody(body, false)
 	else
 		body
 	endif endif endif;

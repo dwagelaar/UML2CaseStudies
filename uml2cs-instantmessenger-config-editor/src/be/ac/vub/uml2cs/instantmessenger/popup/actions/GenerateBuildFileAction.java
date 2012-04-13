@@ -33,7 +33,6 @@ import org.eclipse.m2m.atl.emftvm.util.DefaultModuleResolver;
 import org.eclipse.m2m.atl.emftvm.util.EMFTVMUtil;
 import org.eclipse.m2m.atl.emftvm.util.ModuleResolver;
 import org.eclipse.m2m.atl.emftvm.util.StackFrame;
-import org.eclipse.m2m.atl.emftvm.util.TimingData;
 import org.eclipse.m2m.atl.emftvm.util.VMMonitor;
 import org.eclipse.ui.IObjectActionDelegate;
 
@@ -215,16 +214,14 @@ public class GenerateBuildFileAction extends ProgressMonitorAction implements IO
 		pars.setResource(rs.createResource(URI.createPlatformResourceURI(
 				getWorkspacePath(parXMIFile), true)));
 		ExecEnv env = EmftvmFactory.eINSTANCE.createExecEnv();
-		env.getMetaModels().put("CFG", cfg);
-		env.getMetaModels().put("XML", xml);
-		env.getInputModels().put("IN", in);
-		env.getOutputModels().put("OUT", pars);
-		TimingData td = new TimingData();
+		env.setMonitor(new ProgressMonitorAdapter(monitor));
+		env.registerMetaModel("CFG", cfg);
+		env.registerMetaModel("XML", xml);
+		env.registerInputModel("IN", in);
+		env.registerOutputModel("OUT", pars);
 		final ModuleResolver resolver = new DefaultModuleResolver(TRANS_PREFIX, rs);
 		env.loadModule(resolver, "Transformations::ConfigToParameters");
-		td.finishLoading();
-		env.run(td, new ProgressMonitorAdapter(monitor));
-		td.finish();
+		env.run(null);
 		pars.getResource().save(Collections.emptyMap());
 		xmlExtraction(xml, pars, parFile, resolver, monitor);
 		parFile.refreshLocal(0, null);
@@ -239,15 +236,13 @@ public class GenerateBuildFileAction extends ProgressMonitorAction implements IO
 		pars.setResource(rs.createResource(URI.createPlatformResourceURI(
 				getWorkspacePath(parXMIFile), true)));
 		env = EmftvmFactory.eINSTANCE.createExecEnv();
-		env.getMetaModels().put("CFG", cfg);
-		env.getMetaModels().put("XML", xml);
-		env.getInputModels().put("IN", in);
-		env.getOutputModels().put("OUT", build);
-		td = new TimingData();
+		env.setMonitor(new ProgressMonitorAdapter(monitor));
+		env.registerMetaModel("CFG", cfg);
+		env.registerMetaModel("XML", xml);
+		env.registerInputModel("IN", in);
+		env.registerOutputModel("OUT", build);
 		env.loadModule(resolver, "InstantMessenger::ConfigToBuildFile");
-		td.finishLoading();
-		env.run(td, new ProgressMonitorAdapter(monitor));
-		td.finish();
+		env.run(null);
 		xmlExtraction(xml, build, buildFile, resolver, monitor);
 		buildFile.refreshLocal(0, null);
 		worked(monitor);
@@ -283,39 +278,6 @@ public class GenerateBuildFileAction extends ProgressMonitorAction implements IO
 	/**
 	 * Extracts model as an XML file.
 	 * 
-	 * @param model
-	 * @param file
-	 *            The file to write to.
-	 */
-//	private static void xmlExtraction(final ASMModel model, IFile file) throws IOException, CoreException {
-//		PipedInputStream in = new PipedInputStream();
-//		final OutputStream out = new PipedOutputStream(in);
-//		final XMLExtractor xmle = new XMLExtractor();
-//		new Thread() {
-//			public void run() {
-//				try {
-//					xmle.extract(model, out, Collections.EMPTY_MAP);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				} finally {
-//					try {
-//						out.close();
-//					} catch (IOException ioe) {
-//
-//					}
-//				}
-//			}
-//		}.start();
-//		if (file.exists()) {
-//			file.setContents(in, IFile.FORCE, null);
-//		} else {
-//			file.create(in, IFile.FORCE, null);
-//		}
-//	}
-
-	/**
-	 * Extracts model as an XML file.
-	 * 
 	 * @param xml
 	 *            the XML metamodel
 	 * @param model
@@ -330,6 +292,8 @@ public class GenerateBuildFileAction extends ProgressMonitorAction implements IO
 	private static void xmlExtraction(final Metamodel xml, final Model model, final IFile file,
 			final ModuleResolver resolver, final IProgressMonitor monitor) throws IOException, CoreException {
 		final ExecEnv env = EmftvmFactory.eINSTANCE.createExecEnv();
+		env.setMonitor(new ProgressMonitorAdapter(monitor));
+
 		final Resource parsRes = model.getResource().getResourceSet()
 				.createResource(URI.createURI("parameters.xmi"));
 		final Model pars = EmftvmFactory.eINSTANCE.createModel();
@@ -345,33 +309,20 @@ public class GenerateBuildFileAction extends ProgressMonitorAction implements IO
 		final EObject param = pars.newElement(element);
 		EMFTVMUtil.add(env, docroot, children, param, -1);
 		EMFTVMUtil.set(env, param, name, "param");
-//		((EList<EObject>)docroot.eGet(children)).add(param);
 		final EObject nameAtt = pars.newElement(attribute);
 		EMFTVMUtil.add(env, param, children, nameAtt, -1);
 		EMFTVMUtil.set(env, nameAtt, name, "name");
 		EMFTVMUtil.set(env, nameAtt, value, "path");
-//		((EList<EObject>)param.eGet(children)).add(nameAtt);
-//		nameAtt.eSet(name, "name");
-//		nameAtt.eSet(value, "path");
 		final EObject valueAtt = pars.newElement(attribute);
 		EMFTVMUtil.add(env, param, children, valueAtt, -1);
 		EMFTVMUtil.set(env, valueAtt, name, "value");
 		EMFTVMUtil.set(env, valueAtt, value, getWorkspacePath(file));
-//		((EList<EObject>)param.eGet(children)).add(valueAtt);
-//		valueAtt.eSet(name, "value");
-//		valueAtt.eSet(value, getWorkspacePath(file));
-//		ByteArrayOutputStream out = new ByteArrayOutputStream();
-//		parsRes.save(out, Collections.emptyMap());
-//		String parsString = out.toString();
 
-		env.getMetaModels().put("XML", xml);
-		env.getInputModels().put("IN", model);
-		env.getInputModels().put("parameters", pars);
-		final TimingData td = new TimingData();
+		env.registerMetaModel("XML", xml);
+		env.registerInputModel("IN", model);
+		env.registerInputModel("parameters", pars);
 		env.loadModule(resolver, "Transformations::XMLExtractor");
-		td.finishLoading();
-		env.run(td, new ProgressMonitorAdapter(monitor));
-		td.finish();
+		env.run(null);
 	}
 
 	/**

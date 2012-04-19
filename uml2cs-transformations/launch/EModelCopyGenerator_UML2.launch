@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.m2m.atl.emftvm.launcher.EMFTVMTransformation">
-<stringAttribute key="ATL File Name" value="/uml2cs-transformations/transformations-offline/EModelCopyGenerator.atl"/>
+<stringAttribute key="ATL File Name" value="//uml2cs-transformations/transformations-offline/EModelCopyGenerator.atl"/>
 <booleanAttribute key="Display Timing Data" value="true"/>
 <mapAttribute key="Inout Model Options"/>
 <mapAttribute key="Inout Models"/>
@@ -15,6 +15,8 @@
 <mapEntry key="ECORE" value=""/>
 </mapAttribute>
 <stringAttribute key="Module File Name" value="/uml2cs-transformations/transformations-offline/EModelCopyGenerator.emftvm"/>
+<stringAttribute key="Module Name" value="EModelCopyGenerator"/>
+<stringAttribute key="Module Path" value="/uml2cs-transformations/transformations-offline/"/>
 <mapAttribute key="Output Model Options"/>
 <mapAttribute key="Output Models"/>
 <listAttribute key="Superimpose">

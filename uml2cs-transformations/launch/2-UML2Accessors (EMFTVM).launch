@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.m2m.atl.emftvm.launcher.EMFTVMTransformation">
+<stringAttribute key="ATL File Name" value="//uml2cs-transformations/transformations/UML2Accessors.atl"/>
+<booleanAttribute key="Display Timing Data" value="true"/>
+<mapAttribute key="Inout Model Options"/>
+<mapAttribute key="Inout Models"/>
+<mapAttribute key="Inout Models Output Locations"/>
+<mapAttribute key="Input Model Options"/>
+<mapAttribute key="Input Models">
+<mapEntry key="ACCESSORS" value="platform:/resource/uml2cs-transformations/profiles/Accessors.profile.uml"/>
+<mapEntry key="IN" value="platform:/resource/uml2cs-instantmessenger-model/outmodels/test/im-profiles.uml"/>
+<mapEntry key="UML2TYPES" value="platform:/resource/uml2cs-transformations/models/PrimitiveTypes.uml"/>
+</mapAttribute>
+<mapAttribute key="Metamodel Options"/>
+<mapAttribute key="Metamodels">
+<mapEntry key="UML2" value="http://www.eclipse.org/uml2/3.0.0/UML"/>
+</mapAttribute>
+<stringAttribute key="Module Name" value="UML2Accessors"/>
+<stringAttribute key="Module Path" value="/uml2cs-transformations/transformations-java/,/uml2cs-transformations/transformations/"/>
+<mapAttribute key="Output Model Options">
+<mapEntry key="OUT" value="allowIntermodelReferences derivedFile"/>
+</mapAttribute>
+<mapAttribute key="Output Models">
+<mapEntry key="OUT" value="platform:/resource/uml2cs-instantmessenger-model/outmodels/test/im-accessors.uml"/>
+</mapAttribute>
+<listAttribute key="Superimpose">
+<listEntry value="//uml2cs-transformations/transformations/lib/Strings.asm"/>
+<listEntry value="//uml2cs-transformations/transformations/lib/UML2.asm"/>
+<listEntry value="//uml2cs-transformations/transformations/lib/Strings.asm"/>
+<listEntry value="//uml2cs-transformations/transformations-java/lib/Mappings.asm"/>
+<listEntry value="//uml2cs-transformations/transformations-java/lib/Java.asm"/>
+<listEntry value="//uml2cs-transformations/transformations/lib/Strings.asm"/>
+<listEntry value="//uml2cs-transformations/transformations/UML2Copy.asm"/>
+</listAttribute>
+</launchConfiguration>
